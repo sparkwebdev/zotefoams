@@ -4,7 +4,7 @@ document.addEventListener('DOMContentLoaded', function () {
     loop: true,
     speed: 400,
     autoplay: {
-      delay: 30000000, // Slide transition delay (3 seconds)
+      delay: 3000, // Slide transition delay (3 seconds)
       disableOnInteraction: false,
     },
     navigation: {

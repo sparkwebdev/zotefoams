@@ -89,7 +89,6 @@ Template Name: Homepage
 			<a href="" class="btn white outline">Find out more</a>
 		</div>
 		<div class="half image-cover" style="background-image:url(<?php echo get_template_directory_uri(); ?>/images/empty-plane-ai-generated-image.jpg)">
-			<a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" class="video-link open-video-overlay"> </a>
 		</div>
 	</div>
 
