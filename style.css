@@ -1339,14 +1339,14 @@ a.btn.arrow::after {
 
 /* Styling for pagination bullets */
 .swiper-pagination-bullet {
-	width: 12px;  /* Set width for the bullets */
-	height: 12px;  /* Set height for the bullets */
+	width: 9px;  /* Set width for the bullets */
+	height: 9px;  /* Set height for the bullets */
 	background-color: #fff;  /* Set default background color for the bullets */
 	border-radius: 50%;  /* Make the bullets round */
 	opacity: 0.6;  /* Optional: makes the bullets slightly transparent */
 	transition: opacity 0.3s;  /* Optional: add transition for better effect */
 	display: inline-block;
-	margin:0 5px
+	margin:0 3px
 }
 
 /* Active bullet styling */

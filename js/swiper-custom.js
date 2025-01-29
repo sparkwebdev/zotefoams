@@ -55,10 +55,6 @@ const swiperText = new Swiper('.swiper-carousel-text', {
     crossFade: true
   },
   speed: 1000,
-  pagination: {
-    el: '.swiper-pagination',  // For the text carousel
-    clickable: true,
-  },
   navigation: {
     nextEl: '.swiper-button-next-carousel',
     prevEl: '.swiper-button-prev-carousel',
