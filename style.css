@@ -402,7 +402,7 @@ input,
 select,
 optgroup,
 textarea {
-	color: #404040;
+	color: #000;
 	font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
 	font-size: 1rem;
 	line-height: 1.5;
@@ -415,10 +415,11 @@ h4,
 h5,
 h6 {
 	clear: both;
+	margin: 0;
 }
 
 p {
-	margin-bottom: 1.5em;
+	margin: 0;
 }
 
 dfn,
@@ -973,7 +974,7 @@ textarea {
 
 
 
-/* Fonts
+/* Font styles
 --------------------------------------------- */
 .fw-extralight {
   font-weight: 200;
@@ -999,7 +1000,7 @@ textarea {
 
 .fs-900 {
 	font-size:120px;
-	line-height:120px
+	line-height:105px
 }
 .fs-800 {
 	font-size:74px;
@@ -1011,7 +1012,7 @@ textarea {
 }
 .fs-600 {
 	font-size:32px;
-	line-height:32px
+	line-height:40px
 }
 .fs-500 {
 	font-size:28px;
@@ -1039,31 +1040,125 @@ textarea {
 
 
 
+/* Colours
+--------------------------------------------- */
+.white-text {color:#fff}
+.white-bg {background-color:#fff}
+
+.black-text {color:#000}
+.black-bg {background-color:#000}
+.text-center {text-align:center}
+
+
+/* Colours
+--------------------------------------------- */
+.image-cover {
+	backghround-size:cover;
+	background-position:center center
+}
+
 
 /* Containers
 --------------------------------------------- */
 .cont-xl {
-	max-width:1800px;
-	width:90%
 }
 .cont-l {
 	max-width:1800px;
-	width:90%
+	width:90%;
+	margin:0 auto
 }
 .cont-m {
 	max-width:1400px;
-	width:90%
+	width:90%;
+	margin:0 auto
 }
 
 .half-half {
 	display:flex;
+	justify-content: space-between
+}
+.half-half .half {
+	width: 46%;
 }
 
-.half {
-	
+.half-half-carousel {
+	display:flex;
+	justify-content: space-between
+}
+.half-half-carousel .half {
+	width: 50%;
 }
 
+/* Paddings & Margins
+--------------------------------------------- */
+.margin-100 {margin:100px}
+.margin-50 {margin:50px}
+.margin-40 {margin:40px}
+.margin-30 {margin:30px}
 
+.margin-t-b-100 {margin:100px 0}
+.margin-t-b-40 {margin:40px 0}
+.margin-t-b-30 {margin:30px 0}
+
+.margin-t-100 {margin-top:100px}
+.margin-t-40 {margin-top:40px}
+.margin-t-30 {margin-top:30px}
+
+.margin-b-100 {margin-bottom:100px}
+.margin-b-50 {margin-bottom:50px}
+.margin-b-40 {margin-bottom:40px}
+.margin-b-30 {margin-bottom:30px}
+
+.margin-r-100 {margin-right:100px}
+.margin-r-50 {margin-right:50px}
+.margin-r-40 {margin-right:40px}
+.margin-r-30 {margin-right:30px}
+.margin-r-20 {margin-right:20px}
+.margin-r-15 {margin-right:15px}
+.margin-r-10 {margin-right:10px}
+
+.padding-100 {padding:100px}
+.padding-50 {padding:50px}
+.padding-40 {padding:40px}
+.padding-30 {padding:30px}
+
+.padding-t-b-100 {padding:100px 0}
+.padding-t-b-40 {padding:40px 0}
+.padding-t-b-30 {padding:30px 0}
+
+.padding-b-100 {padding-bottom:100px}
+.padding-b-40 {padding-bottom:40px}
+.padding-b-30 {padding-bottom:30px}
+
+
+/* Buttons
+--------------------------------------------- */
+a.btn {
+	padding:13px 20px 15px;
+	min-width:140px;
+	text-transform:capitalize;
+	text-decoration:none;
+	position:relative;
+    display:inline-flex;
+	justify-content: center;
+    align-items: center;
+}
+a.btn.outline.white {
+	color:#fff;
+	border:1px solid #fff;
+	border-radius:5px
+}
+a.btn.arrow::after {
+	content:"";
+	background-image:url(/wp-content/themes/zotefoams/images/icon-right-arrow-white.svg);
+	background-repeat:no-repeat;
+	background-size:120%;
+	background-position:center center;
+	width:8px;
+	height:12px;
+    display:inline-flex;
+	margin-left:30px
+}
 
 
 /* Utility menu
@@ -1075,9 +1170,10 @@ textarea {
 
 /* Basic setup for Swiper container and slide */
 .swiper {
-  width: 100%;
-  height: 70vh;
-  position: relative;
+	width: 100%;
+	height: 72vh;
+	position: relative;
+	max-height:900px	
 }
 
 .swiper-slide {
@@ -1087,14 +1183,37 @@ textarea {
   background-color: #ddd;
 }
 
+.swiper-inner {
+	display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: calc(100% - 100px);
+	position: relative;
+    z-index: 1;
+}
+
+
+.swiper-inner h1 {
+	max-width:1100px
+}
+.swiper-inner p {
+	max-width:750px
+}
+
+.swiper-slide .overlay {
+	background:linear-gradient(90deg, rgba(0,0,0,0.5) 0%, rgba(0,0,0,0) 100%);
+	position:absolute;
+	top:0;
+	left:0;
+	right:0;
+	bottom:0;
+}
+
+
 /* Circle container */
 .circle-container {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 120px;
-  height: 120px;
+  width: 50px;
+  height: 50px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -1111,23 +1230,94 @@ textarea {
 .circle-background {
   fill: none;
   stroke: #ddd;
-  stroke-width: 8;
+  stroke-width: 2; /* Stroke width is 2px */
 }
 
 .circle-progress {
   fill: none;
   stroke: #007bff;
-  stroke-width: 8;
-  stroke-dasharray: 345; /* Circumference of the circle */
-  stroke-dashoffset: 345; /* Initially hide the progress */
-  transition: stroke-dashoffset 3s linear; /* Smooth transition */
+  stroke-width: 2; /* Stroke width is 2px */
+  stroke-dasharray: 144.513; /* Circumference of the circle (2 * Math.PI * 23) */
+  stroke-dashoffset: 144.513; /* Initially hide the progress */
+  transition: stroke-dashoffset 3s linear; /* Smooth 3-second transition */
 }
+
+/* Trigger animation when the slide becomes active */
+.swiper-slide-active .circle-progress {
+  stroke-dashoffset: 0; /* Animate the stroke to 0 */
+}
+
+/* Reset circle progress on non-active slides */
+.swiper-slide-next .circle-progress,
+.swiper-slide-prev .circle-progress {
+  stroke-dashoffset: 144.513; /* Reset to full circle */
+}
+
 
 /* Next button styles */
 .swiper-button-next {
-  position: absolute;
-  top: 50%;
-  right: 10px; /* Adjust as needed */
-  transform: translateY(-50%);
-  z-index: 2; /* Ensure the button is above the circle */
+	position: absolute;
+	bottom: 50px;
+	right: 50px;
+	z-index: 2; /* Ensure the button is above the circle */
+	display: flex;
+    align-items: center;
+	transition:opacity 0.3s
+}
+.swiper-button-next:hover {
+	cursor:pointer;
+	opacity:0.8
+}
+
+
+/* Style for the overlay */
+.video-container {
+	position:relative
+}
+.video-link {
+	position:absolute;
+	top:0;
+	left:0;
+	right:0;
+	bottom:0;
+}
+/* Style for the overlay */
+#video-overlay {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent black background */
+	display: none;
+	justify-content: center;
+	align-items: center;
+	z-index:10000
+}
+#overlay-content {
+	position: relative;
+	width: 90%; /* Max width of 90% of the viewport */
+	overflow: hidden;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+#video-iframe {
+	width: 100%;
+	height: 100%;
+	aspect-ratio: 16 / 9; /* Maintain 16:9 aspect ratio */
+}
+#close-video {
+	position: absolute;
+	top: 10px;
+	right: 10px;
+	background: red;
+	color: white;
+	border: none;
+	padding: 5px 10px;
+	cursor: pointer;
+	z-index: 10;
+}
+#close-video:hover {
+	background: darkred;
 }
