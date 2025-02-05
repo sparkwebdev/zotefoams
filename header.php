@@ -30,8 +30,7 @@
 			<?php
 			wp_nav_menu(
 				array(
-					'theme_location' => 'menu-2',
-					'menu_id'        => 'utility-menu',
+					'theme_location' => 'utility_menu',
     				'container' => false,
 				)
 			);
@@ -53,8 +52,7 @@
 			<?php
 			wp_nav_menu(
 				array(
-					'theme_location' => 'menu-1',
-					'menu_id'        => 'primary-menu',
+					'theme_location' => 'primary_menu',
     				'container' => false,
 				)
 			);
