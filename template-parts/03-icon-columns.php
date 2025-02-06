@@ -1,5 +1,5 @@
 
-	<div class="comp-08 light-grey-bg black-text padding-t-b-100">
+	<div class="icon-columns light-grey-bg black-text padding-t-b-100">
 		<div class="cont-m">
 			<div class="comp-08-item">
 				<img class="margin-b-15" src="<?php echo get_template_directory_uri(); ?>/images/icon-05.svg" />

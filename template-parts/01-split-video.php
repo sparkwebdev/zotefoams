@@ -1,8 +1,8 @@
 
 	<!-- Half & Half image text block -->
-	<div class="comp-02 half-half cont-m padding-t-b-100">
+	<div class="split-video half-half cont-m padding-t-b-100">
 		<div class="half video-container image-cover" style="background-image:url(<?php echo get_template_directory_uri(); ?>/images/home-nike-thumb.jpg)">
-			<a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" class="video-link open-video-overlay">
+			<a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" class="video-link open-video-overlay" rel="noopener noreferrer">
 				<img src="/wp-content/themes/zotefoams/images/youtube-play.svg" />
 			</a>
 		</div>

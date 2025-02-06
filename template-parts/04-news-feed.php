@@ -1,5 +1,5 @@
 
-	<div class="feed-one-outer cont-m padding-t-b-100">
+	<div class="news-feed cont-m padding-t-b-100">
 		<div class="title-strip margin-b-30">
 			<h3 class="fs-500 fw-600">Latest updates</h3>
 			<a href="" class="btn black outline">News Centre</a>

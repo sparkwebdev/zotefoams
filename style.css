@@ -975,31 +975,8 @@ textarea {
 }
 
 
-
-/* Font styles
+/* Font sizes
 --------------------------------------------- */
-.fw-extralight {
-  font-weight: 200;
-}
-.fw-light {
-  font-weight: 300;
-}
-.fw-regular {
-  font-weight: 400;
-}
-.fw-medium {
-  font-weight: 500;
-}
-.fw-semibold {
-  font-weight: 600;
-}
-.fw-bold {
-  font-weight: 700;
-}
-.fw-extrabold {
-  font-weight: 800;
-}
-
 .fs-900 {
 	font-size:120px;
 	line-height:105px
@@ -1037,9 +1014,30 @@ textarea {
 	line-height:14px
 }
 
-.uppercase {text-transform:uppercase}
 
-
+/* Font weights
+--------------------------------------------- */
+.fw-extralight {
+  font-weight: 200;
+}
+.fw-light {
+  font-weight: 300;
+}
+.fw-regular {
+  font-weight: 400;
+}
+.fw-medium {
+  font-weight: 500;
+}
+.fw-semibold {
+  font-weight: 600;
+}
+.fw-bold {
+  font-weight: 700;
+}
+.fw-extrabold {
+  font-weight: 800;
+}
 
 
 /* Colours
@@ -1058,18 +1056,17 @@ textarea {
 .blue-text {color:#3B82F6}
 
 
-/* Colours
+/* Generic styling classes
 --------------------------------------------- */
 .image-cover {
 	background-size:cover;
 	background-position:center center
 }
+.uppercase {text-transform:uppercase}
 
 
 /* Containers
 --------------------------------------------- */
-.cont-xl {
-}
 .cont-l {
 	max-width:1800px;
 	width:90%;
@@ -1081,19 +1078,6 @@ textarea {
 	margin:0 auto
 }
 
-.half-half {
-	display:flex;
-	justify-content: space-between
-}
-.half-half .half {
-	width: 50%;
-}
-.comp-02 .half:nth-of-type(2) {
-	width: 44%;
-}
-.comp-07-text {
-	max-width:600px
-}
 
 .half-half-carousel {
 	display:flex;
@@ -1111,10 +1095,12 @@ textarea {
 .margin-30 {margin:30px}
 
 .margin-t-b-100 {margin:100px 0}
+.margin-t-b-70 {margin:70px 0}
 .margin-t-b-40 {margin:40px 0}
 .margin-t-b-30 {margin:30px 0}
 
 .margin-t-100 {margin-top:100px}
+.margin-t-70 {margin-top:70px}
 .margin-t-40 {margin-top:40px}
 .margin-t-30 {margin-top:30px}
 
@@ -1241,6 +1227,9 @@ a.hl.download::after {
 }
 
 
+
+
+
 /* Utility menu
 --------------------------------------------- */
 .utility-menu {
@@ -1248,7 +1237,10 @@ a.hl.download::after {
 }
 
 
-/* Swiper banner
+
+
+
+/* b1 - Image banner
 --------------------------------------------- */
 .swiper-banner {
 	width: 100%;
@@ -1256,13 +1248,11 @@ a.hl.download::after {
 	position: relative;
 	max-height:900px	
 }
-
 .swiper-banner .swiper-slide {
   justify-content: center;
   align-items: center;
   background-color: #ddd;
 }
-
 .swiper-banner .swiper-inner {
 	display: flex;
     flex-direction: column;
@@ -1271,14 +1261,12 @@ a.hl.download::after {
 	position: relative;
     z-index: 1;
 }
-
 .swiper-banner .swiper-inner h1 {
 	max-width:1100px
 }
 .swiper-banner .swiper-inner p {
 	max-width:750px
 }
-
 .swiper-banner .swiper-slide .overlay {
 	background:linear-gradient(90deg, rgba(0,0,0,0.5) 0%, rgba(0,0,0,0) 100%);
 	position:absolute;
@@ -1303,53 +1291,137 @@ a.hl.download::after {
 	opacity:0.8
 }
 
-
 /* Circle container */
 .circle-container {
-  width: 50px;
-  height: 50px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  pointer-events: none; /* Prevent interaction */
-  z-index: 1; /* Ensure the circle is above the slides */
+	width: 50px;
+	height: 50px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	pointer-events: none;
+	z-index: 1;
 }
-
 .circle-svg {
-  transform: rotate(-90deg); /* Starts the stroke from top */
-  width: 100%;
-  height: 100%;
+	transform: rotate(-90deg);
+	width: 100%;
+	height: 100%;
 }
-
 .circle-background {
-  fill: none;
-  stroke: #ddd;
-  stroke-width: 2; /* Stroke width is 2px */
+	fill: none;
+	stroke: #ddd;
+	stroke-width: 2;
 }
-
 .circle-progress {
-  fill: none;
-  stroke: #007bff;
-  stroke-width: 2; /* Stroke width is 2px */
-  stroke-dasharray: 144.513; /* Circumference of the circle (2 * Math.PI * 23) */
-  stroke-dashoffset: 144.513; /* Initially hide the progress */
-  transition: stroke-dashoffset 3s linear; /* Smooth 3-second transition */
+	fill: none;
+	stroke: #007bff;
+	stroke-width: 2;
+	stroke-dasharray: 144.513;
+	stroke-dashoffset: 144.513;
+	transition: stroke-dashoffset 3s linear;
 }
-
-/* Trigger animation when the slide becomes active */
 .swiper-slide-active .circle-progress {
-  stroke-dashoffset: 0; /* Animate the stroke to 0 */
+	stroke-dashoffset: 0;
 }
-
-/* Reset circle progress on non-active slides */
 .swiper-slide-next .circle-progress,
 .swiper-slide-prev .circle-progress {
-  stroke-dashoffset: 144.513; /* Reset to full circle */
+	stroke-dashoffset: 144.513;
 }
 
 
 
-/* Swiper carousel
+/* b2 - Text banner
+--------------------------------------------- */
+.text-banner-text {
+	max-width:600px
+}
+.text-banner-split {
+	display:flex;
+	justify-content: space-between
+}
+.text-banner-split .half {
+	width: 50%;
+}
+
+
+
+/* 01 - Split video
+--------------------------------------------- */
+.split-video {
+	display:flex;
+	justify-content: space-between
+}
+.split-video .half {
+	width: 50%;
+}
+.split-video .half:nth-of-type(2) {
+	width: 44%;
+}
+
+/* Video overlay */
+.video-container {
+	position:relative
+}
+.video-link {
+	position:absolute;
+	top:0;
+	left:0;
+	right:0;
+	bottom:0;
+	display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.video-link img {
+	transition:opacity 0.3s
+}
+.video-link:hover img {
+	opacity:0.6;
+}
+
+#video-overlay {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent black background */
+	display: none;
+	justify-content: center;
+	align-items: center;
+	z-index:10000
+}
+#overlay-content {
+	position: relative;
+	width: 90%; /* Max width of 90% of the viewport */
+	overflow: hidden;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+#video-iframe {
+	width: 100%;
+	height: 100%;
+	aspect-ratio: 16 / 9; /* Maintain 16:9 aspect ratio */
+}
+#close-video {
+	position: absolute;
+	top: 10px;
+	right: 10px;
+	background: red;
+	color: white;
+	border: none;
+	padding: 5px 10px;
+	cursor: pointer;
+	z-index: 10;
+}
+#close-video:hover {
+	background: darkred;
+}
+
+
+
+
+/* 02 - Split carousel
 --------------------------------------------- */
 .swiper-carousel {
 	display:flex;
@@ -1412,11 +1484,6 @@ a.hl.download::after {
 	margin:0 10px
 }
 
-/* Ensure pagination container is visible */
-.swiper-pagination {
-}
-
-/* Styling for pagination bullets */
 .swiper-pagination-bullet {
 	width: 9px;  /* Set width for the bullets */
 	height: 9px;  /* Set height for the bullets */
@@ -1428,7 +1495,6 @@ a.hl.download::after {
 	margin:0 3px
 }
 
-/* Active bullet styling */
 .swiper-pagination-bullet-active {
 	background-color: #3B82F6;  /* Set active bullet color */
 	opacity: 1;  /* Ensure the active bullet is fully opaque */
@@ -1436,73 +1502,21 @@ a.hl.download::after {
 
 
 
-/* Video overlay
+
+/* 03 - Icon columns
 --------------------------------------------- */
-.video-container {
-	position:relative
+.icon-columns .cont-m {
+	display:flex;
+	justify-content: space-between
 }
-.video-link {
-	position:absolute;
-	top:0;
-	left:0;
-	right:0;
-	bottom:0;
-	display: flex;
-    justify-content: center;
-    align-items: center;
-}
-.video-link img {
-	transition:opacity 0.3s
-}
-.video-link:hover img {
-	opacity:0.6;
-}
-
-/* Style for the overlay */
-#video-overlay {
-	position: fixed;
-	top: 0;
-	left: 0;
-	width: 100%;
-	height: 100%;
-	background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent black background */
-	display: none;
-	justify-content: center;
-	align-items: center;
-	z-index:10000
-}
-#overlay-content {
-	position: relative;
-	width: 90%; /* Max width of 90% of the viewport */
-	overflow: hidden;
-	display: flex;
-	justify-content: center;
-	align-items: center;
-}
-#video-iframe {
-	width: 100%;
-	height: 100%;
-	aspect-ratio: 16 / 9; /* Maintain 16:9 aspect ratio */
-}
-#close-video {
-	position: absolute;
-	top: 10px;
-	right: 10px;
-	background: red;
-	color: white;
-	border: none;
-	padding: 5px 10px;
-	cursor: pointer;
-	z-index: 10;
-}
-#close-video:hover {
-	background: darkred;
+.icon-columns .cont-m > div {
+	width:30%
 }
 
 
 
 
-/* Feeds
+/* 04 - News feed
 --------------------------------------------- */
 .title-strip {
 	display:flex;
@@ -1531,7 +1545,8 @@ a.hl.download::after {
 
 
 
-/* Doc list
+
+/* 05 - Document list
 --------------------------------------------- */
 .doc-list {
 	display: flex;
@@ -1592,7 +1607,7 @@ a.hl.download::after {
 
 
 
-/* Accordion
+/* 06 - Show Hide Accordion
 --------------------------------------------- */
 .accordion-items {
 	border-top: 1px solid #ddd;
@@ -1641,7 +1656,6 @@ a.hl.download::after {
 
 
 
-
 /* Footer
 --------------------------------------------- */
 .site-footer {
@@ -1674,8 +1688,6 @@ a.hl.download::after {
 }
 
 
-
-
 /* Newsletter signup
 --------------------------------------------- */
 .zf-form {
@@ -1688,25 +1700,6 @@ input.zf {
 	width:100%;
 	margin-bottom:20px
 }
-
-
-
-
-
-/* Comp-08
---------------------------------------------- */
-.comp-08 .cont-m {
-	display:flex;
-	justify-content: space-between
-}
-.comp-08 .cont-m > div {
-	width:30%
-}
-
-
-
-
-
 
 
 

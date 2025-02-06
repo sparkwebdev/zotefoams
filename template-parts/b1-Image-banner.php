@@ -1,6 +1,5 @@
 
-	<!-- First Swiper -->
-	<div class="swiper swiper-banner">
+	<div class="image-banner swiper swiper-banner">
 		<div class="swiper-wrapper">
 			<div class="swiper-slide image-cover" style="background-image:url(<?php echo get_template_directory_uri(); ?>/images/home-banner-1.jpg)" data-title="Aviation & Aerospace">
 				<div class="swiper-inner padding-50 white-text">
