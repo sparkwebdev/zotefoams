@@ -990,7 +990,7 @@ textarea {
 	line-height:60px
 }
 .fs-600 {
-	font-size:32px;
+	font-size:34px;
 	line-height:40px
 }
 .fs-500 {
@@ -1074,6 +1074,11 @@ textarea {
 }
 .cont-m {
 	max-width:1400px;
+	width:90%;
+	margin:0 auto
+}
+.cont-xs {
+	max-width:800px;
 	width:90%;
 	margin:0 auto
 }
@@ -1705,27 +1710,9 @@ a.hl.download::after {
 	max-width:600px
 }
 
-.calendar-carousel .swiper-slide {
+.calendar-carousel .swiper-slide-inner {
 	border:1px solid #ccc
 }
-
-
-/* 10 - Multi item carousel
---------------------------------------------- */
-.multi-swiper-scrollbar {
-	height: 8px; /* Adjust the height of the scrollbar */
-	background: rgba(0, 0, 0, 0.15); /* Background of the scrollbar */
-	margin-top: 30px;
-}
-
-.swiper-scrollbar-drag {
-	background: #3B82F6; /* Color of the draggable part */
-	height: 8px;
-}
-
-
-/* 11 - Calendar carousel
---------------------------------------------- */
 
 
 /* 09 - Markets list
@@ -1759,6 +1746,132 @@ a.hl.download::after {
 }
 .box-image {
 	height:260px
+}
+
+
+
+
+/* 10 - Multi item carousel
+--------------------------------------------- */
+.multi-swiper-scrollbar {
+	height: 8px; /* Adjust the height of the scrollbar */
+	background: rgba(0, 0, 0, 0.15); /* Background of the scrollbar */
+	margin-top: 30px;
+}
+
+.swiper-scrollbar-drag {
+	background: #3B82F6; /* Color of the draggable part */
+	height: 8px;
+}
+
+
+/* 11 - Calendar carousel
+--------------------------------------------- */
+
+
+
+
+
+/* 12 - Split text
+--------------------------------------------- */
+.split-text {
+	display:flex;
+	gap:10%
+}
+.split-text > div {
+	flex:1
+}
+.split-text p {
+	margin-bottom:20px
+}
+.split-text b {
+	color:#000;
+	font-weight:600
+}
+
+/* 13 - Text Block
+--------------------------------------------- */
+.text-block-inner {
+	max-width:1000px
+}
+.text-block b {
+	color:#000;
+	font-weight:600
+}
+
+
+
+/* 14 - Tabbed component
+--------------------------------------------- */
+
+.tabs-container {
+    overflow: hidden;
+}
+
+.tabs {
+    display: flex;
+}
+
+.tab {
+    flex: 1;
+    padding: 20px;
+    border: none;
+    background: transparent;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: bold;
+    display: flex;
+	flex-direction:column;
+    align-items: center;
+    justify-content: center;
+    gap: 13px;
+	transition:all 0.3s;
+	opacity:0.5;
+    -webkit-filter: grayscale(100%);
+    -moz-filter:    grayscale(100%);
+    -ms-filter:     grayscale(100%);
+    -o-filter:      grayscale(100%);
+}
+
+.tab p {
+	border-bottom:2px solid #fff;
+}
+
+.tab.active {
+	opacity:1;
+    -webkit-filter: grayscale(0%);
+    -moz-filter:    grayscale(0%);
+    -ms-filter:     grayscale(0%);
+    -o-filter:      grayscale(0%);
+}
+
+.tab.active p {
+	border-bottom:2px solid #000;
+}
+
+.tab:hover {
+    background: #F8F8F8;
+}
+
+.tab-content {
+    display: none;
+}
+.tab-content .half-half {
+    display: flex;
+}
+.tab-content .half-half > div {
+    flex: 1;
+	height:500px;
+    display: flex;
+}
+.tab-content .half-half .all-content {
+	justify-content: space-between;
+    display: flex;
+    flex-direction: column;
+}
+
+.tab-content.active {
+    display: block;
 }
 
 

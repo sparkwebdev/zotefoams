@@ -32,6 +32,12 @@ Template Name: Homepage
 
 	<?php get_template_part('template-parts/11-calendar-carousel'); ?>
 
+	<?php get_template_part('template-parts/12-split-text'); ?>
+
+	<?php get_template_part('template-parts/13-text-block'); ?>
+
+	<?php get_template_part('template-parts/14-tabbed-split'); ?>
+
 	<?php get_footer(); ?>
 
 

@@ -17,33 +17,47 @@
 		</div>
 		<div class="swiper calendar-carousel">
 			<div class="swiper-wrapper">
-				<div class="swiper-slide padding-20">
-					<p>23rd January 2025</p>
-					<p>Year-end trading update</p>
+				<div class="swiper-slide">
+					<div class="swiper-slide-inner padding-20">
+						<p>23rd January 2025</p>
+						<p>Year-end trading update</p>
+					</div>
 				</div>
-				<div class="swiper-slide padding-20">
-					<p>23rd January 2025</p>
-					<p>Announcement of 2025 preliminary results</p>
+				<div class="swiper-slide">
+					<div class="swiper-slide-inner padding-20">
+						<p>23rd January 2025</p>
+						<p>Announcement of 2025 preliminary results</p>
+					</div>
 				</div>
-				<div class="swiper-slide padding-20">
-					<p>23rd January 2025</p>
-					<p>2025 Annual General Meeting and trading update</p>
+				<div class="swiper-slide">
+					<div class="swiper-slide-inner padding-20">
+						<p>23rd January 2025</p>
+						<p>2025 Annual General Meeting and trading update</p>
+					</div>
 				</div>
-				<div class="swiper-slide padding-20">
-					<p>23rd January 2025</p>
-					<p>Payment of final dividend for 2024</p>
+				<div class="swiper-slide">
+					<div class="swiper-slide-inner padding-20">
+						<p>23rd January 2025</p>
+						<p>Payment of final dividend for 2024</p>
+					</div>
 				</div>
-				<div class="swiper-slide padding-20">
-					<p>23rd January 2025</p>
-					<p>Year-end trading update</p>
+				<div class="swiper-slide">
+					<div class="swiper-slide-inner padding-20">
+						<p>23rd January 2025</p>
+						<p>Year-end trading update</p>
+					</div>
 				</div>
-				<div class="swiper-slide padding-20">
-					<p>23rd January 2025</p>
-					<p>Announcement of 2025 preliminary results</p>
+				<div class="swiper-slide">
+					<div class="swiper-slide-inner padding-20">
+						<p>23rd January 2025</p>
+						<p>Announcement of 2025 preliminary results</p>
+					</div>
 				</div>
-				<div class="swiper-slide padding-20">
-					<p>23rd January 2025</p>
-					<p>2025 Annual General Meeting and trading update</p>
+				<div class="swiper-slide">
+					<div class="swiper-slide-inner padding-20">
+						<p>23rd January 2025</p>
+						<p>2025 Annual General Meeting and trading update</p>
+					</div>
 				</div>
 			</div>
 		</div>

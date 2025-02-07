@@ -64,7 +64,7 @@
 					<p class="blue-text fw-bold margin-b-30">Stay In Touch</p>
 					<p class="margin-b-20">Subscribe to our email alerts to get notified with news and events.</p>
 					<div class="zf-form">
-						<input class="zf" type="text" id="email" name="email" placeholder="Your Email Address">
+						<input class="zf" type="text" id="email" name="email" placeholder="Your Email Address" autocomplete="on">
 						<a href="" class="btn blue">Submit</a>
 					</div>
 				</div>
