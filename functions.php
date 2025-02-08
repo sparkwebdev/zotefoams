@@ -204,68 +204,13 @@ if ( defined( 'JETPACK__VERSION' ) ) {
 }
 
 
-/**
- * Hide admin bar.
+ * Functions which enhance the admin screens by hooking into WordPress.
  */
-add_filter( 'show_admin_bar', '__return_false' );
-
-
+require get_template_directory() . '/inc/admin.php';
 
 /**
- * Edit Admin layout.
  */
-function my_acf_admin_head()
-{
-    ?>
-    <style type="text/css">
 
-		.acf-postbox>.inside {
-			padding:10px 10px 10px 10px !important
-		}
-		.edit-post-meta-boxes-area #poststuff .stuffbox>h3, .edit-post-meta-boxes-area #poststuff h2.hndle, .edit-post-meta-boxes-area #poststuff h3.hndle {
-			border-bottom: 0;
-			font-size: 21px;
-			font-family: arial;
-		}
-		.edit-post-meta-boxes-area .postbox>.inside {
-			background: #f2f2f2;
-		}
-		.hndle:hover {
-			background: #fff !important;
-		}
-		.postbox-container .meta-box-sortables {
-			margin-bottom: 100px;
-		}
-		.postbox.acf-postbox {
-			margin: 2%;
-    		border: 1px solid #ccc;
-		}
-		.postbox-header {
-			background:#1d2327;
-		}
-		.hndle:hover {
-			background:#111 !important;
-		}
-		#poststuff h2 {
-			color:#fff
-		}
-		.acf-table {border-collapse: collapse; }
-		.acf-table > tbody > tr {
-			border-top: 2px solid black;
-		}
-    </style>
- 
-    <script type="text/javascript">
-    (function($){
- 
-        /* ... */
- 
-    })(jQuery);
-    </script>
-    <?php
-}
- 
-add_action('acf/input/admin_head', 'my_acf_admin_head');
 
 /**
  * Hide Gutenberg Block editor.
