@@ -16,9 +16,16 @@ html {
   scroll-behavior: smooth;
 }
 
-/* Pagination */
 
-  
+/* Daves Components */
+.text-banner {
+  > * {
+    max-width: 10em;
+    text-wrap: balance;
+  }
+}
+
+/* Pagination */
 .pagination, .nav-links {
   a:not(:hover):not(:focus) {
     text-decoration: none;
