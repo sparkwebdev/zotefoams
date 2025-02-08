@@ -209,7 +209,9 @@ if ( defined( 'JETPACK__VERSION' ) ) {
 require get_template_directory() . '/inc/admin.php';
 
 /**
+ * Functions which enhance the admin editor screens by hooking into WordPress.
  */
+require get_template_directory() . '/inc/admin-editor.php';
 
 
 /**
