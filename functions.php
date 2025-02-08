@@ -45,6 +45,7 @@ function zotefoams_setup() {
 		* @link https://developer.wordpress.org/themes/functionality/featured-images-post-thumbnails/
 		*/
 	add_theme_support( 'post-thumbnails' );
+	add_image_size( 'thumbnail-square', 350, 350, true ); // Custom image size: 350x350 pixels, cropped
 
 	// This theme uses wp_nav_menu() in one location.
 	register_nav_menus(
@@ -108,6 +109,17 @@ function enqueue_swiper_assets() {
     wp_enqueue_script('swiper-custom', get_template_directory_uri() . '/js/swiper-custom.js', array('swiper-js'), null, true);
 }
 add_action('wp_enqueue_scripts', 'enqueue_swiper_assets');
+
+/**
+ * Enqueue Stevens (temp) assets.
+ */
+function enqueue_steven_assets() {
+
+	wp_enqueue_style( 'zotefoams-sp-style', get_template_directory_uri() . '/css/sp.css', array(), _S_VERSION );
+	wp_enqueue_script( 'zotefoams-sp-js', get_template_directory_uri() . '/js/sp.js', array(), _S_VERSION, true );
+
+}
+add_action('wp_enqueue_scripts', 'enqueue_steven_assets');
 
 /**
  * Custom template tags for this theme.
