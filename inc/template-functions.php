@@ -30,3 +30,19 @@ function zotefoams_pingback_header() {
 	}
 }
 add_action( 'wp_head', 'zotefoams_pingback_header' );
+
+
+/**
+ * Determine/map labels to category
+ */
+function zotefoams_map_cat_label($label) {
+	switch ($label) {
+		case 'Case Studies':
+			return 'View Case Study';
+		case 'Blog':
+			return 'Read This Article';
+		default:
+			return 'View '.rtrim($label, 's');
+	}
+}
+add_action( 'wp_head', 'zotefoams_pingback_header' );

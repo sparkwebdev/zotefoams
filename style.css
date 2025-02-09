@@ -1603,7 +1603,7 @@ a.hl.download::after {
 	flex-shrink: 0; /* Prevents shrinking */
 }
 
-.category {
+.site-main .category {
 	color: #007bff;
 	font-size: 14px;
 	text-decoration: none;

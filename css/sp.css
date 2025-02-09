@@ -25,6 +25,105 @@ html {
   }
 }
 
+
+
+/* News Centre - Landing page grids */
+.articles {
+  display: grid;
+  gap: 2rem;
+  grid-template-columns: 1fr;
+}
+.articles .post {
+  margin-bottom: 0;
+}
+.articles--list .post {
+  display: flex;
+  gap: 2rem;
+}
+.articles--list .articles__content {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+.articles--list .articles__footer {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 2rem;
+  align-items: center;
+  margin-top: auto; 
+  border-bottom: solid 1px var(--color-text-light);
+  padding-bottom: 40px;
+}
+.articles--list * {
+  /* margin: 0; */
+}
+.tag {
+  border-radius: 1rem;
+  padding: 0.15rem 0.5rem;
+  background-color: var(--color-link);
+  color: var(--color-surface);
+  width: fit-content;
+  font-size: 0.8rem;
+}
+
+.articles--grid, .articles--grid-alt {
+  grid-template-columns: 1fr 1fr 1fr;
+  li {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+  }
+  .entry-title {
+    font-size: 1rem;
+  }
+  .post {
+    margin-bottom: 0;
+    display: flex;
+    flex-grow: 1;
+    flex-direction: column;
+  }
+  .articles__content {
+    padding: 40px;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    + img {
+      display: block;
+      width: 100%;
+    }
+  
+  }
+  .articles__cta {
+    margin-top: auto;
+  }
+}
+
+.articles--grid {
+  li {
+    background-color: var(--tone-off-white);
+  }
+  .post {
+  }
+  .articles__content {
+    + img {
+      align-self: flex-end;
+    }
+  
+  }
+}
+/*
+.articles--grid-alt {
+  li {
+    border: solid 1px var(--color-text-light);
+  }
+  .articles__content {
+    padding-top: 2rem;
+  }
+  .articles__cta {
+    padding-top: 2rem;
+  }
+}
+*/
 /* Pagination */
 .pagination, .nav-links {
   a:not(:hover):not(:focus) {
@@ -52,8 +151,10 @@ html {
     color: var(--color-text-light);
   }
   .current {
-    color: var(--color-on-surface);
+    color: var(--color-link);
     font-weight: bold;
+    text-decoration: underline;
+    text-decoration-thickness: 4px;
   }
   .prev {
     margin-inline-end: 1rem;
