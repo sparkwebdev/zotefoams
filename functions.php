@@ -176,6 +176,18 @@ function enqueue_swiper_assets() {
 }
 add_action('wp_enqueue_scripts', 'enqueue_swiper_assets');
 
+
+/**
+ * Enqueue Animate.css
+ */
+function enqueue_animatecss_assets() {
+    // Enqueue Animate.css
+    wp_enqueue_style('animate-css', 'https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css');
+}
+add_action('wp_enqueue_scripts', 'enqueue_animatecss_assets');
+
+
+
 /**
  * Implement the Custom Header feature.
  */
