@@ -17,8 +17,8 @@
 		  </div>
 		  <div class="swiper-slide">
 			<div class="slide-inner">
-			  <p class="fs-200 fw-regular margin-b-30">Other</p>
-			  <p class="fs-600 fw-semibold margin-b-40">Something else</p>
+			  <p class="fs-200 fw-regular margin-b-30">Functional</p>
+			  <p class="fs-600 fw-semibold margin-b-40">Tablet in car</p>
 			  <div class="slide-sub-content">
 				<img class="margin-b-30" src="<?php echo get_template_directory_uri(); ?>/images/insulation.png" />
 				<p class="margin-b-30">Smarter material choices helped Hochdorf, Switzerland-based thermoforming expert Plastika Balumag reduce the weight of its parts for a wide range of aircraft applications.</p>
@@ -28,8 +28,8 @@
 		  </div>
 		  <div class="swiper-slide">
 			<div class="slide-inner">
-			  <p class="fs-200 fw-regular margin-b-30">Other</p>
-			  <p class="fs-600 fw-semibold margin-b-40">Something else</p>
+			  <p class="fs-200 fw-regular margin-b-30">Portable</p>
+			  <p class="fs-600 fw-semibold margin-b-40">Laptop on plane</p>
 			  <div class="slide-sub-content">
 				<img class="margin-b-30" src="<?php echo get_template_directory_uri(); ?>/images/insulation.png" />
 				<p class="margin-b-30">Smarter material choices helped Hochdorf, Switzerland-based thermoforming expert Plastika Balumag reduce the weight of its parts for a wide range of aircraft applications.</p>
@@ -80,6 +80,17 @@
 	<script type="text/javascript">
 		document.addEventListener('DOMContentLoaded', function () {
 			// Carousel 2 - dual carousel
+
+			// Initialize the text carousel
+			var swiper = new Swiper(".mySwiper", {
+				loop: true,
+				navigation: {
+					nextEl: '.swiper-button-next-dual-carousel2',
+					prevEl: '.swiper-button-prev-dual-carousel2',
+			  	},
+			});
+
+			// Initialize the text carousel
 			const swiperText = new Swiper('.swiper-dual-carousel-text', {
 			  loop: true,
 			  effect: 'fade',
@@ -96,11 +107,7 @@
 			// Initialize the image carousel (without fade effect)
 			const swiperImage = new Swiper('.swiper-dual-carousel-image', {
 			  loop: true,
-			  spaceBetween: 10,
-			  navigation: {
-				nextEl: '.swiper-button-next-dual-carousel',
-				prevEl: '.swiper-button-prev-dual-carousel',
-			  },
+			  spaceBetween: 10
 			});
 
 			// Sync the carousels so that they move together
