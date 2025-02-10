@@ -1,0 +1,213 @@
+{
+    "key": "group_67a4e3c3b7db2",
+    "title": "Knowledge Hub - Technical Literature",
+    "fields": [
+        {
+            "key": "field_67a6151a35974",
+            "label": "Document Group",
+            "name": "document_group",
+            "aria-label": "",
+            "type": "repeater",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "layout": "block",
+            "pagination": 0,
+            "min": 0,
+            "max": 0,
+            "collapsed": "field_67a6154635975",
+            "button_label": "Add Document Group",
+            "rows_per_page": 20,
+            "sub_fields": [
+                {
+                    "key": "field_67a6154635975",
+                    "label": "Group Name",
+                    "name": "document_group_name",
+                    "aria-label": "",
+                    "type": "select",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "25",
+                        "class": "",
+                        "id": ""
+                    },
+                    "choices": {
+                        "Azote® Polyolefin Foams": "Azote® Polyolefin Foams",
+                        "Zotek® Advanced Polymer Foams": "Zotek® Advanced Polymer Foams"
+                    },
+                    "default_value": false,
+                    "return_format": "label",
+                    "multiple": 0,
+                    "allow_null": 1,
+                    "allow_in_bindings": 1,
+                    "ui": 0,
+                    "ajax": 0,
+                    "placeholder": "",
+                    "parent_repeater": "field_67a6151a35974"
+                },
+                {
+                    "key": "field_67a619a33de78",
+                    "label": "",
+                    "name": "",
+                    "aria-label": "",
+                    "type": "group",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "75",
+                        "class": "",
+                        "id": ""
+                    },
+                    "layout": "block",
+                    "parent_repeater": "field_67a6151a35974",
+                    "sub_fields": [
+                        {
+                            "key": "field_67a6155435976",
+                            "label": "Documents",
+                            "name": "document_group_documents",
+                            "aria-label": "",
+                            "type": "gallery",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "return_format": "array",
+                            "library": "all",
+                            "min": "",
+                            "max": "",
+                            "min_width": "",
+                            "min_height": "",
+                            "min_size": "",
+                            "max_width": "",
+                            "max_height": "",
+                            "max_size": "",
+                            "mime_types": ".pdf, .doc, .docx, .xls, .xlsx, .ppt, .pptx, .txt, .rtf, .odt, .ods, .odp, .csv, .xml, .html, .htm, .epub",
+                            "insert": "append",
+                            "preview_size": "medium"
+                        },
+                        {
+                            "key": "field_67a6159735977",
+                            "label": "Sub Groups",
+                            "name": "document_sub_groups",
+                            "aria-label": "",
+                            "type": "repeater",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "layout": "block",
+                            "pagination": 0,
+                            "min": 0,
+                            "max": 0,
+                            "collapsed": "field_67a615c535978",
+                            "button_label": "Add Document Sub Group",
+                            "rows_per_page": 20,
+                            "sub_fields": [
+                                {
+                                    "key": "field_67a615c535978",
+                                    "label": "Sub Group Name",
+                                    "name": "document_sub_group_name",
+                                    "aria-label": "",
+                                    "type": "select",
+                                    "instructions": "",
+                                    "required": 0,
+                                    "conditional_logic": 0,
+                                    "wrapper": {
+                                        "width": "",
+                                        "class": "",
+                                        "id": ""
+                                    },
+                                    "choices": {
+                                        "Evazote® Polyolefin Foams": "Evazote® Polyolefin Foams",
+                                        "Plastizote® Advanced Polymer Foams": "Plastizote® Advanced Polymer Foams",
+                                        "Supazote® Advanced Polymer Foams": "Supazote® Advanced Polymer Foams"
+                                    },
+                                    "default_value": false,
+                                    "return_format": "value",
+                                    "multiple": 0,
+                                    "allow_null": 1,
+                                    "allow_in_bindings": 1,
+                                    "ui": 0,
+                                    "ajax": 0,
+                                    "placeholder": "",
+                                    "parent_repeater": "field_67a6159735977"
+                                },
+                                {
+                                    "key": "field_67a615ee35979",
+                                    "label": "Sub Group Documents",
+                                    "name": "document_sub_group_documents",
+                                    "aria-label": "",
+                                    "type": "gallery",
+                                    "instructions": "",
+                                    "required": 0,
+                                    "conditional_logic": 0,
+                                    "wrapper": {
+                                        "width": "",
+                                        "class": "",
+                                        "id": ""
+                                    },
+                                    "return_format": "array",
+                                    "library": "all",
+                                    "min": "",
+                                    "max": "",
+                                    "min_width": "",
+                                    "min_height": "",
+                                    "min_size": "",
+                                    "max_width": "",
+                                    "max_height": "",
+                                    "max_size": "",
+                                    "mime_types": ".pdf, .doc, .docx, .xls, .xlsx, .ppt, .pptx, .txt, .rtf, .odt, .ods, .odp, .csv, .xml, .html, .htm, .epub",
+                                    "insert": "append",
+                                    "preview_size": "medium",
+                                    "parent_repeater": "field_67a6159735977"
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "page_parent",
+                "operator": "==",
+                "value": "318"
+            }
+        ],
+        [
+            {
+                "param": "page",
+                "operator": "==",
+                "value": "318"
+            }
+        ]
+    ],
+    "menu_order": 0,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": "",
+    "active": true,
+    "description": "",
+    "show_in_rest": 0,
+    "modified": 1739202859
+}

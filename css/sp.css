@@ -12,12 +12,17 @@
 
   --color-brand-contrast: #BFEA78;
 
+  --border-separator: solid 1px var(--tone-light);
 }
 
 html {
   scroll-behavior: smooth;
 }
 
+/* Utilities */
+.hidden {
+  display: none !important;
+}
 
 /* Daves Components */
 .text-banner {
@@ -209,7 +214,162 @@ html {
   }
 }
 .separator {
-  background-color: var(--color-text-light);
+  background-color: transparent;
+  border-top: var(--border-separator);
 }
 
+
+
+/* Filter List - Table output */
+.file-list {
+  table {
+    border-collapse: collapse; 
+    margin-top: 30px;
+    border-top: var(--border-separator);
+    width: 100%;
+    overflow-x: auto;
+    display: block;
+  }
+  td, th {
+    padding: 15px 0 15px 15px;
+    vertical-align: top;
+  }
+  tr {
+    border-bottom: var(--border-separator);
+  }
+}
+
+/* Filter List - Table output parts */
+.file-list__item-icon {
+  font-size: 28px;
+  > * {
+    position: relative;
+    top: -6px;
+  }
+}
+.file-list .file-list__item-group {
+  color: var(--color-link);
+  font-size: 14px;
+  line-height: 34px;
+  padding-right: 30px;
+}
+.file-list__item-title {
+  color: var(--color-on-surface);
+  font-size: 21px;
+  width: 90%;
+  padding-right: 30px;
+}
+.file-list {
+  td:not(.file-list__item-title) {
+    white-space: nowrap;
+  }
+}
+
+/* Filter List - Dropdown */
+.file-list__dropdown {
+  position: relative;
+  display: inline-block;
+}
+.file-list__dropdown-button {
+  background-color: var(--color-link);
+  color: var(--color-surface);
+  padding: 10px 15px;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  &:after {
+    content:"";
+    background-image: url(/wp-content/themes/zotefoams/images/icon-right-arrow-white.svg);
+    background-repeat: no-repeat;
+    background-size: 120%;
+    background-position: center center;
+    width: 6px;
+    height: 10px;
+    display: inline-flex;
+    margin-left: 8px;
+    transform: rotate(90deg);
+    transition: transform 0.3s ease;
+  }
+}
+.file-list__dropdown-button.open:after {
+  transform: rotate(-90deg);
+}
+
+.filter-toggle__options {
+    background-color: var(--color-link);
+    color: var(--color-surface);
+    border-radius: 0 5px 5px 5px;
+    padding: 10px 15px 15px 15px;
+    margin-top: -5px;
+    position: absolute;
+    z-index: 1000;
+    width: fit-content;
+    white-space: nowrap;
+    min-width: 200px;
+    overflow-x: auto;
+}
+
+/* Checkbox Styles */
+.filter-toggle__label {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 5px 0;
+  font-size: 14px;
+  white-space: nowrap;
+}
+
+.filter-toggle__label:hover {
+    cursor: pointer;
+}
+.filter-options__checkbox {
+  appearance: none;
+  display: inline-block;
+  margin: 0;
+  width: 20px;
+  height: 20px;
+  border: var(--border-separator);
+  background-color: var(--color-surface); 
+  cursor: pointer;
+  position: relative;
+  flex-shrink: 0;
+}
+
+.filter-options__checkbox:checked {
+  background-color: var(--color-surface); 
+  border-color: var(--color-text);
+}
+
+.filter-options__checkbox:checked::after,
+.filter-options__checkbox:checked::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 22px;
+  height: 2px;
+  transform-origin: center;
+  background-color: var(--color-text);
+}
+.filter-options__checkbox:checked::after {
+  transform: translate(-50%, -50%) rotate(45deg);
+}
+
+.filter-options__checkbox:checked::before {
+  transform: translate(-50%, -50%) rotate(-45deg);
+}
+
+.file-list__show-all {
+  background: none;
+  border: none;
+  color: var(--color-on-surface);
+  cursor: pointer;
+  padding: 10px 20px;
+  &:hover, &:focus {
+    text-decoration: underline;
+    text-decoration-thickness: 4px;
+  }
 }
