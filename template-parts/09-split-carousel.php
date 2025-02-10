@@ -59,3 +59,23 @@
 			swiperSplit.controller.control = swiperSplit;
 		});
 	</script>
+
+	<style type="text/css">
+	/* 09 - Split carousel
+	--------------------------------------------- */
+	.swiper-split .swiper-slide {
+		display: flex;
+		align-items:center
+	}
+	.swiper-split .swiper-slide-content {
+		flex-direction: column;
+		max-width:600px
+	}
+
+	.calendar-carousel .swiper-slide-inner {
+		border:1px solid #ccc
+	}
+	</style>
+
+
+

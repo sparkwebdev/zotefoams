@@ -1,0 +1,47 @@
+<?php
+/*
+Template Name: Components
+*/
+?>
+
+	<?php get_header(); ?>
+
+	<?php get_template_part('template-parts/b2-text-banner'); ?>
+
+	<?php get_template_part('template-parts/01-split-video'); ?>
+
+	<?php get_template_part('template-parts/03-icon-columns'); ?>
+
+	<?php get_template_part('template-parts/04-news-feed'); ?>
+
+	<?php get_template_part('template-parts/05-document-list'); ?>
+
+	<?php get_template_part('template-parts/06-show-hide'); ?>
+
+	<?php get_template_part('template-parts/07-box-columns'); ?>
+
+	<?php get_template_part('template-parts/08-markets-list'); ?>
+
+	<?php get_template_part('template-parts/12-split-text'); ?>
+
+	<?php get_template_part('template-parts/13-text-block'); ?>
+
+	<?php get_template_part('template-parts/14-tabbed-split'); ?>
+
+	<?php get_footer(); ?>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

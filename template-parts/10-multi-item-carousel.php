@@ -61,3 +61,22 @@
 			});
 		});
 	</script>
+
+
+	<style type="text/css">
+	/* 10 - Multi item carousel
+	--------------------------------------------- */
+	.multi-swiper-scrollbar {
+		height: 8px; /* Adjust the height of the scrollbar */
+		background: rgba(0, 0, 0, 0.15); /* Background of the scrollbar */
+		margin-top: 30px;
+	}
+
+	.swiper-scrollbar-drag {
+		background: #3B82F6; /* Color of the draggable part */
+		height: 8px;
+	}
+	</style>
+
+
+
