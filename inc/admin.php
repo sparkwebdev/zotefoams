@@ -64,7 +64,7 @@ add_action('acf/input/admin_head', 'my_acf_admin_head');
 /**
  * Hide Gutenberg Block editor.
  */
-add_filter('use_block_editor_for_post', '__return_false');
+// add_filter('use_block_editor_for_post', '__return_false');
 
 /**
  * Disable Application Passwords.

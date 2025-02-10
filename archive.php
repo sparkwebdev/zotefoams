@@ -15,7 +15,7 @@ get_header();
 		<?php if ( have_posts() ) : 
 			$title = single_cat_title('', false);
 			$cat_more_link_label = zotefoams_map_cat_label($title);
-			$layout = ($title == 'Case Studies') ? "grid" : "list";
+			$layout = ($title == 'Case Studies' || $title == 'Videos') ? "grid" : "list";
 		?>
 
 		<header class="text-block cont-m margin-t-70 margin-b-100">
@@ -35,7 +35,6 @@ get_header();
 						if (!$thumbnail_url) {
 							$thumbnail_url = get_template_directory_uri() . '/images/placeholder-' . (($layout == "list") ? 'thumbnail-square' : 'thumbnail') . '.png';
 						}
-
 						if ($layout == "list") { ?>
 							<article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
 								<?php
@@ -47,28 +46,60 @@ get_header();
 										zotefoams_posted_on();
 										echo '</div>';
 										the_title( '<h3 class="fs-400 fw-semibold margin-b-20">', '</h3>' );
-										echo '<div class="articles__footer ">';
-											the_excerpt();
-											echo '<p class="articles__cta"><a href="' . $cat_more_link . '" ' . (($layout == "list") ? 'class="btn black outline"' : '') . '>' . $cat_more_link_label . '</a>' . (($layout == "list") ? '' : ' &gt;') . '</p>';
+										echo '<div class="articles__footer">';
+											if (get_the_excerpt()) {
+												the_excerpt();
+											}
+											echo '<p class="articles__cta"><a href="' . $cat_more_link . '" class="btn black outline">' . $cat_more_link_label . '</a></p>';
 										echo '</div>';
 									?>
 								</div>
 							</article><!-- #post-<?php the_ID(); ?> -->
 						<?php } else { ?>
-							<article id="post-<?php the_ID(); ?>" <?php post_class('light-grey-bg'); ?>>
+							<article id="post-<?php the_ID(); ?>" <?php post_class($title == 'Case Studies' ? 'light-grey-bg' : ''); ?>>
+								<?php
+									if ($title == 'Videos') {
+										$first_video_url = get_first_youtube_url( get_the_ID() );
+										if ( $first_video_url ) :
+											$thumbnail_url = get_the_post_thumbnail_url(get_the_ID(),  'thumbnail');
+											if (!$thumbnail_url) {
+												$youtube_cover_image = youtube_cover_image( $first_video_url );
+											}
+											 ?>
+											<div class="articles__block-embed-youtube" style="background-image:url(<?php echo $youtube_cover_image; ?>)">
+												<a href="<?php echo $first_video_url; ?>" class="video-link open-video-overlay" rel="noopener noreferrer">
+													<img src="/wp-content/themes/zotefoams/images/youtube-play.svg" />
+												</a>
+											</div>
+										<?php else :
+											echo '<img src="' . get_template_directory_uri() . '/images/placeholder-thumbnail.png' . '" alt="" class="margin-b-20">';
+									endif;
+									}
+								?>
 								<div class="articles__content">
 								<?php
 									the_title( '<h3 class="fs-400 fw-semibold margin-b-20">', '</h3>' );
 
-									echo '<div class="margin-b-20 margin-b-20 grey-text">';
-									the_excerpt();
-									echo '</div>';
-
-									echo '<p class="articles__cta"><a href="' . $cat_more_link . '" ' . (($layout == "list") ? 'class="btn black outline"' : '') . '>' . $cat_more_link_label . '</a>' . (($layout == "list") ? '' : ' &gt;') . '</p>';
+									if (get_the_excerpt()) {
+										echo '<div class="margin-b-20 grey-text">';
+										the_excerpt();
+										echo '</div>';
+									}
+									if ($title == 'Videos') {
+										if (isset($first_video_url)) {
+											echo '<p class="articles__cta"><a href="' . $first_video_url . '" class="open-video-overlay hl arrow" rel="noopener noreferrer">' . $cat_more_link_label . '</a></p>';
+										} else {
+											echo '<p class="articles__cta">No video found.</p>';
+										}
+									} else {
+										echo '<p class="articles__cta"><a href="' . $cat_more_link . '" class="hl arrow">' . $cat_more_link_label . '</a></p>';
+									}
 								?>
 								</div>
 								<?php
+								if ($title == 'Case Studies') {
 									echo '<img src="' . esc_url($thumbnail_url) . '" alt="">';
+								}
 								?>
 							</article><!-- #post-<?php the_ID(); ?> -->
 							
@@ -86,6 +117,16 @@ get_header();
 			</div>
 		</section>
 	</main>
+
+	<?php if ($title == 'Videos') { ?>
+	<!-- Video Overlay Structure -->
+	<div id="video-overlay" style="display:none;">
+		<div id="overlay-content">
+			<button id="close-video">Close</button>
+			<iframe id="video-iframe" width="100%" height="100%" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+		</div>
+	</div>
+	<?php } ?>
 
 <?php
 get_footer();

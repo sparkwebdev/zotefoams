@@ -140,3 +140,29 @@ require get_template_directory() . '/inc/admin.php';
  * Functions which enhance the admin editor screens by hooking into WordPress.
  */
 require get_template_directory() . '/inc/admin-editor.php';
+
+
+// Enable ACF local JSON feature
+add_filter('acf/settings/save_json', 'zotefoams_acf_json_save_point');
+function zotefoams_acf_json_save_point($path) {
+    return plugin_dir_path(__FILE__) . 'acf/acf-json';
+}
+
+add_filter('acf/settings/load_json', 'zotefoams_acf_json_load_point');
+function zotefoams_acf_json_load_point($paths) {
+    unset($paths[0]);
+    $paths[] = plugin_dir_path(__FILE__) . 'acf/acf-json';
+    return $paths;
+}
+
+function zotefoams_register_acf_blocks() {
+	/**
+	 * We register our block's with WordPress's handy
+	 * register_block_type();
+	 *
+	 * @link https://developer.wordpress.org/reference/functions/register_block_type/
+	 */
+	register_block_type( __DIR__ . '/blocks/quote-box' );
+	register_block_type( __DIR__ . '/blocks/highlight-box' );
+}
+add_action( 'init', 'zotefoams_register_acf_blocks' );

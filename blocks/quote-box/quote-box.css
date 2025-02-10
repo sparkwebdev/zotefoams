@@ -1,0 +1,98 @@
+.quote-box {
+  --quote-box-font-size: 21px;
+  --quote-box-line-spacing: 32px;
+  --quote-box-cite-font-size: 18px;
+  --quote-box-cite-line-spacing: 28px;
+  align-items: flex-start;
+  box-sizing: border-box;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 40px;
+  padding: 30px;
+  background-color: #F8F8F8;
+  margin-top: 60px;
+}
+
+
+.quote-box > * {
+  box-sizing: border-box;
+  flex-grow: 1;
+  min-width: 0;
+  overflow-wrap: break-word;
+  width: 100%;
+  word-break: break-word;
+}
+
+.quote-box__blockquote {
+  font-size: var(--quote-box-font-size);
+  line-height: var(--quote-box-line-spacing);
+  margin: 0;;
+  position: relative;
+  color: #707070;
+  margin-top: 40px;
+}
+
+.quote-box__blockquote::before {
+  color: #3b82f6;
+  content: "“";
+  display: block;
+  font-family: Times New Roman,serif;
+  font-size: 100px;
+  line-height: 1;
+  position: absolute;
+  top: -60px;
+}
+
+.quote-box__attribution {
+  margin-top: 40px;
+  font-size: var(--quote-box-cite-font-size);
+  line-height: var(--quote-box-cite-line-spacing);
+}
+
+.quote-box__author {
+  font-style: normal;
+  font-weight: 700;
+  color: #000;
+}
+
+.quote-box__role {
+  display: block;
+}
+
+.quote-box__image {
+  box-sizing: border-box;
+  height: 100%;
+  line-height: 0;
+  margin-bottom: 0;
+}
+
+.quote-box__image img {
+  height: 100%;
+}
+
+.quote-box__img {
+  box-sizing: border-box;
+  max-width: 100%;
+  object-fit: cover;
+}
+
+@media (min-width: 600px) {
+  .quote-box {
+    flex-wrap: nowrap;
+  }
+
+  .quote-box__col:first-of-type {
+    width: 150px;
+  }
+
+  .quote-box__col:last-of-type {
+    align-self: stretch; 
+  }
+  
+  .quote-box__blockquote {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    margin-top: 0;
+  }
+}

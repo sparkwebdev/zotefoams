@@ -39,7 +39,7 @@ get_header();
 		// List all categories
 		$args = array(
 			'orderby' => 'ID',
-			'include' => '1,7,6,9',
+			'include' => '1,6,9,10',
 			'hide_empty' => false,
 		);
 		$all_categories = get_categories($args);

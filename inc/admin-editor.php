@@ -32,7 +32,7 @@ function change_post_object_label() {
 add_action( 'init', 'change_post_object_label' );
 
 
-function my_allowed_block_types($allowed_blocks, $editor_context) {
+function zoatfoams_allowed_block_types($allowed_blocks, $editor_context) {
 if (!empty($editor_context->post)) {
     if ($editor_context->post->post_type === 'post') {
         return [
@@ -40,17 +40,20 @@ if (!empty($editor_context->post)) {
           'core/paragraph',
           'core/list',
           'core/table',
-          'core/pullquote',
+          // 'core/pullquote',
           'core/image',
           'core/video',
-          'core/gallery',
+          // 'core/gallery',
           'core/file',
           'core/audio',
-          'core/columns',
-          'core/group',
-          'core/row',
+          // 'core/columns',
+          // 'core/group',
+          // 'core/row',
           'core/shortcode',
           'core/html',
+          'core/embed',
+          'acf/quote-box',
+          'acf/highlight-box',
         ];
     } elseif ($editor_context->post->post_type === 'page') {
         return [
@@ -61,4 +64,4 @@ if (!empty($editor_context->post)) {
 
 return $allowed_blocks;
 }
-add_filter('allowed_block_types_all', 'my_allowed_block_types', 10, 2);
+add_filter('allowed_block_types_all', 'zoatfoams_allowed_block_types', 10, 2);
