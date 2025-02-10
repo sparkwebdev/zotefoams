@@ -20,10 +20,10 @@
 		<div class="tab-content active" id="early-careers">
 			<div class="half-half">
 				<div class="half">
-					<div class="all-content padding-100">
+					<div class="all-content padding-t-b-100">
 						<div class="top-content">
 							<p class="fs-400 fw-bold margin-b-15">Early Careers</p>
-							<p class="fs-300 grey-text">Experience life at Zotefoams during an exciting two-year graduate programme with structured rotations across the business departments. The placement offers practical experience and an opportunity to develop essential professional skills. At the end of the programme, you will be encouraged to apply for any suitable vacancies.</p>
+							<p class="fs-300 grey-text margin-b-70">Experience life at Zotefoams during an exciting two-year graduate programme with structured rotations across the business departments. The placement offers practical experience and an opportunity to develop essential professional skills. At the end of the programme, you will be encouraged to apply for any suitable vacancies.</p>
 						</div>
 						<a href="#" class="hl arrow">Apply For Our Graduate Scheme</a>
 					</div>
@@ -35,10 +35,10 @@
 		<div class="tab-content" id="operations">
 			<div class="half-half">
 				<div class="half">
-					<div class="all-content padding-100">
+					<div class="all-content padding-t-b-100">
 						<div class="top-content">
 							<p class="fs-400 fw-bold margin-b-15">Operations</p>
-							<p class="fs-300 grey-text">Experience life at Zotefoams during an exciting two-year graduate programme with structured rotations across the business departments. The placement offers practical experience and an opportunity to develop essential professional skills. At the end of the programme, you will be encouraged to apply for any suitable vacancies.</p>
+							<p class="fs-300 grey-text margin-b-70">Experience life at Zotefoams during an exciting two-year graduate programme with structured rotations across the business departments. The placement offers practical experience and an opportunity to develop essential professional skills. At the end of the programme, you will be encouraged to apply for any suitable vacancies.</p>
 						</div>
 						<a href="#" class="hl arrow">Apply For Our Graduate Scheme</a>
 					</div>
@@ -50,10 +50,10 @@
 		<div class="tab-content" id="head-office">
 			<div class="half-half">
 				<div class="half">
-					<div class="all-content padding-100">
+					<div class="all-content padding-t-b-100">
 						<div class="top-content">
 							<p class="fs-400 fw-bold margin-b-15">Head Office</p>
-							<p class="fs-300 grey-text">Experience life at Zotefoams during an exciting two-year graduate programme with structured rotations across the business departments. The placement offers practical experience and an opportunity to develop essential professional skills. At the end of the programme, you will be encouraged to apply for any suitable vacancies.</p>
+							<p class="fs-300 grey-text margin-b-70">Experience life at Zotefoams during an exciting two-year graduate programme with structured rotations across the business departments. The placement offers practical experience and an opportunity to develop essential professional skills. At the end of the programme, you will be encouraged to apply for any suitable vacancies.</p>
 						</div>
 						<a href="#" class="hl arrow">Apply For Our Graduate Scheme</a>
 					</div>

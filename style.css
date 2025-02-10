@@ -755,7 +755,7 @@ textarea {
 
 .post,
 .page {
-	margin: 0 0 1.5em;
+	margin: 0;
 }
 
 .updated:not(.published) {
@@ -1040,6 +1040,16 @@ textarea {
 }
 
 
+/* Font margins
+--------------------------------------------- */
+.text-margin {
+	display:block
+}
+.text-margin p {
+	margin-bottom:20px
+}
+
+
 /* Colours
 --------------------------------------------- */
 .white-text {color:#fff}
@@ -1265,38 +1275,6 @@ a.hl.download::after {
 
 
 
-
-
-
-
-/* b2 - Text banner
---------------------------------------------- */
-.text-banner-text {
-	max-width:600px
-}
-.text-banner-split {
-	display:flex;
-	justify-content: space-between
-}
-.text-banner-split .half {
-	width: 50%;
-}
-
-
-
-/* 01 - Split video
---------------------------------------------- */
-.split-video {
-	display:flex;
-	justify-content: space-between
-}
-.split-video .half {
-	width: 50%;
-}
-.split-video .half:nth-of-type(2) {
-	width: 44%;
-}
-
 /* Video overlay */
 .video-container {
 	position:relative
@@ -1312,7 +1290,8 @@ a.hl.download::after {
     align-items: center;
 }
 .video-link img {
-	transition:opacity 0.3s
+	transition:opacity 0.3s;
+	width:20%
 }
 .video-link:hover img {
 	opacity:0.6;
@@ -1362,14 +1341,62 @@ a.hl.download::after {
 
 
 
-/* 03 - Icon columns
+
+/* b2 - Text banner
 --------------------------------------------- */
-.icon-columns .cont-m {
+.text-banner-text {
+	max-width:600px
+}
+.text-banner-split {
 	display:flex;
 	justify-content: space-between
 }
-.icon-columns .cont-m > div {
-	width:30%
+.text-banner-split .half {
+	width: 50%;
+}
+
+
+
+/* 01a - Split video one
+--------------------------------------------- */
+.split-video-one {
+	display:flex;
+	justify-content: space-between
+}
+.split-video-one .half {
+	width: 50%;
+}
+.split-video-one .half:nth-of-type(2) {
+	width: 44%;
+}
+
+/* 01b - Split video two
+--------------------------------------------- */
+.split-video-two-inner {
+	display:flex;
+	justify-content: flex-end;
+}
+.split-video-two-inner .half:nth-of-type(1) {
+	max-width: 616px;
+	margin-right:84px;
+	margin-left:5%
+}
+.split-video-two-inner .half:nth-of-type(2) {
+	min-width: 50%;
+}
+
+
+
+
+
+/* 03 - Icon columns
+--------------------------------------------- */
+.icon-columns-inner {
+	display:flex;
+	gap:2%
+}
+.icon-columns-inner > div {
+	flex:1
 }
 
 
@@ -1515,7 +1542,7 @@ a.hl.download::after {
 
 
 
-/* 07 - Box items
+/* 07 - Box columns
 --------------------------------------------- */
 .box-items {
 	display:flex;
@@ -1613,6 +1640,12 @@ a.hl.download::after {
 /* 14 - Tabbed component
 --------------------------------------------- */
 
+
+
+/* 01b - Split video two
+--------------------------------------------- */
+
+
 .tabs-container {
     overflow: hidden;
 }
@@ -1665,22 +1698,63 @@ a.hl.download::after {
 .tab-content {
     display: none;
 }
-.tab-content .half-half {
-    display: flex;
-}
-.tab-content .half-half > div {
-    flex: 1;
-	height:500px;
-    display: flex;
-}
-.tab-content .half-half .all-content {
-	justify-content: space-between;
-    display: flex;
-    flex-direction: column;
-}
-
 .tab-content.active {
     display: block;
+}
+
+.tab-content .half-half {
+	display:flex;
+	justify-content: flex-end;
+}
+.tab-content .half-half .half:nth-of-type(1) {
+	max-width: 616px;
+	margin-right:84px;
+	margin-left:5%
+}
+.tab-content .half-half .half:nth-of-type(2) {
+	min-width: 50%;
+}
+
+
+/* 15 - Small box columns
+--------------------------------------------- */
+.small-box-items {
+	display:flex;
+	gap: 2%;
+}
+.small-box-item {
+	flex: 1;
+}
+.small-box-image {
+	height:320px
+}
+.small-box-content {
+	position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+
+/* 16 - Video box columns
+--------------------------------------------- */
+.video-box-items {
+	display:flex;
+	flex-wrap: wrap;
+	gap: 2%;
+}
+.video-box-item {
+	width:32%;
+	margin-bottom:3%
+}
+.video-box-image {
+	height:260px
+}
+.video-box-content {
+	position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 }
 
 
@@ -1732,6 +1806,16 @@ input.zf {
 
 
 
+
+/* Component label
+--------------------------------------------- */
+.component-label {
+	width:100%;
+	background:#3B82F6;
+	color:white;
+	text-align:center;
+	padding:30px 0;
+}
 
 
 
