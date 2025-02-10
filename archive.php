@@ -87,9 +87,9 @@ get_header();
 									}
 									if ($title == 'Videos') {
 										if (isset($first_video_url)) {
-											echo '<p class="articles__cta"><a href="' . $first_video_url . '" class="open-video-overlay hl arrow" rel="noopener noreferrer">' . $cat_more_link_label . '</a></p>';
+											echo '<p class="articles__cta margin-b-40"><a href="' . $first_video_url . '" class="open-video-overlay hl arrow" rel="noopener noreferrer">' . $cat_more_link_label . '</a></p>';
 										} else {
-											echo '<p class="articles__cta">No video found.</p>';
+											echo '<p class="articles__cta margin-b-40">No video found.</p>';
 										}
 									} else {
 										echo '<p class="articles__cta"><a href="' . $cat_more_link . '" class="hl arrow">' . $cat_more_link_label . '</a></p>';
