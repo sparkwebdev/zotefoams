@@ -22,7 +22,14 @@ Template Name: Homepage
 
 	<?php get_template_part('template-parts/06-show-hide'); ?>
 
-	<?php get_template_part('template-parts/07-box-columns'); ?>
+	<?php //get_template_part('template-parts/07-box-columns'); ?>
+
+	<div class="cont-m margin-t-70 margin-b-70">
+		<?php 
+		set_query_var('content_type', 'page'); // 'post', 'page', or 'category'
+		set_query_var('content_ids', '756,9,16'); // Post/page/category IDs
+		get_template_part('template-parts/components/component-cta-picker'); ?>
+	</div>
 
 	<?php get_template_part('template-parts/08-markets-list'); ?>
 

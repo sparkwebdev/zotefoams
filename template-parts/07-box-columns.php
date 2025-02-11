@@ -1,6 +1,6 @@
 
-	<div class="box-columns feed-one-outer cont-m padding-t-b-100">
-		<div class="box-items">
+	<div class="feed-one-outer cont-m padding-t-b-100">
+		<div class="box-items box-items--4">
 			<div class="box-item light-grey-bg">
 				<div class="box-content padding-40">
 					<div>

@@ -427,13 +427,24 @@ html {
   }
 }
 
+/* Box Items (override) */
 
-/* Markets box */
+.box-items {
+	display: grid;
+	gap: 20px;
+	grid-template-columns: repeat( auto-fit, minmax(24rem, 1fr) );
+}
+.box-items--4 {
+	/* grid-template-columns: repeat( auto-fit, minmax(32rem, 1fr) ); */
+}
+
+
+/* Markets box   (override) */
 .markets-list {
 	display: grid;
 	gap: 20px;
 	margin: 20px;
-	grid-template-columns: repeat( auto-fit, minmax(20rem, 1fr) );
+	grid-template-columns: repeat( auto-fit, minmax(24rem, 1fr) );
 }
 .market-box {
 	display: flex;

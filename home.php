@@ -35,35 +35,12 @@ get_header();
 			</div>
 		</div>
 
-		<?php
-		// List all categories
-		$args = array(
-			'orderby' => 'ID',
-			'include' => '1,6,9,10',
-			'hide_empty' => false,
-		);
-		$all_categories = get_categories($args);
-		if ( ! empty( $all_categories ) ) {
-			echo '<div class="box-columns feed-one-outer cont-m margin-b-100">';
-				echo '<div class="box-items">';
-					foreach ( $all_categories as $category ) { ?>
-						<div class="box-item light-grey-bg">
-							<div class="box-content padding-40">
-								<div>
-									<p class="fs-400 fw-semibold margin-b-20"><?php echo esc_html( $category->name ); ?></p>
-									<?php if ( ! empty( $category->description ) ) : ?>
-										<p class="margin-b-20 grey-text"><?php echo esc_html( $category->description ); ?></p>
-									<?php endif; ?>
-								</div>
-								<a href="<?php echo esc_url( get_category_link( $category->term_id ) ); ?>" class="hl arrow">Latest <?php echo esc_html( $category->name ); ?></a>
-							</div>
-							<div class="box-image image-cover" style="background-image:url(<?php echo get_template_directory_uri(); ?>/images/home-banner-1.jpg)"></div>
-						</div>
-					<?php }
-					echo '</div>';
-				echo '</div>';
-		}
-		?>
+		<div class="cont-m margin-t-70 margin-b-70">
+			<?php 
+			set_query_var('content_type', 'category'); // 'post', 'page', or 'category'
+			set_query_var('content_ids', '1,6,9,10'); // Post/page/category IDs
+			get_template_part('template-parts/components/component-cta-picker'); ?>
+		</div>
 
 	</main><!-- #main -->
 
