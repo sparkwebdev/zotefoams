@@ -40,8 +40,9 @@ get_header();
 							</div>
 						<?php endif; ?>
 					</header><!-- .entry-header -->
-
-					<figure><?php zotefoams_post_thumbnail('large'); ?></figure>
+					<?php if ( has_post_thumbnail() ) { ?>
+						<figure><?php zotefoams_post_thumbnail('large'); ?></figure>
+					<?php } ?>
 
 					<div class="entry-content">
 						<?php
@@ -78,13 +79,14 @@ get_header();
 	</main><!-- #main -->
 
 	<hr class="separator" />
-		<aside class="cont-m margin-t-70 margin-b-70">
-			<div class="articles-header">
-				<h2>Latest Updates</h2>
-				<a href="<?php echo get_the_permalink(get_option('page_for_posts', true)) ?>" class="btn black outline"><?php echo get_the_title(get_option('page_for_posts', true)); ?></a>
-			</div>
-			<div class="articles articles--grid-alt margin-t-30">
 
+	<aside class="cont-m margin-t-70 margin-b-70">
+		<div class="articles-header">
+			<h2>Latest Updates</h2>
+			<a href="<?php echo get_the_permalink(get_option('page_for_posts', true)) ?>" class="btn black outline"><?php echo get_the_title(get_option('page_for_posts', true)); ?></a>
+		</div>
+
+		<div class="articles articles--grid-alt margin-t-30">
 			<?php
 			$args = array(
 				'post_type' => 'post',
@@ -107,9 +109,9 @@ get_header();
 							$thumbnail_url = get_template_directory_uri() . '/images/placeholder-thumbnail.png';
 						}
 
-						echo '<img src="' . esc_url($thumbnail_url) . '" alt="">';
-				?>
-				<div class="articles__content">
+						echo '<img src="' . esc_url($thumbnail_url) . '" alt="' . esc_attr(get_the_title()) . '">';
+					?>
+				<div class="articles__content padding-30">
 					<?php
 						$categories = get_the_category();
 						if ( ! empty( $categories ) ) {
@@ -123,7 +125,7 @@ get_header();
 						
 						the_title( '<h3 class="fs-400 fw-semibold margin-b-20">', '</h3>' );
 
-						if ( ! empty( $categories ) ) {
+						if (!empty($categories) && isset($categories[0]->name)) {
 							switch ($categories[0]->name) {
 								case 'Case Studies':
 									$cat_more_link_label = 'View Case Study';
@@ -136,7 +138,7 @@ get_header();
 								default:
 									$cat_more_link_label = 'View '.rtrim($categories[0]->name, 's');
 							}
-							echo '<p class="articles__cta"><a href="' . $cat_more_link . '">' . $cat_more_link_label . '</a> &gt;</p>';
+							echo '<p class="articles__cta"><a href="' . $cat_more_link . '" class="hl arrow">' . $cat_more_link_label . '</a> &gt;</p>';
 						}
 						
 					?>
@@ -147,13 +149,7 @@ get_header();
 				wp_reset_postdata(); // Reset post data after custom query
 			endif;
 			?>
-</div>
-
-
-
-
-
-
-		</aside>
+		</div>
+	</aside>
 <?php
 get_footer();
