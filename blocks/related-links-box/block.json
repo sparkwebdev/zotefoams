@@ -1,0 +1,16 @@
+{
+  "name": "acf/related-links-box",
+  "title": "Related Links Box",
+  "description": "A block to pick related links and docs that uses ACF fields.",
+  "style": [ "file:./related-links-box.css" ],
+  "category": "formatting",
+  "icon": "admin-links",
+  "keywords": ["related", "links", "documents", "filepicker"],
+  "acf": {
+      "mode": "preview",
+      "renderTemplate": "related-links-box.php"
+  },
+  "supports": {
+      "anchor": true
+  }
+}

@@ -54,6 +54,7 @@ if (!empty($editor_context->post)) {
           'core/embed',
           'acf/quote-box',
           'acf/highlight-box',
+          'acf/related-links-box',
         ];
     } elseif ($editor_context->post->post_type === 'page') {
         return [
