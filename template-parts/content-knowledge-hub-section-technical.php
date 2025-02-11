@@ -184,7 +184,7 @@
                         $file = $document->file;
                     ?>
                         <tr class="file-list__item" data-gallery-label="<?php echo esc_html($document->group_name); ?>" data-clickable-url="<?php echo esc_url($file['url']); ?>">
-                            <td class="file-list__item-icon"><img src="<?php echo get_template_directory_uri(); ?>/images/icon-01.svg" alt="Marketing Icon" class="icon"></td>
+                            <td class="file-list__item-icon"><img src="<?php echo get_template_directory_uri(); ?>/images/icon-03.svg" alt="" class="icon"></td>
                             <td class="file-list__item-group"><?php echo esc_html($document->group_name); ?></td>
                             <td class="file-list__item-title"><?php echo esc_html(str_replace('_', ' ', $file['title'] ?? $file['filename'])); ?></td>
                             <td class="file-list__item-action">
