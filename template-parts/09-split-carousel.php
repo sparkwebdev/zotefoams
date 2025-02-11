@@ -85,7 +85,7 @@
 			bottom: 0px;
 			right: 0px;
 			z-index: 2;
-    		width: 57vw;
+    		width: 50vw;
 			margin-bottom: 30px;
 		}
 
@@ -121,7 +121,7 @@
 
 	.swiper-split .swiper-slide > * {
 		flex: 3 1 0;
-		width: 0;
+		width: 50%;
 	}
 
 	.swiper-split .swiper-slide-content {

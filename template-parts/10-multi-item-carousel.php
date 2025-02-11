@@ -1,7 +1,7 @@
 
 	<!-- Carousel 4 - Multi-Item Carousel -->
 	<div class="swiper multi-item-carousel margin-t-100">
-		<div class="title-strip margin-b-30">
+		<div class="title-strip margin-b-30 cont-m">
 			<h3 class="fs-500 fw-600">High-Performance Foams</h3>
 			<!-- Navigation -->
 			<div class="carousel-navigation black">
@@ -47,7 +47,7 @@
 				<a href="#" class="btn black outline">Explore Product</a>
 			</div>
 		</div>
-		<div class="multi-swiper-scrollbar"></div>
+		<div class="multi-swiper-scrollbar cont-m"></div>
 	</div>
 
 	<script type="text/javascript">
@@ -78,10 +78,6 @@
 	.multi-item-carousel {
 		padding: 50px;
 	}
-
-		.multi-item-carousel .title-strip {
-			width: calc(66vw - 75px);
-		}
 
 		.multi-item-carousel .swiper-slide {
 			text-align: center;
@@ -120,7 +116,6 @@
 
 		.multi-item-carousel .multi-swiper-scrollbar {
 			height: 5px;
-			width: calc(66vw - 75px);
 			margin-top: 30px;
 			background: rgba(0, 0, 0, 0.15); /* Background of the scrollbar */
 		}

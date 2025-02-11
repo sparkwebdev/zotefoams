@@ -48,6 +48,9 @@ Template Name: Components
 	<h1 class="component-label">Tabbed Split</h1>
 	<?php get_template_part('template-parts/14-tabbed-split'); ?>
 
+	<h1 class="component-label">Data points</h1>
+	<?php get_template_part('template-parts/17-data-points'); ?>
+
 	<?php get_footer(); ?>
 
 

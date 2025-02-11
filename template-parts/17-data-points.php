@@ -1,23 +1,22 @@
-<div class="performance half-half cont-m padding-t-b-70">
+<div class="data-points half-half padding-t-b-70">
 	<h3>Our 2024 Performance Overview</h3>
-	<div class="performance-items">
-		<div class="spacer"></div>
-		<div class="performance-item">
+	<div class="data-points-items cont-m">
+		<div class="data-points-item">
 			<img class="" src="<?php echo get_template_directory_uri(); ?>/images/icon-17.svg" />
 			<p class="animate__animated animate__delay-1s value" data-to=127 data-prefix="£" data-suffix="m">0</p>
 			<label class="sub-title">Group Revenue</label>
 		</div>
-		<div class="performance-item">
+		<div class="data-points-item">
 			<img class="" src="<?php echo get_template_directory_uri(); ?>/images/icon-18.svg" />
 			<p class="animate__animated animate__delay-1s value" data-to=30 data-suffix="%">0</p>
 			<label class="sub-title">Sustainability Growth</label>
 		</div>
-		<div class="performance-item">
+		<div class="data-points-item">
 			<img class="" src="<?php echo get_template_directory_uri(); ?>/images/icon-19.svg" />
 			<p class="animate__animated animate__delay-1s value" data-to=15.1 data-decimals=1 data-prefix="£" data-suffix="m">0</p>
 			<label class="sub-title">Operating Profit</label>
 		</div>
-		<div class="performance-item">
+		<div class="data-points-item">
 			<img class="" src="<?php echo get_template_directory_uri(); ?>/images/icon-20.svg" />
 			<p class="animate__animated animate__delay-1s value" data-decimals=1 data-to=10.3 data-suffix="%">0</p>
 			<label class="sub-title">Return On Capital Employed</label>
@@ -69,53 +68,53 @@
 				}
 			});
 		});
-		observer.observe(document.querySelector('.performance'));
+		observer.observe(document.querySelector('.data-points'));
 	});
 </script>
 
 
 <style type="text/css">
-	/* Performance
+	/* 17 Data points
 	--------------------------------------------- */
 
-	.performance {
+	.data-points {
 		background-color: #F8F8F8;
 	}
 
-		.performance h3 {
-			text-align: center;
-			font-size: 1.5em;
-			font-weight: 600;
-			margin-bottom: 40px;
-		}
+	.data-points h3 {
+		text-align: center;
+		font-size: 1.5em;
+		font-weight: 600;
+		margin-bottom: 40px;
+	}
 
-		.performance .performance-items {
-			display: flex;
-		}
+	.data-points .data-points-items {
+		display: flex;
+	}
 
-			.performance .performance-items .spacer {
-				flex: 1 1 0;
-			}
+	.data-points .data-points-items .spacer {
+		flex: 1 1 0;
+	}
 
-			.performance .performance-items .performance-item {
-				flex: 2 1 0;
-				text-align: center;
-			}
+	.data-points .data-points-items .data-points-item {
+		flex: 2 1 0;
+		text-align: center;
+	}
 
-				.performance .performance-items .performance-item img {
-					width: 24px;
-				}
+	.data-points .data-points-items .data-points-item img {
+		width: 24px;
+	}
 
-				.performance .performance-items .performance-item .value {
-					font-size: 3em;
-					font-weight: bold;
-					display: block;
-				}
+	.data-points .data-points-items .data-points-item .value {
+		font-size: 3em;
+		font-weight: bold;
+		display: block;
+	}
 
-				.performance .performance-items .performance-item .sub-title {
-					font-size: 0.8em;
-					color: #707070;
-					display: block;
-					margin-top: -10px;
-				}
+	.data-points .data-points-items .data-points-item .sub-title {
+		font-size: 0.8em;
+		color: #707070;
+		display: block;
+		margin-top: -10px;
+	}
 </style>
