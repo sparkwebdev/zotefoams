@@ -132,7 +132,19 @@
 			display: flex;
 			align-items: center;
 			transition: opacity 0.3s;
+			top: auto;
+			width: auto;
+			height: auto;
+			margin: auto;
+			cursor: auto;
+			justify-content: unset;
+			color: #fff;
 		}
+
+		.swiper-image .swiper-button-next:after, .swiper-rtl .swiper-button-prev:after {
+			content: '';
+		}
+
 		.swiper-image .swiper-button-next-image:hover {
 			cursor: pointer;
 			opacity: 0.8;
