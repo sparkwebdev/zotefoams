@@ -28,7 +28,7 @@ document.addEventListener('DOMContentLoaded', function() {
         for (let i = 0; i < elements.length; i++) {
 
             const animation = elements[i].dataset.animation ?? 'animate__fadeInDown';
-            delay = elements[i].dataset.animationdelay ?? (delay === 0 ? 0.3 : delay + 0.7);
+            delay = elements[i].dataset.animationdelay ?? (delay === 0 ? 0.2 : delay + 0.2);
 
             if (on) {
                 elements[i].classList.add('hidden');
