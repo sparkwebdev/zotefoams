@@ -17,6 +17,8 @@ Template Name: Homepage
 	<?php get_template_part('template-parts/10-multi-item-carousel'); ?>
 
 	<?php get_template_part('template-parts/11-calendar-carousel'); ?>
+	
+	<?php get_template_part('template-parts/performance'); ?>
 
 	<?php get_template_part('template-parts/04-news-feed'); ?>
 
