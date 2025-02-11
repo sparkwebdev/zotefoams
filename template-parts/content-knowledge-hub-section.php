@@ -59,8 +59,8 @@
     <?php if (!empty($documents_array)) : 
         // get_template_part( 'template-parts/documents-filter-list' );
         ?>
-        <?php if (!empty($group_names) && count($group_names) > 1) : ?>
-        <div class="file-list" data-component="file-list">
+        <div class="file-list" data-component="section-list">
+            <?php if (!empty($group_names) && count($group_names) > 1) : ?>
             <div class="file-list__dropdown">
                 <button id="filter-toggle" class="file-list__dropdown-button hl arrow">
                     Filter
@@ -90,13 +90,13 @@
                     <?php foreach ($documents_array as $document) : 
                         $file = $document->file;
                     ?>
-                        <tr class="file-list__item" data-gallery-label="<?php echo esc_html($document->group_name); ?>">
-                            <td class="file-list__item-icon"><span>📄</span></td>
+                        <tr class="file-list__item" data-gallery-label="<?php echo esc_html($document->group_name); ?>" data-clickable-url="<?php echo esc_url($file['url']); ?>">
+                            <td class="file-list__item-icon"><img src="<?php echo get_template_directory_uri(); ?>/images/icon-01.svg" alt="Marketing Icon" class="icon"></td>
                             <td class="file-list__item-group"><?php echo esc_html($document->group_name); ?></td>
                             <td class="file-list__item-title"><?php echo esc_html(str_replace('_', ' ', $file['title'] ?? $file['filename'])); ?></td>
                             <td class="file-list__item-action">
                                 <!-- <a href="<?php echo esc_url($file['url']); ?>" target="_blank">View</a> -->
-                                <a href="<?php echo esc_url($file['url']); ?>" download>View&nbsp;&#8595;</a>
+                                <a href="<?php echo esc_url($file['url']); ?>" class="hl download" download>View</a>
                             </td>
                         </tr>
                     <?php endforeach; ?>

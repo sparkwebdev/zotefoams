@@ -68,5 +68,62 @@ document.addEventListener('DOMContentLoaded', function() {
             updateShowAllVisibility();
         });
     }
+    /* Component Init - File List */
+    const sectionListElements = document.querySelectorAll('[data-component="section-list"]');
+  
+    if (sectionListElements.length > 0) {
+
+        sectionListElements.forEach(function(article) {
+
+            const filterButton = document.getElementById('filter-toggle');
+            const filterOptions = document.getElementById('filter-options');
+            const checkboxes = [...article.querySelectorAll('.filter-options__checkbox')];
+            const showAllButton = document.getElementById('section-list-show-all');
+            const sectionItems = [...article.querySelectorAll('.section-list__item')];
+            const toggleDropdown = (show) => {
+                filterOptions.classList.toggle('hidden', !show);
+                filterButton.classList.toggle('open', show);
+            };
+        
+            const updateShowAllVisibility = () => {
+                const selectedCount = checkboxes.filter(cb => cb.checked).length;
+                showAllButton.classList.toggle('hidden', selectedCount === 0 || selectedCount === checkboxes.length);
+            };
+        
+            const filterSections = () => {
+                const selectedLabels = checkboxes.filter(cb => cb.checked).map(cb => cb.value);
+                sectionItems.forEach(item => {
+                    item.style.display = selectedLabels.length === 0 || selectedLabels.includes(item.dataset.galleryLabel)
+                        ? 'block'
+                        : 'none';
+                });
+                updateShowAllVisibility();
+            };
+        
+            const resetFilters = () => {
+                sectionItems.forEach(item => (item.style.display = 'block'));
+                checkboxes.forEach(cb => (cb.checked = false));
+                toggleDropdown(false);
+                updateShowAllVisibility();
+            };
+        
+            filterButton.addEventListener('click', (e) => {
+                e.stopPropagation();
+                toggleDropdown(filterOptions.classList.contains('hidden'));
+            });
+        
+            checkboxes.forEach(checkbox => checkbox.addEventListener('change', filterSections));
+            showAllButton.addEventListener('click', resetFilters);
+        
+            document.addEventListener('click', (e) => {
+                if (!article.contains(e.target)) {
+                    toggleDropdown(false);
+                }
+            });
+            
+        
+            updateShowAllVisibility();
+        });
+    }
 });
 

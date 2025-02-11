@@ -54,8 +54,8 @@
                 },
                 {
                     "key": "field_67a619a33de78",
-                    "label": "",
-                    "name": "",
+                    "label": "Outer",
+                    "name": "document_group_outer",
                     "aria-label": "",
                     "type": "group",
                     "instructions": "",
@@ -67,7 +67,6 @@
                         "id": ""
                     },
                     "layout": "block",
-                    "parent_repeater": "field_67a6151a35974",
                     "sub_fields": [
                         {
                             "key": "field_67a6155435976",
@@ -179,7 +178,8 @@
                                 }
                             ]
                         }
-                    ]
+                    ],
+                    "parent_repeater": "field_67a6151a35974"
                 }
             ]
         }
@@ -209,5 +209,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1739202859
+    "modified": 1739220609
 }
