@@ -20,6 +20,8 @@ Template Name: Homepage
 	
 	<?php get_template_part('template-parts/performance'); ?>
 
+	<?php get_template_part('template-parts/locations-map'); ?>
+
 	<?php get_template_part('template-parts/04-news-feed'); ?>
 
 	<?php get_template_part('template-parts/05-document-list'); ?>
