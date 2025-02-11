@@ -243,8 +243,19 @@ html {
 }
 
 /* Filter List - Table output parts */
+.file-list__item {
+  transition: background 0.3s;
+  
+  cursor: pointer;
+  &:hover,
+  &:focus {
+    background-color: var(--color-brand-contrast);
+  }
+}
 .file-list__item-icon {
-  font-size: 28px;
+  img {
+    max-width: none;
+  }
 }
 .file-list .file-list__item-group {
   color: var(--color-link);
