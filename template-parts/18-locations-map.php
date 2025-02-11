@@ -1,36 +1,37 @@
-<div class="locations-map half-half cont-m padding-t-b-30">
-	<div class="title-container">
-		<h2>Our Locations</h2>
-		<h3>An international company with key operations across the world.</h3>
-	</div>
-	<div class="map-container">
-  		<div class="location kentucky" onclick="locationClicked(this)">
-			<div class="popup">
-				<p>
-					Zotefoams Inc.
-					55 Precision Drive
-					Walton
-					KY, 41094
-					USA
-					Tel:
-					+1 859 371 4025
-					FREE: (800) 362-8358 (US Only)
-					Fax: +1 859 371 4734
-					Email:
-					hello@zotefoams.com
-				</p>
-			</div>
+<div class="locations-map half-half padding-t-b-100">
+	<div class="cont-m">
+		<div class="map-intro margin-b-40">
+			<p class="fw-semibold fs-600 white-text">Our Locations</p>
+			<p class="fw-semibold fs-600 blue-text">An international company with key operations across the world.</p>
 		</div>
-  		<div class="location massachusetts" onclick="locationClicked(this)"></div>
-  		<div class="location croydon"></div>
-  		<div class="location europe1"></div>
-		<div class="location europe2"></div>
-		<div class="location india"></div>
-		<div class="location asia1"></div>
-		<div class="location asia2"></div>
-		<div class="location asia3"></div>
-		<img class="map" src="<?php echo get_template_directory_uri(); ?>/images/map.svg" />
-</div>
+		<div class="map-container">
+			<div class="location kentucky" onclick="locationClicked(this)">
+				<div class="popup">
+					<p>
+						Zotefoams Inc.
+						55 Precision Drive
+						Walton
+						KY, 41094
+						USA
+						Tel:
+						+1 859 371 4025
+						FREE: (800) 362-8358 (US Only)
+						Fax: +1 859 371 4734
+						Email:
+						hello@zotefoams.com
+					</p>
+				</div>
+			</div>
+			<div class="location massachusetts" onclick="locationClicked(this)"></div>
+			<div class="location croydon"></div>
+			<div class="location europe1"></div>
+			<div class="location europe2"></div>
+			<div class="location india"></div>
+			<div class="location asia1"></div>
+			<div class="location asia2"></div>
+			<div class="location asia3"></div>
+			<img class="map" src="<?php echo get_template_directory_uri(); ?>/images/map.svg" />
+		</div>
 	</div>
 </div>
 
@@ -49,13 +50,13 @@
 	.locations-map {
 		background-color: #041B40;
 	}
+	
+	.map-intro {max-width:700px}
 
 		.locations-map .title-container {
 			position: relative;
 			margin-left: auto;
 			margin-right: auto;
-			max-width: 1024px;
-			margin-bottom: 40px;
 		}
 
 			.locations-map .title-container h2 {
@@ -76,7 +77,6 @@
 			position: relative;
 			margin-left: auto;
 			margin-right: auto;
-			max-width: 1024px;
 		}
 
 			.locations-map .map-container .map {
