@@ -45,7 +45,28 @@
     }
   }
 }
-
+.related-links-box__link-download::after,
+.related-links-box__link-arrow::after {
+	content:"";
+	background-repeat:no-repeat;
+	background-size:120%;
+	background-position:center center;
+  display:inline-flex;
+	margin-left:8px;
+}
+.related-links-box__link-arrow::after {
+	width:6px;
+	height:10px;
+  display:inline-flex;
+	margin-left:8px;
+	background-image:url(icon-right-arrow-blue.svg);
+}
+.related-links-box__link-download::after {
+	width: 7px;
+  height: 12px;
+	margin-top: 1px;
+	background-image:url(icon-download.svg);
+}
 @media (min-width: 600px) {
   .related-links-box {
     flex-wrap: nowrap;

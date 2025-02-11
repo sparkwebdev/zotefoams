@@ -9,10 +9,6 @@
 $title = !empty(get_field( 'title' )) ? get_field( 'title' ) : 'Related Links and Documents';
 $links = get_field( 'links' );
 
-if ( $title ) {
-    $title = '<h3 class="related-links-box__title">' . $title . '</h3>';
-}
-
 // Support custom "anchor" values.
 $anchor = '';
 if ( ! empty( $block['anchor'] ) ) {
@@ -47,7 +43,7 @@ if ( ! empty( $block['align'] ) ) {
 
                     ?>
                         <li>
-                            <a class="related-links-box__link hl <?php echo $is_file ? 'download' : 'arrow'; ?> " href="<?php echo esc_url( $link_url ); ?>" target="<?php echo esc_attr( $link_target ); ?>">
+                            <a class="related-links-box__link <?php echo $is_file ? 'related-links-box__link-download' : 'related-links-box__link-arrow'; ?> " href="<?php echo esc_url( $link_url ); ?>" target="<?php echo esc_attr( $link_target ); ?>">
                                 <?php echo esc_html( $link_title ); ?>
                             </a>
                         </li>

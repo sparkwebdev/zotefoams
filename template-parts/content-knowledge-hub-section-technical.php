@@ -67,7 +67,7 @@
                 </div>
             </div>
             <!-- Show All Button -->
-            <button id="section-list-show-all" class="file-list__show-all hidden">Show All</button>
+            <button id="section-list-show-all" class="file-list__show-all hidden">Reset Filters</button>
             <?php endif; ?>
         <?php // Now display the structure in rows
         echo '<div class="articles articles--grid-alt margin-t-30">';

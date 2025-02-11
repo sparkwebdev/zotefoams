@@ -17,10 +17,10 @@ document.addEventListener('DOMContentLoaded', function() {
 
         fileListElements.forEach(function(article) {
 
-            const filterButton = document.getElementById('filter-toggle');
-            const filterOptions = document.getElementById('filter-options');
+            const filterButton = article.querySelector('#filter-toggle');
+            const filterOptions = article.querySelector('#filter-options');
             const checkboxes = [...article.querySelectorAll('.filter-options__checkbox')];
-            const showAllButton = document.getElementById('file-list-show-all');
+            const showAllButton = article.querySelector('#file-list-show-all');
             const fileItems = [...article.querySelectorAll('.file-list__item')];
         
             const toggleDropdown = (show) => {
@@ -74,11 +74,12 @@ document.addEventListener('DOMContentLoaded', function() {
     if (sectionListElements.length > 0) {
 
         sectionListElements.forEach(function(article) {
+            console.log(article);
 
-            const filterButton = document.getElementById('filter-toggle');
-            const filterOptions = document.getElementById('filter-options');
+            const filterButton = article.querySelector('#filter-toggle');
+            const filterOptions = article.querySelector('#filter-options');
             const checkboxes = [...article.querySelectorAll('.filter-options__checkbox')];
-            const showAllButton = document.getElementById('section-list-show-all');
+            const showAllButton = article.querySelector('#section-list-show-all');
             const sectionItems = [...article.querySelectorAll('.section-list__item')];
             const toggleDropdown = (show) => {
                 filterOptions.classList.toggle('hidden', !show);

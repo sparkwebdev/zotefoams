@@ -67,7 +67,7 @@
     <?php if (!empty($documents_array)) : 
         // get_template_part( 'template-parts/documents-filter-list' );
         ?>
-        <div class="file-list" data-component="section-list">
+        <div class="file-list" data-component="file-list">
             <?php if (!empty($group_names) && count($group_names) > 1) : ?>
             <div class="file-list__dropdown">
                 <button id="filter-toggle" class="file-list__dropdown-button hl arrow">
@@ -83,7 +83,7 @@
                 </div>
             </div>
             <!-- Show All Button -->
-            <button id="file-list-show-all" class="file-list__show-all hidden">Show All</button>
+            <button id="file-list-show-all" class="file-list__show-all hidden">Reset Filters</button>
             <?php endif; ?>
                 <table>
                 <thead class="screen-reader-text">
