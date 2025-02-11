@@ -54,20 +54,31 @@
 					init: function () {
 						updateNextButtonTitle(this, '.swiper-button-next-image p span');
 					},
-					slideChange: function () {
-						updateNextButtonTitle(this, '.swiper-button-next-image p span');
+					slideChangeTransitionStart : function (e) {
+						updateNextButtonTitle(e, '.swiper-button-next-image p span');
 						resetProgressAnimation('.circle-progress-image');
 					},
 				},
 			});
 
 			function updateNextButtonTitle(swiperInstance, selector) {
-				const nextSlide = swiperInstance.slides[(swiperInstance.realIndex + 1) % swiperInstance.slides.length];
-				const nextTitle = nextSlide.getAttribute('data-title');
-				const nextButtonText = document.querySelector(selector);
-				if (nextButtonText && nextTitle) {
-					nextButtonText.textContent = nextTitle;
+				const nextSlide = getNextSlide(swiperInstance);
+				if (nextSlide) {
+					const nextTitle = nextSlide.getAttribute('data-title');
+					const nextButtonText = document.querySelector(selector);
+					if (nextButtonText && nextTitle) {
+						nextButtonText.textContent = nextTitle;
+					}
 				}
+			}
+
+			function getNextSlide(swiperInstance) {
+				for	(let i = 0; i < swiperInstance.slides.length; i++) {
+					if (swiperInstance.slides[i].classList.contains('swiper-slide-next')) {
+						return swiperInstance.slides[i];
+					}
+				}
+				return null;
 			}
 
 			function resetProgressAnimation(circleSelector) {
@@ -132,7 +143,19 @@
 			display: flex;
 			align-items: center;
 			transition: opacity 0.3s;
+			top: auto;
+			width: auto;
+			height: auto;
+			margin: auto;
+			cursor: auto;
+			justify-content: unset;
+			color: #fff;
 		}
+
+		.swiper-image .swiper-button-next:after, .swiper-rtl .swiper-button-prev:after {
+			content: '';
+		}
+
 		.swiper-image .swiper-button-next-image:hover {
 			cursor: pointer;
 			opacity: 0.8;
