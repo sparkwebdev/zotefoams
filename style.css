@@ -33,7 +33,6 @@ Nicolas Gallagher and Jonathan Neal https://necolas.github.io/normalize.css/
 	- Elements
 	- Links
 	- Forms
-## Layouts
 # Components
 	- Navigation
 	- Posts and pages
@@ -78,7 +77,7 @@ html {
  * Remove the margin in all browsers.
  */
 body {
-	margin: 0;
+	margin:0;
 }
 
 /**
@@ -473,10 +472,16 @@ big {
 /* Elements
 --------------------------------------------- */
 body {
-	background: #fff;
 	font-family: "Manrope", serif;
 	font-optical-sizing: auto;
 	font-style: normal;
+	max-width:1920px;
+	background:#eee;
+	margin:0 auto
+}
+
+#page {
+	background:#fff;
 }
 
 hr {
@@ -644,18 +649,68 @@ textarea {
 }
 
 /*--------------------------------------------------------------
-# Layouts
---------------------------------------------------------------*/
-
-/*--------------------------------------------------------------
 # Components
 --------------------------------------------------------------*/
 
 /* Navigation
 --------------------------------------------- */
+header.site-header a {
+	font-weight: 500;
+    text-transform: capitalize;
+}
+header.site-header li.current-menu-item a {
+	color:#3B82F6
+}
+header.site-header a:hover {
+	color:#3B82F6
+}
+
+.site-header-wrapper {
+	display:flex;
+	justify-content:space-between;
+	align-items:center;
+	padding:0 50px
+}
+
+.site-branding img {
+	vertical-align: bottom
+}
+
+
+/* Utility menu
+--------------------------------------------- */
+#menu-utility {
+	margin:0;
+	padding:0;
+}
+.utility-menu li {
+	display:inline;
+	list-style-type:none;
+	padding: 0 0 0 20px;
+}
+.utility-menu li a:hover {
+	display:inline;
+	list-style-type:none
+}
+.utility-menu {
+	background: black;
+	padding:10px 50px;
+	text-align: right;
+}
+.utility-menu a {
+	color:#fff;
+	transition:all 0.3s
+}
+.utility-menu a:hover {
+	color:#3B82F6
+}
+
+
+/* Main navigation
+--------------------------------------------- */
+
 .main-navigation {
-	display: block;
-	width: 100%;
+	display: inline-block;
 }
 
 .main-navigation ul {
@@ -701,6 +756,16 @@ textarea {
 .main-navigation a {
 	display: block;
 	text-decoration: none;
+	color:black;
+	padding:20px 0;
+	transition:all 0.3s
+}
+.main-navigation li {
+	border-bottom:3px solid white;
+	margin:0 0 0 30px
+}
+.main-navigation li.current-menu-item {
+	border-bottom:3px solid #3B82F6
 }
 
 /* Small menu. */
@@ -751,11 +816,6 @@ textarea {
 --------------------------------------------- */
 .sticky {
 	display: block;
-}
-
-.post,
-.page {
-	margin: 0;
 }
 
 .updated:not(.published) {
@@ -1239,16 +1299,6 @@ a.hl.download::after {
     display:inline-flex;
 	margin-left:8px;
 	margin-top: 1px;
-}
-
-
-
-
-
-/* Utility menu
---------------------------------------------- */
-.utility-menu {
-	background: black
 }
 
 

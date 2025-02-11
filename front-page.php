@@ -8,19 +8,9 @@ Template Name: Homepage
  
 	<?php get_template_part('template-parts/b1-Image-banner'); ?>
 
-	<?php get_template_part('template-parts/01-split-video'); ?>
+	<?php get_template_part('template-parts/01a-split-video-one'); ?>
 
 	<?php get_template_part('template-parts/02-dual-carousel'); ?>
-
-	<?php get_template_part('template-parts/09-split-carousel'); ?>
-
-	<?php get_template_part('template-parts/10-multi-item-carousel'); ?>
-
-	<?php get_template_part('template-parts/11-calendar-carousel'); ?>
-	
-	<?php get_template_part('template-parts/performance'); ?>
-
-	<?php get_template_part('template-parts/locations-map'); ?>
 
 	<?php get_template_part('template-parts/04-news-feed'); ?>
 

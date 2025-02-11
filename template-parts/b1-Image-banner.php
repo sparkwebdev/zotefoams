@@ -105,6 +105,7 @@
 			height: 72vh;
 			position: relative;
 			max-height: 900px;
+			min-height: 700px;
 		}
 		.swiper-image .swiper-slide {
 			justify-content: center;

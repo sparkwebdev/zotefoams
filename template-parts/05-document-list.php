@@ -10,7 +10,7 @@
 			<div class="doc-row">
 				<div class="doc-cat">
 					<img src="<?php echo get_template_directory_uri(); ?>/images/icon-01.svg" alt="Marketing Icon" class="icon" />
-					<p class="fs-100">Marketing</p>
+					<p class="fs-100 blue-text">Marketing</p>
 				</div>
 				<p class="fs-400 fw-semibold">Ecozote® Sustainability+</p>
 				<a href="" class="hl download">View</a>
@@ -19,7 +19,7 @@
 			<div class="doc-row">
 				<div class="doc-cat">
 					<img src="<?php echo get_template_directory_uri(); ?>/images/icon-02.svg" alt="Certificates Icon" class="icon" />
-					<p class="fs-100">Certificates</p>
+					<p class="fs-100 blue-text">Certificates</p>
 				</div>
 				<p class="fs-400 fw-semibold">OEKO-TEX® Standard 100 Certification</p>
 				<a href="" class="hl download">View</a>
@@ -28,7 +28,7 @@
 			<div class="doc-row">
 				<div class="doc-cat">
 					<img src="<?php echo get_template_directory_uri(); ?>/images/icon-03.svg" alt="Technical Icon" class="icon" />
-					<p class="fs-100">Technical</p>
+					<p class="fs-100 blue-text">Technical</p>
 				</div>
 				<p class="fs-400 fw-semibold">AZOTE® Packaging Grades</p>
 				<a href="" class="hl download">View</a>
@@ -37,7 +37,7 @@
 			<div class="doc-row">
 				<div class="doc-cat">
 					<img src="<?php echo get_template_directory_uri(); ?>/images/icon-04.svg" alt="Safety Icon" class="icon" />
-					<p class="fs-100">Safety</p>
+					<p class="fs-100 blue-text">Safety</p>
 				</div>
 				<p class="fs-400 fw-semibold">ZOTEK® F OSU Extra rigid white</p>
 				<a href="" class="hl download">View</a>
