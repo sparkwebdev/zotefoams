@@ -1,6 +1,6 @@
 {
     "key": "group_67a5e4038c62b",
-    "title": "Knowledge Hub - Certificates, Marketing, Safety",
+    "title": "Knowledge Hub: Certificates, Marketing, Safety",
     "fields": [
         {
             "key": "field_67a5e419d5e0f",
@@ -101,5 +101,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1739202870
+    "modified": 1739282748
 }

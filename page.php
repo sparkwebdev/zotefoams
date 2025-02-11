@@ -34,6 +34,8 @@ get_header();
 				get_template_part( 'template-parts/content', 'knowledge-hub-section-technical' );
 		} else if ( $post->post_parent && strcasecmp(get_the_title($post->post_parent), 'Knowledge Hub') === 0)  {
 			get_template_part( 'template-parts/content', 'knowledge-hub-section' );
+		} else if ( strcasecmp(get_the_title(), 'Markets') === 0)  {
+			get_template_part( 'template-parts/content', 'markets' );
 		} else {
 				get_template_part( 'template-parts/content', 'page' );
 		}

@@ -1,6 +1,6 @@
 {
     "key": "group_67a4e3c3b7db2",
-    "title": "Knowledge Hub - Technical Literature",
+    "title": "Knowledge Hub: Technical Literature",
     "fields": [
         {
             "key": "field_67a6151a35974",
@@ -209,5 +209,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1739220609
+    "modified": 1739282755
 }
