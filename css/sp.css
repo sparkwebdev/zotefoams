@@ -19,11 +19,6 @@ html {
   scroll-behavior: smooth;
 }
 
-/* Utilities */
-.hidden {
-  display: none !important;
-}
-
 /* Daves Components */
 .text-banner {
   > * {
