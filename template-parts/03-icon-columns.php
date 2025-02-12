@@ -1,6 +1,6 @@
 
 	<div class="icon-columns light-grey-bg black-text padding-t-b-100">
-		<div class="cont-m">
+		<div class="icon-columns-inner cont-m">
 			<div class="comp-08-item">
 				<img class="margin-b-15" src="<?php echo get_template_directory_uri(); ?>/images/icon-05.svg" />
 				<p class="fs-400 fw-bold margin-b-20">The Zotefoams Difference</p>

@@ -4,6 +4,7 @@
 		
 		<!-- Navigation -->
 		<div class="navigation-wrapper">
+			<div class="split-swiper-pagination"></div>
 			<div class="carousel-navigation black">
 				<div class="carousel-navigation-inner">
 					<div class="split-swiper-button-prev">
@@ -14,7 +15,6 @@
 					</div>
 				</div>
 			</div>
-			<div class="split-swiper-pagination"></div>
 		</div>
 
 		<div class="swiper swiper-split">
@@ -22,20 +22,32 @@
 				<div class="swiper-slide">
 					<img src="<?php echo get_template_directory_uri(); ?>/images/values_courage.png" alt="Materials">
 					<div class="swiper-slide-content">
-						<p class="fs-100 margin-b-30 grey-text">Our values</p>
-						<p class="fs-600 fw-bold">Courage.</p>
-						<p class="fs-600 fw-medium grey-text margin-b-40">The courage to take bold action to ensure that we succeed in tackling our challenges and opportunities.</p>
-						<a href="#" class="btn black outline">Learn More</a>
+						<p class="animate__animated fs-100 margin-b-30 grey-text">Our values</p>
+						<p class="animate__animated fs-600 fw-bold">Courage 1</p>
+						<p class="animate__animated fs-600 fw-medium grey-text margin-b-40">The courage to take bold action to ensure that we succeed in tackling our challenges and opportunities.</p>
+						<a href="#" class="animate__animated btn black outline">Learn More</a>
 					</div>
+					<div class="spacer"></div>
 				</div>
 				<div class="swiper-slide">
 					<img src="<?php echo get_template_directory_uri(); ?>/images/values_courage.png" alt="Materials">
 					<div class="swiper-slide-content">
-						<p class="fs-100 margin-b-30 grey-text">Our values</p>
-						<p class="fs-600 fw-bold">Courage.</p>
-						<p class="fs-600 fw-medium grey-text margin-b-40">The courage to take bold action to ensure that we succeed in tackling our challenges and opportunities.</p>
-						<a href="#" class="btn black outline">Learn More</a>
+						<p class="animate__animated fs-100 margin-b-30 grey-text">More values</p>
+						<p class="animate__animated fs-600 fw-bold">Courage 2</p>
+						<p class="animate__animated fs-600 fw-medium grey-text margin-b-40">The courage to take bold action to ensure that we succeed in tackling our challenges and opportunities.</p>
+						<a href="#" class="animate__animated btn black outline">Learn More</a>
 					</div>
+					<div class="spacer"></div>
+				</div>
+				<div class="swiper-slide">
+					<img src="<?php echo get_template_directory_uri(); ?>/images/values_courage.png" alt="Materials">
+					<div class="swiper-slide-content">
+						<p class="animate__animated fs-100 margin-b-30 grey-text">Even more values</p>
+						<p class="animate__animated fs-600 fw-bold">Courage 3</p>
+						<p class="animate__animated fs-600 fw-medium grey-text margin-b-40">The courage to take bold action to ensure that we succeed in tackling our challenges and opportunities.</p>
+						<a href="#" class="animate__animated btn black outline">Learn More</a>
+					</div>
+					<div class="spacer"></div>
 				</div>
 			</div>
 		</div>
@@ -46,6 +58,7 @@
 		document.addEventListener('DOMContentLoaded', function () {
 			// Carousel 3 - Split Carousel
 			const swiperSplit = new Swiper('.swiper-split', {
+				speed: 800,
 				loop: true,
 				navigation: {
 					prevEl: '.split-swiper-button-prev',
@@ -56,6 +69,75 @@
 					clickable: true,
 				},
 			});
-			swiperSplit.controller.control = swiperSplit;
 		});
 	</script>
+
+	<style type="text/css">
+	/* 09 - Split carousel
+	--------------------------------------------- */
+
+	.swiper-carousel.split-carousel {
+		position: relative;
+	}
+
+		.swiper-carousel.split-carousel .navigation-wrapper {
+			position: absolute;	
+			bottom: 0px;
+			right: 0px;
+			z-index: 2;
+    		width: 50vw;
+			margin-bottom: 30px;
+		}
+
+		.swiper-carousel.split-carousel .navigation-wrapper .carousel-navigation-inner img {
+			width: 60px;
+			height: 60px;
+		}
+
+		.swiper-carousel.split-carousel .navigation-wrapper .split-swiper-pagination {
+			text-align: right;
+			margin-right: 16vw;
+			width: auto;
+			margin-top: 20px;
+			float: right;
+		}
+
+			.swiper-carousel.split-carousel .navigation-wrapper .split-swiper-pagination .swiper-pagination-bullet {
+				background-color: #000;
+				opacity: 1;
+				margin-left: 2px;
+				margin-right: 2px;
+			}
+
+			.swiper-carousel.split-carousel .navigation-wrapper .split-swiper-pagination .swiper-pagination-bullet-active {
+				background-color: #3B82F6;
+			}
+
+	.swiper-split .swiper-slide {
+		display: flex;
+		align-items:center;
+		justify-content: center;
+	}
+
+	.swiper-split .swiper-slide > * {
+		flex: 3 1 0;
+		width: 50%;
+	}
+
+	.swiper-split .swiper-slide-content {
+		flex-direction: column;
+		/* max-width:600px */
+		margin-bottom: 120px;
+	}
+
+	.swiper-split .spacer {
+		flex: 1 0 0;
+	}
+
+	.calendar-carousel .swiper-slide-inner {
+		border:1px solid #ccc
+	}
+	</style>
+
+
+

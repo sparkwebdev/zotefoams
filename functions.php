@@ -100,7 +100,7 @@ add_action('wp_enqueue_scripts', 'enqueue_google_fonts');
  */
 function enqueue_swiper_assets() {
     // Enqueue Swiper CSS
-    wp_enqueue_style('swiper-css', 'https://cdn.jsdelivr.net/npm/swiper@latest/swiper.min.css');
+    wp_enqueue_style('swiper-css', 'https://cdn.jsdelivr.net/npm/swiper@latest/swiper-bundle.min.css');
 
     // Enqueue Swiper JS
     wp_enqueue_script('swiper-js', 'https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js', array(), null, true);
@@ -109,6 +109,21 @@ function enqueue_swiper_assets() {
     wp_enqueue_script('swiper-custom', get_template_directory_uri() . '/js/swiper-custom.js', array('swiper-js'), null, true);
 }
 add_action('wp_enqueue_scripts', 'enqueue_swiper_assets');
+
+
+/**
+ * Enqueue Animate.css
+ */
+function enqueue_animatecss_assets() {
+    // Enqueue Animate.css
+    wp_enqueue_style('animate-css', 'https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css');
+
+	// Enqueue Animate.css Swiper Triggers
+	wp_enqueue_script('animate-css-swiper', get_template_directory_uri() . '/js/animate-swiper.js', array(), null, true);
+}
+add_action('wp_enqueue_scripts', 'enqueue_animatecss_assets');
+
+
 
 /**
  * Enqueue Stevens (temp) assets.

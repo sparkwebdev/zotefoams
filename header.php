@@ -37,25 +37,29 @@
 			?>
 		</div>
 		
-		<div class="site-branding">
-			<a href="/">
-				<img src="<?php echo get_field('brand_logo', 'option'); ?>" />
-			</a>
-		</div><!-- .site-branding -->
+		<div class="site-header-wrapper">
+		
+			<div class="site-branding">
+				<a href="/">
+					<img src="<?php echo get_field('brand_logo', 'option'); ?>" />
+				</a>
+			</div><!-- .site-branding -->
 
-		<nav id="site-navigation" class="main-navigation">
-			<button class="menu-toggle" aria-controls="primary-menu" aria-expanded="false">
-				<div class="menu-line"></div>
-				<div class="menu-line"></div>
-				<div class="menu-line"></div>
-			</button>
-			<?php
-			wp_nav_menu(
-				array(
-					'theme_location' => 'primary_menu',
-    				'container' => false,
-				)
-			);
-			?>
-		</nav><!-- #site-navigation -->
+			<nav id="site-navigation" class="main-navigation">
+				<button class="menu-toggle" aria-controls="primary-menu" aria-expanded="false">
+					<div class="menu-line"></div>
+					<div class="menu-line"></div>
+					<div class="menu-line"></div>
+				</button>
+				<?php
+				wp_nav_menu(
+					array(
+						'theme_location' => 'primary_menu',
+						'container' => false,
+					)
+				);
+				?>
+			</nav><!-- #site-navigation -->
+			
+		</div>
 	</header><!-- #masthead -->
