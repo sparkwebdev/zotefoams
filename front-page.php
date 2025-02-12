@@ -6,7 +6,7 @@ Template Name: Homepage
 
 	<?php get_header(); ?>
  
-	<?php get_template_part('template-parts/b1-Image-banner'); ?>
+	<?php get_template_part('template-parts/components/b1-Image-banner'); ?>
 
 	<?php get_template_part('template-parts/01a-split-video-one'); ?>
 

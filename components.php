@@ -54,6 +54,9 @@ Template Name: Components
 	<h1 class="component-label">Locations map</h1>
 	<?php get_template_part('template-parts/18-locations-map'); ?>
 
+	<h1 class="component-label">Text banner split</h1>
+	<?php get_template_part('template-parts/19-text-banner-split'); ?>
+
 	<?php get_footer(); ?>
 
 

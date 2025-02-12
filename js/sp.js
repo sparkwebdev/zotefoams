@@ -10,6 +10,65 @@ document.addEventListener('DOMContentLoaded', function() {
       }
   });
 
+	
+	
+	// Image Banner Swiper
+	const swiperImage = new Swiper('.swiper-image', {
+		direction: 'horizontal',
+		loop: true,
+		speed: 400,
+		autoplay: {
+			delay: 3000,
+			disableOnInteraction: false,
+		},
+		navigation: {
+			nextEl: '.swiper-button-next-image',
+		},
+		on: {
+			init: function () {
+				updateNextButtonTitle(this, '.swiper-button-next-image p span');
+			},
+			slideChangeTransitionStart : function (e) {
+				updateNextButtonTitle(e, '.swiper-button-next-image p span');
+				resetProgressAnimation('.circle-progress-image');
+			},
+		},
+	});
+
+	function updateNextButtonTitle(swiperInstance, selector) {
+		const nextSlide = getNextSlide(swiperInstance);
+		if (nextSlide) {
+			const nextTitle = nextSlide.getAttribute('data-title');
+			const nextButtonText = document.querySelector(selector);
+			if (nextButtonText && nextTitle) {
+				nextButtonText.textContent = nextTitle;
+			}
+		}
+	}
+
+	function getNextSlide(swiperInstance) {
+		for	(let i = 0; i < swiperInstance.slides.length; i++) {
+			if (swiperInstance.slides[i].classList.contains('swiper-slide-next')) {
+				return swiperInstance.slides[i];
+			}
+		}
+		return null;
+	}
+
+	function resetProgressAnimation(circleSelector) {
+		const progressCircle = document.querySelector(circleSelector);
+		if (progressCircle) {
+			progressCircle.style.transition = 'none';
+			progressCircle.style.strokeDashoffset = 144.513;
+			setTimeout(() => {
+				progressCircle.style.transition = 'stroke-dashoffset 3s linear';
+				progressCircle.style.strokeDashoffset = 0;
+			}, 50);
+		}
+	}
+	
+	
+	
   /* Component Init - File List */
   const fileListElements = document.querySelectorAll('[data-component="file-list"]');
 

@@ -1,9 +1,4 @@
 
-	<div class="text-banner cont-m margin-t-70 margin-b-70">
-		<h1 class="uppercase grey-text fs-800 fw-extrabold">Who we are</h1>
-		<h2 class="uppercase black-text fs-800 fw-extrabold">Pioneers in innovation</h2>
-	</div>
-
 	<div class="text-banner-split half-half padding-b-100">
 		<div class="half video-container image-cover" style="background-image:url(<?php echo get_template_directory_uri(); ?>/images/who-we-are.jpg)">
 		</div>

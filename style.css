@@ -1388,11 +1388,15 @@ a.hl.download::after {
 }
 
 
-
-
-
-
 /* b2 - Text banner
+--------------------------------------------- */
+.text-banner {
+	border-bottom:1px solid #D1D1D1
+}
+
+
+
+/* 19 - Text banner split
 --------------------------------------------- */
 .text-banner-text {
 	max-width:600px

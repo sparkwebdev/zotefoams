@@ -18,13 +18,16 @@ get_header();
 
 	if( $pageHeaderType == 'text' ): 
 
-		get_template_part('template-parts/comp-07');
+		// get_template_part('template-parts/b2-text-banner');
+		include( locate_template( '/template-parts/components/b2-text-banner.php', false, false ) );
 
 	elseif( $pageHeaderType == 'image' ): 
 
-		get_template_part('template-parts/comp-01');
+		// get_template_part('template-parts/b1-Image-banner');
+		include( locate_template( '/template-parts/components/b1-Image-banner.php', false, false ) );
 
 	endif;
+
 
 	while ( have_posts() ) :
 		the_post();
