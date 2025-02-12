@@ -14,14 +14,14 @@ get_header();
 
 		<?php if ( have_posts() ) : ?>
 
-			<header class="page-header">
-				<h1 class="page-title">
+			<header class="cont-m margin-t-70">
+				<h1 class="uppercase grey-text fs-800 fw-extrabold">Search</h1>
+				<h2 class="uppercase black-text fs-400 fw-extrabold  margin-t-70">
 					<?php
 					/* translators: %s: search query. */
-					printf( esc_html__( 'Search Results for: %s', 'zotefoams' ), '<span>' . get_search_query() . '</span>' );
-					?>
-				</h1>
-			</header><!-- .page-header -->
+					printf( esc_html__( 'Results for: \'%s\'', 'zotefoams' ), '<span>' . get_search_query() . '</span>' );
+					?></h2>
+			</header>
 
 			<?php
 			/* Start the Loop */
@@ -37,7 +37,9 @@ get_header();
 
 			endwhile;
 
-			the_posts_navigation();
+			echo '<div class="pagination cont-m margin-t-70 margin-b-70">';
+				get_template_part( 'template-parts/pagination' );
+			echo '</div>';
 
 		else :
 
@@ -49,5 +51,4 @@ get_header();
 	</main><!-- #main -->
 
 <?php
-get_sidebar();
 get_footer();

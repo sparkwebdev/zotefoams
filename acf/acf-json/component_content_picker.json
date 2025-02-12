@@ -1,0 +1,73 @@
+{
+    "key": "component_cta_picker",
+    "title": "Component: CTA Picker",
+    "fields": [
+        {
+            "key": "field_cta_picker_content_type",
+            "label": "Content Type",
+            "name": "cta_picker_content_type",
+            "aria-label": "",
+            "type": "select",
+            "instructions": "",
+            "required": 1,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "choices": {
+                "category": "Category",
+                "post": "Post",
+                "page": "Page"
+            },
+            "default_value": "category",
+            "multiple": 0,
+            "allow_null": 0,
+            "ui": 0,
+            "ajax": 0,
+            "placeholder": "",
+            "return_format": "value"
+        },
+        {
+            "key": "field_cta_picker_content_ids",
+            "label": "Content IDs",
+            "name": "cta_picker_content_ids",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "Enter a comma-separated list of IDs",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "maxlength": "",
+            "allow_in_bindings": 1,
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "post_type",
+                "operator": "==",
+                "value": "page"
+            }
+        ]
+    ],
+    "menu_order": 0,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": "",
+    "active": true,
+    "description": "",
+    "show_in_rest": 0,
+    "modified": 1739316122
+}

@@ -45,6 +45,7 @@ function zotefoams_setup() {
 		* @link https://developer.wordpress.org/themes/functionality/featured-images-post-thumbnails/
 		*/
 	add_theme_support( 'post-thumbnails' );
+	add_image_size( 'thumbnail-square', 350, 350, true ); // Custom image size: 350x350 pixels, cropped
 
 	// This theme uses wp_nav_menu() in one location.
 	register_nav_menus(
@@ -71,36 +72,6 @@ function zotefoams_setup() {
 			'script',
 		)
 	);
-
-	// Set up the WordPress core custom background feature.
-	add_theme_support(
-		'custom-background',
-		apply_filters(
-			'zotefoams_custom_background_args',
-			array(
-				'default-color' => 'ffffff',
-				'default-image' => '',
-			)
-		)
-	);
-
-	// Add theme support for selective refresh for widgets.
-	add_theme_support( 'customize-selective-refresh-widgets' );
-
-	/**
-	 * Add support for core custom logo.
-	 *
-	 * @link https://codex.wordpress.org/Theme_Logo
-	 */
-	add_theme_support(
-		'custom-logo',
-		array(
-			'height'      => 250,
-			'width'       => 250,
-			'flex-width'  => true,
-			'flex-height' => true,
-		)
-	);
 }
 add_action( 'after_setup_theme', 'zotefoams_setup' );
 
@@ -115,26 +86,6 @@ function zotefoams_content_width() {
 	$GLOBALS['content_width'] = apply_filters( 'zotefoams_content_width', 640 );
 }
 add_action( 'after_setup_theme', 'zotefoams_content_width', 0 );
-
-/**
- * Register widget area.
- *
- * @link https://developer.wordpress.org/themes/functionality/sidebars/#registering-a-sidebar
- */
-function zotefoams_widgets_init() {
-	register_sidebar(
-		array(
-			'name'          => esc_html__( 'Sidebar', 'zotefoams' ),
-			'id'            => 'sidebar-1',
-			'description'   => esc_html__( 'Add widgets here.', 'zotefoams' ),
-			'before_widget' => '<section id="%1$s" class="widget %2$s">',
-			'after_widget'  => '</section>',
-			'before_title'  => '<h2 class="widget-title">',
-			'after_title'   => '</h2>',
-		)
-	);
-}
-add_action( 'widgets_init', 'zotefoams_widgets_init' );
 
 /**
  * Enqueue scripts and styles.
@@ -192,9 +143,15 @@ add_action('wp_enqueue_scripts', 'enqueue_animatecss_assets');
 
 
 /**
- * Implement the Custom Header feature.
+ * Enqueue Stevens (temp) assets.
  */
-require get_template_directory() . '/inc/custom-header.php';
+function enqueue_steven_assets() {
+
+	wp_enqueue_style( 'zotefoams-sp-style', get_template_directory_uri() . '/css/sp.css', array(), _S_VERSION );
+	wp_enqueue_script( 'zotefoams-sp-js', get_template_directory_uri() . '/js/sp.js', array(), _S_VERSION, true );
+
+}
+add_action('wp_enqueue_scripts', 'enqueue_steven_assets');
 
 /**
  * Custom template tags for this theme.
@@ -207,87 +164,53 @@ require get_template_directory() . '/inc/template-tags.php';
 require get_template_directory() . '/inc/template-functions.php';
 
 /**
- * Customizer additions.
+ * Functions which enhance the admin screens by hooking into WordPress.
  */
-require get_template_directory() . '/inc/customizer.php';
+require get_template_directory() . '/inc/admin.php';
 
 /**
- * Load Jetpack compatibility file.
+ * Functions which enhance the admin editor screens by hooking into WordPress.
  */
-if ( defined( 'JETPACK__VERSION' ) ) {
-	require get_template_directory() . '/inc/jetpack.php';
+require get_template_directory() . '/inc/admin-editor.php';
+
+
+// Enable ACF local JSON feature
+add_filter('acf/settings/save_json', 'zotefoams_acf_json_save_point');
+function zotefoams_acf_json_save_point($path) {
+    return plugin_dir_path(__FILE__) . 'acf/acf-json';
 }
 
-
-/**
- * Hide admin bar.
- */
-add_filter( 'show_admin_bar', '__return_false' );
-
-
-
-/**
- * Edit Admin layout.
- */
-function my_acf_admin_head()
-{
-    ?>
-    <style type="text/css">
-
-		.acf-postbox>.inside {
-			padding:10px 10px 10px 10px !important
-		}
-		.edit-post-meta-boxes-area #poststuff .stuffbox>h3, .edit-post-meta-boxes-area #poststuff h2.hndle, .edit-post-meta-boxes-area #poststuff h3.hndle {
-			border-bottom: 0;
-			font-size: 21px;
-			font-family: arial;
-		}
-		.edit-post-meta-boxes-area .postbox>.inside {
-			background: #f2f2f2;
-		}
-		.hndle:hover {
-			background: #fff !important;
-		}
-		.postbox-container .meta-box-sortables {
-			margin-bottom: 100px;
-		}
-		.postbox.acf-postbox {
-			margin: 2%;
-    		border: 1px solid #ccc;
-		}
-		.postbox-header {
-			background:#1d2327;
-		}
-		.hndle:hover {
-			background:#111 !important;
-		}
-		#poststuff h2 {
-			color:#fff
-		}
-		.acf-table {border-collapse: collapse; }
-		.acf-table > tbody > tr {
-			border-top: 2px solid black;
-		}
-    </style>
- 
-    <script type="text/javascript">
-    (function($){
- 
-        /* ... */
- 
-    })(jQuery);
-    </script>
-    <?php
+add_filter('acf/settings/load_json', 'zotefoams_acf_json_load_point');
+function zotefoams_acf_json_load_point($paths) {
+    unset($paths[0]);
+    $paths[] = plugin_dir_path(__FILE__) . 'acf/acf-json';
+    return $paths;
 }
- 
-add_action('acf/input/admin_head', 'my_acf_admin_head');
 
 /**
- * Hide Gutenberg Block editor.
+ * Register our block's with WordPress's register_block_type();
+ *
+ * @link https://developer.wordpress.org/reference/functions/register_block_type/
  */
-add_filter('use_block_editor_for_post', '__return_false');
+function zotefoams_register_acf_blocks() {
+	register_block_type( __DIR__ . '/blocks/quote-box' );
+	register_block_type( __DIR__ . '/blocks/highlight-box' );
+	register_block_type( __DIR__ . '/blocks/related-links-box' );
+}
+add_action( 'init', 'zotefoams_register_acf_blocks' );
+
 
 /**
- * Disable Application Passwords.
+ * Includes a template part and allows passing variables scoped to that instance.
+ *
+ * This function locates and includes a specified template file while extracting
+ * an array of variables to be used within that file. This prevents global scope pollution
+ * and ensures variables are only available within the included template.
+ *
+ * @param string $file The template file path (relative to the theme directory, without .php extension).
+ * @param array $variables An associative array of variables to extract and make available in the template.
  */
-add_filter( 'wp_is_application_passwords_available', '__return_false' );
+function include_template_part($file, $variables = []) {
+    extract($variables);
+    include locate_template($file . '.php');
+}

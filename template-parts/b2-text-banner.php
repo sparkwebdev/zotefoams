@@ -1,7 +1,7 @@
 
 	<div class="text-banner cont-m margin-t-70 margin-b-70">
 		<h1 class="uppercase grey-text fs-800 fw-extrabold">Who we are</h1>
-		<h2 class="uppercase black-text fs-800 fw-extrabold">Pioneers in<br>innovation</h2>
+		<h2 class="uppercase black-text fs-800 fw-extrabold">Pioneers in innovation</h2>
 	</div>
 
 	<div class="text-banner-split half-half padding-b-100">

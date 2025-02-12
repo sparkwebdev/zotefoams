@@ -9,6 +9,8 @@
 
 ?>
 
+<div class="cont-m margin-t-70">
+
 <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
 	<header class="entry-header">
 		<?php the_title( sprintf( '<h2 class="entry-title"><a href="%s" rel="bookmark">', esc_url( get_permalink() ) ), '</a></h2>' ); ?>
@@ -17,7 +19,6 @@
 		<div class="entry-meta">
 			<?php
 			zotefoams_posted_on();
-			zotefoams_posted_by();
 			?>
 		</div><!-- .entry-meta -->
 		<?php endif; ?>
@@ -29,7 +30,9 @@
 		<?php the_excerpt(); ?>
 	</div><!-- .entry-summary -->
 
-	<footer class="entry-footer">
+	<footer class="entry-footer margin-t-30">
 		<?php zotefoams_entry_footer(); ?>
 	</footer><!-- .entry-footer -->
 </article><!-- #post-<?php the_ID(); ?> -->
+
+</div>

@@ -17,11 +17,6 @@ function zotefoams_body_classes( $classes ) {
 		$classes[] = 'hfeed';
 	}
 
-	// Adds a class of no-sidebar when there is no sidebar present.
-	if ( ! is_active_sidebar( 'sidebar-1' ) ) {
-		$classes[] = 'no-sidebar';
-	}
-
 	return $classes;
 }
 add_filter( 'body_class', 'zotefoams_body_classes' );
@@ -35,3 +30,81 @@ function zotefoams_pingback_header() {
 	}
 }
 add_action( 'wp_head', 'zotefoams_pingback_header' );
+
+
+/**
+ * Determine/map labels to category
+ */
+function zotefoams_map_cat_label($label) {
+	switch ($label) {
+		case 'Case Studies':
+			return 'View Case Study';
+		case 'News':
+		case 'Blog':
+			return 'Read This Article';
+		case 'Videos':
+			return 'Watch Video';
+		default:
+			return 'View '.rtrim($label, 's');
+	}
+}
+add_action( 'wp_head', 'zotefoams_pingback_header' );
+
+
+
+/**
+ * Get the first YouTube video URL from a WordPress post.
+ *
+ * @param int $post_id The ID of the post.
+ * @return string|null The YouTube video URL or null if no video is found.
+ */
+function get_first_youtube_url( $post_id ) {
+    // Get the post content
+    $post = get_post( $post_id );
+
+    if ( ! $post || empty( $post->post_content ) ) {
+        return null;
+    }
+
+    // Parse the blocks from the post content
+    $blocks = parse_blocks( $post->post_content );
+
+    // Loop through the blocks to find the first YouTube embed block
+    foreach ( $blocks as $block ) {
+        if ( $block['blockName'] === 'core/embed' ) {
+            // Return the embed URL from the block attributes
+						if (isset($block['attrs']) && isset($block['attrs']['url'])) {
+							return $block['attrs']['url'];
+						}
+        }
+    }
+
+    // Return null if no YouTube embed block is found
+    return null;
+}
+?>
+
+<?php
+/**
+ * Get the YouTube cover image URL from the first YouTube embed block.
+ *
+ * @param int $post_id The ID of the post.
+ * @return string|null The URL of the YouTube cover image or null if no video is found.
+ */
+function youtube_cover_image( $url ) {
+    
+			if ( $url ) {
+				// Extract the video ID from the URL
+				parse_str( parse_url( $url, PHP_URL_QUERY ), $query_vars );
+				$video_id = $query_vars['v'] ?? null;
+
+				// Return the YouTube cover image URL if the video ID exists
+				if ( $video_id ) {
+						return 'https://img.youtube.com/vi/' . $video_id . '/hqdefault.jpg';
+				}
+		}
+
+    // Return null if no YouTube embed block or video ID is found
+    return null;
+}
+?>
