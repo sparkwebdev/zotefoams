@@ -104,8 +104,8 @@
 			}
 
 			.multi-item-carousel .swiper-slide img {
-				max-height: 360px;
 				margin-bottom: 60px;
+				width: 100%;
 			}
 
 			.multi-item-carousel .swiper-slide a.btn {

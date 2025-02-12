@@ -45,7 +45,9 @@ function zotefoams_setup() {
 		* @link https://developer.wordpress.org/themes/functionality/featured-images-post-thumbnails/
 		*/
 	add_theme_support( 'post-thumbnails' );
-	add_image_size( 'thumbnail-square', 350, 350, true ); // Custom image size: 350x350 pixels, cropped
+	add_image_size( 'thumbnail-square', 350, 350, true ); // Custom image size: cropped
+	add_image_size( 'small', 700, 9999, false ); // Custom image size: not cropped
+	add_image_size( 'thumbnail-product', 600, 400, true ); // Custom image size: cropped
 
 	// This theme uses wp_nav_menu() in one location.
 	register_nav_menus(
@@ -214,3 +216,26 @@ function include_template_part($file, $variables = []) {
     extract($variables);
     include locate_template($file . '.php');
 }
+
+
+
+function custom_tinymce_toolbar($init) {
+    // Set the first toolbar to only have Bold and Italic
+    $init['toolbar1'] = 'bold,italic';
+    // Remove the second toolbar
+    $init['toolbar2'] = '';
+ 
+    // Ensure block formats are limited to paragraph only
+    $init['block_formats'] = 'Paragraph=p';
+ 
+    // Disable extra plugins that might introduce other buttons
+    $init['plugins'] = 'wordpress';
+ 
+    return $init;
+}
+add_filter('tiny_mce_before_init', 'custom_tinymce_toolbar');
+
+
+
+
+

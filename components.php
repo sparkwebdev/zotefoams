@@ -7,13 +7,13 @@ Template Name: Components
 	<?php get_header(); ?>
 
 	<h1 class="component-label">Text banner</h1>
-	<?php get_template_part('template-parts/b2-text-banner'); ?>
+	<?php get_template_part('template-parts/components/b2-text-banner'); ?>
 
 	<h1 class="component-label">Text Block</h1>
-	<?php get_template_part('template-parts/13-text-block'); ?>
+	<?php get_template_part('template-parts/components/text-block'); ?>
 
 	<h1 class="component-label">Split Text</h1>
-	<?php get_template_part('template-parts/12-split-text'); ?>
+	<?php get_template_part('template-parts/components/split-text'); ?>
 
 	<h1 class="component-label">Split Video</h1>
 	<?php get_template_part('template-parts/01a-split-video-one'); ?>

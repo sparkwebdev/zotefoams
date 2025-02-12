@@ -14,19 +14,47 @@
 
 get_header();
 
-	$pageHeaderType = get_field( 'page_header_type' );
 
-	if( $pageHeaderType == 'text' ): 
+	// Check for Advanced Custom Fields plugin function
+	if( function_exists('get_field') ) {
 
-		// get_template_part('template-parts/b2-text-banner');
-		include( locate_template( '/template-parts/components/b2-text-banner.php', false, false ) );
+		$sustainabilityHeader = get_field( 'sustainability_header' );
 
-	elseif( $pageHeaderType == 'image' ): 
+		if ( $sustainabilityHeader ):
 
-		// get_template_part('template-parts/b1-Image-banner');
-		include( locate_template( '/template-parts/components/b1-Image-banner.php', false, false ) );
+			include( locate_template( '/template-parts/components/sustainability-header.php', false, false ) );
 
-	endif;
+		elseif ( get_field( 'page_header_type' ) ):
+
+			$pageHeaderType = get_field( 'page_header_type' );
+
+			if( $pageHeaderType == 'text' ):
+
+				include( locate_template( '/template-parts/components/b2-text-banner.php', false, false ) );
+
+			elseif( $pageHeaderType == 'image' ): 
+
+				include( locate_template( '/template-parts/components/b1-Image-banner.php', false, false ) );
+
+			endif;
+
+		endif;
+
+
+		// check if the flexible content field has rows of data
+		if( have_rows('page_content') ) {
+			 // loop through the rows of data
+			while ( have_rows('page_content') ) {
+			  the_row();
+				$component = get_row_layout();
+				switch ($component) {
+					case 'text_block':
+					  include( locate_template( '/template-parts/components/text-block.php', false, false ) );
+						break;
+				}
+			}
+		}
+	}
 
 
 	while ( have_posts() ) :

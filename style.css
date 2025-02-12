@@ -1674,7 +1674,7 @@ a.hl.download::after {
 .split-text p {
 	margin-bottom:20px
 }
-.split-text b {
+.split-text strong {
 	color:#000;
 	font-weight:600
 }
@@ -1684,7 +1684,7 @@ a.hl.download::after {
 .text-block-inner {
 	max-width:1000px
 }
-.text-block b {
+.text-block strong {
 	color:#000;
 	font-weight:600
 }

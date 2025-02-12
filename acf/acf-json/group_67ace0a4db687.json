@@ -1,0 +1,77 @@
+{
+    "key": "group_67ace0a4db687",
+    "title": "Page content",
+    "fields": [
+        {
+            "key": "field_67ace0a590515",
+            "label": "Page content",
+            "name": "page_content",
+            "aria-label": "",
+            "type": "flexible_content",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "layouts": {
+                "layout_67ace0b03867d": {
+                    "key": "layout_67ace0b03867d",
+                    "name": "text_block",
+                    "label": "Text block",
+                    "display": "block",
+                    "sub_fields": [
+                        {
+                            "key": "field_67ace0cc90516",
+                            "label": "Text block",
+                            "name": "text_block",
+                            "aria-label": "",
+                            "type": "clone",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "clone": [
+                                "group_67acd9fe1bf12"
+                            ],
+                            "display": "seamless",
+                            "layout": "block",
+                            "prefix_label": 0,
+                            "prefix_name": 0
+                        }
+                    ],
+                    "min": "",
+                    "max": ""
+                }
+            },
+            "min": "",
+            "max": "",
+            "button_label": "Add Row"
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "post_type",
+                "operator": "==",
+                "value": "page"
+            }
+        ]
+    ],
+    "menu_order": 0,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": "",
+    "active": true,
+    "description": "",
+    "show_in_rest": 0,
+    "modified": 1739383134
+}
