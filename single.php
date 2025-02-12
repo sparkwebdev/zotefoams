@@ -80,76 +80,19 @@ get_header();
 
 	<hr class="separator" />
 
-	<aside class="cont-m margin-t-70 margin-b-70">
-		<div class="articles-header">
-			<h2>Latest Updates</h2>
-			<a href="<?php echo get_the_permalink(get_option('page_for_posts', true)) ?>" class="btn black outline"><?php echo get_the_title(get_option('page_for_posts', true)); ?></a>
-		</div>
+	<div class="cont-m margin-t-70 margin-b-70">
+		<?php 
+			include_template_part('template-parts/components/component-cta-picker', [
+				'title' => 'Latest Updates',
+				'link' => [
+					'url' => '/news-centre',
+					'title' => 'News Centre',
+					'target' => ''
+				],
+				'content_type' => 'post', // 'post', 'page', or 'category'
+			]);
+		?>
+	</div>
 
-		<div class="articles articles--grid-alt margin-t-30">
-			<?php
-			$args = array(
-				'post_type' => 'post',
-				'orderby' => 'date',
-				'order' => 'DESC',
-				'posts_per_page' => '3',
-			);
-
-			$custom_query = new WP_Query($args);
-
-			if ($custom_query->have_posts()) :
-				while ($custom_query->have_posts()) : $custom_query->the_post();
-			?>
-
-			<article id="post-<?php the_ID(); ?>" <?php post_class(); ?> data-clickable-url="<?php echo esc_url(get_the_permalink()); ?>">
-				<?php
-						$thumbnail_url = get_the_post_thumbnail_url(get_the_ID(), 'thumbnail');
-						// Set a default placeholder image if no thumbnail is found
-						if (!$thumbnail_url) {
-							$thumbnail_url = get_template_directory_uri() . '/images/placeholder-thumbnail.png';
-						}
-
-						echo '<img src="' . esc_url($thumbnail_url) . '" alt="' . esc_attr(get_the_title()) . '">';
-					?>
-				<div class="articles__content padding-30">
-					<?php
-						$categories = get_the_category();
-						if ( ! empty( $categories ) ) {
-							echo '<div class="tags margin-b-20">';
-							foreach ( $categories as $category ) {
-								echo '<span class="tag">' . esc_html( $category->name ) . '</span> ';
-							}
-							echo '</div>';
-						}
-						$cat_more_link = esc_url( get_the_permalink());
-						
-						the_title( '<h3 class="fs-400 fw-semibold margin-b-20">', '</h3>' );
-
-						if (!empty($categories) && isset($categories[0]->name)) {
-							switch ($categories[0]->name) {
-								case 'Case Studies':
-									$cat_more_link_label = 'View Case Study';
-									$layout = "grid";
-									break;
-								case 'News':
-								case 'Blog':
-									$cat_more_link_label = 'Read Article';
-									break;
-								default:
-									$cat_more_link_label = 'View '.rtrim($categories[0]->name, 's');
-							}
-							echo '<p class="articles__cta"><a href="' . $cat_more_link . '" class="hl arrow">' . $cat_more_link_label . '</a> &gt;</p>';
-						}
-						
-					?>
-				</div>
-			</article><!-- #post-<?php the_ID(); ?> -->
-			<?php
-				endwhile; 
-				wp_reset_postdata(); // Reset post data after custom query
-			endif;
-			?>
-		</div>
-	</aside>
 <?php
 get_footer();

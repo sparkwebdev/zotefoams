@@ -26,9 +26,11 @@ Template Name: Homepage
 
 	<div class="cont-m margin-t-70 margin-b-70">
 		<?php 
-		set_query_var('content_type', 'page'); // 'post', 'page', or 'category'
-		set_query_var('content_ids', '756,9,16'); // Post/page/category IDs
-		get_template_part('template-parts/components/component-cta-picker'); ?>
+			include_template_part('template-parts/components/component-cta-picker', [
+				'content_type' => 'page', // 'post', 'page', or 'category'
+				'content_ids' => '756,9,16' // Post/page/category IDs
+			]);
+		?>
 	</div>
 
 	<?php get_template_part('template-parts/08-markets-list'); ?>

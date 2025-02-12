@@ -107,6 +107,7 @@ get_header();
 				
 				<?php
 				endwhile; 
+				echo '</div>';
 					echo '<div class="pagination cont-m margin-t-70 margin-b-70">';
 					get_template_part( 'template-parts/pagination' );
 					echo '</div>';

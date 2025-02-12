@@ -1,7 +1,7 @@
 <?php
 // Get template variables, prioritizing passed values (and falling back to ACF fields)
-$title = get_query_var('title');
-$link = get_query_var('link');
+$title = $title ?? get_field('cta_picker_title');
+$link = $link ?? get_field('cta_picker_link');
 
 if ($title || $link) { ?>
     <div class="title-strip margin-b-30">
@@ -12,9 +12,9 @@ if ($title || $link) { ?>
         <?php if ($link) :
             $link_url = $link['url'] ?? '#';
             $link_title = $link['title'] ?? 'Read More';
-            $link_target = $link['target'] ?? '_self';
+            $link_target = !empty($link['target']) ? ' target="' . esc_attr($link['target']) . '"' : '';
         ?>
-            <a href="<?php echo esc_url($link_url); ?>" class="btn black outline" target="<?php echo esc_attr($link_target); ?>">
+            <a href="<?php echo esc_url($link_url); ?>" class="btn black outline"<?php echo $link_target; ?>>
                 <?php echo esc_html($link_title); ?>
             </a>
         <?php endif; ?>

@@ -155,15 +155,30 @@ function zotefoams_acf_json_load_point($paths) {
     return $paths;
 }
 
+/**
+ * Register our block's with WordPress's register_block_type();
+ *
+ * @link https://developer.wordpress.org/reference/functions/register_block_type/
+ */
 function zotefoams_register_acf_blocks() {
-	/**
-	 * We register our block's with WordPress's handy
-	 * register_block_type();
-	 *
-	 * @link https://developer.wordpress.org/reference/functions/register_block_type/
-	 */
 	register_block_type( __DIR__ . '/blocks/quote-box' );
 	register_block_type( __DIR__ . '/blocks/highlight-box' );
 	register_block_type( __DIR__ . '/blocks/related-links-box' );
 }
 add_action( 'init', 'zotefoams_register_acf_blocks' );
+
+
+/**
+ * Includes a template part and allows passing variables scoped to that instance.
+ *
+ * This function locates and includes a specified template file while extracting
+ * an array of variables to be used within that file. This prevents global scope pollution
+ * and ensures variables are only available within the included template.
+ *
+ * @param string $file The template file path (relative to the theme directory, without .php extension).
+ * @param array $variables An associative array of variables to extract and make available in the template.
+ */
+function include_template_part($file, $variables = []) {
+    extract($variables);
+    include locate_template($file . '.php');
+}

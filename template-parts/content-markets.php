@@ -35,9 +35,15 @@
 
 <div class="cont-m margin-t-70 margin-b-70">
 	<?php 
-	set_query_var('title', 'Case Studies');
-	set_query_var('link', ['url' => '/knowledge-hub', 'title' => 'Visit Our Knowledge Hub', 'target' => '']);
-	set_query_var('content_type', 'category'); // 'post', 'page', or 'category'
-	set_query_var('content_ids', '1,6,9,10'); // Post/page/category IDs
-	get_template_part('template-parts/components/component-cta-picker'); ?>
+		include_template_part('template-parts/components/component-cta-picker', [
+			'title' => 'Case Studies',
+			'link' => [
+				'url' => '/knowledge-hub',
+				'title' => 'Visit Our Knowledge Hub',
+				'target' => ''
+			],
+			'content_type' => 'category', // 'post', 'page', or 'category'
+			'content_ids' => '1,6,9,10' // Post/page/category IDs
+		]);
+	?>
 </div>
