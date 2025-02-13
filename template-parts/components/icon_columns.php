@@ -1,6 +1,6 @@
 <?php 
 // Allow for passed variables, as well as ACF values
-$columns = isset($columns) ? $columns : get_sub_field('icon_columns_columns');
+$columns = get_sub_field('icon_columns_columns');
 ?>
 
 <div class="icon-columns light-grey-bg black-text padding-t-b-100">

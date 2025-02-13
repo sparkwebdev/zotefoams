@@ -1,9 +1,9 @@
 <?php 
 // Allow for passed variables, as well as ACF values
-$image = isset($image) ? $image : get_sub_field('split_video_two_image');
-$video_url = isset($video_url) ? $video_url : get_sub_field('split_video_two_video_url');
-$title = isset($title) ? $title : get_sub_field('split_video_two_title');
-$text = isset($text) ? $text : get_sub_field('split_video_two_text');
+$image = get_sub_field('split_video_two_image');
+$video_url = get_sub_field('split_video_two_video_url');
+$title = get_sub_field('split_video_two_title');
+$text = get_sub_field('split_video_two_text');
 
 // Extract 'large' size image URL from Image Array
 $image_url = $image ? $image['sizes']['large'] : '';

@@ -1,8 +1,8 @@
 <?php 
 // Allow for passed variables, as well as ACF values
-$title = isset($title) ? $title : get_sub_field('show_hide_title');
-$button = isset($button) ? $button : get_sub_field('show_hide_button'); // ACF Link field
-$items = isset($items) ? $items : get_sub_field('show_hide_items');
+$title = get_sub_field('show_hide_title');
+$button = get_sub_field('show_hide_button'); // ACF Link field
+$items = get_sub_field('show_hide_items');
 ?>
 
 <div class="accordion cont-m margin-b-100">
