@@ -43,12 +43,40 @@ $map_image_url = $map_image ? $map_image['sizes']['large'] : get_template_direct
 
 
 <script type="text/javascript">
+function locationClicked(sender) {
+    // Hide all popups first
+    document.querySelectorAll('.popup').forEach(popup => {
+        popup.style.display = 'none';
+    });
 
-	function locationClicked(sender) {
-		console.log(sender);
-	}
+    // Get the popup inside the clicked location
+    let popup = sender.querySelector('.popup');
+    if (popup) {
+        // Check if `position: anchor` is supported
+        if (CSS.supports("position", "anchor")) {
+            popup.style.position = 'anchor';
+            sender.style.anchorName = '--popup-anchor';
+        } else {
+            popup.style.display = 'block';
+        }
+    }
+}
+
+// Optional: Close popups when clicking outside
+document.addEventListener('click', function(event) {
+    let isLocation = event.target.closest('.location');
+    
+    if (isLocation) {
+        locationClicked(isLocation);
+    } else {
+        document.querySelectorAll('.popup').forEach(popup => {
+            popup.style.display = 'none';
+        });
+    }
+});
 
 </script>
+
 
 
 <style type="text/css">
@@ -140,6 +168,7 @@ $map_image_url = $map_image ? $map_image['sizes']['large'] : get_template_direct
 					backdrop-filter: blur(10px);
 					color: #fff;
 					background: #ffffff11;
+					font-size: 0.9em;
 				}
 
 				.locations-map .map-container .location.kentucky {
@@ -186,4 +215,37 @@ $map_image_url = $map_image ? $map_image['sizes']['large'] : get_template_direct
 					top: 50%;
 					left: 78.5%;
 				}
+
+				@supports (position: anchor) {
+					.locations-map .map-container .location .popup {
+						position: anchor(top);
+						anchor-name: --popup-anchor;
+						anchor-size: auto;
+						inset-block-start: 10px; /* Adjust position relative to anchor */
+						inset-inline-start: 50%;
+						transform: translateX(-50%);
+						background: #ffffffee;
+						color: #000;
+						padding: 10px;
+						width: 220px;
+						border-radius: 5px;
+						box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+					}
+				}
+				@supports not (position: anchor) {
+					.locations-map .map-container .location .popup {
+						display: none;
+						position: absolute;
+						top: 20px;
+						left: 50%;
+						transform: translateX(-50%);
+						width: 220px;
+						padding: 10px 20px;
+						border: solid 1px #ffffff55;
+						backdrop-filter: blur(10px);
+						color: #fff;
+						background: #ffffff11;
+					}
+				}
+
 </style>

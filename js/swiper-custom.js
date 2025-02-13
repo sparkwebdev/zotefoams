@@ -17,15 +17,20 @@ document.addEventListener('DOMContentLoaded', function() {
 	});
 
 	// Close the overlay
-	closeBtn.addEventListener('click', function() {
-		overlay.style.display = 'none';
-		iframe.src = ''; // Stop the video
-	});
+  if (closeBtn) {
+    closeBtn.addEventListener('click', function() {
+      overlay.style.display = 'none';
+      iframe.src = ''; // Stop the video
+    });
+  }
 });
 
-document.querySelector('.overlay').classList.add('fade-in');
+if (document.querySelector('.overlay')) {
+  document.querySelector('.overlay').classList.add('fade-in');
+}
 
 
+document.addEventListener('DOMContentLoaded', function() {
 
 // Accordion
 const headers = document.querySelectorAll('.accordion-header');
@@ -70,5 +75,4 @@ headers.forEach(header => {
   });
 });
 
-
-
+});

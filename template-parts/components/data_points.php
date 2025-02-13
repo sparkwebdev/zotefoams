@@ -46,48 +46,63 @@ $items = get_sub_field('data_points_items');
 
 <script type="text/javascript">
 
-	// Performance
+	// Performance optimized animation for counting up numbers
 	document.addEventListener('DOMContentLoaded', function () {		
 		
 		function animateValue(obj, start, end, duration, prefix, suffix, decimals) {
-  			let startTimestamp = null;
-  			const step = (timestamp) => {
-    			if (!startTimestamp) startTimestamp = timestamp;
-    			const progress = Math.min((timestamp - startTimestamp) / duration, 1);
-    			obj.innerHTML = (prefix ?? '') + (progress * (end - start) + start).toFixed(decimals) + (suffix ?? '');
-    			if (progress < 1) {
-      				window.requestAnimationFrame(step);
-    			}
-  			};
-  			window.requestAnimationFrame(step);
+			let startTimestamp = null;
+			const step = (timestamp) => {
+				if (!startTimestamp) startTimestamp = timestamp;
+				const progress = Math.min((timestamp - startTimestamp) / duration, 1);
+				let value = (progress * (end - start) + start);
+				
+				// Format value with the correct decimals and remove trailing zeros
+				let formattedValue = value.toFixed(decimals).replace(/\.?0+$/, '');
+				
+				// Apply the formatted value
+				obj.innerHTML = (prefix ?? '') + formattedValue + (suffix ?? '');
+				
+				if (progress < 1) {
+					window.requestAnimationFrame(step);
+				}
+			};
+			window.requestAnimationFrame(step);
 		}
-
+	
 		const observer = new IntersectionObserver(entries => {
 			entries.forEach(entry => {
-
-				const values = entry.target.getElementsByClassName('value');
-
-				for (let i = 0; i < values.length; i++) {
-
-					if (entry.isIntersecting) {
-						
+				if (entry.isIntersecting) {
+					const values = entry.target.getElementsByClassName('value');
+					
+					for (let i = 0; i < values.length; i++) {
+						// Prevent re-animation
+						if (values[i].dataset.animated) continue;
+	
 						const prefix = values[i].dataset.prefix ?? '';
 						const suffix = values[i].dataset.suffix ?? '';
-						const duration = values[i].dataset.duration ?? 1100;
-						const decimals = values[i].dataset.decimals ?? 0;
-						const to = values[i].dataset.to ?? 0;
-
+						const duration = parseInt(values[i].dataset.duration) || 1100;
+						const decimals = parseInt(values[i].dataset.decimals) || 0;
+						const to = parseFloat(values[i].dataset.to) || 0;
+	
 						values[i].classList.add('animate__pulse');
 						animateValue(values[i], 0, to, duration, prefix, suffix, decimals);
+						
+						// Mark as animated
+						values[i].dataset.animated = "true";
 					}
-					else {
-						values[i].classList.remove('animate__pulse');
-					}
+				} else {
+					// Allow re-animation if needed by removing flag
+					entry.target.querySelectorAll('.value').forEach(el => el.removeAttribute('data-animated'));
 				}
 			});
-		});
-		observer.observe(document.querySelector('.data-points'));
+		}, { threshold: 0.5 }); // Adjust threshold to trigger animations better
+	
+		const target = document.querySelector('.data-points');
+		if (target) {
+			observer.observe(target);
+		}
 	});
+	
 </script>
 
 
