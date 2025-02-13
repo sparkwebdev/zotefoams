@@ -627,6 +627,419 @@
                     ],
                     "min": "",
                     "max": ""
+                },
+                "layout_67af01234abcdef": {
+                    "key": "layout_67af01234abcdef",
+                    "name": "dual_carousel",
+                    "label": "Dual Carousel",
+                    "display": "block",
+                    "sub_fields": [
+                        {
+                            "key": "field_67af01234abcdef1",
+                            "label": "Slides",
+                            "name": "dual_carousel_slides",
+                            "type": "repeater",
+                            "sub_fields": [
+                                {
+                                    "key": "field_67af01234abcdef2",
+                                    "label": "Category",
+                                    "name": "dual_carousel_category",
+                                    "type": "text"
+                                },
+                                {
+                                    "key": "field_67af01234abcdef3",
+                                    "label": "Title",
+                                    "name": "dual_carousel_title",
+                                    "type": "text"
+                                },
+                                {
+                                    "key": "field_67af01234abcdef4",
+                                    "label": "Image",
+                                    "name": "dual_carousel_image",
+                                    "type": "image",
+                                    "return_format": "array",
+                                    "preview_size": "medium",
+                                    "library": "all"
+                                },
+                                {
+                                    "key": "field_67af01234abcdef5",
+                                    "label": "Text",
+                                    "name": "dual_carousel_text",
+                                    "type": "wysiwyg",
+                                    "tabs": "text",
+                                    "media_upload": 0,
+                                    "toolbar": "full"
+                                },
+                                {
+                                    "key": "field_67af01234abcdef6",
+                                    "label": "Button",
+                                    "name": "dual_carousel_button",
+                                    "type": "link",
+                                    "return_format": "array"
+                                },
+                                {
+                                    "key": "field_67af01234abcdef7",
+                                    "label": "Background Image",
+                                    "name": "dual_carousel_bg_image",
+                                    "type": "image",
+                                    "return_format": "array",
+                                    "preview_size": "medium",
+                                    "library": "all"
+                                }
+                            ],
+                            "min": 1,
+                            "layout": "block",
+                            "button_label": "Add Slide"
+                        }
+                    ]
+                },
+                "layout_67af56789ghijkl": {
+                    "key": "layout_67af56789ghijkl",
+                    "name": "split_carousel",
+                    "label": "Split Carousel",
+                    "display": "block",
+                    "sub_fields": [
+                        {
+                            "key": "field_67af56789ghijkm",
+                            "label": "Slides",
+                            "name": "split_carousel_slides",
+                            "type": "repeater",
+                            "sub_fields": [
+                                {
+                                    "key": "field_67af56789ghijkn",
+                                    "label": "Category",
+                                    "name": "split_carousel_category",
+                                    "type": "text"
+                                },
+                                {
+                                    "key": "field_67af56789ghijko",
+                                    "label": "Title",
+                                    "name": "split_carousel_title",
+                                    "type": "text"
+                                },
+                                {
+                                    "key": "field_67af56789ghijkp",
+                                    "label": "Text",
+                                    "name": "split_carousel_text",
+                                    "type": "wysiwyg",
+                                    "tabs": "text",
+                                    "media_upload": 0,
+                                    "toolbar": "full"
+                                },
+                                {
+                                    "key": "field_67af56789ghijkq",
+                                    "label": "Button",
+                                    "name": "split_carousel_button",
+                                    "type": "link",
+                                    "return_format": "array"
+                                },
+                                {
+                                    "key": "field_67af56789ghijkr",
+                                    "label": "Image",
+                                    "name": "split_carousel_image",
+                                    "type": "image",
+                                    "return_format": "array",
+                                    "preview_size": "medium",
+                                    "library": "all"
+                                }
+                            ],
+                            "min": 1,
+                            "layout": "block",
+                            "button_label": "Add Slide"
+                        }
+                    ]
+                },
+                "layout_67af67890mnopqr": {
+                    "key": "layout_67af67890mnopqr",
+                    "name": "multi_item_carousel",
+                    "label": "Multi Item Carousel",
+                    "display": "block",
+                    "sub_fields": [
+                        {
+                            "key": "field_67af67890mnopqs",
+                            "label": "Title",
+                            "name": "multi_item_carousel_title",
+                            "type": "text"
+                        },
+                        {
+                            "key": "field_67af67890mnopqt",
+                            "label": "Slides",
+                            "name": "multi_item_carousel_slides",
+                            "type": "repeater",
+                            "sub_fields": [
+                                {
+                                    "key": "field_67af67890mnopqu",
+                                    "label": "Slide Title",
+                                    "name": "multi_item_carousel_slide_title",
+                                    "type": "text"
+                                },
+                                {
+                                    "key": "field_67af67890mnopqv",
+                                    "label": "Text",
+                                    "name": "multi_item_carousel_slide_text",
+                                    "type": "wysiwyg",
+                                    "tabs": "text",
+                                    "media_upload": 0,
+                                    "toolbar": "full"
+                                },
+                                {
+                                    "key": "field_67af67890mnopqw",
+                                    "label": "Image",
+                                    "name": "multi_item_carousel_slide_image",
+                                    "type": "image",
+                                    "return_format": "array",
+                                    "preview_size": "medium",
+                                    "library": "all"
+                                },
+                                {
+                                    "key": "field_67af67890mnopqx",
+                                    "label": "Button",
+                                    "name": "multi_item_carousel_slide_button",
+                                    "type": "link",
+                                    "return_format": "array"
+                                }
+                            ],
+                            "min": 1,
+                            "layout": "block",
+                            "button_label": "Add Slide"
+                        }
+                    ]
+                },
+                "layout_67af89012rstuvw": {
+                    "key": "layout_67af89012rstuvw",
+                    "name": "calendar_carousel",
+                    "label": "Calendar Carousel",
+                    "display": "block",
+                    "sub_fields": [
+                        {
+                            "key": "field_67af89012rstuvx",
+                            "label": "Title",
+                            "name": "calendar_carousel_title",
+                            "type": "text"
+                        },
+                        {
+                            "key": "field_67af89012rstuvy",
+                            "label": "Events",
+                            "name": "calendar_carousel_events",
+                            "type": "repeater",
+                            "sub_fields": [
+                                {
+                                    "key": "field_67af89012rstuvz",
+                                    "label": "Date",
+                                    "name": "calendar_carousel_date",
+                                    "type": "text"
+                                },
+                                {
+                                    "key": "field_67af89012rstuva",
+                                    "label": "Month & Year",
+                                    "name": "calendar_carousel_month_year",
+                                    "type": "text"
+                                },
+                                {
+                                    "key": "field_67af89012rstuvb",
+                                    "label": "Description",
+                                    "name": "calendar_carousel_description",
+                                    "type": "textarea",
+                                    "new_lines": "br"
+                                }
+                            ],
+                            "min": 1,
+                            "layout": "block",
+                            "button_label": "Add Event"
+                        },
+                        {
+                            "key": "field_67af89012rstuvc",
+                            "label": "Note",
+                            "name": "calendar_carousel_note",
+                            "type": "text"
+                        }
+                    ]
+                },
+                "layout_67af90123abcdef": {
+                    "key": "layout_67af90123abcdef",
+                    "name": "tabbed_split",
+                    "label": "Tabbed Split",
+                    "display": "block",
+                    "sub_fields": [
+                        {
+                            "key": "field_67af90123abcdef1",
+                            "label": "Tabs",
+                            "name": "tabbed_split_tabs",
+                            "type": "repeater",
+                            "sub_fields": [
+                                {
+                                    "key": "field_67af90123abcdef2",
+                                    "label": "Tab Title",
+                                    "name": "tabbed_split_tab_title",
+                                    "type": "text"
+                                },
+                                {
+                                    "key": "field_67af90123abcdef3",
+                                    "label": "Tab Icon",
+                                    "name": "tabbed_split_tab_icon",
+                                    "type": "image",
+                                    "return_format": "array",
+                                    "preview_size": "medium",
+                                    "library": "all"
+                                },
+                                {
+                                    "key": "field_67af90123abcdef4",
+                                    "label": "Content Title",
+                                    "name": "tabbed_split_content_title",
+                                    "type": "text"
+                                },
+                                {
+                                    "key": "field_67af90123abcdef5",
+                                    "label": "Content Text",
+                                    "name": "tabbed_split_content_text",
+                                    "type": "wysiwyg",
+                                    "tabs": "text",
+                                    "media_upload": 0,
+                                    "toolbar": "full"
+                                },
+                                {
+                                    "key": "field_67af90123abcdef6",
+                                    "label": "Button",
+                                    "name": "tabbed_split_button",
+                                    "type": "link",
+                                    "return_format": "array"
+                                },
+                                {
+                                    "key": "field_67af90123abcdef7",
+                                    "label": "Image",
+                                    "name": "tabbed_split_image",
+                                    "type": "image",
+                                    "return_format": "array",
+                                    "preview_size": "medium",
+                                    "library": "all"
+                                }
+                            ],
+                            "min": 1,
+                            "layout": "block",
+                            "button_label": "Add Tab"
+                        }
+                    ]
+                },
+                "layout_67af67890stuvwx": {
+                    "key": "layout_67af67890stuvwx",
+                    "name": "data_points",
+                    "label": "Data Points",
+                    "display": "block",
+                    "sub_fields": [
+                        {
+                            "key": "field_67af67890stuvw1",
+                            "label": "Title",
+                            "name": "data_points_title",
+                            "type": "text"
+                        },
+                        {
+                            "key": "field_67af67890stuvw2",
+                            "label": "Data Points",
+                            "name": "data_points_items",
+                            "type": "repeater",
+                            "sub_fields": [
+                                {
+                                    "key": "field_67af67890stuvw3",
+                                    "label": "Icon",
+                                    "name": "data_points_icon",
+                                    "type": "image",
+                                    "return_format": "array",
+                                    "preview_size": "medium",
+                                    "library": "all"
+                                },
+                                {
+                                    "key": "field_67af67890stuvw4",
+                                    "label": "Value",
+                                    "name": "data_points_value",
+                                    "type": "number",
+                                    "step": "any"
+                                },
+                                {
+                                    "key": "field_67af67890stuvw5",
+                                    "label": "Prefix",
+                                    "name": "data_points_prefix",
+                                    "type": "text"
+                                },
+                                {
+                                    "key": "field_67af67890stuvw6",
+                                    "label": "Suffix",
+                                    "name": "data_points_suffix",
+                                    "type": "text"
+                                },
+                                {
+                                    "key": "field_67af67890stuvw7",
+                                    "label": "Decimals",
+                                    "name": "data_points_decimals",
+                                    "type": "number",
+                                    "step": "1"
+                                },
+                                {
+                                    "key": "field_67af67890stuvw8",
+                                    "label": "Label",
+                                    "name": "data_points_label",
+                                    "type": "text"
+                                }
+                            ],
+                            "min": 1,
+                            "layout": "block",
+                            "button_label": "Add Data Point"
+                        }
+                    ]
+                },
+                "layout_67af90123ghijkl": {
+                    "key": "layout_67af90123ghijkl",
+                    "name": "locations_map",
+                    "label": "Locations Map",
+                    "display": "block",
+                    "sub_fields": [
+                        {
+                            "key": "field_67af90123ghijkm",
+                            "label": "Title",
+                            "name": "locations_map_title",
+                            "type": "text"
+                        },
+                        {
+                            "key": "field_67af90123ghijkn",
+                            "label": "Subtitle",
+                            "name": "locations_map_subtitle",
+                            "type": "text"
+                        },
+                        {
+                            "key": "field_67af90123ghijko",
+                            "label": "Map Image",
+                            "name": "locations_map_image",
+                            "type": "image",
+                            "return_format": "array",
+                            "preview_size": "medium",
+                            "library": "all"
+                        },
+                        {
+                            "key": "field_67af90123ghijkp",
+                            "label": "Locations",
+                            "name": "locations_map_locations",
+                            "type": "repeater",
+                            "sub_fields": [
+                                {
+                                    "key": "field_67af90123ghijkq",
+                                    "label": "Class Name",
+                                    "name": "locations_map_class",
+                                    "type": "text"
+                                },
+                                {
+                                    "key": "field_67af90123ghijkr",
+                                    "label": "Description",
+                                    "name": "locations_map_description",
+                                    "type": "wysiwyg",
+                                    "tabs": "text",
+                                    "media_upload": 0,
+                                    "toolbar": "full"
+                                }
+                            ],
+                            "min": 1,
+                            "layout": "block",
+                            "button_label": "Add Location"
+                        }
+                    ]
                 }
             },
             "min": "",
@@ -652,5 +1065,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1739466175
+    "modified": 1739471068
 }
