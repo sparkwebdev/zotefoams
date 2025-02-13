@@ -1,7 +1,7 @@
 <?php 
 // Allow for passed variables, as well as ACF values
-$title = isset($title) ? $title : get_sub_field('split_text_title');
-$text = isset($text) ? $text : get_sub_field('split_text_text');
+$title = get_sub_field('split_text_title');
+$text = get_sub_field('split_text_text');
 ?>
 <div class="split-text cont-m margin-b-100">
     <div class="split-text-inner">

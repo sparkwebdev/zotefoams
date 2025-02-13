@@ -43,13 +43,15 @@ get_header();
 		// check if the flexible content field has rows of data
 		if( have_rows('page_content') ) {
 			 // loop through the rows of data
+			$i = 1;
 			while ( have_rows('page_content') ) {
 			  the_row();
 				$component = get_row_layout();
 				if (is_page('Components')) {
-					echo '<div class="black-bg"><div class="white-text cont-m padding-t-b-30"><h2>'.ucwords(str_replace("_", " ", $component)).'</h2></div></div>';
+					echo '<div class="blue-bg"><div class="white-text cont-m padding-t-b-30"><h2>'.ucwords(str_replace("_", " ", $component)).' '.$i.'</h2></div></div>';
 				}
 				include( locate_template( '/template-parts/components/'.$component.'.php', false, false ) );
+				$i++;
 			}
 		}
 	}

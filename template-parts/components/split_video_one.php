@@ -1,10 +1,10 @@
 <?php 
 // Allow for passed variables, as well as ACF values
-$image = isset($image) ? $image : get_sub_field('split_video_one_image');
-$video_url = isset($video_url) ? $video_url : get_sub_field('split_video_one_video_url');
-$title = isset($title) ? $title : get_sub_field('split_video_one_title');
-$text = isset($text) ? $text : get_sub_field('split_video_one_text');
-$extra_text = isset($extra_text) ? $extra_text : get_sub_field('split_video_one_extra_text');
+$image = get_sub_field('split_video_one_image');
+$video_url = get_sub_field('split_video_one_video_url');
+$title = get_sub_field('split_video_one_title');
+$text = get_sub_field('split_video_one_text');
+$extra_text = get_sub_field('split_video_one_extra_text');
 
 // Extract 'large' size image URL from Image Array, or use placeholder.png as fallback
 $image_url = $image ? $image['sizes']['large'] : '';
@@ -24,7 +24,7 @@ $image_url = $image ? $image['sizes']['large'] : '';
             <p class="fs-200 fw-regular margin-b-30"><?php echo esc_html($title); ?></p>
         <?php endif; ?>
         <?php if ($text): ?>
-            <p class="fs-600 fw-semibold margin-b-40"><?php echo wp_kses_post($text); ?></p>
+            <div class="fs-600 fw-semibold margin-b-40"><?php echo wp_kses_post($text); ?></div>
         <?php endif; ?>
         <?php if ($extra_text): ?>
             <span class="fs-300 text-margin margin-b-50">
