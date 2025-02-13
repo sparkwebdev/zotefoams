@@ -1,13 +1,13 @@
 {
     "key": "group_67acd9fe1bf12",
-    "title": "Text block",
+    "title": "Component: Text block",
     "fields": [
         {
-            "key": "field_67acd9fe81e6a",
-            "label": "Text block overline",
-            "name": "text_block_overline",
+            "key": "field_67ade73660c3e",
+            "label": "Component: Text Block",
+            "name": "component_text_block",
             "aria-label": "",
-            "type": "text",
+            "type": "clone",
             "instructions": "",
             "required": 0,
             "conditional_logic": 0,
@@ -16,33 +16,14 @@
                 "class": "",
                 "id": ""
             },
-            "default_value": "",
-            "maxlength": "",
-            "allow_in_bindings": 0,
-            "placeholder": "",
-            "prepend": "",
-            "append": ""
-        },
-        {
-            "key": "field_67acda0881e6b",
-            "label": "Text block text",
-            "name": "text_block_text",
-            "aria-label": "",
-            "type": "wysiwyg",
-            "instructions": "",
-            "required": 0,
-            "conditional_logic": 0,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "default_value": "",
-            "allow_in_bindings": 0,
-            "tabs": "visual",
-            "toolbar": "basic",
-            "media_upload": 0,
-            "delay": 0
+            "clone": [
+                "field_67ade6ef0be04",
+                "field_67ade7140be05"
+            ],
+            "display": "seamless",
+            "layout": "block",
+            "prefix_label": 0,
+            "prefix_name": 0
         }
     ],
     "location": [
@@ -50,7 +31,7 @@
             {
                 "param": "page",
                 "operator": "==",
-                "value": "84"
+                "value": "820"
             }
         ]
     ],
@@ -63,5 +44,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1739382309
+    "modified": 1739452471
 }

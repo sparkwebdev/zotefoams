@@ -40,18 +40,16 @@ get_header();
 
 		endif;
 
-
 		// check if the flexible content field has rows of data
 		if( have_rows('page_content') ) {
 			 // loop through the rows of data
 			while ( have_rows('page_content') ) {
 			  the_row();
 				$component = get_row_layout();
-				switch ($component) {
-					case 'text_block':
-					  include( locate_template( '/template-parts/components/text-block.php', false, false ) );
-						break;
+				if (is_page('Components')) {
+					echo '<div class="black-bg"><div class="white-text cont-m padding-t-b-30"><h2>'.ucwords(str_replace("_", " ", $component)).'</h2></div></div>';
 				}
+				include( locate_template( '/template-parts/components/'.$component.'.php', false, false ) );
 			}
 		}
 	}
