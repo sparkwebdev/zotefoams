@@ -1591,7 +1591,7 @@ a.hl.download::after {
 }
 
 .open .toggle-icon {
-	transform: rotate(45deg);
+	transform: rotate(180deg);
 }
 
 

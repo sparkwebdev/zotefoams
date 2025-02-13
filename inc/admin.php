@@ -38,14 +38,19 @@ function my_acf_admin_head()
 			background:#1d2327;
 		}
 		.hndle:hover {
-			background:#111 !important;
+			background:#1d2327 !important;
 		}
-		#poststuff h2 {
-			color:#fff
+		#poststuff h2,
+		.acf-admin-page #poststuff .postbox-header h2, 
+		.acf-admin-page #poststuff .postbox-header h3 {
+			color:#fff !important;
 		}
 		.acf-table {border-collapse: collapse; }
 		.acf-table > tbody > tr {
 			border-top: 2px solid black;
+		}
+		.acf-admin-page .postbox .postbox-header, .acf-admin-page .postbox .title, .acf-admin-page .acf-box .postbox-header, .acf-admin-page .acf-box .title {
+			min-height: 3rem;
 		}
     </style>
  

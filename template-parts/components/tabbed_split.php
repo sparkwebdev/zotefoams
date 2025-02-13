@@ -16,7 +16,7 @@ $tabs = get_sub_field('tabbed_split_tabs');
                     <?php if ($icon): ?>
                         <img src="<?php echo esc_url($icon['url']); ?>" alt="<?php echo esc_attr($tab['tabbed_split_tab_title']); ?>" />
                     <?php endif; ?>
-                    <p><?php echo esc_html($tab['tabbed_split_tab_title']); ?></p>
+                    <?php echo esc_html($tab['tabbed_split_tab_title']); ?>
                 </div>
             <?php endforeach; ?>
         <?php endif; ?>
