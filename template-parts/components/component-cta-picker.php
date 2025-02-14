@@ -1,9 +1,9 @@
 <?php
 // Use passed variables instead of get_query_var()
-$title = isset($title) ? $title : get_field('cta_picker_title');
-$link = isset($link) ? $link : get_field('cta_picker_link');
-$content_type = isset($content_type) ? $content_type : get_field('cta_picker_content_type');
-$content_ids = isset($content_ids) ? $content_ids : get_field('cta_picker_content_ids');
+$title = get_field('cta_picker_title');
+$link = get_field('cta_picker_link');
+$content_type = get_field('cta_picker_content_type');
+$content_ids = get_field('cta_picker_content_ids');
 
 // Ensure content IDs are in array format and converted to integers
 $content_ids_array = !empty($content_ids) ? array_map('intval', explode(',', $content_ids)) : [];
