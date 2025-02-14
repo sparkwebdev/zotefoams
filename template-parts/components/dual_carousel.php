@@ -32,7 +32,7 @@ $slides = get_sub_field('dual_carousel_slides');
                             <div class="slide-sub-content">
                                 <img class="animate__animated margin-b-30" src="<?php echo esc_url($image_url); ?>" alt="<?php echo esc_attr($title); ?>" />
                                 <?php if ($text): ?>
-                                    <p class="animate__animated margin-b-30"><?php echo wp_kses_post($text); ?></p>
+                                    <div class="animate__animated margin-b-30"><?php echo wp_kses_post($text); ?></div>
                                 <?php endif; ?>
                                 <?php if ($button): ?>
                                     <a href="<?php echo esc_url($button['url']); ?>" class="animate__animated btn white outline" target="<?php echo esc_attr($button['target']); ?>">
@@ -77,6 +77,7 @@ $slides = get_sub_field('dual_carousel_slides');
         </div>
     </div>
 </div>
+
 
 	<script type="text/javascript">
 		document.addEventListener('DOMContentLoaded', function () {
