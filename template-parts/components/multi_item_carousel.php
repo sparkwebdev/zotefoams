@@ -1,7 +1,7 @@
 <?php 
 // Allow for passed variables, as well as ACF values
-$title = isset($title) ? $title : get_sub_field('multi_item_carousel_title');
-$slides = isset($slides) ? $slides : get_sub_field('multi_item_carousel_slides');
+$title = get_sub_field('multi_item_carousel_title');
+$slides = get_sub_field('multi_item_carousel_slides');
 ?>
 
 <!-- Carousel 4 - Multi-Item Carousel -->
@@ -41,7 +41,7 @@ $slides = isset($slides) ? $slides : get_sub_field('multi_item_carousel_slides')
                         <h3><?php echo esc_html($title); ?></h3>
                     <?php endif; ?>
                     <?php if ($text): ?>
-                        <p><?php echo wp_kses_post($text); ?></p>
+                        <div><?php echo wp_kses_post($text); ?></div>
                     <?php endif; ?>
                     <img src="<?php echo esc_url($image_url); ?>" alt="<?php echo esc_attr($title); ?>">
                     <?php if ($button): ?>
