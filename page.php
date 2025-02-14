@@ -68,7 +68,7 @@ get_header();
 		} else if ( strcasecmp(get_the_title(), 'Markets') === 0)  {
 			get_template_part( 'template-parts/content', 'markets' );
 		} else {
-				get_template_part( 'template-parts/content', 'page' );
+				// get_template_part( 'template-parts/content', 'page' );
 		}
 
 	endwhile; // End of the loop.
