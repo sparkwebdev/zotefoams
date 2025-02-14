@@ -18,7 +18,9 @@
 					<div class="swiper-inner padding-50 white-text">
 						<div class="title-button">
 							<h1 class="fw-extrabold fs-900 uppercase margin-b-30"><?php echo $title; ?></h1>
+							<?php if( get_sub_field('link') ): ?>
 							<a href="<?php echo $link['url']; ?>" <?php echo !empty( $link['target'] ) ? 'target="' . esc_attr( $link['target'] ) . '"' : '' ?> class="btn white outline arrow"><?php echo $link['title']; ?></a>
+							<?php endif; ?>
 						</div>
 						<p class="fw-bold fs-600 uppercase"><?php echo $text; ?></p>
 					</div>

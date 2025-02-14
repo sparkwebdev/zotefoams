@@ -20,11 +20,9 @@ html {
 }
 
 /* Daves Components */
-.text-banner {
-  > * {
-    max-width: 10em;
-    text-wrap: balance;
-  }
+.text-banner .uppercase {
+	max-width: 10em;
+	text-wrap: balance;
 }
 
 
