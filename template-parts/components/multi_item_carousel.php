@@ -34,7 +34,7 @@ $slides = get_sub_field('multi_item_carousel_slides');
                     $button = $slide['multi_item_carousel_slide_button']; // ACF Link field
 
                     // Extract 'large' size image URL with fallback to placeholder
-                    $image_url = $image ? $image['sizes']['large'] : get_template_directory_uri() . '/images/placeholder.png';
+                    $image_url = $image ? $image['sizes']['thumbnail-product'] : get_template_directory_uri() . '/images/placeholder.png';
                 ?>
                 <div class="swiper-slide">
                     <?php if ($title): ?>

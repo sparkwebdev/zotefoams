@@ -11,7 +11,7 @@
 
 <section id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
 
-    <header class="text-banner cont-m margin-t-70 margin-b-100">
+    <!-- <header class="text-banner cont-m margin-t-70 margin-b-100">
         <?php the_title( '<h1 class="uppercase grey-text fs-800 fw-extrabold">', '</h1>' ); ?>
         <h2 class="uppercase black-text fs-800 fw-extrabold">Our Product Literature</h2>
     </header>
@@ -34,7 +34,7 @@
             <p class="margin-b-20">Everything Zotefoams</p>
             <p class="grey-text fs-600 fw-semibold"><b>Fusce eros dolor luctus et lobortis sit amet </b>vulputate ut lacus. Cras molestie est libero sed tempor leo porttitor vitae. Class aptent taciti sociosqu ad litora.</p>
         </div>
-    </div>
+    </div> -->
 
 	<section class="cont-m margin-t-70">
     <div class="articles articles--grid margin-b-70">
@@ -50,7 +50,7 @@
         ));
         foreach ($child_pages as $child) {
 
-            $thumbnail_url = get_the_post_thumbnail_url(get_the_ID(), 'thumbnail');
+            $thumbnail_url = get_the_post_thumbnail_url($child->ID, 'thumbnail');
             if (!$thumbnail_url) {
                 $thumbnail_url = get_template_directory_uri() . '/images/placeholder-thumbnail.png';
             } ?>
