@@ -1,9 +1,24 @@
 <?php 
 // Allow for passed variables, as well as ACF values
+$tab_overline = get_sub_field('tabbed_split_overline');
+$tab_text = get_sub_field('tabbed_split_text');
 $tabs = get_sub_field('tabbed_split_tabs');
 ?>
 
-<div class="cont-xs tabs-container margin-b-30">
+<div class="cont-xs tabs-container margin-t-100 margin-b-20">
+	
+	
+	<?php if ($tab_overline || $tab_text): ?>
+		<div class="tabs-intro text-center margin-b-30">
+			<?php if ($tab_overline): ?>
+			<p class="margin-b-15"><?php echo esc_html($tab_overline); ?></p>
+			<?php endif; ?>
+			<?php if ($tab_text): ?>
+			<p class="fs-500 fw-bold"><?php echo esc_html($tab_text); ?></p>
+			<?php endif; ?>
+		</div>
+	<?php endif; ?>
+	
     <div class="tabs">
         <?php if ($tabs): ?>
             <?php foreach ($tabs as $index => $tab): ?>
@@ -16,7 +31,7 @@ $tabs = get_sub_field('tabbed_split_tabs');
                     <?php if ($icon): ?>
                         <img src="<?php echo esc_url($icon['url']); ?>" alt="<?php echo esc_attr($tab['tabbed_split_tab_title']); ?>" />
                     <?php endif; ?>
-                    <?php echo esc_html($tab['tabbed_split_tab_title']); ?>
+                    <p><?php echo esc_html($tab['tabbed_split_tab_title']); ?></p>
                 </div>
             <?php endforeach; ?>
         <?php endif; ?>
@@ -46,7 +61,7 @@ $tabs = get_sub_field('tabbed_split_tabs');
                                     <p class="fs-400 fw-bold margin-b-15"><?php echo esc_html($title); ?></p>
                                 <?php endif; ?>
                                 <?php if ($text): ?>
-                                    <p class="fs-300 grey-text margin-b-70"><?php echo wp_kses_post($text); ?></p>
+                                    <div class="fs-300 grey-text margin-b-70"><?php echo wp_kses_post($text); ?></div>
                                 <?php endif; ?>
                             </div>
                             <?php if ($button): ?>

@@ -24,10 +24,11 @@ $map_image_url = $map_image ? $map_image['sizes']['large'] : get_template_direct
             <?php if ($locations): ?>
                 <?php foreach ($locations as $location): ?>
                     <?php 
-                        $class = sanitize_title($location['locations_map_class']);
                         $description = $location['locations_map_description'];
+						$from_top = $location['from_top'];
+						$from_left = $location['from_left'];
                     ?>
-                    <div class="location <?php echo esc_attr($class); ?>" onclick="locationClicked(this)">
+                    <div class="location" onclick="locationClicked(this)" style="top:<?php echo esc_html($from_top); ?>%;left:<?php echo esc_html($from_left); ?>%;">
                         <?php if ($description): ?>
                             <div class="popup">
                                 <p><?php echo wp_kses_post($description); ?></p>
@@ -160,7 +161,7 @@ document.addEventListener('click', function(event) {
 				.locations-map .map-container .location .popup{
 					display: none;
 					position: absolute;
-					top: 20px;
+					top: 23px;
 					left: calc(50% - 110px);
 					width: 220px;
 					padding: 10px 20px;
@@ -169,11 +170,6 @@ document.addEventListener('click', function(event) {
 					color: #fff;
 					background: #ffffff11;
 					font-size: 0.9em;
-				}
-
-				.locations-map .map-container .location.kentucky {
-					top: 34.5%;
-					left: 19.5%;
 				}
 
 				.locations-map .map-container .location.massachusetts {

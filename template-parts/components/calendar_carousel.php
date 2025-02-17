@@ -86,6 +86,7 @@ $note = get_sub_field('calendar_carousel_note');
 		.calendar-carousel .swiper-slide-inner {
 			height: 120px;
 			padding: 0px 10px;
+			border: 1px solid #ccc;
 		}
 
 		.calendar-carousel .date-wrapper {
