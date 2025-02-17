@@ -2,7 +2,7 @@
 // Allow for passed variables, as well as ACF values
 $title = get_sub_field('box_columns_title');
 $button = get_sub_field('box_columns_button'); // ACF Link field
-$cases = get_sub_field('box_columns_cases');
+$items = get_sub_field('box_columns_items');
 ?>
 
 <div class="box-columns cont-m padding-t-b-100">
@@ -19,8 +19,8 @@ $cases = get_sub_field('box_columns_cases');
     </div>
 
     <div class="box-items">
-        <?php if ($cases): ?>
-            <?php foreach ($cases as $case): ?>
+        <?php if ($items): ?>
+            <?php foreach ($items as $item): ?>
                 <?php 
                     $title = $item['box_columns_item_title'] ?? '';
                     $description = $item['box_columns_item_description'] ?? '';
