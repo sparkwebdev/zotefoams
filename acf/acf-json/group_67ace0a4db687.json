@@ -2534,6 +2534,73 @@
                     "min": "",
                     "max": ""
                 },
+                "layout_67af90123smllbx": {
+                    "key": "layout_67af90123smllbx",
+                    "name": "small_box_columns",
+                    "label": "Small Box Columns",
+                    "display": "block",
+                    "sub_fields": [
+                        {
+                            "key": "field_67af90123smllbx1",
+                            "label": "Title",
+                            "name": "small_box_columns_title",
+                            "type": "text",
+                            "default_value": "",
+                            "maxlength": "",
+                            "placeholder": "",
+                            "prepend": "",
+                            "append": ""
+                        },
+                        {
+                            "key": "field_67af90123smllbx2",
+                            "label": "Button",
+                            "name": "small_box_columns_button",
+                            "type": "link",
+                            "return_format": "array"
+                        },
+                        {
+                            "key": "field_67af90123smllbx3",
+                            "label": "Small Box Items",
+                            "name": "small_box_columns_items",
+                            "type": "repeater",
+                            "min": 1,
+                            "layout": "block",
+                            "button_label": "Add Small Box Item",
+                            "sub_fields": [
+                                {
+                                    "key": "field_67af90123smllbx4",
+                                    "label": "Title",
+                                    "name": "small_box_columns_item_title",
+                                    "type": "text"
+                                },
+                                {
+                                    "key": "field_67af90123smllbx5",
+                                    "label": "Description",
+                                    "name": "small_box_columns_item_description",
+                                    "type": "text"
+                                },
+                                {
+                                    "key": "field_67af90123smllbx6",
+                                    "label": "Image",
+                                    "name": "small_box_columns_item_image",
+                                    "type": "image",
+                                    "return_format": "array",
+                                    "preview_size": "thumbnail-square",
+                                    "library": "all"
+                                },
+                                {
+                                    "key": "field_67af90123smllbx7",
+                                    "label": "Link",
+                                    "name": "small_box_columns_item_link",
+                                    "type": "link",
+                                    "return_format": "array"
+                                }
+                            ]
+                        }
+                    ],
+                    "min": "",
+                    "max": ""
+                },
                 "layout_67af90123stuvwx": {
                     "key": "layout_67af90123stuvwx",
                     "name": "cta_picker",
@@ -2867,5 +2934,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1739889315
+    "modified": 1739899032
 }
