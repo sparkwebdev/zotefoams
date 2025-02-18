@@ -219,21 +219,21 @@ function include_template_part($file, $variables = []) {
 
 
 
-function custom_tinymce_toolbar($init) {
-    // Set the first toolbar to only have Bold and Italic
-    $init['toolbar1'] = 'bold,italic';
-    // Remove the second toolbar
-    $init['toolbar2'] = '';
+// function custom_tinymce_toolbar($init) {
+//     // Set the first toolbar to only have Bold and Italic
+//     $init['toolbar1'] = 'bold,italic';
+//     // Remove the second toolbar
+//     $init['toolbar2'] = '';
  
-    // Ensure block formats are limited to paragraph only
-    $init['block_formats'] = 'Paragraph=p';
+//     // Ensure block formats are limited to paragraph only
+//     $init['block_formats'] = 'Paragraph=p';
  
-    // Disable extra plugins that might introduce other buttons
-    $init['plugins'] = 'wordpress';
+//     // Disable extra plugins that might introduce other buttons
+//     $init['plugins'] = 'wordpress';
  
-    return $init;
-}
-add_filter('tiny_mce_before_init', 'custom_tinymce_toolbar');
+//     return $init;
+// }
+// add_filter('tiny_mce_before_init', 'custom_tinymce_toolbar');
 
 
 
