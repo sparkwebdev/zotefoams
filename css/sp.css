@@ -427,6 +427,11 @@ html {
 	gap: 20px;
 	grid-template-columns: repeat( auto-fit, minmax(24rem, 1fr) );
 }
+.small-box-items {
+	display: grid;
+	gap: 20px;
+	grid-template-columns: repeat( auto-fit, minmax(18rem, 1fr) );
+}
 .box-items--4 {
 	/* grid-template-columns: repeat( auto-fit, minmax(32rem, 1fr) ); */
 }
