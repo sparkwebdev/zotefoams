@@ -9,7 +9,7 @@ $text = get_sub_field('text_block_text');
 			<p class="margin-b-20"><?php echo esc_html( $overline ); ?></p>
 		<?php endif; ?>
 		<?php if ($text): ?>
-			<div class="grey-text fs-600 fw-semibold"><?php echo esc_html($text); ?></div>
+			<div class="grey-text fs-600 fw-semibold"><?php echo wp_kses_post( $text ); ?></div>
 		<?php endif; ?>
 	</div>
 </div>

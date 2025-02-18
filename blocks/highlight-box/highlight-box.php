@@ -45,12 +45,12 @@ if ( ! empty( $block['align'] ) ) {
                 <?php echo wp_kses_post( $copy ); ?>
             <?php endif; ?>
             <?php if ( !empty( $link['url'] ) ) : ?>
-                <a 
+                <p class="margin-t-30"><a 
                     href="<?php echo esc_url( $link['url'] ); ?>" 
                     <?php echo !empty( $link['target'] ) ? 'target="' . esc_attr( $link['target'] ) . '"' : ''; ?> 
-                    class="highlight-box__link">
+                    class="highlight-box__link hl arrow">
                     <?php echo !empty( $link['title'] ) ? esc_html( $link['title'] ) : 'Read more'; ?>
-                </a>
+				</a></p>
             <?php endif; ?>
         </div>
     </div>

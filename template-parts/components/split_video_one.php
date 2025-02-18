@@ -5,6 +5,7 @@ $video_url = get_sub_field('split_video_one_video_url');
 $title = get_sub_field('split_video_one_title');
 $text = get_sub_field('split_video_one_text');
 $extra_text = get_sub_field('split_video_one_extra_text');
+$link = get_sub_field('split_video_one_link');
 
 // Extract 'large' size image URL from Image Array, or use placeholder.png as fallback
 $image_url = $image ? $image['sizes']['large'] : '';
@@ -31,6 +32,11 @@ $image_url = $image ? $image['sizes']['large'] : '';
                 <p><?php echo wp_kses_post($extra_text); ?></p>
             </span>
         <?php endif; ?>
+		<?php if ($link): ?>
+			<a href="<?php echo esc_url($link['url']); ?>" class="hl arrow" target="<?php echo esc_attr($link['target']); ?>">
+				<?php echo esc_html($link['title']); ?>
+			</a>
+		<?php endif; ?>
     </div>
 </div>
 

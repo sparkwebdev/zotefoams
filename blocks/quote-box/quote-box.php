@@ -44,7 +44,7 @@ if ( ! empty( $block['align'] ) ) {
     <?php if ( $image ) : ?>
         <div class="quote-box__col">
             <figure class="quote-box__image">
-                <?php echo wp_get_attachment_image( $image['ID'], 'full', '', array( 'class' => 'quote-box__img' ) ); ?>
+                <?php echo wp_get_attachment_image( $image['ID'], 'thumbnail-square', '', array( 'class' => 'quote-box__img' ) ); ?>
             </figure>
         </div>
     <?php endif; ?>

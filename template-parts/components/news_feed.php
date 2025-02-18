@@ -27,11 +27,14 @@ $news_items = get_sub_field('news_feed_items');
                     $title = $news_item['news_feed_title'];
                     $link = $news_item['news_feed_link']; // ACF Link field
 
-                    // Extract 'large' size image URL with fallback
-                    $image_url = $image ? $image['sizes']['large'] : get_template_directory_uri() . '/images/placeholder.png';
                 ?>
                 <div class="feed-item">
-                    <div class="feed-image image-cover" style="background-image:url('<?php echo esc_url($image_url); ?>');"></div>
+                    <?php if( $image ) :
+                        // Extract 'large' size image URL
+                        $image_url = $image['sizes']['large'];
+                    ?>
+						<div class="feed-image image-cover" style="background-image:url('<?php echo esc_url($image_url); ?>');"></div>
+					<?php endif; ?>
                     <div class="feed-content padding-40">
                         <?php if ($category): ?>
                             <p class="fs-100 margin-b-20 grey-text"><?php echo esc_html($category); ?></p>
