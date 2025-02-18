@@ -729,6 +729,13 @@ header.site-header a:hover {
 	z-index: 99999;
 }
 
+@media screen and (min-width: 37.5em) {
+    .main-navigation ul ul.sub-menu {
+        flex-direction: column;
+		background:#fff
+    }
+}
+
 .main-navigation ul ul ul {
 	left: -999em;
 	top: 0;
@@ -1188,6 +1195,7 @@ header.site-header a:hover {
 .margin-b-30 {margin-bottom:30px}
 .margin-b-20 {margin-bottom:20px}
 .margin-b-15 {margin-bottom:15px}
+.margin-b-10 {margin-bottom:10px}
 
 .margin-r-100 {margin-right:100px}
 .margin-r-50 {margin-right:50px}
@@ -1581,11 +1589,11 @@ a.hl.download::after {
 
 .accordion-content {
 	display: none;
-	padding: 0 60px 40px;
 }
 
 .accordion-content p {
 	margin: 0;
+	padding: 0 60px 40px;
 }
 
 .toggle-icon {

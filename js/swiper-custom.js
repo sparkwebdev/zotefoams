@@ -64,7 +64,7 @@ headers.forEach(header => {
     } else {
       content.style.display = 'block';
       content.style.opacity = '1';
-      content.style.maxHeight = '500px'; // Set a maximum height for the transition
+      content.style.maxHeight = '1000px'; // Set a maximum height for the transition
       icon.textContent = '-'; // Change the icon to minus
       this.classList.add('open');
       content.scrollIntoView({

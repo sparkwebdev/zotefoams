@@ -14,7 +14,6 @@
 
 get_header();
 
-
 	// Check for Advanced Custom Fields plugin function
 	if( function_exists('get_field') ) {
 
@@ -54,6 +53,12 @@ get_header();
 				$i++;
 			}
 		}
+		
+		if ( get_field( 'page_footer_contact_forms' ) ):
+
+			include( locate_template( '/template-parts/components/show_hide_forms.php', false, false ) );
+
+		endif;
 	}
 
 
@@ -72,4 +77,5 @@ get_header();
 		}
 
 	endwhile; // End of the loop.
+
 get_footer();

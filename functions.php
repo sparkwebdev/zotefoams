@@ -237,5 +237,22 @@ function include_template_part($file, $variables = []) {
 
 
 
+add_filter('acf/load_field/name=show_hide_forms_form', 'populate_acf_with_wpforms');
+function populate_acf_with_wpforms($field) {
+    // Clear existing choices
+    $field['choices'] = [];
 
+    // Get the list of WPForms
+    if (class_exists('WPForms')) {
+        $forms = wpforms()->form->get();
+        if ($forms) {
+            foreach ($forms as $form) {
+                $form_data = wpforms()->form->get($form->ID); // Get full form data
+                $form_name = $form_data->post_title; // Get the form's title
+                $field['choices'][$form->ID] = $form_name;
+            }
+        }
+    }
 
+    return $field;
+}

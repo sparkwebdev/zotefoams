@@ -32,6 +32,7 @@
 				array(
 					'theme_location' => 'utility_menu',
     				'container' => false,
+    				'depth' => 2,
 				)
 			);
 			?>
@@ -56,6 +57,7 @@
 					array(
 						'theme_location' => 'primary_menu',
 						'container' => false,
+    					'depth' => 2,
 					)
 				);
 				?>
