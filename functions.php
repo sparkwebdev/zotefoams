@@ -256,3 +256,17 @@ function populate_acf_with_wpforms($field) {
 
     return $field;
 }
+
+
+
+function use_page_template_for_blog($template) {
+    if (is_home()) {
+        $page_template = locate_template('page.php'); // Forces page.php
+        if ($page_template) {
+            return $page_template;
+        }
+    }
+    return $template;
+}
+add_filter('template_include', 'use_page_template_for_blog');
+
