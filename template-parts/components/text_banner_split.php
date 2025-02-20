@@ -9,7 +9,7 @@ $link = get_sub_field('text_banner_split_link'); // ACF Link field returns an ar
 $image_url = $image ? $image['sizes']['large'] : '';
 ?>
 
-<div class="text-banner-split half-half theme-white">
+<div class="text-banner-split half-half theme-dark">
     <div class="half video-container image-cover" style="background-image:url('<?php echo esc_url($image_url ? $image_url : get_template_directory_uri() . "/images/placeholder.png"); ?>');">
     </div>
     <div class="half black-bg white-text padding-100">

@@ -19,7 +19,7 @@ if ($behaviour === 'pick' && !empty($post_ids)) {
 }
 ?>
 
-<div class="news-feed cont-m padding-t-b-100">
+<div class="news-feed cont-m padding-t-b-100 theme-none">
     
     <div class="title-strip margin-b-30">
         <?php if ($title): ?>

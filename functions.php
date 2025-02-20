@@ -259,16 +259,17 @@ function populate_acf_with_wpforms($field) {
 
 
 
-function use_page_template_for_blog($template) {
-    if (is_home()) {
-        $page_template = locate_template('page.php'); // Forces page.php
-        if ($page_template) {
-            return $page_template;
-        }
-    }
-    return $template;
-}
-add_filter('template_include', 'use_page_template_for_blog');
+// function use_page_template_for_blog($template) {
+//     if (is_home() && !is_front_page()) { // Ensure it's the posts page, not front page
+//         $posts_page_id = get_option('page_for_posts'); // Get the assigned posts page ID
+//         if ($posts_page_id) {
+//             return locate_template('page.php'); // Force page.php
+//         }
+//     }
+//     return $template;
+// }
+// add_filter('template_include', 'use_page_template_for_blog');
+
 
 // Function to get page ID by title (replacement for get_page_by_title)
 function get_page_id_by_title($title) {

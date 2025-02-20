@@ -2,35 +2,19 @@
 // Allow for passed variables, as well as ACF values
 $title = get_sub_field('box_columns_title');
 $button = get_sub_field('box_columns_button'); // ACF Link field
-$behaviour = get_sub_field('box_columns_behaviour');
-$page_ids = get_sub_field('box_columns_page_ids');
-$parent_id = get_sub_field('box_columns_parent_id');
-$items = get_sub_field('box_columns_items');
+$behaviour = get_sub_field('box_columns_behaviour'); // Pick / Children / Manual
+$page_id = get_sub_field('box_columns_parent_id'); // Selected parent page
+$manual_items = get_sub_field('box_columns_items'); // Manual items
+$page_for_posts = get_option('page_for_posts', true); // WordPress "Posts Page"
+$posts_page_id = !empty($page_for_posts) ? $page_for_posts : get_page_id_by_title('News Centre');
 
-// Determine items based on behaviour
-if ($behaviour === 'pick' && !empty($page_ids)) {
-    $args = [
-        'post_type'   => 'page',
-        'post_status' => 'publish',
-        'orderby'     => 'post__in',
-        'post__in'    => $page_ids,
-        'posts_per_page' => -1
-    ];
-    $items = get_posts($args);
-} elseif ($behaviour === 'children' && !empty($parent_id)) {
-    $args = [
-        'post_type'   => 'page',
-        'post_status' => 'publish',
-        'post_parent' => $parent_id,
-        'orderby'     => 'menu_order',
-        'order'       => 'ASC',
-        'posts_per_page' => -1
-    ];
-    $items = get_posts($args);
-}
+
+// Check if we need to pull categories instead of child pages
+$use_categories = ($behaviour === 'children' && $page_id == $posts_page_id);
+
 ?>
 
-<div class="box-columns cont-m padding-t-b-100">
+<div class="box-columns cont-m padding-t-b-100 theme-none">
     
     <div class="title-strip margin-b-30">
         <?php if ($title): ?>
@@ -44,44 +28,102 @@ if ($behaviour === 'pick' && !empty($page_ids)) {
     </div>
 
     <div class="box-items">
-        <?php if ($items): ?>
-            <?php foreach ($items as $item): ?>
-                <?php 
-                    if ($behaviour === 'manual') {
-                        $title = $item['box_columns_item_title'] ?? '';
-                        $description = $item['box_columns_item_description'] ?? '';
-                        $button = $item['box_columns_item_button'] ?? '';
-                        $image = $item['box_columns_item_image'] ?? null;
-                    } else {
-                        $title = get_the_title($item->ID);
-                        $description = get_the_excerpt($item->ID);
-                        $button = ['url' => get_permalink($item->ID), 'title' => 'Read More'];
-                        $image = get_the_post_thumbnail_url($item->ID, 'large');
-                    }
+        <?php 
+        if ($use_categories) {
+            // Fetch all top-level categories
+            $categories = get_categories([
+                'parent' => 0, // Only top-level categories
+                // 'hide_empty' => false, // Show empty categories
+                // 'orderby' => 'name',
+                // 'order' => 'ASC',
+            ]);
 
-                    // Extract image URL with fallback
-                    $image_url = $image ? (is_array($image) ? $image['sizes']['large'] : $image) : get_template_directory_uri() . '/images/placeholder.png';
+            if ($categories): 
+                foreach ($categories as $category): 
+                    $category_link = get_category_link($category->term_id);
+                    $cat_image = get_field('category_image', 'category_'.$category->term_id);
+                    $thumbnail_url = wp_get_attachment_image_url( $cat_image, 'thumbnail' );
+                    if (!$thumbnail_url) {
+                        $thumbnail_url = get_template_directory_uri() . '/images/placeholder-thumbnail.png';
+                    }
+                    ?>
+                    <div class="box-item light-grey-bg">
+                        <div class="box-content padding-40">
+                            <div>
+                                <p class="fs-400 fw-semibold margin-b-20"><?php echo esc_html($category->name); ?></p>
+                                <?php if (!empty($category->description)): ?>
+                                    <p class="margin-b-20 grey-text"><?php echo esc_html($category->description); ?></p>
+                                <?php endif; ?>
+                            </div>
+                            <a href="<?php echo esc_url($category_link); ?>" class="hl arrow">
+                                View <?php echo esc_html($category->name); ?>
+                            </a>
+                        </div>
+                        <div class="box-image image-cover" style="background-image:url('<?php echo $thumbnail_url; ?>');"></div>
+                    </div>
+                    <?php
+                endforeach; 
+            endif;
+
+        } elseif ($behaviour === 'children') {
+            // Fetch child pages
+            $child_pages = get_pages([
+                'child_of' => $page_id,
+                'sort_column' => 'menu_order',
+                'sort_order' => 'ASC',
+            ]);
+
+            if ($child_pages):
+                foreach ($child_pages as $child):
+                    $child_id = $child->ID;
+                    $child_title = get_the_title($child_id);
+                    $child_link = get_permalink($child_id);
+                    ?>
+                    <div class="box-item light-grey-bg">
+                        <div class="box-content padding-40">
+                            <div>
+                                <p class="fs-400 fw-semibold margin-b-20"><?php echo esc_html($child_title); ?></p>
+                            </div>
+                            <a href="<?php echo esc_url($child_link); ?>" class="hl arrow">Read more</a>
+                        </div>
+                        <div class="box-image image-cover" style="background-image:url('<?php echo esc_url(get_template_directory_uri() . "/images/placeholder.png"); ?>');"></div>
+                    </div>
+                    <?php
+                endforeach;
+            endif;
+
+        } elseif ($behaviour === 'manual' && $manual_items) {
+            // Display manually added items
+            foreach ($manual_items as $item):
+                $item_title = $item['box_columns_item_title'] ?? '';
+                $item_description = $item['box_columns_item_description'] ?? '';
+                $item_button = $item['box_columns_item_button'] ?? '';
+                $item_image = $item['box_columns_item_image'] ?? null;
+                
+                // Extract 'large' size image URL with fallback
+                $image_url = $item_image ? $item_image['sizes']['large'] : get_template_directory_uri() . '/images/placeholder.png';
                 ?>
                 <div class="box-item light-grey-bg">
                     <div class="box-content padding-40">
                         <div>
-                            <?php if ($title): ?>
-                                <p class="fs-400 fw-semibold margin-b-20"><?php echo esc_html($title); ?></p>
+                            <?php if ($item_title): ?>
+                                <p class="fs-400 fw-semibold margin-b-20"><?php echo esc_html($item_title); ?></p>
                             <?php endif; ?>
-                            <?php if ($description): ?>
-                                <p class="margin-b-20 grey-text"><?php echo wp_kses_post($description); ?></p>
+                            <?php if ($item_description): ?>
+                                <p class="margin-b-20 grey-text"><?php echo wp_kses_post($item_description); ?></p>
                             <?php endif; ?>
                         </div>
-                        <?php if ($button): ?>
-                            <a href="<?php echo esc_url($button['url']); ?>" class="hl arrow" target="<?php echo esc_attr($button['target'] ?? ''); ?>">
-                                <?php echo esc_html($button['title']); ?>
+                        <?php if ($item_button): ?>
+                            <a href="<?php echo esc_url($item_button['url']); ?>" class="hl arrow" target="<?php echo esc_attr($item_button['target']); ?>">
+                                <?php echo esc_html($item_button['title']); ?>
                             </a>
                         <?php endif; ?>
                     </div>
                     <div class="box-image image-cover" style="background-image:url('<?php echo esc_url($image_url); ?>');"></div>
                 </div>
-            <?php endforeach; ?>
-        <?php endif; ?>
+            <?php endforeach;
+        }
+        ?>
     </div>
 
 </div>
