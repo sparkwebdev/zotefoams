@@ -1940,7 +1940,7 @@
                             "required": false,
                             "conditional_logic": false,
                             "wrapper": {
-                                "width": "",
+                                "width": "35",
                                 "class": "",
                                 "id": ""
                             },
@@ -1960,11 +1960,73 @@
                             "required": false,
                             "conditional_logic": false,
                             "wrapper": {
-                                "width": "",
+                                "width": "35",
                                 "class": "",
                                 "id": ""
                             },
                             "return_format": "array"
+                        },
+                        {
+                            "key": "field_67af90123lmnopq8",
+                            "label": "Behaviour",
+                            "name": "news_feed_behaviour",
+                            "aria-label": "",
+                            "type": "select",
+                            "instructions": "",
+                            "required": false,
+                            "conditional_logic": false,
+                            "wrapper": {
+                                "width": "30",
+                                "class": "",
+                                "id": ""
+                            },
+                            "choices": {
+                                "pick": "Pick specific posts",
+                                "manual": "Manually add"
+                            },
+                            "default_value": "manual",
+                            "return_format": "value",
+                            "multiple": false,
+                            "allow_null": false,
+                            "allow_in_bindings": false,
+                            "ui": false,
+                            "ajax": false,
+                            "placeholder": ""
+                        },
+                        {
+                            "key": "field_67af90123lmnopq9",
+                            "label": "Post Selection",
+                            "name": "news_feed_post_ids",
+                            "aria-label": "",
+                            "type": "post_object",
+                            "instructions": "",
+                            "required": false,
+                            "conditional_logic": [
+                                [
+                                    {
+                                        "field": "field_67af90123lmnopq8",
+                                        "operator": "==",
+                                        "value": "pick"
+                                    }
+                                ]
+                            ],
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "post_type": [
+                                "post"
+                            ],
+                            "post_status": "publish",
+                            "taxonomy": "",
+                            "return_format": "id",
+                            "multiple": true,
+                            "allow_null": false,
+                            "allow_in_bindings": false,
+                            "bidirectional": false,
+                            "ui": true,
+                            "bidirectional_target": []
                         },
                         {
                             "key": "field_67af90123lmnopq3",
@@ -1974,7 +2036,15 @@
                             "type": "repeater",
                             "instructions": "",
                             "required": false,
-                            "conditional_logic": false,
+                            "conditional_logic": [
+                                [
+                                    {
+                                        "field": "field_67af90123lmnopq8",
+                                        "operator": "==",
+                                        "value": "manual"
+                                    }
+                                ]
+                            ],
                             "wrapper": {
                                 "width": "",
                                 "class": "",
@@ -1994,23 +2064,24 @@
                                     "aria-label": "",
                                     "type": "image",
                                     "instructions": "",
-                                    "required": false,
-                                    "conditional_logic": false,
+                                    "required": 0,
+                                    "conditional_logic": 0,
                                     "wrapper": {
                                         "width": "",
                                         "class": "",
                                         "id": ""
                                     },
                                     "return_format": "array",
-                                    "preview_size": "medium",
                                     "library": "all",
-                                    "min_width": 0,
-                                    "min_height": 0,
-                                    "min_size": 0,
-                                    "max_width": 0,
-                                    "max_height": 0,
-                                    "max_size": 0,
+                                    "min_width": "",
+                                    "min_height": "",
+                                    "min_size": "",
+                                    "max_width": "",
+                                    "max_height": "",
+                                    "max_size": "",
                                     "mime_types": "",
+                                    "allow_in_bindings": 0,
+                                    "preview_size": "thumbnail",
                                     "parent_repeater": "field_67af90123lmnopq3"
                                 },
                                 {
@@ -2020,8 +2091,8 @@
                                     "aria-label": "",
                                     "type": "text",
                                     "instructions": "",
-                                    "required": false,
-                                    "conditional_logic": false,
+                                    "required": 0,
+                                    "conditional_logic": 0,
                                     "wrapper": {
                                         "width": "",
                                         "class": "",
@@ -2029,6 +2100,7 @@
                                     },
                                     "default_value": "",
                                     "maxlength": "",
+                                    "allow_in_bindings": 0,
                                     "placeholder": "",
                                     "prepend": "",
                                     "append": "",
@@ -2041,8 +2113,8 @@
                                     "aria-label": "",
                                     "type": "text",
                                     "instructions": "",
-                                    "required": false,
-                                    "conditional_logic": false,
+                                    "required": 0,
+                                    "conditional_logic": 0,
                                     "wrapper": {
                                         "width": "",
                                         "class": "",
@@ -2050,6 +2122,7 @@
                                     },
                                     "default_value": "",
                                     "maxlength": "",
+                                    "allow_in_bindings": 0,
                                     "placeholder": "",
                                     "prepend": "",
                                     "append": "",
@@ -2062,14 +2135,15 @@
                                     "aria-label": "",
                                     "type": "link",
                                     "instructions": "",
-                                    "required": false,
-                                    "conditional_logic": false,
+                                    "required": 0,
+                                    "conditional_logic": 0,
                                     "wrapper": {
                                         "width": "",
                                         "class": "",
                                         "id": ""
                                     },
                                     "return_format": "array",
+                                    "allow_in_bindings": 0,
                                     "parent_repeater": "field_67af90123lmnopq3"
                                 }
                             ]
@@ -3199,5 +3273,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1740049655
+    "modified": 1740052188
 }
