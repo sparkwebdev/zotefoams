@@ -387,7 +387,10 @@ html {
     text-decoration-thickness: 4px;
   }
 }
-
+.file-list__show-all.hidden,
+.filter-toggle__options.hidden {
+  display: none;
+}
 @media (max-width: 767px) {
   .file-list {
     .file-list__item-icon {
