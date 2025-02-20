@@ -468,3 +468,10 @@ html {
 .markets-list h3 {
   min-height: 2.5em;
 }
+
+
+.theme-dark + .theme-dark,
+.theme-light + .theme-light,
+.theme-none + .theme-none {
+  padding-top: 0;
+}
