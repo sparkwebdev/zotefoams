@@ -24,24 +24,13 @@
 
 		<?php 
 		if ($showAll) :
-			$market_page_id = $marketPageID ?? get_page_id_by_title('Markets');	
-			$child_pages = get_pages(array(
+				$market_page_id = !empty($marketPageID) ? $marketPageID : get_page_id_by_title('Markets');
+				$child_pages = get_pages(array(
 				'child_of' => $market_page_id,
 				'sort_column' => 'menu_order',
 				'sort_order' => 'ASC'
 			));
 			if (count($child_pages) > 0) { ?>
-			<div class="light-grey-bg padding-t-b-70">
-
-				<div class="cont-m">
-					<div class="title-strip margin-b-30">
-						<h2 class="fs-500 fw-600">Our Markets</h2>
-						<?php if ($market_page_id !== get_the_ID()) { ?>
-							<a href="<?php echo get_the_permalink( $market_page_id ); ?>" class="btn black outline">About Our Markets</a>	
-						<?php } ?>
-					</div>
-				</div>
-
 				<div class="markets-list">
 				<?php foreach ($child_pages as $child) {
 					$id = $child->ID; ?>
@@ -66,7 +55,6 @@
 						<a href="<?php echo get_the_permalink( $id ); ?>" class="hl arrow">Read more</a>
 					</div>
 				<?php } ?>
-				</div>
 			</div>
 		<?php } ?>
 
