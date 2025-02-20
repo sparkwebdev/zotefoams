@@ -2,7 +2,32 @@
 // Allow for passed variables, as well as ACF values
 $title = get_sub_field('box_columns_title');
 $button = get_sub_field('box_columns_button'); // ACF Link field
+$behaviour = get_sub_field('box_columns_behaviour');
+$page_ids = get_sub_field('box_columns_page_ids');
+$parent_id = get_sub_field('box_columns_parent_id');
 $items = get_sub_field('box_columns_items');
+
+// Determine items based on behaviour
+if ($behaviour === 'pick' && !empty($page_ids)) {
+    $args = [
+        'post_type'   => 'page',
+        'post_status' => 'publish',
+        'orderby'     => 'post__in',
+        'post__in'    => $page_ids,
+        'posts_per_page' => -1
+    ];
+    $items = get_posts($args);
+} elseif ($behaviour === 'children' && !empty($parent_id)) {
+    $args = [
+        'post_type'   => 'page',
+        'post_status' => 'publish',
+        'post_parent' => $parent_id,
+        'orderby'     => 'menu_order',
+        'order'       => 'ASC',
+        'posts_per_page' => -1
+    ];
+    $items = get_posts($args);
+}
 ?>
 
 <div class="box-columns cont-m padding-t-b-100">
@@ -22,13 +47,20 @@ $items = get_sub_field('box_columns_items');
         <?php if ($items): ?>
             <?php foreach ($items as $item): ?>
                 <?php 
-                    $title = $item['box_columns_item_title'] ?? '';
-                    $description = $item['box_columns_item_description'] ?? '';
-                    $button = $item['box_columns_item_button'] ?? '';
-                    $image = $item['box_columns_item_image'] ?? null;
-                    
-                    // Extract 'large' size image URL with fallback
-                    $image_url = $image ? $image['sizes']['large'] : get_template_directory_uri() . '/images/placeholder.png';
+                    if ($behaviour === 'manual') {
+                        $title = $item['box_columns_item_title'] ?? '';
+                        $description = $item['box_columns_item_description'] ?? '';
+                        $button = $item['box_columns_item_button'] ?? '';
+                        $image = $item['box_columns_item_image'] ?? null;
+                    } else {
+                        $title = get_the_title($item->ID);
+                        $description = get_the_excerpt($item->ID);
+                        $button = ['url' => get_permalink($item->ID), 'title' => 'Read More'];
+                        $image = get_the_post_thumbnail_url($item->ID, 'large');
+                    }
+
+                    // Extract image URL with fallback
+                    $image_url = $image ? (is_array($image) ? $image['sizes']['large'] : $image) : get_template_directory_uri() . '/images/placeholder.png';
                 ?>
                 <div class="box-item light-grey-bg">
                     <div class="box-content padding-40">
@@ -41,7 +73,7 @@ $items = get_sub_field('box_columns_items');
                             <?php endif; ?>
                         </div>
                         <?php if ($button): ?>
-                            <a href="<?php echo esc_url($button['url']); ?>" class="hl arrow" target="<?php echo esc_attr($button['target']); ?>">
+                            <a href="<?php echo esc_url($button['url']); ?>" class="hl arrow" target="<?php echo esc_attr($button['target'] ?? ''); ?>">
                                 <?php echo esc_html($button['title']); ?>
                             </a>
                         <?php endif; ?>

@@ -2245,15 +2245,16 @@
                             "aria-label": "",
                             "type": "text",
                             "instructions": "",
-                            "required": false,
-                            "conditional_logic": false,
+                            "required": 0,
+                            "conditional_logic": 0,
                             "wrapper": {
-                                "width": "",
+                                "width": "35",
                                 "class": "",
                                 "id": ""
                             },
                             "default_value": "",
                             "maxlength": "",
+                            "allow_in_bindings": 0,
                             "placeholder": "",
                             "prepend": "",
                             "append": ""
@@ -2265,35 +2266,142 @@
                             "aria-label": "",
                             "type": "link",
                             "instructions": "",
-                            "required": false,
-                            "conditional_logic": false,
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "35",
+                                "class": "",
+                                "id": ""
+                            },
+                            "return_format": "array",
+                            "allow_in_bindings": 0
+                        },
+                        {
+                            "key": "field_67b70587970e6",
+                            "label": "Behaviour",
+                            "name": "box_columns_behaviour",
+                            "aria-label": "",
+                            "type": "select",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "30",
+                                "class": "",
+                                "id": ""
+                            },
+                            "choices": {
+                                "pick": "Pick specific pages",
+                                "children": "Show page's children",
+                                "manual": "Manually add"
+                            },
+                            "default_value": "manual",
+                            "return_format": "value",
+                            "multiple": 0,
+                            "allow_null": 0,
+                            "allow_in_bindings": 0,
+                            "ui": 0,
+                            "ajax": 0,
+                            "placeholder": ""
+                        },
+                        {
+                            "key": "field_67b70587970ea",
+                            "label": "Page Selection",
+                            "name": "box_columns_page_ids",
+                            "aria-label": "",
+                            "type": "post_object",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": [
+                                [
+                                    {
+                                        "field": "field_67b70587970e6",
+                                        "operator": "==",
+                                        "value": "pick"
+                                    }
+                                ]
+                            ],
                             "wrapper": {
                                 "width": "",
                                 "class": "",
                                 "id": ""
                             },
-                            "return_format": "array"
+                            "post_type": [
+                                "page"
+                            ],
+                            "post_status": "",
+                            "taxonomy": "",
+                            "return_format": "id",
+                            "multiple": 1,
+                            "allow_null": 0,
+                            "allow_in_bindings": 0,
+                            "bidirectional": 0,
+                            "ui": 1,
+                            "bidirectional_target": []
+                        },
+                        {
+                            "key": "field_67b7077b970ed",
+                            "label": "Parent Page Selection",
+                            "name": "box_columns_parent_id",
+                            "aria-label": "",
+                            "type": "post_object",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": [
+                                [
+                                    {
+                                        "field": "field_67b70587970e6",
+                                        "operator": "==",
+                                        "value": "children"
+                                    }
+                                ]
+                            ],
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "post_type": [
+                                "page"
+                            ],
+                            "post_status": "",
+                            "taxonomy": "",
+                            "return_format": "id",
+                            "multiple": 0,
+                            "allow_null": 0,
+                            "allow_in_bindings": 0,
+                            "bidirectional": 0,
+                            "ui": 1,
+                            "bidirectional_target": []
                         },
                         {
                             "key": "field_67af90123bcxcol3",
-                            "label": "Box Items",
+                            "label": "Items",
                             "name": "box_columns_items",
                             "aria-label": "",
                             "type": "repeater",
                             "instructions": "",
-                            "required": false,
-                            "conditional_logic": false,
+                            "required": 0,
+                            "conditional_logic": [
+                                [
+                                    {
+                                        "field": "field_67b70587970e6",
+                                        "operator": "==",
+                                        "value": "manual"
+                                    }
+                                ]
+                            ],
                             "wrapper": {
                                 "width": "",
                                 "class": "",
                                 "id": ""
                             },
-                            "min": 1,
                             "layout": "block",
-                            "button_label": "Add Box Item",
+                            "min": 1,
                             "max": 0,
-                            "rows_per_page": 20,
                             "collapsed": "",
+                            "button_label": "Add Box Item",
+                            "rows_per_page": 20,
                             "sub_fields": [
                                 {
                                     "key": "field_67af90123bcxcol4",
@@ -3091,5 +3199,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1740047516
+    "modified": 1740049655
 }
