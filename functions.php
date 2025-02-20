@@ -270,3 +270,13 @@ function use_page_template_for_blog($template) {
 }
 add_filter('template_include', 'use_page_template_for_blog');
 
+// Function to get page ID by title (replacement for get_page_by_title)
+function get_page_id_by_title($title) {
+    $page = get_posts([
+        'post_type' => 'page',
+        'title' => $title,
+        'posts_per_page' => 1,
+        'fields' => 'ids'
+    ]);
+    return !empty($page) ? $page[0] : null;
+}
