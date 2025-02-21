@@ -822,3 +822,18 @@ html {
 .theme-dark + .theme-dark, .theme-light + .theme-light, .theme-none + .theme-none {
   padding-top: 0;
 }
+
+.split-video-one ul {
+  padding: 0;
+}
+
+.split-video-one ul li {
+  color: #707070;
+  background: url("bullet-tick.9e816a40.svg") 0 no-repeat;
+  padding-left: 1.5em;
+  list-style: none;
+}
+
+.split-video-one ul li + li {
+  margin-top: 5px;
+}
