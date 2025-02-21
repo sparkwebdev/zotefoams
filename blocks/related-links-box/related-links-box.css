@@ -1,5 +1,6 @@
 .related-links-box {
   margin-top: 50px;
+  margin-bottom: 40px;
 }
 .related-links-box__title {
   text-align: center;
@@ -35,6 +36,7 @@
       align-items: baseline;
       justify-content: space-between;
       height: 100%;
+      transition: background-color 0.3s;
       &::after {
         flex-shrink: 0;
       }
