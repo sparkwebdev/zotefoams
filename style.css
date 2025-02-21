@@ -653,7 +653,7 @@ textarea {
 --------------------------------------------------------------*/
 
 /* Navigation
---------------------------------------------- */
+---------------------------------------------
 header.site-header a {
 	font-weight: 500;
     text-transform: capitalize;
@@ -675,10 +675,10 @@ header.site-header a:hover {
 .site-branding img {
 	vertical-align: bottom
 }
-
+ */
 
 /* Utility menu
---------------------------------------------- */
+--------------------------------------------- 
 #menu-utility {
 	margin:0;
 	padding:0;
@@ -704,10 +704,10 @@ header.site-header a:hover {
 .utility-menu a:hover {
 	color:#3B82F6
 }
-
+*/
 
 /* Main navigation
---------------------------------------------- */
+--------------------------------------------- 
 
 .main-navigation {
 	display: inline-block;
@@ -774,8 +774,8 @@ header.site-header a:hover {
 .main-navigation li.current-menu-item {
 	border-bottom:3px solid #3B82F6
 }
-
-/* Small menu. */
+*/
+/* Small menu.
 .menu-toggle,
 .main-navigation.toggled ul {
 	display: block;
@@ -791,7 +791,7 @@ header.site-header a:hover {
 		display: flex;
 	}
 }
-
+ */
 .site-main .comment-navigation,
 .site-main
 .posts-navigation,

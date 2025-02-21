@@ -281,3 +281,7 @@ function get_page_id_by_title($title) {
     ]);
     return !empty($page) ? $page[0] : null;
 }
+
+
+require_once get_template_directory() . '/template-parts/class-mega-menu-walker.php';
+
