@@ -1,8 +1,8 @@
 .quote-box {
-  --quote-box-font-size: 21px;
-  --quote-box-line-spacing: 32px;
-  --quote-box-cite-font-size: 18px;
-  --quote-box-cite-line-spacing: 28px;
+  --quote-box-font-size: 18px;
+  --quote-box-line-spacing: 28px;
+  --quote-box-cite-font-size: 16px;
+  --quote-box-cite-line-spacing: 21px;
   align-items: flex-start;
   box-sizing: border-box;
   display: flex;
@@ -10,7 +10,8 @@
   gap: 40px;
   padding: 30px;
   background-color: #F8F8F8;
-  margin-top: 60px;
+  margin-top: 50px;
+  margin-bottom: 40px;
 }
 
 
@@ -30,17 +31,20 @@
   position: relative;
   color: #707070;
   margin-top: 40px;
+  padding-top: 5px;
 }
 
 .quote-box__blockquote::before {
   color: #3b82f6;
-  content: "“";
+  content: "";
   display: block;
-  font-family: Times New Roman,serif;
-  font-size: 100px;
   line-height: 1;
   position: absolute;
-  top: -60px;
+  top: -53px;
+  width: 50px;
+  height: 45px;
+  background: url(quote-blue.svg) no-repeat;
+  background-size: 100% auto;
 }
 
 .quote-box__attribution {
@@ -51,19 +55,20 @@
 
 .quote-box__author {
   font-style: normal;
-  font-weight: 700;
-  color: #000;
+  color: #707070;
 }
 
 .quote-box__role {
   display: block;
+  color: #000;
+  font-weight: 500;
 }
 
 .quote-box__image {
   box-sizing: border-box;
   height: 100%;
   line-height: 0;
-  margin-bottom: 0;
+  margin: 0;
 }
 
 .quote-box__image img {
@@ -82,7 +87,7 @@
   }
 
   .quote-box__col:first-of-type {
-    width: 150px;
+    width: 200px;
   }
 
   .quote-box__col:last-of-type {
