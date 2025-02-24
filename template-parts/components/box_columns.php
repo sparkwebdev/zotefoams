@@ -63,6 +63,37 @@ $use_categories = ($behaviour === 'children' && $page_id == $posts_page_id);
                 endforeach; 
             endif;
 
+        } elseif ($behaviour === 'pick') {
+            $page_ids = get_sub_field('box_columns_page_ids');
+            if ($page_ids) {
+                // Either loop directly or use a query. If your field returns IDs, you can do:
+                foreach ($page_ids as $page_id) : 
+                    $page_title = get_the_title($page_id);
+                    $page_link = get_permalink($page_id);
+                    $thumbnail_url = get_the_post_thumbnail_url( $page_id, 'thumbnail' );
+                    if (!$thumbnail_url) {
+                        $thumbnail_url = get_template_directory_uri() . '/images/placeholder-thumbnail.png';
+                    }
+                    ?>
+                    <div class="box-item light-grey-bg">
+                        <div class="box-content padding-40">
+                            <div>
+                                <p class="fs-400 fw-semibold margin-b-20"><?php echo esc_html($page_title); ?></p>
+                                <?php 
+                                if (get_the_excerpt($page_id)) {
+                                    echo '<div class="margin-b-20 grey-text">';
+                                    echo get_the_excerpt($child->ID);
+                                    echo '</div>';
+                                }
+                                ?>
+                            </div>
+                            <a href="<?php echo esc_url($page_link); ?>" class="hl arrow">Read more</a>
+                        </div>
+                        <div class="box-image image-cover" style="background-image:url('<?php echo $thumbnail_url; ?>');"></div>
+                    </div>
+                    <?php endforeach; ?>
+            <?php }
+
         } elseif ($behaviour === 'children') {
             // Fetch child pages
             $child_pages = get_pages([
