@@ -3,6 +3,7 @@
 
 .site-branding {
 	flex-shrink: 0;
+	margin: 5px 0;
 }
 
 
@@ -53,7 +54,7 @@
 		padding-left: 0;
 	}
 
-	.nav-menu > li {
+	.menu > li {
 		border-bottom: 3px solid white;
 		> a {
 			padding: 15px 0;

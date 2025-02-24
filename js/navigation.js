@@ -41,7 +41,7 @@
     
     itemsWithDropdowns.forEach(link => {
       link.addEventListener('click', function(e) {
-        e.preventDefault();
+        // e.preventDefault();
         const menuItem = this.parentNode;
         
         // Close other open dropdowns
