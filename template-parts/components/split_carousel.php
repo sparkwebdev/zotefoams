@@ -5,7 +5,7 @@ $slides = get_sub_field('split_carousel_slides');
 ?>
 
 <!-- Carousel 3 - Split Carousel -->
-<div class="swiper-carousel split-carousel light-grey-bg">
+<div class="swiper-carousel split-carousel light-grey-bg theme-light">
     
     <!-- Navigation -->
     <div class="navigation-wrapper">

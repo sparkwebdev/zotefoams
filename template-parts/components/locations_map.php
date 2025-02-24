@@ -9,7 +9,7 @@ $map_image = get_sub_field('locations_map_image');
 $map_image_url = $map_image ? $map_image['sizes']['large'] : get_template_directory_uri() . '/images/placeholder.png';
 ?>
 
-<div class="locations-map half-half padding-t-b-100">
+<div class="locations-map half-half padding-t-b-100 theme-dark">
     <div class="cont-m">
         <div class="map-intro margin-b-40">
             <?php if ($title): ?>

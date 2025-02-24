@@ -5,7 +5,7 @@ $button = get_sub_field('show_hide_button'); // ACF Link field
 $items = get_sub_field('show_hide_items');
 ?>
 
-<div class="accordion cont-m margin-t-100 margin-b-100">
+<div class="accordion cont-m margin-t-100 margin-b-100 theme-none">
     
     <div class="title-strip margin-b-30">
         <?php if ($title): ?>

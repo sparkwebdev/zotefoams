@@ -1,5 +1,5 @@
 
-	<div class="data-map padding-t-b-100" style="background-image:url(<?php echo get_template_directory_uri(); ?>/images/data-map-bg.jpg)">
+	<div class="data-map padding-t-b-100 theme-dark" style="background-image:url(<?php echo get_template_directory_uri(); ?>/images/data-map-bg.jpg)">
 		<div class="cont-m">
 			<div class="stats">
 				<div class="stat stat-1">

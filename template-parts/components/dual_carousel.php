@@ -4,7 +4,7 @@ $slides = get_sub_field('dual_carousel_slides');
 ?>
 
 <!-- Carousel 2 - dual carousel -->
-<div class="swiper-dual-carousel black-bg white-text text-center">
+<div class="swiper-dual-carousel black-bg white-text text-center theme-dark">
     <div class="swiper swiper-dual-carousel-text">
         <div class="swiper-wrapper">
             <?php if ($slides): ?>

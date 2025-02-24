@@ -6,7 +6,7 @@ $note = get_sub_field('calendar_carousel_note');
 ?>
 
 <!-- Carousel 5 - Calendar Carousel -->
-<div class="cont-m padding-t-b-100">
+<div class="cont-m padding-t-b-100 theme-none">
     
     <div class="title-strip margin-b-30">
         <?php if ($title): ?>

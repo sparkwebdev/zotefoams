@@ -3265,6 +3265,15 @@
                     ],
                     "min": "",
                     "max": ""
+                },
+                "layout_67bc93e88c4ef": {
+                    "key": "layout_67bc93e88c4ef",
+                    "name": "data_map",
+                    "label": "Data map",
+                    "display": "block",
+                    "sub_fields": [],
+                    "min": "",
+                    "max": ""
                 }
             },
             "min": "",
@@ -3290,5 +3299,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1740400148
+    "modified": 1740411898
 }

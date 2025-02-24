@@ -4,7 +4,7 @@ $title = get_sub_field('data_points_title');
 $items = get_sub_field('data_points_items');
 ?>
 
-<div class="data-points half-half padding-t-b-70">
+<div class="data-points half-half light-grey-bg padding-t-b-70 theme-none">
     
     <?php if ($title): ?>
         <h3><?php echo esc_html($title); ?></h3>
@@ -109,10 +109,6 @@ $items = get_sub_field('data_points_items');
 <style type="text/css">
 	/* 17 Data points
 	--------------------------------------------- */
-
-	.data-points {
-		background-color: #F8F8F8;
-	}
 
 	.data-points h3 {
 		text-align: center;

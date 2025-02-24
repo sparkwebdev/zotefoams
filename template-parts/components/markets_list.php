@@ -7,7 +7,7 @@
 	$marketPageID = get_sub_field('markets_list_page_id');
 	$items = get_sub_field('markets_list_markets');
 ?>
-	<div class="light-grey-bg padding-t-b-70">
+	<div class="light-grey-bg padding-t-b-70 theme-light">
 
 		<div class="cont-m">
 			<div class="title-strip margin-b-30">

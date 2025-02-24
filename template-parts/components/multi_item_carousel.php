@@ -5,7 +5,7 @@ $slides = get_sub_field('multi_item_carousel_slides');
 ?>
 
 <!-- Carousel 4 - Multi-Item Carousel -->
-<div class="swiper multi-item-carousel margin-t-100">
+<div class="swiper multi-item-carousel margin-t-100 theme-none">
     
     <div class="title-strip margin-b-30 cont-m">
         <?php if ($title): ?>

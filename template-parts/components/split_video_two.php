@@ -10,7 +10,7 @@ $image_url = $image ? $image['sizes']['large'] : '';
 ?>
 
 <!-- Half & Half image text block -->
-<div class="split-video-two black-bg white-text">
+<div class="split-video-two black-bg white-text theme-none">
     <div class="split-video-two-inner half-half">
         <div class="half padding-t-b-100 text-content">
             <?php if ($title): ?>

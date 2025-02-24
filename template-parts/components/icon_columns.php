@@ -3,7 +3,7 @@
 $columns = get_sub_field('icon_columns_columns');
 ?>
 
-<div class="icon-columns light-grey-bg black-text padding-t-b-100">
+<div class="icon-columns light-grey-bg black-text padding-t-b-100 theme-light">
     <div class="icon-columns-inner cont-m">
         <?php if ($columns): ?>
             <?php foreach ($columns as $column): ?>

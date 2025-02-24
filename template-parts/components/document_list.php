@@ -5,7 +5,7 @@ $button = get_sub_field('document_list_button'); // ACF Link field
 $documents = get_sub_field('document_list_documents');
 ?>
 
-<div class="doc-list-outer cont-m margin-b-100">
+<div class="doc-list-outer cont-m margin-b-100 theme-none">
     
 	<h2 style="color:red">* TO BE REPLACED *</h2>
     <div class="title-strip margin-b-30">

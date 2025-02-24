@@ -5,7 +5,7 @@ $button = get_sub_field('small_box_columns_button'); // ACF Link field
 $items = get_sub_field('small_box_columns_items');
 ?>
 
-<div class="small-box-columns padding-t-b-100 light-grey-bg">
+<div class="small-box-columns padding-t-b-100 theme-none">
     <div class="cont-m">
 
         <div class="title-strip margin-b-30">

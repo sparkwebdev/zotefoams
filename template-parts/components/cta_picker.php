@@ -60,7 +60,7 @@ if ($content_type === 'category' && !empty($category_ids)) {
 }
 ?>
 
-<div class="cta-picker-container <?php echo esc_attr($layout_class); ?> light-grey-bg padding-t-b-70">
+<div class="cta-picker-container <?php echo esc_attr($layout_class); ?> light-grey-bg padding-t-b-70 theme-light">
 
     <div class="cont-m">
 

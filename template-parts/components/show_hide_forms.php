@@ -5,7 +5,7 @@ $intro = get_field('show_hide_forms_intro', 'option'); // ACF Link field
 $items = get_field('show_hide_forms_items', 'option');
 ?>
 
-	<div class="show-hide-forms cont-m margin-t-100 margin-b-100">
+	<div class="show-hide-forms cont-m margin-t-100 margin-b-100 theme-none">
 
 		<div class="intro">
         	<?php if ($title): ?>
