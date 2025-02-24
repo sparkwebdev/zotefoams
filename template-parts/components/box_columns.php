@@ -5,7 +5,7 @@ $button = get_sub_field('box_columns_button'); // ACF Link field
 $behaviour = get_sub_field('box_columns_behaviour'); // Pick / Children / Manual
 $page_id = get_sub_field('box_columns_parent_id'); // Selected parent page
 $manual_items = get_sub_field('box_columns_items'); // Manual items
-$posts_page_id = get_page_for_posts_id();
+$posts_page_id = zf_get_page_for_posts_id();
 
 // Check if we need to pull categories instead of child pages
 $use_categories = ($behaviour === 'children' && $page_id == $posts_page_id);

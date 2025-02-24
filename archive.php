@@ -14,7 +14,7 @@ get_header();
 		$title = single_cat_title('', false);
 		$cat_more_link_label = zotefoams_map_cat_label($title);
 		$layout = ($title == 'Case Studies' || $title == 'Videos') ? "grid" : "list";
-		$posts_page_id = get_page_for_posts_id();
+		$posts_page_id = zf_get_page_for_posts_id();
 	?>
 
 	<header class="text-banner margin-t-70">

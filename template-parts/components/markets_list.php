@@ -24,7 +24,7 @@
 
 		<?php 
 		if ($showAll) :
-				$market_page_id = !empty($marketPageID) ? $marketPageID : get_page_id_by_title('Markets');
+				$market_page_id = !empty($marketPageID) ? $marketPageID : zf_get_page_id_by_title('Markets');
 				$child_pages = get_pages(array(
 				'child_of' => $market_page_id,
 				'sort_column' => 'menu_order',

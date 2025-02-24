@@ -237,8 +237,8 @@ function include_template_part($file, $variables = []) {
 
 
 
-add_filter('acf/load_field/name=show_hide_forms_form', 'populate_acf_with_wpforms');
-function populate_acf_with_wpforms($field) {
+add_filter('acf/load_field/name=show_hide_forms_form', 'zf_populate_acf_with_wpforms');
+function zf_populate_acf_with_wpforms($field) {
     // Clear existing choices
     $field['choices'] = [];
 
@@ -272,7 +272,7 @@ function populate_acf_with_wpforms($field) {
 
 
 // Function to get page ID by title (replacement for get_page_by_title)
-function get_page_id_by_title($title) {
+function zf_get_page_id_by_title($title) {
     $page = get_posts([
         'post_type' => 'page',
         'title' => $title,
@@ -287,9 +287,9 @@ require_once get_template_directory() . '/template-parts/class-mega-menu-walker.
 
 
 
-function get_page_for_posts_id() {
+function zf_get_page_for_posts_id() {
 	$page_for_posts = get_option('page_for_posts', true); // WordPress "Posts Page"
-	$posts_page_id = !empty($page_for_posts) ? $page_for_posts : get_page_id_by_title('News Centre');
+	$posts_page_id = !empty($page_for_posts) ? $page_for_posts : zf_get_page_id_by_title('News Centre');
 	return $posts_page_id;
 }
 
@@ -299,10 +299,10 @@ function my_custom_search_rewrite() {
 add_action( 'init', 'my_custom_search_rewrite' );
 
 
-function my_custom_search_form( $form ) {
+function zf_filter_search_form( $form ) {
     // Replace the default submit button's class with the new classes.
     $form = str_replace( 'class="search-submit"', 'class="search-submit btn blue"', $form );
     $form = str_replace( 'class="search-field"', 'class="search-field zf"', $form );
     return $form;
 }
-add_filter( 'get_search_form', 'my_custom_search_form' );
+add_filter( 'get_search_form', 'zf_filter_search_form' );
