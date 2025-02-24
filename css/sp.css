@@ -387,7 +387,7 @@ html {
 
 .text-banner .uppercase {
   text-wrap: balance;
-  max-width: 10em;
+  max-width: 50%;
 }
 
 .articles-header {
@@ -841,4 +841,19 @@ html {
 
 .split-video-one ul li + li {
   margin-top: 5px;
+}
+
+.search-form {
+  gap: 10px;
+  display: flex;
+}
+
+.search-form input.zf {
+  margin: 0;
+}
+
+button.btn, input[type="button"].btn, input[type="reset"].btn, input[type="submit"].btn {
+  border: 0;
+  border-radius: 5px;
+  padding: 13px 20px 15px;
 }

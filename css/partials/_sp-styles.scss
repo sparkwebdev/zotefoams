@@ -6,11 +6,9 @@ html {
 
 /* Daves Components */
 .text-banner .uppercase {
-	max-width: 10em;
+	max-width: 50%;
 	text-wrap: balance;
 }
-
-
 
 /* News Centre - Landing page grids */
 .articles-header {
@@ -472,4 +470,21 @@ html {
     }
   }
 
+}
+
+
+.search-form {
+  display: flex;
+  gap: 10px;
+
+  input.zf {
+    margin: 0;
+  }
+}
+button, input[type="button"], input[type="reset"], input[type="submit"] {
+  &.btn {
+    border: 0;
+    padding: 13px 20px 15px;
+    border-radius: 5px;
+  }
 }

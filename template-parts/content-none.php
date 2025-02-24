@@ -9,21 +9,25 @@
 
 ?>
 
-<section class="cont-m margin-t-70 no-results not-found section">
-	<header>
-		<h1 class="uppercase grey-text fs-800 fw-extrabold"><?php esc_html_e( 'Search', 'zotefoams' ); ?></h1>
-		<h2 class="uppercase black-text fs-800 fw-extrabold">Nothing found</h2>
-		<h3 class="uppercase black-text fs-400 fw-extrabold  margin-t-70">
-			<?php
-			/* translators: %s: search query. */
-			printf( esc_html__( 'Results for: \'%s\'', 'zotefoams' ), '<span>' . get_search_query() . '</span>' );
-			?></h3>
-	</header>
+<header class="text-banner margin-t-70">
+	<div class="cont-m margin-b-70">
+		<h1 class="uppercase grey-text fs-800 fw-extrabold">
+			<?php esc_html_e( 'Search', 'zotefoams' ); ?>
+		</h1>
+		<h2 class="uppercase black-text fs-800 fw-extrabold">
+			<?php // echo ($title == "News" ? 'Latest ' : '') . $title; ?>
+			Nothing found
+		</h2>
+	</div>
+</header>
 
-	<div class="page-content">
+<div class="text-block cont-m margin-t-100 margin-b-100 theme-none">
+	<div class="text-block-inner">
+
 		<?php
 		if ( is_search() ) :
 			?>
+			<p class="grey-text fs-600 fw-semibold margin-b-20"><?php esc_html_e( 'It looks like nothing was found at this location.', 'zotefoams' ); ?></p>
 			<p><?php esc_html_e( 'Sorry, but nothing matched your search terms. Please try again with some different keywords.', 'zotefoams' ); ?></p>
 		<?php else : ?>
 			<p><?php esc_html_e( 'It seems we can&rsquo;t find what you&rsquo;re looking for. Perhaps searching can help.', 'zotefoams' ); ?></p>
@@ -34,5 +38,6 @@
 			get_search_form();
 		echo '</div>';
 		?>
-	</div><!-- .page-content -->
-</section><!-- .no-results -->
+
+	</div>
+</div>

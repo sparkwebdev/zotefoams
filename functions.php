@@ -293,3 +293,16 @@ function get_page_for_posts_id() {
 	return $posts_page_id;
 }
 
+function my_custom_search_rewrite() {
+    add_rewrite_rule( '^search/?$', 'index.php?s=', 'top' );
+}
+add_action( 'init', 'my_custom_search_rewrite' );
+
+
+function my_custom_search_form( $form ) {
+    // Replace the default submit button's class with the new classes.
+    $form = str_replace( 'class="search-submit"', 'class="search-submit btn blue"', $form );
+    $form = str_replace( 'class="search-field"', 'class="search-field zf"', $form );
+    return $form;
+}
+add_filter( 'get_search_form', 'my_custom_search_form' );
