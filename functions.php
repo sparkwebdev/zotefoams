@@ -285,3 +285,11 @@ function get_page_id_by_title($title) {
 
 require_once get_template_directory() . '/template-parts/class-mega-menu-walker.php';
 
+
+
+function get_page_for_posts_id() {
+	$page_for_posts = get_option('page_for_posts', true); // WordPress "Posts Page"
+	$posts_page_id = !empty($page_for_posts) ? $page_for_posts : get_page_id_by_title('News Centre');
+	return $posts_page_id;
+}
+

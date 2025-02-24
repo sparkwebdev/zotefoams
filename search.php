@@ -37,9 +37,9 @@ get_header();
 
 			endwhile;
 
-			echo '<div class="pagination cont-m margin-t-70 margin-b-70">';
+			echo '<footer class="pagination cont-m margin-t-70 margin-b-70">';
 				get_template_part( 'template-parts/pagination' );
-			echo '</div>';
+			echo '</footer>';
 
 		else :
 
