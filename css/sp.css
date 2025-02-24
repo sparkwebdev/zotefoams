@@ -11,6 +11,11 @@
   --border-separator: solid 1px var(--tone-light);
 }
 
+.site-branding {
+  flex-shrink: 0;
+  margin: 5px 0;
+}
+
 .site-header a {
   text-transform: capitalize;
   font-weight: 500;
@@ -54,15 +59,15 @@
   display: none;
 }
 
-.main-navigation .nav-menu > li {
+.main-navigation .menu > li {
   border-bottom: 3px solid #fff;
 }
 
-.main-navigation .nav-menu > li > a {
+.main-navigation .menu > li > a {
   padding: 15px 0;
 }
 
-.main-navigation .nav-menu > li.current-menu-item, .main-navigation .nav-menu > li.current-menu-parent {
+.main-navigation .menu > li.current-menu-item, .main-navigation .menu > li.current-menu-parent {
   border-bottom-color: var(--color-link);
 }
 
