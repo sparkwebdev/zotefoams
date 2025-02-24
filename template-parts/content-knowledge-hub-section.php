@@ -1,13 +1,3 @@
-<section id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
-
-    <?php if (get_the_content()) { ?>
-    <div class="cont-m margin-b-70">
-        <?php
-        the_content();
-        ?>
-    </div><!-- .entry-content -->
-    <?php } ?>
-
 	<?php
         $document_groups = get_field('document_group');
         if ($document_groups) {
@@ -101,6 +91,3 @@
     <?php else: ?>
         <p><?php echo esc_html__('Sorry, no items currently available.', 'your-text-domain'); ?></p>
     <?php endif; ?>
-    </div>
-
-</section><!-- #post-<?php the_ID(); ?> -->

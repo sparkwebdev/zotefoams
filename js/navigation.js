@@ -5,95 +5,95 @@
  * navigation support for dropdown menus.
  */
 ( function() {
-	const siteNavigation = document.getElementById( 'site-navigation' );
+  const siteNavigation = document.getElementById('site-navigation');
+  const utilityMenu = document.querySelector('.utility-menu');
 
-	// Return early if the navigation doesn't exist.
-	if ( ! siteNavigation ) {
-		return;
-	}
+  // Return early if the navigation doesn't exist.
+  if (!siteNavigation) {
+    return;
+  }
 
-	const button = siteNavigation.getElementsByTagName( 'button' )[ 0 ];
+  const button = siteNavigation.getElementsByTagName('button')[0];
+  const menu = siteNavigation.getElementsByTagName('ul')[0];
 
-	// Return early if the button doesn't exist.
-	if ( 'undefined' === typeof button ) {
-		return;
-	}
+  // Early returns for missing elements
+  if ('undefined' === typeof button || 'undefined' === typeof menu) {
+    if ('undefined' === typeof menu) {
+      button.style.display = 'none';
+    }
+    return;
+  }
 
-	const menu = siteNavigation.getElementsByTagName( 'ul' )[ 0 ];
+  if (!menu.classList.contains('nav-menu')) {
+    menu.classList.add('nav-menu');
+  }
 
-	// Hide menu toggle button if menu is empty and return early.
-	if ( 'undefined' === typeof menu ) {
-		button.style.display = 'none';
-		return;
-	}
+  // Handle hamburger menu toggle
+  button.addEventListener('click', function() {
+    siteNavigation.classList.toggle('toggled');
+    const isExpanded = button.getAttribute('aria-expanded') === 'true';
+    button.setAttribute('aria-expanded', (!isExpanded).toString());
+  });
 
-	if ( ! menu.classList.contains( 'nav-menu' ) ) {
-		menu.classList.add( 'nav-menu' );
-	}
+  // Handle clicks on menu items with dropdowns
+  function setupDropdownHandlers(menuElement) {
+    const itemsWithDropdowns = menuElement.querySelectorAll('.menu-item-has-children > a, li:has(.mega-menu) > a');
+    
+    itemsWithDropdowns.forEach(link => {
+      link.addEventListener('click', function(e) {
+        // e.preventDefault();
+        const menuItem = this.parentNode;
+        
+        // Close other open dropdowns
+        const openItems = menuElement.querySelectorAll('.dropdown-active');
+        openItems.forEach(item => {
+          if (item !== menuItem) {
+            item.classList.remove('dropdown-active');
+          }
+        });
+        
+        // Toggle current dropdown
+        menuItem.classList.toggle('dropdown-active');
+      });
+    });
+  }
 
-	// Toggle the .toggled class and the aria-expanded value each time the button is clicked.
-	button.addEventListener( 'click', function() {
-		siteNavigation.classList.toggle( 'toggled' );
+  // Set up handlers for both navigation menus
+  setupDropdownHandlers(siteNavigation);
+  if (utilityMenu) {
+    setupDropdownHandlers(utilityMenu);
+  }
 
-		if ( button.getAttribute( 'aria-expanded' ) === 'true' ) {
-			button.setAttribute( 'aria-expanded', 'false' );
-		} else {
-			button.setAttribute( 'aria-expanded', 'true' );
-		}
-	} );
+  // Close dropdowns when clicking outside
+  document.addEventListener('click', function(event) {
+    if (!siteNavigation.contains(event.target) && !utilityMenu?.contains(event.target)) {
+      document.querySelectorAll('.dropdown-active').forEach(item => {
+        item.classList.remove('dropdown-active');
+      });
+      siteNavigation.classList.remove('toggled');
+      button.setAttribute('aria-expanded', 'false');
+    }
+  });
 
-	// Remove the .toggled class and set aria-expanded to false when the user clicks outside the navigation.
-	document.addEventListener( 'click', function( event ) {
-		const isClickInside = siteNavigation.contains( event.target );
+  // Accessibility support for keyboard navigation
+  function handleKeyboard(e) {
+    const menuItem = e.target.parentNode;
+    
+    if (e.key === 'Enter' || e.key === ' ') {
+      e.preventDefault();
+      if (menuItem.classList.contains('menu-item-has-children') || menuItem.querySelector('.mega-menu')) {
+        menuItem.classList.toggle('dropdown-active');
+      }
+    }
 
-		if ( ! isClickInside ) {
-			siteNavigation.classList.remove( 'toggled' );
-			button.setAttribute( 'aria-expanded', 'false' );
-		}
-	} );
+    if (e.key === 'Escape') {
+      const openItems = document.querySelectorAll('.dropdown-active');
+      openItems.forEach(item => item.classList.remove('dropdown-active'));
+    }
+  }
 
-	// Get all the link elements within the menu.
-	const links = menu.getElementsByTagName( 'a' );
-
-	// Get all the link elements with children within the menu.
-	const linksWithChildren = menu.querySelectorAll( '.menu-item-has-children > a, .page_item_has_children > a' );
-
-	// Toggle focus each time a menu link is focused or blurred.
-	for ( const link of links ) {
-		link.addEventListener( 'focus', toggleFocus, true );
-		link.addEventListener( 'blur', toggleFocus, true );
-	}
-
-	// Toggle focus each time a menu link with children receive a touch event.
-	for ( const link of linksWithChildren ) {
-		link.addEventListener( 'touchstart', toggleFocus, false );
-	}
-
-	/**
-	 * Sets or removes .focus class on an element.
-	 */
-	function toggleFocus() {
-		if ( event.type === 'focus' || event.type === 'blur' ) {
-			let self = this;
-			// Move up through the ancestors of the current link until we hit .nav-menu.
-			while ( ! self.classList.contains( 'nav-menu' ) ) {
-				// On li elements toggle the class .focus.
-				if ( 'li' === self.tagName.toLowerCase() ) {
-					self.classList.toggle( 'focus' );
-				}
-				self = self.parentNode;
-			}
-		}
-
-		if ( event.type === 'touchstart' ) {
-			const menuItem = this.parentNode;
-			event.preventDefault();
-			for ( const link of menuItem.parentNode.children ) {
-				if ( menuItem !== link ) {
-					link.classList.remove( 'focus' );
-				}
-			}
-			menuItem.classList.toggle( 'focus' );
-		}
-	}
-}() );
+  const menuLinks = document.querySelectorAll('.menu-item-has-children > a, li:has(.mega-menu) > a');
+  menuLinks.forEach(link => {
+    link.addEventListener('keydown', handleKeyboard);
+  });
+})();

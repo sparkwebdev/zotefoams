@@ -10,18 +10,39 @@
 get_header();
 ?>
 
-	<main id="primary" class="site-main">
+		<?php 
+		
+		if (!get_search_query()) : ?>
 
-		<?php if ( have_posts() ) : ?>
+		<header class="text-banner margin-t-70">
+			<div class="cont-m margin-b-70">
+				<h1 class="uppercase grey-text fs-800 fw-extrabold">
+					<?php esc_html_e( 'Search', 'zotefoams' ); ?>
+				</h1>
+				<div class="margin-t-30">
+				<?php get_search_form(); ?>
+				</div>
+			</div>
+		</header>
+		
+		<?php elseif ( have_posts() ) : ?>
 
-			<header class="cont-m margin-t-70">
+		<header class="text-banner margin-t-70">
+			<div class="cont-m margin-b-70">
 				<h1 class="uppercase grey-text fs-800 fw-extrabold">Search</h1>
+				<?php 
+				echo '<div class="margin-t-30 margin-b-30">';
+				get_search_form();
+				echo '</div>';?>
 				<h2 class="uppercase black-text fs-400 fw-extrabold  margin-t-70">
 					<?php
-					/* translators: %s: search query. */
-					printf( esc_html__( 'Results for: \'%s\'', 'zotefoams' ), '<span>' . get_search_query() . '</span>' );
+					if (get_search_query()) {
+						/* translators: %s: search query. */
+						printf( esc_html__( 'Results for: \'%s\'', 'zotefoams' ), '<span>' . get_search_query() . '</span>' );
+					}
 					?></h2>
-			</header>
+			</div>
+		</header>
 
 			<?php
 			/* Start the Loop */
@@ -37,9 +58,9 @@ get_header();
 
 			endwhile;
 
-			echo '<div class="pagination cont-m margin-t-70 margin-b-70">';
+			echo '<footer class="pagination cont-m margin-t-70 margin-b-70">';
 				get_template_part( 'template-parts/pagination' );
-			echo '</div>';
+			echo '</footer>';
 
 		else :
 

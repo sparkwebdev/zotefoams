@@ -3,6 +3,8 @@
 	// Allow for passed variables, as well as ACF values
 	$title = get_sub_field('markets_list_title');
 	$button = get_sub_field('markets_list_button'); // ACF Link field
+	$showAll = get_sub_field('markets_list_show_all');
+	$marketPageID = get_sub_field('markets_list_page_id');
 	$items = get_sub_field('markets_list_markets');
 ?>
 	<div class="light-grey-bg padding-t-b-70">
@@ -19,8 +21,45 @@
 				<?php endif; ?>
 			</div>
 		</div>
-		<?php if ($items): ?>
-			<div class="markets-list">
+
+		<?php 
+		if ($showAll) :
+				$market_page_id = !empty($marketPageID) ? $marketPageID : zf_get_page_id_by_title('Markets');
+				$child_pages = get_pages(array(
+				'child_of' => $market_page_id,
+				'sort_column' => 'menu_order',
+				'sort_order' => 'ASC'
+			));
+			if (count($child_pages) > 0) { ?>
+				<div class="markets-list">
+				<?php foreach ($child_pages as $child) {
+					$id = $child->ID; ?>
+
+					<div class="market-box white-bg text-center">
+						<h3 class="fs-600 fw-medium margin-b-20"><?php echo get_the_title( $id ); ?></h3>
+
+						<?php 
+						$related_brands = get_field('brands', $id);
+						if( $related_brands ): ?>
+							<ul class="brands margin-b-20">
+								<?php foreach( $related_brands as $brand ): 
+										setup_postdata($brand); ?>
+										<li>
+											<p class="grey-text"><?php echo get_the_title($brand); ?></p>
+										</li>
+								<?php endforeach; ?>
+							</ul>
+								<?php 
+								wp_reset_postdata(); ?>
+						<?php endif ?>
+						<a href="<?php echo get_the_permalink( $id ); ?>" class="hl arrow">Read more</a>
+					</div>
+				<?php } ?>
+			</div>
+		<?php } ?>
+
+		<?php elseif ($items) : ?>
+			<dv cl ass="markets-list">
 				<?php foreach ($items as $item): 
 					$title = $item['markets_list_name'] ?? '';
 					$brands = $item['markets_list_brands'] ?? '';
@@ -59,4 +98,4 @@
 				<?php endforeach; ?>
 			</div>
 		<?php endif; ?>
-</div>
+	</div>	   

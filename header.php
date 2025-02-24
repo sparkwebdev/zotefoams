@@ -57,8 +57,9 @@
 					array(
 						'theme_location' => 'primary_menu',
 						'container' => false,
-    					'depth' => 2,
-					)
+						'depth' => 2,
+						'walker' => new Mega_Menu_Walker()
+				  )
 				);
 				?>
 			</nav><!-- #site-navigation -->

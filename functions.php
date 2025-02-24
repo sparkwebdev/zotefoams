@@ -237,8 +237,8 @@ function include_template_part($file, $variables = []) {
 
 
 
-add_filter('acf/load_field/name=show_hide_forms_form', 'populate_acf_with_wpforms');
-function populate_acf_with_wpforms($field) {
+add_filter('acf/load_field/name=show_hide_forms_form', 'zf_populate_acf_with_wpforms');
+function zf_populate_acf_with_wpforms($field) {
     // Clear existing choices
     $field['choices'] = [];
 
@@ -259,14 +259,50 @@ function populate_acf_with_wpforms($field) {
 
 
 
-function use_page_template_for_blog($template) {
-    if (is_home()) {
-        $page_template = locate_template('page.php'); // Forces page.php
-        if ($page_template) {
-            return $page_template;
-        }
-    }
-    return $template;
-}
-add_filter('template_include', 'use_page_template_for_blog');
+// function use_page_template_for_blog($template) {
+//     if (is_home() && !is_front_page()) { // Ensure it's the posts page, not front page
+//         $posts_page_id = get_option('page_for_posts'); // Get the assigned posts page ID
+//         if ($posts_page_id) {
+//             return locate_template('page.php'); // Force page.php
+//         }
+//     }
+//     return $template;
+// }
+// add_filter('template_include', 'use_page_template_for_blog');
 
+
+// Function to get page ID by title (replacement for get_page_by_title)
+function zf_get_page_id_by_title($title) {
+    $page = get_posts([
+        'post_type' => 'page',
+        'title' => $title,
+        'posts_per_page' => 1,
+        'fields' => 'ids'
+    ]);
+    return !empty($page) ? $page[0] : null;
+}
+
+
+require_once get_template_directory() . '/template-parts/class-mega-menu-walker.php';
+
+
+
+function zf_get_page_for_posts_id() {
+	$page_for_posts = get_option('page_for_posts', true); // WordPress "Posts Page"
+	$posts_page_id = !empty($page_for_posts) ? $page_for_posts : zf_get_page_id_by_title('News Centre');
+	return $posts_page_id;
+}
+
+function my_custom_search_rewrite() {
+    add_rewrite_rule( '^search/?$', 'index.php?s=', 'top' );
+}
+add_action( 'init', 'my_custom_search_rewrite' );
+
+
+function zf_filter_search_form( $form ) {
+    // Replace the default submit button's class with the new classes.
+    $form = str_replace( 'class="search-submit"', 'class="search-submit btn blue"', $form );
+    $form = str_replace( 'class="search-field"', 'class="search-field zf"', $form );
+    return $form;
+}
+add_filter( 'get_search_form', 'zf_filter_search_form' );

@@ -33,6 +33,7 @@ if ( ! empty( $block['align'] ) ) {
     $class_name .= ' align' . $block['align'];
 }
 
+
 ?>
 
 <aside <?php echo esc_attr( $anchor ); ?>class="<?php echo esc_attr( $class_name ); ?>">
@@ -44,11 +45,14 @@ if ( ! empty( $block['align'] ) ) {
             <?php if ( !empty( $copy ) ) : ?>
                 <?php echo wp_kses_post( $copy ); ?>
             <?php endif; ?>
-            <?php if ( !empty( $link['url'] ) ) : ?>
+            <?php if ( !empty( $link['url'] ) ) : 
+                $file_info = wp_check_filetype($link['url']);
+                $is_file = !empty($file_info['ext']);
+            ?>
                 <p class="margin-t-30"><a 
                     href="<?php echo esc_url( $link['url'] ); ?>" 
                     <?php echo !empty( $link['target'] ) ? 'target="' . esc_attr( $link['target'] ) . '"' : ''; ?> 
-                    class="highlight-box__link hl arrow">
+                    class="highlight-box__link <?php echo $is_file ?? 'highlight-box__link-download'; ?> ">
                     <?php echo !empty( $link['title'] ) ? esc_html( $link['title'] ) : 'Read more'; ?>
 				</a></p>
             <?php endif; ?>
