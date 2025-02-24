@@ -41,7 +41,7 @@ $slides = get_sub_field('multi_item_carousel_slides');
                         <h3><?php echo esc_html($title); ?></h3>
                     <?php endif; ?>
                     <?php if ($text): ?>
-                        <div class="text-content"><?php echo wp_kses_post($text); ?></div>
+                        <p><?php echo wp_kses_post($text); ?></p>
                     <?php endif; ?>
                     <img src="<?php echo esc_url($image_url); ?>" alt="<?php echo esc_attr($title); ?>">
                     <?php if ($button): ?>
@@ -117,12 +117,9 @@ $slides = get_sub_field('multi_item_carousel_slides');
 				margin-bottom: 30px;
 			}
 
-			.multi-item-carousel .swiper-slide .text-content {
-				max-width: 400px;
-			}
-
 			.multi-item-carousel .swiper-slide p {
 				margin-bottom: 70px;
+				max-width: 400px;
 				color: #707070;
 			}
 

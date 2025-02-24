@@ -86,7 +86,7 @@
 
 .main-navigation li:has(.mega-menu) > a:after {
   content: "";
-  background: url("icon-right-arrow-black.f968a573.svg") center / 10px 10px no-repeat;
+  background: url("../images/icon-right-arrow-black.svg") center / 10px 10px no-repeat;
   width: 20px;
   height: 1em;
   display: inline-block;
@@ -96,7 +96,7 @@
 }
 
 .main-navigation li:has(.mega-menu) > a:hover:after {
-  background-image: url("icon-right-arrow-blue.92905b4d.svg");
+  background-image: url("../images/icon-right-arrow-blue.svg");
   transform: rotate(-90deg)translateX(-20%);
 }
 
@@ -134,7 +134,7 @@
 .main-navigation .mega-menu .sub-menu li > a:before {
   content: "";
   vertical-align: middle;
-  background: url("icon-right-arrow-black.f968a573.svg") center / 16px 16px no-repeat;
+  background: url("../images/icon-right-arrow-black.svg") center / 16px 16px no-repeat;
   width: 20px;
   height: 1em;
   display: inline-block;
@@ -144,7 +144,7 @@
 }
 
 .main-navigation .mega-menu .sub-menu li.current-menu-item > a:before, .main-navigation .mega-menu .sub-menu li > a:hover:before {
-  background-image: url("icon-right-arrow-blue.92905b4d.svg");
+  background-image: url("../images/icon-right-arrow-blue.svg");
 }
 
 .main-navigation .mega-menu .sub-menu li.current-menu-item > a {
@@ -258,7 +258,7 @@
 
 .utility-menu .menu li:has(ul) > a:after {
   content: "";
-  background: url("icon-right-arrow-white.54806159.svg") center / 10px 10px no-repeat;
+  background: url("../images/icon-right-arrow-white.svg") center / 10px 10px no-repeat;
   width: 20px;
   height: 1em;
   display: inline-block;
@@ -306,7 +306,7 @@
 .utility-menu .sub-menu li > a:before {
   content: "";
   vertical-align: middle;
-  background: url("icon-right-arrow-white.54806159.svg") center / 16px 16px no-repeat;
+  background: url("../images/icon-right-arrow-white.svg") center / 16px 16px no-repeat;
   width: 20px;
   height: 1em;
   display: inline-block;
@@ -316,7 +316,7 @@
 }
 
 .utility-menu .sub-menu li.current-menu-item > a:before, .utility-menu .sub-menu li > a:hover:before {
-  background-image: url("icon-right-arrow-blue.92905b4d.svg");
+  background-image: url("../images/icon-right-arrow-blue.svg");
 }
 
 .utility-menu .sub-menu li.current-menu-item > a {
@@ -640,7 +640,7 @@ html {
 
 .file-list__dropdown-button:after {
   content: "";
-  background-image: url("icon-right-arrow-white.54806159.svg");
+  background-image: url("../images/icon-right-arrow-white.svg");
   background-position: center;
   background-repeat: no-repeat;
   background-size: 120%;
@@ -834,7 +834,7 @@ html {
 
 .split-video-one ul li {
   color: #707070;
-  background: url("bullet-tick.9e816a40.svg") 0 no-repeat;
+  background: url("../images/bullet-tick.svg") 0 no-repeat;
   padding-left: 1.5em;
   list-style: none;
 }
