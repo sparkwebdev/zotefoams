@@ -11,7 +11,7 @@
   --border-separator: solid 1px var(--tone-light);
 }
 
-.site-branding {
+.site-header .site-branding {
   flex-shrink: 0;
   margin: 5px 0;
 }
@@ -37,11 +37,11 @@
   display: flex;
 }
 
-.site-branding {
+.site-header .site-branding {
   flex-shrink: 0;
 }
 
-.site-branding img {
+.site-header .site-branding img {
   display: block;
 }
 
