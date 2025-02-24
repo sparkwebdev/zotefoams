@@ -3453,6 +3453,75 @@
                     ],
                     "min": "",
                     "max": ""
+                },
+                "layout_67c123456789ab": {
+                    "key": "layout_67c123456789ab",
+                    "name": "related_links_box",
+                    "label": "Related Links Box",
+                    "display": "block",
+                    "sub_fields": [
+                        {
+                            "key": "field_67c123456789ac",
+                            "label": "Title",
+                            "name": "related_links_box_title",
+                            "aria-label": "",
+                            "type": "text",
+                            "instructions": "",
+                            "required": false,
+                            "conditional_logic": false,
+                            "wrapper": {
+                                "width": "100",
+                                "class": "",
+                                "id": ""
+                            },
+                            "default_value": "Related Links and Documents",
+                            "maxlength": "",
+                            "placeholder": "",
+                            "prepend": "",
+                            "append": ""
+                        },
+                        {
+                            "key": "field_67c123456789ad",
+                            "label": "Links",
+                            "name": "related_links_box_links",
+                            "aria-label": "",
+                            "type": "repeater",
+                            "instructions": "",
+                            "required": false,
+                            "conditional_logic": false,
+                            "wrapper": {
+                                "width": "100",
+                                "class": "",
+                                "id": ""
+                            },
+                            "layout": "block",
+                            "min": 0,
+                            "max": 0,
+                            "collapsed": "",
+                            "button_label": "Add Link",
+                            "rows_per_page": 20,
+                            "sub_fields": [
+                                {
+                                    "key": "field_67c123456789ae",
+                                    "label": "Link",
+                                    "name": "related_links_box_link",
+                                    "aria-label": "",
+                                    "type": "link",
+                                    "instructions": "",
+                                    "required": false,
+                                    "conditional_logic": false,
+                                    "wrapper": {
+                                        "width": "",
+                                        "class": "",
+                                        "id": ""
+                                    },
+                                    "return_format": "array"
+                                }
+                            ]
+                        }
+                    ],
+                    "min": "",
+                    "max": ""
                 }
             },
             "min": "",
@@ -3478,5 +3547,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1740426771
+    "modified": 1740432094
 }
