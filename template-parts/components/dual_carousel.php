@@ -1,10 +1,16 @@
 <?php 
 // Allow for passed variables, as well as ACF values
 $slides = get_sub_field('dual_carousel_slides');
+
+$markets_page_id = zf_get_page_id_by_title('Markets');
+$is_market_pages = $markets_page_id == get_the_ID() || $markets_page_id == $post->post_parent;
+$theme_style = $is_market_pages ? "light-grey-bg theme-light" : "black-bg white-text theme-dark";
+$theme_button_style = $is_market_pages ? "black" : "white";
+
 ?>
 
 <!-- Carousel 2 - dual carousel -->
-<div class="swiper-dual-carousel black-bg white-text text-center theme-dark">
+<div class="swiper-dual-carousel text-center <?php echo $theme_style; ?>">
     <div class="swiper swiper-dual-carousel-text">
         <div class="swiper-wrapper">
             <?php if ($slides): ?>
@@ -35,7 +41,7 @@ $slides = get_sub_field('dual_carousel_slides');
                                     <div class="animate__animated margin-b-30"><?php echo wp_kses_post($text); ?></div>
                                 <?php endif; ?>
                                 <?php if ($button): ?>
-                                    <a href="<?php echo esc_url($button['url']); ?>" class="animate__animated btn white outline" target="<?php echo esc_attr($button['target']); ?>">
+                                    <a href="<?php echo esc_url($button['url']); ?>" class="animate__animated btn <?php echo $theme_button_style; ?> outline" target="<?php echo esc_attr($button['target']); ?>">
                                         <?php echo esc_html($button['title']); ?>
                                     </a>
                                 <?php endif; ?>

@@ -10,8 +10,6 @@
 get_header();
 ?>
 
-	<main id="primary" class="site-main">
-
 		<?php
 		while ( have_posts() ) :
 			the_post();
@@ -46,7 +44,9 @@ get_header();
 
 					<div class="entry-content">
 						<?php
-						echo '<p class="lead-text"><strong>'.get_the_excerpt().'</strong></p>';
+						if (has_excerpt()) {
+							echo '<p class="lead-text"><strong>'.get_the_excerpt().'</strong></p>';
+						}
 
 						the_content();
 
@@ -76,23 +76,12 @@ get_header();
 			endwhile; // End of the loop.
 			?>
 		</div>
-	</main><!-- #main -->
 
-	<hr class="separator" />
+		<hr class="separator" />
 
-	<div class="cont-m margin-t-70 margin-b-70">
-		<?php 
-			include_template_part('template-parts/components/component-cta-picker', [
-				'title' => 'Latest Updates',
-				'link' => [
-					'url' => '/news-centre',
-					'title' => 'News Centre',
-					'target' => ''
-				],
-				'content_type' => 'post', // 'post', 'page', or 'category'
-			]);
+		<?php
+		get_template_part( 'template-parts/latest-posts' );
 		?>
-	</div>
 
 <?php
 get_footer();

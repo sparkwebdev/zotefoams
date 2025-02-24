@@ -11,7 +11,7 @@
   --border-separator: solid 1px var(--tone-light);
 }
 
-.site-branding {
+.site-header .site-branding {
   flex-shrink: 0;
   margin: 5px 0;
 }
@@ -37,11 +37,11 @@
   display: flex;
 }
 
-.site-branding {
+.site-header .site-branding {
   flex-shrink: 0;
 }
 
-.site-branding img {
+.site-header .site-branding img {
   display: block;
 }
 
@@ -782,6 +782,18 @@ html {
   }
 }
 
+.feed-items {
+  grid-template-columns: repeat(auto-fit, minmax(24rem, 1fr));
+  gap: 20px;
+  display: grid;
+}
+
+.feed-item {
+  border: 1px solid #d1d1d1;
+  flex: 1;
+  position: relative;
+}
+
 .box-items {
   grid-template-columns: repeat(auto-fit, minmax(24rem, 1fr));
   gap: 20px;
@@ -829,6 +841,7 @@ html {
 }
 
 .split-video-one ul {
+  margin-bottom: 30px;
   padding: 0;
 }
 

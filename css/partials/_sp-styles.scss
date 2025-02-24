@@ -407,6 +407,22 @@ html {
   }
 }
 
+
+
+
+/* News feed (override) */
+.feed-items {
+	display: grid;
+	gap: 20px;
+	grid-template-columns: repeat( auto-fit, minmax(24rem, 1fr) );
+}
+.feed-item {
+	flex:1;
+	border:1px solid #d1d1d1;
+	position: relative;
+}
+
+
 /* Box Items (override) */
 .box-items {
 	display: grid;
@@ -460,6 +476,7 @@ html {
 
 .split-video-one ul {
   padding: 0;
+  margin-bottom: 30px;
   li {
     list-style:none;
     background:url(/images/bullet-tick.svg) no-repeat 0 50%;
@@ -488,3 +505,7 @@ button, input[type="button"], input[type="reset"], input[type="submit"] {
     border-radius: 5px;
   }
 }
+
+
+
+

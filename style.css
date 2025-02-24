@@ -1832,15 +1832,28 @@ a.hl.download::after {
 	font-size:14px;
 	font-weight:400;
 }
+
 .footer-content {
 	display:flex;
-	justify-content: space-between
+	flex-direction: column;
+	gap: 50px;
+}
+@media screen and (min-width: 37.5em) {
+	.footer-content {
+		justify-content: space-between;
+		flex-direction: row;
+	}
 }
 .footer-menus {
 	display:flex;
+	gap: 30px;
+	flex-direction: column;
 }
-.footer-menu {
-	margin-right:70px
+@media screen and (min-width: 64em) {
+	.footer-menus {
+		flex-direction: row;
+		gap: 50px;
+	}
 }
 .footer-content ul {
 	list-style-type:none;
