@@ -4,6 +4,8 @@ $image = get_sub_field('text_banner_split_image');
 $title = get_sub_field('text_banner_split_title');
 $text = get_sub_field('text_banner_split_text');
 $link = get_sub_field('text_banner_split_link'); // ACF Link field returns an array
+$sharePrice = '';
+
 if (is_page('Investors')) {
     $sharePrice = get_field('live_share_price', 'option');
 }

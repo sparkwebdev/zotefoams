@@ -152,7 +152,7 @@
                             </label>
                         <?php endforeach; ?>
                     </div>
-                    <button id="file-list-show-all" class="file-list__show-all hidden">Show All</button>
+                    <button id="file-list-show-all" class="file-list__show-all hidden">Reset Filters</button>
                 </div>
             <?php endif; ?>
             <table>
