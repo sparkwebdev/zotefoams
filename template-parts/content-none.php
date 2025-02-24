@@ -12,7 +12,12 @@
 <header class="text-banner margin-t-70">
 	<div class="cont-m margin-b-70">
 		<h1 class="uppercase grey-text fs-800 fw-extrabold">
-			<?php esc_html_e( 'Search', 'zotefoams' ); ?>
+			<?php if (is_search()) :
+			esc_html_e( 'Search', 'zotefoams' );
+			else :
+			esc_html_e( '404', 'zotefoams' );
+			endif;
+			?>
 		</h1>
 		<h2 class="uppercase black-text fs-800 fw-extrabold">
 			<?php // echo ($title == "News" ? 'Latest ' : '') . $title; ?>
