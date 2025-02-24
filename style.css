@@ -1224,7 +1224,7 @@ header.site-header a:hover {
 
 /* Buttons
 --------------------------------------------- */
-a.btn {
+.btn {
 	padding:13px 20px 15px;
 	min-width:140px;
 	text-transform:capitalize;
@@ -1235,29 +1235,29 @@ a.btn {
 	border-radius:5px;
 	transition:all 0.3s
 }
-a.btn.blue {
+.btn.blue {
 	color:#fff;
 	background:#3B82F6
 }
-a.btn.outline.white {
+.btn.outline.white {
 	color:#fff;
 	border:1px solid #fff;
 }
-a.btn.outline.white:hover {
+.btn.outline.white:hover {
 	color:#000;
 	border:1px solid #000;
 	background:white;
 }
-a.btn.outline.black {
+.btn.outline.black {
 	color:#000;
 	border:1px solid #000;
 }
-a.btn.outline.black:hover {
+.btn.outline.black:hover {
 	color:#fff;
 	border:1px solid #fff;
 	background:black;
 }
-a.btn.outline.arrow::after {
+.btn.outline.arrow::after {
 	content:"";
 	background-repeat:no-repeat;
 	background-size:120%;
@@ -1267,16 +1267,16 @@ a.btn.outline.arrow::after {
     display:inline-flex;
 	margin-left:30px
 }
-a.btn.white.arrow::after {
+.btn.white.arrow::after {
 	background-image:url(/wp-content/themes/zotefoams/images/icon-right-arrow-white.svg);
 }
-a.btn.white.arrow:hover::after {
+.btn.white.arrow:hover::after {
     background-image: url(/wp-content/themes/zotefoams/images/icon-right-arrow-blue.svg);
 }
-a.btn.black.arrow::after {
+.btn.black.arrow::after {
 	background-image:url(/wp-content/themes/zotefoams/images/icon-right-arrow-black.svg);
 }
-a.btn.black.arrow:hover::after {
+.btn.black.arrow:hover::after {
     background-image: url(/wp-content/themes/zotefoams/images/icon-right-arrow-blue.svg);
 }
 

@@ -10,23 +10,22 @@
 get_header();
 ?>
 
-	<main id="primary" class="site-main">
+	<header class="text-banner margin-t-70">
+		<div class="cont-m margin-b-70">
+			<h1 class="uppercase grey-text fs-800 fw-extrabold">
+				404
+			</h1>
+			<h2 class="uppercase black-text fs-800 fw-extrabold">
+				<?php esc_html_e( 'Not found', 'zotefoams' ); ?>
+			</h2>
+		</div>
+	</header>
 
-		<section class="error-404 not-found">
-
-			<header class="text-banner cont-m margin-t-70">
-				<h1 class="uppercase grey-text fs-800 fw-extrabold">404</h1>
-				<h2 class="uppercase black-text fs-800 fw-extrabold"><?php esc_html_e( 'Not found', 'zotefoams' ); ?></h2>
-			</header>
-
-			<div class="cont-m margin-t-70 margin-b-70">
-				<p class="grey-text fs-600 fw-semibold"><?php esc_html_e( 'It looks like nothing was found at this location.', 'zotefoams' ); ?></p>
-			</div>
-
-			</div><!-- .page-content -->
-		</section><!-- .error-404 -->
-
-	</main><!-- #main -->
+	<div class="text-block cont-m margin-t-100 margin-b-100 theme-none">
+		<div class="text-block-inner">
+			<p class="grey-text fs-600 fw-semibold"><?php esc_html_e( 'It looks like nothing was found at this location.', 'zotefoams' ); ?></p>
+		</div>
+	</div>
 
 <?php
 get_footer();
