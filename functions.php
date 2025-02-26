@@ -273,13 +273,17 @@ function zf_populate_acf_with_wpforms($field) {
 
 // Function to get page ID by title (replacement for get_page_by_title)
 function zf_get_page_id_by_title($title) {
-    $page = get_posts([
-        'post_type' => 'page',
-        'title' => $title,
-        'posts_per_page' => 1,
-        'fields' => 'ids'
-    ]);
-    return !empty($page) ? $page[0] : null;
+    global $wpdb;
+
+    $page_id = $wpdb->get_var($wpdb->prepare(
+        "SELECT ID FROM $wpdb->posts 
+        WHERE post_type = 'page' 
+        AND post_title COLLATE utf8mb4_general_ci = %s 
+        LIMIT 1",
+        $title
+    ));
+
+    return $page_id ?: null;
 }
 
 
@@ -306,3 +310,59 @@ function zf_filter_search_form( $form ) {
     return $form;
 }
 add_filter( 'get_search_form', 'zf_filter_search_form' );
+
+
+/**
+ * Populate the ACF 'associated_brands' field with a list of Brands Child pages.
+ *
+ * @link https://www.advancedcustomfields.com/resources/acf-load_field/
+ */
+
+add_filter('acf/load_field/name=associated_brands', 'zf_populate_acf_with_brands');
+function zf_populate_acf_with_brands($field) {
+    // Clear existing choices
+    $field['choices'] = [];
+
+    // Get the page ID for 'Our brands' (case-insensitive)
+    $brands_page_id = zf_get_page_id_by_title('Our brands');
+
+    if ($brands_page_id) {
+        // Get child and grandchild pages
+        $args = [
+            'post_type'      => 'page',
+            'post_parent'    => $brands_page_id,
+            'posts_per_page' => -1,
+            'orderby'        => 'menu_order',
+            'order'          => 'ASC',
+        ];
+
+        $child_pages = get_posts($args);
+
+        if (!empty($child_pages)) {
+            foreach ($child_pages as $page) {
+                // Add child page
+                $field['choices'][$page->ID] = $page->post_title;
+
+                // Get grandchild pages
+                $grandchild_args = [
+                    'post_type'      => 'page',
+                    'post_parent'    => $page->ID,
+                    'posts_per_page' => -1,
+                    'orderby'        => 'menu_order',
+                    'order'          => 'ASC',
+                ];
+
+                $grandchild_pages = get_posts($grandchild_args);
+
+                if (!empty($grandchild_pages)) {
+                    foreach ($grandchild_pages as $grandchild) {
+                        // Add grandchild page with indentation for clarity
+                        $field['choices'][$grandchild->ID] = '— ' . $grandchild->post_title;
+                    }
+                }
+            }
+        }
+    }
+
+    return $field;
+}
