@@ -39,7 +39,7 @@
 						<h3 class="fs-600 fw-medium margin-b-20"><?php echo get_the_title( $id ); ?></h3>
 
 						<?php 
-						$related_brands = get_field('brands', $id);
+						$related_brands = get_field('associated_brands', $id);
 						if( $related_brands ): ?>
 							<ul class="brands margin-b-20">
 								<?php foreach( $related_brands as $brand ): 

@@ -10,7 +10,7 @@ $manual_slides = get_sub_field('multi_item_carousel_slides'); // Manual items
 <!-- Carousel 4 - Multi-Item Carousel -->
 <div class="swiper multi-item-carousel padding-t-100 theme-none">
     
-    <div class="title-strip margin-b-30 cont-m">
+    <div class="title-strip margin-b-30">
         <?php if ($title): ?>
             <h3 class="fs-500 fw-600"><?php echo esc_html($title); ?></h3>
         <?php endif; ?>
@@ -114,9 +114,12 @@ $manual_slides = get_sub_field('multi_item_carousel_slides'); // Manual items
 
 
 	<script type="text/javascript">
-		document.addEventListener('DOMContentLoaded', function () {
+    document.addEventListener('DOMContentLoaded', function () {
+        document.querySelectorAll('.multi-item-carousel').forEach((carousel) => {
+            const totalSlides = carousel.querySelectorAll('.swiper-slide').length; // Count the slides
+            console.log(totalSlides);
 			// Carousel 4 - Multi-Item Carousel
-			const swiperMultiItem = new Swiper('.multi-item-carousel', {
+			const swiperMultiItem = new Swiper(carousel, {
 				loop: false,
 				slidesPerView: 3,
 				spaceBetween: 20,
@@ -129,8 +132,20 @@ $manual_slides = get_sub_field('multi_item_carousel_slides'); // Manual items
 					hide: false, // Optional: Hide scrollbar when not active
 					draggable: false, // Optional: Make scrollbar draggable
 				},
+                breakpoints: {
+                    0: {
+                        slidesPerView: 1
+                    },
+                    640: {
+                        slidesPerView: Math.max(2, Math.min(2, totalSlides)) 
+                    },
+                    1024: {
+                        slidesPerView: Math.max(2, Math.min(3, totalSlides)) 
+                    }
+                }
 			});
-		});
+        });
+    });
 	</script>
 
 
@@ -139,7 +154,11 @@ $manual_slides = get_sub_field('multi_item_carousel_slides'); // Manual items
 	--------------------------------------------- */
 
 	.multi-item-carousel {
-		padding: 50px;
+		padding: 50px min(50px, 5%);
+	}
+
+	.multi-item-carousel .carousel-navigation{
+		margin-left: auto;
 	}
 
 		.multi-item-carousel .swiper-slide {
@@ -188,6 +207,10 @@ $manual_slides = get_sub_field('multi_item_carousel_slides'); // Manual items
 				font-size: 0.8em;
 			}
 
+        .multi-item-carousel .swiper-wrapper {
+            /* justify-content: center; */
+        }
+
 		.multi-item-carousel .multi-swiper-scrollbar {
 			height: 5px;
 			margin-top: 30px;
@@ -200,6 +223,3 @@ $manual_slides = get_sub_field('multi_item_carousel_slides'); // Manual items
 		}
 		
 	</style>
-
-
-

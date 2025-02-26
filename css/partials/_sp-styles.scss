@@ -474,19 +474,19 @@ html {
   padding-top: 0;
 }
 
-.split-video-one ul {
+.split-video-one ul,
+.text-block ul {
   padding: 0;
-  margin-bottom: 30px;
+  margin-top: 30px;
   li {
     list-style:none;
     background:url(/images/bullet-tick.svg) no-repeat 0 50%;
-    padding-left: 1.5em;
+    padding-left: 1.65rem;
     color: #707070;
     + li {
       margin-top: 5px;
     }
   }
-
 }
 
 
