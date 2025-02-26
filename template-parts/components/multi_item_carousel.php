@@ -10,7 +10,7 @@ $manual_slides = get_sub_field('multi_item_carousel_slides'); // Manual items
 <!-- Carousel 4 - Multi-Item Carousel -->
 <div class="swiper multi-item-carousel padding-t-100 theme-none">
     
-    <div class="title-strip margin-b-30 cont-m">
+    <div class="title-strip margin-b-30">
         <?php if ($title): ?>
             <h3 class="fs-500 fw-600"><?php echo esc_html($title); ?></h3>
         <?php endif; ?>
@@ -129,6 +129,17 @@ $manual_slides = get_sub_field('multi_item_carousel_slides'); // Manual items
 					hide: false, // Optional: Hide scrollbar when not active
 					draggable: false, // Optional: Make scrollbar draggable
 				},
+                breakpoints: {
+                    0: {
+                        slidesPerView: 1
+                    },
+                    640: {
+                        slidesPerView: 2
+                    },
+                    900: {
+                        slidesPerView: 3
+                    }
+                }
 			});
 		});
 	</script>
@@ -139,7 +150,11 @@ $manual_slides = get_sub_field('multi_item_carousel_slides'); // Manual items
 	--------------------------------------------- */
 
 	.multi-item-carousel {
-		padding: 50px;
+		padding: 50px min(50px, 5%);
+	}
+
+	.multi-item-carousel .carousel-navigation{
+		margin-left: auto;
 	}
 
 		.multi-item-carousel .swiper-slide {
