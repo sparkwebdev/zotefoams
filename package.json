@@ -38,7 +38,7 @@
     "map": false
   },
   "scripts": {
-    "dev": "parcel watch css/sp.scss --dist-dir css --no-content-hash --no-source-maps --no-optimize & npm run browsersync",
+    "dev": "parcel watch css/sp.scss --dist-dir css --no-content-hash --no-source-maps & npm run browsersync",
     "browsersync": "browser-sync start --proxy 'https://zotefoamslive.local' --files 'css/sp.css'",
     "build": "parcel build css/sp.scss --dist-dir css",
     "lint:scss": "wp-scripts lint-style 'css/**/*.scss'",
