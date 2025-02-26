@@ -114,9 +114,12 @@ $manual_slides = get_sub_field('multi_item_carousel_slides'); // Manual items
 
 
 	<script type="text/javascript">
-		document.addEventListener('DOMContentLoaded', function () {
+    document.addEventListener('DOMContentLoaded', function () {
+        document.querySelectorAll('.multi-item-carousel').forEach((carousel) => {
+            const totalSlides = carousel.querySelectorAll('.swiper-slide').length; // Count the slides
+            console.log(totalSlides);
 			// Carousel 4 - Multi-Item Carousel
-			const swiperMultiItem = new Swiper('.multi-item-carousel', {
+			const swiperMultiItem = new Swiper(carousel, {
 				loop: false,
 				slidesPerView: 3,
 				spaceBetween: 20,
@@ -134,14 +137,15 @@ $manual_slides = get_sub_field('multi_item_carousel_slides'); // Manual items
                         slidesPerView: 1
                     },
                     640: {
-                        slidesPerView: 2
+                        slidesPerView: Math.max(2, Math.min(2, totalSlides)) 
                     },
-                    900: {
-                        slidesPerView: 3
+                    1024: {
+                        slidesPerView: Math.max(2, Math.min(3, totalSlides)) 
                     }
                 }
 			});
-		});
+        });
+    });
 	</script>
 
 
@@ -203,6 +207,10 @@ $manual_slides = get_sub_field('multi_item_carousel_slides'); // Manual items
 				font-size: 0.8em;
 			}
 
+        .multi-item-carousel .swiper-wrapper {
+            /* justify-content: center; */
+        }
+
 		.multi-item-carousel .multi-swiper-scrollbar {
 			height: 5px;
 			margin-top: 30px;
@@ -215,6 +223,4 @@ $manual_slides = get_sub_field('multi_item_carousel_slides'); // Manual items
 		}
 		
 	</style>
-
-
 
