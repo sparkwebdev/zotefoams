@@ -223,4 +223,3 @@ $manual_slides = get_sub_field('multi_item_carousel_slides'); // Manual items
 		}
 		
 	</style>
-
