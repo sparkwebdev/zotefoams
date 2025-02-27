@@ -142,7 +142,16 @@ $manual_slides = get_sub_field('multi_item_carousel_slides'); // Manual items
                     1024: {
                         slidesPerView: Math.max(2, Math.min(3, totalSlides)) 
                     }
-                }
+                },
+                // autoHeight: false,
+                // on: {
+                //     init: function () {
+                //         equalizeSwiperSlideHeights();
+                //     },
+                //     slideChange: function () {
+                //         equalizeSwiperSlideHeights();
+                //     }
+                // }
 			});
         });
     });
@@ -164,7 +173,14 @@ $manual_slides = get_sub_field('multi_item_carousel_slides'); // Manual items
 		.multi-item-carousel .swiper-slide {
 			text-align: center;
 			border: solid 1px #DDDDDD;	
+            height: auto;
+            min-height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            align-items: center;
 		}
+
 
 		.multi-swiper-button-prev img, .multi-swiper-button-next img {
 			cursor: pointer;
@@ -192,8 +208,9 @@ $manual_slides = get_sub_field('multi_item_carousel_slides'); // Manual items
 
 			.multi-item-carousel .swiper-slide p {
 				margin-bottom: 70px;
-				max-width: 400px;
+				max-width: min(90%, 400px);
 				color: #707070;
+                flex-grow: 1;
 			}
 
 			.multi-item-carousel .swiper-slide img {
