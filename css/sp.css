@@ -498,6 +498,12 @@
   transform: translateY(-9px)rotate(-45deg);
 }
 
+@media screen and (width >= 64rem) {
+  .menu-toggle {
+    display: none;
+  }
+}
+
 html {
   scroll-behavior: smooth;
 }
