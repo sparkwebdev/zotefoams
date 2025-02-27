@@ -1730,7 +1730,7 @@
                                     "required": 0,
                                     "conditional_logic": 0,
                                     "wrapper": {
-                                        "width": "16",
+                                        "width": "20",
                                         "class": "",
                                         "id": ""
                                     },
@@ -1794,30 +1794,6 @@
                                     "parent_repeater": "field_67af67890stuvw2"
                                 },
                                 {
-                                    "key": "field_67af67890stuvw7",
-                                    "label": "Decimals",
-                                    "name": "data_points_decimals",
-                                    "aria-label": "",
-                                    "type": "number",
-                                    "instructions": "",
-                                    "required": 0,
-                                    "conditional_logic": 0,
-                                    "wrapper": {
-                                        "width": "16",
-                                        "class": "",
-                                        "id": ""
-                                    },
-                                    "default_value": "",
-                                    "min": "",
-                                    "max": "",
-                                    "allow_in_bindings": 0,
-                                    "placeholder": "",
-                                    "step": 1,
-                                    "prepend": "",
-                                    "append": "",
-                                    "parent_repeater": "field_67af67890stuvw2"
-                                },
-                                {
                                     "key": "field_67af67890stuvw6",
                                     "label": "Suffix",
                                     "name": "data_points_suffix",
@@ -1849,7 +1825,7 @@
                                     "required": 0,
                                     "conditional_logic": 0,
                                     "wrapper": {
-                                        "width": "28",
+                                        "width": "40",
                                         "class": "",
                                         "id": ""
                                     },
@@ -3645,5 +3621,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1740435845
+    "modified": 1740647971
 }

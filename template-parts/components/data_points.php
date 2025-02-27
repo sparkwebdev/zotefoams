@@ -2,6 +2,14 @@
 // Allow for passed variables, as well as ACF values
 $title = get_sub_field('data_points_title');
 $items = get_sub_field('data_points_items');
+
+// Function to determine the number of decimal places
+function getDecimalPlaces($number) {
+		if (strpos($number, '.') !== false) {
+				return strlen(substr(strrchr($number, "."), 1)); // Count decimals after the dot
+		}
+		return 0; // No decimal places if it's a whole number
+}
 ?>
 
 <div class="data-points half-half light-grey-bg padding-t-b-70 theme-light">
@@ -18,14 +26,15 @@ $items = get_sub_field('data_points_items');
                     $value = $item['data_points_value'];
                     $prefix = $item['data_points_prefix'];
                     $suffix = $item['data_points_suffix'];
-                    $decimals = $item['data_points_decimals'];
                     $label = $item['data_points_label'];
 
                     // Default values for data attributes
                     $data_prefix = !empty($prefix) ? "data-prefix='{$prefix}'" : '';
                     $data_suffix = !empty($suffix) ? "data-suffix='{$suffix}'" : '';
-                    $data_decimals = !empty($decimals) ? "data-decimals='{$decimals}'" : '';
+                    $value = (string) $value; 
+                    $data_decimals = !empty($value) ? "data-decimals='" . getDecimalPlaces($value) . "'" : '';
                     $data_to = !empty($value) ? "data-to='{$value}'" : '';
+
                 ?>
                 <div class="data-points-item">
                     <?php if ($icon): ?>
