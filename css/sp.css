@@ -498,6 +498,12 @@
   transform: translateY(-9px)rotate(-45deg);
 }
 
+@media screen and (width >= 64rem) {
+  .menu-toggle {
+    display: none;
+  }
+}
+
 html {
   scroll-behavior: smooth;
 }
@@ -957,20 +963,20 @@ html {
   padding-top: 0;
 }
 
-.split-video-one ul, .text-block ul, .text-banner-split ul {
+.split-video-one ul, .text-block ul, .split-text ul {
   margin-top: 30px;
   margin-left: .2em;
   padding: 0;
 }
 
-.split-video-one ul li, .text-block ul li, .text-banner-split ul li {
+.split-video-one ul li, .text-block ul li, .split-text ul li {
   color: #707070;
   background: url("bullet-tick.9e816a40.svg") 0 no-repeat;
   padding-left: 1.65rem;
   list-style: none;
 }
 
-.split-video-one ul li + li, .text-block ul li + li, .text-banner-split ul li + li {
+.split-video-one ul li + li, .text-block ul li + li, .split-text ul li + li {
   margin-top: 5px;
 }
 
