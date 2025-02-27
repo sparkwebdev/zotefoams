@@ -10,7 +10,9 @@
 .site-header {
 	a {
 		font-weight: 500;
-		text-transform: capitalize;
+		&:not(.uppercase) {
+			text-transform: capitalize;
+		}
 		&:hover {
 			color: var(--color-link-hover) !important;
 		}
@@ -43,7 +45,9 @@
 	a {
 		display: block;
 		text-decoration: none;
-		color: black;
+		&:not(.blue-text) {
+			color: black;
+		}
 		transition: color 0.3s
 	}
 
@@ -323,13 +327,12 @@
 		}
 	}
 	.menu {
-		> li:hover > ul,
-		> li.focus > ul {
+		> li > ul,
+		> li > ul {
 			display: flex;
 			left: 0;
 			right: 0;
 			width:100%;
-
 		}
 	}
 }
@@ -340,6 +343,12 @@
 			justify-content: flex-end;
 			li {
 				position: relative;
+			}
+			> li > ul,
+			> li > ul {
+				right: -15px;
+				left: auto;
+				width: max(calc(28em + 100px), 100%);
 			}
 			> li:hover > ul,
 			> li.focus > ul {
@@ -360,7 +369,7 @@
 .mega-menu {
 	opacity: 0;
 	visibility: hidden;
-	transition: opacity 0.3s, visibility 0.3s;
+	transition: opacity 0.2s ease-in-out, visibility 0.15s ease-in-out;
 }
 
 .main-navigation ul li:hover > .mega-menu,
@@ -368,16 +377,18 @@
 	display: flex;
 	opacity: 1;
 	visibility: visible;
+	transition-delay: 0.1s;
 }
 
 .utility-menu .sub-menu {
 	opacity: 0;
 	visibility: hidden;
-	transition: opacity 0.3s, visibility 0.3s;
+	transition: opacity 0.2s ease-in-out 0.1s, visibility 0.2s ease-in-out 0.1s;
 }
 
 .utility-menu .menu > li:hover > ul,
 .utility-menu .menu > li.focus > ul {
 	opacity: 1;
 	visibility: visible;
+	transition-delay: 0.1s;
 }

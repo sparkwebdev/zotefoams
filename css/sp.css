@@ -17,8 +17,11 @@
 }
 
 .site-header a {
-  text-transform: capitalize;
   font-weight: 500;
+}
+
+.site-header a:not(.uppercase) {
+  text-transform: capitalize;
 }
 
 .site-header a:hover {
@@ -46,10 +49,13 @@
 }
 
 .main-navigation a {
-  color: #000;
   text-decoration: none;
   transition: color .3s;
   display: block;
+}
+
+.main-navigation a:not(.blue-text) {
+  color: #000;
 }
 
 .main-navigation ul {
@@ -323,7 +329,7 @@
   color: var(--color-link) !important;
 }
 
-.utility-menu .menu > li:hover > ul, .utility-menu .menu > li.focus > ul {
+.utility-menu .menu > li > ul, .utility-menu .menu > li > ul {
   width: 100%;
   display: flex;
   left: 0;
@@ -343,7 +349,7 @@
     position: relative;
   }
 
-  .utility-menu .menu > li:hover > ul, .utility-menu .menu > li.focus > ul {
+  .utility-menu .menu > li > ul, .utility-menu .menu > li > ul, .utility-menu .menu > li:hover > ul, .utility-menu .menu > li.focus > ul {
     width: max(28em + 100px, 100%);
     left: auto;
     right: -15px;
@@ -361,24 +367,26 @@
 .mega-menu {
   opacity: 0;
   visibility: hidden;
-  transition: opacity .3s, visibility .3s;
+  transition: opacity .2s ease-in-out, visibility .15s ease-in-out;
 }
 
 .main-navigation ul li:hover > .mega-menu, .main-navigation ul li.focus > .mega-menu {
   opacity: 1;
   visibility: visible;
+  transition-delay: .1s;
   display: flex;
 }
 
 .utility-menu .sub-menu {
   opacity: 0;
   visibility: hidden;
-  transition: opacity .3s, visibility .3s;
+  transition: opacity .2s ease-in-out .1s, visibility .2s ease-in-out .1s;
 }
 
 .utility-menu .menu > li:hover > ul, .utility-menu .menu > li.focus > ul {
   opacity: 1;
   visibility: visible;
+  transition-delay: .1s;
 }
 
 html {
@@ -842,7 +850,7 @@ html {
 
 .split-video-one ul, .text-block ul, .text-banner-split ul {
   margin-top: 30px;
-  margin-left: .1em;
+  margin-left: .2em;
   padding: 0;
 }
 
