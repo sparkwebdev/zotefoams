@@ -2704,7 +2704,7 @@
                         },
                         {
                             "key": "field_67b631dc23390",
-                            "label": "Show all Markets",
+                            "label": "Show all (relevant) Markets",
                             "name": "markets_list_show_all",
                             "aria-label": "",
                             "type": "true_false",
@@ -2722,41 +2722,6 @@
                             "ui_on_text": "",
                             "ui_off_text": "",
                             "ui": 1
-                        },
-                        {
-                            "key": "field_67b6fe5745c81",
-                            "label": "Markets Page",
-                            "name": "markets_list_page_id",
-                            "aria-label": "",
-                            "type": "post_object",
-                            "instructions": "",
-                            "required": 0,
-                            "conditional_logic": [
-                                [
-                                    {
-                                        "field": "field_67b631dc23390",
-                                        "operator": "==",
-                                        "value": "1"
-                                    }
-                                ]
-                            ],
-                            "wrapper": {
-                                "width": "25",
-                                "class": "",
-                                "id": ""
-                            },
-                            "post_type": [
-                                "page"
-                            ],
-                            "post_status": "",
-                            "taxonomy": "",
-                            "return_format": "id",
-                            "multiple": 0,
-                            "allow_null": 0,
-                            "allow_in_bindings": 0,
-                            "bidirectional": 0,
-                            "ui": 1,
-                            "bidirectional_target": []
                         },
                         {
                             "key": "field_67af90123mlist3",
@@ -3621,5 +3586,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1740647971
+    "modified": 1740656515
 }
