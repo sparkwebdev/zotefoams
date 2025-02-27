@@ -965,7 +965,6 @@ html {
 
 .split-video-one ul, .text-block ul, .split-text ul {
   margin-top: 30px;
-  margin-left: .2em;
   padding: 0;
 }
 
@@ -978,6 +977,11 @@ html {
 
 .split-video-one ul li + li, .text-block ul li + li, .split-text ul li + li {
   margin-top: 5px;
+}
+
+.text-block ul {
+  font-size: 18px;
+  line-height: 24px;
 }
 
 .search-form {
