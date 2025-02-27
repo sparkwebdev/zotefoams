@@ -6,8 +6,8 @@ html {
 
 /* Daves Components */
 .text-banner .uppercase {
-	max-width: 50%;
 	text-wrap: balance;
+  max-width: min(100%, 700px);
 }
 
 /* News Centre - Landing page grids */
