@@ -57,7 +57,7 @@
             <div class="markets-list">
                 <?php while ($markets_query->have_posts()) : $markets_query->the_post(); ?>
                     <div class="market-box white-bg text-center">
-                        <h3 class="fs-600 fw-medium margin-b-20"><?php the_title(); ?></h3>
+                        <h3 class="fs-600 fw-medium"><?php the_title(); ?></h3>
 
                         <?php 
                         $related_brands = get_field('associated_brands', get_the_ID());
@@ -93,7 +93,7 @@
                     $id = $child->ID; ?>
 
                     <div class="market-box white-bg text-center">
-                        <h3 class="fs-600 fw-medium margin-b-20"><?php echo get_the_title($id); ?></h3>
+                        <h3 class="fs-600 fw-medium"><?php echo get_the_title($id); ?></h3>
 
                         <?php 
                         $related_brands = get_field('associated_brands', $id);
@@ -123,7 +123,7 @@
 
                 <div class="market-box white-bg text-center">
                     <?php if ($title): ?>
-                        <h3 class="fs-600 fw-medium margin-b-20"><?php echo esc_html($title); ?></h3>
+                        <h3 class="fs-600 fw-medium"><?php echo esc_html($title); ?></h3>
                     <?php endif; ?>
                     
                     <?php if ($brands): ?>
