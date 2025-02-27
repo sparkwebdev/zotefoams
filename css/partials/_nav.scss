@@ -10,7 +10,9 @@
 .site-header {
 	a {
 		font-weight: 500;
-		text-transform: capitalize;
+		&:not(.uppercase) {
+			text-transform: capitalize;
+		}
 		&:hover {
 			color: var(--color-link-hover) !important;
 		}
@@ -22,10 +24,15 @@
 
 .site-header-wrapper {
 	display:flex;
-  gap: 30px;
 	padding: 10px 20px;
 	justify-content: space-between;
 	align-items: center;
+	flex-direction: column;
+	position: relative;
+	@media screen and (min-width: 64rem) {
+		flex-direction: row;
+		gap: 30px;
+	}
 }
 
 .site-header .site-branding {
@@ -33,6 +40,13 @@
 
 	img {
 		display: block;
+		width: 174px;
+		@media screen and (min-width: 64rem) {
+			width: 154px;
+		}
+		@media screen and (min-width: 68rem) {
+			width: 174px;
+		}
 	}
 }
 
@@ -43,7 +57,9 @@
 	a {
 		display: block;
 		text-decoration: none;
-		color: black;
+		&:not(.blue-text) {
+			color: black;
+		}
 		transition: color 0.3s
 	}
 
@@ -55,13 +71,29 @@
 	}
 
 	.menu > li {
-		border-bottom: 3px solid white;
+
+		border-left: 10px solid white;
+		&.current-menu-item,
+		&.current-menu-parent {
+			border-left-color: var(--color-link);
+		}
 		> a {
-			padding: 15px 0;
+			padding: 5px 15px;
 		}
 		&.current-menu-item,
 		&.current-menu-parent {
 			border-bottom-color: var(--color-link);
+		}
+		@media screen and (min-width: 64rem) {
+				border-left: 0;
+				border-bottom: 3px solid white;
+				> a {
+					padding: 15px 0;
+				}
+				&.current-menu-item,
+				&.current-menu-parent {
+					border-bottom-color: var(--color-link);
+				}
 		}
 	}
 	
@@ -99,7 +131,7 @@
 	}
 
 	.mega-menu {
-		// display: none;
+		display: none;
 		position: absolute;
     top: 100%;
     left: 0;
@@ -113,6 +145,7 @@
     // display: flex;
     flex-direction: column;
 		width: 100%;
+
 
 		.sub-menu {
 			// flex-direction: column;
@@ -163,8 +196,10 @@
 		// display: flex;
 	}
 	.mega-menu-wrapper {
-		display: flex;
-		flex-grow: 1;
+		@media screen and (min-width: 64rem) {
+			display: flex;
+			flex-grow: 1;
+		}
 	}
 	.mega-menu-intro {
 		border-right: solid 1px var(--color-text-light);
@@ -176,7 +211,9 @@
 }
 .main-navigation ul li:hover > .mega-menu,
 .main-navigation ul li.focus > .mega-menu  {
-	display: flex;
+	@media screen and (min-width: 64rem) {
+		display: flex;
+	}
 }
 
 
@@ -186,8 +223,31 @@
 .main-navigation.toggled ul {
 	display: block;
 }
+.main-navigation {
+	width: 100%;
+	@media screen and (min-width: 64rem) {
+		width: auto;
+	}
+}
+.main-navigation li {
+	text-align: center;
+	@media screen and (min-width: 64rem) {
+		text-align: left;
+	}
+}
+.main-navigation.toggled ul {
+	@media screen and (min-width: 64rem) {
+		display: flex;
+	}
+}
 
-@media screen and (min-width: 60rem) {
+.menu-toggle {
+	position: absolute;
+	right: 30px;
+	top: 15px
+}
+
+@media screen and (min-width: 64rem) {
   .site-header-wrapper {
     padding: 0 50px;
   }
@@ -323,23 +383,28 @@
 		}
 	}
 	.menu {
-		> li:hover > ul,
-		> li.focus > ul {
+		> li > ul,
+		> li > ul {
 			display: flex;
 			left: 0;
 			right: 0;
 			width:100%;
-
 		}
 	}
 }
-@media screen and (min-width: 60rem) {
+@media screen and (min-width: 64rem) {
 	.utility-menu {
     padding: 0 50px;
 		.menu {
 			justify-content: flex-end;
 			li {
 				position: relative;
+			}
+			> li > ul,
+			> li > ul {
+				right: -15px;
+				left: auto;
+				width: max(calc(28em + 100px), 100%);
 			}
 			> li:hover > ul,
 			> li.focus > ul {
@@ -357,27 +422,72 @@
   }
 }
 
-.mega-menu {
-	opacity: 0;
-	visibility: hidden;
-	transition: opacity 0.3s, visibility 0.3s;
-}
 
-.main-navigation ul li:hover > .mega-menu,
-.main-navigation ul li.focus > .mega-menu {
-	display: flex;
-	opacity: 1;
-	visibility: visible;
+@media screen and (min-width: 64rem) {
+
+	.mega-menu {
+		opacity: 0;
+		visibility: hidden;
+		transition: opacity 0.2s ease-in-out, visibility 0.15s ease-in-out;
+	}
+	
+	.main-navigation ul li:hover > .mega-menu,
+	.main-navigation ul li.focus > .mega-menu {
+		display: flex;
+		opacity: 1;
+		visibility: visible;
+		transition-delay: 0.1s;
+	}
 }
 
 .utility-menu .sub-menu {
 	opacity: 0;
 	visibility: hidden;
-	transition: opacity 0.3s, visibility 0.3s;
+	transition: opacity 0.2s ease-in-out 0.1s, visibility 0.2s ease-in-out 0.1s;
 }
 
 .utility-menu .menu > li:hover > ul,
 .utility-menu .menu > li.focus > ul {
 	opacity: 1;
 	visibility: visible;
+	transition-delay: 0.1s;
+}
+
+
+
+/* Default styles for the button */
+.menu-toggle {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 6px;
+  width: 40px;
+  height: 40px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  position: absolute;
+  z-index: 999; /* Ensures it's above other elements */
+}
+
+/* Style for the three lines */
+.menu-line {
+  width: 30px;
+  height: 3px;
+  background-color: black;
+  transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
+}
+
+/* When the menu is active (e.g., a class is added via JS) */
+.toggled .menu-toggle .menu-line:nth-child(1) {
+  transform: translateY(9px) rotate(45deg);
+}
+
+.toggled .menu-toggle .menu-line:nth-child(2) {
+  opacity: 0;
+}
+
+.toggled .menu-toggle .menu-line:nth-child(3) {
+  transform: translateY(-9px) rotate(-45deg);
 }
