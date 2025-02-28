@@ -1,114 +1,135 @@
 <?php
 class Mega_Menu_Walker extends Walker_Nav_Menu {
-    private $current_item_title = '';
-    private $current_item_description = '';
+    private $mega_menu_markup = array();
 
     /**
-     * Start the element output.
+     * Starts the element output.
      */
     public function start_el(&$output, $item, $depth = 0, $args = array(), $id = 0) {
-        $classes = empty($item->classes) ? array() : (array) $item->classes;
+        $args = is_array($args) ? (object) $args : $args;
+        
+        // Build classes
+        $classes = !empty($item->classes) ? (array) $item->classes : array();
         $classes[] = 'menu-item-' . $item->ID;
-    
-        if ($depth > 0) {
-            $classes[] = 'sub-item';
-        }
-    
+        if ($depth > 0) $classes[] = 'sub-item';
         $class_names = join(' ', apply_filters('nav_menu_css_class', array_filter($classes), $item, $args, $depth));
         $class_names = $class_names ? ' class="' . esc_attr($class_names) . '"' : '';
-    
-        $output .= '<li' . $class_names . '>';
-    
-        $atts = array();
-        $atts['title']  = !empty($item->attr_title) ? $item->attr_title : ''; // Title Attribute
-        $atts['target'] = !empty($item->target) ? $item->target : '';
-        $atts['rel']    = !empty($item->xfn) ? $item->xfn : '';
-        $atts['href']   = !empty($item->url) ? $item->url : '';
-    
+        
+        // Build link attributes
+        $atts = array(
+            'title'  => !empty($item->attr_title) ? sanitize_text_field($item->attr_title) : '',
+            'target' => !empty($item->target) ? sanitize_text_field($item->target) : '',
+            'rel'    => !empty($item->xfn) ? sanitize_text_field($item->xfn) : '',
+            'href'   => !empty($item->url) ? esc_url($item->url) : '',
+        );
+        
+        if (!empty($item->has_children) && $depth === 0) {
+            $atts['aria-controls'] = 'mega-menu-' . $item->ID;
+            $atts['aria-expanded'] = 'false';
+        }
+        
         $atts = apply_filters('nav_menu_link_attributes', $atts, $item, $args, $depth);
-    
+        
         $attributes = '';
         foreach ($atts as $attr => $value) {
             if (!empty($value)) {
-                $value = ('href' === $attr) ? esc_url($value) : esc_attr($value);
-                $attributes .= ' ' . $attr . '="' . $value . '"';
+                $value = ($attr === 'href') ? esc_url($value) : esc_attr($value);
+                $attributes .= " $attr=\"$value\"";
             }
         }
-
-        // **Store Top-Level Menu Item Title & URL**
-        if ($depth == 0) {
-            $this->top_level_title = !empty($item->attr_title) ? esc_html($item->attr_title) : esc_html($item->title);
-            $this->top_level_description = !empty($item->description) ? esc_html($item->description) : '';
-            $this->top_level_url = !empty($item->url) ? esc_url($item->url) : '#';  // Store URL for linking
-
-            // Try to get excerpt from the linked page if no menu description is found
-            if (empty($this->top_level_description)) {
-                $post_id = url_to_postid($item->url);
-                if ($post_id && get_post_status($post_id) == 'publish') {
-                    $post = get_post($post_id);
-                    if ($post) {
-                        $this->top_level_description = !empty($post->post_excerpt) ? esc_html($post->post_excerpt) : '';
-                    }
-                }
-            }
-    
-            // Fallback description if neither menu description nor page excerpt exists
-            if (empty($this->top_level_description)) {
-                $this->top_level_description = 'Explore our selection of products and services.';
-            }
-        }
-    
-        $item_output = $args->before;
-        $item_output .= '<a'. $attributes .'>';
-        $item_output .= $args->link_before . esc_html($item->title) . $args->link_after;
-        $item_output .= '</a>';
-        $item_output .= $args->after;
-    
-        $output .= apply_filters('walker_nav_menu_start_el', $item_output, $item, $depth, $args);
+        
+        // Build item output
+        $before = isset($args->before) ? $args->before : '';
+        $link_before = isset($args->link_before) ? $args->link_before : '';
+        $link_after = isset($args->link_after) ? $args->link_after : '';
+        $after = isset($args->after) ? $args->after : '';
+        
+        $output .= '<li' . $class_names . '>';
+        $output .= $before . '<a' . $attributes . '>' . $link_before . esc_html($item->title) . $link_after . '</a>' . $after;
+        
+        $output .= apply_filters('walker_nav_menu_start_el', '', $item, $depth, $args);
     }
-    
-
 
     /**
-     * Starts the list before the elements are added.
+     * Ends the element output.
      */
-    public function start_lvl(&$output, $depth = 0, $args = array()) {
-        if ($depth === 0) {
-            // Ensure title, URL, and description are pulled from the top-level item
-            $menu_title = isset($this->top_level_title) ? $this->top_level_title : 'Menu';
-            $menu_description = isset($this->top_level_description) ? $this->top_level_description : 'Discover more below.';
-            $menu_url = isset($this->top_level_url) ? $this->top_level_url : '#';
+    public function end_el(&$output, $item, $depth = 0, $args = array()) {
+        $output .= '</li>';
+    }
 
-            // Start mega menu container for top-level items
-            $output .= '<div class="mega-menu"><div class="mega-menu-wrapper">';
+    /**
+     * Handles display of elements and mega menu creation.
+     */
+    public function display_element($element, &$children_elements, $max_depth, $depth, $args, &$output) {
+        $args = is_array($args) ? (object) $args : $args;
+        $id_field = $this->db_fields['id'];
+        
+        if (!$element) return;
+        
+        $element->has_children = !empty($children_elements[$element->$id_field]);
+        $this->start_el($output, $element, $depth, $args);
 
-            // **Dynamic intro section (always from top-level)**
-            $output .= '<div class="mega-menu-intro">';
-            $output .= '<h2 class="fs-300 fw-regular">' . esc_html($menu_title) . '</h2>';
-            $output .= '<p class="grey-text">' . esc_html($menu_description) . '</p>';
-            $output .= '</div>';
-
-            // Start content section
-            $output .= '<div class="mega-menu-content">';
-            $output .= '<div class="mega-menu-section">';
+        if ($element->has_children && $depth === 0) {
+            // Capture submenu output in temp variable
+            $temp_output = '';
+            if (isset($children_elements[$element->$id_field])) {
+                foreach ($children_elements[$element->$id_field] as $child) {
+                    $this->display_element($child, $children_elements, $max_depth, $depth + 1, $args, $temp_output);
+                }
+            }
             
-            $output .= '<h3 class="fs-100">';
-            $output .= '<a class=" uppercase blue-text" href="' . esc_url($menu_url) . '">' . esc_html($menu_title) . '</a>';
-            $output .= '</h3>';
-
-            $output .= '<ul class="sub-menu">';
-        } else {
-            $output .= '<ul class="sub-menu">';
+            // Output mobile menu inline
+            $output .= '<ul class="sub-menu sub-menu--mobile">' . $temp_output . '</ul>';
+            
+            // Create mega menu markup
+            $menu_title = !empty($element->attr_title) ? esc_html($element->attr_title) : esc_html($element->title);
+            $menu_description = !empty($element->description) ? esc_html($element->description) : 'Explore our selection of products and services.';
+            $menu_url = !empty($element->url) ? esc_url($element->url) : '#';
+            $mega_menu_id = 'mega-menu-' . $element->$id_field;
+            
+            $this->mega_menu_markup[$element->$id_field] = 
+                '<div class="mega-menu" id="' . esc_attr($mega_menu_id) . '" role="region" aria-labelledby="menu-item-' . esc_attr($element->$id_field) . '">' .
+                    '<div class="mega-menu-wrapper">' .
+                        '<div class="mega-menu-intro">' .
+                            '<h2 class="fs-300 fw-regular">' . $menu_title . '</h2>' .
+                            '<p class="grey-text">' . $menu_description . '</p>' .
+                        '</div>' .
+                        '<div class="mega-menu-content">' .
+                            '<div class="mega-menu-section">' .
+                                '<h3 class="fs-100"><a class="uppercase blue-text" href="' . esc_url($menu_url) . '">' . $menu_title . '</a></h3>' .
+                                '<ul class="sub-menu">' . $temp_output . '</ul>' .
+                            '</div>' .
+                        '</div>' .
+                    '</div>' .
+                '</div>';
+            
+            unset($children_elements[$element->$id_field]);
+        } elseif ($element->has_children) {
+            if (isset($children_elements[$element->$id_field]) && ($max_depth == 0 || $max_depth > $depth + 1)) {
+                $output .= '<ul class="sub-menu">';
+                foreach ($children_elements[$element->$id_field] as $child) {
+                    $this->display_element($child, $children_elements, $max_depth, $depth + 1, $args, $output);
+                }
+                $output .= '</ul>';
+                unset($children_elements[$element->$id_field]);
+            }
         }
+        
+        $this->end_el($output, $element, $depth, $args);
     }
 
-    
-    public function end_lvl(&$output, $depth = 0, $args = array()) {
-        $output .= '</ul>';
-        if ($depth === 0) {
-            $output .= '</div></div></div>'; // Close .mega-menu-content, .mega-menu-wrapper, .mega-menu
+    /**
+     * Outputs the complete navigation markup.
+     */
+    public function walk($elements, $max_depth, ...$args) {
+        $items = parent::walk($elements, $max_depth, ...$args);
+        $mega_output = '';
+        
+        if (!empty($this->mega_menu_markup)) {
+            $mega_output = '<div class="mega-menu-container">' . implode('', $this->mega_menu_markup) . '</div>';
         }
+        
+        return '<ul id="menu-primary" class="menu nav-menu">' . $items . '</ul>' . $mega_output;
     }
-    
 }
 ?>
