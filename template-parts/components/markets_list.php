@@ -106,7 +106,7 @@
 									<?php endif; ?>
 								>
                     <?php if ($title): ?>
-                        <h3 class="fs-600 fw-medium margin-b-20"><?php echo esc_html($title); ?></h3>
+                        <h3 class="fs-600 fw-medium"><?php echo esc_html($title); ?></h3>
                     <?php endif; ?>
                     
                     <?php if ($brands): ?>

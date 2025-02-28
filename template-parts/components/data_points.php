@@ -47,7 +47,6 @@ function getDecimalPlaces($number) {
                 </div>
             <?php endforeach; ?>
         <?php endif; ?>
-        <div class="spacer"></div>
     </div>
 </div>
 
