@@ -57,8 +57,9 @@
 					array(
 						'theme_location' => 'primary_menu',
 						'container' => false,
-						'depth' => 2,
-						'walker' => new Mega_Menu_Walker()
+						'depth' => 3,
+						'walker' => new Mega_Menu_Walker(),
+						'items_wrap'   => '%3$s',
 				  )
 				);
 				?>
