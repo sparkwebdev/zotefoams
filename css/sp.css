@@ -1063,3 +1063,52 @@ button.btn, input[type="button"].btn, input[type="reset"].btn, input[type="submi
   border-radius: 5px;
   padding: 13px 20px 15px;
 }
+
+.market-box {
+  z-index: 1;
+  transition: background-color .3s ease-in;
+  position: relative;
+  overflow: hidden;
+}
+
+.market-box h3, .market-box a {
+  transition: color .2s ease-in;
+}
+
+.market-box .brands {
+  opacity: 1;
+  transition: opacity .3s ease-in;
+}
+
+.market-box .market-image {
+  opacity: 0;
+  z-index: -1;
+  background-position: center;
+  background-size: cover;
+  width: 100%;
+  height: 100%;
+  transition: opacity .3s ease-in;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.market-box:hover {
+  background-color: #000;
+}
+
+.market-box:hover .brands {
+  opacity: 0;
+}
+
+.market-box:hover h3, .market-box:hover a {
+  color: #fff;
+}
+
+.market-box:hover .market-image {
+  opacity: .5;
+}
+
+.market-box a.hl.arrow:after {
+  background-image: url("icon-right-arrow-white.54806159.svg");
+}
