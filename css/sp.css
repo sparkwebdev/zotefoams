@@ -23,7 +23,7 @@
 }
 
 .site-header .site-branding img {
-  width: 174px;
+  width: 154px;
   display: block;
 }
 
@@ -58,8 +58,7 @@
 .site-header-wrapper {
   flex-direction: column;
   justify-content: space-between;
-  align-items: center;
-  padding: 10px 0;
+  padding: 10px 0 10px 15px;
   display: flex;
   position: relative;
 }
@@ -67,6 +66,8 @@
 @media screen and (width >= 64rem) {
   .site-header-wrapper {
     flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
     gap: 30px;
     padding: 0 50px;
   }
@@ -239,12 +240,15 @@
 .main-navigation .mega-menu .sub-menu {
   flex-wrap: wrap;
   gap: 15px;
-  max-width: 66%;
   margin-top: 20px;
 }
 
 .main-navigation .mega-menu .sub-menu li {
-  flex: 0 0 33%;
+  flex: 0 33%;
+}
+
+.main-navigation .mega-menu .sub-menu li ul li {
+  flex-basis: 100%;
 }
 
 .main-navigation .mega-menu .sub-menu li > a:before {
@@ -345,7 +349,7 @@
   display: flex;
   position: absolute;
   top: 15px;
-  right: 30px;
+  right: 20px;
 }
 
 .menu-toggle .menu-line {
@@ -524,6 +528,14 @@
   }
 
   .main-navigation ul ul {
+    padding-left: 15px;
+  }
+
+  .main-navigation li {
+    text-align: left;
+  }
+
+  .main-navigation ul ul {
     background-color: var(--tone-off-white);
     display: none;
   }
@@ -543,8 +555,11 @@
 }
 
 @media screen and (width <= 63.99rem) {
-  .main-navigation ul ul ul a {
+  .main-navigation ul ul a {
     font-size: .9em;
+  }
+
+  .main-navigation ul ul ul a {
     color: var(--color-text) !important;
     padding-top: 5px !important;
   }
