@@ -50,7 +50,7 @@ if ($behaviour === 'pick' && !empty($post_ids)) {
                     }
 
                     // Extract image URL with fallback
-                    $image_url = $image ? (is_array($image) ? $image['sizes']['large'] : $image) : get_template_directory_uri() . '/images/placeholder.png';
+                    $image_url = $image ? (is_array($image) ? $image['sizes']['large'] : $image) : null;
                 ?>
                 <div class="feed-item">
                     <?php if ($image_url): ?>
