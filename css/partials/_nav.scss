@@ -6,6 +6,8 @@ $breakpoint-large: 68rem;
 .site-header {
 	position: relative;
 	border-bottom: solid 1px var(--color-text-light);
+  --color-link-hover: #3B82F6;
+	
 	
 	.site-branding {
 		flex-shrink: 0;
@@ -137,6 +139,7 @@ $breakpoint-large: 68rem;
 }
 
 .utility-menu {
+  --color-text-light: #9EC2FC;
 	.menu-item-has-children {
 		> a {
 			&::after {

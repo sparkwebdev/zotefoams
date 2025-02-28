@@ -1,328 +1,265 @@
 /**
- * navigation.js
- *
- * Handles toggling the navigation menu for small screens and enables TAB key
- * navigation support for dropdown and mega menus.
+ * navigation.js - Handles navigation menu functionality with accessibility support
  */
-(function () {
-  const siteNavigation = document.getElementById("site-navigation");
-  const utilityMenu = document.querySelector(".utility-menu");
+(() => {
+  const siteNav = document.getElementById('site-navigation');
+  if (!siteNav) return;
 
-  // Return early if navigation doesn't exist.
-  if (!siteNavigation) {
+  const button = siteNav.querySelector('button');
+  const menu = siteNav.querySelector('ul');
+  const utilityMenu = document.querySelector('.utility-menu');
+  const megaNavMode = 'hover'; // 'hover' or 'click'
+  const hoverDelay = 200; // ms
+
+  // Early returns for missing elements
+  if (!button || !menu) {
+    if (!menu && button) button.style.display = 'none';
     return;
   }
 
-  const button = siteNavigation.getElementsByTagName("button")[0];
-  const menu = siteNavigation.getElementsByTagName("ul")[0];
+  menu.classList.add('nav-menu');
 
-  // Early returns for missing elements.
-  if (typeof button === "undefined" || typeof menu === "undefined") {
-    if (typeof menu === "undefined") {
-      button.style.display = "none";
-    }
-    return;
-  }
+  // Get focusable elements in a container
+  const getFocusable = container => Array.from(
+    container.querySelectorAll('a, button, input, textarea, select, [tabindex]:not([tabindex="-1"])')
+  );
 
-  if (!menu.classList.contains("nav-menu")) {
-    menu.classList.add("nav-menu");
-  }
-
-  // Handle hamburger menu toggle.
-  button.addEventListener("click", function () {
-    siteNavigation.classList.toggle("toggled");
-    const isExpanded = button.getAttribute("aria-expanded") === "true";
-    button.setAttribute("aria-expanded", (!isExpanded).toString());
-  });
-
-  // Option: set interaction mode for mega nav. Can be "click" or "hover".
-  const megaNavInteraction = "hover";
-
-  // Helper: Get focusable elements within a container.
-  function getFocusableElements(container) {
-    return Array.from(
-      container.querySelectorAll(
-        'a, button, input, select, textarea, [tabindex]:not([tabindex="-1"])'
-      )
+  // Close all open dropdown and mega menus
+  const closeAll = () => {
+    document.querySelectorAll('.dropdown-active, .mega-menu.active').forEach(el => 
+      el.classList.remove('dropdown-active', 'active')
     );
-  }
+    const container = document.querySelector('.mega-menu-container');
+    if (container) container.classList.remove('active');
+    document.querySelectorAll('[aria-controls]').forEach(link => 
+      link.setAttribute('aria-expanded', 'false')
+    );
+  };
 
-  // Function to close all open dropdowns and mega menus.
-  function closeAllDropdowns() {
-    document.querySelectorAll(".dropdown-active").forEach((item) => {
-      item.classList.remove("dropdown-active");
-    });
-    document.querySelectorAll(".mega-menu.active").forEach((mega) => {
-      mega.classList.remove("active");
-    });
-    const container = document.querySelector(".mega-menu-container");
-    if (container) {
-      container.classList.remove("active");
-    }
-    // Reset aria-expanded on links controlling mega menus.
-    document.querySelectorAll("[aria-controls]").forEach((link) => {
-      link.setAttribute("aria-expanded", "false");
-    });
-  }
-
-  // Key handler for an open mega nav panel.
-  function megaNavKeyHandler(e) {
+  // Handle keyboard navigation within mega menu
+  const handleMegaKeyNav = e => {
     const megaMenu = e.currentTarget;
-    if (e.key === "Escape") {
+    if (e.key === 'Escape') {
       e.preventDefault();
-      megaMenu.classList.remove("active");
-      const container = document.querySelector(".mega-menu-container");
-      if (container && !container.querySelector(".mega-menu.active")) {
-        container.classList.remove("active");
-      }
-      if (megaMenu._topLink) {
-        megaMenu._topLink.focus();
-      }
-      megaMenu.removeEventListener("keydown", megaNavKeyHandler);
-    } else if (e.key === "Tab") {
-      const focusable = getFocusableElements(megaMenu);
+      megaMenu.classList.remove('active');
+      const container = document.querySelector('.mega-menu-container');
+      if (container && !container.querySelector('.mega-menu.active')) 
+        container.classList.remove('active');
+      if (megaMenu._topLink) megaMenu._topLink.focus();
+      megaMenu.removeEventListener('keydown', handleMegaKeyNav);
+    } else if (e.key === 'Tab') {
+      const focusable = getFocusable(megaMenu);
       const currentIndex = focusable.indexOf(document.activeElement);
-      if (e.shiftKey && currentIndex === 0) {
-        // When shift+tab on the first element, close and focus previous top-level link.
+      if ((e.shiftKey && currentIndex === 0) || (!e.shiftKey && currentIndex === focusable.length - 1)) {
         e.preventDefault();
-        megaMenu.classList.remove("active");
-        const topLinks = Array.from(
-          document.querySelectorAll("#menu-primary > li > a")
-        );
+        megaMenu.classList.remove('active');
+        const topLinks = Array.from(document.querySelectorAll('#menu-primary > li > a'));
         const index = topLinks.indexOf(megaMenu._topLink);
-        let prevLink = index > 0 ? topLinks[index - 1] : megaMenu._topLink;
-        prevLink.focus();
-        megaMenu.removeEventListener("keydown", megaNavKeyHandler);
-      } else if (!e.shiftKey && currentIndex === focusable.length - 1) {
-        // When tab on the last element, close and focus next top-level link.
-        e.preventDefault();
-        megaMenu.classList.remove("active");
-        const topLinks = Array.from(
-          document.querySelectorAll("#menu-primary > li > a")
-        );
-        const index = topLinks.indexOf(megaMenu._topLink);
-        let nextLink =
-          index < topLinks.length - 1 ? topLinks[index + 1] : megaMenu._topLink;
-        nextLink.focus();
-        megaMenu.removeEventListener("keydown", megaNavKeyHandler);
+        const targetLink = e.shiftKey 
+          ? (index > 0 ? topLinks[index - 1] : megaMenu._topLink)
+          : (index < topLinks.length - 1 ? topLinks[index + 1] : megaMenu._topLink);
+        targetLink.focus();
+        megaMenu.removeEventListener('keydown', handleMegaKeyNav);
       }
     }
-  }
+  };
 
-  // Set up dropdown/mega menu handlers.
-  function setupDropdownHandlers(menuElement) {
-    const itemsWithDropdowns = menuElement.querySelectorAll(
-      ".menu-item-has-children > a, [aria-controls]"
-    );
-    itemsWithDropdowns.forEach((link) => {
-      if (link.getAttribute("aria-controls")) {
-        if (megaNavInteraction === "hover") {
-          const menuItem = link.parentNode;
+  // Set up dropdown/mega menu handlers
+  const setupDropdowns = menuElement => {
+    menuElement.querySelectorAll('.menu-item-has-children > a, [aria-controls]').forEach(link => {
+      const controlId = link.getAttribute('aria-controls');
+      
+      if (controlId) { // Mega menu setup
+        const megaMenu = document.getElementById(controlId);
+        if (!megaMenu) return;
+        
+        if (megaNavMode === 'hover') {
           let hideTimer = null;
-          // On mouseenter on the top-level item, open mega nav.
-          menuItem.addEventListener("mouseenter", function () {
+          // Top-level item hover behavior
+          const menuItem = link.parentNode;
+          const clearTimer = () => {
             if (hideTimer) {
               clearTimeout(hideTimer);
               hideTimer = null;
             }
-            closeAllDropdowns(); // Optionally close others.
-            const controlId = link.getAttribute("aria-controls");
-            const megaMenu = document.getElementById(controlId);
-            if (megaMenu) {
-              megaMenu.classList.add("active");
-              const container = document.querySelector(".mega-menu-container");
-              if (container) {
-                container.classList.add("active");
-              }
-              link.setAttribute("aria-expanded", "true");
-              megaMenu._topLink = link; // store reference to the top-level link
-              megaMenu.addEventListener("keydown", megaNavKeyHandler);
-            }
-          });
-          // On mouseleave from the top-level item, start a timer to hide the mega nav.
-          menuItem.addEventListener("mouseleave", function () {
-            hideTimer = setTimeout(function () {
-              const controlId = link.getAttribute("aria-controls");
-              const megaMenu = document.getElementById(controlId);
-              if (megaMenu) {
-                megaMenu.classList.remove("active");
-                megaMenu.removeEventListener("keydown", megaNavKeyHandler);
-              }
-              const container = document.querySelector(".mega-menu-container");
-              if (container && !container.querySelector(".mega-menu.active")) {
-                container.classList.remove("active");
-              }
-              link.setAttribute("aria-expanded", "false");
-            }, 300);
-          });
-          // **NEW:** Also attach mouse events on the mega nav panel itself.
-          const controlId = link.getAttribute("aria-controls");
-          const megaMenu = document.getElementById(controlId);
-          if (megaMenu) {
-            megaMenu.addEventListener("mouseenter", function () {
-              if (hideTimer) {
-                clearTimeout(hideTimer);
-                hideTimer = null;
-              }
-            });
-            megaMenu.addEventListener("mouseleave", function () {
-              hideTimer = setTimeout(function () {
-                megaMenu.classList.remove("active");
-                megaMenu.removeEventListener("keydown", megaNavKeyHandler);
-                const container = document.querySelector(".mega-menu-container");
-                if (container && !container.querySelector(".mega-menu.active")) {
-                  container.classList.remove("active");
-                }
-                link.setAttribute("aria-expanded", "false");
-              }, 300);
-            });
-          }
-          // Keyboard support for hover mode.
-          link.addEventListener("keydown", function (e) {
-            if (e.key === "Enter" || e.key === " ") {
+          };
+          
+          const showMenu = () => {
+            clearTimer();
+            closeAll();
+            megaMenu.classList.add('active');
+            const container = document.querySelector('.mega-menu-container');
+            if (container) container.classList.add('active');
+            link.setAttribute('aria-expanded', 'true');
+            megaMenu._topLink = link;
+            megaMenu.addEventListener('keydown', handleMegaKeyNav);
+          };
+          
+          const hideMenu = () => {
+            hideTimer = setTimeout(() => {
+              megaMenu.classList.remove('active');
+              const container = document.querySelector('.mega-menu-container');
+              if (container && !container.querySelector('.mega-menu.active'))
+                container.classList.remove('active');
+              link.setAttribute('aria-expanded', 'false');
+              megaMenu.removeEventListener('keydown', handleMegaKeyNav);
+            }, hoverDelay);
+          };
+          
+          // Mouse events
+          menuItem.addEventListener('mouseenter', showMenu);
+          menuItem.addEventListener('mouseleave', hideMenu);
+          megaMenu.addEventListener('mouseenter', clearTimer);
+          megaMenu.addEventListener('mouseleave', hideMenu);
+          
+          // Keyboard
+          link.addEventListener('keydown', e => {
+            if ((e.key === 'Enter' || e.key === ' ' || e.key === 'ArrowDown')) {
               e.preventDefault();
-              const controlId = link.getAttribute("aria-controls");
-              const megaMenu = document.getElementById(controlId);
-              const isActive =
-                megaMenu && megaMenu.classList.contains("active");
+              const isActive = megaMenu.classList.contains('active');
+              
               if (isActive) {
-                megaMenu.classList.remove("active");
-                megaMenu.removeEventListener("keydown", megaNavKeyHandler);
-                const container = document.querySelector(".mega-menu-container");
-                if (container && !container.querySelector(".mega-menu.active")) {
-                  container.classList.remove("active");
+                if (e.key === 'ArrowDown') {
+                  // If menu is already open and Down is pressed, move focus to first item
+                  const firstFocusable = getFocusable(megaMenu)[0];
+                  if (firstFocusable) firstFocusable.focus();
+                  return;
                 }
-                link.setAttribute("aria-expanded", "false");
-                link.focus();
+                megaMenu.classList.remove('active');
+                const container = document.querySelector('.mega-menu-container');
+                if (container && !container.querySelector('.mega-menu.active'))
+                  container.classList.remove('active');
+                link.setAttribute('aria-expanded', 'false');
+                megaMenu.removeEventListener('keydown', handleMegaKeyNav);
               } else {
-                closeAllDropdowns();
-                if (megaMenu) {
-                  megaMenu.classList.add("active");
-                  const container = document.querySelector(".mega-menu-container");
-                  if (container) {
-                    container.classList.add("active");
-                  }
-                  link.setAttribute("aria-expanded", "true");
-                  megaMenu._topLink = link;
-                  // Only on keyboard activation, shift focus to the heading.
-                  const heading = megaMenu.querySelector(".mega-menu-intro > h2");
-                  if (heading) {
-                    heading.setAttribute("tabindex", "-1");
-                    setTimeout(() => {
-                      heading.focus();
-                    }, 500);
-                  }
-                  megaMenu.addEventListener("keydown", megaNavKeyHandler);
+                closeAll();
+                megaMenu.classList.add('active');
+                const container = document.querySelector('.mega-menu-container');
+                if (container) container.classList.add('active');
+                link.setAttribute('aria-expanded', 'true');
+                megaMenu._topLink = link;
+                
+                // Focus first heading
+                const heading = megaMenu.querySelector('.mega-menu-intro > h2');
+                if (heading) {
+                  heading.setAttribute('tabindex', '-1');
+                  setTimeout(() => heading.focus(), 200);
                 }
+                megaMenu.addEventListener('keydown', handleMegaKeyNav);
               }
-            } else if (e.key === "Escape") {
-              closeAllDropdowns();
+            } else if (e.key === 'Escape') {
+              closeAll();
               link.focus();
             }
           });
-        } else {
-          // Click interaction for mega nav.
-          link.addEventListener("click", function (e) {
+        } else { // Click mega menu
+          link.addEventListener('click', e => {
             e.preventDefault();
-            const controlId = this.getAttribute("aria-controls");
-            const megaMenu = document.getElementById(controlId);
-            const isActive =
-              megaMenu && megaMenu.classList.contains("active");
-            closeAllDropdowns();
-            if (megaMenu && !isActive) {
-              megaMenu.classList.add("active");
-              const container = document.querySelector(".mega-menu-container");
-              if (container) {
-                container.classList.add("active");
-              }
-              this.setAttribute("aria-expanded", "true");
-            } else if (megaMenu) {
-              megaMenu.classList.remove("active");
-              const container = document.querySelector(".mega-menu-container");
-              if (container) {
-                container.classList.remove("active");
-              }
-              this.setAttribute("aria-expanded", "false");
+            const isActive = megaMenu.classList.contains('active');
+            closeAll();
+            
+            if (!isActive) {
+              megaMenu.classList.add('active');
+              const container = document.querySelector('.mega-menu-container');
+              if (container) container.classList.add('active');
+              link.setAttribute('aria-expanded', 'true');
+              megaMenu._topLink = link;
+              megaMenu.addEventListener('keydown', handleMegaKeyNav);
             }
           });
-          link.addEventListener("keydown", function (e) {
-            if (e.key === "Enter" || e.key === " ") {
+          
+          link.addEventListener('keydown', e => {
+            if (e.key === 'Enter' || e.key === ' ' || e.key === 'ArrowDown') {
               e.preventDefault();
-              link.click();
-            } else if (e.key === "Escape") {
-              closeAllDropdowns();
+              const isActive = megaMenu.classList.contains('active');
+              
+              if (isActive && e.key === 'ArrowDown') {
+                // If menu is already open and Down is pressed, move focus to first item
+                const firstFocusable = getFocusable(megaMenu)[0];
+                if (firstFocusable) firstFocusable.focus();
+              } else {
+                link.click();
+              }
+            } else if (e.key === 'Escape') {
+              closeAll();
               link.focus();
             }
           });
         }
-      } else {
-        // For regular dropdown toggling on mobile.
-        link.addEventListener("click", function (e) {
-          const menuItem = this.parentNode;
-          menuElement.querySelectorAll(".dropdown-active").forEach((item) => {
-            if (item !== menuItem) {
-              item.classList.remove("dropdown-active");
-            }
+      } else { // Regular dropdown
+        link.addEventListener('click', () => {
+          const menuItem = link.parentNode;
+          menuElement.querySelectorAll('.dropdown-active').forEach(item => {
+            if (item !== menuItem) item.classList.remove('dropdown-active');
           });
-          menuItem.classList.toggle("dropdown-active");
+          menuItem.classList.toggle('dropdown-active');
         });
-        link.addEventListener("keydown", function (e) {
-          const menuItem = e.target.parentNode;
-          if (e.key === "Enter" || e.key === " ") {
+        
+        link.addEventListener('keydown', e => {
+          const menuItem = link.parentNode;
+          if (e.key === 'Enter' || e.key === ' ' || e.key === 'ArrowDown') {
             e.preventDefault();
-            menuItem.classList.toggle("dropdown-active");
-          }
-          if (e.key === "Escape") {
-            closeAllDropdowns();
+            menuItem.classList.toggle('dropdown-active');
+            
+            if (e.key === 'ArrowDown' && menuItem.classList.contains('dropdown-active')) {
+              // Move focus to first item in dropdown
+              const submenu = menuItem.querySelector('ul');
+              if (submenu) {
+                const firstLink = submenu.querySelector('a');
+                if (firstLink) firstLink.focus();
+              }
+            }
+          } else if (e.key === 'Escape') {
+            closeAll();
             link.focus();
           }
         });
       }
     });
-  }
+  };
 
-  setupDropdownHandlers(siteNavigation);
-  if (utilityMenu) {
-    setupDropdownHandlers(utilityMenu);
-  }
+  // Set up event listeners
+  button.addEventListener('click', () => {
+    siteNav.classList.toggle('toggled');
+    const isExpanded = button.getAttribute('aria-expanded') === 'true';
+    button.setAttribute('aria-expanded', (!isExpanded).toString());
+  });
 
-  // Close dropdowns when clicking outside.
-  document.addEventListener("click", function (event) {
-    if (
-      !siteNavigation.contains(event.target) &&
-      !(utilityMenu && utilityMenu.contains(event.target))
-    ) {
-      closeAllDropdowns();
-      siteNavigation.classList.remove("toggled");
-      button.setAttribute("aria-expanded", "false");
+  setupDropdowns(siteNav);
+  if (utilityMenu) setupDropdowns(utilityMenu);
+
+  // Close when clicking outside
+  document.addEventListener('click', e => {
+    if (!siteNav.contains(e.target) && !(utilityMenu && utilityMenu.contains(e.target))) {
+      closeAll();
+      siteNav.classList.remove('toggled');
+      button.setAttribute('aria-expanded', 'false');
     }
   });
 
-  // Accessibility: handle keyboard interactions for non-mega links.
-  function handleKeyboard(e) {
-    const menuItem = e.target.parentNode;
-    if (e.key === "Enter" || e.key === " ") {
-      e.preventDefault();
-      if (
-        !e.target.getAttribute("aria-controls") &&
-        (menuItem.classList.contains("menu-item-has-children") ||
-          menuItem.querySelector("ul"))
-      ) {
-        menuItem.classList.toggle("dropdown-active");
-      }
-    }
-    if (e.key === "Escape") {
-      closeAllDropdowns();
-      e.target.focus();
-    }
-  }
-
-  const menuLinks = document.querySelectorAll(
-    ".menu-item-has-children > a, [aria-controls]"
-  );
-  menuLinks.forEach((link) => {
-    if (!link.getAttribute("aria-controls")) {
-      link.addEventListener("keydown", handleKeyboard);
+  // Handle keyboard for standard links
+  document.querySelectorAll('.menu-item-has-children > a').forEach(link => {
+    if (!link.getAttribute('aria-controls')) {
+      link.addEventListener('keydown', e => {
+        const menuItem = link.parentNode;
+        if ((e.key === 'Enter' || e.key === ' ' || e.key === 'ArrowDown') && 
+            (menuItem.classList.contains('menu-item-has-children') || menuItem.querySelector('ul'))) {
+          e.preventDefault();
+          menuItem.classList.toggle('dropdown-active');
+          
+          if (e.key === 'ArrowDown' && menuItem.classList.contains('dropdown-active')) {
+            // Move focus to first item in dropdown
+            const submenu = menuItem.querySelector('ul');
+            if (submenu) {
+              const firstLink = submenu.querySelector('a');
+              if (firstLink) firstLink.focus();
+            }
+          }
+        } else if (e.key === 'Escape') {
+          closeAll();
+          link.focus();
+        }
+      });
     }
   });
 })();

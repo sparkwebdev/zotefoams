@@ -13,6 +13,7 @@
 
 .site-header {
   border-bottom: solid 1px var(--color-text-light);
+  --color-link-hover: #3b82f6;
   position: relative;
 }
 
@@ -142,6 +143,10 @@
 
 .main-navigation .sub-menu li.current-menu-item > a, .utility-menu .sub-menu li.current-menu-item > a {
   color: var(--color-link) !important;
+}
+
+.utility-menu {
+  --color-text-light: #9ec2fc;
 }
 
 .utility-menu .menu-item-has-children > a:after {
