@@ -15,7 +15,7 @@ $breakpoint-large: 68rem;
 		
 		img {
 			display: block;
-			width: 174px;
+			width: 154px;
 			
 			@media screen and (min-width: $breakpoint-medium) {
 				width: 154px;
@@ -46,13 +46,14 @@ $breakpoint-large: 68rem;
 
 .site-header-wrapper {
 	display: flex;
-	padding: 10px 0;
+	padding: 10px 0 10px 15px;
 	justify-content: space-between;
-	align-items: center;
 	flex-direction: column;
 	position: relative;
 	
 	@media screen and (min-width: $breakpoint-medium) {
+		justify-content: space-between;
+		align-items: center;
 		flex-direction: row;
 		gap: 30px;
 		padding: 0 50px;
@@ -248,12 +249,17 @@ $breakpoint-large: 68rem;
 	// Mega menu submenu
 	.mega-menu .sub-menu {
 		flex-wrap: wrap;
-		max-width: 66%;
 		gap: 15px;
 		margin-top: 20px;
 
 		li {
-			flex: 0 0 33%;
+			flex: 0 1 33%;
+
+			ul {
+				li {
+					flex-basis: 100%;
+				}
+			}
 			
 			> a {
 				&::before {
@@ -357,7 +363,7 @@ $breakpoint-large: 68rem;
 --------------------------------------------- */
 .menu-toggle {
 	position: absolute;
-	right: 30px;
+	right: 20px;
 	top: 15px;
 	display: flex;
 	flex-direction: column;
@@ -583,6 +589,12 @@ $breakpoint-large: 68rem;
   .mega-menu {
     display: none;
   }
+	.main-navigation ul ul {
+		padding-left: 15px;
+	}
+	.main-navigation li {
+		text-align: left;
+	}
 }
 
 
@@ -610,10 +622,12 @@ $breakpoint-large: 68rem;
 				}
 			}
 		}
+		a {
+			font-size: 0.9em;
+		}
 		ul {
 
 			a {
-				font-size: 0.9em;
 				color: var(--color-text) !important;
 				padding-top: 5px !important;
 			}
