@@ -2,20 +2,10 @@
 	// Allow for passed variables, as well as ACF values
 	$title = get_sub_field('markets_list_title');
 	$button = get_sub_field('markets_list_button'); // ACF Link field
-	$showAll = get_sub_field('markets_list_show_all');
+	$behaviour = get_sub_field('markets_list_behaviour'); // All / Pick / Manual
 	$marketPageID = zf_get_page_id_by_title('Markets');
-	$ourBrandsID = zf_get_page_id_by_title('Our Brands'); // ID of the top-level Brands page
-	$items = get_sub_field('markets_list_markets');
-
-	$current_page_id = get_the_ID();
-	$is_brand_page = false;
-
-	// Check if the current page is a child or grandchild of the 'Our Brands' page
-	$ancestors = get_post_ancestors($current_page_id);
-	if (in_array($ourBrandsID, $ancestors) || $current_page_id == $ourBrandsID) {
-			$is_brand_page = true;
-	}
-
+	$manual_items = get_sub_field('markets_list_markets'); // Manual markets
+	$selected_pages = get_sub_field('markets_list_ids'); // Selected pages if behaviour is "pick"
 ?>
 
 <div class="light-grey-bg padding-t-b-70 theme-light">
@@ -33,67 +23,21 @@
     </div>
 
     <?php 
-    if ($is_brand_page && $showAll) :
-        // Get the current brand's ID
-        $current_brand_id = get_the_ID();
-
-        // Query all child and grandchild pages of the Markets page
-        $markets_query = new WP_Query(array(
-            'post_type'      => 'page',
-            'post_parent'    => $marketPageID,
-            'posts_per_page' => -1,
-            'orderby'        => 'menu_order',
-            'order'          => 'ASC',
-            'meta_query'     => array(
-                array(
-                    'key'     => 'associated_brands',
-                    'value'   => '"' . $current_brand_id . '"', // Exact match inside serialized array
-                    'compare' => 'LIKE',
-                ),
-            ),
-        ));
-
-        if ($markets_query->have_posts()) : ?>
-            <div class="markets-list">
-                <?php while ($markets_query->have_posts()) : $markets_query->the_post(); ?>
-                    <div class="market-box white-bg text-center">
-                        <h3 class="fs-600 fw-medium"><?php the_title(); ?></h3>
-
-                        <?php 
-                        $related_brands = get_field('associated_brands', get_the_ID());
-                        if ($related_brands): ?>
-                            <ul class="brands margin-b-20">
-                                <?php foreach ($related_brands as $brand): ?>
-                                    <li>
-                                        <p class="grey-text"><?php echo get_the_title($brand); ?></p>
-                                    </li>
-                                <?php endforeach; ?>
-                            </ul>
-                        <?php endif; ?>
-                        
-                        <a href="<?php the_permalink(); ?>" class="hl arrow">Read more</a>
-                    </div>
-                <?php endwhile; ?>
-            </div>
-            <?php 
-            wp_reset_postdata();
-        endif;
-    
-    elseif ($showAll) :
-        // Original logic to show all child pages of the Markets page
-        $child_pages = get_pages(array(
+    if ($behaviour === 'all') :
+        // Show all child pages of the Markets page
+        $child_pages = get_pages([
             'child_of'     => $marketPageID,
             'sort_column'  => 'menu_order',
             'sort_order'   => 'ASC'
-        ));
+        ]);
 
-        if (count($child_pages) > 0) : ?>
+        if ($child_pages): ?>
             <div class="markets-list">
-                <?php foreach ($child_pages as $child) {
-                    $id = $child->ID; ?>
-
-                    <div class="market-box white-bg text-center">
-                        <h3 class="fs-600 fw-medium"><?php echo get_the_title($id); ?></h3>
+                <?php foreach ($child_pages as $child):
+                    $id = $child->ID;
+                    $featured_image = get_the_post_thumbnail_url($id, 'large') ?: get_template_directory_uri() . '/images/placeholder-thumbnail.png'; ?>
+                    <div class="market-box white-bg text-center" data-clickable-url="<?php echo get_the_permalink($id); ?>">
+                        <h3 class="fs-600 fw-medium margin-b-20"><?php echo get_the_title($id); ?></h3>
 
                         <?php 
                         $related_brands = get_field('associated_brands', $id);
@@ -108,20 +52,59 @@
                         <?php endif; ?>
                         
                         <a href="<?php echo get_the_permalink($id); ?>" class="hl arrow">Read more</a>
+
+                        <div class="market-image" style="background-image:url('<?php echo esc_url($featured_image); ?>');"></div>
                     </div>
-                <?php } ?>
+                <?php endforeach; ?>
             </div>
         <?php endif;
     
-    elseif ($items) : ?>
+    elseif ($behaviour === 'pick' && $selected_pages) : ?>
         <div class="markets-list">
-            <?php foreach ($items as $item): 
+            <?php foreach ($selected_pages as $page_id):
+                $page_title = get_the_title($page_id);
+                $page_link = get_permalink($page_id);
+                $featured_image = get_the_post_thumbnail_url($page_id, 'large') ?: get_template_directory_uri() . '/images/placeholder-thumbnail.png';
+                $related_brands = get_field('associated_brands', $page_id);
+                ?>
+                <div class="market-box white-bg text-center" data-clickable-url="<?php echo esc_url($page_link); ?>">
+                    <h3 class="fs-600 fw-medium margin-b-20"><?php echo esc_html($page_title); ?></h3>
+
+                    <?php if ($related_brands): ?>
+                        <ul class="brands margin-b-20">
+                            <?php foreach ($related_brands as $brand): ?>
+                                <li>
+                                    <p class="grey-text"><?php echo get_the_title($brand); ?></p>
+                                </li>
+                            <?php endforeach; ?>
+                        </ul>
+                    <?php endif; ?>
+
+                    <a href="<?php echo esc_url($page_link); ?>" class="hl arrow">Read more</a>
+
+                    <div class="market-image" style="background-image:url('<?php echo esc_url($featured_image); ?>');"></div>
+                </div>
+            <?php endforeach; ?>
+        </div>
+
+    <?php elseif ($behaviour === 'manual' && $manual_items) : ?>
+        <div class="markets-list">
+            <?php foreach ($manual_items as $item): 
                 $title = $item['markets_list_name'] ?? '';
                 $brands = $item['markets_list_brands'] ?? '';
                 $link = $item['markets_list_link'] ?? '';
+                $image = $item['markets_list_image'] ?? null;
+                $image_url = $image ? $image['sizes']['large'] : get_template_directory_uri() . '/images/placeholder-thumbnail.png';
+								if ($link): 
+										$link_url = $link['url'] ?? '#';
+								endif;
             ?>
 
-                <div class="market-box white-bg text-center">
+                <div class="market-box white-bg text-center" 
+									<?php if (!empty($link_url)): ?> 
+											data-clickable-url="<?php echo esc_url($link_url); ?>"
+									<?php endif; ?>
+								>
                     <?php if ($title): ?>
                         <h3 class="fs-600 fw-medium"><?php echo esc_html($title); ?></h3>
                     <?php endif; ?>
@@ -148,8 +131,10 @@
                             <?php echo esc_html($link_title); ?>
                         </a>
                     <?php endif; ?>
+
+                    <div class="market-image" style="background-image:url('<?php echo esc_url($image_url); ?>');"></div>
                 </div>
             <?php endforeach; ?>
         </div>
     <?php endif; ?>
-</div>	
+</div>

@@ -2695,7 +2695,7 @@
                             "required": 0,
                             "conditional_logic": 0,
                             "wrapper": {
-                                "width": "25",
+                                "width": "35",
                                 "class": "",
                                 "id": ""
                             },
@@ -2703,25 +2703,67 @@
                             "allow_in_bindings": 0
                         },
                         {
-                            "key": "field_67b631dc23390",
-                            "label": "Show all (relevant) Markets",
-                            "name": "markets_list_show_all",
+                            "key": "field_67af90123mlist8",
+                            "label": "Behaviour",
+                            "name": "markets_list_behaviour",
                             "aria-label": "",
-                            "type": "true_false",
+                            "type": "select",
                             "instructions": "",
                             "required": 0,
                             "conditional_logic": 0,
                             "wrapper": {
-                                "width": "15",
+                                "width": "30",
                                 "class": "",
                                 "id": ""
                             },
-                            "message": "",
-                            "default_value": 1,
+                            "choices": {
+                                "all": "Show all Markets",
+                                "pick": "Pick Markets",
+                                "manual": "Manually add"
+                            },
+                            "default_value": "all",
+                            "return_format": "value",
+                            "multiple": 0,
+                            "allow_null": 0,
                             "allow_in_bindings": 0,
-                            "ui_on_text": "",
-                            "ui_off_text": "",
-                            "ui": 1
+                            "ui": 0,
+                            "ajax": 0,
+                            "placeholder": ""
+                        },
+                        {
+                            "key": "field_67b6fe5745c82",
+                            "label": "Pick Pages",
+                            "name": "markets_list_ids",
+                            "aria-label": "",
+                            "type": "post_object",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": [
+                                [
+                                    {
+                                        "field": "field_67af90123mlist8",
+                                        "operator": "==",
+                                        "value": "pick"
+                                    }
+                                ]
+                            ],
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "post_type": [
+                                "page"
+                            ],
+                            "post_status": "",
+                            "taxonomy": "",
+                            "return_format": "id",
+                            "multiple": 1,
+                            "allow_null": 0,
+                            "allow_in_bindings": 0,
+                            "bidirectional": 0,
+                            "ui": 1,
+                            "bidirectional_target": []
                         },
                         {
                             "key": "field_67af90123mlist3",
@@ -2734,9 +2776,9 @@
                             "conditional_logic": [
                                 [
                                     {
-                                        "field": "field_67b631dc23390",
-                                        "operator": "!=",
-                                        "value": "1"
+                                        "field": "field_67af90123mlist8",
+                                        "operator": "==",
+                                        "value": "manual"
                                     }
                                 ]
                             ],
@@ -2833,6 +2875,32 @@
                                         "id": ""
                                     },
                                     "return_format": "array",
+                                    "parent_repeater": "field_67af90123mlist3"
+                                },
+                                {
+                                    "key": "field_67c1a9d45mlist_img",
+                                    "label": "Image",
+                                    "name": "markets_list_image",
+                                    "aria-label": "",
+                                    "type": "image",
+                                    "instructions": "",
+                                    "required": false,
+                                    "conditional_logic": false,
+                                    "wrapper": {
+                                        "width": "",
+                                        "class": "",
+                                        "id": ""
+                                    },
+                                    "return_format": "array",
+                                    "preview_size": "medium",
+                                    "library": "all",
+                                    "min_width": 0,
+                                    "min_height": 0,
+                                    "min_size": 0,
+                                    "max_width": 0,
+                                    "max_height": 0,
+                                    "max_size": 0,
+                                    "mime_types": "",
                                     "parent_repeater": "field_67af90123mlist3"
                                 }
                             ]
@@ -3586,5 +3654,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1740656515
+    "modified": 1740764597
 }
