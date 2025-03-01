@@ -127,14 +127,22 @@ $theme_button_style = $is_market_pages ? "black" : "white";
 	<style type="text/css">
 	/* 02 - Dual carousel
 	--------------------------------------------- */
+
 	.swiper-dual-carousel {
-	  display: flex;
-	  align-items: center;
-	  justify-content: center;
-	  align-items: stretch;  /* Ensure both child divs stretch to fill height */
 	}
-	.swiper-dual-carousel > div {
-	  width: 50%;
+	@media screen and (min-width: 48em) {
+		.swiper-dual-carousel {
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			align-items: stretch;  /* Ensure both child divs stretch to fill height */
+			flex-direction: column;
+			flex-direction: row;
+		}
+
+		.swiper-dual-carousel > div {
+			width: 50%;
+		}
 	}
 
 	.swiper-dual-carousel-image .swiper-wrapper {
@@ -158,6 +166,10 @@ $theme_button_style = $is_market_pages ? "black" : "white";
 
 	.swiper-dual-carousel-text .swiper-slide {
 	  padding: 70px 0 180px;
+	}
+	.swiper-dual-carousel-text .slide-inner {
+	  padding-left: 15px;
+	  padding-right: 15px;
 	}
 	.swiper-dual-carousel-text .slide-sub-content {
 	  max-width: 300px;
