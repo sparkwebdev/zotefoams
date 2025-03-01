@@ -40,7 +40,7 @@ get_header();
 				if ($layout == "list") { ?>
 					<article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
 						<?php
-							echo '<img src="' . esc_url($thumbnail_url) . '" alt="">';
+							echo '<img src="' . esc_url($thumbnail_url) . '" alt="" class="thumbnail-square">';
 						?>
 						<div class="articles__content">
 							<?php
@@ -120,12 +120,10 @@ get_header();
 	
 	<?php if ($title == 'Videos') { ?>
 	<!-- Video Overlay Structure -->
-	<div id="video-overlay" style="display:none;">
-		<div id="overlay-content">
-			<button id="close-video">Close</button>
-			<iframe id="video-iframe" width="100%" height="100%" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-		</div>
-	</div>
+	<?php
+	// This call sets the flag so the overlay is output in wp_footer.
+	require_video_overlay();
+	?>
 	<?php } ?>
 
 <?php
