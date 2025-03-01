@@ -40,7 +40,13 @@ $items = get_field('show_hide_forms_items', 'option');
 	<style type="text/css">
 		.show-hide-forms {
 			display:flex;
-			gap:50px
+			gap:50px;
+			flex-direction: column;
+		}
+		@media screen and (min-width: 48em) {
+			.show-hide-forms {
+				flex-direction: row;
+			}
 		}
 		.show-hide-forms > div {
 			flex:1

@@ -1,29 +1,46 @@
 // JavaScript to handle the video overlay
 document.addEventListener('DOMContentLoaded', function() {
-	var overlay = document.getElementById('video-overlay');
-	var iframe = document.getElementById('video-iframe');
-	var closeBtn = document.getElementById('close-video');
+  var overlay = document.getElementById('video-overlay');
+  var iframe = document.getElementById('video-iframe');
+  var closeBtn = document.getElementById('close-video');
 
-	// Open overlay when the link is clicked
-	var links = document.querySelectorAll('.open-video-overlay');
-	links.forEach(function(link) {
-		link.addEventListener('click', function(e) {
-			e.preventDefault();
-			var videoUrl = this.href;
-			var videoId = videoUrl.split('v=')[1].split('&')[0]; // Get the video ID from the URL
-			iframe.src = 'https://www.youtube.com/embed/' + videoId + '?autoplay=1'; // Embed the video
-			overlay.style.display = 'flex'; // Show the overlay
-		});
-	});
+  // Open overlay when the link is clicked
+  var links = document.querySelectorAll('.open-video-overlay');
+  links.forEach(function(link) {
+    link.addEventListener('click', function(e) {
+      e.preventDefault();
+      var videoUrl = this.href;
+      var videoId = videoUrl.split('v=')[1].split('&')[0]; // Get the video ID from the URL
+      iframe.src = 'https://www.youtube.com/embed/' + videoId + '?autoplay=1'; // Embed the video
+      overlay.style.display = 'flex'; // Show the overlay
+    });
+  });
 
-	// Close the overlay
+  // Close the overlay when clicking the close button
   if (closeBtn) {
     closeBtn.addEventListener('click', function() {
       overlay.style.display = 'none';
       iframe.src = ''; // Stop the video
     });
   }
+
+  // Close overlay when clicking outside the video (on the overlay background)
+  overlay.addEventListener('click', function(e) {
+    if (e.target === overlay) {
+      overlay.style.display = 'none';
+      iframe.src = ''; // Stop the video
+    }
+  });
+
+  // Close overlay when pressing the Escape key
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') {
+      overlay.style.display = 'none';
+      iframe.src = ''; // Stop the video
+    }
+  });
 });
+
 
 if (document.querySelector('.overlay')) {
   document.querySelector('.overlay').classList.add('fade-in');

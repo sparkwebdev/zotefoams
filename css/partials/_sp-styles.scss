@@ -29,16 +29,29 @@ html {
   }
 }
 .articles {
-  display: grid;
+  display: flex;
   gap: 2rem;
-  grid-template-columns: 1fr;
+  flex-direction: column;
+  @media screen and (min-width: 48em) {
+    display: grid;
+    gap: 2rem;
+    grid-template-columns: 1fr;
+  }
 }
 .articles .post {
   margin-bottom: 0;
+  img {
+    width: min(100%, 350px);
+    align-self: flex-start;
+  }
 }
 .articles--list .post {
   display: flex;
+  flex-direction: column;
   gap: 2rem;
+  @media screen and (min-width: 48em) {
+    flex-direction: row;
+  }
 }
 .articles--list .articles__content {
   display: flex;
@@ -46,13 +59,17 @@ html {
   flex-grow: 1;
 }
 .articles--list .articles__footer {
-  display: grid;
-  grid-template-columns: 1fr auto;
+  display: flex;
+  flex-direction: column;
   gap: 2rem;
-  align-items: center;
   margin-top: auto; 
   border-bottom: solid 1px var(--color-text-light);
   padding-bottom: 40px;
+  @media screen and (min-width: 64em) {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    align-items: center;
+  }
 }
 .articles--list * {
   /* margin: 0; */
@@ -422,6 +439,17 @@ html {
 	position: relative;
 }
 
+
+/* Icon columns (override) */
+
+.icon-columns-inner {
+	display: grid;
+	gap: 30px;
+	grid-template-columns: repeat( auto-fit, minmax(18rem, 1fr) );
+}
+.icon-columns-inner > div {
+	// flex:1
+}
 
 /* Box Items (override) */
 .box-items {
