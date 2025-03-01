@@ -47,7 +47,7 @@ function zotefoams_setup() {
 	add_theme_support( 'post-thumbnails' );
 	add_image_size( 'thumbnail-square', 350, 350, true ); // Custom image size: cropped
 	add_image_size( 'small', 700, 9999, false ); // Custom image size: not cropped
-	add_image_size( 'thumbnail-product', 600, 400, true ); // Custom image size: cropped
+	add_image_size( 'thumbnail-product', 690, 460, true ); // Custom image size: cropped
 
 	// This theme uses wp_nav_menu() in one location.
 	register_nav_menus(
