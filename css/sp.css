@@ -612,11 +612,9 @@ html {
   margin-bottom: 0;
 }
 
-.articles .post .thumbnail-square {
+.articles .post img {
   align-self: flex-start;
-  max-width: min(100%, 350px);
-  width: 350px;
-  flex-shrink: 0;
+  width: min(100%, 350px);
 }
 
 .articles--list .post {

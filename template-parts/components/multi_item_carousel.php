@@ -8,7 +8,7 @@ $manual_slides = get_sub_field('multi_item_carousel_slides'); // Manual items
 ?>
 
 <!-- Carousel 4 - Multi-Item Carousel -->
-<div class="multi-item-carousel-container padding-t-100 theme-none">
+<div class="multi-item-carousel-container padding-t-100 padding-b-100 theme-none">
 	<div class="cont-m">
     
 		<div class="title-strip margin-b-30">

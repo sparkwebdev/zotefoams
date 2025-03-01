@@ -10,12 +10,17 @@ if (is_page('Investors')) {
     $sharePrice = get_field('live_share_price', 'option');
 }
 
-// Extract 'large' size image URL from Image Array, with fallback to placeholder.png
-$image_url = $image ? $image['sizes']['large'] : '';
+if ($image) {
+    $image_url = $image['sizes']['large'];
+} elseif (has_post_thumbnail()) {
+    $image_url = get_the_post_thumbnail_url(get_the_ID(), 'large');
+} else {
+    $image_url = get_template_directory_uri() . "/images/placeholder.png";
+}
 ?>
 
 <div class="text-banner-split half-half theme-dark">
-    <div class="half video-container image-cover" style="background-image:url('<?php echo esc_url($image_url ? $image_url : get_template_directory_uri() . "/images/placeholder.png"); ?>');">
+    <div class="half video-container image-cover" style="background-image:url('<?php echo esc_url($image_url); ?>');">
     </div>
     <div class="half black-bg white-text padding-100">
         <div class="text-banner-text">
