@@ -54,62 +54,73 @@ function getDecimalPlaces($number) {
 
 <script type="text/javascript">
 
-	// Performance optimized animation for counting up numbers
-	document.addEventListener('DOMContentLoaded', function () {		
-		
-		function animateValue(obj, start, end, duration, prefix, suffix, decimals) {
-			let startTimestamp = null;
-			const step = (timestamp) => {
-				if (!startTimestamp) startTimestamp = timestamp;
-				const progress = Math.min((timestamp - startTimestamp) / duration, 1);
-				let value = (progress * (end - start) + start);
-				
-				// Format value with the correct decimals and remove trailing zeros
-				let formattedValue = value.toFixed(decimals).replace(/\.?0+$/, '');
-				
-				// Apply the formatted value
-				obj.innerHTML = (prefix ?? '') + formattedValue + (suffix ?? '');
-				
-				if (progress < 1) {
-					window.requestAnimationFrame(step);
-				}
-			};
-			window.requestAnimationFrame(step);
-		}
+document.addEventListener('DOMContentLoaded', function () {		
 	
-		const observer = new IntersectionObserver(entries => {
-			entries.forEach(entry => {
-				if (entry.isIntersecting) {
-					const values = entry.target.getElementsByClassName('value');
+	function animateValue(obj, start, end, duration, prefix, suffix, decimals) {
+		let startTimestamp = null;
+		const step = (timestamp) => {
+			if (!startTimestamp) startTimestamp = timestamp;
+			const progress = Math.min((timestamp - startTimestamp) / duration, 1);
+			let value = (progress * (end - start) + start);
+			
+			// Format value with the correct decimals and remove trailing zeros
+			let formattedValue = value.toFixed(decimals);
+			if (decimals > 0 && !suffix.includes('%')) {
+				formattedValue = formattedValue.replace(/\.?0+$/, '');
+			}
+			
+			// Apply the formatted value
+			obj.innerHTML = (prefix || '') + formattedValue + (suffix || '');
+			
+			if (progress < 1) {
+				window.requestAnimationFrame(step);
+			}
+		};
+		window.requestAnimationFrame(step);
+	}
+
+	const observer = new IntersectionObserver(entries => {
+		entries.forEach(entry => {
+			if (entry.isIntersecting) {
+				const values = entry.target.querySelectorAll('.value');
+				
+				values.forEach(valueElement => {
+					// Prevent re-animation
+					if (valueElement.dataset.animated) return;
+
+					const prefix = valueElement.dataset.prefix || '';
+					const suffix = valueElement.dataset.suffix || '';
+					const duration = parseInt(valueElement.dataset.duration) || 1100;
+					const decimals = parseInt(valueElement.dataset.decimals) || 0;
+					const to = parseFloat(valueElement.dataset.to) || 0;
+
+					valueElement.classList.add('animate__pulse');
+					animateValue(valueElement, 0, to, duration, prefix, suffix, decimals);
 					
-					for (let i = 0; i < values.length; i++) {
-						// Prevent re-animation
-						if (values[i].dataset.animated) continue;
-	
-						const prefix = values[i].dataset.prefix ?? '';
-						const suffix = values[i].dataset.suffix ?? '';
-						const duration = parseInt(values[i].dataset.duration) || 1100;
-						const decimals = parseInt(values[i].dataset.decimals) || 0;
-						const to = parseFloat(values[i].dataset.to) || 0;
-	
-						values[i].classList.add('animate__pulse');
-						animateValue(values[i], 0, to, duration, prefix, suffix, decimals);
-						
-						// Mark as animated
-						values[i].dataset.animated = "true";
+					// Mark as animated
+					valueElement.dataset.animated = "true";
+				});
+			} else {
+				// Allow re-animation if needed by removing flag
+				const values = entry.target.querySelectorAll('.value');
+				values.forEach(el => {
+					// Only reset animation flag when fully out of view for smoother experience
+					if (entry.intersectionRatio <= 0) {
+						el.removeAttribute('data-animated');
 					}
-				} else {
-					// Allow re-animation if needed by removing flag
-					entry.target.querySelectorAll('.value').forEach(el => el.removeAttribute('data-animated'));
-				}
-			});
-		}, { threshold: 0.5 }); // Adjust threshold to trigger animations better
-	
-		const target = document.querySelector('.data-points');
-		if (target) {
-			observer.observe(target);
-		}
-	});
+				});
+			}
+		});
+	}, { threshold: [0, 0.5] }); // Track both entering and fully visible states
+
+	// Fix: Use the correct class name from your HTML
+	const target = document.querySelector('.data-points-items');
+	if (target) {
+		observer.observe(target);
+	} else {
+		console.warn('Counter animation target element not found. Looking for .data-points-items');
+	}
+});
 	
 </script>
 
