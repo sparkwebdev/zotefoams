@@ -1196,6 +1196,8 @@ header.site-header a:hover {
 .margin-t-70 {margin-top:70px}
 .margin-t-40 {margin-top:40px}
 .margin-t-30 {margin-top:30px}
+.margin-t-20 {margin-top:20px}
+.margin-t-10 {margin-top:10px}
 
 .margin-b-100 {margin-bottom:100px}
 .margin-b-80 {margin-bottom:80px}
@@ -1663,10 +1665,11 @@ a.hl.download::after {
 	min-height:200px
 }
 .box-image {
-	height:260px
+	height: 260px
 }
-
-
+.box-items:not(:has(.box-item:nth-child(3))) .box-image {
+    height: 360px; /* Height when there are only 2 items */
+}
 
 
 
@@ -1699,9 +1702,6 @@ a.hl.download::after {
 }
 .box-content > div {
 	min-height:200px
-}
-.box-image {
-	height:260px
 }
 
 
@@ -1898,12 +1898,13 @@ a.hl.download::after {
 	margin-bottom:2%;
 	width:23.33%
 }
-.sustainability-intro {
-	max-width:1000px
-}
+
 .sustainability-intro strong {
 	font-weight:bold;
 	color:black
+}
+.sustainability-intro-inner {
+	max-width:1000px
 }
 
 /* Sustainability icons

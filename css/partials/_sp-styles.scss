@@ -459,7 +459,7 @@ html {
 }
 .small-box-items {
 	display: grid;
-	gap: 20px;
+	gap: 40px 20px;
 	grid-template-columns: repeat( auto-fit, minmax(18rem, 1fr) );
 }
 .box-items--4 {

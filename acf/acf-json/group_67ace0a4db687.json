@@ -446,6 +446,48 @@
                     "display": "block",
                     "sub_fields": [
                         {
+                            "key": "field_67c5ed0bc2e25",
+                            "label": "Overline",
+                            "name": "icon_columns_intro_overline",
+                            "aria-label": "",
+                            "type": "text",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "default_value": "",
+                            "maxlength": "",
+                            "allow_in_bindings": 0,
+                            "placeholder": "",
+                            "prepend": "",
+                            "append": ""
+                        },
+                        {
+                            "key": "field_67c5ed2dc2e26",
+                            "label": "Intro",
+                            "name": "icon_columns_intro",
+                            "aria-label": "",
+                            "type": "wysiwyg",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "default_value": "",
+                            "allow_in_bindings": 0,
+                            "tabs": "all",
+                            "toolbar": "full",
+                            "media_upload": 1,
+                            "delay": 0
+                        },
+                        {
                             "key": "field_67af89012pqrstu",
                             "label": "Columns",
                             "name": "icon_columns_columns",
@@ -3654,5 +3696,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1740764597
+    "modified": 1741024738
 }
