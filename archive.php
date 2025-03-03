@@ -14,7 +14,7 @@ get_header();
 		$title = single_cat_title('', false);
 		$cat_more_link_label = zotefoams_map_cat_label($title);
 		$layout = ($title == 'Case Studies' || $title == 'Videos') ? "grid" : "list";
-		$posts_page_id = zf_get_page_for_posts_id();
+		$posts_page_id = zotefoams_get_page_for_posts_id();
 	?>
 
 	<header class="text-banner margin-t-70">
@@ -61,11 +61,11 @@ get_header();
 					<article id="post-<?php the_ID(); ?>" <?php post_class($title == 'Case Studies' ? 'light-grey-bg' : ''); ?>>
 						<?php
 							if ($title == 'Videos') {
-								$first_video_url = get_first_youtube_url( get_the_ID() );
+								$first_video_url = zotefoams_get_first_youtube_url( get_the_ID() );
 								if ( $first_video_url ) :
 									$thumbnail_url = get_the_post_thumbnail_url(get_the_ID(),  'thumbnail');
 									if (!$thumbnail_url) {
-										$youtube_cover_image = youtube_cover_image( $first_video_url );
+										$youtube_cover_image = zotefoams_youtube_cover_image( $first_video_url );
 									}
 										?>
 									<div class="articles__block-embed-youtube" style="background-image:url(<?php echo $youtube_cover_image; ?>)">

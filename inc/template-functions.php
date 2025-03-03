@@ -58,7 +58,7 @@ add_action( 'wp_head', 'zotefoams_pingback_header' );
  * @param int $post_id The ID of the post.
  * @return string|null The YouTube video URL or null if no video is found.
  */
-function get_first_youtube_url( $post_id ) {
+function zotefoams_get_first_youtube_url( $post_id ) {
     // Get the post content
     $post = get_post( $post_id );
 
@@ -91,7 +91,7 @@ function get_first_youtube_url( $post_id ) {
  * @param int $post_id The ID of the post.
  * @return string|null The URL of the YouTube cover image or null if no video is found.
  */
-function youtube_cover_image( $url ) {
+function zotefoams_youtube_cover_image( $url ) {
     
 			if ( $url ) {
 				// Extract the video ID from the URL

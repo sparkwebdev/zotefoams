@@ -4,7 +4,7 @@
       'posts_per_page' => 3
   ];
   $news_items = get_posts($args);
-  $news_centre_ID = zf_get_page_for_posts_id(); 
+  $news_centre_ID = zotefoams_get_page_for_posts_id(); 
 ?>
 
 <?php if ($news_items): ?>
