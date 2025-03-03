@@ -1863,6 +1863,72 @@ a.hl.download::after {
     justify-content: space-between;
 }
 
+/* Split grey
+--------------------------------------------- */
+.split-grey {
+	display:flex;
+	justify-content: space-between;
+	flex-direction: column;
+}
+.split-grey .half:nth-of-type(1) {
+	min-height: 450px;
+}
+.split-grey .half {
+	display:flex;
+	justify-content: space-between;
+	flex-direction: column;
+	padding:50px;
+}
+@media screen and (min-width: 48em) {
+	.split-grey {
+		flex-direction: row;
+	}
+	.split-grey .half {
+		width: 50%;
+	}
+}
+
+
+.development-goals-list {
+	display:flex;
+	gap:2%;
+	flex-wrap:wrap
+}
+.development-goals-list img {
+	margin-bottom:2%;
+	width:23.33%
+}
+.sustainability-intro {
+	max-width:1000px
+}
+.sustainability-intro strong {
+	font-weight:bold;
+	color:black
+}
+
+/* Sustainability icons
+--------------------------------------------- */
+.sustainability-icons-inner {
+	display:flex;
+	flex-wrap:wrap;
+    gap: 4%;
+}
+.sustainability-icons-inner > div {
+	width:48%;
+	flex: auto;
+	margin-bottom:4%
+}
+
+/* Waste hierarchy
+--------------------------------------------- */
+.waste-hierarchy {
+	
+}
+.waste-hierarchy-intro {
+	max-width:650px;
+	margin:0 auto
+}
+
 
 
 /* Footer
