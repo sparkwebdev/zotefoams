@@ -1506,6 +1506,8 @@ a.hl.download::after {
 	align-items:center;
 	flex-wrap: wrap;
 	gap: 20px;
+	text-transform: capitalize
+	
 }
 .feed-items {
 	display:flex;
