@@ -92,68 +92,41 @@ add_action( 'after_setup_theme', 'zotefoams_content_width', 0 );
 /**
  * Enqueue scripts and styles.
  */
-function zotefoams_scripts() {
-	wp_enqueue_style( 'zotefoams-style', get_stylesheet_uri(), array(), _S_VERSION );
-	wp_style_add_data( 'zotefoams-style', 'rtl', 'replace' );
+function zotefoams_enqueue_assets() {
+    // Main stylesheet
+    wp_enqueue_style('zotefoams-style', get_stylesheet_uri(), array(), _S_VERSION);
+    wp_style_add_data('zotefoams-style', 'rtl', 'replace');
 
-	wp_enqueue_script( 'zotefoams-navigation', get_template_directory_uri() . '/js/navigation.js', array(), _S_VERSION, true );
-
-	if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
-		wp_enqueue_script( 'comment-reply' );
-	}
-}
-add_action( 'wp_enqueue_scripts', 'zotefoams_scripts' );
-
-function enqueue_google_fonts() {
+    // Google Fonts
     wp_enqueue_style(
         'google-fonts',
         'https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&display=swap',
         array(),
         null
     );
-}
-add_action('wp_enqueue_scripts', 'enqueue_google_fonts');
 
-/**
- * Enqueue swiper carousel assets.
- */
-function enqueue_swiper_assets() {
-    // Enqueue Swiper CSS
+    // Swiper CSS & JS
     wp_enqueue_style('swiper-css', 'https://cdn.jsdelivr.net/npm/swiper@latest/swiper-bundle.min.css');
-
-    // Enqueue Swiper JS
     wp_enqueue_script('swiper-js', 'https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js', array(), null, true);
-
-    // Enqueue your custom script for Swiper initialization
     wp_enqueue_script('swiper-custom', get_template_directory_uri() . '/js/swiper-custom.js', array('swiper-js'), null, true);
-}
-add_action('wp_enqueue_scripts', 'enqueue_swiper_assets');
 
-
-/**
- * Enqueue Animate.css
- */
-function enqueue_animatecss_assets() {
-    // Enqueue Animate.css
+    // Animate.css
     wp_enqueue_style('animate-css', 'https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css');
+    wp_enqueue_script('animate-css-swiper', get_template_directory_uri() . '/js/animate-swiper.js', array(), null, true);
 
-	// Enqueue Animate.css Swiper Triggers
-	wp_enqueue_script('animate-css-swiper', get_template_directory_uri() . '/js/animate-swiper.js', array(), null, true);
+    // Navigation Script
+    wp_enqueue_script('zotefoams-navigation', get_template_directory_uri() . '/js/navigation.js', array(), _S_VERSION, true);
+
+    // Stevens (Temp) Assets
+    wp_enqueue_style('zotefoams-sp-style', get_template_directory_uri() . '/css/sp.css', array(), _S_VERSION);
+    wp_enqueue_script('zotefoams-sp-js', get_template_directory_uri() . '/js/sp.js', array(), _S_VERSION, true);
+
+    // Comment reply script (if applicable)
+    if (is_singular() && comments_open() && get_option('thread_comments')) {
+        wp_enqueue_script('comment-reply');
+    }
 }
-add_action('wp_enqueue_scripts', 'enqueue_animatecss_assets');
-
-
-
-/**
- * Enqueue Stevens (temp) assets.
- */
-function enqueue_steven_assets() {
-
-	wp_enqueue_style( 'zotefoams-sp-style', get_template_directory_uri() . '/css/sp.css', array(), _S_VERSION );
-	wp_enqueue_script( 'zotefoams-sp-js', get_template_directory_uri() . '/js/sp.js', array(), _S_VERSION, true );
-
-}
-add_action('wp_enqueue_scripts', 'enqueue_steven_assets');
+add_action('wp_enqueue_scripts', 'zotefoams_enqueue_assets');
 
 /**
  * Custom template tags for this theme.
@@ -175,19 +148,10 @@ require get_template_directory() . '/inc/admin.php';
  */
 require get_template_directory() . '/inc/admin-editor.php';
 
-
-// Enable ACF local JSON feature
-add_filter('acf/settings/save_json', 'zotefoams_acf_json_save_point');
-function zotefoams_acf_json_save_point($path) {
-    return plugin_dir_path(__FILE__) . 'acf/acf-json';
-}
-
-add_filter('acf/settings/load_json', 'zotefoams_acf_json_load_point');
-function zotefoams_acf_json_load_point($paths) {
-    unset($paths[0]);
-    $paths[] = plugin_dir_path(__FILE__) . 'acf/acf-json';
-    return $paths;
-}
+/**
+ * Loads the custom walker class for rendering the mega menu.
+ */
+require_once get_template_directory() . '/inc/mega-menu-walker.php';
 
 /**
  * Register our block's with WordPress's register_block_type();
@@ -201,169 +165,27 @@ function zotefoams_register_acf_blocks() {
 }
 add_action( 'init', 'zotefoams_register_acf_blocks' );
 
-
 /**
- * Includes a template part and allows passing variables scoped to that instance.
+ * Customize the search form's input and submit button classes.
  *
- * This function locates and includes a specified template file while extracting
- * an array of variables to be used within that file. This prevents global scope pollution
- * and ensures variables are only available within the included template.
+ * Modifies the default WordPress search form to include custom CSS classes.
  *
- * @param string $file The template file path (relative to the theme directory, without .php extension).
- * @param array $variables An associative array of variables to extract and make available in the template.
+ * @param string $form The original search form HTML.
+ * @return string The modified search form HTML.
  */
-function include_template_part($file, $variables = []) {
-    extract($variables);
-    include locate_template($file . '.php');
-}
-
-
-
-add_filter('acf/load_field/name=show_hide_forms_form', 'zotefoams_populate_acf_with_wpforms');
-function zotefoams_populate_acf_with_wpforms($field) {
-    // Clear existing choices
-    $field['choices'] = [];
-
-    // Get the list of WPForms
-    if (class_exists('WPForms')) {
-        $forms = wpforms()->form->get();
-        if ($forms) {
-            foreach ($forms as $form) {
-                $form_data = wpforms()->form->get($form->ID); // Get full form data
-                $form_name = $form_data->post_title; // Get the form's title
-                $field['choices'][$form->ID] = $form_name;
-            }
-        }
-    }
-
-    return $field;
-}
-
-
-// Function to get page ID by title (replacement for get_page_by_title)
-function zotefoams_get_page_id_by_title($title) {
-    global $wpdb;
-
-    $page_id = $wpdb->get_var($wpdb->prepare(
-        "SELECT ID FROM $wpdb->posts 
-        WHERE post_type = 'page' 
-        AND post_title COLLATE utf8mb4_general_ci = %s 
-        LIMIT 1",
-        $title
-    ));
-
-    return $page_id ?: null;
-}
-
-
-require_once get_template_directory() . '/template-parts/class-mega-menu-walker.php';
-
-
-
-function zotefoams_get_page_for_posts_id() {
-	$page_for_posts = get_option('page_for_posts', true); // WordPress "Posts Page"
-	$posts_page_id = !empty($page_for_posts) ? $page_for_posts : zotefoams_get_page_id_by_title('News Centre');
-	return $posts_page_id;
-}
-
-function my_custom_search_rewrite() {
-    add_rewrite_rule( '^search/?$', 'index.php?s=', 'top' );
-}
-add_action( 'init', 'my_custom_search_rewrite' );
-
-
 function zotefoams_filter_search_form( $form ) {
-    // Replace the default submit button's class with the new classes.
     $form = str_replace( 'class="search-submit"', 'class="search-submit btn blue"', $form );
     $form = str_replace( 'class="search-field"', 'class="search-field zf"', $form );
     return $form;
 }
 add_filter( 'get_search_form', 'zotefoams_filter_search_form' );
 
-
 /**
- * Populate the ACF 'associated_brands' field with a list of Brands Child pages.
+ * Add a custom rewrite rule for search URLs.
  *
- * @link https://www.advancedcustomfields.com/resources/acf-load_field/
+ * Redirects "/search/" to the default WordPress search query structure.
  */
-
-add_filter('acf/load_field/name=associated_brands', 'zotefoams_populate_acf_with_brands');
-function zotefoams_populate_acf_with_brands($field) {
-    // Clear existing choices
-    $field['choices'] = [];
-
-    // Get the page ID for 'Our brands' (case-insensitive)
-    $brands_page_id = zotefoams_get_page_id_by_title('Our brands');
-
-    if ($brands_page_id) {
-        // Get child and grandchild pages
-        $args = [
-            'post_type'      => 'page',
-            'post_parent'    => $brands_page_id,
-            'posts_per_page' => -1,
-            'orderby'        => 'menu_order',
-            'order'          => 'ASC',
-        ];
-
-        $child_pages = get_posts($args);
-
-        if (!empty($child_pages)) {
-            foreach ($child_pages as $page) {
-                // Add child page
-                $field['choices'][$page->ID] = $page->post_title;
-
-                // Get grandchild pages
-                $grandchild_args = [
-                    'post_type'      => 'page',
-                    'post_parent'    => $page->ID,
-                    'posts_per_page' => -1,
-                    'orderby'        => 'menu_order',
-                    'order'          => 'ASC',
-                ];
-
-                $grandchild_pages = get_posts($grandchild_args);
-
-                if (!empty($grandchild_pages)) {
-                    foreach ($grandchild_pages as $grandchild) {
-                        // Add grandchild page with indentation for clarity
-                        $field['choices'][$grandchild->ID] = '— ' . $grandchild->post_title;
-                    }
-                }
-            }
-        }
-    }
-
-    return $field;
+function zotefoams_custom_search_rewrite() {
+    add_rewrite_rule( '^search/?$', 'index.php?s=', 'top' );
 }
-
-
-// Set a flag to indicate the video overlay should be output.
-function require_video_overlay() {
-    $GLOBALS['video_overlay_required'] = true;
-}
-
-// Output the video overlay in the footer if it was requested.
-function insert_video_overlay() {
-    // Only output if the flag is set.
-    if ( empty( $GLOBALS['video_overlay_required'] ) ) {
-        return;
-    }
-    // Guard to prevent duplicate output.
-    static $overlay_inserted = false;
-    if ( $overlay_inserted ) {
-        return;
-    }
-    $overlay_inserted = true;
-    ?>
-    <!-- Video Overlay Structure -->
-    <div id="video-overlay" style="display:none;">
-        <div id="overlay-content">
-            <button id="close-video">Close</button>
-            <iframe id="video-iframe" width="100%" height="100%" frameborder="0" 
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-                allowfullscreen></iframe>
-        </div>
-    </div>
-    <?php
-}
-add_action( 'wp_footer', 'insert_video_overlay' );
+add_action( 'init', 'zotefoams_custom_search_rewrite' );

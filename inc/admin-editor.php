@@ -32,6 +32,18 @@ function change_post_object_label() {
 add_action( 'init', 'change_post_object_label' );
 
 
+/**
+ * Disable Gutenberg for all post types except 'post'.
+ */
+function disable_gutenberg_except_posts($use_block_editor, $post) {
+    if ($post->post_type !== 'post') {
+        return false; // Disable for everything except posts
+    }
+    return $use_block_editor; // Enable for posts
+}
+add_filter('use_block_editor_for_post', 'disable_gutenberg_except_posts', 10, 2);
+
+
 function zoatfoams_allowed_block_types($allowed_blocks, $editor_context) {
   // Available options below:
   // 'core/legacy-widget',

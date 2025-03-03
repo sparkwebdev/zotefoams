@@ -51,6 +51,49 @@ function zotefoams_map_cat_label($label) {
 add_action( 'wp_head', 'zotefoams_pingback_header' );
 
 
+/**
+ * Get the ID of a page by its title.
+ *
+ * @param string $title The page title to search for.
+ * @return int|null The page ID or null if not found.
+ */
+function zotefoams_get_page_id_by_title($title) {
+    global $wpdb;
+
+    $page_id = $wpdb->get_var($wpdb->prepare(
+        "SELECT ID FROM $wpdb->posts 
+        WHERE post_type = 'page' 
+        AND post_title COLLATE utf8mb4_general_ci = %s 
+        LIMIT 1",
+        $title
+    ));
+
+    return $page_id ?: null;
+}
+
+/**
+ * Get the ID of the WordPress "Posts Page."
+ *
+ * Returns the assigned posts page ID or falls back to "News Centre" if not set.
+ *
+ * @return int The posts page ID.
+ */
+function zotefoams_get_page_for_posts_id() {
+	$page_for_posts = get_option('page_for_posts', true); // WordPress "Posts Page"
+	$posts_page_id = !empty($page_for_posts) ? $page_for_posts : zotefoams_get_page_id_by_title('News Centre');
+	return $posts_page_id;
+}
+
+
+/**
+ * Check if a given URL is a file.
+ *
+ * @param string $link_url The URL to check.
+ * @return bool True if the URL is a file, false otherwise.
+ */
+function zotefoams_is_file( $link_url ) {
+  	return wp_check_filetype($link_url)['ext'] ? true : false;
+}
 
 /**
  * Get the first YouTube video URL from a WordPress post.
@@ -82,9 +125,8 @@ function zotefoams_get_first_youtube_url( $post_id ) {
     // Return null if no YouTube embed block is found
     return null;
 }
-?>
 
-<?php
+
 /**
  * Get the YouTube cover image URL from the first YouTube embed block.
  *
@@ -107,4 +149,35 @@ function zotefoams_youtube_cover_image( $url ) {
     // Return null if no YouTube embed block or video ID is found
     return null;
 }
-?>
+
+
+// Set a flag to indicate the video overlay should be output.
+function require_video_overlay() {
+    $GLOBALS['video_overlay_required'] = true;
+}
+
+// Output the video overlay in the footer if it was requested.
+function insert_video_overlay() {
+    // Only output if the flag is set.
+    if ( empty( $GLOBALS['video_overlay_required'] ) ) {
+        return;
+    }
+    // Guard to prevent duplicate output.
+    static $overlay_inserted = false;
+    if ( $overlay_inserted ) {
+        return;
+    }
+    $overlay_inserted = true;
+    ?>
+    <!-- Video Overlay Structure -->
+    <div id="video-overlay" style="display:none;">
+        <div id="overlay-content">
+            <button id="close-video">Close</button>
+            <iframe id="video-iframe" width="100%" height="100%" frameborder="0" 
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                allowfullscreen></iframe>
+        </div>
+    </div>
+    <?php
+}
+add_action( 'wp_footer', 'insert_video_overlay' );
