@@ -616,6 +616,11 @@ html {
   align-self: flex-start;
   width: min(100%, 350px);
 }
+/* Fix for video button */
+.articles .post a.video-link img {
+  align-self: auto;
+  width: auto;
+}
 
 .articles--list .post {
   flex-direction: column;
