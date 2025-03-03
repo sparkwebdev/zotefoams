@@ -3,7 +3,7 @@
 	$title = get_sub_field('markets_list_title');
 	$button = get_sub_field('markets_list_button'); // ACF Link field
 	$behaviour = get_sub_field('markets_list_behaviour'); // All / Pick / Manual
-	$marketPageID = zf_get_page_id_by_title('Markets');
+	$marketPageID = zotefoams_get_page_id_by_title('Markets');
 	$manual_items = get_sub_field('markets_list_markets'); // Manual markets
 	$selected_pages = get_sub_field('markets_list_ids'); // Selected pages if behaviour is "pick"
 ?>

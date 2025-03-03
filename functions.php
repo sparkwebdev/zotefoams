@@ -219,26 +219,8 @@ function include_template_part($file, $variables = []) {
 
 
 
-// function custom_tinymce_toolbar($init) {
-//     // Set the first toolbar to only have Bold and Italic
-//     $init['toolbar1'] = 'bold,italic';
-//     // Remove the second toolbar
-//     $init['toolbar2'] = '';
- 
-//     // Ensure block formats are limited to paragraph only
-//     $init['block_formats'] = 'Paragraph=p';
- 
-//     // Disable extra plugins that might introduce other buttons
-//     $init['plugins'] = 'wordpress';
- 
-//     return $init;
-// }
-// add_filter('tiny_mce_before_init', 'custom_tinymce_toolbar');
-
-
-
-add_filter('acf/load_field/name=show_hide_forms_form', 'zf_populate_acf_with_wpforms');
-function zf_populate_acf_with_wpforms($field) {
+add_filter('acf/load_field/name=show_hide_forms_form', 'zotefoams_populate_acf_with_wpforms');
+function zotefoams_populate_acf_with_wpforms($field) {
     // Clear existing choices
     $field['choices'] = [];
 
@@ -258,21 +240,8 @@ function zf_populate_acf_with_wpforms($field) {
 }
 
 
-
-// function use_page_template_for_blog($template) {
-//     if (is_home() && !is_front_page()) { // Ensure it's the posts page, not front page
-//         $posts_page_id = get_option('page_for_posts'); // Get the assigned posts page ID
-//         if ($posts_page_id) {
-//             return locate_template('page.php'); // Force page.php
-//         }
-//     }
-//     return $template;
-// }
-// add_filter('template_include', 'use_page_template_for_blog');
-
-
 // Function to get page ID by title (replacement for get_page_by_title)
-function zf_get_page_id_by_title($title) {
+function zotefoams_get_page_id_by_title($title) {
     global $wpdb;
 
     $page_id = $wpdb->get_var($wpdb->prepare(
@@ -291,9 +260,9 @@ require_once get_template_directory() . '/template-parts/class-mega-menu-walker.
 
 
 
-function zf_get_page_for_posts_id() {
+function zotefoams_get_page_for_posts_id() {
 	$page_for_posts = get_option('page_for_posts', true); // WordPress "Posts Page"
-	$posts_page_id = !empty($page_for_posts) ? $page_for_posts : zf_get_page_id_by_title('News Centre');
+	$posts_page_id = !empty($page_for_posts) ? $page_for_posts : zotefoams_get_page_id_by_title('News Centre');
 	return $posts_page_id;
 }
 
@@ -303,13 +272,13 @@ function my_custom_search_rewrite() {
 add_action( 'init', 'my_custom_search_rewrite' );
 
 
-function zf_filter_search_form( $form ) {
+function zotefoams_filter_search_form( $form ) {
     // Replace the default submit button's class with the new classes.
     $form = str_replace( 'class="search-submit"', 'class="search-submit btn blue"', $form );
     $form = str_replace( 'class="search-field"', 'class="search-field zf"', $form );
     return $form;
 }
-add_filter( 'get_search_form', 'zf_filter_search_form' );
+add_filter( 'get_search_form', 'zotefoams_filter_search_form' );
 
 
 /**
@@ -318,13 +287,13 @@ add_filter( 'get_search_form', 'zf_filter_search_form' );
  * @link https://www.advancedcustomfields.com/resources/acf-load_field/
  */
 
-add_filter('acf/load_field/name=associated_brands', 'zf_populate_acf_with_brands');
-function zf_populate_acf_with_brands($field) {
+add_filter('acf/load_field/name=associated_brands', 'zotefoams_populate_acf_with_brands');
+function zotefoams_populate_acf_with_brands($field) {
     // Clear existing choices
     $field['choices'] = [];
 
     // Get the page ID for 'Our brands' (case-insensitive)
-    $brands_page_id = zf_get_page_id_by_title('Our brands');
+    $brands_page_id = zotefoams_get_page_id_by_title('Our brands');
 
     if ($brands_page_id) {
         // Get child and grandchild pages
