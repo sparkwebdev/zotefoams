@@ -1416,8 +1416,8 @@ a.hl.download::after {
 
 /* b2 - Text banner
 --------------------------------------------- */
-.text-banner {
-	border-bottom:1px solid #D1D1D1
+.text-banner:not(:has(+ .text-banner-split)) {
+    border-bottom: 1px solid #D1D1D1;
 }
 
 
