@@ -117,6 +117,12 @@ function zotefoams_enqueue_assets() {
     // Navigation Script
     wp_enqueue_script('zotefoams-navigation', get_template_directory_uri() . '/js/navigation.js', array(), _S_VERSION, true);
 
+    // Components Assets
+    wp_enqueue_style('zotefoams-components-style', get_template_directory_uri() . '/css/components.css', array(), _S_VERSION);
+    wp_enqueue_script('zotefoams-components-js', get_template_directory_uri() . '/js/components.js', array(), _S_VERSION, true);
+    wp_enqueue_style('zotefoams-components-carousels-style', get_template_directory_uri() . '/css/components-carousels.css', array(), _S_VERSION);
+    wp_enqueue_script('zotefoams-components-carousels-js', get_template_directory_uri() . '/js/components-carousels.js', array(), _S_VERSION, true);
+
     // Stevens (Temp) Assets
     wp_enqueue_style('zotefoams-sp-style', get_template_directory_uri() . '/css/sp.css', array(), _S_VERSION);
     wp_enqueue_script('zotefoams-sp-js', get_template_directory_uri() . '/js/sp.js', array(), _S_VERSION, true);
