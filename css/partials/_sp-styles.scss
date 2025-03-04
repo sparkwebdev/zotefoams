@@ -242,9 +242,10 @@ html {
   
   cursor: pointer;
   &:hover,
-  &:focus {
+  &:has(a:focus) {
     background-color: var(--color-brand-contrast);
   }
+  
 }
 .file-list__item-icon {
   img {
@@ -316,6 +317,15 @@ html {
     white-space: nowrap;
     min-width: 200px;
     overflow-x: auto;
+}
+.filter-group {
+  > strong {
+    display: block;
+    padding: 15px 15px 5px 15px;
+    font-size: 14px;
+    text-transform: uppercase;
+  }
+  border-bottom: var(--border-separator);
 }
 
 /* Checkbox Styles */

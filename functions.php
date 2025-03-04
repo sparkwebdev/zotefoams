@@ -201,8 +201,6 @@ function zotefoams_custom_search_rewrite() {
 add_action( 'init', 'zotefoams_custom_search_rewrite' );
 
 
-
-
 // Enable ACF local JSON feature
 add_filter('acf/settings/save_json', 'zotefoams_acf_json_save_point');
 function zotefoams_acf_json_save_point($path) {
@@ -300,3 +298,70 @@ function zotefoams_populate_acf_with_wpforms($field) {
  
      return $field;
  }
+
+
+
+/**
+ * Customize the upload directory for Document Store (Knowledge Hub) uploads.
+ *
+ * This function intercepts the upload directory settings when an upload originates from the
+ * document_store gallery field (identified by the '_acfuploader' request parameter with a specific field ID).
+ * It retrieves the associated post's permalink and extracts its path to use as a custom subdirectory,
+ * thereby organizing uploads according to the post's URL structure.
+ *
+ * @param array $uploads An associative array of default upload directory settings.
+ * @return array Modified upload settings with a custom subdirectory if the conditions are met.
+ */
+function zotefoams_custom_upload_dir_for_document_store($uploads)
+{
+    // Only act if this upload comes from our document_store gallery field.
+    if (! empty($_REQUEST['_acfuploader']) && $_REQUEST['_acfuploader'] === 'field_67c58a842cccb') {
+        $post_id = ! empty($_REQUEST['post_id']) ? intval($_REQUEST['post_id']) : 0;
+        if ($post_id) {
+            $permalink = get_permalink($post_id);
+            if ($permalink) {
+                // Extract the path (e.g. "/knowledge-hub/marketing-literature" or "/knowledge-hub/marketing-literature/another")
+                $path = parse_url($permalink, PHP_URL_PATH);
+                // Remove any trailing slash
+                $path = rtrim($path, '/');
+                // Use the path as the custom subdirectory.
+                $uploads['subdir'] = $path;
+                $uploads['path']  = $uploads['basedir'] . $path;
+                $uploads['url']   = $uploads['baseurl'] . $path;
+            }
+        }
+    }
+    return $uploads;
+}
+add_filter('upload_dir', 'zotefoams_custom_upload_dir_for_document_store');
+
+/**
+ * Add custom inline admin styles for the Knowledge Hub post type.
+ *
+ * This function injects inline CSS styles into the WordPress admin header when editing
+ * a 'knowledge-hub' post type. The styles target the ACF gallery field (using a specific field ID)
+ * to disable pointer events on gallery attachments and hide the remove and sort buttons.
+ * This prevents unintended interactions within the Knowledge Hub's document attachments.
+ *
+ * @return void
+ */
+function zotefoams_add_knowledge_hub_admin_inline_styles()
+{
+    $screen = get_current_screen();
+    if (isset($screen->post_type) && $screen->post_type === 'knowledge-hub') {
+?>
+        <style>
+            #acf-field_67c58a842cccb .acf-gallery-attachments .acf-gallery-attachment {
+                pointer-events: none;
+            }
+
+            #acf-field_67c58a842cccb .actions .acf-gallery-remove,
+            #acf-field_67c58a842cccb .acf-gallery-sort {
+                display: none;
+            }
+        </style>
+<?php
+    }
+}
+add_action('admin_head', 'zotefoams_add_knowledge_hub_admin_inline_styles');
+

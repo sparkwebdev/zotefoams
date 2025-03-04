@@ -1,6 +1,6 @@
 {
     "key": "group_67ac6653a5358",
-    "title": "Post Categories",
+    "title": "Category Image",
     "fields": [
         {
             "key": "field_67ac66ed064a4",
@@ -36,9 +36,16 @@
                 "operator": "==",
                 "value": "category"
             }
+        ],
+        [
+            {
+                "param": "taxonomy",
+                "operator": "==",
+                "value": "documents-category"
+            }
         ]
     ],
-    "menu_order": 0,
+    "menu_order": 11,
     "position": "normal",
     "style": "seamless",
     "label_placement": "top",
@@ -47,5 +54,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1739353785
+    "modified": 1741118654
 }

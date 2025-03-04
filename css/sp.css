@@ -815,7 +815,7 @@ html {
   transition: background .3s;
 }
 
-.file-list__item:hover, .file-list__item:focus {
+.file-list__item:hover, .file-list__item:has(a:focus) {
   background-color: var(--color-brand-contrast);
 }
 
@@ -891,6 +891,17 @@ html {
   margin-top: -3px;
   position: absolute;
   overflow-x: auto;
+}
+
+.filter-group {
+  border-bottom: var(--border-separator);
+}
+
+.filter-group > strong {
+  text-transform: uppercase;
+  padding: 15px 15px 5px;
+  font-size: 14px;
+  display: block;
 }
 
 .filter-toggle__label {
