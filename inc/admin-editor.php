@@ -37,11 +37,21 @@ add_action( 'init', 'change_post_object_label' );
  */
 function disable_gutenberg_except_posts($use_block_editor, $post) {
     if ($post->post_type !== 'post') {
-        return false; // Disable for everything except posts
+        return false; // Disable Gutenberg for everything except posts
     }
-    return $use_block_editor; // Enable for posts
+    return $use_block_editor; // Keep Gutenberg for posts
 }
 add_filter('use_block_editor_for_post', 'disable_gutenberg_except_posts', 10, 2);
+
+/**
+ * Hide the Classic Editor on Pages while keeping ACF fields.
+ */
+function remove_classic_editor_support() {
+    remove_post_type_support('page', 'editor'); // Hides the classic editor on Pages
+}
+add_action('admin_init', 'remove_classic_editor_support');
+
+
 
 
 function zoatfoams_allowed_block_types($allowed_blocks, $editor_context) {

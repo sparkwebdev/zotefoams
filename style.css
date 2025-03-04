@@ -1756,8 +1756,12 @@ a.hl.download::after {
     overflow: hidden;
 }
 
-.tabs {
+.tabs:has(.tab:nth-child(2)) {
     display: flex;
+}
+
+.tabs:not(:has(.tab:nth-child(2))) {
+    display: none;
 }
 
 .tab {
@@ -1804,6 +1808,9 @@ a.hl.download::after {
 .tab-content {
     display: none;
 }
+.tab-content .grey-text p {
+    margin-bottom:20px
+}
 .tab-content.active {
     display: block;
 }
@@ -1820,6 +1827,7 @@ a.hl.download::after {
 .tab-content .half-half .half:nth-of-type(2) {
 	min-width: 50%;
 }
+
 
 
 /* 15 - Small box columns

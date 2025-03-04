@@ -16,7 +16,7 @@ $bg_image_url = $bg_image ? $bg_image['url'] : get_template_directory_uri() . '/
 $map_image_url = $map_image ? $map_image['url'] : get_template_directory_uri() . '/images/data-map.png';
 ?>
 
-<div class="data-map padding-t-b-100 theme-dark" style="background-image:url('<?php echo esc_url($bg_image_url); ?>')">
+<div class="data-map padding-t-b-100 image-cover theme-dark" style="background-image:url('<?php echo esc_url($bg_image_url); ?>')">
     <div class="cont-m">
         <div class="stats">
             <div class="stat stat-1">
