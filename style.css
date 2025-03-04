@@ -1430,7 +1430,7 @@ a.hl.download::after {
 	max-width:600px
 }
 .text-banner-split .image-cover {
-	min-height: 382px;
+	min-height: 500px;
 }
 @media screen and (min-width: 48em) {
 	.text-banner-split {
