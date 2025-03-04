@@ -47,23 +47,3 @@ $map_image_url = $map_image ? $map_image['url'] : get_template_directory_uri() .
         </div>
     </div>
 </div>
-
-
-	<style type="text/css">
-		.stat {
-			background:rgba(255,255,255,0.9);
-			padding:30px
-		}
-		.stats {
-			display:flex;
-			width:min(700px, 100%);
-			gap:20px;
-			flex-wrap:wrap
-		}
-		.stat-1 {
-			width:100%
-		}
-		.stat-2, .stat-3 {
-			width:calc(50% - 10px)
-		}
-	</style>
