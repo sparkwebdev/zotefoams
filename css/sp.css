@@ -1028,7 +1028,7 @@ html {
 
 .small-box-items {
   grid-template-columns: repeat(auto-fit, minmax(18rem, 1fr));
-  gap: 20px;
+  gap: 40px 20px;
   display: grid;
 }
 

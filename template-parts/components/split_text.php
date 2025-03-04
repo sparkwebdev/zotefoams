@@ -10,7 +10,7 @@ $text = get_sub_field('split_text_text');
         </div>
     <?php endif; ?>
     <?php if ($text): ?>
-        <div class="split-text-content grey-text fs-300 fw-bold">
+        <div class="split-text-content grey-text fs-300">
             <?php echo wp_kses_post( $text ); ?>
         </div>
     <?php endif; ?>

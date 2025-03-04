@@ -15,7 +15,7 @@ function getDecimalPlaces($number) {
 <div class="data-points half-half light-grey-bg padding-t-b-70 theme-light">
     
     <?php if ($title): ?>
-        <h3><?php echo esc_html($title); ?></h3>
+        <h3 class="fw-bold margin-b-40"><?php echo esc_html($title); ?></h3>
     <?php endif; ?>
     
     <div class="data-points-items cont-m">
@@ -40,9 +40,9 @@ function getDecimalPlaces($number) {
                     <?php if ($icon): ?>
                         <img class="" src="<?php echo esc_url($icon['url']); ?>" alt="<?php echo esc_attr($label); ?>" />
                     <?php endif; ?>
-                    <p class="animate__animated animate__delay-1s value" <?php echo $data_to . ' ' . $data_prefix . ' ' . $data_suffix . ' ' . $data_decimals; ?>>0</p>
+                    <p class="animate__animated animate__delay-1s value fw-bold" <?php echo $data_to . ' ' . $data_prefix . ' ' . $data_suffix . ' ' . $data_decimals; ?>>0</p>
                     <?php if ($label): ?>
-                        <label class="sub-title"><?php echo esc_html($label); ?></label>
+                        <label class="sub-title fs-100"><?php echo esc_html($label); ?></label>
                     <?php endif; ?>
                 </div>
             <?php endforeach; ?>

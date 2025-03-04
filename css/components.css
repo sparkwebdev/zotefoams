@@ -307,8 +307,6 @@
 .data-points h3 {
 	text-align: center;
 	font-size: 1.5em;
-	font-weight: 600;
-	margin-bottom: 40px;
 }
 
 .data-points .data-points-items {
@@ -325,12 +323,11 @@
 }
 
 .data-points .data-points-items .data-points-item img {
-	width: 24px;
+	width: 30px;
 }
 
 .data-points .data-points-items .data-points-item .value {
 	font-size: 3em;
-	font-weight: 700;
 	display: block;
 }
 
@@ -338,7 +335,6 @@
 	font-size: 0.8em;
 	color: #707070;
 	display: block;
-	margin-top: -10px;
 }
 
 
