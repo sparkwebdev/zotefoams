@@ -1939,6 +1939,59 @@ a.hl.download::after {
 }
 
 
+/* Financial document picker
+--------------------------------------------- */
+.financial-documents-picker {
+	display:flex;
+	gap:60px
+}
+.financial-documents-intro p {
+	margin-bottom:20px
+}
+.financial-documents-picker > div {
+	flex:1
+}
+.financial-documents-picker select {
+	background: none;
+	border: none;
+	outline: none;
+	font-size: inherit;
+	font-family: inherit;
+	padding: 10px 10px 10px 0;
+	cursor: pointer;
+	margin-bottom:20px;
+	font-weight:700;
+	width:100px
+}
+.document-list {
+	list-style: none;
+	padding: 0;
+}
+.document-list li {
+	display:flex;
+	justify-content:space-between;
+	padding: 15px;
+	border-top: solid 1px #d1d1d1;
+	margin-bottom: 5px;
+	border-radius: 3px;
+	align-items:center
+}
+.document-list li > div {
+	display:flex;
+	align-items:center
+}
+.document-list li > div img {
+	margin-right:15px
+}
+.document-list li:last-of-type {
+	border-bottom: solid 1px #d1d1d1;
+}
+.document-list a {
+	padding: 10px 0 10px 10px;
+}
+
+
+
 
 /* Footer
 --------------------------------------------- */
@@ -2013,6 +2066,8 @@ input.zf {
 
 
 
+/* iframe heights
+--------------------------------------------- */
 iframe {
 	width: 100%;
 	border: none; 
@@ -2030,5 +2085,3 @@ iframe {
 #share-price-chart {
 	height:1000px
 }
-
-
