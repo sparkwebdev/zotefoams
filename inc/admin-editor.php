@@ -36,7 +36,7 @@ add_action( 'init', 'change_post_object_label' );
  * Disable Gutenberg for all post types except 'post'.
  */
 function disable_gutenberg_except_posts($use_block_editor, $post) {
-    if ($post->post_type !== 'post') {
+    if ($post->post_type !== 'post' && $post->post_type !== 'knowledge-hub') {
         return false; // Disable Gutenberg for everything except posts
     }
     return $use_block_editor; // Keep Gutenberg for posts
@@ -178,7 +178,7 @@ if (!empty($editor_context->post)) {
           'acf/highlight-box',
           'acf/related-links-box',
         ];
-    } elseif ($editor_context->post->post_type === 'page') {
+    } else {
         return [
             'core/paragraph',
         ];
