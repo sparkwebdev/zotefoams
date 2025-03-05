@@ -94,44 +94,54 @@ $use_categories = ($behaviour === 'children' && $page_id == $posts_page_id);
                     <?php endforeach; ?>
             <?php }
 
-        } elseif ($behaviour === 'children') {
-            // Fetch child pages
-            $child_pages = get_pages([
-                'parent' => $page_id,
-                'sort_column' => 'menu_order',
-                'sort_order' => 'ASC',
-            ]);
+            } elseif ($behaviour === 'children') {
+                // Check if the selected page is "Knowledge Hub"
+                if ($page_id == zotefoams_get_page_id_by_title('Knowledge Hub')) {
+                    // For "Knowledge Hub", fetch top-level pages of the 'knowledge-hub' post type.
+                    $child_pages = get_pages([
+                        'post_type'   => 'knowledge-hub',
+                        'parent'      => 0, // Only top-level pages
+                        'sort_column' => 'menu_order',
+                        'sort_order'  => 'ASC',
+                    ]);
+                } else {
+                    // For all other pages, fetch the child pages of the selected page.
+                    $child_pages = get_pages([
+                        'parent'      => $page_id,
+                        'sort_column' => 'menu_order',
+                        'sort_order'  => 'ASC',
+                    ]);
+                }
 
-            if ($child_pages):
-                foreach ($child_pages as $child):
-                    $child_id = $child->ID;
-                    $child_title = get_the_title($child_id);
-                    $child_link = get_permalink($child_id);
-                    $thumbnail_url = get_the_post_thumbnail_url( $child_id, 'full' );
-                    if (!$thumbnail_url) {
-                        $thumbnail_url = get_template_directory_uri() . '/images/placeholder-thumbnail.png';
-                    }
-                    ?>
-                    <div class="box-item light-grey-bg">
-                        <div class="box-content padding-40">
-                            <div>
-                                <p class="fs-400 fw-semibold margin-b-20"><?php echo esc_html($child_title); ?></p>
-                                <?php 
-                                if (get_the_excerpt($child->ID)) {
-                                    echo '<div class="margin-b-20 grey-text">';
-                                    echo get_the_excerpt($child->ID);
-                                    echo '</div>';
-                                }
-                                ?>
+                if ($child_pages):
+                    foreach ($child_pages as $child):
+                        $child_id = $child->ID;
+                        $child_title = get_the_title($child_id);
+                        $child_link = get_permalink($child_id);
+                        $thumbnail_url = get_the_post_thumbnail_url( $child_id, 'full' );
+                        if (!$thumbnail_url) {
+                            $thumbnail_url = get_template_directory_uri() . '/images/placeholder-thumbnail.png';
+                        }
+                        ?>
+                        <div class="box-item light-grey-bg">
+                            <div class="box-content padding-40">
+                                <div>
+                                    <p class="fs-400 fw-semibold margin-b-20"><?php echo esc_html($child_title); ?></p>
+                                    <?php 
+                                    if (get_the_excerpt($child->ID)) {
+                                        echo '<div class="margin-b-20 grey-text">';
+                                        echo get_the_excerpt($child->ID);
+                                        echo '</div>';
+                                    }
+                                    ?>
+                                </div>
+                                <a href="<?php echo esc_url($child_link); ?>" class="hl arrow">Read more</a>
                             </div>
-                            <a href="<?php echo esc_url($child_link); ?>" class="hl arrow">Read more</a>
+                            <div class="box-image image-cover" style="background-image:url('<?php echo $thumbnail_url; ?>');"></div>
                         </div>
-                        <div class="box-image image-cover" style="background-image:url('<?php echo $thumbnail_url; ?>');"></div>
-                    </div>
-                    <?php
-                endforeach;
-            endif;
-
+                        <?php
+                    endforeach;
+                endif;
         } elseif ($behaviour === 'manual' && $manual_items) {
             // Display manually added items
             foreach ($manual_items as $item):
