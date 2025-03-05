@@ -35,8 +35,15 @@ $post_type_name = $post_type_obj->labels->singular_name;
 	</div>
  <?php
 	 the_post();
-	 if ( get_the_title() === 'Technical Literature' ) {
-			 get_template_part( 'template-parts/content', 'knowledge-hub-section-technical' );
+	 // Check if the current page has any child pages.
+	 $children = get_pages( array(
+		 'child_of'   => get_the_ID(),
+		 'post_type'  => 'knowledge-hub',
+		 'post_status'=> 'publish'
+	 ) );
+	 
+	 if ( ! empty( $children ) ) {
+		 get_template_part( 'template-parts/content', 'knowledge-hub-section-technical' );
 	 } else {
 		 get_template_part( 'template-parts/content', 'knowledge-hub-section' );
 	 }

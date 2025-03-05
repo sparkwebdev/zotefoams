@@ -1,7 +1,12 @@
 <?php
 // Toggle these flags to show/hide filters & columns.
-$show_category = true;
-$show_brands   = false;
+$show_categories = true; // Should always be true.
+$show_categories_filter = get_the_title($post->post_parent) == 'Technical Literature' ? false : true;
+$show_categories_column = true;
+$show_brands = true;
+$show_brands_filter = get_the_title($post->post_parent) == 'Technical Literature' ? true : false;
+$show_brands_column = false;
+$has_multiple_filters = $show_categories_filter && $show_brands_filter;
 
 // Retrieve the repeater field.
 $documents_list = get_field( 'documents_list' );
@@ -18,7 +23,7 @@ if ( $documents_list ) {
         $category_id    = '';
         $category_label = '';
         $thumbnail_url  = '';
-        if ( $show_category ) {
+        if ( $show_categories ) {
             $category_id = intval( $row['category'] );
             $term = get_term( $category_id );
             if ( is_wp_error( $term ) || ! $term ) {
@@ -93,16 +98,16 @@ if ( $documents_list ) {
         // Append document data.
         $documents_array[] = (object) [
             'file'                    => $file,
-            'category_id'             => $show_category ? $category_id : '',
-            'category_label'          => $show_category ? $category_label : '',
-            'category_image'          => $show_category ? $thumbnail_url : '',
+            'category_id'             => $show_categories ? $category_id : '',
+            'category_label'          => $show_categories ? $category_label : '',
+            'category_image'          => $show_categories ? $thumbnail_url : '',
             'associated_brands'       => $show_brands ? $associated_brand_ids : array(),
             'associated_brands_label' => $show_brands ? $associated_brand_labels : array(),
             'all_brands'              => $show_brands ? $all_brands : false,
         ];
         
         // Build unique filter options.
-        if ( $show_category && $category_id && ! isset( $categories[ $category_id ] ) ) {
+        if ( $show_categories && $category_id && ! isset( $categories[ $category_id ] ) ) {
             $categories[ $category_id ] = $category_label;
         }
     }
@@ -112,15 +117,15 @@ if ( $documents_list ) {
 <div class="cont-m margin-b-100">
     <?php if ( ! empty( $documents_array ) ) : ?>
         <div class="file-list" data-component="file-list">
-            <?php if ( ( $show_category && ! empty( $categories ) ) || ( $show_brands && ! empty( $brands ) ) ) : ?>
+            <?php if ( ( $show_categories_filter && ! empty( $categories ) ) || ( $show_brands_filter && ! empty( $brands ) ) ) : ?>
                 <div class="file-list__dropdown">
                     <button id="filter-toggle" class="file-list__dropdown-button hl arrow">
                         Filter
                     </button>
                     <div id="filter-options" class="filter-toggle__options hidden">
-                        <?php if ( $show_category && ! empty( $categories ) ) : ?>
-                        <div class="filter-group" data-filter-group="category">
-                            <?php if ( $show_brands ) : ?>
+                        <?php if ( ! empty( $categories ) ) : ?>
+                        <div class="filter-group" data-filter-group="category" <?php echo $show_categories_filter ? '' : 'style="display:none;"'; ?>>
+                            <?php if ( $has_multiple_filters ) : ?>
                             <strong>Category</strong>
                             <?php endif; ?>
                             <?php foreach ( $categories as $id => $label ) : ?>
@@ -136,9 +141,11 @@ if ( $documents_list ) {
                             <?php endforeach; ?>
                         </div>
                         <?php endif; ?>
-                        <?php if ( $show_brands && ! empty( $brands ) ) : ?>
-                        <div class="filter-group" data-filter-group="brand">
+                        <?php if (! empty( $brands ) ) : ?>
+                        <div class="filter-group" data-filter-group="brand" <?php echo $show_brands_filter ? '' : 'style="display:none;"'; ?>>
+                            <?php if ( $has_multiple_filters ) : ?>
                             <strong>Brand</strong>
+                            <?php endif; ?>
                             <?php foreach ( $brands as $id => $label ) : ?>
                                 <label class="filter-toggle__label">
                                     <input 
@@ -159,12 +166,12 @@ if ( $documents_list ) {
             <table>
                 <thead class="screen-reader-text">
                     <tr>
-                        <?php if ( $show_category ) : ?>
+                        <?php if ( $show_categories_column ) : ?>
                         <th scope="col">Icon</th>
                         <th scope="col">Category</th>
                         <?php endif; ?>
                         <th scope="col">Title</th>
-                        <?php if ( $show_brands ) : ?>
+                        <?php if ( $show_brands_column ) : ?>
                         <th scope="col">Brand</th>
                         <?php endif; ?>
                         <th scope="col">Actions</th>
@@ -182,7 +189,7 @@ if ( $documents_list ) {
                     ?>
                         <tr 
                             class="file-list__item"
-                            <?php if ( $show_category ) : ?>
+                            <?php if ( $show_categories ) : ?>
                                 data-category="<?php echo esc_attr( $document->category_id ); ?>"
                             <?php endif; ?>
                             <?php if ( $show_brands ) : ?>
@@ -190,7 +197,7 @@ if ( $documents_list ) {
                             <?php endif; ?>
                             data-clickable-url="<?php echo esc_url( $file['url'] ); ?>"
                         >
-                            <?php if ( $show_category ) : ?>
+                            <?php if ( $show_categories_column ) : ?>
                             <td class="file-list__item-icon">
                                 <?php if ( ! empty( $document->category_image ) ) : ?>
                                     <img 
@@ -207,7 +214,7 @@ if ( $documents_list ) {
                             <td class="file-list__item-title">
                                 <?php echo esc_html( $title ); ?>
                             </td>
-                            <?php if ( $show_brands ) : ?>
+                            <?php if ( $show_brands_column ) : ?>
                             <td class="file-list__item-brands">
                                 <?php echo esc_html( $brands_display ); ?>
                             </td>

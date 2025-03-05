@@ -64,22 +64,36 @@ document.addEventListener('DOMContentLoaded', function () {
 
 			// Filter file items: each item's data attribute may contain multiple values.
 			const filterFiles = () => {
-				const activeFilters = getActiveFilters();
-				fileItems.forEach(item => {
-					let show = true;
-					for (const filterType in activeFilters) {
-						const dataValue = item.dataset[filterType] || '';
-						const itemValues = dataValue.split(',').map(v => v.trim()).filter(v => v !== '');
-						const intersection = activeFilters[filterType].filter(val => itemValues.includes(val));
-						if (activeFilters[filterType].length && intersection.length === 0) {
-							show = false;
-							break;
-						}
-					}
-					item.style.display = show ? 'table-row' : 'none';
-				});
-				updateShowAllVisibility();
+				// Get the tbody element inside the container.
+				const tbody = container.querySelector('tbody');
+
+				// Fade out the tbody.
+				tbody.style.transition = 'opacity 0.5s';
+				tbody.style.opacity = 0;
+
+				setTimeout(() => {
+						// Update the display of each file item based on the active filters.
+						const activeFilters = getActiveFilters();
+						fileItems.forEach(item => {
+								let show = true;
+								for (const filterType in activeFilters) {
+										const dataValue = item.dataset[filterType] || '';
+										const itemValues = dataValue.split(',').map(v => v.trim()).filter(v => v !== '');
+										const intersection = activeFilters[filterType].filter(val => itemValues.includes(val));
+										if (activeFilters[filterType].length && intersection.length === 0) {
+												show = false;
+												break;
+										}
+								}
+								item.style.display = show ? 'table-row' : 'none';
+						});
+						updateShowAllVisibility();
+
+						// Fade the tbody back in.
+						tbody.style.opacity = 1;
+				}, 200); // Wait 0.2 seconds for the fade-out transition.
 			};
+
 
 			// Update the URL query parameters with comma-separated filter values.
 			const updateURL = () => {
@@ -186,14 +200,32 @@ document.addEventListener('DOMContentLoaded', function () {
 			};
 
 			const filterSections = () => {
-				const selectedLabels = checkboxes.filter( ( cb ) => cb.checked ).map( ( cb ) => cb.value );
-				sectionItems.forEach( ( item ) => {
-					item.style.display = selectedLabels.length === 0 || selectedLabels.includes( item.dataset.galleryLabel )
-						? 'block'
-						: 'none';
-				} );
-				updateShowAllVisibility();
+				// Assume that sectionItems share the same parent container.
+				const sectionContainer = sectionItems.length > 0 ? sectionItems[0].parentNode : null;
+				if (!sectionContainer) return; // Exit if no container found.
+		
+				// Fade out the container.
+				sectionContainer.style.transition = 'opacity 0.5s';
+				sectionContainer.style.opacity = 0;
+		
+				setTimeout(() => {
+						// Get the selected labels from the checkboxes.
+						const selectedLabels = checkboxes.filter(cb => cb.checked).map(cb => cb.value);
+		
+						// Update each section item's display based on the selected labels.
+						sectionItems.forEach(item => {
+								item.style.display =
+										selectedLabels.length === 0 || selectedLabels.includes(item.dataset.galleryLabel)
+												? 'block'
+												: 'none';
+						});
+						updateShowAllVisibility();
+		
+						// Fade the container back in.
+						sectionContainer.style.opacity = 1;
+				}, 200); // Wait 0.5 seconds to match the fade-out transition.
 			};
+		
 
 			const resetFilters = () => {
 				sectionItems.forEach( ( item ) => ( item.style.display = 'block' ) );
