@@ -34,17 +34,17 @@
                 "class": "",
                 "id": ""
             },
-            "layout": "table",
+            "layout": "block",
             "pagination": 1,
             "rows_per_page": 25,
-            "min": 0,
+            "min": 1,
             "max": 0,
             "collapsed": "",
-            "button_label": "Add Row",
+            "button_label": "Add Document",
             "sub_fields": [
                 {
                     "key": "field_67c58d6ffcea0",
-                    "label": "File",
+                    "label": "Document File",
                     "name": "file",
                     "aria-label": "",
                     "type": "file",
@@ -52,7 +52,7 @@
                     "required": 0,
                     "conditional_logic": 0,
                     "wrapper": {
-                        "width": "",
+                        "width": "30",
                         "class": "",
                         "id": ""
                     },
@@ -74,7 +74,7 @@
                     "required": 0,
                     "conditional_logic": 0,
                     "wrapper": {
-                        "width": "",
+                        "width": "30",
                         "class": "",
                         "id": ""
                     },
@@ -92,26 +92,58 @@
                     "parent_repeater": "field_67c58d6ffce9f"
                 },
                 {
-                    "key": "field_67c58da2fcea1",
-                    "label": "Associated Brand(s)",
-                    "name": "associated_brand",
+                    "key": "field_67c82ce35de53",
+                    "label": "All Brands?",
+                    "name": "all_brands",
                     "aria-label": "",
-                    "type": "clone",
+                    "type": "true_false",
                     "instructions": "",
                     "required": 0,
                     "conditional_logic": 0,
                     "wrapper": {
-                        "width": "",
+                        "width": "10",
                         "class": "",
                         "id": ""
                     },
-                    "clone": [
-                        "field_67ab574a2cbba"
+                    "message": "",
+                    "default_value": 0,
+                    "allow_in_bindings": 0,
+                    "ui_on_text": "",
+                    "ui_off_text": "",
+                    "ui": 1,
+                    "parent_repeater": "field_67c58d6ffce9f"
+                },
+                {
+                    "key": "field_67c58da2fcea1",
+                    "label": "Associated Brand(s)",
+                    "name": "associated_brands",
+                    "aria-label": "",
+                    "type": "select",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": [
+                        [
+                            {
+                                "field": "field_67c82ce35de53",
+                                "operator": "!=",
+                                "value": "1"
+                            }
+                        ]
                     ],
-                    "display": "seamless",
-                    "layout": "block",
-                    "prefix_label": 0,
-                    "prefix_name": 0,
+                    "wrapper": {
+                        "width": "30",
+                        "class": "",
+                        "id": ""
+                    },
+                    "choices": {},
+                    "default_value": [],
+                    "return_format": "value",
+                    "multiple": 1,
+                    "allow_null": 0,
+                    "allow_in_bindings": 0,
+                    "ui": 1,
+                    "ajax": 0,
+                    "placeholder": "",
                     "parent_repeater": "field_67c58d6ffce9f"
                 }
             ]
@@ -181,5 +213,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1741117685
+    "modified": 1741172013
 }

@@ -27,7 +27,7 @@ $post_type_name = $post_type_obj->labels->singular_name;
 
 	<div class="text-block cont-m margin-t-100 margin-b-100 theme-none">
 		<div class="text-block-inner">
-			<p class="margin-b-20"><?php echo esc_html( $post_type_name ); ?></p>
+			<p class="margin-b-20">Knowledge Powered By Zorefoams</p>
 			<?php if (get_the_content()):
 				echo '<div class="grey-text fs-600 fw-semibold"><p class="lead-text">'.get_the_content().'</p></div>';
 			endif; ?>
@@ -35,7 +35,7 @@ $post_type_name = $post_type_obj->labels->singular_name;
 	</div>
  <?php
 	 the_post();
-	 if ( get_the_title() === 'Technical Literature' || strcasecmp(get_the_title($post->post_parent), 'Technical Literature') === 0 ) {
+	 if ( get_the_title() === 'Technical Literature' ) {
 			 get_template_part( 'template-parts/content', 'knowledge-hub-section-technical' );
 	 } else {
 		 get_template_part( 'template-parts/content', 'knowledge-hub-section' );

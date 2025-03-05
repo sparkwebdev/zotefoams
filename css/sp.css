@@ -154,6 +154,10 @@
   right: -20px;
 }
 
+.utility-menu .menu-item-has-children .sub-menu .current-menu-item > a {
+  color: var(--color-text-light) !important;
+}
+
 .main-navigation {
   width: 100%;
 }

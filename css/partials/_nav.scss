@@ -148,6 +148,11 @@ $breakpoint-large: 68rem;
 			}
 		}
 	}
+	.menu-item-has-children  .sub-menu {
+		.current-menu-item > a {
+			color: var(--color-text-light) !important;
+		}
+	}
 }
 
 /* Main navigation
