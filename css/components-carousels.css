@@ -1,4 +1,17 @@
 
+/* General
+	--------------------------------------------- */
+.carousel-navigation .swiper-button-disabled {
+	opacity: 0.5;
+}
+.carousel-navigation .swiper-button-disabled img {
+    cursor:default
+}
+.carousel-navigation img {
+    cursor: pointer;
+}
+
+
 /* Split carousel
 	--------------------------------------------- */
 
@@ -93,12 +106,6 @@
 	flex-direction: column;
 	justify-content: flex-start;
 	align-items: center;
-}
-
-
-.multi-swiper-button-prev img,
-.multi-swiper-button-next img {
-	cursor: pointer;
 }
 
 .multi-item-carousel-container .swiper-button-disabled {
