@@ -4,11 +4,6 @@ $image = get_sub_field('text_banner_split_image');
 $title = get_sub_field('text_banner_split_title');
 $text = get_sub_field('text_banner_split_text');
 $link = get_sub_field('text_banner_split_link'); // ACF Link field returns an array
-$sharePrice = '';
-
-if (is_page('Investors')) {
-    $sharePrice = get_field('live_share_price', 'option');
-}
 
 if ($image) {
     $image_url = $image['sizes']['large'];
@@ -27,8 +22,8 @@ if ($image) {
             <?php if ($title): ?>
                 <p class="fs-200 fw-regular margin-b-30"><?php echo esc_html($title); ?></p>
             <?php endif; ?>
-            <?php if ($sharePrice): ?>
-                <div class="fw-semibold">***<?php echo wp_kses_post($sharePrice); ?></div>
+            <?php if ( is_page( 'Investors' ) ): ?>
+                <?php get_template_part( 'template-parts/components/widgets/share_price_widget' ); ?>
             <?php endif; ?>
             <?php if ($text): ?>
                 <div class="fs-600 fw-semibold margin-b-100"><?php echo wp_kses_post($text); ?></div>

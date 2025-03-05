@@ -2013,3 +2013,22 @@ input.zf {
 
 
 
+iframe {
+	width: 100%;
+	border: none; 
+	overflow: visible;
+}
+#rns {
+	height:1050px
+}
+#alerts {
+	height:900px
+}
+#share-price-widget {
+	height:350px
+}
+#share-price-chart {
+	height:1000px
+}
+
+

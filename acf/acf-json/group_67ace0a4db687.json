@@ -3671,6 +3671,45 @@
                     ],
                     "min": "",
                     "max": ""
+                },
+                "layout_67c828bcfe7de": {
+                    "key": "layout_67c828bcfe7de",
+                    "name": "bir_widgets",
+                    "label": "Brighter IR Widgets",
+                    "display": "block",
+                    "sub_fields": [
+                        {
+                            "key": "field_67c82d1dd8e28",
+                            "label": "Brighter IR Widget",
+                            "name": "brighter_ir_widget",
+                            "aria-label": "",
+                            "type": "select",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "choices": {
+                                "share-price-chart": "Share Price Chart",
+                                "share-price-widget": "Share Price Widget",
+                                "rns": "RNS",
+                                "alerts": "Alerts"
+                            },
+                            "default_value": "rns",
+                            "return_format": "value",
+                            "multiple": 0,
+                            "allow_null": 0,
+                            "allow_in_bindings": 0,
+                            "ui": 0,
+                            "ajax": 0,
+                            "placeholder": ""
+                        }
+                    ],
+                    "min": "",
+                    "max": ""
                 }
             },
             "min": "",
@@ -3696,5 +3735,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1741024738
+    "modified": 1741172637
 }
