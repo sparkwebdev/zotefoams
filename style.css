@@ -1629,7 +1629,7 @@ a.hl.download::after {
 
 .accordion-content p {
 	margin: 0;
-	padding: 0 60px 40px;
+	padding: 0 60px 20px;
 }
 
 .toggle-icon {
@@ -2047,8 +2047,14 @@ footer div.wpforms-container.wpforms-container-full:not(:empty) {
 	margin: 0 auto
 }
 
+/* Contact page
+--------------------------------------------- */
+.split-text-content div.wpforms-container-full:not(:empty), .accordion-content div.wpforms-container-full:not(:empty) {
+	margin: 0 auto 24px;
+}
 
-
+/* Biography page
+--------------------------------------------- */
 .biography {
 	display:flex;
 	gap:4%

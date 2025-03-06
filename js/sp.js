@@ -302,7 +302,7 @@ if ( document.querySelector( '.overlay' ) ) {
 }
 
 document.addEventListener( 'DOMContentLoaded', function() {
-// Accordion
+	// Accordion
 	const headers = document.querySelectorAll( '.accordion-header' );
 
 	// Add click event listener to each header
@@ -337,14 +337,18 @@ document.addEventListener( 'DOMContentLoaded', function() {
 				content.style.maxHeight = '1000px'; // Set a maximum height for the transition
 				icon.textContent = '-'; // Change the icon to minus
 				this.classList.add( 'open' );
-				content.scrollIntoView( {
+
+				// Scroll the .accordion to the top of the page
+				const accordion = this.closest('.accordion'); // Get the .accordion container
+				accordion.scrollIntoView( {
 					behavior: 'smooth',
-					block: 'start',
+					block: 'start', // Scroll so the .accordion is at the top of the page
 				} );
 			}
 		} );
 	} );
 } );
+
 
 
 
