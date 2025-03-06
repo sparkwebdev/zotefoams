@@ -12,25 +12,26 @@ $child_pages = get_pages(array(
 ?>
 
 <?php if (!empty($brands)) : ?>
-    <nav class="cont-m margin-t-70 margin-b-100">
-        <div class="section-list" data-component="section-list">
-            <?php if (count($brands) > 1) : ?>
-                <div class="file-list__dropdown">
-                    <button id="filter-toggle" class="file-list__dropdown-button hl arrow">
-                        Filter
-                    </button>
-                    <div id="filter-options" class="filter-toggle__options hidden">
-                        <?php foreach ($brands as $brand_filter) : ?>
-                            <label class="filter-toggle__label">
-                                <input type="checkbox" value="<?php echo esc_attr($brand_filter); ?>" class="filter-options__checkbox">
-                                <?php echo esc_html($brand_filter); ?>
-                            </label>
-                        <?php endforeach; ?>
-                    </div>
+<nav class="cont-m margin-t-70 margin-b-100">
+    <div data-component="section-list">
+        <?php if (count($brands) > 1) : ?>
+            <div class="file-list__dropdown">
+                <button id="filter-toggle" class="file-list__dropdown-button hl arrow">
+                    Filter
+                </button>
+                <div id="filter-options" class="filter-toggle__options hidden">
+                    <?php foreach ($brands as $brand_filter) : ?>
+                        <label class="filter-toggle__label">
+                            <input type="checkbox" value="<?php echo esc_attr($brand_filter); ?>" class="filter-options__checkbox">
+                            <?php echo esc_html($brand_filter); ?>
+                        </label>
+                    <?php endforeach; ?>
                 </div>
-                <button id="section-list-show-all" class="file-list__show-all hidden">Reset Filters</button>
-            <?php endif; ?>
+            </div>
+            <button id="section-list-show-all" class="file-list__show-all hidden">Reset Filters</button>
+        <?php endif; ?>
 
+        <div class="section-list">
             <div class="articles articles--grid-alt margin-t-30">
                 <?php 
                 // Loop over each brand.
@@ -48,7 +49,7 @@ $child_pages = get_pages(array(
                                 </div>
                                 <h3 class="fs-400 fw-semibold margin-b-20"><?php echo esc_html($child_title); ?></h3>
                                 <p class="articles__cta">
-                                    <a href="<?php echo $child_url;?>" class="hl arrow">View Information Sheets</a>
+                                    <a href="<?php echo $child_url;?>" class="hl arrow read-more">View Information Sheets</a>
                                 </p>
                             </div>
                         </article>
@@ -56,5 +57,6 @@ $child_pages = get_pages(array(
                 <?php endforeach; ?>
             </div>
         </div>
-    </nav>
+    </div>
+</nav>
 <?php endif; ?>

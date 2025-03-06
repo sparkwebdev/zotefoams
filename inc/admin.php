@@ -1,4 +1,3 @@
-
 <?php
 /**
  * Hide admin bar.
