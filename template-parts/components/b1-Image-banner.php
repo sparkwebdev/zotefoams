@@ -1,4 +1,5 @@
 
+
 	<?php
 	if( have_rows('page_header_image') ): ?>
 		<div class="image-banner swiper swiper-image">
@@ -13,7 +14,7 @@
 				$link = get_sub_field('link');
 				
 				?>
-
+				
 				<div class="swiper-slide image-cover" style="background-image:url(<?php echo wp_get_attachment_image_url( $imageId, 'full' ); ?>)" data-title="<?php echo esc_attr( $caption ); ?>">
 					<div class="swiper-inner padding-50 white-text">
 						<div class="title-button">
@@ -22,7 +23,27 @@
 							<a href="<?php echo $link['url']; ?>" <?php echo !empty( $link['target'] ) ? 'target="' . esc_attr( $link['target'] ) . '"' : '' ?> class="btn white outline arrow"><?php echo $link['title']; ?></a>
 							<?php endif; ?>
 						</div>
-						<p class="fw-bold fs-600 uppercase"><?php echo $text; ?></p>
+						<?php if (is_page('Sustainability')) : ?>
+						<div class="sustainability-stats-outer">
+							<p class="sustainaility-stat-heading fw-bold fs-500 uppercase"><?php echo $text; ?></p>
+							<div class="sustainability-stats">
+								<div class="sustainability-stat">
+									<p class="fs-800 fw-bold">5%</p>
+									<p>of group revenue to come from sustainable products by 2026.</p>
+								</div>
+								<div class="sustainability-stat">
+									<p class="fs-800 fw-bold">50%</p>
+									<p>of our waste was recycled in 2023 and is on track to increase even further.</p>
+								</div>
+								<div class="sustainability-stat">
+									<p class="fs-800 fw-bold">10%</p>
+									<p>reduction in the energy used to manufacture our products by 2026.</p>
+								</div>
+							</div>
+						</div>
+						<?php else : ?>
+							<p class="fw-bold fs-600 uppercase"><?php echo $text; ?></p>
+						<?php endif; ?>
 					</div>
 					<div class="overlay"></div>
 				</div>
@@ -43,5 +64,5 @@
 			<?php endif; ?>
 			
 		</div>
-
 	<?php endif; ?>
+

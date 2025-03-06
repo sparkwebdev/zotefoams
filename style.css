@@ -2102,3 +2102,26 @@ iframe {
 	border: none; 
 	overflow: visible;
 }
+
+
+
+.sustainability-stats-outer {
+	max-width: 850px;
+	align-self: flex-end;
+}
+.swiper-image .swiper-inner .sustainability-stats-outer p {
+	max-width: 850px;
+}
+.sustainaility-stat-heading {
+	border-top:1px solid #fff;
+	border-bottom:1px solid #fff;
+	margin-bottom:20px;
+	padding:10px 0
+}
+.sustainability-stats {
+	display:flex;
+	gap:3%
+}
+.sustainability-stats > div {
+	flex:1
+}
