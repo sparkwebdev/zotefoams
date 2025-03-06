@@ -52,7 +52,7 @@ if ($behaviour === 'pick' && !empty($post_ids)) {
                     // Extract image URL with fallback
                     $image_url = $image ? (is_array($image) ? $image['sizes']['large'] : $image) : null;
                 ?>
-                <div class="feed-item">
+                <div class="feed-item" data-clickable-url="<?php echo esc_url($link['url']); ?>">
                     <?php if ($image_url): ?>
                         <div class="feed-image image-cover" style="background-image:url('<?php echo esc_url($image_url); ?>');"></div>
                     <?php endif; ?>
@@ -65,7 +65,7 @@ if ($behaviour === 'pick' && !empty($post_ids)) {
                         <?php endif; ?>
                     </div>
                     <?php if ($link): ?>
-                        <a href="<?php echo esc_url($link['url']); ?>" class="hl arrow" target="<?php echo esc_attr($link['target'] ?? ''); ?>">
+                        <a href="<?php echo esc_url($link['url']); ?>" class="hl arrow read-more" target="<?php echo esc_attr($link['target'] ?? ''); ?>">
                             <?php echo esc_html($link['title']); ?>
                         </a>
                     <?php endif; ?>

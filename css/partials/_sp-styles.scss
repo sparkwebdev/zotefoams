@@ -45,6 +45,11 @@ html {
     align-self: flex-start;
   }
 }
+.articles .post a.video-link img {
+  align-self: auto;
+  width: auto;
+}
+
 .articles--list .post {
   display: flex;
   flex-direction: column;
@@ -445,6 +450,13 @@ html {
 	flex:1;
 	border:1px solid #d1d1d1;
 	position: relative;
+  transition: background 0.3s;
+  
+  cursor: pointer;
+  &:hover,
+  &:has(a:focus) {
+    background-color: var(--color-brand-contrast);
+  }
 }
 
 
@@ -472,6 +484,26 @@ html {
 }
 .box-items--4 {
 	/* grid-template-columns: repeat( auto-fit, minmax(32rem, 1fr) ); */
+}
+
+
+
+/* Shared styles across Read more CTA links */
+a.read-more {
+
+  &:hover,
+  &:focus {
+    color: #000;
+  }
+  &.hl.arrow {
+    &:hover,
+    &:focus {
+
+      &::after {
+        background-image: url(/images/icon-right-arrow-black.svg);
+      }
+    }
+  }
 }
 
 
@@ -558,6 +590,11 @@ button, input[type="button"], input[type="reset"], input[type="submit"] {
   a {
     transition: color 0.2s ease-in;
   }
+  a {
+    display: inline-block;
+    width: fit-content;
+    align-self: center;
+  }
   .brands {
     opacity: 1;
     transition: opacity 0.3s ease-in;
@@ -574,7 +611,8 @@ button, input[type="button"], input[type="reset"], input[type="submit"] {
     transition: opacity 0.3s ease-in;
     z-index: -1;
   }
-  &:hover  {
+  &:hover,
+  &:has(a:focus)  {
     background-color: #000;
     .brands {
       opacity: 0;
@@ -582,12 +620,18 @@ button, input[type="button"], input[type="reset"], input[type="submit"] {
     h3,
     a {
       color: #fff;
+      &.hl.arrow::after {
+        background-image:url(/images/icon-right-arrow-white.svg);
+      }
     }
     .market-image {
         opacity: 0.5;
     }
   }
   a.hl.arrow::after {
-   background-image:url(/images/icon-right-arrow-white.svg);
+    &:hover,
+  &:focus {
+    background-image: url(/images/icon-right-arrow-white.svg);
+  }
  }
 }

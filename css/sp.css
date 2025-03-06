@@ -620,7 +620,7 @@ html {
   align-self: flex-start;
   width: min(100%, 350px);
 }
-/* Fix for video button */
+
 .articles .post a.video-link img {
   align-self: auto;
   width: auto;
@@ -1022,9 +1022,15 @@ html {
 }
 
 .feed-item {
+  cursor: pointer;
   border: 1px solid #d1d1d1;
   flex: 1;
+  transition: background .3s;
   position: relative;
+}
+
+.feed-item:hover, .feed-item:has(a:focus) {
+  background-color: var(--color-brand-contrast);
 }
 
 .icon-columns-inner {
@@ -1043,6 +1049,14 @@ html {
   grid-template-columns: repeat(auto-fit, minmax(18rem, 1fr));
   gap: 40px 20px;
   display: grid;
+}
+
+a.read-more:hover, a.read-more:focus {
+  color: #000;
+}
+
+a.read-more.hl.arrow:hover:after, a.read-more.hl.arrow:focus:after {
+  background-image: url("icon-right-arrow-black.f968a573.svg");
 }
 
 .markets-list {
@@ -1126,6 +1140,12 @@ button.btn, input[type="button"].btn, input[type="reset"].btn, input[type="submi
   transition: color .2s ease-in;
 }
 
+.market-box a {
+  align-self: center;
+  width: fit-content;
+  display: inline-block;
+}
+
 .market-box .brands {
   opacity: 1;
   transition: opacity .3s ease-in;
@@ -1144,22 +1164,26 @@ button.btn, input[type="button"].btn, input[type="reset"].btn, input[type="submi
   left: 0;
 }
 
-.market-box:hover {
+.market-box:hover, .market-box:has(a:focus) {
   background-color: #000;
 }
 
-.market-box:hover .brands {
+.market-box:hover .brands, .market-box:has(a:focus) .brands {
   opacity: 0;
 }
 
-.market-box:hover h3, .market-box:hover a {
+.market-box:hover h3, .market-box:hover a, .market-box:has(a:focus) h3, .market-box:has(a:focus) a {
   color: #fff;
 }
 
-.market-box:hover .market-image {
+.market-box:hover h3.hl.arrow:after, .market-box:hover a.hl.arrow:after, .market-box:has(a:focus) h3.hl.arrow:after, .market-box:has(a:focus) a.hl.arrow:after {
+  background-image: url("icon-right-arrow-white.54806159.svg");
+}
+
+.market-box:hover .market-image, .market-box:has(a:focus) .market-image {
   opacity: .5;
 }
 
-.market-box a.hl.arrow:after {
+.market-box a.hl.arrow:after:hover, .market-box a.hl.arrow:after:focus {
   background-image: url("icon-right-arrow-white.54806159.svg");
 }

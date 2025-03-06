@@ -272,29 +272,29 @@ document.addEventListener( 'DOMContentLoaded', function() {
 		} );
 	} );
 
-	// Close the overlay when clicking the close button
-	if ( closeBtn ) {
-		closeBtn.addEventListener( 'click', function() {
-			overlay.style.display = 'none';
-			iframe.src = ''; // Stop the video
+	// Close overlay when clicking outside the video (on the overlay background)
+	if (overlay) {
+		// Close the overlay when clicking the close button
+		if ( closeBtn ) {
+			closeBtn.addEventListener( 'click', function() {
+				overlay.style.display = 'none';
+				iframe.src = ''; // Stop the video
+			} );
+		}
+		overlay.addEventListener( 'click', function( e ) {
+			if ( e.target === overlay ) {
+				overlay.style.display = 'none';
+				iframe.src = ''; // Stop the video
+			}
+		} );
+		// Close overlay when pressing the Escape key
+		document.addEventListener( 'keydown', function( e ) {
+			if ( e.key === 'Escape' ) {
+				overlay.style.display = 'none';
+				iframe.src = ''; // Stop the video
+			}
 		} );
 	}
-
-	// Close overlay when clicking outside the video (on the overlay background)
-	overlay.addEventListener( 'click', function( e ) {
-		if ( e.target === overlay ) {
-			overlay.style.display = 'none';
-			iframe.src = ''; // Stop the video
-		}
-	} );
-
-	// Close overlay when pressing the Escape key
-	document.addEventListener( 'keydown', function( e ) {
-		if ( e.key === 'Escape' ) {
-			overlay.style.display = 'none';
-			iframe.src = ''; // Stop the video
-		}
-	} );
 } );
 
 if ( document.querySelector( '.overlay' ) ) {

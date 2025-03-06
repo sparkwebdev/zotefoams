@@ -25,7 +25,7 @@
         $categories = get_the_category();
         $category   = !empty($categories) ? esc_html($categories[0]->name) : '';
       ?>
-      <div class="feed-item">
+      <div class="feed-item" data-clickable-url="<?php echo the_permalink(); ?>">
         <div class="feed-image image-cover" style="background-image:url('<?php echo esc_url($image_url); ?>');"></div>
         <div class="feed-content padding-40">
             <?php if ($category): ?>
@@ -33,7 +33,7 @@
             <?php endif; ?>
             <p class="fs-400 fw-semibold margin-b-80"><?php the_title(); ?></p>
         </div>
-        <a href="<?php the_permalink(); ?>" class="hl arrow">
+        <a href="<?php the_permalink(); ?>" class="hl arrow read-more">
             Read More
         </a>
       </div>
