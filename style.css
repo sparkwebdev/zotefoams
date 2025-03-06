@@ -2077,6 +2077,9 @@ footer div.wpforms-container.wpforms-container-full:not(:empty) {
 .biography > div {
 	flex:1
 }
+.biography .post-thumbnail img {
+	width:100%
+}
 
 
 
