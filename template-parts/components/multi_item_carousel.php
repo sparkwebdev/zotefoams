@@ -38,16 +38,15 @@ $manual_slides = get_sub_field('multi_item_carousel_slides'); // Manual items
 							$page_title = get_the_title($page_id);
 							$page_link = get_permalink($page_id);
 							$thumbnail_url = get_the_post_thumbnail_url($page_id, 'thumbnail-product');
-							if (!$thumbnail_url) {
-								$thumbnail_url = get_template_directory_uri() . '/images/placeholder-thumbnail.png';
-							}
 							?>
 							<div class="swiper-slide">
 								<h3><?php echo esc_html($page_title); ?></h3>
 								<?php if (get_the_excerpt($page_id)): ?>
 									<p><?php echo esc_html(get_the_excerpt($page_id)); ?></p>
 								<?php endif; ?>
-								<img src="<?php echo esc_url($thumbnail_url); ?>" alt="<?php echo esc_attr($page_title); ?>">
+								<?php if ( $thumbnail_url ): ?>
+									<img src="<?php echo esc_url($thumbnail_url); ?>" alt="<?php echo esc_attr($child_title); ?>">
+								<?php endif; ?>
 								<a href="<?php echo esc_url($page_link); ?>" class="btn black outline">Read More</a>
 							</div>
 						<?php endforeach; 
@@ -66,16 +65,15 @@ $manual_slides = get_sub_field('multi_item_carousel_slides'); // Manual items
 							$child_title = get_the_title($child_id);
 							$child_link = get_permalink($child_id);
 							$thumbnail_url = get_the_post_thumbnail_url($child_id, 'thumbnail-product');
-							if (!$thumbnail_url) {
-								$thumbnail_url = get_template_directory_uri() . '/images/placeholder-thumbnail.png';
-							}
 							?>
 							<div class="swiper-slide">
 								<h3><?php echo esc_html($child_title); ?></h3>
 								<?php if (get_the_excerpt($child_id)): ?>
 									<p><?php echo esc_html(get_the_excerpt($child_id)); ?></p>
 								<?php endif; ?>
-								<img src="<?php echo esc_url($thumbnail_url); ?>" alt="<?php echo esc_attr($child_title); ?>">
+								<?php if ( $thumbnail_url ): ?>
+									<img src="<?php echo esc_url($thumbnail_url); ?>" alt="<?php echo esc_attr($child_title); ?>">
+								<?php endif; ?>
 								<a href="<?php echo esc_url($child_link); ?>" class="btn black outline">Read More</a>
 							</div>
 						<?php endforeach;
@@ -88,7 +86,7 @@ $manual_slides = get_sub_field('multi_item_carousel_slides'); // Manual items
 						$slide_button = $slide['multi_item_carousel_slide_button'] ?? '';
 						$slide_image = $slide['multi_item_carousel_slide_image'] ?? null;
 
-						$image_url = $slide_image ? $slide_image['sizes']['thumbnail-product'] : get_template_directory_uri() . '/images/placeholder.png';
+						$image_url = $slide_image ? $slide_image['sizes']['thumbnail-product'] : null;
 						?>
 						<div class="swiper-slide">
 							<?php if ($slide_title): ?>
@@ -97,7 +95,9 @@ $manual_slides = get_sub_field('multi_item_carousel_slides'); // Manual items
 							<?php if ($slide_text): ?>
 								<p><?php echo wp_kses_post($slide_text); ?></p>
 							<?php endif; ?>
-							<img src="<?php echo esc_url($image_url); ?>" alt="<?php echo esc_attr($slide_title); ?>">
+							<?php if ($image_url): ?>
+								<img src="<?php echo esc_url($image_url); ?>" alt="<?php echo esc_attr($slide_title); ?>">
+							<?php endif; ?>
 							<?php if ($slide_button): ?>
 								<a href="<?php echo esc_url($slide_button['url']); ?>" class="btn black outline" target="<?php echo esc_attr($slide_button['target']); ?>">
 									<?php echo esc_html($slide_button['title']); ?>

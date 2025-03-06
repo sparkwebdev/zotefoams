@@ -53,20 +53,25 @@
 					<div class="footer-menu footer-menu-3">
 						<p class="blue-text fw-bold margin-b-30">Social</p>
 						<ul class="social-links">
-							<li><a href="">YouTube</a></li>
-							<li><a href="">LinkedIn</a></li>
-							<li><a href="">X</a></li></li>
+							<?php if( have_rows('social_media_links', 'option') ) {
+								while( have_rows('social_media_links', 'option') ) {
+									the_row();
+									$link = get_sub_field('social_media_link');
+									if( $link ): 
+										$link_url = $link['url'];
+										$link_title = $link['title'];
+										?>
+										<li><a href="<?php echo esc_url( $link_url ); ?>" target="_blank"><?php echo esc_html( $link_title ); ?></a></li>
+									<?php endif; ?>
+							<?php } } ?>
 						</ul>
 					</div>
 				</div>
 				
 				<div class="footer-newsletter">
 					<p class="blue-text fw-bold margin-b-30">Stay In Touch</p>
-					<p class="margin-b-20">Subscribe to our email alerts to get notified with news and events.</p>
-					<div class="zf-form">
-						<input class="zf" type="text" id="email" name="email" placeholder="Your Email Address" autocomplete="on">
-						<a href="" class="btn blue">Submit</a>
-					</div>
+					<p>Subscribe to our email alerts to get notified with news and events.</p>
+					<?php echo do_shortcode('[wpforms id="2048" title="false"]'); ?>
 				</div>
 			
 			</div>

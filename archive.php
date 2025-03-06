@@ -33,7 +33,12 @@ get_header();
 			while ( have_posts() ) :
 				the_post();
 				$cat_more_link = esc_url( get_the_permalink());
-				$thumbnail_url = get_the_post_thumbnail_url(get_the_ID(), ($layout == "list") ? 'thumbnail-square' : 'thumbnail');
+				$alt_thumbnail_id = get_field('alt_featured_image');
+				if ($alt_thumbnail_id) {
+					$thumbnail_url = wp_get_attachment_image_url($alt_thumbnail_id, 'thumbnail-square');
+				} else {
+					$thumbnail_url = get_the_post_thumbnail_url(get_the_ID(), ($layout == "list") ? 'thumbnail-square' : 'thumbnail');
+				}
 				if (!$thumbnail_url) {
 					$thumbnail_url = get_template_directory_uri() . '/images/placeholder-' . (($layout == "list") ? 'thumbnail-square' : 'thumbnail') . '.png';
 				}

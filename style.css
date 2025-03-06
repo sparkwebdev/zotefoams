@@ -2040,17 +2040,37 @@ a.hl.download::after {
 
 /* Newsletter signup
 --------------------------------------------- */
-.zf-form {
-	display:flex;
-	flex-direction: column;
-	align-items:flex-end;
-}
-input.zf {
-	padding:10px;
+footer div.wpforms-container.wpforms-container-full {
 	width:100%;
-	margin-bottom:20px
+}
+footer div.wpforms-container.wpforms-container-full:not(:empty) {
+	margin: 0 auto
 }
 
+
+
+.biography {
+	display:flex;
+	gap:4%
+}
+.biography figure {
+	margin:0;
+}
+.biography p {
+	margin-bottom:20px;
+}
+.biography .wp-block-heading {
+	border-top:1px solid #D1D1D1;
+	margin-bottom:20px;
+	padding-top:20px;
+}
+.biography .wp-block-heading:first-of-type {
+	border-top:0;
+	padding-top:0;
+}
+.biography > div {
+	flex:1
+}
 
 
 
@@ -2072,16 +2092,4 @@ iframe {
 	width: 100%;
 	border: none; 
 	overflow: visible;
-}
-#rns {
-	height:1050px
-}
-#alerts {
-	height:900px
-}
-#share-price-widget {
-	height:350px
-}
-#share-price-chart {
-	height:1000px
 }
