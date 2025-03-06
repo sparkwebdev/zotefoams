@@ -242,18 +242,17 @@ document.addEventListener('DOMContentLoaded', function () {
 			checkboxes.forEach( ( checkbox ) => checkbox.addEventListener( 'change', filterSections ) );
 			showAllButton.addEventListener( 'click', resetFilters );
 
-			document.addEventListener( 'click', ( e ) => {
-				if ( ! article.contains( e.target ) ) {
-					toggleDropdown( false );
-				}
-			} );
+			const dropdown = article.querySelector('.file-list__dropdown');
+			document.addEventListener('click', (e) => {
+					if (!dropdown.contains(e.target)) {
+							toggleDropdown(false);
+					}
+			});
 
 			updateShowAllVisibility();
 		} );
 	}
 } );
-
-
 
 // JavaScript to handle the video overlay
 document.addEventListener( 'DOMContentLoaded', function() {

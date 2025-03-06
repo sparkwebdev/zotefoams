@@ -17,6 +17,10 @@ if ( $documents_list ) {
     $brands = [];     // key = brand ID, value = brand title.
     
     foreach ( $documents_list as $row ) {
+        // Ensure the 'file' field is valid before proceeding.
+        if ( empty( $row['file'] ) || ! is_array( $row['file'] ) ) {
+            continue; // Skip this iteration if file data is not available.
+        }
         $file = $row['file'];
 
         // --- Category Processing (only if enabled) ---
@@ -27,7 +31,7 @@ if ( $documents_list ) {
             $category_id = intval( $row['category'] );
             $term = get_term( $category_id );
             if ( is_wp_error( $term ) || ! $term ) {
-                $category_label = '';
+                $category_label = get_the_title();
                 $thumbnail_url = get_template_directory_uri() . '/images/icon-01.svg';
             } else {
                 $category_label = $term->name;
@@ -116,53 +120,54 @@ if ( $documents_list ) {
 
 <div class="cont-m margin-b-100">
     <?php if ( ! empty( $documents_array ) ) : ?>
-        <div class="file-list" data-component="file-list">
-            <?php if ( ( $show_categories_filter && ! empty( $categories ) ) || ( $show_brands_filter && ! empty( $brands ) ) ) : ?>
-                <div class="file-list__dropdown">
-                    <button id="filter-toggle" class="file-list__dropdown-button hl arrow">
-                        Filter
-                    </button>
-                    <div id="filter-options" class="filter-toggle__options hidden">
-                        <?php if ( ! empty( $categories ) ) : ?>
-                        <div class="filter-group" data-filter-group="category" <?php echo $show_categories_filter ? '' : 'style="display:none;"'; ?>>
-                            <?php if ( $has_multiple_filters ) : ?>
-                            <strong>Category</strong>
-                            <?php endif; ?>
-                            <?php foreach ( $categories as $id => $label ) : ?>
-                                <label class="filter-toggle__label">
-                                    <input 
-                                        type="checkbox" 
-                                        value="<?php echo esc_attr( $id ); ?>" 
-                                        data-filter="category" 
-                                        class="filter-options__checkbox"
-                                    >
-                                    <?php echo esc_html( $label ); ?>
-                                </label>
-                            <?php endforeach; ?>
-                        </div>
+    <div data-component="file-list">
+        <?php if ( ( $show_categories_filter && ! empty( $categories ) ) || ( $show_brands_filter && ! empty( $brands ) ) ) : ?>
+            <div class="file-list__dropdown">
+                <button id="filter-toggle" class="file-list__dropdown-button hl arrow">
+                    Filter
+                </button>
+                <div id="filter-options" class="filter-toggle__options hidden">
+                    <?php if ( ! empty( $categories ) ) : ?>
+                    <div class="filter-group" data-filter-group="category" <?php echo $show_categories_filter ? '' : 'style="display:none;"'; ?>>
+                        <?php if ( $has_multiple_filters ) : ?>
+                        <strong>Category</strong>
                         <?php endif; ?>
-                        <?php if (! empty( $brands ) ) : ?>
-                        <div class="filter-group" data-filter-group="brand" <?php echo $show_brands_filter ? '' : 'style="display:none;"'; ?>>
-                            <?php if ( $has_multiple_filters ) : ?>
-                            <strong>Brand</strong>
-                            <?php endif; ?>
-                            <?php foreach ( $brands as $id => $label ) : ?>
-                                <label class="filter-toggle__label">
-                                    <input 
-                                        type="checkbox" 
-                                        value="<?php echo esc_attr( $id ); ?>" 
-                                        data-filter="brand" 
-                                        class="filter-options__checkbox"
-                                    >
-                                    <?php echo esc_html( $label ); ?>
-                                </label>
-                            <?php endforeach; ?>
-                        </div>
-                        <?php endif; ?>
+                        <?php foreach ( $categories as $id => $label ) : ?>
+                            <label class="filter-toggle__label">
+                                <input 
+                                    type="checkbox" 
+                                    value="<?php echo esc_attr( $id ); ?>" 
+                                    data-filter="category" 
+                                    class="filter-options__checkbox"
+                                >
+                                <?php echo esc_html( $label ); ?>
+                            </label>
+                        <?php endforeach; ?>
                     </div>
+                    <?php endif; ?>
+                    <?php if (! empty( $brands ) ) : ?>
+                    <div class="filter-group" data-filter-group="brand" <?php echo $show_brands_filter ? '' : 'style="display:none;"'; ?>>
+                        <?php if ( $has_multiple_filters ) : ?>
+                        <strong>Brand</strong>
+                        <?php endif; ?>
+                        <?php foreach ( $brands as $id => $label ) : ?>
+                            <label class="filter-toggle__label">
+                                <input 
+                                    type="checkbox" 
+                                    value="<?php echo esc_attr( $id ); ?>" 
+                                    data-filter="brand" 
+                                    class="filter-options__checkbox"
+                                >
+                                <?php echo esc_html( $label ); ?>
+                            </label>
+                        <?php endforeach; ?>
+                    </div>
+                    <?php endif; ?>
                 </div>
-                <button id="file-list-show-all" class="file-list__show-all hidden">Reset Filters</button>
-            <?php endif; ?>
+            </div>
+            <button id="file-list-show-all" class="file-list__show-all hidden">Reset Filters</button>
+        <?php endif; ?>
+        <div class="file-list">
             <table>
                 <thead class="screen-reader-text">
                     <tr>
@@ -234,6 +239,7 @@ if ( $documents_list ) {
                 </tbody>
             </table>
         </div>
+    </div>
     <?php else : ?>
         <p><?php echo esc_html__( 'Sorry, no items currently available.', 'your-text-domain' ); ?></p>
     <?php endif; ?>

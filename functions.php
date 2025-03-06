@@ -156,7 +156,7 @@ require get_template_directory() . '/inc/admin-editor.php';
 /**
  * Functions which hook into acf.
  */
-require get_template_directory() . '/inc/acf.php';
+// require get_template_directory() . '/inc/acf.php';
 
 /**
  * Loads the custom walker class for rendering the mega menu.

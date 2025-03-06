@@ -3,24 +3,6 @@
     "title": "Knowledge Hub: Documents",
     "fields": [
         {
-            "key": "field_67c58ce3da056",
-            "label": "Documents List",
-            "name": "",
-            "aria-label": "",
-            "type": "tab",
-            "instructions": "",
-            "required": 0,
-            "conditional_logic": 0,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "placement": "top",
-            "endpoint": 0,
-            "selected": 0
-        },
-        {
             "key": "field_67c58d6ffce9f",
             "label": "Documents List",
             "name": "documents_list",
@@ -35,12 +17,12 @@
                 "id": ""
             },
             "layout": "block",
-            "pagination": 1,
-            "rows_per_page": 25,
+            "pagination": 0,
             "min": 1,
             "max": 0,
-            "collapsed": "",
+            "collapsed": "field_67c58d6ffcea0",
             "button_label": "Add Document",
+            "rows_per_page": 20,
             "sub_fields": [
                 {
                     "key": "field_67c58d6ffcea0",
@@ -52,7 +34,7 @@
                     "required": 0,
                     "conditional_logic": 0,
                     "wrapper": {
-                        "width": "30",
+                        "width": "32",
                         "class": "",
                         "id": ""
                     },
@@ -74,7 +56,7 @@
                     "required": 0,
                     "conditional_logic": 0,
                     "wrapper": {
-                        "width": "30",
+                        "width": "26",
                         "class": "",
                         "id": ""
                     },
@@ -101,7 +83,7 @@
                     "required": 0,
                     "conditional_logic": 0,
                     "wrapper": {
-                        "width": "10",
+                        "width": "14",
                         "class": "",
                         "id": ""
                     },
@@ -131,11 +113,22 @@
                         ]
                     ],
                     "wrapper": {
-                        "width": "30",
+                        "width": "28",
                         "class": "",
                         "id": ""
                     },
-                    "choices": {},
+                    "choices": {
+                        "604": "AZOTE",
+                        "618": "— Supazote",
+                        "620": "— Evazote",
+                        "622": "— Plastazote",
+                        "606": "Zotek",
+                        "612": "— Zotek F",
+                        "614": "— Zotek F OSU &amp; HT Aviation &amp; Aerospace",
+                        "616": "— Zotek T",
+                        "608": "Ecozote",
+                        "610": "T-Fit"
+                    },
                     "default_value": [],
                     "return_format": "value",
                     "multiple": 1,
@@ -147,52 +140,6 @@
                     "parent_repeater": "field_67c58d6ffce9f"
                 }
             ]
-        },
-        {
-            "key": "field_67c58cc9da055",
-            "label": "Documents Store",
-            "name": "",
-            "aria-label": "",
-            "type": "tab",
-            "instructions": "",
-            "required": 0,
-            "conditional_logic": 0,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "placement": "top",
-            "endpoint": 0,
-            "selected": 0
-        },
-        {
-            "key": "field_67c58a842cccb",
-            "label": "Document Store",
-            "name": "document_store",
-            "aria-label": "",
-            "type": "gallery",
-            "instructions": "",
-            "required": 0,
-            "conditional_logic": 0,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "return_format": "array",
-            "library": "uploadedTo",
-            "min": "",
-            "max": "",
-            "min_width": "",
-            "min_height": "",
-            "min_size": "",
-            "max_width": "",
-            "max_height": "",
-            "max_size": "",
-            "mime_types": "",
-            "insert": "append",
-            "preview_size": "medium"
         }
     ],
     "location": [
@@ -213,5 +160,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1741172013
+    "modified": 1741220601
 }
