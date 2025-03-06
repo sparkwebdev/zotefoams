@@ -43,7 +43,7 @@ $items = get_sub_field('small_box_columns_items');
                             <?php endif; ?>
                         </div>
                         <?php if ($link): ?>
-                            <a href="<?php echo esc_url($link['url']); ?>" class="hl arrow" target="<?php echo esc_attr($link['target']); ?>">
+                            <a href="<?php echo esc_url($link['url']); ?>" class="hl arrow read-more" target="<?php echo esc_attr($link['target']); ?>">
                                 <?php echo esc_html($link['title']); ?>
                             </a>
                         <?php endif; ?>

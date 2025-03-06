@@ -94,7 +94,7 @@ get_header();
 									echo '<p class="articles__cta margin-b-40">No video found.</p>';
 								}
 							} else {
-								echo '<p class="articles__cta"><a href="' . $cat_more_link . '" class="hl arrow">' . $cat_more_link_label . '</a></p>';
+								echo '<p class="articles__cta"><a href="' . $cat_more_link . '" class="hl arrow read-more">' . $cat_more_link_label . '</a></p>';
 							}
 						?>
 						</div>

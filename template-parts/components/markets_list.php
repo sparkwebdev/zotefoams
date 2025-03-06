@@ -51,7 +51,7 @@
                             </ul>
                         <?php endif; ?>
                         
-                        <a href="<?php echo get_the_permalink($id); ?>" class="hl arrow">Read more</a>
+                        <a href="<?php echo get_the_permalink($id); ?>" class="hl arrow read-more">Read more</a>
 
                         <div class="market-image" style="background-image:url('<?php echo esc_url($featured_image); ?>');"></div>
                     </div>
@@ -80,7 +80,7 @@
                         </ul>
                     <?php endif; ?>
 
-                    <a href="<?php echo esc_url($page_link); ?>" class="hl arrow">Read more</a>
+                    <a href="<?php echo esc_url($page_link); ?>" class="hl arrow read-more">Read more</a>
 
                     <div class="market-image" style="background-image:url('<?php echo esc_url($featured_image); ?>');"></div>
                 </div>
@@ -127,7 +127,7 @@
                         $link_title = $link['title'] ?? 'Read More';
                         $link_target = !empty($link['target']) ? ' target="' . esc_attr($link['target']) . '"' : '';
                     ?>
-                        <a href="<?php echo esc_url($link_url); ?>" class="hl arrow"<?php echo $link_target; ?>>
+                        <a href="<?php echo esc_url($link_url); ?>" class="hl arrow read-more"<?php echo $link_target; ?>>
                             <?php echo esc_html($link_title); ?>
                         </a>
                     <?php endif; ?>

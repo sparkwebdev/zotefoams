@@ -53,7 +53,7 @@ $use_categories = ($behaviour === 'children' && $page_id == $posts_page_id);
                                     <div class="margin-b-20 grey-text"><?php echo esc_html($category->description); ?></div>
                                 <?php endif; ?>
                             </div>
-                            <a href="<?php echo esc_url($category_link); ?>" class="hl arrow">
+                            <a href="<?php echo esc_url($category_link); ?>" class="hl arrow read-more">
                                 View <?php echo esc_html($category->name); ?>
                             </a>
                         </div>
@@ -87,7 +87,7 @@ $use_categories = ($behaviour === 'children' && $page_id == $posts_page_id);
                                 }
                                 ?>
                             </div>
-                            <a href="<?php echo esc_url($page_link); ?>" class="hl arrow">Read more</a>
+                            <a href="<?php echo esc_url($page_link); ?>" class="hl arrow read-more">Read more</a>
                         </div>
                         <div class="box-image image-cover" style="background-image:url('<?php echo $thumbnail_url; ?>');"></div>
                     </div>
@@ -135,7 +135,7 @@ $use_categories = ($behaviour === 'children' && $page_id == $posts_page_id);
                                     }
                                     ?>
                                 </div>
-                                <a href="<?php echo esc_url($child_link); ?>" class="hl arrow">Read more</a>
+                                <a href="<?php echo esc_url($child_link); ?>" class="hl arrow read-more">Read more</a>
                             </div>
                             <div class="box-image image-cover" style="background-image:url('<?php echo $thumbnail_url; ?>');"></div>
                         </div>
@@ -164,7 +164,7 @@ $use_categories = ($behaviour === 'children' && $page_id == $posts_page_id);
                             <?php endif; ?>
                         </div>
                         <?php if ($item_button): ?>
-                            <a href="<?php echo esc_url($item_button['url']); ?>" class="hl arrow" target="<?php echo esc_attr($item_button['target']); ?>">
+                            <a href="<?php echo esc_url($item_button['url']); ?>" class="hl arrow read-more" target="<?php echo esc_attr($item_button['target']); ?>">
                                 <?php echo esc_html($item_button['title']); ?>
                             </a>
                         <?php endif; ?>
