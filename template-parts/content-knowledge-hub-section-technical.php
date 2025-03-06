@@ -1,6 +1,6 @@
 <?php
-// Define your brands array.
-$brands = array('Azote', 'Zotek');
+// Define your brands array. Currently unused
+// $brands = array('');
 
 // Query the child pages of the current page using the 'knowledge-hub' post type.
 $child_pages = get_pages(array(
@@ -40,7 +40,11 @@ $child_pages = get_pages(array(
                     // For each child page, output an article.
                     foreach ($child_pages as $child) : 
                         $child_title = $child->post_title;
-                        $child_url = esc_url(get_the_permalink($child->ID)).($brand_ID ?? '?brand='.zotefoams_get_page_id_by_title($brand));
+                        $brand_id = zotefoams_get_page_id_by_title($brand);
+                        $child_url = esc_url(get_the_permalink($child->ID));
+                        if (!empty($brand)) {
+                            $child_url .= '?brand=' . $brand_id;
+                        }
                         ?>
                         <article id="post-<?php echo esc_attr($child->ID); ?>" <?php post_class('section-list__item', $child->ID); ?> data-brand="<?php echo esc_attr($brand); ?>" data-gallery-label="<?php echo esc_attr($brand); ?>" data-clickable-url="<?php echo $child_url;?>">
                             <div class="articles__content padding-30">
