@@ -13,4 +13,17 @@
   --color-brand-contrast: #BFEA78;
 
   --border-separator: solid 1px var(--tone-light);
+  --grid-template-columns: 1fr;
+  
+}
+
+@media screen and (min-width: 480px) {
+  :root {
+    --grid-template-columns-small: repeat(auto-fit, minmax(18rem, 1fr));
+  }
+}
+@media screen and (min-width: 600px) {
+  :root {
+    --grid-template-columns: repeat(auto-fit, minmax(24rem, 1fr));
+  }
 }
