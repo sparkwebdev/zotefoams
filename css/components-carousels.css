@@ -17,6 +17,7 @@
 
 .swiper-carousel.split-carousel {
 	position: relative;
+	/* padding-bottom: 70px; */
 }
 
 .swiper-carousel.split-carousel .navigation-wrapper {
@@ -65,10 +66,64 @@
 
 .swiper-split .swiper-slide-content {
 	flex-direction: column;
-
-	/* max-width:600px */
+	padding-top: 30px;
 	margin-bottom: 120px;
+	padding-right: 5%;
 }
+.swiper-split .swiper-slide-content > * {
+	max-width: 700px;
+}
+@media screen and (max-width: 767px) {
+
+	.swiper-carousel.split-carousel {
+		position: relative;
+		/* padding-bottom: 70px; */
+	}
+	.swiper-split .swiper-slide {
+		flex-direction: column;
+	}
+	.swiper-split .swiper-slide-content {
+		margin-bottom: 40px;
+	}
+	.swiper-carousel.split-carousel .navigation-wrapper {
+		width: 100%;
+		position: relative;
+		display: flex;
+		justify-content: center;
+		padding-bottom: 40px;
+	}
+	.swiper-carousel.split-carousel .split-swiper-pagination {
+		display: none;
+	}
+	.swiper-split .swiper-slide > * {
+		text-align: center;
+		width: 100%;
+	}
+	.swiper-split .swiper-slide-content > * {
+		max-width: 90%;
+		margin-left: auto;
+		margin-right: auto;
+	}
+}
+	
+	/* .swiper-carousel.split-carousel {
+		padding-bottom: 0;
+	}
+	.swiper-split .swiper-slide {
+		flex-direction: row;
+	}
+	.swiper-split .swiper-slide-content {
+		padding: 0;
+	}
+	.swiper-split .swiper-slide > img {
+		min-height: 0;
+	}
+	.swiper-carousel.split-carousel .navigation-wrapper {
+		width: 50vw;
+		right: 0;
+	} */
+}
+
 
 .swiper-split .spacer {
 	flex: 1 0 0;
@@ -123,8 +178,9 @@
 }
 
 .multi-item-carousel .swiper-slide h3 {
-	font-size: 2em;
-	font-weight: 400;
+	/* font-size: 2em; */
+	/* font-weight: 400; */
+	border: solid red;
 	margin-top: 60px;
 	margin-bottom: 30px;
 }
@@ -144,7 +200,8 @@
 .multi-item-carousel .swiper-slide a.btn {
 	display: inline-block;
 	margin-bottom: 60px;
-	font-size: 0.8em;
+	/* font-size: 0.8em; */
+	border: solid blue;
 }
 
 .multi-item-carousel .multi-swiper-scrollbar {
@@ -262,19 +319,21 @@
 }
 
 .calendar-carousel .date-wrapper .date {
-	font-size: 4.7em;
+	/* font-size: 4.7em; */
+	border: solid yellow;
 	margin-top: -7px;
-	font-weight: lighter;
 }
 
 .calendar-carousel .date-wrapper .month-year {
 	margin-top: -20px;
-	font-size: 0.9em;
+	/* font-size: 0.9em; */
+	border: solid purple;
 }
 
 .calendar-carousel p {
 	margin-top: 20px;
-	font-size: 0.9em;
+	/* font-size: 0.9em; */
+	border: solid cyan;
 	color: #707070;
 }
 
@@ -282,6 +341,7 @@
 	color: #b5b5b5;
 	margin-top: 15px;
 	margin-left: 2px;
-	font-size: 0.9em;
+	/* font-size: 0.9em; */
 	display: block;
+	border: solid orange;
 }

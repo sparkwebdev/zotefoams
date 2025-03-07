@@ -6,21 +6,6 @@ $slides = get_sub_field('split_carousel_slides');
 
 <!-- Carousel 3 - Split Carousel -->
 <div class="swiper-carousel split-carousel light-grey-bg theme-light">
-    
-    <!-- Navigation -->
-    <div class="navigation-wrapper">
-        <div class="split-swiper-pagination"></div>
-        <div class="carousel-navigation black">
-            <div class="carousel-navigation-inner">
-                <div class="split-swiper-button-prev">
-                    <img src="<?php echo get_template_directory_uri(); ?>/images/left-arrow-black.svg" />
-                </div>
-                <div class="split-swiper-button-next">
-                    <img src="<?php echo get_template_directory_uri(); ?>/images/right-arrow-black.svg" />
-                </div>
-            </div>
-        </div>
-    </div>
 
     <div class="swiper swiper-split">
         <div class="swiper-wrapper">
@@ -54,10 +39,24 @@ $slides = get_sub_field('split_carousel_slides');
                                 </a>
                             <?php endif; ?>
                         </div>
-                        <div class="spacer"></div>
                     </div>
                 <?php endforeach; ?>
             <?php endif; ?>
+        </div>
+    </div>
+    
+    <!-- Navigation -->
+    <div class="navigation-wrapper">
+        <div class="split-swiper-pagination"></div>
+        <div class="carousel-navigation black">
+            <div class="carousel-navigation-inner">
+                <div class="split-swiper-button-prev">
+                    <img src="<?php echo get_template_directory_uri(); ?>/images/left-arrow-black.svg" />
+                </div>
+                <div class="split-swiper-button-next">
+                    <img src="<?php echo get_template_directory_uri(); ?>/images/right-arrow-black.svg" />
+                </div>
+            </div>
         </div>
     </div>
 </div>
