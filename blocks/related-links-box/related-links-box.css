@@ -18,16 +18,10 @@
     list-style: none;
     padding: 0;
     margin: 0;
-    display: grid;
-    grid-template-columns:  1fr 1fr;
-    flex: 1 1 50%;
-    gap: 0 20px;
-    flex-wrap: wrap;
+    width: 100%;
+    border-top: solid 1px #d1d1d1;
     li {
       border-bottom: solid 1px #d1d1d1;
-    }
-    > :nth-child(-n+2) {
-      border-top: solid 1px #d1d1d1;
     }
     a {
       display: flex;
