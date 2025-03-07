@@ -47,7 +47,7 @@ get_header();
 						<?php
 							echo '<img src="' . esc_url($thumbnail_url) . '" alt="" class="thumbnail-square">';
 						?>
-						<div class="articles__content">
+						<div class="articles__content padding-40">
 							<?php
 								echo '<div class="margin-b-20 grey-text">';
 								zotefoams_posted_on();
@@ -83,7 +83,7 @@ get_header();
 							endif;
 							}
 						?>
-						<div class="articles__content">
+						<div class="articles__content padding-40">
 						<?php
 							the_title( '<h3 class="fs-400 fw-semibold margin-b-20">', '</h3>' );
 
