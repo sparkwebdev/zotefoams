@@ -32,7 +32,7 @@
 
 .site-header .site-branding {
   flex-shrink: 0;
-  margin: 5px 5%;
+  margin: 5px 0;
 }
 
 .site-header .site-branding img {
@@ -71,7 +71,7 @@
 .site-header-wrapper {
   flex-direction: column;
   justify-content: space-between;
-  padding: 10px 0 10px 0;
+    padding: 10px 5%;
   display: flex;
   position: relative;
 }
@@ -82,7 +82,7 @@
     justify-content: space-between;
     align-items: center;
     gap: 30px;
-    padding: 0 5%;
+    padding: 0 20px;
   }
 }
 
@@ -478,7 +478,7 @@
 
 @media screen and (min-width: 64rem) {
   .utility-menu {
-    /* padding: 0 50px; */
+    padding: 0 20px;
   }
 
   .utility-menu .menu {

@@ -40,7 +40,7 @@ $manual_slides = get_sub_field('multi_item_carousel_slides'); // Manual items
 							$thumbnail_url = get_the_post_thumbnail_url($page_id, 'thumbnail-product');
 							?>
 							<div class="swiper-slide">
-								<h3><?php echo esc_html($page_title); ?></h3>
+								<h3 class="fs-600 fw-bold"><?php echo esc_html($page_title); ?></h3>
 								<?php if (get_the_excerpt($page_id)): ?>
 									<p><?php echo esc_html(get_the_excerpt($page_id)); ?></p>
 								<?php endif; ?>
@@ -67,7 +67,7 @@ $manual_slides = get_sub_field('multi_item_carousel_slides'); // Manual items
 							$thumbnail_url = get_the_post_thumbnail_url($child_id, 'thumbnail-product');
 							?>
 							<div class="swiper-slide">
-								<h3><?php echo esc_html($child_title); ?></h3>
+								<h3 class="fs-600 fw-bold"><?php echo esc_html($child_title); ?></h3>
 								<?php if (get_the_excerpt($child_id)): ?>
 									<p><?php echo esc_html(get_the_excerpt($child_id)); ?></p>
 								<?php endif; ?>
@@ -90,7 +90,7 @@ $manual_slides = get_sub_field('multi_item_carousel_slides'); // Manual items
 						?>
 						<div class="swiper-slide">
 							<?php if ($slide_title): ?>
-								<h3><?php echo esc_html($slide_title); ?></h3>
+								<h3 class="fs-600 fw-bold"><?php echo esc_html($slide_title); ?></h3>
 							<?php endif; ?>
 							<?php if ($slide_text): ?>
 								<p><?php echo wp_kses_post($slide_text); ?></p>

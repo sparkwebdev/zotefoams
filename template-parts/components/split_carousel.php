@@ -24,20 +24,22 @@ $slides = get_sub_field('split_carousel_slides');
                     <div class="swiper-slide">
                         <img src="<?php echo esc_url($image_url); ?>" alt="<?php echo esc_attr($title); ?>">
                         <div class="swiper-slide-content">
-                            <?php if ($category): ?>
-                                <p class="animate__animated fs-100 margin-b-30 grey-text"><?php echo esc_html($category); ?></p>
-                            <?php endif; ?>
-                            <?php if ($title): ?>
-                                <p class="animate__animated fs-600 fw-bold"><?php echo esc_html($title); ?></p>
-                            <?php endif; ?>
-                            <?php if ($text): ?>
-                                <div class="animate__animated fs-600 fw-medium grey-text margin-b-40"><?php echo wp_kses_post($text); ?></div>
-                            <?php endif; ?>
-                            <?php if ($button): ?>
-                                <a href="<?php echo esc_url($button['url']); ?>" class="animate__animated btn black outline" target="<?php echo esc_attr($button['target']); ?>">
-                                    <?php echo esc_html($button['title']); ?>
-                                </a>
-                            <?php endif; ?>
+							<div class="swiper-slide-content-inner">
+								<?php if ($category): ?>
+									<p class="animate__animated fs-100 margin-b-30 grey-text"><?php echo esc_html($category); ?></p>
+								<?php endif; ?>
+								<?php if ($title): ?>
+									<p class="animate__animated fs-600 fw-bold"><?php echo esc_html($title); ?></p>
+								<?php endif; ?>
+								<?php if ($text): ?>
+									<div class="animate__animated fs-600 fw-medium grey-text margin-b-40"><?php echo wp_kses_post($text); ?></div>
+								<?php endif; ?>
+								<?php if ($button): ?>
+									<a href="<?php echo esc_url($button['url']); ?>" class="animate__animated btn black outline" target="<?php echo esc_attr($button['target']); ?>">
+										<?php echo esc_html($button['title']); ?>
+									</a>
+								<?php endif; ?>
+							</div>
                         </div>
                     </div>
                 <?php endforeach; ?>
