@@ -37,8 +37,10 @@
 										?>
 											<div class="sustainability-stat">
 												<img src="<?php echo $statIcon['url']; ?>" />
-												<p class="fs-800 fw-bold"><?php echo esc_attr( $statNumber ); ?></p>
-												<p><?php echo esc_attr( $statText ); ?></p>
+												<div>
+													<p class="fs-800 fw-bold"><?php echo esc_attr( $statNumber ); ?></p>
+													<p><?php echo esc_attr( $statText ); ?></p>
+												</div>
 											</div>
 									<?php endwhile; ?>
 								</div>

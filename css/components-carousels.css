@@ -135,6 +135,11 @@
 	color: #707070;
 	flex-grow: 1;
 }
+@media screen and (max-width:767px) {
+	.multi-item-carousel .swiper-slide p {
+		margin-bottom: 30px;
+	}
+}
 
 .multi-item-carousel .swiper-slide img {
 	margin-bottom: 60px;
@@ -241,6 +246,20 @@
 	background-color: #3b82f6;  /* Set active bullet color */
 	opacity: 1;  /* Ensure the active bullet is fully opaque */
 }
+@media screen and (max-width:990px) {
+	.swiper-dual-carousel-image {
+		display:none
+	}
+	.swiper-dual-carousel-text .slide-sub-content {
+		max-width: 700px;
+	}
+}
+@media screen and (max-width:767px) {
+	.swiper-dual-carousel-text .swiper-slide {
+		padding: 50px 0 140px;
+	}
+}
+
 
 /* Calendar carousel
 	--------------------------------------------- */

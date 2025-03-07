@@ -19,7 +19,7 @@ $map_image_url = $map_image ? $map_image['url'] : get_template_directory_uri() .
 <div class="data-map padding-t-b-100 image-cover theme-dark" style="background-image:url('<?php echo esc_url($bg_image_url); ?>')">
     <div class="cont-m">
         <div class="stats">
-            <div class="stat stat-1">
+            <div class="stat stat-1 padding-30">
                 <img src="<?php echo esc_url($map_image_url); ?>" />
                 <?php if ($stat_1_value): ?>
                     <p class="fs-700 fw-semibold margin-b-10"><?php echo esc_html($stat_1_value); ?></p>
@@ -28,7 +28,7 @@ $map_image_url = $map_image ? $map_image['url'] : get_template_directory_uri() .
                     <p class="fs-200 fw-semibold"><?php echo esc_html($stat_1_text); ?></p>
                 <?php endif; ?>
             </div>
-            <div class="stat stat-2">
+            <div class="stat stat-2 padding-30">
                 <?php if ($stat_2_value): ?>
                     <p class="fs-700 fw-semibold margin-b-10"><?php echo esc_html($stat_2_value); ?></p>
                 <?php endif; ?>
@@ -36,7 +36,7 @@ $map_image_url = $map_image ? $map_image['url'] : get_template_directory_uri() .
                     <p class="fs-200 fw-semibold"><?php echo esc_html($stat_2_text); ?></p>
                 <?php endif; ?>
             </div>
-            <div class="stat stat-3">
+            <div class="stat stat-3 padding-30">
                 <?php if ($stat_3_value): ?>
                     <p class="fs-700 fw-semibold margin-b-10"><?php echo esc_html($stat_3_value); ?></p>
                 <?php endif; ?>

@@ -16,7 +16,7 @@ $image_url = $image ? $image['sizes']['large'] : '';
 	<div class="split-grey half-half cont-m padding-b-100 theme-none">
 		<div class="half image-cover" style="background-image:url('<?php echo esc_url($image_url ? $image_url : get_template_directory_uri() . "/images/placeholder.png"); ?>');">
 		</div>
-		<div class="half light-grey-bg">
+		<div class="half light-grey-bg padding-50">
 			<div class="top">
 				<?php if ($title): ?>
 					<p class="fs-200 fw-regular margin-b-10"><?php echo esc_html($title); ?></p>

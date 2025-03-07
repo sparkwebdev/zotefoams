@@ -36,7 +36,7 @@
                 <?php foreach ($child_pages as $child):
                     $id = $child->ID;
                     $featured_image = get_the_post_thumbnail_url($id, 'large') ?: get_template_directory_uri() . '/images/placeholder-thumbnail.png'; ?>
-                    <div class="market-box white-bg text-center" data-clickable-url="<?php echo get_the_permalink($id); ?>">
+                    <div class="market-box padding-50 white-bg text-center" data-clickable-url="<?php echo get_the_permalink($id); ?>">
                         <h3 class="fs-600 fw-medium margin-b-20"><?php echo get_the_title($id); ?></h3>
 
                         <?php 
@@ -67,7 +67,7 @@
                 $featured_image = get_the_post_thumbnail_url($page_id, 'large') ?: get_template_directory_uri() . '/images/placeholder-thumbnail.png';
                 $related_brands = get_field('associated_brands', $page_id);
                 ?>
-                <div class="market-box white-bg text-center" data-clickable-url="<?php echo esc_url($page_link); ?>">
+                <div class="market-box padding-50 white-bg text-center" data-clickable-url="<?php echo esc_url($page_link); ?>">
                     <h3 class="fs-600 fw-medium margin-b-20"><?php echo esc_html($page_title); ?></h3>
 
                     <?php if ($related_brands): ?>
@@ -100,7 +100,7 @@
 								endif;
             ?>
 
-                <div class="market-box white-bg text-center" 
+                <div class="market-box padding-50 white-bg text-center" 
 									<?php if (!empty($link_url)): ?> 
 											data-clickable-url="<?php echo esc_url($link_url); ?>"
 									<?php endif; ?>
