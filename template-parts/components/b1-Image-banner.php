@@ -26,20 +26,23 @@
 						<?php if (is_page('Sustainability')) : ?>
 						<div class="sustainability-stats-outer">
 							<p class="sustainaility-stat-heading fw-bold fs-500 uppercase"><?php echo $text; ?></p>
-							<div class="sustainability-stats">
-								<div class="sustainability-stat">
-									<p class="fs-800 fw-bold">5%</p>
-									<p>of group revenue to come from sustainable products by 2026.</p>
+							<?php if( have_rows('sustainability_stats') ): ?>
+								<div class="sustainability-stats">
+									<?php while( have_rows('sustainability_stats') ) : the_row();
+
+										$statIcon = get_sub_field('sustainability_stat_icon');
+										$statNumber = get_sub_field('sustainability_stat_big_number');
+										$statText = get_sub_field('sustainability_stat_text');
+
+										?>
+											<div class="sustainability-stat">
+												<img src="<?php echo $statIcon['url']; ?>" />
+												<p class="fs-800 fw-bold"><?php echo esc_attr( $statNumber ); ?></p>
+												<p><?php echo esc_attr( $statText ); ?></p>
+											</div>
+									<?php endwhile; ?>
 								</div>
-								<div class="sustainability-stat">
-									<p class="fs-800 fw-bold">50%</p>
-									<p>of our waste was recycled in 2023 and is on track to increase even further.</p>
-								</div>
-								<div class="sustainability-stat">
-									<p class="fs-800 fw-bold">10%</p>
-									<p>reduction in the energy used to manufacture our products by 2026.</p>
-								</div>
-							</div>
+							<?php endif; ?>
 						</div>
 						<?php else : ?>
 							<p class="fw-bold fs-600 uppercase"><?php echo $text; ?></p>
