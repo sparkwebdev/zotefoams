@@ -257,9 +257,9 @@
                 "value": "page"
             },
             {
-                "param": "page",
+                "param": "post_template",
                 "operator": "!=",
-                "value": "153"
+                "value": "page-biography.php"
             }
         ]
     ],
@@ -272,5 +272,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1740077290
+    "modified": 1741294434
 }

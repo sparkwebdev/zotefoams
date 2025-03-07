@@ -1,4 +1,5 @@
 
+
 	<?php
 	if( have_rows('page_header_image') ): ?>
 		<div class="image-banner swiper swiper-image">
@@ -13,7 +14,7 @@
 				$link = get_sub_field('link');
 				
 				?>
-
+				
 				<div class="swiper-slide image-cover" style="background-image:url(<?php echo wp_get_attachment_image_url( $imageId, 'full' ); ?>)" data-title="<?php echo esc_attr( $caption ); ?>">
 					<div class="swiper-inner padding-50 white-text">
 						<div class="title-button">
@@ -22,7 +23,30 @@
 							<a href="<?php echo $link['url']; ?>" <?php echo !empty( $link['target'] ) ? 'target="' . esc_attr( $link['target'] ) . '"' : '' ?> class="btn white outline arrow"><?php echo $link['title']; ?></a>
 							<?php endif; ?>
 						</div>
-						<p class="fw-bold fs-600 uppercase"><?php echo $text; ?></p>
+						<?php if (is_page('Sustainability')) : ?>
+						<div class="sustainability-stats-outer">
+							<p class="sustainaility-stat-heading fw-bold fs-500 uppercase"><?php echo $text; ?></p>
+							<?php if( have_rows('sustainability_stats') ): ?>
+								<div class="sustainability-stats">
+									<?php while( have_rows('sustainability_stats') ) : the_row();
+
+										$statIcon = get_sub_field('sustainability_stat_icon');
+										$statNumber = get_sub_field('sustainability_stat_big_number');
+										$statText = get_sub_field('sustainability_stat_text');
+
+										?>
+											<div class="sustainability-stat">
+												<img src="<?php echo $statIcon['url']; ?>" />
+												<p class="fs-800 fw-bold"><?php echo esc_attr( $statNumber ); ?></p>
+												<p><?php echo esc_attr( $statText ); ?></p>
+											</div>
+									<?php endwhile; ?>
+								</div>
+							<?php endif; ?>
+						</div>
+						<?php else : ?>
+							<p class="fw-bold fs-600 uppercase"><?php echo $text; ?></p>
+						<?php endif; ?>
 					</div>
 					<div class="overlay"></div>
 				</div>
@@ -43,5 +67,5 @@
 			<?php endif; ?>
 			
 		</div>
-
 	<?php endif; ?>
+

@@ -36,10 +36,25 @@ add_action( 'init', 'change_post_object_label' );
  * Disable Gutenberg for all post types except 'post'.
  */
 function disable_gutenberg_except_posts($use_block_editor, $post) {
-    if ($post->post_type !== 'post' && $post->post_type !== 'knowledge-hub') {
-        return false; // Disable Gutenberg for everything except posts
+    if (!$post) {
+        return $use_block_editor; // Early return if no post object
     }
-    return $use_block_editor; // Keep Gutenberg for posts
+
+    // Allow Gutenberg for posts and 'knowledge-hub' custom post type
+    if ($post->post_type === 'post' || $post->post_type === 'knowledge-hub') {
+        return $use_block_editor;
+    }
+
+    // Allow Gutenberg for pages with the template 'page-biography.php'
+    if ($post->post_type === 'page') {
+        $template = get_page_template_slug($post->ID);
+        if ($template === 'page-biography.php') { // Ensure this matches the actual filename
+            return $use_block_editor;
+        }
+    }
+
+    // Disable Gutenberg for everything else
+    return false;
 }
 add_filter('use_block_editor_for_post', 'disable_gutenberg_except_posts', 10, 2);
 
@@ -47,9 +62,23 @@ add_filter('use_block_editor_for_post', 'disable_gutenberg_except_posts', 10, 2)
  * Hide the Classic Editor on Pages while keeping ACF fields.
  */
 function remove_classic_editor_support() {
-    remove_post_type_support('page', 'editor'); // Hides the classic editor on Pages
+    $screen = get_current_screen();
+    
+    if (!$screen || $screen->post_type !== 'page') {
+        return; // Ensure we are working within the page post type
+    }
+
+    $post_id = isset($_GET['post']) ? intval($_GET['post']) : 0;
+    
+    if ($post_id && get_page_template_slug($post_id) === 'page-biography.php') {
+        return; // Do not remove editor for pages with the 'page-biography' template
+    }
+
+    remove_post_type_support('page', 'editor'); // Hide editor for all other pages
 }
-add_action('admin_init', 'remove_classic_editor_support');
+add_action('current_screen', 'remove_classic_editor_support');
+
+
 
 
 
@@ -181,6 +210,7 @@ if (!empty($editor_context->post)) {
     } else {
         return [
             'core/paragraph',
+			'core/heading'
         ];
     }
 }

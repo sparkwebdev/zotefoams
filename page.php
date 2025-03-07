@@ -17,13 +17,7 @@ get_header();
 	// Check for Advanced Custom Fields plugin function
 	if( function_exists('get_field') ) {
 
-		$sustainabilityHeader = get_field( 'sustainability_header' );
-
-		if ( $sustainabilityHeader ):
-
-			include( locate_template( '/template-parts/components/sustainability-header.php', false, false ) );
-
-		elseif ( get_field( 'page_header_type' ) ):
+		if ( get_field( 'page_header_type' ) ):
 
 			$pageHeaderType = get_field( 'page_header_type' );
 

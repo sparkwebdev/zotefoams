@@ -807,7 +807,8 @@
                                     "choices": {
                                         "782": "Request a Sample",
                                         "787": "Request a Quote",
-                                        "790": "Contact us"
+                                        "790": "Contact us",
+                                        "2048": "Newsletter Signup"
                                     },
                                     "default_value": false,
                                     "return_format": "value",
@@ -4021,6 +4022,11 @@
                 "param": "post_type",
                 "operator": "==",
                 "value": "page"
+            },
+            {
+                "param": "page_template",
+                "operator": "!=",
+                "value": "page-biography.php"
             }
         ]
     ],
