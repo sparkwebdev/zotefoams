@@ -14,7 +14,7 @@ document.addEventListener( 'DOMContentLoaded', function() {
 			loop: true,
 			speed: 400,
 			autoplay: {
-				delay: 3000,
+				delay: 50000,
 				disableOnInteraction: false,
 			},
 			navigation: {
@@ -57,7 +57,7 @@ document.addEventListener( 'DOMContentLoaded', function() {
 				progressCircle.style.transition = 'none';
 				progressCircle.style.strokeDashoffset = 144.513;
 				setTimeout( () => {
-					progressCircle.style.transition = 'stroke-dashoffset 3s linear';
+					progressCircle.style.transition = 'stroke-dashoffset 5s linear';
 					progressCircle.style.strokeDashoffset = 0;
 				}, 50 );
 			}
