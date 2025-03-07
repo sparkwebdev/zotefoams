@@ -444,7 +444,7 @@ html {
 .feed-items {
 	display: grid;
 	gap: 20px;
-	grid-template-columns: repeat( auto-fit, minmax(24rem, 1fr) );
+	grid-template-columns: var(--grid-template-columns);
 }
 .feed-item {
 	flex:1;
@@ -465,7 +465,7 @@ html {
 .icon-columns-inner {
 	display: grid;
 	gap: 30px;
-	grid-template-columns: repeat( auto-fit, minmax(18rem, 1fr) );
+	grid-template-columns: var(--grid-template-columns-small);
 }
 .icon-columns-inner > div {
 	// flex:1
@@ -475,12 +475,12 @@ html {
 .box-items {
 	display: grid;
 	gap: 20px;
-	grid-template-columns: repeat( auto-fit, minmax(24rem, 1fr) );
+	grid-template-columns: var(--grid-template-columns);
 }
 .small-box-items {
 	display: grid;
 	gap: 40px 20px;
-	grid-template-columns: repeat( auto-fit, minmax(18rem, 1fr) );
+	grid-template-columns: var(--grid-template-columns-small);
 }
 .box-items--4 {
 	/* grid-template-columns: repeat( auto-fit, minmax(32rem, 1fr) ); */
@@ -512,7 +512,7 @@ a.read-more {
 	display: grid;
 	gap: 20px;
 	margin: 20px;
-	grid-template-columns: repeat( auto-fit, minmax(24rem, 1fr) );
+	grid-template-columns: var(--grid-template-columns);
 }
 .market-box {
 	display: flex;
