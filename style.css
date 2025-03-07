@@ -1978,6 +1978,7 @@ a.hl.download::after {
     cursor: pointer;
     font-size: 16px;
     font-weight: bold;
+    text-align: center;
     display: flex;
 	flex-direction:column;
     align-items: center;
@@ -2024,11 +2025,11 @@ a.hl.download::after {
 .tab-content .half-half {
 	display:flex;
 	justify-content: flex-end;
+	flex-direction: column;
 }
 .tab-content .half-half .half:nth-of-type(1) {
-	max-width: 616px;
-	margin-right:84px;
-	margin-left:5%
+	padding-left: 20px;
+	padding-right: 20px;
 }
 .tab-content .half-half .half:nth-of-type(2) {
 	min-width: 50%;
