@@ -210,7 +210,8 @@ if (!empty($editor_context->post)) {
     } else {
         return [
             'core/paragraph',
-			'core/heading'
+			'core/heading',
+          	'core/list'
         ];
     }
 }

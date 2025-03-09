@@ -1827,14 +1827,12 @@ a.hl.download::after {
 	display: none;
 }
 
-.accordion-content p {
+.accordion-content p, .accordion-content ul, .accordion-content ol {
 	margin: 0;
-	padding: 0 60px 20px;
+	padding: 0 5% 20px;
 }
-@media screen and (max-width:767px) {
-	.accordion-content p {
-		padding: 0 20px 20px;
-	}
+.accordion-content li {
+	margin-left: 15px;
 }
 
 .toggle-icon {
@@ -2285,8 +2283,8 @@ footer div.wpforms-container.wpforms-container-full:not(:empty) {
 .biography figure {
 	margin:0;
 }
-.biography p {
-	margin-bottom:20px;
+.biography p, .biography ul, .biography ol {
+	margin-bottom:25px;
 }
 .biography .wp-block-heading {
 	border-top:1px solid #D1D1D1;

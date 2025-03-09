@@ -51,18 +51,33 @@ $theme_button_style = $is_market_pages ? "black" : "white";
                 <?php endforeach; ?>
             <?php endif; ?>
         </div>
-
-        <!-- Navigation -->
-        <div class="carousel-navigation white">
-            <div class="carousel-navigation-inner">
-                <div class="swiper-button-next-dual-carousel">
-                    <img src="<?php echo get_template_directory_uri(); ?>/images/left-arrow-white.svg" />
-                </div>
-                <div class="swiper-button-prev-dual-carousel">
-                    <img src="<?php echo get_template_directory_uri(); ?>/images/right-arrow-white.svg" />
-                </div>
-            </div>
-        </div>
+		
+		<?php if (wp_get_post_parent_id(get_the_ID()) == 11) : ?>
+			<!-- Navigation -->
+			<div class="carousel-navigation black">
+				<div class="carousel-navigation-inner">
+					<div class="swiper-button-next-dual-carousel">
+						<img src="<?php echo get_template_directory_uri(); ?>/images/left-arrow-black.svg" />
+					</div>
+					<div class="swiper-button-prev-dual-carousel">
+						<img src="<?php echo get_template_directory_uri(); ?>/images/right-arrow-black.svg" />
+					</div>
+				</div>
+			</div>
+		<?php else : ?>
+			<!-- Navigation -->
+			<div class="carousel-navigation white">
+				<div class="carousel-navigation-inner">
+					<div class="swiper-button-next-dual-carousel">
+						<img src="<?php echo get_template_directory_uri(); ?>/images/left-arrow-white.svg" />
+					</div>
+					<div class="swiper-button-prev-dual-carousel">
+						<img src="<?php echo get_template_directory_uri(); ?>/images/right-arrow-white.svg" />
+					</div>
+				</div>
+			</div>
+		<?php endif; ?>
+		
     </div>
 
     <div class="swiper swiper-dual-carousel-image">
@@ -75,7 +90,11 @@ $theme_button_style = $is_market_pages ? "black" : "white";
                     ?>
                     <div class="swiper-slide">
                         <div class="swiper-inner white-text">
-                            <img src="<?php echo esc_url($bg_image_url); ?>" alt="Carousel Background">
+							<?php if (wp_get_post_parent_id(get_the_ID()) == 11) : ?>
+                            	<img src="<?php echo esc_url($bg_image_url); ?>" alt="Carousel Background" style="object-fit: contain !important;">
+							<?php else : ?>
+                            	<img src="<?php echo esc_url($bg_image_url); ?>" alt="Carousel Background">
+							<?php endif; ?>
                         </div>
                     </div>
                 <?php endforeach; ?>
