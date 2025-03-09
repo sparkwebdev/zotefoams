@@ -11,7 +11,9 @@ class Mega_Menu_Walker extends Walker_Nav_Menu {
         // Build classes
         $classes = !empty($item->classes) ? (array) $item->classes : array();
         $classes[] = 'menu-item-' . $item->ID;
-        if ($depth > 0) $classes[] = 'sub-item';
+        if ($depth > 0) {
+            $classes[] = 'sub-item';
+        }
         $class_names = join(' ', apply_filters('nav_menu_css_class', array_filter($classes), $item, $args, $depth));
         $class_names = $class_names ? ' class="' . esc_attr($class_names) . '"' : '';
         
@@ -23,6 +25,7 @@ class Mega_Menu_Walker extends Walker_Nav_Menu {
             'href'   => !empty($item->url) ? esc_url($item->url) : '',
         );
         
+        // Add ARIA controls for top-level items with children (for mega menus)
         if (!empty($item->has_children) && $depth === 0) {
             $atts['aria-controls'] = 'mega-menu-' . $item->ID;
             $atts['aria-expanded'] = 'false';
@@ -45,7 +48,14 @@ class Mega_Menu_Walker extends Walker_Nav_Menu {
         $after = isset($args->after) ? $args->after : '';
         
         $output .= '<li' . $class_names . '>';
-        $output .= $before . '<a' . $attributes . '>' . $link_before . esc_html($item->title) . $link_after . '</a>' . $after;
+        $output .= $before;
+        // Output the link
+        $output .= '<a' . $attributes . '>' . $link_before . esc_html($item->title) . $link_after . '</a>';
+        // Output the toggle button for items with children up to 3 levels deep.
+        if (!empty($item->has_children) && $depth < 3) {
+            $output .= '<button class="dropdown-toggle" aria-label="Toggle submenu"></button>';
+        }
+        $output .= $after;
         
         $output .= apply_filters('walker_nav_menu_start_el', '', $item, $depth, $args);
     }
