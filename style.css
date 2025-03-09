@@ -2453,7 +2453,12 @@ iframe {
 .search-form input.search-field {
 	width:100%;
 	min-width: 400px;
-    padding: 10px;
+	padding: 10px;
+}
+@media screen and (max-width:767px) {
+	.search-form input.search-field {
+		min-width: 0;
+	}
 }
 .search-results article {
 	border-bottom:1px solid #ccc
