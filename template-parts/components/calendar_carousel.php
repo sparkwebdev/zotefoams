@@ -38,14 +38,14 @@ $note = get_sub_field('calendar_carousel_note');
                         <div class="swiper-slide-inner">
                             <div class="date-wrapper">
                                 <?php if ($date): ?>
-                                    <label class="date"><?php echo esc_html($date); ?></label>
+                                    <label class="date fs-700"><?php echo esc_html($date); ?></label>
                                 <?php endif; ?>
                                 <?php if ($month_year): ?>
-                                    <label class="month-year"><?php echo esc_html($month_year); ?></label>
+                                    <label class="month-year fs-100"><?php echo esc_html($month_year); ?></label>
                                 <?php endif; ?>
                             </div>
                             <?php if ($description): ?>
-                                <p><?php echo esc_html($description); ?></p>
+                                <p class="fs-100 grey-text"><?php echo esc_html($description); ?></p>
                             <?php endif; ?>
                         </div>
                     </div>

@@ -9,27 +9,32 @@
 
 ?>
 
-<div class="cont-m margin-t-70">
+<div class="cont-m padding-t-50">
 
-<article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
-	<header class="entry-header">
-		<?php the_title( sprintf( '<h2 class="entry-title"><a href="%s" rel="bookmark">', esc_url( get_permalink() ) ), '</a></h2>' ); ?>
+	<article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
+		<header class="entry-header">
 
-		<?php if ( 'post' === get_post_type() ) : ?>
-		<div class="entry-meta">
-			<?php
-			zotefoams_posted_on();
-			?>
-		</div><!-- .entry-meta -->
-		<?php endif; ?>
-	</header><!-- .entry-header -->
+			<div class="search-header">
+				<div class="">
+					<?php the_title( sprintf( '<h2 class="entry-title fs-500 margin-b-10"><a href="%s" rel="bookmark">', esc_url( get_permalink() ) ), '</a></h2>' ); ?>
+					<?php if ( 'post' === get_post_type() ) : ?>
+					<div class="entry-meta">
+						<?php
+						zotefoams_posted_on();
+						?>
+					</div><!-- .entry-meta -->
+					<?php endif; ?>
+				</div>
+				<div class="search-thumb">
+					<?php zotefoams_post_thumbnail(); ?>
+				</div>
+			</div>
+		</header><!-- .entry-header -->
 
-	<?php zotefoams_post_thumbnail(); ?>
+		<div class="entry-summary">
+			<?php the_excerpt(); ?>
+		</div><!-- .entry-summary -->
 
-	<div class="entry-summary">
-		<?php the_excerpt(); ?>
-	</div><!-- .entry-summary -->
-
-</article><!-- #post-<?php the_ID(); ?> -->
+	</article><!-- #post-<?php the_ID(); ?> -->
 
 </div>

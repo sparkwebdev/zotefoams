@@ -56,10 +56,10 @@ $theme_button_style = $is_market_pages ? "black" : "white";
 			<!-- Navigation -->
 			<div class="carousel-navigation black">
 				<div class="carousel-navigation-inner">
-					<div class="swiper-button-next-dual-carousel">
+					<div class="swiper-button-prev-dual-carousel">
 						<img src="<?php echo get_template_directory_uri(); ?>/images/left-arrow-black.svg" />
 					</div>
-					<div class="swiper-button-prev-dual-carousel">
+					<div class="swiper-button-next-dual-carousel">
 						<img src="<?php echo get_template_directory_uri(); ?>/images/right-arrow-black.svg" />
 					</div>
 				</div>
@@ -68,10 +68,10 @@ $theme_button_style = $is_market_pages ? "black" : "white";
 			<!-- Navigation -->
 			<div class="carousel-navigation white">
 				<div class="carousel-navigation-inner">
-					<div class="swiper-button-next-dual-carousel">
+					<div class="swiper-button-prev-dual-carousel">
 						<img src="<?php echo get_template_directory_uri(); ?>/images/left-arrow-white.svg" />
 					</div>
-					<div class="swiper-button-prev-dual-carousel">
+					<div class="swiper-button-next-dual-carousel">
 						<img src="<?php echo get_template_directory_uri(); ?>/images/right-arrow-white.svg" />
 					</div>
 				</div>

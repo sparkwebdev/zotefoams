@@ -134,10 +134,6 @@
 	flex: 1 0 0;
 }
 
-.calendar-carousel .swiper-slide-inner {
-	border: 1px solid #ccc;
-}
-
 
 /* Multi item carousel
 	--------------------------------------------- */
@@ -305,11 +301,11 @@
 	z-index: 1;
 }
 
-.carousel-navigation-inner .swiper-button-prev-dual-carousel {
-	margin-left:5px
-}
-.carousel-navigation-inner .swiper-button-next-dual-carousel {
+.carousel-navigation-inner .swiper-button-prev-dual-carousel, .carousel-navigation-inner .calendar-swiper-button-prev {
 	margin-right:5px
+}
+.carousel-navigation-inner .swiper-button-next-dual-carousel, .carousel-navigation-inner .calendar-swiper-button-next {
+	margin-left:5px
 }
 
 .swiper-pagination-bullet {
@@ -346,32 +342,21 @@
 	--------------------------------------------- */
 
 .calendar-carousel .swiper-slide-inner {
-	height: 120px;
-	padding: 0 10px;
 	border: 1px solid #ccc;
+	display:flex;
+	padding:15px
 }
 
 .calendar-carousel .date-wrapper {
-	float: left;
 	margin-left: 10px;
 	margin-right: 20px;
+	display:flex;
+	flex-direction: column;
+	flex-wrap:nowrap
 }
 
-.calendar-carousel .date-wrapper > * {
-	display: block;
-}
-
-.calendar-carousel .date-wrapper .date {
-	margin-top: -7px;
-}
-
-.calendar-carousel .date-wrapper .month-year {
-	margin-top: -20px;
-}
-
-.calendar-carousel p {
-	margin-top: 20px;
-	color: #707070;
+.month-year {
+	text-wrap: nowrap;
 }
 
 .calendar-carousel-note {

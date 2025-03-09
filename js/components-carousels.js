@@ -184,10 +184,9 @@ document.addEventListener( 'DOMContentLoaded', function() {
    *
    *
   */
-	document.querySelectorAll( '.calendar-carousel' ).forEach( ( carousel ) => {
-		const swiperCalendar = new Swiper( carousel, {
+	document.querySelectorAll('.calendar-carousel').forEach((carousel) => {
+		const swiperCalendar = new Swiper(carousel, {
 			loop: false,
-			slidesPerView: 4,
 			pagination: {
 				el: '.swiper-pagination',
 				clickable: true,
@@ -196,6 +195,18 @@ document.addEventListener( 'DOMContentLoaded', function() {
 				prevEl: '.calendar-swiper-button-prev',
 				nextEl: '.calendar-swiper-button-next',
 			},
-		} );
-	} );
+			breakpoints: {
+				1200: {
+					slidesPerView: 4,
+				},
+				1023: {
+					slidesPerView: 3,
+				},
+				767: {
+					slidesPerView: 2,
+				}
+			},
+		});
+	});
+
 } );
