@@ -146,7 +146,7 @@ if (isTouchDevice) {
           }
 
           if (megaNavMode === "hover") {
-            // For hover-enabled devices, attach hover and keyboard events.
+            // Existing hover and keyboard events for non‑touch devices
             let hideTimer = null;
             const menuItem = link.parentNode;
             const clearTimer = () => {
@@ -188,7 +188,11 @@ if (isTouchDevice) {
 
             // Keyboard navigation for mega menus.
             link.addEventListener("keydown", (e) => {
-              if (e.key === "Enter" || e.key === " " || e.key === "ArrowDown") {
+              if (
+                e.key === "Enter" ||
+                e.key === " " ||
+                e.key === "ArrowDown"
+              ) {
                 e.preventDefault();
                 const isActive = megaMenu.classList.contains("active");
                 if (isActive) {
@@ -228,50 +232,60 @@ if (isTouchDevice) {
               }
             });
           } else {
-            // For touch devices in click mode, do not attach a click handler to the link,
-            // so clicking the link will perform its default navigation.
+            // For touch devices in "click" mode.
+            // Check if we're in desktop view (e.g., min-width: 64rem) where the mega-nav is visible.
+            if (window.matchMedia("(min-width: 64rem)").matches) {
+              link.addEventListener("click", (e) => {
+                e.preventDefault();
+                const isActive = megaMenu.classList.contains("active");
+                if (isActive) {
+                  megaMenu.classList.remove("active");
+                  const container = document.querySelector(".mega-menu-container");
+                  if (container && !container.querySelector(".mega-menu.active")) {
+                    container.classList.remove("active");
+                  }
+                  link.setAttribute("aria-expanded", "false");
+                  megaMenu.removeEventListener("keydown", handleMegaKeyNav);
+                } else {
+                  // Close any other mega menus and utility menus before opening this one.
+                  closeMegaMenus();
+                  closeUtilityMenus();
+                  megaMenu.classList.add("active");
+                  const container = document.querySelector(".mega-menu-container");
+                  if (container) {
+                    container.classList.add("active");
+                  }
+                  link.setAttribute("aria-expanded", "true");
+                  megaMenu._topLink = link;
+                  const heading = megaMenu.querySelector(".mega-menu-intro > h2");
+                  if (heading) {
+                    heading.setAttribute("tabindex", "-1");
+                    setTimeout(() => heading.focus(), 200);
+                  }
+                  megaMenu.addEventListener("keydown", handleMegaKeyNav);
+                }
+              });
+            }
+            // Attach keydown for accessibility (e.g., handling Escape)
             link.addEventListener("keydown", (e) => {
-              if (e.key === "Enter" || e.key === " " || e.key === "ArrowDown") {
-                // Optional keyboard toggling behavior can be added here if desired.
-              } else if (e.key === "Escape") {
+              if (e.key === "Escape") {
                 closeAll();
                 link.focus();
               }
             });
           }
         } else {
-          // Regular dropdown (typically utility menus).
-          // If this menu item does NOT contain a .dropdown-toggle element, attach a click handler
-          // to toggle the submenu. Otherwise, leave the link to act normally.
-          if (!link.parentNode.querySelector('.dropdown-toggle')) {
+          // This is for non‑mega-menu links.
+          // For utility menu items on touch devices, prevent navigation, close any open mega menus,
+          // and toggle the dropdown.
+          if (menuElement.classList.contains("utility-menu") && isTouchDevice) {
             link.addEventListener("click", (e) => {
               e.preventDefault();
+              closeMegaMenus();
               const menuItem = link.parentNode;
               menuItem.classList.toggle("dropdown-active");
             });
           }
-          link.addEventListener("keydown", (e) => {
-            if (e.key === "Enter" || e.key === " " || e.key === "ArrowDown") {
-              e.preventDefault();
-              const menuItem = link.parentNode;
-              menuItem.classList.toggle("dropdown-active");
-              if (
-                e.key === "ArrowDown" &&
-                menuItem.classList.contains("dropdown-active")
-              ) {
-                const submenu = menuItem.querySelector("ul");
-                if (submenu) {
-                  const firstLink = submenu.querySelector("a");
-                  if (firstLink) {
-                    firstLink.focus();
-                  }
-                }
-              }
-            } else if (e.key === "Escape") {
-              closeAll();
-              link.focus();
-            }
-          });
         }
       });
   };
