@@ -244,11 +244,14 @@ if (isTouchDevice) {
           // If this menu item does NOT contain a .dropdown-toggle element, attach a click handler
           // to toggle the submenu. Otherwise, leave the link to act normally.
           if (!link.parentNode.querySelector('.dropdown-toggle')) {
-            link.addEventListener("click", (e) => {
-              e.preventDefault();
-              const menuItem = link.parentNode;
-              menuItem.classList.toggle("dropdown-active");
-            });
+            // For utility menus on non-touch devices, allow the default link behavior.
+            if (!(menuElement.classList.contains("utility-menu") && !isTouchDevice)) {
+              link.addEventListener("click", (e) => {
+                e.preventDefault();
+                const menuItem = link.parentNode;
+                menuItem.classList.toggle("dropdown-active");
+              });
+            }
           }
           link.addEventListener("keydown", (e) => {
             if (e.key === "Enter" || e.key === " " || e.key === "ArrowDown") {
