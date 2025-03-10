@@ -132,7 +132,7 @@ if (isTouchDevice) {
         menuItem.classList.toggle("dropdown-active");
       });
     });
-  
+
     // Process anchor links that have children.
     menuElement
       .querySelectorAll(".menu-item-has-children > a, [aria-controls]")
@@ -144,7 +144,7 @@ if (isTouchDevice) {
           if (!megaMenu) {
             return;
           }
-  
+
           if (megaNavMode === "hover") {
             // Existing hover and keyboard events for non‑touch devices
             let hideTimer = null;
@@ -155,7 +155,7 @@ if (isTouchDevice) {
                 hideTimer = null;
               }
             };
-  
+
             const showMenu = () => {
               clearTimer();
               closeUtilityMenus();
@@ -168,7 +168,7 @@ if (isTouchDevice) {
               megaMenu._topLink = link;
               megaMenu.addEventListener("keydown", handleMegaKeyNav);
             };
-  
+
             const hideMenu = () => {
               hideTimer = setTimeout(() => {
                 megaMenu.classList.remove("active");
@@ -180,15 +180,19 @@ if (isTouchDevice) {
                 megaMenu.removeEventListener("keydown", handleMegaKeyNav);
               }, hoverDelay);
             };
-  
+
             menuItem.addEventListener("mouseenter", showMenu);
             menuItem.addEventListener("mouseleave", hideMenu);
             megaMenu.addEventListener("mouseenter", clearTimer);
             megaMenu.addEventListener("mouseleave", hideMenu);
-  
+
             // Keyboard navigation for mega menus.
             link.addEventListener("keydown", (e) => {
-              if (e.key === "Enter" || e.key === " " || e.key === "ArrowDown") {
+              if (
+                e.key === "Enter" ||
+                e.key === " " ||
+                e.key === "ArrowDown"
+              ) {
                 e.preventDefault();
                 const isActive = megaMenu.classList.contains("active");
                 if (isActive) {
@@ -229,8 +233,8 @@ if (isTouchDevice) {
             });
           } else {
             // For touch devices in "click" mode.
+            // Check if we're in desktop view (e.g., min-width: 64rem) where the mega-nav is visible.
             if (window.matchMedia("(min-width: 64rem)").matches) {
-              // Desktop view: prevent default and toggle the mega menu.
               link.addEventListener("click", (e) => {
                 e.preventDefault();
                 const isActive = megaMenu.classList.contains("active");
@@ -243,6 +247,8 @@ if (isTouchDevice) {
                   link.setAttribute("aria-expanded", "false");
                   megaMenu.removeEventListener("keydown", handleMegaKeyNav);
                 } else {
+                  // Close any other mega menus and utility menus before opening this one.
+                  closeMegaMenus();
                   closeUtilityMenus();
                   megaMenu.classList.add("active");
                   const container = document.querySelector(".mega-menu-container");
@@ -270,10 +276,12 @@ if (isTouchDevice) {
           }
         } else {
           // This is for non‑mega-menu links.
-          // For utility menu items on touch devices, prevent navigation and toggle the dropdown.
+          // For utility menu items on touch devices, prevent navigation, close any open mega menus,
+          // and toggle the dropdown.
           if (menuElement.classList.contains("utility-menu") && isTouchDevice) {
             link.addEventListener("click", (e) => {
               e.preventDefault();
+              closeMegaMenus();
               const menuItem = link.parentNode;
               menuItem.classList.toggle("dropdown-active");
             });
@@ -281,7 +289,6 @@ if (isTouchDevice) {
         }
       });
   };
-  
 
   // Set up event listeners for main navigation and utility menu
   button.addEventListener("click", () => {

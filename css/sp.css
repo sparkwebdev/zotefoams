@@ -34,6 +34,9 @@
   flex-shrink: 0;
   margin: 5px 0;
 }
+.site-header .site-branding a {
+  display: block;
+}
 
 .site-header .site-branding img {
   width: 154px;
@@ -314,7 +317,7 @@
   }
 
   .main-navigation ul a {
-    font-size: .9em;
+    /* font-size: .9em; */
   }
 
   .main-navigation li {
@@ -656,8 +659,10 @@ body.touch-device .mega-menu-container.active {
   transition: none;
   transition-delay: 0;
 }
-body.touch-device .main-navigation ul li > ul {
-  display: none;
+@media screen and (max-width: 63.99rem) {
+  body.touch-device .main-navigation ul li > ul {
+    display: none;
+  }
 }
 
 body.touch-device .main-navigation li.dropdown-active > ul {
