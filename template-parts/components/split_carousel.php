@@ -32,7 +32,7 @@ $slides = get_sub_field('split_carousel_slides');
 									<p class="animate__animated fs-600 fw-bold"><?php echo esc_html($title); ?></p>
 								<?php endif; ?>
 								<?php if ($text): ?>
-									<div class="animate__animated fs-600 fw-medium grey-text margin-b-40"><?php echo wp_kses_post($text); ?></div>
+									<div class="animate__animated fs-600 margin-t-10 fw-medium grey-text margin-b-40"><?php echo wp_kses_post($text); ?></div>
 								<?php endif; ?>
 								<?php if ($button): ?>
 									<a href="<?php echo esc_url($button['url']); ?>" class="animate__animated btn black outline" target="<?php echo esc_attr($button['target']); ?>">

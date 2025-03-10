@@ -4,10 +4,10 @@
 	if( $pageHeaderText ): ?>
 		<header class="text-banner margin-t-70">
 			<div class="cont-m margin-b-70">
-				<h1 class="uppercase grey-text fs-800 fw-extrabold">
+				<h1 class="uppercase grey-text fs-800 fw-extrabold animate__animated animate__fadeInDown">
 					<?php echo esc_html( $pageHeaderText['title'] ); ?>
 				</h1>
-				<h2 class="uppercase black-text fs-800 fw-extrabold">
+				<h2 class="uppercase black-text fs-800 fw-extrabold animate__animated animate__fadeInDown">
 					<?php echo esc_html( $pageHeaderText['subtitle'] ); ?>
 				</h2>
 			</div>

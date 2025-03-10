@@ -74,6 +74,28 @@
                     "parent_repeater": "field_67cacd29ab707"
                 },
                 {
+                    "key": "field_67cee643cc019",
+                    "label": "Stat suffix",
+                    "name": "sustainability_stat_suffix",
+                    "aria-label": "",
+                    "type": "text",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "maxlength": "",
+                    "allow_in_bindings": 0,
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": "",
+                    "parent_repeater": "field_67cacd29ab707"
+                },
+                {
                     "key": "field_67cacd5aab709",
                     "label": "Stat text",
                     "name": "sustainability_stat_text",
@@ -116,5 +138,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1741344163
+    "modified": 1741612626
 }

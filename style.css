@@ -2449,6 +2449,8 @@ iframe {
 }
 
 
+/* Search styles
+--------------------------------------------- */
 
 .search-form input.search-field {
 	width:100%;
@@ -2482,4 +2484,13 @@ iframe {
 		max-width:150px;
 		margin-left:15px
 	}
+}
+
+
+
+/* Animate.css global timings
+--------------------------------------------- */
+
+.animate__animated {
+	--animate-duration: 0.5s;
 }

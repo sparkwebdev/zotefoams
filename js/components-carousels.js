@@ -14,7 +14,7 @@ document.addEventListener( 'DOMContentLoaded', function() {
 			loop: true,
 			speed: 400,
 			autoplay: {
-				delay: 50000,
+				delay: 5000,
 				disableOnInteraction: false,
 			},
 			navigation: {
@@ -23,6 +23,7 @@ document.addEventListener( 'DOMContentLoaded', function() {
 			on: {
 				init() {
 					updateNextButtonTitle( this, '.swiper-button-next-image p span' );
+					resetProgressAnimation( '.circle-progress-image' );
 				},
 				slideChangeTransitionStart( e ) {
 					updateNextButtonTitle( e, '.swiper-button-next-image p span' );
@@ -101,7 +102,6 @@ document.addEventListener( 'DOMContentLoaded', function() {
 		// Initialize the image carousel (without fade effect)
 		const swiperImage = new Swiper( image, {
 			loop: true,
-			spaceBetween: 10,
 		} );
 
 		// Sync the carousels so that they move together
@@ -210,3 +210,54 @@ document.addEventListener( 'DOMContentLoaded', function() {
 	});
 
 } );
+
+// taken from animate-swiper.js
+
+document.addEventListener('DOMContentLoaded', function() {
+    
+    const sliders = document.getElementsByClassName('swiper');
+    if (sliders) {
+        for (let i = 0; i < sliders.length; i++) {
+
+            const swiper = sliders[i].swiper;
+            if (swiper) {
+				
+                const currentSlide = swiper.slides[swiper.activeIndex];
+                toggleAnimation(currentSlide, true);
+
+                swiper.on('slideChange', function (e) {
+            
+                     const previousSlide = swiper.slides[e.previousIndex];
+                     toggleAnimation(previousSlide, false);
+
+                     const currentSlide = swiper.slides[e.activeIndex];
+                     toggleAnimation(currentSlide, true);
+                });
+            }
+        }
+    }
+
+
+    function toggleAnimation(parent, on) {
+        
+        let delay = 0;
+        let elements = parent.getElementsByClassName('animate__animated');
+
+        for (let i = 0; i < elements.length; i++) {
+
+            const animation = elements[i].dataset.animation ?? 'animate__fadeInDown';
+            delay = elements[i].dataset.animationdelay ?? (delay === 0 ? 0.2 : delay + 0.2);
+
+            if (on) {
+                elements[i].classList.add('hidden');
+                if (!elements[i].classList.contains(animation)) {
+                    elements[i].style.setProperty('--animation-delay', delay + 's');
+                    elements[i].style.setProperty('-webkit-animation-delay', delay + 's');
+                    elements[i].classList.add(animation);
+                }
+            } else {
+                elements[i].classList.remove(animation);
+            }
+        }
+    }
+});

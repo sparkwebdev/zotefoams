@@ -85,16 +85,18 @@
 		min-height: 700px;
 	}
 	.swiper-image .swiper-button-next-image {
-		bottom:30px
+		bottom:30px;
+		right: 30px;
 	}
 }
-@media screen and (max-width:1200px) {
+@media screen and (max-width:767px) {
 	.swiper-image {
 		height: 65vh;
 		min-height: 500px;
 	}
 	.swiper-image .swiper-button-next-image {
-		bottom:20px
+		bottom:20px;
+		right: 20px;
 	}
 }
 
@@ -107,6 +109,9 @@
 	align-items: center;
 	pointer-events: none;
 	z-index: 1;
+	background-image: url(/wp-content/themes/zotefoams/images/right-arrow-white.svg);
+    background-repeat: no-repeat;
+    background-position: center center;
 }
 
 .circle-svg {
@@ -127,7 +132,6 @@
 	stroke-width: 2;
 	stroke-dasharray: 144.513;
 	stroke-dashoffset: 144.513;
-	transition: stroke-dashoffset 3s linear;
 }
 
 .swiper-slide-active .circle-progress {
