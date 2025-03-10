@@ -45,7 +45,7 @@ $manual_slides = get_sub_field('multi_item_carousel_slides'); // Manual items
 									<p><?php echo esc_html(get_the_excerpt($page_id)); ?></p>
 								<?php endif; ?>
 								<?php if ( $thumbnail_url ): ?>
-									<img src="<?php echo esc_url($thumbnail_url); ?>" alt="<?php echo esc_attr($child_title); ?>">
+									<img src="<?php echo esc_url($thumbnail_url); ?>" alt="<?php echo esc_attr($page_title); ?>">
 								<?php endif; ?>
 								<a href="<?php echo esc_url($page_link); ?>" class="btn black outline">Read More</a>
 							</div>

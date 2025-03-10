@@ -365,3 +365,11 @@ function zotefoams_add_knowledge_hub_admin_inline_styles()
 }
 add_action('admin_head', 'zotefoams_add_knowledge_hub_admin_inline_styles');
 
+function add_preload_to_google_fonts( $html, $handle, $href, $media ) {
+    if ( 'google-fonts' === $handle ) {
+        $html  = '<link rel="preload" as="style" href="' . esc_url( $href ) . '" />';
+        $html .= "\n" . '<link rel="stylesheet" id="' . esc_attr( $handle ) . '-css" href="' . esc_url( $href ) . '" media="' . esc_attr( $media ) . '">';
+    }
+    return $html;
+}
+add_filter( 'style_loader_tag', 'add_preload_to_google_fonts', 10, 4 );
