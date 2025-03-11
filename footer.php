@@ -77,7 +77,7 @@
 			</div>
 		
 			<div class="footer-copyright">
-				<p class="grey-text">Copyright © 2024   |  AZOTE®, ZOTEK®, T-FIT®, Plastazote®, Evazote®, Supazote®, ReZorce®, Refour® and Ecozote® are registered trademarks of Zotefoams plc. MuCell® is a registered trademark of Trexel Inc.</p>
+				<p class="grey-text">Copyright © <?php echo date("Y"); ?> | <?php echo get_field('footer_copyright_text', 'option'); ?></p>
 			</div>
 			
 		</div>

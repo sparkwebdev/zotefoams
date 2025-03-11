@@ -89,6 +89,27 @@
             ]
         },
         {
+            "key": "field_67d03de24cde0",
+            "label": "Footer copyright text",
+            "name": "footer_copyright_text",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "maxlength": "",
+            "allow_in_bindings": 0,
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
             "key": "field_67b49e09a063d",
             "label": "Contact forms",
             "name": "",
@@ -187,7 +208,8 @@
                     "choices": {
                         "782": "Request a Sample",
                         "787": "Request a Quote",
-                        "790": "Contact us"
+                        "790": "Contact us",
+                        "2048": "Newsletter Signup"
                     },
                     "default_value": false,
                     "return_format": "value",
@@ -220,5 +242,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1741278405
+    "modified": 1741700597
 }
