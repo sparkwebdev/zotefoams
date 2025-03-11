@@ -29,8 +29,11 @@ $use_categories = ($behaviour === 'children' && $page_id == $posts_page_id);
         <?php 
         if ($use_categories) {
             // Fetch all top-level categories
+            $uncategorised_id = get_cat_ID('Uncategorised');
+
             $categories = get_categories([
                 'parent' => 0, // Only top-level categories
+                'exclude' => $uncategorised_id,
                 // 'hide_empty' => false, // Show empty categories
                 // 'orderby' => 'name',
                 // 'order' => 'ASC',

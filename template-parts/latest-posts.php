@@ -1,9 +1,16 @@
 <?php 
 $args = [
-    'post_type'      => 'post',
-    'posts_per_page' => 3,
-    // Optionally, exclude the current post if desired:
-    'post__not_in'   => [ get_the_ID() ],
+  'post_type'      => 'post',
+  'posts_per_page' => 3,
+  'post__not_in'   => [ get_the_ID() ],
+  'tax_query'      => [
+      [
+          'taxonomy' => 'category',
+          'field'    => 'slug',
+          'terms'    => ['uncategorised', 'videos'], // Adjust these slugs as needed
+          'operator' => 'NOT IN',
+      ]
+  ],
 ];
 $news_items = get_posts( $args );
 $news_centre_ID = zotefoams_get_page_for_posts_id(); 
