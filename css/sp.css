@@ -1307,6 +1307,7 @@ a.read-more.hl.arrow:hover:after, a.read-more.hl.arrow:focus:after {
 
 .text-block ul, .split-text ul {
   margin-top: 30px;
+  padding: 0;
 }
 .split-video-one ul {
   margin-bottom: 20px;
