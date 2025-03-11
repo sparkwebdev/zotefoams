@@ -939,6 +939,22 @@ html {
   color: var(--color-text);
 }
 
+.post-navigation--single {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 2em;
+}
+@media (max-width: 30em) {
+  .post-navigation--single .nav-back-to-list {
+    flex-basis: 100%;
+  }
+}
+.post-navigation--single .nav-previous,
+.post-navigation--single .nav-next {
+  flex: 1 1 auto;
+}
+
 .pagination {
   text-align: right;
   justify-content: flex-end;
@@ -998,6 +1014,10 @@ html {
 .file-list__item {
   cursor: pointer;
   transition: background .3s;
+}
+
+.file-list__item.filtered {
+  display: none;
 }
 
 .file-list__item:hover, .file-list__item:has(a:focus) {
@@ -1296,7 +1316,7 @@ a.read-more.hl.arrow:hover:after, a.read-more.hl.arrow:focus:after {
 
 .split-video-one ul li, .text-block ul li, .split-text ul li {
   color: #707070;
-  background: url("bullet-tick.9e816a40.svg") 0 no-repeat;
+  background: url("bullet-tick.9e816a40.svg") 0 0.25em no-repeat;
   padding-left: 1.65rem;
   list-style: none;
 }
