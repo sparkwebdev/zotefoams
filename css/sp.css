@@ -1295,7 +1295,7 @@ a.read-more.hl.arrow:hover:after, a.read-more.hl.arrow:focus:after {
 
 .split-video-one ul li, .text-block ul li, .split-text ul li {
   color: #707070;
-  background: url("bullet-tick.9e816a40.svg") 0 no-repeat;
+  background: url("bullet-tick.9e816a40.svg") 0 0.25em no-repeat;
   padding-left: 1.65rem;
   list-style: none;
 }
