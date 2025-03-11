@@ -982,6 +982,11 @@ html {
   overflow-x: auto;
 }
 
+.file-list tbody {
+  width: 100%;
+  display: block;
+}
+
 .file-list td, .file-list th {
   padding: 15px;
 }
