@@ -999,6 +999,10 @@ html {
   transition: background .3s;
 }
 
+.file-list__item.filtered {
+  display: none;
+}
+
 .file-list__item:hover, .file-list__item:has(a:focus) {
   background-color: var(--color-brand-contrast);
 }

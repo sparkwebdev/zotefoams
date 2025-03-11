@@ -85,7 +85,11 @@ document.addEventListener('DOMContentLoaded', function () {
 												break;
 										}
 								}
-								item.style.display = show ? 'block' : 'none';
+								if (show) {
+									item.classList.remove('filtered');
+								} else {
+										item.classList.add('filtered');
+								}
 						});
 						updateShowAllVisibility();
 
@@ -126,6 +130,8 @@ document.addEventListener('DOMContentLoaded', function () {
 			const updateShowAllVisibility = () => {
 				const totalSelected = checkboxes.filter(cb => cb.checked).length;
 				showAllButton.classList.toggle('hidden', totalSelected === 0);
+				// Toggle the "filtered" class on the container (.file-list element)
+				container.classList.toggle('filtered', totalSelected > 0);
 			};
 
 			const resetFilters = () => {
