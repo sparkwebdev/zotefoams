@@ -20,7 +20,7 @@ get_header();
 						<?php
 						// Loop through each category and display it in a span
 						$categories = get_the_category();
-						if ( ! empty( $categories ) ) {
+						if ( ! empty( $categories ) && $categories[0]->name != "Uncategorised" ) {
 							echo '<div class="margin-b-20 grey-text">';
 							foreach ( $categories as $category ) {
 								echo '<span class="tag ">' . esc_html( $category->name ) . '</span> ';

@@ -54,7 +54,8 @@ function zotefoams_setup() {
 		array(
 			'primary_menu' => esc_html__( 'Primary', 'zotefoams' ),
 			'utility_menu' => esc_html__( 'Utility', 'zotefoams' ),
-			'quick_links_menu' => esc_html__( 'Quick', 'zotefoams' )
+			'quick_links_menu' => esc_html__( 'Quick', 'zotefoams' ),
+			'legal_menu' => esc_html__( 'Legal', 'zotefoams' )
 		)
 	);
 

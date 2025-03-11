@@ -27,16 +27,24 @@
 					<div class="footer-menu footer-menu-1">
 						<p class="blue-text fw-bold margin-b-30">Legal</p>
 						<?php
-						$legal_page_id = get_page_by_path('legal')->ID; // Get the ID of the "Legal" page
-						$child_pages = get_pages(array('child_of' => $legal_page_id));
-
-						if (!empty($child_pages)) {
-							echo '<ul class="legal-links">';
-							foreach ($child_pages as $page) {
-								echo '<li><a href="' . get_permalink($page->ID) . '">' . esc_html($page->post_title) . '</a></li>';
-							}
-							echo '</ul>';
-						}
+//						$legal_page_id = get_page_by_path('legal')->ID; // Get the ID of the "Legal" page
+//						$child_pages = get_pages(array('child_of' => $legal_page_id));
+//
+//						if (!empty($child_pages)) {
+//							echo '<ul class="legal-links">';
+//							foreach ($child_pages as $page) {
+//								echo '<li><a href="' . get_permalink($page->ID) . '">' . esc_html($page->post_title) . '</a></li>';
+//							}
+//							echo '</ul>';
+//						}
+						?>
+						<?php
+						wp_nav_menu(
+							array(
+								'theme_location' => 'legal_menu',
+								'container' => false,
+							)
+						);
 						?>
 					</div>
 					<div class="footer-menu footer-menu-2">
@@ -77,7 +85,7 @@
 			</div>
 		
 			<div class="footer-copyright">
-				<p class="grey-text">Copyright © 2024   |  AZOTE®, ZOTEK®, T-FIT®, Plastazote®, Evazote®, Supazote®, ReZorce®, Refour® and Ecozote® are registered trademarks of Zotefoams plc. MuCell® is a registered trademark of Trexel Inc.</p>
+				<p class="grey-text">Copyright © <?php echo date("Y"); ?> | <?php echo get_field('footer_copyright_text', 'option'); ?></p>
 			</div>
 			
 		</div>

@@ -817,6 +817,7 @@ html {
   flex-direction: column;
   flex-grow: 1;
   display: flex;
+    padding-bottom: 0;
 }
 
 .articles--list .articles__footer {
