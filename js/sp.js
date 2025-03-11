@@ -85,7 +85,7 @@ document.addEventListener('DOMContentLoaded', function () {
 												break;
 										}
 								}
-								item.style.display = show ? 'block' : 'none';
+								item.style.display = show ? 'table-row' : 'none';
 						});
 						updateShowAllVisibility();
 
