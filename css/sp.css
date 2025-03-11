@@ -938,6 +938,22 @@ html {
   color: var(--color-text);
 }
 
+.post-navigation--single {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 2em;
+}
+@media (max-width: 30em) {
+  .post-navigation--single .nav-back-to-list {
+    flex-basis: 100%;
+  }
+}
+.post-navigation--single .nav-previous,
+.post-navigation--single .nav-next {
+  flex: 1 1 auto;
+}
+
 .pagination {
   text-align: right;
   justify-content: flex-end;
