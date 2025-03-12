@@ -129,7 +129,9 @@ document.addEventListener('DOMContentLoaded', function () {
 
 			const updateShowAllVisibility = () => {
 				const totalSelected = checkboxes.filter(cb => cb.checked).length;
-				showAllButton.classList.toggle('hidden', totalSelected === 0);
+				if (showAllButton) {
+					showAllButton.classList.toggle('hidden', totalSelected === 0);
+				}
 				// Toggle the "filtered" class on the container (.file-list element)
 				container.classList.toggle('filtered', totalSelected > 0);
 			};
@@ -141,15 +143,17 @@ document.addEventListener('DOMContentLoaded', function () {
 				filterFiles();
 			};
 
-			filterButton.addEventListener('click', (e) => {
-				e.stopPropagation();
-				const open = filterOptions.classList.contains('hidden');
-				toggleDropdown(open);
-				if (open && checkboxes.length > 0) {
-					// Set focus to the first checkbox when opening the dropdown.
-					checkboxes[0].focus();
-				}
-			});
+			if (filterButton) {
+				filterButton.addEventListener('click', (e) => {
+					e.stopPropagation();
+					const open = filterOptions.classList.contains('hidden');
+					toggleDropdown(open);
+					if (open && checkboxes.length > 0) {
+						// Set focus to the first checkbox when opening the dropdown.
+						checkboxes[0].focus();
+					}
+				});
+			}
 
 			checkboxes.forEach(cb => {
 				cb.addEventListener('change', () => {
@@ -202,7 +206,9 @@ document.addEventListener('DOMContentLoaded', function () {
 
 			const updateShowAllVisibility = () => {
 				const selectedCount = checkboxes.filter( ( cb ) => cb.checked ).length;
-				showAllButton.classList.toggle( 'hidden', selectedCount === 0 || selectedCount === checkboxes.length );
+				if (showAllButton) {
+					showAllButton.classList.toggle( 'hidden', selectedCount === 0 || selectedCount === checkboxes.length );
+				}
 			};
 
 			const filterSections = () => {
@@ -240,13 +246,17 @@ document.addEventListener('DOMContentLoaded', function () {
 				updateShowAllVisibility();
 			};
 
-			filterButton.addEventListener( 'click', ( e ) => {
-				e.stopPropagation();
-				toggleDropdown( filterOptions.classList.contains( 'hidden' ) );
-			} );
+			if (filterButton) {
+				filterButton.addEventListener( 'click', ( e ) => {
+					e.stopPropagation();
+					toggleDropdown( filterOptions.classList.contains( 'hidden' ) );
+				} );
+			}
 
 			checkboxes.forEach( ( checkbox ) => checkbox.addEventListener( 'change', filterSections ) );
-			showAllButton.addEventListener( 'click', resetFilters );
+			if (showAllButton) {
+				showAllButton.addEventListener( 'click', resetFilters );
+			}
 
 			const dropdown = article.querySelector('.file-list__dropdown');
 			document.addEventListener('click', (e) => {
