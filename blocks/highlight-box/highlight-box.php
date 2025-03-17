@@ -61,7 +61,7 @@ if ( ! empty( $block['align'] ) ) {
     <?php if ( $image ) : ?>
         <div class="highlight-box__col">
             <figure class="highlight-box__image">
-                <?php echo wp_get_attachment_image( $image['ID'], 'full', '', array( 'class' => 'highlight-box__img' ) ); ?>
+                <?php echo wp_get_attachment_image( $image['ID'], 'medium', '', array( 'class' => 'highlight-box__img' ) ); ?>
             </figure>
         </div>
     <?php endif; ?>

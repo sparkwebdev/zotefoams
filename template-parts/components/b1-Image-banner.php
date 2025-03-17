@@ -15,7 +15,7 @@
 				
 				?>
 				
-				<div class="swiper-slide image-cover" style="background-image:url(<?php echo wp_get_attachment_image_url( $imageId, 'full' ); ?>)" data-title="<?php echo esc_attr( $caption ); ?>">
+				<div class="swiper-slide image-cover" style="background-image:url(<?php echo wp_get_attachment_image_url( $imageId, 'large' ); ?>)" data-title="<?php echo esc_attr( $caption ); ?>">
 					<div class="swiper-inner padding-50 white-text">
 						<div class="title-button">
 							<h1 class="fw-extrabold fs-900 uppercase margin-b-30 animate__animated" style="opacity:0;"><?php echo $title; ?></h1>
