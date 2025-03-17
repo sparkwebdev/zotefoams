@@ -1305,8 +1305,13 @@ a.read-more.hl.arrow:hover:after, a.read-more.hl.arrow:focus:after {
   padding-top: 0;
 }
 
-.split-video-one ul, .text-block ul, .split-text ul {
+.text-block ul, .split-text ul {
   margin-top: 30px;
+  padding: 0;
+}
+.split-video-one ul {
+  margin-bottom: 20px;
+  margin-top: 20px;
   padding: 0;
 }
 
