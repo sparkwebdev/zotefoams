@@ -1,5 +1,4 @@
 
-
 	<?php
 	if( have_rows('page_header_image') ): ?>
 		<div class="image-banner swiper swiper-image">
