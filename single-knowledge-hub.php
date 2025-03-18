@@ -27,7 +27,7 @@ $post_type_name = $post_type_obj->labels->singular_name;
 
 	<div class="text-block cont-m margin-t-100 margin-b-100 theme-none">
 		<div class="text-block-inner">
-			<p class="margin-b-20">Knowledge Powered By Zorefoams</p>
+			<p class="margin-b-20">Knowledge Powered By Zotefoams</p>
 			<?php if (has_excerpt()):
 				echo '<div class="fs-600 fw-semibold"><p class="lead-text">'.get_the_excerpt().'</p></div>';
 			endif; ?>
