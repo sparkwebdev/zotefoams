@@ -122,14 +122,16 @@
 }
 
 @media screen and (min-width: 64rem) {
-  .main-navigation .menu-item-has-children:not(:last-child), .utility-menu .menu-item-has-children:not(:last-child) {
+  .main-navigation .nav-menu > .menu-item-has-children:not(:last-child), 
+  .utility-menu .nav-menu > .menu-item-has-children:not(:last-child) {
     padding-right: 10px;
   }
 }
 
 @media screen and (min-width: 68rem) {
-  .main-navigation .menu-item-has-children:not(:last-child), .utility-menu .menu-item-has-children:not(:last-child) {
-    padding-right: 20px;
+  .main-navigation .nav-menu > .menu-item-has-children:not(:last-child), 
+  .utility-menu .nav-menu > .menu-item-has-children:not(:last-child) {
+    /* padding-right: 20px; */
   }
 }
 
@@ -172,6 +174,9 @@
   position: absolute;
   left: -25px;
   transform: translateY(20%);
+}
+.main-navigation .sub-menu li:has(.menu-label) {
+  padding-left: 0;
 }
 
 .main-navigation .sub-menu li.current-menu-item > a, .utility-menu .sub-menu li.current-menu-item > a {
@@ -278,12 +283,27 @@
 
 .main-navigation .mega-menu .sub-menu {
   flex-wrap: wrap;
-  gap: 15px;
+  gap: 15px 5%;
   margin-top: 20px;
 }
 
-.main-navigation .mega-menu .sub-menu li {
-  flex: 0 33%;
+@media screen and (min-width: 64rem) {
+  .mega-menu-section > .sub-menu {
+    width: min(100%, 36em);
+  }
+  .main-navigation .mega-menu .sub-menu li {
+    flex: 0 calc(50% - 25px);
+  }
+  .mega-menu-section:has(.sub-menu .sub-menu) > .sub-menu {
+    width: 100%;
+  }
+  .mega-menu-section:has(.sub-menu .sub-menu) > .sub-menu li {
+    flex: 0 1 auto;
+  }
+  .mega-menu-section:has(.sub-menu .sub-menu) > .sub-menu .sub-menu {
+    display: flex;
+    flex-direction: column;
+  }
 }
 
 .main-navigation .mega-menu .sub-menu li ul li {
@@ -700,8 +720,13 @@ body.touch-device .utility-menu .menu > li.dropdown-active > ul {
     align-items: center;
   }
 
-  .main-navigation .menu-item-has-children > a {
+  .main-navigation .menu-item-has-children > a,
+  .main-navigation .menu-item-has-children > .menu-label {
     flex-basis: calc(100% - 60px);
+  }
+  .main-navigation .menu-item-has-children > .menu-label {
+    padding-top: 10px;
+    padding-bottom: 10px;
   }
 
   .main-navigation .sub-menu {

@@ -50,7 +50,14 @@ class Mega_Menu_Walker extends Walker_Nav_Menu {
         $output .= '<li' . $class_names . '>';
         $output .= $before;
         // Output the link
-        $output .= '<a' . $attributes . '>' . $link_before . esc_html($item->title) . $link_after . '</a>';
+        if ($item->url === '#' || empty($item->url)) {
+            // Output as label if URL is '#' or empty
+            $output .= '<span class="fs-100 menu-label uppercase grey-text">' . $link_before . esc_html($item->title) . $link_after . '</span>';
+        } else {
+            // Output as link
+            $output .= '<a' . $attributes . '>' . $link_before . esc_html($item->title) . $link_after . '</a>';
+        }
+
         // Output the toggle button for items with children up to 3 levels deep.
         if (!empty($item->has_children) && $depth < 3) {
             $output .= '<button class="dropdown-toggle" aria-label="Toggle submenu"></button>';
@@ -106,7 +113,7 @@ class Mega_Menu_Walker extends Walker_Nav_Menu {
                         '</div>' .
                         '<div class="mega-menu-content">' .
                             '<div class="mega-menu-section">' .
-                                '<h3 class="fs-100"><a class="uppercase blue-text" href="' . esc_url($menu_url) . '">' . $menu_title . '</a></h3>' .
+                                '<h3 class="fs-100 uppercase blue-text">' . $menu_title . '</h3>' .
                                 '<ul class="sub-menu">' . $temp_output . '</ul>' .
                             '</div>' .
                         '</div>' .
