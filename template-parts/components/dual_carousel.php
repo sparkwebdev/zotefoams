@@ -3,6 +3,9 @@
 $slides = get_sub_field('dual_carousel_slides');
 
 $markets_page_id = zotefoams_get_page_id_by_title('Markets');
+if (!$markets_page_id) {
+    $markets_page_id = zotefoams_get_page_id_by_title('Industries');
+}
 $is_market_pages = $markets_page_id == get_the_ID() || $markets_page_id == $post->post_parent;
 $theme_style = $is_market_pages ? "light-grey-bg theme-light" : "black-bg white-text theme-dark";
 $theme_button_style = $is_market_pages ? "black" : "white";

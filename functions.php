@@ -112,7 +112,7 @@ function zotefoams_enqueue_assets() {
 
     // Animate.css
     wp_enqueue_style('animate-css', 'https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css');
-    // wp_enqueue_script('animate-css-swiper', get_template_directory_uri() . '/js/animate-swiper.js', array(), null, true);
+    //wp_enqueue_script('animate-css-swiper', get_template_directory_uri() . '/js/animate-swiper.js', array(), null, true);
 
     // Navigation Script
     wp_enqueue_script('zotefoams-navigation', get_template_directory_uri() . '/js/navigation.js', array(), _S_VERSION, true);
@@ -374,3 +374,4 @@ function add_preload_to_google_fonts( $html, $handle, $href, $media ) {
     return $html;
 }
 add_filter( 'style_loader_tag', 'add_preload_to_google_fonts', 10, 4 );
+

@@ -4,7 +4,7 @@ Theme URI: http://underscores.me/
 Author: David Park
 Author URI: http://underscores.me/
 Description: Description
-Version: 1.0.0
+Version: 1.0.4
 Tested up to: 5.4
 Requires PHP: 5.6
 License: GNU General Public License v2 or later
@@ -1379,7 +1379,7 @@ header.site-header a:hover {
 .btn {
 	padding:13px 20px 15px;
 	min-width:140px;
-	text-transform:capitalize;
+	/*text-transform:capitalize;*/
 	position:relative;
     display:inline-flex;
 	justify-content: center;
@@ -1438,7 +1438,7 @@ header.site-header a:hover {
 }
 
 a.hl {
-	text-transform:capitalize;
+	/*text-transform:capitalize;*/
 	transition:all 0.3s;
 	font-size:14px;
 	display: inline;
@@ -2243,6 +2243,9 @@ a.hl.download::after {
 		flex-direction: row;
 		gap: 50px;
 	}
+	.footer-menu {
+		max-width: 14em;
+	}
 }
 .footer-content ul {
 	list-style-type:none;
@@ -2492,4 +2495,8 @@ iframe {
 
 .animate__animated {
 	--animate-duration: 0.5s;
+}
+
+footer .site-branding img {
+	width: 174px;
 }
