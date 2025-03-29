@@ -40,7 +40,10 @@ if ($behaviour === 'pick' && !empty($post_ids)) {
                         $image = $news_item['news_feed_image'] ?? null;
                         $category = $news_item['news_feed_category'] ?? '';
                         $title = $news_item['news_feed_title'] ?? '';
-                        $link = $news_item['news_feed_link'] ?? '';
+                        $link = $news_item['news_feed_link'] ?? null;
+                        if (!is_array($link)) {
+                            $link = null;
+                        }
                     } else {
                         $image = get_the_post_thumbnail_url($news_item->ID, 'large');
                         $category = get_the_category($news_item->ID);
@@ -52,7 +55,11 @@ if ($behaviour === 'pick' && !empty($post_ids)) {
                     // Extract image URL with fallback
                     $image_url = $image ? (is_array($image) ? $image['sizes']['large'] : $image) : null;
                 ?>
-                <div class="feed-item" data-clickable-url="<?php echo esc_url($link['url']); ?>">
+                <div class="feed-item"
+                    <?php if (is_array($link) && !empty($link['url'])): ?>
+                        data-clickable-url="<?php echo esc_url($link['url']); ?>"
+                    <?php endif; ?>
+                >
                     <?php if ($image_url): ?>
                         <div class="feed-image image-cover" style="background-image:url('<?php echo esc_url($image_url); ?>');"></div>
                     <?php endif; ?>
@@ -64,13 +71,20 @@ if ($behaviour === 'pick' && !empty($post_ids)) {
                             <p class="fs-400 fw-semibold margin-b-80"><?php echo esc_html($title); ?></p>
                         <?php endif; ?>
                     </div>
-                    <?php if ($link): ?>
+                    <?php if (is_array($link) && !empty($link['url'])): ?>
                         <a href="<?php echo esc_url($link['url']); ?>" class="hl arrow read-more" target="<?php echo esc_attr($link['target'] ?? ''); ?>">
                             <?php echo esc_html($link['title']); ?>
                         </a>
                     <?php endif; ?>
                 </div>
             <?php endforeach; ?>
+
+            <?php if (count($news_items) === 1): // Temp layout fix ?>
+            <div class="feed-item-spacer"></div>
+            <div class="feed-item-spacer"></div>
+            <?php elseif (count($news_items) === 2): ?>
+            <div class="feed-item-spacer"></div>
+            <?php endif; ?>
         <?php endif; ?>
     </div>
 
