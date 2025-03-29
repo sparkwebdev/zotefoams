@@ -2500,3 +2500,9 @@ iframe {
 footer .site-branding img {
 	width: 174px;
 }
+
+
+.generic-text * {
+	margin-top: revert;
+	padding: revert;
+}

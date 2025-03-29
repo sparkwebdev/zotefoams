@@ -4009,6 +4009,75 @@
                     ],
                     "min": "",
                     "max": ""
+                },
+                "layout_67e53b84ab5fc": {
+                    "key": "layout_67e53b84ab5fc",
+                    "name": "basic_content",
+                    "label": "Basic Content",
+                    "display": "block",
+                    "sub_fields": [
+                        {
+                            "key": "field_67e66c5e46d2a",
+                            "label": "Heading",
+                            "name": "basic_content_heading",
+                            "aria-label": "",
+                            "type": "text",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "default_value": "",
+                            "maxlength": "",
+                            "allow_in_bindings": 0,
+                            "placeholder": "",
+                            "prepend": "",
+                            "append": ""
+                        },
+                        {
+                            "key": "field_67e53b8cab5fe",
+                            "label": "Copy",
+                            "name": "basic_content_copy",
+                            "aria-label": "",
+                            "type": "wysiwyg",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "default_value": "",
+                            "allow_in_bindings": 0,
+                            "tabs": "all",
+                            "toolbar": "full",
+                            "media_upload": 1,
+                            "delay": 0
+                        },
+                        {
+                            "key": "field_67e66c4446d29",
+                            "label": "Link",
+                            "name": "basic_content_link",
+                            "aria-label": "",
+                            "type": "link",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "return_format": "array",
+                            "allow_in_bindings": 0
+                        }
+                    ],
+                    "min": "",
+                    "max": ""
                 }
             },
             "min": "",
@@ -4039,5 +4108,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1741353041
+    "modified": 1743154319
 }
