@@ -33,39 +33,47 @@ get_header();
 
 		endif;
 
-		// check if the flexible content field has rows of data
-		if( have_rows('page_content') ) {
-			 // loop through the rows of data
-			$i = 1;
-			while ( have_rows('page_content') ) {
-			  the_row();
-				$component = get_row_layout();
-				if (is_page('Components')) {
-					echo '<div class="blue-bg"><div class="white-text cont-m padding-t-b-30"><h2>'.ucwords(str_replace("_", " ", $component)).' '.$i.'</h2></div></div>';
-				}
-				include( locate_template( '/template-parts/components/'.$component.'.php', false, false ) );
-				$i++;
-			}
-		}
-		
-		if ( get_field( 'page_footer_contact_forms' ) ):
+		if ( post_password_required() ) :
 
-			include( locate_template( '/template-parts/components/show_hide_forms.php', false, false ) );
+			echo get_the_password_form();
+
+		else :
+
+			// check if the flexible content field has rows of data
+			if( have_rows('page_content') ) {
+				// loop through the rows of data
+				$i = 1;
+				while ( have_rows('page_content') ) {
+					the_row();
+					$component = get_row_layout();
+					if (is_page('Components')) {
+						echo '<div class="blue-bg"><div class="white-text cont-m padding-t-b-30"><h2>'.ucwords(str_replace("_", " ", $component)).' '.$i.'</h2></div></div>';
+					}
+					include( locate_template( '/template-parts/components/'.$component.'.php', false, false ) );
+					$i++;
+				}
+			}
+			
+			if ( get_field( 'page_footer_contact_forms' ) ):
+
+				include( locate_template( '/template-parts/components/show_hide_forms.php', false, false ) );
+
+			endif;
+
+			while ( have_posts() ) :
+				the_post();
+				if ( get_the_title() === 'Technical Literature' || strcasecmp(get_the_title($post->post_parent), 'Technical Literature') === 0 ) {
+						get_template_part( 'template-parts/content', 'knowledge-hub-section-technical' );
+				} else if ( $post->post_parent && strcasecmp(get_the_title($post->post_parent), 'Knowledge Hub') === 0)  {
+					get_template_part( 'template-parts/content', 'knowledge-hub-section' );
+				} else {
+						// get_template_part( 'template-parts/content', 'page' );
+				}
+
+			endwhile; // End of the loop.
 
 		endif;
+		
 	}
-
-
-	while ( have_posts() ) :
-		the_post();
-		if ( get_the_title() === 'Technical Literature' || strcasecmp(get_the_title($post->post_parent), 'Technical Literature') === 0 ) {
-				get_template_part( 'template-parts/content', 'knowledge-hub-section-technical' );
-		} else if ( $post->post_parent && strcasecmp(get_the_title($post->post_parent), 'Knowledge Hub') === 0)  {
-			get_template_part( 'template-parts/content', 'knowledge-hub-section' );
-		} else {
-				// get_template_part( 'template-parts/content', 'page' );
-		}
-
-	endwhile; // End of the loop.
 
 get_footer();

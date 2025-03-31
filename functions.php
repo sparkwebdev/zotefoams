@@ -375,3 +375,31 @@ function add_preload_to_google_fonts( $html, $handle, $href, $media ) {
 }
 add_filter( 'style_loader_tag', 'add_preload_to_google_fonts', 10, 4 );
 
+
+/**
+ * Add custom password_form output markup and some styling
+ *
+ * @return void
+ */
+function zotefoams_custom_password_form() {
+    global $post;
+    $label = 'pwbox-' . ( empty( $post->ID ) ? rand() : $post->ID );
+    $output = '
+    <div class="text-banner margin-t-70">
+        <div class="cont-m margin-b-70">
+            <form action="' . esc_url( site_url( 'wp-login.php?action=postpass', 'login_post' ) ) . '" method="post">
+                <div class="custom-password-form">
+                    <p class="margin-b-30"><strong>This content is password protected.</strong> To view it, please enter the password below:</p>
+                    <div class="custom-password-form__inputs">
+                        <label for="' . $label . '">Password:</label>
+                        <input class="custom-password-form__password" name="post_password" id="' . $label . '" type="password" size="20" />
+                        <input class="btn blue" type="submit" name="Submit" value="Submit" />
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>';
+
+    return $output;
+}
+add_filter( 'the_password_form', 'zotefoams_custom_password_form' );

@@ -5,6 +5,13 @@
 
 get_header();
 
+
+	if ( post_password_required() ) :
+
+		echo get_the_password_form();
+
+	else :
+
 	?>
 
 	<header class="text-banner margin-t-70">
@@ -41,4 +48,7 @@ get_header();
 		</div>
 	</div>
 
-<?php get_footer();
+<?php 
+	endif;
+		
+get_footer();
