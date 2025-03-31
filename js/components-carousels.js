@@ -239,25 +239,35 @@ document.addEventListener('DOMContentLoaded', function() {
 
 
     function toggleAnimation(parent, on) {
-        
-        let delay = 0;
-        let elements = parent.getElementsByClassName('animate__animated');
-
-        for (let i = 0; i < elements.length; i++) {
-
-            const animation = elements[i].dataset.animation ?? 'animate__fadeInDown';
-            delay = elements[i].dataset.animationdelay ?? (delay === 0 ? 0.2 : delay + 0.2);
-
-            if (on) {
-                elements[i].classList.add('hidden');
-                if (!elements[i].classList.contains(animation)) {
-                    elements[i].style.setProperty('--animation-delay', delay + 's');
-                    elements[i].style.setProperty('-webkit-animation-delay', delay + 's');
-                    elements[i].classList.add(animation);
-                }
-            } else {
-                elements[i].classList.remove(animation);
-            }
-        }
-    }
+			let delay = 0;
+			let elements = parent.getElementsByClassName('animate__animated');
+		
+			for (let i = 0; i < elements.length; i++) {
+				let raw = elements[i].dataset.animation;
+		
+				// If attribute is present but empty, skip animation
+				if (raw !== undefined && raw.trim() === '') {
+					continue;
+				}
+		
+				// If no data-animation attribute at all, fallback to default
+				let animation = raw ?? 'animate__fadeInDown';
+		
+				delay = elements[i].dataset.animationdelay ?? (delay === 0 ? 0.2 : delay + 0.2);
+		
+				if (on) {
+					elements[i].classList.add('hidden');
+					if (!elements[i].classList.contains(animation)) {
+						elements[i].style.setProperty('--animation-delay', delay + 's');
+						elements[i].style.setProperty('-webkit-animation-delay', delay + 's');
+						elements[i].classList.add(animation);
+					}
+				} else {
+					elements[i].classList.remove(animation);
+				}
+			}
+		}
+		
+		
+		
 });
