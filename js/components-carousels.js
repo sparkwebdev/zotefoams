@@ -1,15 +1,43 @@
-// Multi Item Carousel
-document.addEventListener( 'DOMContentLoaded', function() {
-	/*
-   *
-   *
-   * Carousel 1 - Image Banner Swiper
-   *
-   *
-	*/
+document.addEventListener('DOMContentLoaded', function () {
 
-	document.querySelectorAll( '.swiper-image' ).forEach( ( carousel ) => {
-		const swiperImage = new Swiper( carousel, {
+	/**
+	 * Initializes a Swiper instance with safe loop logic.
+	 * Only disables loop if explicitly set to true and not enough slides.
+	 */
+	function initSwiperWithSafeLoop(carousel, config = {}) {
+		const totalSlides = carousel.querySelectorAll('.swiper-slide').length;
+		const slidesPerView = getSlidesPerView(config);
+
+		if (config.loop === true && totalSlides <= slidesPerView) {
+			config.loop = false;
+		}
+
+		return new Swiper(carousel, config);
+	}
+
+	function getSlidesPerView(config) {
+		if (typeof config.slidesPerView === 'number') {
+			return config.slidesPerView;
+		}
+		if (typeof config.breakpoints === 'object') {
+			let maxSlides = 1;
+			Object.values(config.breakpoints).forEach((bp) => {
+				if (bp.slidesPerView && bp.slidesPerView > maxSlides) {
+					maxSlides = bp.slidesPerView;
+				}
+			});
+			return maxSlides;
+		}
+		return 1;
+	}
+
+	/*
+	 *
+	 * Carousel 1 - Image Banner Swiper
+	 *
+	 */
+	document.querySelectorAll('.swiper-image').forEach((carousel) => {
+		const config = {
 			direction: 'horizontal',
 			loop: true,
 			speed: 400,
@@ -22,103 +50,86 @@ document.addEventListener( 'DOMContentLoaded', function() {
 			},
 			on: {
 				init() {
-					updateNextButtonTitle( this, '.swiper-button-next-image p span' );
-					resetProgressAnimation( '.circle-progress-image' );
+					updateNextButtonTitle(this, '.swiper-button-next-image p span');
+					resetProgressAnimation('.circle-progress-image');
 				},
-				slideChangeTransitionStart( e ) {
-					updateNextButtonTitle( e, '.swiper-button-next-image p span' );
-					resetProgressAnimation( '.circle-progress-image' );
+				slideChangeTransitionStart(e) {
+					updateNextButtonTitle(e, '.swiper-button-next-image p span');
+					resetProgressAnimation('.circle-progress-image');
 				},
 			},
-		} );
+		};
 
-		function updateNextButtonTitle( swiperInstance, selector ) {
-			const nextSlide = getNextSlide( swiperInstance );
-			if ( nextSlide ) {
-				const nextTitle = nextSlide.getAttribute( 'data-title' );
-				const nextButtonText = document.querySelector( selector );
-				if ( nextButtonText && nextTitle ) {
+		initSwiperWithSafeLoop(carousel, config);
+
+		function updateNextButtonTitle(swiperInstance, selector) {
+			const nextSlide = getNextSlide(swiperInstance);
+			if (nextSlide) {
+				const nextTitle = nextSlide.getAttribute('data-title');
+				const nextButtonText = document.querySelector(selector);
+				if (nextButtonText && nextTitle) {
 					nextButtonText.textContent = nextTitle;
 				}
 			}
 		}
 
-		function getNextSlide( swiperInstance ) {
-			for	( let i = 0; i < swiperInstance.slides.length; i++ ) {
-				if ( swiperInstance.slides[ i ].classList.contains( 'swiper-slide-next' ) ) {
-					return swiperInstance.slides[ i ];
+		function getNextSlide(swiperInstance) {
+			for (let i = 0; i < swiperInstance.slides.length; i++) {
+				if (swiperInstance.slides[i].classList.contains('swiper-slide-next')) {
+					return swiperInstance.slides[i];
 				}
 			}
 			return null;
 		}
 
-		function resetProgressAnimation( circleSelector ) {
-			const progressCircle = document.querySelector( circleSelector );
-			if ( progressCircle ) {
+		function resetProgressAnimation(circleSelector) {
+			const progressCircle = document.querySelector(circleSelector);
+			if (progressCircle) {
 				progressCircle.style.transition = 'none';
 				progressCircle.style.strokeDashoffset = 144.513;
-				setTimeout( () => {
+				setTimeout(() => {
 					progressCircle.style.transition = 'stroke-dashoffset 5s linear';
 					progressCircle.style.strokeDashoffset = 0;
-				}, 50 );
+				}, 50);
 			}
 		}
-	} );
+	});
 
 	/*
-   *
-   *
-   * Carousel 2 - Dual Carousel
-   *
-   *
-	*/
-	// // Initialize the text carousel
-	// var swiper = new Swiper(".mySwiper", {
-	//   loop: true,
-	//   navigation: {
-	//     nextEl: ".swiper-button-next-dual-carousel2",
-	//     prevEl: ".swiper-button-prev-dual-carousel2",
-	//   },
-	// });
+	 *
+	 * Carousel 2 - Dual Carousel
+	 *
+	 */
+	document.querySelectorAll('.swiper-dual-carousel').forEach((carousel) => {
+		const text = carousel.querySelector('.swiper-dual-carousel-text');
+		const image = carousel.querySelector('.swiper-dual-carousel-image');
 
-	// Initialize the text carousel
-	document.querySelectorAll( '.swiper-dual-carousel' ).forEach( ( carousel ) => {
-		const text = carousel.querySelector( '.swiper-dual-carousel-text' );
-		const image = carousel.querySelector( '.swiper-dual-carousel-image' );
-
-		const swiperText = new Swiper( text, {
+		const swiperText = initSwiperWithSafeLoop(text, {
 			loop: true,
 			effect: 'fade',
-			fadeEffect: {
-				crossFade: true,
-			},
+			fadeEffect: { crossFade: true },
 			speed: 1000,
 			navigation: {
 				nextEl: '.swiper-button-next-dual-carousel',
 				prevEl: '.swiper-button-prev-dual-carousel',
 			},
-		} );
+		});
 
-		// Initialize the image carousel (without fade effect)
-		const swiperImage = new Swiper( image, {
+		const swiperImage = initSwiperWithSafeLoop(image, {
 			loop: true,
-		} );
+		});
 
-		// Sync the carousels so that they move together
 		swiperText.controller.control = swiperImage;
 		swiperImage.controller.control = swiperText;
-	} );
+	});
 
 	/*
-   *
-   *
-   * Carousel 3 - Split Carousel
-   *
-   *
-	*/
-	// Carousel 3 - Split Carousel
-	document.querySelectorAll( '.swiper-split' ).forEach( ( carousel ) => {
-		const swiperSplit = new Swiper( carousel, {
+	 *
+	 * Carousel 3 - Split Carousel
+	 *
+	 */
+	document.querySelectorAll('.swiper-split').forEach((carousel) => {
+		const config = {
 			speed: 800,
 			loop: true,
 			navigation: {
@@ -129,19 +140,18 @@ document.addEventListener( 'DOMContentLoaded', function() {
 				el: '.split-swiper-pagination',
 				clickable: true,
 			},
-		} );
-	} );
+		};
+
+		initSwiperWithSafeLoop(carousel, config);
+	});
 
 	/*
-   *
-   *
-   * Carousel 4 - Multi-Item Carousel
-   *
-   *
-	*/
-	document.querySelectorAll( '.multi-item-carousel' ).forEach( ( carousel ) => {
-		const totalSlides = carousel.querySelectorAll( '.swiper-slide' ).length; // Count the slides
-		const swiperMultiItem = new Swiper( carousel, {
+	 *
+	 * Carousel 4 - Multi-Item Carousel (NO LOOP)
+	 *
+	 */
+	document.querySelectorAll('.multi-item-carousel').forEach((carousel) => {
+		const swiperMultiItem = new Swiper(carousel, {
 			loop: false,
 			slidesPerView: 2,
 			spaceBetween: 20,
@@ -150,40 +160,23 @@ document.addEventListener( 'DOMContentLoaded', function() {
 				nextEl: '.multi-swiper-button-next',
 			},
 			scrollbar: {
-				el: '.multi-swiper-scrollbar', // Select your scrollbar container
-				hide: false, // Optional: Hide scrollbar when not active
-				draggable: false, // Optional: Make scrollbar draggable
+				el: '.multi-swiper-scrollbar',
+				hide: false,
+				draggable: false,
 			},
 			breakpoints: {
-				0: {
-					slidesPerView: 1,
-				},
-				640: {
-					slidesPerView: Math.max( 2, Math.min( 2, totalSlides ) ),
-				},
-				1024: {
-					slidesPerView: Math.max( 2, Math.min( 2, totalSlides ) ),
-				},
+				0: { slidesPerView: 1 },
+				640: { slidesPerView: 2 },
+				1024: { slidesPerView: 2 },
 			},
-			// autoHeight: false,
-			// on: {
-			//     init: function () {
-			//         equalizeSwiperSlideHeights();
-			//     },
-			//     slideChange: function () {
-			//         equalizeSwiperSlideHeights();
-			//     }
-			// }
-		} );
-	} );
+		});
+	});
 
 	/*
-   *
-   *
-   * Carousel 5 - Calendar Carousel
-   *
-   *
-  */
+	 *
+	 * Carousel 5 - Calendar Carousel (NO LOOP)
+	 *
+	 */
 	document.querySelectorAll('.calendar-carousel').forEach((carousel) => {
 		const swiperCalendar = new Swiper(carousel, {
 			loop: false,
@@ -196,46 +189,35 @@ document.addEventListener( 'DOMContentLoaded', function() {
 				nextEl: '.calendar-swiper-button-next',
 			},
 			breakpoints: {
-				1200: {
-					slidesPerView: 4,
-				},
-				1023: {
-					slidesPerView: 3,
-				},
-				767: {
-					slidesPerView: 2,
-				}
+				1200: { slidesPerView: 4 },
+				1023: { slidesPerView: 3 },
+				767: { slidesPerView: 2 },
 			},
 		});
 	});
+});
 
-} );
 
-// taken from animate-swiper.js
+// Animate on slide change
+document.addEventListener('DOMContentLoaded', function () {
+	const sliders = document.getElementsByClassName('swiper');
+	if (sliders) {
+		for (let i = 0; i < sliders.length; i++) {
+			const swiper = sliders[i].swiper;
+			if (swiper) {
+				const currentSlide = swiper.slides[swiper.activeIndex];
+				toggleAnimation(currentSlide, true);
 
-document.addEventListener('DOMContentLoaded', function() {
-    
-    const sliders = document.getElementsByClassName('swiper');
-    if (sliders) {
-        for (let i = 0; i < sliders.length; i++) {
+				swiper.on('slideChange', function (e) {
+					const previousSlide = swiper.slides[e.previousIndex];
+					toggleAnimation(previousSlide, false);
 
-            const swiper = sliders[i].swiper;
-            if (swiper) {
-				
-                const currentSlide = swiper.slides[swiper.activeIndex];
-                toggleAnimation(currentSlide, true);
-
-                swiper.on('slideChange', function (e) {
-            
-                     const previousSlide = swiper.slides[e.previousIndex];
-                     toggleAnimation(previousSlide, false);
-
-                     const currentSlide = swiper.slides[e.activeIndex];
-                     toggleAnimation(currentSlide, true);
-                });
-            }
-        }
-    }
+					const currentSlide = swiper.slides[e.activeIndex];
+					toggleAnimation(currentSlide, true);
+				});
+			}
+		}
+	}
 
 
     function toggleAnimation(parent, on) {
