@@ -2,11 +2,27 @@
 
 /* Image banner
 		--------------------------------------------- */
+:root {
+	--header-height: 116px;
+	--swiper-image-min-height: 700px;
+}
+@media screen and (min-width: 64rem) {
+	:root {
+		--header-height: 105px;
+	}
+}
+
+@media screen and (max-width: 767px) {
+	.swiper-image {
+		--swiper-image-min-height: 500px;
+	}
+}
+
 .swiper-image {
 	width: 100%;
-	height: 85vh;
+	height: calc(100vh - var(--header-height));
 	position: relative;
-	min-height: 900px;
+	min-height: var(--swiper-image-min-height);
 }
 
 .swiper-image .swiper-slide {
@@ -80,20 +96,12 @@
 	opacity: 0.8;
 }
 @media screen and (max-width:1200px) {
-	.swiper-image {
-		height: 75vh;
-		min-height: 700px;
-	}
 	.swiper-image .swiper-button-next-image {
 		bottom:30px;
 		right: 30px;
 	}
 }
 @media screen and (max-width:767px) {
-	.swiper-image {
-		height: 65vh;
-		min-height: 500px;
-	}
 	.swiper-image .swiper-button-next-image {
 		bottom:20px;
 		right: 20px;
