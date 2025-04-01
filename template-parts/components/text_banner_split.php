@@ -26,10 +26,10 @@ if ($image) {
                 <?php get_template_part( 'template-parts/components/widgets/share_price_widget' ); ?>
             <?php endif; ?>
             <?php if ($text): ?>
-                <div class="fs-600 fw-semibold margin-b-100"><?php echo wp_kses_post($text); ?></div>
+                <div class="fs-600 fw-regular margin-b-100"><?php echo wp_kses_post($text); ?></div>
             <?php endif; ?>
             <?php if ($link): ?>
-                <a href="<?php echo esc_url($link['url']); ?>" class="btn white outline" target="<?php echo esc_attr($link['target']); ?>">
+                <a href="<?php echo esc_url($link['url']); ?>" class="btn white outline fw-regular" target="<?php echo esc_attr($link['target']); ?>">
                     <?php echo esc_html($link['title']); ?>
                 </a>
             <?php endif; ?>
