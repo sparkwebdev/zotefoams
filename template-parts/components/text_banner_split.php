@@ -22,7 +22,7 @@ if ($image) {
             <?php if ($title): ?>
                 <p class="fs-200 fw-regular margin-b-30"><?php echo esc_html($title); ?></p>
             <?php endif; ?>
-            <?php if ( is_page( 'Investors' ) ): ?>
+            <?php if ( is_page( 'Investors' ) || is_page( 'Share Price' )): ?>
                 <?php get_template_part( 'template-parts/components/widgets/share_price_widget' ); ?>
             <?php endif; ?>
             <?php if ($text): ?>
