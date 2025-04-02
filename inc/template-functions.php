@@ -172,11 +172,11 @@ function insert_video_overlay() {
     <!-- Video Overlay Structure -->
     <div id="video-overlay" style="display:none;">
         <div id="overlay-content">
-            <button id="close-video">Close</button>
             <iframe id="video-iframe" width="100%" height="100%" frameborder="0" 
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
                 allowfullscreen></iframe>
         </div>
+        <button id="close-video">Close</button>
     </div>
     <?php
 }
