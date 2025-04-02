@@ -261,9 +261,9 @@ function zotefoams_populate_acf_with_wpforms($field) {
      // Clear existing choices
      $field['choices'] = [];
  
-     // Get the page ID for 'Our brands' (case-insensitive)
-     $brands_page_id = zotefoams_get_page_id_by_title('Our brands');
- 
+     // Get the page ID for 'Our brands'
+     $brands_page_id = zotefoams_get_assigned_page_id('Our brands');
+
      if ($brands_page_id) {
          // Get child and grandchild pages
          $args = [

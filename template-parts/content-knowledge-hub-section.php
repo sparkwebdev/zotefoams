@@ -53,7 +53,7 @@ if ( $documents_list ) {
             
             if ( $all_brands ) {
                 // Get the page ID of "Our Brands"
-                $our_brands_page_id = zotefoams_get_page_id_by_title( 'Our Brands' );
+                $our_brands_page_id = zotefoams_get_assigned_page_id( 'Our Brands' );
                 
                 // Query all descendant pages (child, grandchild, etc.) of "Our Brands"
                 $args = array(

@@ -99,7 +99,7 @@ $use_categories = ($behaviour === 'children' && $page_id == $posts_page_id);
 
             } elseif ($behaviour === 'children') {
                 // Check if the selected page is "Knowledge Hub"
-                if ($page_id == zotefoams_get_page_id_by_title('Knowledge Hub')) {
+                if ($page_id == zotefoams_get_assigned_page_id('Knowledge Hub')) {
                     // For "Knowledge Hub", fetch top-level pages of the 'knowledge-hub' post type.
                     $child_pages = get_pages([
                         'post_type'   => 'knowledge-hub',

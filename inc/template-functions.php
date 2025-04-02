@@ -31,6 +31,37 @@ function zotefoams_pingback_header() {
 }
 add_action( 'wp_head', 'zotefoams_pingback_header' );
 
+/**
+ * Get assigned page ID from Options based on label.
+ * Falls back to zotefoams_get_page_id_by_title() if ACF field is empty.
+ *
+ * @param string $label Human-readable label like "Knowledge Hub".
+ * @return int|null Page ID or null if not found.
+ */
+function zotefoams_get_assigned_page_id($label) {
+    // Map label to ACF field name
+    $map = [
+        'Markets'        => 'markets_page',
+        'Our Brands'     => 'our_brands_page',
+        'News Centre'    => 'industries_page',
+        'Knowledge Hub'  => 'knowledge_hub_page',
+    ];
+
+    $label = trim($label);
+
+    if (!array_key_exists($label, $map)) {
+        return zotefoams_get_page_id_by_title($label); // fallback if label not in map
+    }
+
+    $page_id = get_field($map[$label], 'option');
+
+    if (!$page_id) {
+        // fallback if field is empty or not set
+        $page_id = zotefoams_get_page_id_by_title($label);
+    }
+
+    return $page_id ?: null;
+}
 
 /**
  * Determine/map labels to category
@@ -80,7 +111,7 @@ function zotefoams_get_page_id_by_title($title) {
  */
 function zotefoams_get_page_for_posts_id() {
 	$page_for_posts = get_option('page_for_posts', true); // WordPress "Posts Page"
-	$posts_page_id = !empty($page_for_posts) ? $page_for_posts : zotefoams_get_page_id_by_title('News Centre');
+	$posts_page_id = !empty($page_for_posts) ? $page_for_posts : zotefoams_get_assigned_page_id('News Centre');
 	return $posts_page_id;
 }
 
