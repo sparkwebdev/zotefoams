@@ -39,6 +39,11 @@ function zotefoams_setup() {
 		*/
 	add_theme_support( 'title-tag' );
 
+    /**
+     * Allow excerpt for pages
+     */
+    add_post_type_support( 'page', 'excerpt' );
+
 	/*
 		* Enable support for Post Thumbnails on posts and pages.
 		*
@@ -201,13 +206,13 @@ function zotefoams_custom_search_rewrite() {
 }
 add_action( 'init', 'zotefoams_custom_search_rewrite' );
 
-
-// Enable ACF local JSON feature
+/**
+ * Enable ACF local JSON feature
+ */
 add_filter('acf/settings/save_json', 'zotefoams_acf_json_save_point');
 function zotefoams_acf_json_save_point($path) {
     return plugin_dir_path(__FILE__) . 'acf/acf-json';
 }
-
 add_filter('acf/settings/load_json', 'zotefoams_acf_json_load_point');
 function zotefoams_acf_json_load_point($paths) {
     unset($paths[0]);

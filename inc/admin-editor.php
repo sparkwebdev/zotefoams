@@ -1,8 +1,8 @@
 <?php
-// Allow excerpt for pages
-add_post_type_support( 'page', 'excerpt' );
 
-// Function to change "posts" to "News Centre" in the admin side menu
+/**
+ * Function to change "posts" to "News Centre" in the admin side menu
+ */
 function change_post_menu_label() {
   global $menu;
   global $submenu;
@@ -14,26 +14,29 @@ function change_post_menu_label() {
   echo '';
 }
 add_action( 'admin_menu', 'change_post_menu_label' );
-// Function to change post object labels to "news centre"
+
+/**
+ * Function to change post object labels to "News Centre"
+ */
 function change_post_object_label() {
   global $wp_post_types;
   $labels = &$wp_post_types['post']->labels;
   $labels->name = 'News Centre';
-  $labels->singular_name = 'News Centre Item';
+  $labels->singular_name = 'Post';
   $labels->add_new = 'Add News Centre Item';
   $labels->add_new_item = 'Add News Centre Item';
-  $labels->edit_item = 'Edit News Centre Item';
+  $labels->edit_item = 'Edit Item';
   $labels->new_item = 'News Centre Item';
-  $labels->view_item = 'View News Centre Item';
+  $labels->view_item = 'View Item';
   $labels->search_items = 'Search News Centre';
-  $labels->not_found = 'No News Centre item found';
-  $labels->not_found_in_trash = 'No News Centre items found in Trash';
+  $labels->not_found = 'No items found';
+  $labels->not_found_in_trash = 'No items items found in Trash';
 }
 add_action( 'init', 'change_post_object_label' );
 
 
 /**
- * Disable Gutenberg for all post types except 'post'.
+ * Disable Gutenberg editor for all post types except standard posts, 'knowledge-hub', and biography pages.
  */
 function disable_gutenberg_except_posts($use_block_editor, $post) {
     if (!$post) {
