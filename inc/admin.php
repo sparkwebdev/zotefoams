@@ -11,14 +11,14 @@ function my_acf_admin_head()
 {
     ?>
     <style type="text/css">
-		.postbox-header {
-			background:#1d2327;
+		.acf-postbox .postbox-header {
+			background: #3B82F6;
 		}
-		.postbox-header > * {
+		.acf-postbox .postbox-header > * {
 			color:#fff;
 		}
 		.acf-table > tbody > tr {
-			border-top: 3px solid #8c8f94;
+			border-top: 3px solid #3B82F6;
 		}
     </style>
     <?php
