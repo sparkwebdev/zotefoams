@@ -375,3 +375,33 @@ function add_preload_to_google_fonts( $html, $handle, $href, $media ) {
 }
 add_filter( 'style_loader_tag', 'add_preload_to_google_fonts', 10, 4 );
 
+/**
+ * Outputs the Google tag (gtag.js) script in the <head> section.
+ *
+ * The tag ID is pulled from an ACF options page field named 'google_tag_id'.
+ * This allows administrators to manage the Google Tag Manager ID from the WordPress dashboard.
+ *
+ * Hooked into 'wp_head' to ensure it appears inside the <head> tag.
+ */
+function zotefoams_add_google_gtag_from_acf() {
+
+	// Check for Advanced Custom Fields plugin function
+	if( function_exists('get_field') ) {
+        $tag_id = get_field('google_analytics_measurement_id', 'option');
+
+        if ($tag_id) {
+            ?>
+            <!-- Google tag (gtag.js) -->
+            <script async src="https://www.googletagmanager.com/gtag/js?id=<?php echo esc_attr($tag_id); ?>"></script>
+            <script>
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){dataLayer.push(arguments);}
+                gtag('js', new Date());
+                gtag('config', '<?php echo esc_js($tag_id); ?>');
+            </script>
+            <?php
+        }
+	}
+
+}
+add_action('wp_head', 'zotefoams_add_google_gtag_from_acf');
