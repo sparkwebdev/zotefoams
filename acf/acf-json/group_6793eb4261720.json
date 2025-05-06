@@ -224,7 +224,7 @@
             ]
         },
         {
-            "key": "field_67eaa11aedaaf",
+            "key": "field_67eaa4c0130be",
             "label": "Integrations",
             "name": "",
             "aria-label": "",
@@ -242,12 +242,12 @@
             "selected": 0
         },
         {
-            "key": "field_67eaa124edab0",
+            "key": "field_67eaa4dc130bf",
             "label": "Google Analytics Measurement ID",
             "name": "google_analytics_measurement_id",
             "aria-label": "",
             "type": "text",
-            "instructions": "",
+            "instructions": "e.g. G-47KCBJ59F3",
             "required": 0,
             "conditional_logic": 0,
             "wrapper": {
@@ -281,5 +281,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1743430058
+    "modified": 1743589543
 }

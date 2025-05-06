@@ -375,6 +375,8 @@ function add_preload_to_google_fonts( $html, $handle, $href, $media ) {
 }
 add_filter( 'style_loader_tag', 'add_preload_to_google_fonts', 10, 4 );
 
+
+
 /**
  * Outputs the Google tag (gtag.js) script in the <head> section.
  *
