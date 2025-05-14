@@ -50,12 +50,15 @@
     "compile:rtl": "rtlcss style.css style-rtl.css",
     "lint:js": "wp-scripts lint-js 'js/*.js'",
     "bundle": "dir-archiver --src . --dest ../_s.zip --exclude .DS_Store .stylelintrc.json .eslintrc .git .gitattributes .github .gitignore README.md composer.json composer.lock node_modules vendor package-lock.json package.json .travis.yml phpcs.xml.dist sass style.css.map yarn.lock",
-    "test:visual": "playwright test"
+    "test:compare": "playwright test tests/vrc/compare-pages.spec.js"
   },
   "dependencies": {
     "node-fetch": "^3.3.2",
     "parcel": "^2.13.3",
+    "pixelmatch": "^7.1.0",
+    "pngjs": "^7.0.0",
     "sass": "^1.85.0",
+    "sharp": "^0.34.1",
     "xml2js": "^0.6.2"
   }
 }

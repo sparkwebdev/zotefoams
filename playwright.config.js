@@ -13,6 +13,6 @@ export default defineConfig({
     browserName: "chromium",
     headless: true,
     viewport: { width: 1600, height: 900 },
-    screenshot: "only-on-failure", // or 'on' if you want all screenshots
+    screenshot: "off", // or 'on' if you want all screenshots
   },
 });
