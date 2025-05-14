@@ -2,15 +2,15 @@
   "name": "acf/highlight-box",
   "title": "Highlight Box",
   "description": "A custom highlight block that uses ACF fields.",
-  "style": [ "file:./highlight-box.css" ],
+  "style": ["file:./highlight-box.css"],
   "category": "formatting",
   "icon": "align-pull-right",
   "keywords": ["highlight", "aside", "feature"],
   "acf": {
-      "mode": "preview",
-      "renderTemplate": "highlight-box.php"
+    "mode": "preview",
+    "renderTemplate": "highlight-box.php"
   },
   "supports": {
-      "anchor": true
+    "anchor": true
   }
 }

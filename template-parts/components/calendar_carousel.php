@@ -1,39 +1,36 @@
 <?php 
-// Allow for passed variables, as well as ACF values
-$title = get_sub_field('calendar_carousel_title');
-$events = get_sub_field('calendar_carousel_events');
-$note = get_sub_field('calendar_carousel_note');
+$title     = get_sub_field('calendar_carousel_title');
+$events    = get_sub_field('calendar_carousel_events');
+$note      = get_sub_field('calendar_carousel_note');
+$template_uri = get_template_directory_uri();
 ?>
 
-<!-- Carousel 5 - Calendar Carousel -->
 <div class="cont-m padding-t-b-100 theme-none">
-    
     <div class="title-strip margin-b-30">
         <?php if ($title): ?>
             <h3 class="fs-500 fw-600"><?php echo esc_html($title); ?></h3>
         <?php endif; ?>
-        <!-- Navigation -->
+
         <div class="carousel-navigation black">
             <div class="carousel-navigation-inner">
                 <div class="calendar-swiper-button-prev">
-                    <img src="<?php echo get_template_directory_uri(); ?>/images/left-arrow-black.svg" />
+                    <img src="<?php echo esc_url($template_uri); ?>/images/left-arrow-black.svg" alt="Previous" />
                 </div>
                 <div class="calendar-swiper-button-next">
-                    <img src="<?php echo get_template_directory_uri(); ?>/images/right-arrow-black.svg" />
+                    <img src="<?php echo esc_url($template_uri); ?>/images/right-arrow-black.svg" alt="Next" />
                 </div>
             </div>
         </div>
     </div>
 
-    <div class="swiper calendar-carousel">
-        <div class="swiper-wrapper">
-            <?php if ($events): ?>
-                <?php foreach ($events as $event): ?>
-                    <?php 
-                        $date = $event['calendar_carousel_date'];
-                        $month_year = $event['calendar_carousel_month_year'];
-                        $description = $event['calendar_carousel_description'];
-                    ?>
+    <?php if (!empty($events)): ?>
+        <div class="swiper calendar-carousel">
+            <div class="swiper-wrapper">
+                <?php foreach ($events as $event): 
+                    $date        = $event['calendar_carousel_date'] ?? '';
+                    $month_year  = $event['calendar_carousel_month_year'] ?? '';
+                    $description = $event['calendar_carousel_description'] ?? '';
+                ?>
                     <div class="swiper-slide">
                         <div class="swiper-slide-inner">
                             <div class="date-wrapper">
@@ -50,9 +47,9 @@ $note = get_sub_field('calendar_carousel_note');
                         </div>
                     </div>
                 <?php endforeach; ?>
-            <?php endif; ?>
+            </div>
         </div>
-    </div>
+    <?php endif; ?>
 
     <?php if ($note): ?>
         <label class="calendar-carousel-note"><?php echo esc_html($note); ?></label>

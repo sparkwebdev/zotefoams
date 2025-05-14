@@ -2,15 +2,15 @@
   "name": "acf/quote-box",
   "title": "Quote Box",
   "description": "A custom quote/testimonial block that uses ACF fields.",
-  "style": [ "file:./quote-box.css" ],
+  "style": ["file:./quote-box.css"],
   "category": "formatting",
   "icon": "admin-comments",
   "keywords": ["quote", "testimonial"],
   "acf": {
-      "mode": "preview",
-      "renderTemplate": "quote-box.php"
+    "mode": "preview",
+    "renderTemplate": "quote-box.php"
   },
   "supports": {
-      "anchor": true
+    "anchor": true
   }
 }
