@@ -1,21 +1,57 @@
-
-<?php 
-// Allow for passed variables, as well as ACF values
+<?php
 $title = get_sub_field('multi_item_carousel_title');
 $behaviour = get_sub_field('multi_item_carousel_behaviour'); // Pick / Children / Manual
-$page_id = get_sub_field('multi_item_carousel_parent_id'); // Selected parent page
-$manual_slides = get_sub_field('multi_item_carousel_slides'); // Manual items
+$page_id = get_sub_field('multi_item_carousel_parent_id');
+$manual_slides = get_sub_field('multi_item_carousel_slides');
+$page_ids = get_sub_field('multi_item_carousel_page_ids');
+
+$slides = [];
+$fallback_image = get_template_directory_uri() . '/images/placeholder.png';
+
+if ($behaviour === 'pick' && $page_ids) {
+	foreach ($page_ids as $id) {
+		$slides[] = [
+			'title' => get_the_title($id),
+			'text' => get_the_excerpt($id),
+			'image' => get_the_post_thumbnail_url($id, 'thumbnail-product') ?: $fallback_image,
+			'link' => get_permalink($id),
+		];
+	}
+} elseif ($behaviour === 'children' && $page_id) {
+	$children = get_pages([
+		'parent' => $page_id,
+		'sort_column' => 'menu_order',
+		'sort_order' => 'ASC',
+	]);
+	foreach ($children as $child) {
+		$slides[] = [
+			'title' => get_the_title($child->ID),
+			'text' => get_the_excerpt($child->ID),
+			'image' => get_the_post_thumbnail_url($child->ID, 'thumbnail-product') ?: $fallback_image,
+			'link' => get_permalink($child->ID),
+		];
+	}
+} elseif ($behaviour === 'manual' && $manual_slides) {
+	foreach ($manual_slides as $item) {
+		$image_url = $item['multi_item_carousel_slide_image']['sizes']['thumbnail-product'] ?? $fallback_image;
+		$slides[] = [
+			'title' => $item['multi_item_carousel_slide_title'] ?? '',
+			'text' => $item['multi_item_carousel_slide_text'] ?? '',
+			'image' => $image_url,
+			'link' => $item['multi_item_carousel_slide_button']['url'] ?? '',
+			'link_title' => $item['multi_item_carousel_slide_button']['title'] ?? 'Read More',
+			'link_target' => $item['multi_item_carousel_slide_button']['target'] ?? '_self',
+		];
+	}
+}
 ?>
 
-<!-- Carousel 4 - Multi-Item Carousel -->
 <div class="multi-item-carousel-container padding-t-100 padding-b-100 theme-none">
 	<div class="cont-m">
-    
 		<div class="title-strip margin-b-30">
 			<?php if ($title): ?>
 				<h3 class="fs-500 fw-600"><?php echo esc_html($title); ?></h3>
 			<?php endif; ?>
-			<!-- Navigation -->
 			<div class="carousel-navigation black">
 				<div class="carousel-navigation-inner">
 					<div class="multi-swiper-button-prev">
@@ -30,87 +66,26 @@ $manual_slides = get_sub_field('multi_item_carousel_slides'); // Manual items
 
 		<div class="swiper multi-item-carousel">
 			<div class="swiper-wrapper">
-				<?php 
-				if ($behaviour === 'pick') {
-					$page_ids = get_sub_field('multi_item_carousel_page_ids');
-					if ($page_ids) {
-						foreach ($page_ids as $page_id) : 
-							$page_title = get_the_title($page_id);
-							$page_link = get_permalink($page_id);
-							$thumbnail_url = get_the_post_thumbnail_url($page_id, 'thumbnail-product');
-							?>
-							<div class="swiper-slide">
-								<h3 class="fs-600 fw-bold"><?php echo esc_html($page_title); ?></h3>
-								<?php if (get_the_excerpt($page_id)): ?>
-									<p><?php echo esc_html(get_the_excerpt($page_id)); ?></p>
-								<?php endif; ?>
-								<?php if ( $thumbnail_url ): ?>
-									<img src="<?php echo esc_url($thumbnail_url); ?>" alt="<?php echo esc_attr($page_title); ?>">
-								<?php endif; ?>
-								<a href="<?php echo esc_url($page_link); ?>" class="btn black outline">Read More</a>
-							</div>
-						<?php endforeach; 
-					}
-				} elseif ($behaviour === 'children') {
-					// Fetch child pages
-					$child_pages = get_pages([
-						'parent' => $page_id,
-						'sort_column' => 'menu_order',
-						'sort_order' => 'ASC',
-					]);
-
-					if ($child_pages):
-						foreach ($child_pages as $child):
-							$child_id = $child->ID;
-							$child_title = get_the_title($child_id);
-							$child_link = get_permalink($child_id);
-							$thumbnail_url = get_the_post_thumbnail_url($child_id, 'thumbnail-product');
-							?>
-							<div class="swiper-slide">
-								<h3 class="fs-600 fw-bold"><?php echo esc_html($child_title); ?></h3>
-								<?php if (get_the_excerpt($child_id)): ?>
-									<p><?php echo esc_html(get_the_excerpt($child_id)); ?></p>
-								<?php endif; ?>
-								<?php if ( $thumbnail_url ): ?>
-									<img src="<?php echo esc_url($thumbnail_url); ?>" alt="<?php echo esc_attr($child_title); ?>">
-								<?php endif; ?>
-								<a href="<?php echo esc_url($child_link); ?>" class="btn black outline">Read More</a>
-							</div>
-						<?php endforeach;
-					endif;
-
-				} elseif ($behaviour === 'manual' && $manual_slides) {
-					foreach ($manual_slides as $slide):
-						$slide_title = $slide['multi_item_carousel_slide_title'] ?? '';
-						$slide_text = $slide['multi_item_carousel_slide_text'] ?? '';
-						$slide_button = $slide['multi_item_carousel_slide_button'] ?? '';
-						$slide_image = $slide['multi_item_carousel_slide_image'] ?? null;
-
-						$image_url = $slide_image ? $slide_image['sizes']['thumbnail-product'] : null;
-						?>
-						<div class="swiper-slide">
-							<?php if ($slide_title): ?>
-								<h3 class="fs-600 fw-bold"><?php echo esc_html($slide_title); ?></h3>
-							<?php endif; ?>
-							<?php if ($slide_text): ?>
-								<p><?php echo wp_kses_post($slide_text); ?></p>
-							<?php endif; ?>
-							<?php if ($image_url): ?>
-								<img src="<?php echo esc_url($image_url); ?>" alt="<?php echo esc_attr($slide_title); ?>">
-							<?php endif; ?>
-							<?php if ($slide_button): ?>
-								<a href="<?php echo esc_url($slide_button['url']); ?>" class="btn black outline" target="<?php echo esc_attr($slide_button['target']); ?>">
-									<?php echo esc_html($slide_button['title']); ?>
-								</a>
-							<?php endif; ?>
-						</div>
-					<?php endforeach;
-				}
-				?>
+				<?php foreach ($slides as $slide): ?>
+					<div class="swiper-slide">
+						<?php if (!empty($slide['title'])): ?>
+							<h3 class="fs-600 fw-bold"><?php echo esc_html($slide['title']); ?></h3>
+						<?php endif; ?>
+						<?php if (!empty($slide['text'])): ?>
+							<p><?php echo wp_kses_post($slide['text']); ?></p>
+						<?php endif; ?>
+						<?php if (!empty($slide['image'])): ?>
+							<img src="<?php echo esc_url($slide['image']); ?>" alt="<?php echo esc_attr($slide['title'] ?? ''); ?>">
+						<?php endif; ?>
+						<?php if (!empty($slide['link'])): ?>
+							<a href="<?php echo esc_url($slide['link']); ?>" class="btn black outline" target="<?php echo esc_attr($slide['link_target'] ?? '_self'); ?>">
+								<?php echo esc_html($slide['link_title'] ?? 'Read More'); ?>
+							</a>
+						<?php endif; ?>
+					</div>
+				<?php endforeach; ?>
 			</div>
-
-		<div class="multi-swiper-scrollbar"></div>
+			<div class="multi-swiper-scrollbar"></div>
 		</div>
-	
 	</div>
 </div>

@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Zotefoams functions and definitions
  *
@@ -7,9 +8,9 @@
  * @package Zotefoams
  */
 
-if ( ! defined( '_S_VERSION' ) ) {
-	// Replace the version number of the theme on each release.
-	define( '_S_VERSION', '1.0.0' );
+if (! defined('_S_VERSION')) {
+    // Replace the version number of the theme on each release.
+    define('_S_VERSION', '1.0.0');
 }
 
 /**
@@ -19,64 +20,65 @@ if ( ! defined( '_S_VERSION' ) ) {
  * runs before the init hook. The init hook is too late for some features, such
  * as indicating support for post thumbnails.
  */
-function zotefoams_setup() {
-	/*
+function zotefoams_setup()
+{
+    /*
 		* Make theme available for translation.
 		* Translations can be filed in the /languages/ directory.
 		* If you're building a theme based on Zotefoams, use a find and replace
 		* to change 'zotefoams' to the name of your theme in all the template files.
 		*/
-	load_theme_textdomain( 'zotefoams', get_template_directory() . '/languages' );
+    load_theme_textdomain('zotefoams', get_template_directory() . '/languages');
 
-	// Add default posts and comments RSS feed links to head.
-	add_theme_support( 'automatic-feed-links' );
+    // Add default posts and comments RSS feed links to head.
+    add_theme_support('automatic-feed-links');
 
-	/*
+    /*
 		* Let WordPress manage the document title.
 		* By adding theme support, we declare that this theme does not use a
 		* hard-coded <title> tag in the document head, and expect WordPress to
 		* provide it for us.
 		*/
-	add_theme_support( 'title-tag' );
+    add_theme_support('title-tag');
 
-	/*
+    /*
 		* Enable support for Post Thumbnails on posts and pages.
 		*
 		* @link https://developer.wordpress.org/themes/functionality/featured-images-post-thumbnails/
 		*/
-	add_theme_support( 'post-thumbnails' );
-	add_image_size( 'thumbnail-square', 350, 350, true ); // Custom image size: cropped
-	add_image_size( 'small', 700, 9999, false ); // Custom image size: not cropped
-	add_image_size( 'thumbnail-product', 690, 460, true ); // Custom image size: cropped
+    add_theme_support('post-thumbnails');
+    add_image_size('thumbnail-square', 350, 350, true); // Custom image size: cropped
+    add_image_size('small', 700, 9999, false); // Custom image size: not cropped
+    add_image_size('thumbnail-product', 690, 460, true); // Custom image size: cropped
 
-	// This theme uses wp_nav_menu() in one location.
-	register_nav_menus(
-		array(
-			'primary_menu' => esc_html__( 'Primary', 'zotefoams' ),
-			'utility_menu' => esc_html__( 'Utility', 'zotefoams' ),
-			'quick_links_menu' => esc_html__( 'Quick', 'zotefoams' ),
-			'legal_menu' => esc_html__( 'Legal', 'zotefoams' )
-		)
-	);
+    // This theme uses wp_nav_menu() in one location.
+    register_nav_menus(
+        array(
+            'primary_menu' => esc_html__('Primary', 'zotefoams'),
+            'utility_menu' => esc_html__('Utility', 'zotefoams'),
+            'quick_links_menu' => esc_html__('Quick', 'zotefoams'),
+            'legal_menu' => esc_html__('Legal', 'zotefoams')
+        )
+    );
 
-	/*
+    /*
 		* Switch default core markup for search form, comment form, and comments
 		* to output valid HTML5.
 		*/
-	add_theme_support(
-		'html5',
-		array(
-			'search-form',
-			'comment-form',
-			'comment-list',
-			'gallery',
-			'caption',
-			'style',
-			'script',
-		)
-	);
+    add_theme_support(
+        'html5',
+        array(
+            'search-form',
+            'comment-form',
+            'comment-list',
+            'gallery',
+            'caption',
+            'style',
+            'script',
+        )
+    );
 }
-add_action( 'after_setup_theme', 'zotefoams_setup' );
+add_action('after_setup_theme', 'zotefoams_setup');
 
 /**
  * Set the content width in pixels, based on the theme's design and stylesheet.
@@ -85,15 +87,17 @@ add_action( 'after_setup_theme', 'zotefoams_setup' );
  *
  * @global int $content_width
  */
-function zotefoams_content_width() {
-	$GLOBALS['content_width'] = apply_filters( 'zotefoams_content_width', 640 );
+function zotefoams_content_width()
+{
+    $GLOBALS['content_width'] = apply_filters('zotefoams_content_width', 640);
 }
-add_action( 'after_setup_theme', 'zotefoams_content_width', 0 );
+add_action('after_setup_theme', 'zotefoams_content_width', 0);
 
 /**
  * Enqueue scripts and styles.
  */
-function zotefoams_enqueue_assets() {
+function zotefoams_enqueue_assets()
+{
     // Main stylesheet
     wp_enqueue_style('zotefoams-style', get_stylesheet_uri(), array(), _S_VERSION);
     wp_style_add_data('zotefoams-style', 'rtl', 'replace');
@@ -169,12 +173,13 @@ require_once get_template_directory() . '/inc/mega-menu-walker.php';
  *
  * @link https://developer.wordpress.org/reference/functions/register_block_type/
  */
-function zotefoams_register_acf_blocks() {
-	register_block_type( __DIR__ . '/blocks/quote-box' );
-	register_block_type( __DIR__ . '/blocks/highlight-box' );
-	register_block_type( __DIR__ . '/blocks/related-links-box' );
+function zotefoams_register_acf_blocks()
+{
+    register_block_type(__DIR__ . '/blocks/quote-box');
+    register_block_type(__DIR__ . '/blocks/highlight-box');
+    register_block_type(__DIR__ . '/blocks/related-links-box');
 }
-add_action( 'init', 'zotefoams_register_acf_blocks' );
+add_action('init', 'zotefoams_register_acf_blocks');
 
 /**
  * Customize the search form's input and submit button classes.
@@ -184,32 +189,36 @@ add_action( 'init', 'zotefoams_register_acf_blocks' );
  * @param string $form The original search form HTML.
  * @return string The modified search form HTML.
  */
-function zotefoams_filter_search_form( $form ) {
-    $form = str_replace( 'class="search-submit"', 'class="search-submit btn blue"', $form );
-    $form = str_replace( 'class="search-field"', 'class="search-field zf"', $form );
+function zotefoams_filter_search_form($form)
+{
+    $form = str_replace('class="search-submit"', 'class="search-submit btn blue"', $form);
+    $form = str_replace('class="search-field"', 'class="search-field zf"', $form);
     return $form;
 }
-add_filter( 'get_search_form', 'zotefoams_filter_search_form' );
+add_filter('get_search_form', 'zotefoams_filter_search_form');
 
 /**
  * Add a custom rewrite rule for search URLs.
  *
  * Redirects "/search/" to the default WordPress search query structure.
  */
-function zotefoams_custom_search_rewrite() {
-    add_rewrite_rule( '^search/?$', 'index.php?s=', 'top' );
+function zotefoams_custom_search_rewrite()
+{
+    add_rewrite_rule('^search/?$', 'index.php?s=', 'top');
 }
-add_action( 'init', 'zotefoams_custom_search_rewrite' );
+add_action('init', 'zotefoams_custom_search_rewrite');
 
 
 // Enable ACF local JSON feature
 add_filter('acf/settings/save_json', 'zotefoams_acf_json_save_point');
-function zotefoams_acf_json_save_point($path) {
+function zotefoams_acf_json_save_point($path)
+{
     return plugin_dir_path(__FILE__) . 'acf/acf-json';
 }
 
 add_filter('acf/settings/load_json', 'zotefoams_acf_json_load_point');
-function zotefoams_acf_json_load_point($paths) {
+function zotefoams_acf_json_load_point($paths)
+{
     unset($paths[0]);
     $paths[] = plugin_dir_path(__FILE__) . 'acf/acf-json';
     return $paths;
@@ -225,7 +234,8 @@ function zotefoams_acf_json_load_point($paths) {
  * @link https://www.advancedcustomfields.com/resources/acf-load_field/
  */
 add_filter('acf/load_field/name=show_hide_forms_form', 'zotefoams_populate_acf_with_wpforms');
-function zotefoams_populate_acf_with_wpforms($field) {
+function zotefoams_populate_acf_with_wpforms($field)
+{
     // Clear existing choices
     $field['choices'] = [];
 
@@ -251,90 +261,55 @@ function zotefoams_populate_acf_with_wpforms($field) {
  * @link https://www.advancedcustomfields.com/resources/acf-load_field/
  */
 
- add_filter('acf/load_field/name=associated_brands', 'zotefoams_populate_acf_with_brands');
- function zotefoams_populate_acf_with_brands($field) {
-     // Clear existing choices
-     $field['choices'] = [];
- 
-     // Get the page ID for 'Our brands' (case-insensitive)
-     $brands_page_id = zotefoams_get_page_id_by_title('Our brands');
- 
-     if ($brands_page_id) {
-         // Get child and grandchild pages
-         $args = [
-             'post_type'      => 'page',
-             'post_parent'    => $brands_page_id,
-             'posts_per_page' => -1,
-             'orderby'        => 'menu_order',
-             'order'          => 'ASC',
-         ];
- 
-         $child_pages = get_posts($args);
- 
-         if (!empty($child_pages)) {
-             foreach ($child_pages as $page) {
-                 // Add child page
-                 $field['choices'][$page->ID] = $page->post_title;
- 
-                 // Get grandchild pages
-                 $grandchild_args = [
-                     'post_type'      => 'page',
-                     'post_parent'    => $page->ID,
-                     'posts_per_page' => -1,
-                     'orderby'        => 'menu_order',
-                     'order'          => 'ASC',
-                 ];
- 
-                 $grandchild_pages = get_posts($grandchild_args);
- 
-                 if (!empty($grandchild_pages)) {
-                     foreach ($grandchild_pages as $grandchild) {
-                         // Add grandchild page with indentation for clarity
-                         $field['choices'][$grandchild->ID] = '— ' . $grandchild->post_title;
-                     }
-                 }
-             }
-         }
-     }
- 
-     return $field;
- }
-
-
-
-/**
- * Customize the upload directory for Document Store (Knowledge Hub) uploads.
- *
- * This function intercepts the upload directory settings when an upload originates from the
- * document_store gallery field (identified by the '_acfuploader' request parameter with a specific field ID).
- * It retrieves the associated post's permalink and extracts its path to use as a custom subdirectory,
- * thereby organizing uploads according to the post's URL structure.
- *
- * @param array $uploads An associative array of default upload directory settings.
- * @return array Modified upload settings with a custom subdirectory if the conditions are met.
- */
-function zotefoams_custom_upload_dir_for_document_store($uploads)
+add_filter('acf/load_field/name=associated_brands', 'zotefoams_populate_acf_with_brands');
+function zotefoams_populate_acf_with_brands($field)
 {
-    // Only act if this upload comes from our document_store gallery field.
-    if (! empty($_REQUEST['_acfuploader']) && $_REQUEST['_acfuploader'] === 'field_67c58a842cccb') {
-        $post_id = ! empty($_REQUEST['post_id']) ? intval($_REQUEST['post_id']) : 0;
-        if ($post_id) {
-            $permalink = get_permalink($post_id);
-            if ($permalink) {
-                // Extract the path (e.g. "/knowledge-hub/marketing-literature" or "/knowledge-hub/marketing-literature/another")
-                $path = parse_url($permalink, PHP_URL_PATH);
-                // Remove any trailing slash
-                $path = rtrim($path, '/');
-                // Use the path as the custom subdirectory.
-                $uploads['subdir'] = $path;
-                $uploads['path']  = $uploads['basedir'] . $path;
-                $uploads['url']   = $uploads['baseurl'] . $path;
+    // Clear existing choices
+    $field['choices'] = [];
+
+    // Get the page ID for 'Our brands' (case-insensitive)
+    $brands_page_id = zotefoams_get_page_id_by_title('Our brands');
+
+    if ($brands_page_id) {
+        // Get child and grandchild pages
+        $args = [
+            'post_type'      => 'page',
+            'post_parent'    => $brands_page_id,
+            'posts_per_page' => -1,
+            'orderby'        => 'menu_order',
+            'order'          => 'ASC',
+        ];
+
+        $child_pages = get_posts($args);
+
+        if (!empty($child_pages)) {
+            foreach ($child_pages as $page) {
+                // Add child page
+                $field['choices'][$page->ID] = $page->post_title;
+
+                // Get grandchild pages
+                $grandchild_args = [
+                    'post_type'      => 'page',
+                    'post_parent'    => $page->ID,
+                    'posts_per_page' => -1,
+                    'orderby'        => 'menu_order',
+                    'order'          => 'ASC',
+                ];
+
+                $grandchild_pages = get_posts($grandchild_args);
+
+                if (!empty($grandchild_pages)) {
+                    foreach ($grandchild_pages as $grandchild) {
+                        // Add grandchild page with indentation for clarity
+                        $field['choices'][$grandchild->ID] = '— ' . $grandchild->post_title;
+                    }
+                }
             }
         }
     }
-    return $uploads;
+
+    return $field;
 }
-add_filter('upload_dir', 'zotefoams_custom_upload_dir_for_document_store');
 
 /**
  * Add custom inline admin styles for the Knowledge Hub post type.
@@ -361,19 +336,20 @@ function zotefoams_add_knowledge_hub_admin_inline_styles()
                 display: none;
             }
         </style>
-<?php
+        <?php
     }
 }
 add_action('admin_head', 'zotefoams_add_knowledge_hub_admin_inline_styles');
 
-function add_preload_to_google_fonts( $html, $handle, $href, $media ) {
-    if ( 'google-fonts' === $handle ) {
-        $html  = '<link rel="preload" as="style" href="' . esc_url( $href ) . '" />';
-        $html .= "\n" . '<link rel="stylesheet" id="' . esc_attr( $handle ) . '-css" href="' . esc_url( $href ) . '" media="' . esc_attr( $media ) . '">';
+function add_preload_to_google_fonts($html, $handle, $href, $media)
+{
+    if ('google-fonts' === $handle) {
+        $html  = '<link rel="preload" as="style" href="' . esc_url($href) . '" />';
+        $html .= "\n" . '<link rel="stylesheet" id="' . esc_attr($handle) . '-css" href="' . esc_url($href) . '" media="' . esc_attr($media) . '">';
     }
     return $html;
 }
-add_filter( 'style_loader_tag', 'add_preload_to_google_fonts', 10, 4 );
+add_filter('style_loader_tag', 'add_preload_to_google_fonts', 10, 4);
 
 
 
@@ -385,25 +361,28 @@ add_filter( 'style_loader_tag', 'add_preload_to_google_fonts', 10, 4 );
  *
  * Hooked into 'wp_head' to ensure it appears inside the <head> tag.
  */
-function zotefoams_add_google_gtag_from_acf() {
+function zotefoams_add_google_gtag_from_acf()
+{
 
-	// Check for Advanced Custom Fields plugin function
-	if( function_exists('get_field') ) {
+    // Check for Advanced Custom Fields plugin function
+    if (function_exists('get_field')) {
         $tag_id = get_field('google_analytics_measurement_id', 'option');
 
         if ($tag_id) {
-            ?>
+        ?>
             <!-- Google tag (gtag.js) -->
             <script async src="https://www.googletagmanager.com/gtag/js?id=<?php echo esc_attr($tag_id); ?>"></script>
             <script>
                 window.dataLayer = window.dataLayer || [];
-                function gtag(){dataLayer.push(arguments);}
+
+                function gtag() {
+                    dataLayer.push(arguments);
+                }
                 gtag('js', new Date());
                 gtag('config', '<?php echo esc_js($tag_id); ?>');
             </script>
-            <?php
+<?php
         }
-	}
-
+    }
 }
 add_action('wp_head', 'zotefoams_add_google_gtag_from_acf');

@@ -982,9 +982,13 @@ html {
 
 .pagination {
   text-align: right;
-  justify-content: flex-end;
+}
+
+.pagination > ul {
   gap: .75em;
   display: flex;
+  justify-content: flex-end;
+  list-style: none;
 }
 
 .pagination a:not(:hover):not(:focus) {
