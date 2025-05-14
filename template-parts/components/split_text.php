@@ -1,5 +1,4 @@
 <?php
-// Allow for passed variables, as well as ACF values
 $title = get_sub_field('split_text_title');
 $text  = get_sub_field('split_text_text');
 ?>

@@ -1,5 +1,4 @@
 <?php
-// Allow for passed variables, as well as ACF values
 $title  = get_sub_field('show_hide_title');
 $button = get_sub_field('show_hide_button'); // ACF Link field
 $items  = get_sub_field('show_hide_items');

@@ -1,5 +1,4 @@
 <?php
-// Allow for passed variables, as well as ACF values
 $section_title = get_sub_field('small_box_columns_title');
 $section_button = get_sub_field('small_box_columns_button'); // ACF Link field
 $items = get_sub_field('small_box_columns_items');

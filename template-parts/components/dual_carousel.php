@@ -1,5 +1,4 @@
 <?php
-// Allow for passed variables, as well as ACF values
 $slides = get_sub_field('dual_carousel_slides');
 
 $markets_page_id = zotefoams_get_page_id_by_title('Markets') ?: zotefoams_get_page_id_by_title('Industries');

@@ -1,5 +1,4 @@
 <?php
-// Allow for passed variables, as well as ACF values
 $image = get_sub_field('text_banner_split_image');
 $title = get_sub_field('text_banner_split_title');
 $text  = get_sub_field('text_banner_split_text');

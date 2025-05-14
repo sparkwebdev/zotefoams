@@ -1,5 +1,4 @@
 <?php
-// Allow for passed variables, as well as ACF values
 $tab_overline = get_sub_field('tabbed_split_overline');
 $tab_text     = get_sub_field('tabbed_split_text');
 $tabs         = get_sub_field('tabbed_split_tabs');

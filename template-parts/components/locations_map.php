@@ -1,5 +1,4 @@
 <?php
-// Allow for passed variables, as well as ACF values
 $title     = get_sub_field('locations_map_title');
 $subtitle  = get_sub_field('locations_map_subtitle');
 $locations = get_sub_field('locations_map_locations');

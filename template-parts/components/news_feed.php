@@ -1,5 +1,4 @@
 <?php
-// Allow for passed variables, as well as ACF values
 $section_title = get_sub_field('news_feed_title');
 $button        = get_sub_field('news_feed_button'); // ACF Link field
 $behaviour     = get_sub_field('news_feed_behaviour');

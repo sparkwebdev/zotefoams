@@ -1,5 +1,4 @@
 <?php
-// Allow for passed variables, as well as ACF values
 $title = get_sub_field('data_points_title');
 $items = get_sub_field('data_points_items');
 

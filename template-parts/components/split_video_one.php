@@ -1,5 +1,4 @@
 <?php
-// Allow for passed variables, as well as ACF values
 $image       = get_sub_field('split_video_one_image');
 $video_url   = get_sub_field('split_video_one_video_url');
 $title       = get_sub_field('split_video_one_title');

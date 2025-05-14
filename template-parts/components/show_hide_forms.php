@@ -1,5 +1,4 @@
 <?php
-// Allow for passed variables, as well as ACF values
 $title = get_field('show_hide_forms_title', 'option');
 $intro = get_field('show_hide_forms_intro', 'option');
 $items = get_field('show_hide_forms_items', 'option');

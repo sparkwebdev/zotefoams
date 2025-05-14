@@ -79,7 +79,7 @@ $use_categories = ($behaviour === 'children' && $page_id == $posts_page_id);
             <?php endforeach;
         } elseif ($behaviour === 'manual' && $manual_items) {
             foreach ($manual_items as $item):
-                $img = $item['box_columns_item_image']['sizes']['thumbnail'] ?? get_template_directory_uri() . '/images/placeholder.png';
+                $img = $item['box_columns_item_image']['sizes']['thumbnail'] ?? null;
             ?>
                 <div class="box-item light-grey-bg">
                     <div class="box-content padding-40">
@@ -95,7 +95,9 @@ $use_categories = ($behaviour === 'children' && $page_id == $posts_page_id);
                             </a>
                         <?php endif; ?>
                     </div>
-                    <div class="box-image image-cover" style="background-image:url('<?php echo esc_url($img); ?>');"></div>
+                    <?php if ($img): ?>
+                        <div class="box-image image-cover" style="background-image:url('<?php echo esc_url($img); ?>');"></div>
+                    <?php endif; ?>
                 </div>
         <?php endforeach;
         }

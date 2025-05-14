@@ -1,5 +1,4 @@
 <?php
-// Allow for passed variables, as well as ACF values
 $title              = get_sub_field('financial_documents_picker_title');
 $text               = get_sub_field('financial_documents_picker_text');
 $documents_by_year  = get_sub_field('documents_by_year');

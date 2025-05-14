@@ -1,5 +1,4 @@
 <?php
-// Allow for passed variables, as well as ACF values
 $overline = get_sub_field('text_block_overline');
 $text     = get_sub_field('text_block_text');
 ?>

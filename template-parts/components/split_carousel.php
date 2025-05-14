@@ -1,5 +1,4 @@
 <?php
-// Allow for passed variables, as well as ACF values
 $slides = get_sub_field('split_carousel_slides');
 ?>
 

@@ -1,5 +1,4 @@
 <?php
-// Allow for passed variables, as well as ACF values
 $overline = get_sub_field('icon_columns_intro_overline');
 $intro    = get_sub_field('icon_columns_intro');
 $columns  = get_sub_field('icon_columns_columns');
