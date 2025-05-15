@@ -12,7 +12,7 @@ $text  = get_sub_field('split_text_text');
 
     <?php if ($text) : ?>
         <div class="split-text-content grey-text fs-300">
-            <?php echo do_shortcode(wp_kses_post($text)); ?>
+            <?php echo do_shortcode($text);  ?>
         </div>
     <?php endif; ?>
 </div>
