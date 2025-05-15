@@ -33,10 +33,12 @@ $use_categories = ($behaviour === 'children' && $page_id == $posts_page_id);
         ?>
                 <div class="box-item light-grey-bg">
                     <div class="box-content padding-40">
-                        <p class="fs-400 fw-semibold margin-b-20"><?php echo esc_html($category->name); ?></p>
-                        <?php if ($category->description): ?>
-                            <div class="margin-b-20 grey-text"><?php echo esc_html($category->description); ?></div>
-                        <?php endif; ?>
+                        <div>
+                            <p class="fs-400 fw-semibold margin-b-20"><?php echo esc_html($category->name); ?></p>
+                            <?php if ($category->description): ?>
+                                <div class="margin-b-20 grey-text"><?php echo esc_html($category->description); ?></div>
+                            <?php endif; ?>
+                        </div>
                         <a href="<?php echo esc_url($cat_link); ?>" class="hl arrow read-more">View <?php echo esc_html($category->name); ?></a>
                     </div>
                     <div class="box-image image-cover" style="background-image:url('<?php echo esc_url($image_url); ?>');"></div>
@@ -49,10 +51,12 @@ $use_categories = ($behaviour === 'children' && $page_id == $posts_page_id);
             ?>
                 <div class="box-item light-grey-bg">
                     <div class="box-content padding-40">
-                        <p class="fs-400 fw-semibold margin-b-20"><?php echo esc_html(get_the_title($pid)); ?></p>
-                        <?php if ($excerpt = get_the_excerpt($pid)): ?>
-                            <div class="margin-b-20 grey-text"><?php echo esc_html($excerpt); ?></div>
-                        <?php endif; ?>
+                        <div>
+                            <p class="fs-400 fw-semibold margin-b-20"><?php echo esc_html(get_the_title($pid)); ?></p>
+                            <?php if ($excerpt = get_the_excerpt($pid)): ?>
+                                <div class="margin-b-20 grey-text"><?php echo esc_html($excerpt); ?></div>
+                            <?php endif; ?>
+                        </div>
                         <a href="<?php echo esc_url(get_permalink($pid)); ?>" class="hl arrow read-more">Read more</a>
                     </div>
                     <div class="box-image image-cover" style="background-image:url('<?php echo esc_url($thumb); ?>');"></div>
@@ -68,10 +72,12 @@ $use_categories = ($behaviour === 'children' && $page_id == $posts_page_id);
             ?>
                 <div class="box-item light-grey-bg">
                     <div class="box-content padding-40">
-                        <p class="fs-400 fw-semibold margin-b-20"><?php echo esc_html(get_the_title($child->ID)); ?></p>
-                        <?php if ($excerpt = get_the_excerpt($child->ID)): ?>
-                            <div class="margin-b-20 grey-text"><?php echo esc_html($excerpt); ?></div>
-                        <?php endif; ?>
+                        <div>
+                            <p class="fs-400 fw-semibold margin-b-20"><?php echo esc_html(get_the_title($child->ID)); ?></p>
+                            <?php if ($excerpt = get_the_excerpt($child->ID)): ?>
+                                <div class="margin-b-20 grey-text"><?php echo esc_html($excerpt); ?></div>
+                            <?php endif; ?>
+                        </div>
                         <a href="<?php echo esc_url(get_permalink($child->ID)); ?>" class="hl arrow read-more">Read more</a>
                     </div>
                     <div class="box-image image-cover" style="background-image:url('<?php echo esc_url($thumb); ?>');"></div>
@@ -83,12 +89,14 @@ $use_categories = ($behaviour === 'children' && $page_id == $posts_page_id);
             ?>
                 <div class="box-item light-grey-bg">
                     <div class="box-content padding-40">
-                        <?php if ($item['box_columns_item_title']): ?>
-                            <p class="fs-400 fw-semibold margin-b-20"><?php echo esc_html($item['box_columns_item_title']); ?></p>
-                        <?php endif; ?>
-                        <?php if ($item['box_columns_item_description']): ?>
-                            <div class="margin-b-20 grey-text"><?php echo wp_kses_post($item['box_columns_item_description']); ?></div>
-                        <?php endif; ?>
+                        <div>
+                            <?php if ($item['box_columns_item_title']): ?>
+                                <p class="fs-400 fw-semibold margin-b-20"><?php echo esc_html($item['box_columns_item_title']); ?></p>
+                            <?php endif; ?>
+                            <?php if ($item['box_columns_item_description']): ?>
+                                <div class="margin-b-20 grey-text"><?php echo wp_kses_post($item['box_columns_item_description']); ?></div>
+                            <?php endif; ?>
+                        </div>
                         <?php if ($item['box_columns_item_button']): ?>
                             <a href="<?php echo esc_url($item['box_columns_item_button']['url']); ?>" class="hl arrow read-more" target="<?php echo esc_attr($item['box_columns_item_button']['target']); ?>">
                                 <?php echo esc_html($item['box_columns_item_button']['title']); ?>
