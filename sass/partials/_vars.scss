@@ -1,20 +1,15 @@
 :root {
-  --tone-off-white: #F8F8F8;
+  --tone-off-white: #f8f8f8;
   --tone-light: #d1d1d1;
-
   --color-text: #707070;
-  --color-text-light: #B5B5B5;
-  --color-surface: white;
-  --color-on-surface: black;
-
-  --color-link: #3B82F6;
-  --color-link-hover: #007EC5;
-
-  --color-brand-contrast: #BFEA78;
-
+  --color-text-light: #b5b5b5;
+  --color-surface: #fff;
+  --color-on-surface: #000;
+  --color-link: #3b82f6;
+  --color-link-hover: #007ec5;
+  --color-brand-contrast: #bfea78;
   --border-separator: solid 1px var(--tone-light);
   --grid-template-columns: 1fr;
-  
 }
 
 @media screen and (min-width: 480px) {
@@ -22,6 +17,7 @@
     --grid-template-columns-small: repeat(auto-fit, minmax(18rem, 1fr));
   }
 }
+
 @media screen and (min-width: 600px) {
   :root {
     --grid-template-columns: repeat(auto-fit, minmax(24rem, 1fr));
