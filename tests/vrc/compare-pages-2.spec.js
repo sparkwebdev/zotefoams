@@ -167,7 +167,7 @@ test('Visual Regression: Multi-Device, Multi-Page', async ({ browser }) => {
     try {
       context = await browser.newContext({ viewport });
   
-      for (const { path: pagePath, name } of pages6) {
+      for (const { path: pagePath, name } of pages) {
         const devUrl = devBase + pagePath;
         const liveUrl = liveBase + pagePath;
   
