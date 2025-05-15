@@ -301,7 +301,9 @@
 
 	.locations-map .map-container .location .popup {
 		position: anchor(top);
+		/* stylelint-disable-next-line property-no-unknown */
 		anchor-name: --popup-anchor;
+		/* stylelint-disable-next-line property-no-unknown */
 		anchor-size: auto;
 		inset-block-start: 10px; /* Adjust position relative to anchor */
 		inset-inline-start: 50%;
@@ -385,7 +387,7 @@
 
 .stats {
 	display: flex;
-	width: min(700px, 100%);
+	width: unquote("min(700px, 100%)");
 	gap: 20px;
 	flex-wrap: wrap;
 }
