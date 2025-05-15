@@ -860,6 +860,14 @@ html {
     align-items: center;
     display: grid;
   }
+  .articles--list .articles__footer .articles__cta {
+    justify-self: flex-end;
+  }
+
+  .articles--list .articles__footer:not(:has(> * + .articles__cta)) {
+    gap: 0;
+  }
+
 }
 
 .tag {
