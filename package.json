@@ -25,6 +25,7 @@
     "browser-sync": "^3.0.3",
     "dir-archiver": "^1.1.1",
     "node-sass": "^7.0.1",
+    "open": "^10.1.2",
     "rtlcss": "^3.5.0"
   },
   "rtlcssConfig": {
@@ -50,7 +51,10 @@
     "compile:rtl": "rtlcss style.css style-rtl.css",
     "lint:js": "wp-scripts lint-js 'js/*.js'",
     "bundle": "dir-archiver --src . --dest ../_s.zip --exclude .DS_Store .stylelintrc.json .eslintrc .git .gitattributes .github .gitignore README.md composer.json composer.lock node_modules vendor package-lock.json package.json .travis.yml phpcs.xml.dist sass style.css.map yarn.lock",
-    "test:compare": "playwright test tests/vrc/compare-pages.spec.js"
+    "test:compare": "playwright test tests/vrc/compare-pages.spec.js",
+    "test:compare:all": "USE_SITEMAP=1 INCLUDE_POSTS=1 UPDATE_CACHE=1 DEPTH=3 npm run test:compare",
+    "test:compare:shallow": "USE_SITEMAP=1 DEPTH=1 npm run test:compare",
+    "test:compare:static": "USE_SITEMAP=0 npm run test:compare"
   },
   "dependencies": {
     "node-fetch": "^3.3.2",
