@@ -1,0 +1,22 @@
+/* 19 - Text banner split
+    --------------------------------------------- */
+.text-banner-text {
+  max-width: 600px;
+}
+.text-banner-split .image-cover {
+  min-height: 500px;
+}
+@media screen and (max-width: 767px) {
+  .text-banner-split .image-cover {
+    min-height: 280px;
+  }
+}
+@media screen and (min-width: 1023px) {
+  .text-banner-split {
+    display: flex;
+    justify-content: space-between;
+  }
+  .text-banner-split .half {
+    width: 50%;
+  }
+}

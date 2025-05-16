@@ -1,0 +1,73 @@
+
+/* Footer
+--------------------------------------------- */
+.site-footer {
+background: #fafafa;
+font-size: 14px;
+font-weight: 400;
+}
+@media screen and (max-width: 480px) {
+.site-footer {
+  margin-top: 50px;
+}
+}
+
+.footer-content {
+display: flex;
+flex-direction: column;
+gap: 50px;
+}
+@media screen and (min-width: 37.5em) {
+.footer-content {
+  justify-content: space-between;
+  flex-direction: row;
+}
+}
+.footer-menus {
+display: flex;
+gap: 30px;
+flex-direction: column;
+}
+@media screen and (min-width: 64em) {
+.footer-menus {
+  flex-direction: row;
+  gap: 50px;
+}
+.footer-menu {
+  max-width: 14em;
+}
+}
+.footer-content ul {
+list-style-type: none;
+padding: 0;
+}
+.footer-content ul li {
+margin: 5px 0;
+}
+.footer-content ul li a {
+color: #000;
+font-weight: 400;
+padding: 5px 0;
+display: inline-block;
+}
+@media screen and (max-width: 480px) {
+.footer-content ul li {
+  margin: 0;
+}
+.footer-menu p {
+  margin-bottom: 10px;
+}
+.footer-content,
+.footer-menus {
+  gap: 20px;
+}
+}
+
+/* Newsletter signup
+--------------------------------------------- */
+footer div.wpforms-container.wpforms-container-full {
+width: 100%;
+}
+footer div.wpforms-container.wpforms-container-full:not(:empty) {
+margin: 0 auto;
+}

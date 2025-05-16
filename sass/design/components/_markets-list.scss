@@ -1,0 +1,30 @@
+/* 09 - Markets list
+    --------------------------------------------- */
+.markets-list {
+  display: flex;
+  margin: 1%;
+  gap: 1%;
+  flex-wrap: wrap;
+  align-items: flex-start;
+}
+.market-box {
+  display: flex;
+  flex: 1;
+  min-width: 24.25%;
+  max-width: 24.25%;
+  flex-direction: column;
+  height: 400px;
+  justify-content: space-between;
+  margin-bottom: 1%;
+}
+.box-content {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+@media screen and (max-width: 767px) {
+  .box-content > div {
+    min-height: auto;
+  }
+}

@@ -1,0 +1,5 @@
+/* b2 - Text banner
+    --------------------------------------------- */
+.text-banner:not(:has(+ .text-banner-split)) {
+  border-bottom: 1px solid #d1d1d1;
+}

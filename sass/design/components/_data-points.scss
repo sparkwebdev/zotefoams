@@ -1,0 +1,41 @@
+/* Data points
+--------------------------------------------- */
+.data-points h3 {
+  text-align: center;
+  font-size: 1.5em;
+}
+
+.data-points .data-points-items {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.data-points .data-points-items .spacer {
+  flex: 1 1 0;
+}
+
+.data-points .data-points-items .data-points-item {
+  flex: 2 1 0;
+  text-align: center;
+}
+
+.data-points .data-points-items .data-points-item img {
+  width: 30px;
+}
+
+.data-points .data-points-items .data-points-item .value {
+  display: block;
+}
+
+.data-points .data-points-items .data-points-item .sub-title {
+  font-size: 0.8em;
+  color: #707070;
+  display: block;
+}
+@media screen and (max-width: 767px) {
+  .data-points .data-points-items .data-points-item {
+    width: 50%;
+    flex: 1 auto;
+    margin-bottom: 30px;
+  }
+}

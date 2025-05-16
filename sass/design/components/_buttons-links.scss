@@ -1,0 +1,93 @@
+/* Buttons
+    --------------------------------------------- */
+.btn {
+  padding: 13px 20px 15px;
+  min-width: 140px;
+  /*text-transform:capitalize;*/
+  position: relative;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 5px;
+  transition: all 0.3s;
+}
+.btn.blue {
+  color: #fff;
+  background: #3b82f6;
+}
+.btn.outline.white {
+  color: #fff;
+  border: 1px solid #fff;
+}
+.btn.outline.white:hover {
+  color: #000;
+  border: 1px solid #fff;
+  background: #fff;
+}
+.btn.outline.black {
+  color: #000;
+  border: 1px solid #000;
+}
+.btn.outline.black:hover {
+  color: #fff;
+  border: 1px solid #fff;
+  background: #000;
+}
+.btn.outline.arrow::after {
+  content: "";
+  background-repeat: no-repeat;
+  background-size: 120%;
+  background-position: center center;
+  width: 8px;
+  height: 12px;
+  display: inline-flex;
+  margin-left: 30px;
+}
+.btn.white.arrow::after {
+  background-image: url(/wp-content/themes/zotefoams/images/icon-right-arrow-white.svg);
+}
+.btn.white.arrow:hover::after {
+  background-image: url(/wp-content/themes/zotefoams/images/icon-right-arrow-blue.svg);
+}
+.btn.black.arrow::after {
+  background-image: url(/wp-content/themes/zotefoams/images/icon-right-arrow-black.svg);
+}
+.btn.black.arrow:hover::after {
+  background-image: url(/wp-content/themes/zotefoams/images/icon-right-arrow-blue.svg);
+}
+@media screen and (max-width: 480px) {
+  .btn {
+    padding: 10px 15px 12px;
+  }
+}
+
+a.hl {
+  /*text-transform:capitalize;*/
+  transition: all 0.3s;
+  font-size: 14px;
+  display: inline;
+  text-wrap: nowrap;
+}
+a.hl.arrow::after {
+  content: "";
+  background-image: url(/wp-content/themes/zotefoams/images/icon-right-arrow-blue.svg);
+  background-repeat: no-repeat;
+  background-size: 120%;
+  background-position: center center;
+  width: 6px;
+  height: 10px;
+  display: inline-flex;
+  margin-left: 8px;
+}
+a.hl.download::after {
+  content: "";
+  background-image: url(/wp-content/themes/zotefoams/images/icon-download.svg);
+  background-repeat: no-repeat;
+  background-size: 120%;
+  background-position: center center;
+  width: 7px;
+  height: 12px;
+  display: inline-flex;
+  margin-left: 8px;
+  margin-top: 1px;
+}
