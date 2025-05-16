@@ -1,0 +1,22 @@
+/* 12 - Split text
+    --------------------------------------------- */
+.split-text {
+  display: flex;
+  gap: 10%;
+  flex-direction: column;
+}
+@media screen and (min-width: 48em) {
+  .split-text {
+    flex-direction: row;
+  }
+}
+.split-text > div {
+  flex: 1;
+}
+.split-text p {
+  margin-bottom: 20px;
+}
+.split-text strong {
+  color: #000;
+  font-weight: 600;
+}

@@ -10,7 +10,7 @@
 
 if (! defined('_S_VERSION')) {
     // Replace the version number of the theme on each release.
-    define('_S_VERSION', '1.0.0');
+    define('_S_VERSION', '1.0.5');
 }
 
 /**
@@ -100,7 +100,6 @@ function zotefoams_enqueue_assets()
 {
     // Main stylesheet
     wp_enqueue_style('zotefoams-style', get_stylesheet_uri(), array(), _S_VERSION);
-    wp_style_add_data('zotefoams-style', 'rtl', 'replace');
 
     // Google Fonts
     wp_enqueue_style(
@@ -126,7 +125,7 @@ function zotefoams_enqueue_assets()
     wp_enqueue_script('zotefoams-components-carousels-js', get_template_directory_uri() . '/js/components-carousels.js', array(), _S_VERSION, true);
 
     // Stevens (WIP) Assets
-    wp_enqueue_style('zotefoams-sp-style', get_template_directory_uri() . '/csp.css', array(), _S_VERSION);
+    wp_enqueue_style('zotefoams-sp-style', get_template_directory_uri() . '/sp.css', array(), _S_VERSION);
     wp_enqueue_script('zotefoams-sp-js', get_template_directory_uri() . '/js/sp.js', array(), _S_VERSION, true);
 
     // Comment reply script (if applicable)
