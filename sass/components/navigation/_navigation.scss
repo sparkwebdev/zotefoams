@@ -70,6 +70,7 @@
 	}
 }
 */
+
 /* Small menu.
 .menu-toggle,
 .main-navigation.toggled ul {
@@ -90,21 +91,20 @@
 .comment-navigation,
 .posts-navigation,
 .post-navigation {
+  .site-main & {
+    margin: 0 0 1.5em;
+  }
 
-	.site-main & {
-		margin: 0 0 1.5em;
-	}
+  .nav-links {
+    display: flex;
+  }
 
-	.nav-links {
-		display: flex;
-	}
+  .nav-previous {
+    flex: 1 0 50%;
+  }
 
-	.nav-previous {
-		flex: 1 0 50%;
-	}
-
-	.nav-next {
-		text-align: end;
-		flex: 1 0 50%;
-	}
+  .nav-next {
+    text-align: end;
+    flex: 1 0 50%;
+  }
 }

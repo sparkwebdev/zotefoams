@@ -1,5 +1,5 @@
 /* Multi item carousel
-	--------------------------------------------- */
+ *	--------------------------------------------- */
 .multi-item-carousel.swiper {
   overflow: visible !important;
 }
@@ -11,6 +11,7 @@
 .carousel-navigation-inner .multi-swiper-button-prev {
   margin-right: 5px;
 }
+
 .carousel-navigation-inner .multi-swiper-button-next {
   margin-left: 5px;
 }
@@ -55,7 +56,7 @@
 
 .multi-item-carousel .swiper-slide p {
   margin-bottom: 70px;
-  max-width: unquote("min(90%, 400px)");
+  max-width: unquote('min(90%, 400px)');
   color: #707070;
   flex-grow: 1;
 }
@@ -73,24 +74,30 @@
 .multi-item-carousel .multi-swiper-scrollbar {
   height: 5px;
   margin-top: 30px;
-  background: rgba(0, 0, 0, 0.15); /* Background of the scrollbar */
+  background: rgba(0, 0, 0, 0.15);
+
+  /* Background of the scrollbar */
 }
 
 .multi-item-carousel .swiper-scrollbar-drag {
   background: #707070;
   height: 5px;
 }
+
 @media screen and (max-width: 767px) {
   .multi-item-carousel .swiper-slide p {
     margin-bottom: 30px;
   }
+
   .multi-item-carousel .swiper-slide h3 {
     margin-top: 30px;
     margin-bottom: 20px;
   }
+
   .multi-item-carousel .swiper-slide img {
     margin-bottom: 30px;
   }
+
   .multi-item-carousel .swiper-slide a.btn {
     margin-bottom: 30px;
   }

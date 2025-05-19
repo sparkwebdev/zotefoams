@@ -383,3 +383,39 @@ function zotefoams_add_google_gtag_from_acf()
     }
 }
 add_action('wp_head', 'zotefoams_add_google_gtag_from_acf');
+
+add_action('init', function () {
+    // return;
+    // Only run for admins and only once per load
+    if (!current_user_can('manage_options')) {
+        return;
+    }
+
+    $target_layout = 'split_text'; // Change this to your layout name
+    $flex_field = 'page_content';         // Change this to your flexible content field name
+
+    $pages = get_posts([
+        'post_type' => 'page',
+        'posts_per_page' => -1,
+        'post_status' => 'publish',
+    ]);
+
+    echo '<h2>Pages using layout: ' . esc_html($target_layout) . '</h2>';
+    echo '<ul>';
+
+    foreach ($pages as $page) {
+        $layouts = get_field($flex_field, $page->ID);
+
+        if (is_array($layouts)) {
+            foreach ($layouts as $layout) {
+                if (isset($layout['acf_fc_layout']) && $layout['acf_fc_layout'] === $target_layout) {
+                    echo '<li><a href="' . get_the_permalink($page->ID) . '" target="_blank">'
+                        . esc_html($page->post_title) . ' (#' . $page->ID . ')</a></li>';
+                    break; // Stop after first match in the page
+                }
+            }
+        }
+    }
+
+    echo '</ul>';
+});

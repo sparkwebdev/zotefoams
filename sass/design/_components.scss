@@ -1,5 +1,70 @@
-@import "components/_image-banner.scss";
-@import "components/_show-hide-forms.scss";
-@import "components/_locations-map.scss";
-@import "components/_data-points.scss";
-@import "components/_data-map.scss";
+@import 'components/image-banner.scss';
+@import 'components/text-banner.scss';
+@import 'components/text-banner-split.scss';
+@import 'components/split-video-one.scss';
+@import 'components/split-video-two.scss';
+@import 'components/icon-columns.scss';
+@import 'components/news-feed.scss';
+@import 'components/document-list.scss';
+@import 'components/show-hide-accordion.scss';
+@import 'components/box-columns.scss';
+@import 'components/markets-list.scss';
+@import 'components/split-text.scss';
+@import 'components/text-block.scss';
+@import 'components/tabbed-component.scss';
+@import 'components/small-box-columns.scss';
+@import 'components/video-box-columns.scss';
+@import 'components/waste-hierarchy.scss';
+@import 'components/financial-document-picker.scss';
+@import 'components/sustainability-development-goals.scss';
+@import 'components/contact.scss';
+@import 'components/biography.scss';
+@import 'components/show-hide-forms.scss';
+@import 'components/locations-map.scss';
+@import 'components/data-points.scss';
+@import 'components/data-map.scss';
+
+/* Generic carousel styles
+--------------------------------------------- */
+
+.carousel-navigation img {
+  padding: 14px;
+  border-radius: 50%;
+}
+
+.carousel-navigation .split-swiper-button-prev {
+  margin-right: 5px;
+}
+
+.carousel-navigation .split-swiper-button-next {
+  margin-left: 5px;
+}
+
+.carousel-navigation.white img {
+  border: 1px solid rgba(255, 255, 255, 0.7);
+}
+
+.carousel-navigation.black img {
+  border: 1px solid rgba(0, 0, 0, 0.7);
+}
+
+.carousel-navigation-inner {
+  display: flex;
+}
+
+.carousel-navigation .swiper-button-disabled {
+  opacity: 0.5;
+}
+
+.carousel-navigation .swiper-button-disabled img {
+  cursor: default;
+}
+
+.carousel-navigation img {
+  cursor: pointer;
+}
+
+@import 'components/carousel-split.scss';
+@import 'components/carousel-multi.scss';
+@import 'components/carousel-dual.scss';
+@import 'components/carousel-calendar.scss';

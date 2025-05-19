@@ -1,14 +1,16 @@
 /* Sustainability Development goals
-    --------------------------------------------- */
+ *  --------------------------------------------- */
 .development-goals-list {
   display: flex;
   gap: 2%;
   flex-wrap: wrap;
 }
+
 .development-goals-list img {
   margin-bottom: 2%;
   width: 23.33%;
 }
+
 @media screen and (max-width: 767px) {
   .development-goals-list img {
     width: 48%;
@@ -16,22 +18,24 @@
 }
 
 /* Sustainability intro
-        --------------------------------------------- */
+ *      --------------------------------------------- */
 .sustainability-intro strong {
   font-weight: 700;
   color: #000;
 }
+
 .sustainability-intro-inner {
   max-width: 1000px;
 }
 
 /* Sustainability icons
-        --------------------------------------------- */
+ *      --------------------------------------------- */
 .sustainability-icons-inner {
   display: flex;
   flex-wrap: wrap;
   gap: 4%;
 }
+
 .sustainability-icons-inner > div {
   width: 48%;
   flex: auto;
@@ -45,52 +49,64 @@
 }
 
 /* Sustainability Header stats
-        --------------------------------------------- */
+ *      --------------------------------------------- */
 .sustainability-stats-outer {
   max-width: 850px;
   align-self: flex-end;
 }
+
 .swiper-image .swiper-inner .sustainability-stats-outer p {
   max-width: 850px;
 }
+
 .sustainaility-stat-heading {
   border-top: 1px solid #fff;
   border-bottom: 1px solid #fff;
   margin-bottom: 20px;
   padding: 10px 0;
 }
+
 .sustainability-stats {
   display: flex;
   gap: 3%;
 }
+
 .sustainability-stats > div {
   flex: 1;
 }
+
 @media screen and (max-width: 767px) {
   .page-id-153 .swiper-image {
     height: auto;
   }
+
   .sustainability-stats-outer {
     margin-top: 100px;
   }
+
   .sustainaility-stat-heading {
     margin-bottom: 30px !important;
   }
+
   .sustainability-stats p.fs-800 {
     font-size: 28px;
     margin-bottom: 0;
   }
+
   .sustainability-stats img {
     width: 38px;
     margin-right: 15px;
   }
+
   .sustainability-stats {
     display: block;
     gap: 0;
   }
+
   .sustainability-stat {
     margin-bottom: 20px;
   }
+
   .sustainability-stat {
     display: flex;
     align-items: flex-start;

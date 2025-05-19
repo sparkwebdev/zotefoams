@@ -1,28 +1,27 @@
-
 /* Calendar carousel
-	--------------------------------------------- */
+ *	--------------------------------------------- */
 
 .calendar-carousel .swiper-slide-inner {
-	border: 1px solid #ccc;
-	display:flex;
-	padding:15px
+  border: 1px solid #ccc;
+  display: flex;
+  padding: 15px;
 }
 
 .calendar-carousel .date-wrapper {
-	margin-left: 10px;
-	margin-right: 20px;
-	display:flex;
-	flex-direction: column;
-	flex-wrap:nowrap
+  margin-left: 10px;
+  margin-right: 20px;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
 }
 
 .month-year {
-	text-wrap: nowrap;
+  text-wrap: nowrap;
 }
 
 .calendar-carousel-note {
-	color: #b5b5b5;
-	margin-top: 15px;
-	margin-left: 2px;
-	display: block;
+  color: #b5b5b5;
+  margin-top: 15px;
+  margin-left: 2px;
+  display: block;
 }

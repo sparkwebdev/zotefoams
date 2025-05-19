@@ -22,6 +22,8 @@ $container_class    = $has_intro_content ? 'light-grey-bg padding-50 theme-light
 					<h3 class="fw-semibold margin-b-20 fs-400"><?php echo esc_html($title); ?></h3>
 				<?php endif; ?>
 			<?php endif; ?>
+		</div>
+		<div class="half">
 			<div class="financial-documents">
 				<select class="yearSelect" id="<?php echo esc_attr($instance_id); ?>_yearSelect">
 					<?php foreach ($documents_by_year as $index => $year_data) : ?>

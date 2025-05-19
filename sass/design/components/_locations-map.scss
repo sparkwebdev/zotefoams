@@ -1,5 +1,5 @@
 /* Locations Map
---------------------------------------------- */
+ *--------------------------------------------- */
 .locations-map {
   background-color: #041b40;
 }
@@ -38,8 +38,7 @@
   max-width: 100%;
   display: block;
   width: 100%;
-  filter: brightness(0) saturate(100%) invert(26%) sepia(23%) saturate(954%)
-    hue-rotate(179deg) brightness(90%) contrast(87%);
+  filter: brightness(0) saturate(100%) invert(26%) sepia(23%) saturate(954%) hue-rotate(179deg) brightness(90%) contrast(87%);
 }
 
 .locations-map .map-container .location {
@@ -60,7 +59,7 @@
 }
 
 .locations-map .map-container .location::after {
-  content: "";
+  content: '';
   width: 3vw;
   height: 3vw;
   border-radius: 50%;
@@ -136,11 +135,15 @@
 @supports (position: anchor) {
   .locations-map .map-container .location .popup {
     position: anchor(top);
+
     /* stylelint-disable-next-line property-no-unknown */
     anchor-name: --popup-anchor;
+
     /* stylelint-disable-next-line property-no-unknown */
     anchor-size: auto;
-    inset-block-start: 10px; /* Adjust position relative to anchor */
+    inset-block-start: 10px;
+
+    /* Adjust position relative to anchor */
     inset-inline-start: 50%;
     transform: translateX(-50%);
     background: #fffe;

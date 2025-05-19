@@ -1,31 +1,17 @@
-@import "components/_utility-classes.scss";
+@import 'common/utility-classes.scss';
+@import 'common/vars';
+@import 'common/buttons-links.scss';
+@import 'common/video.scss';
+@import 'common/search.scss';
+@import 'common/footer.scss';
+@import 'common/pagination';
+@import 'common/nav';
+@import 'common/articles';
+@import 'common/file-list';
 
-@import "components/_buttons-links.scss";
-@import "components/_video.scss";
-
-@import "components/_image-banner.scss";
-@import "components/_text-banner.scss";
-@import "components/_text-banner-split.scss";
-@import "components/_split-video-one.scss";
-@import "components/_split-video-two.scss";
-@import "components/_icon-columns.scss";
-@import "components/_news-feed.scss";
-@import "components/_document-list.scss";
-@import "components/_show-hide-accordion.scss";
-@import "components/_box-columns.scss";
-@import "components/_markets-list.scss";
-@import "components/_split-text.scss";
-@import "components/_text-block.scss";
-@import "components/_tabbed-component.scss";
-@import "components/_small-box-columns.scss";
-@import "components/_video-box-columns.scss";
-@import "components/_waste-hierarchy.scss";
-@import "components/_financial-document-picker.scss";
-@import "components/_sustainability-development-goals.scss";
-@import "components/_contact.scss";
-@import "components/_biography.scss";
-@import "components/_search.scss";
-@import "components/_footer.scss";
+html {
+  scroll-behavior: smooth;
+}
 
 /* Component label
     --------------------------------------------- */
@@ -44,6 +30,7 @@ iframe {
   border: none;
   overflow: visible;
 }
+
 /* Animate.css global timings
     --------------------------------------------- */
 
@@ -51,6 +38,88 @@ iframe {
   --animate-duration: 0.5s;
 }
 
+/* To sort
+    --------------------------------------------- */
+
+.theme-dark + .theme-dark,
+.theme-light + .theme-light,
+.theme-none + .theme-none {
+  padding-top: 0;
+}
+
+.separator {
+  border-top: var(--border-separator);
+  background-color: #0000;
+}
+
 footer .site-branding img {
   width: 174px;
+}
+
+.tag {
+  color: var(--color-text);
+}
+
+[data-clickable-url],
+[data-clickable-target] {
+  cursor: pointer;
+}
+
+[data-clickable-url]:hover .articles__content,
+[data-clickable-url]:focus .articles__content,
+[data-clickable-target]:hover .articles__content,
+[data-clickable-target]:focus .articles__content {
+  background-color: var(--color-brand-contrast);
+}
+
+.single .entry-content p:not([class]),
+.single .entry-content h1:not([class]),
+.single .entry-content h2:not([class]),
+.single .entry-content h3:not([class]),
+.single .entry-content h4:not([class]),
+.single .entry-content h5:not([class]),
+.single .entry-content h6:not([class]) {
+  margin: revert;
+}
+
+a.read-more:hover,
+a.read-more:focus {
+  color: #000;
+}
+
+a.read-more.hl.arrow:hover::after,
+a.read-more.hl.arrow:focus::after {
+  background-image: url(../images/icon-right-arrow-black.svg);
+}
+
+.text-block ul,
+.split-text ul {
+  margin-top: 30px;
+  padding: 0;
+}
+
+.text-block ul {
+  font-size: 18px;
+  line-height: 24px;
+}
+
+.split-video-one ul {
+  margin-bottom: 20px;
+  margin-top: 20px;
+  padding: 0;
+}
+
+.split-video-one ul li,
+.text-block ul li,
+.split-text ul li {
+  color: #707070;
+  background: url(images/bullet-tick.svg) 0 0.25em no-repeat;
+  padding-left: 1.65rem;
+  list-style: none;
+}
+
+.split-video-one ul li + li,
+.text-block ul li + li,
+.split-text ul li + li {
+  margin-top: 5px;
 }

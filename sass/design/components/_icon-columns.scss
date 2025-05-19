@@ -1,9 +1,16 @@
 /* 03 - Icon columns
-    --------------------------------------------- */
+ *  --------------------------------------------- */
 .icon-columns-inner {
   display: flex;
   gap: 2%;
 }
+
 .icon-columns-inner > div {
   flex: 1;
+}
+
+.icon-columns-inner {
+  grid-template-columns: var(--grid-template-columns-small);
+  gap: 30px;
+  display: grid;
 }

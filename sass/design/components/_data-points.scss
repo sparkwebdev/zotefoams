@@ -1,5 +1,5 @@
 /* Data points
---------------------------------------------- */
+ *--------------------------------------------- */
 .data-points h3 {
   text-align: center;
   font-size: 1.5em;
@@ -32,6 +32,7 @@
   color: #707070;
   display: block;
 }
+
 @media screen and (max-width: 767px) {
   .data-points .data-points-items .data-points-item {
     width: 50%;

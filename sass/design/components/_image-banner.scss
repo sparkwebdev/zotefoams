@@ -1,5 +1,5 @@
 /* Image Banner
---------------------------------------------- */
+ *--------------------------------------------- */
 
 .swiper-image {
   width: 100%;
@@ -30,6 +30,7 @@
 .swiper-image .swiper-inner p {
   max-width: 770px;
 }
+
 @media screen and (max-width: 1200px) {
   .swiper-image .swiper-inner p {
     max-width: 100%;
@@ -38,24 +39,17 @@
 }
 
 .swiper-image .swiper-slide .overlay {
-  background: linear-gradient(
-    90deg,
-    rgba(0, 0, 0, 0.5) 0%,
-    rgba(0, 0, 0, 0) 100%
-  );
+  background: linear-gradient(90deg, rgba(0, 0, 0, 0.5) 0%, rgba(0, 0, 0, 0) 100%);
   position: absolute;
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
 }
+
 @media screen and (max-width: 767px) {
   .swiper-image .swiper-slide .overlay {
-    background: linear-gradient(
-      90deg,
-      rgba(0, 0, 0, 0.75) 0%,
-      rgba(0, 0, 0, 0) 100%
-    );
+    background: linear-gradient(90deg, rgba(0, 0, 0, 0.75) 0%, rgba(0, 0, 0, 0) 100%);
   }
 }
 
@@ -79,28 +73,32 @@
 
 .swiper-image .swiper-button-next::after,
 .swiper-rtl .swiper-button-prev::after {
-  content: "";
+  content: '';
 }
 
 .swiper-image .swiper-button-next-image:hover {
   cursor: pointer;
   opacity: 0.8;
 }
+
 @media screen and (max-width: 1200px) {
   .swiper-image {
     height: 75vh;
     min-height: 700px;
   }
+
   .swiper-image .swiper-button-next-image {
     bottom: 30px;
     right: 30px;
   }
 }
+
 @media screen and (max-width: 767px) {
   .swiper-image {
     height: 65vh;
     min-height: 500px;
   }
+
   .swiper-image .swiper-button-next-image {
     bottom: 20px;
     right: 20px;

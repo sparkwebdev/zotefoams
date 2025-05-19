@@ -1,36 +1,52 @@
 /* Search styles
-    --------------------------------------------- */
+ *  --------------------------------------------- */
 
 .search-form input.search-field {
   width: 100%;
   min-width: 400px;
   padding: 10px;
 }
+
 @media screen and (max-width: 767px) {
   .search-form input.search-field {
     min-width: 0;
   }
 }
+
 .search-results article {
   border-bottom: 1px solid #ccc;
 }
+
 .search-results article .search-thumb img {
   max-width: 250px;
   margin-left: 50px;
 }
+
 .search-results article .entry-summary p {
   margin-bottom: 30px;
 }
+
 .search-results article .search-header {
   display: flex;
   justify-content: space-between;
 }
+
 @media screen and (max-width: 767px) {
   .search-form {
     flex-direction: column;
   }
+
   .search-results article .search-thumb img {
     max-width: 150px;
     margin-left: 15px;
   }
+}
+
+.search-form {
+  gap: 10px;
+  display: flex;
+}
+
+.search-form input.zf {
+  margin: 0;
 }

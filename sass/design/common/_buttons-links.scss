@@ -1,9 +1,10 @@
 /* Buttons
-    --------------------------------------------- */
+ *  --------------------------------------------- */
 .btn {
   padding: 13px 20px 15px;
   min-width: 140px;
-  /*text-transform:capitalize;*/
+
+  /*text-transform:capitalize; */
   position: relative;
   display: inline-flex;
   justify-content: center;
@@ -11,30 +12,36 @@
   border-radius: 5px;
   transition: all 0.3s;
 }
+
 .btn.blue {
   color: #fff;
   background: #3b82f6;
 }
+
 .btn.outline.white {
   color: #fff;
   border: 1px solid #fff;
 }
+
 .btn.outline.white:hover {
   color: #000;
   border: 1px solid #fff;
   background: #fff;
 }
+
 .btn.outline.black {
   color: #000;
   border: 1px solid #000;
 }
+
 .btn.outline.black:hover {
   color: #fff;
   border: 1px solid #fff;
   background: #000;
 }
+
 .btn.outline.arrow::after {
-  content: "";
+  content: '';
   background-repeat: no-repeat;
   background-size: 120%;
   background-position: center center;
@@ -43,18 +50,23 @@
   display: inline-flex;
   margin-left: 30px;
 }
+
 .btn.white.arrow::after {
   background-image: url(/wp-content/themes/zotefoams/images/icon-right-arrow-white.svg);
 }
+
 .btn.white.arrow:hover::after {
   background-image: url(/wp-content/themes/zotefoams/images/icon-right-arrow-blue.svg);
 }
+
 .btn.black.arrow::after {
   background-image: url(/wp-content/themes/zotefoams/images/icon-right-arrow-black.svg);
 }
+
 .btn.black.arrow:hover::after {
   background-image: url(/wp-content/themes/zotefoams/images/icon-right-arrow-blue.svg);
 }
+
 @media screen and (max-width: 480px) {
   .btn {
     padding: 10px 15px 12px;
@@ -62,14 +74,15 @@
 }
 
 a.hl {
-  /*text-transform:capitalize;*/
+  /*text-transform:capitalize; */
   transition: all 0.3s;
   font-size: 14px;
   display: inline;
   text-wrap: nowrap;
 }
+
 a.hl.arrow::after {
-  content: "";
+  content: '';
   background-image: url(/wp-content/themes/zotefoams/images/icon-right-arrow-blue.svg);
   background-repeat: no-repeat;
   background-size: 120%;
@@ -79,8 +92,9 @@ a.hl.arrow::after {
   display: inline-flex;
   margin-left: 8px;
 }
+
 a.hl.download::after {
-  content: "";
+  content: '';
   background-image: url(/wp-content/themes/zotefoams/images/icon-download.svg);
   background-repeat: no-repeat;
   background-size: 120%;
@@ -90,4 +104,13 @@ a.hl.download::after {
   display: inline-flex;
   margin-left: 8px;
   margin-top: 1px;
+}
+
+button.btn,
+input[type='button'].btn,
+input[type='reset'].btn,
+input[type='submit'].btn {
+  border: 0;
+  border-radius: 5px;
+  padding: 13px 20px 15px;
 }

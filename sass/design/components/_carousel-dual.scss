@@ -1,10 +1,12 @@
 /* Dual carousel
-	--------------------------------------------- */
+ *	--------------------------------------------- */
 @media screen and (min-width: 48em) {
   .swiper-dual-carousel {
     display: flex;
     justify-content: center;
-    align-items: stretch; /* Ensure both child divs stretch to fill height */
+    align-items: stretch;
+
+    /* Ensure both child divs stretch to fill height */
     flex-direction: column;
     flex-direction: row;
   }
@@ -68,34 +70,54 @@
 .carousel-navigation-inner .calendar-swiper-button-prev {
   margin-right: 5px;
 }
+
 .carousel-navigation-inner .swiper-button-next-dual-carousel,
 .carousel-navigation-inner .calendar-swiper-button-next {
   margin-left: 5px;
 }
 
 .swiper-pagination-bullet {
-  width: 9px; /* Set width for the bullets */
-  height: 9px; /* Set height for the bullets */
-  background-color: #fff; /* Set default background color for the bullets */
-  border-radius: 50%; /* Make the bullets round */
-  opacity: 0.6; /* Optional: makes the bullets slightly transparent */
-  transition: opacity 0.3s; /* Optional: add transition for better effect */
+  width: 9px;
+
+  /* Set width for the bullets */
+  height: 9px;
+
+  /* Set height for the bullets */
+  background-color: #fff;
+
+  /* Set default background color for the bullets */
+  border-radius: 50%;
+
+  /* Make the bullets round */
+  opacity: 0.6;
+
+  /* Optional: makes the bullets slightly transparent */
+  transition: opacity 0.3s;
+
+  /* Optional: add transition for better effect */
   display: inline-block;
   margin: 0 3px;
 }
 
 .swiper-pagination-bullet-active {
-  background-color: #3b82f6; /* Set active bullet color */
-  opacity: 1; /* Ensure the active bullet is fully opaque */
+  background-color: #3b82f6;
+
+  /* Set active bullet color */
+  opacity: 1;
+
+  /* Ensure the active bullet is fully opaque */
 }
+
 @media screen and (max-width: 990px) {
   .swiper.swiper-dual-carousel-image {
     display: none;
   }
+
   .swiper-dual-carousel-text .slide-sub-content {
     max-width: 700px;
   }
 }
+
 @media screen and (max-width: 767px) {
   .swiper-dual-carousel-text .swiper-slide {
     padding: 50px 0 140px;

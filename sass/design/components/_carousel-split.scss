@@ -1,8 +1,9 @@
 /* Split carousel
-	--------------------------------------------- */
+ *	--------------------------------------------- */
 
 .swiper-carousel.split-carousel {
   position: relative;
+
   /* padding-bottom: 70px; */
 }
 
@@ -15,10 +16,7 @@
   margin-bottom: 30px;
 }
 
-.swiper-carousel.split-carousel
-  .navigation-wrapper
-  .carousel-navigation-inner
-  img {
+.swiper-carousel.split-carousel .navigation-wrapper .carousel-navigation-inner img {
   width: 50px;
   height: 50px;
 }
@@ -31,20 +29,14 @@
   float: right;
 }
 
-.swiper-carousel.split-carousel
-  .navigation-wrapper
-  .split-swiper-pagination
-  .swiper-pagination-bullet {
+.swiper-carousel.split-carousel .navigation-wrapper .split-swiper-pagination .swiper-pagination-bullet {
   background-color: #000;
   opacity: 1;
   margin-left: 2px;
   margin-right: 2px;
 }
 
-.swiper-carousel.split-carousel
-  .navigation-wrapper
-  .split-swiper-pagination
-  .swiper-pagination-bullet-active {
+.swiper-carousel.split-carousel .navigation-wrapper .split-swiper-pagination .swiper-pagination-bullet-active {
   background-color: #3b82f6;
 }
 
@@ -74,16 +66,21 @@
   .swiper-split .swiper-slide-content {
     padding-right: 0;
   }
+
   .swiper-carousel.split-carousel {
     position: relative;
+
     /* padding-bottom: 70px; */
   }
+
   .swiper-split .swiper-slide {
     flex-direction: column;
   }
+
   .swiper-split .swiper-slide-content {
     margin-bottom: 40px;
   }
+
   .swiper-carousel.split-carousel .navigation-wrapper {
     width: 100%;
     position: relative;
@@ -91,13 +88,16 @@
     justify-content: center;
     padding-bottom: 40px;
   }
+
   .swiper-carousel.split-carousel .split-swiper-pagination {
     display: none;
   }
+
   .swiper-split .swiper-slide > * {
     text-align: center;
     width: 100%;
   }
+
   .swiper-split .swiper-slide-content > * {
     max-width: 90%;
     margin-left: auto;
