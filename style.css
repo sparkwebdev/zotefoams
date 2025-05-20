@@ -2778,6 +2778,40 @@ body.touch-device .utility-menu .menu > li.dropdown-active > ul {
   }
 }
 
+.utility-search {
+  display: none;
+}
+
+.utility-search.is-visible {
+  display: block;
+  padding: 0.5em 0 1em 0;
+}
+
+.utility-search form {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+  max-width: 22em;
+  justify-self: flex-end;
+  margin-left: auto;
+}
+
+.utility-search input[type='text'] {
+  flex: 1;
+  border: 0;
+  padding: 8px;
+  line-height: 1;
+}
+
+.utility-search button[type='submit'],
+.utility-search button[type='button'] {
+  min-width: 0;
+  cursor: pointer;
+  padding: 8px 16px;
+  min-width: 0;
+  background: transparent;
+}
+
 .articles-header {
   justify-content: space-between;
   align-items: center;

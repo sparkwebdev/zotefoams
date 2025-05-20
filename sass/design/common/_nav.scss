@@ -822,3 +822,37 @@ body.touch-device .utility-menu .menu > li.dropdown-active > ul {
     transform: rotate(-90deg);
   }
 }
+
+.utility-search {
+  display: none;
+
+  &.is-visible {
+    display: block;
+    padding: 0.5em 0 1em 0;
+  }
+
+  form {
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+    max-width: 22em;
+    justify-self: flex-end;
+    margin-left: auto;
+  }
+
+  input[type='text'] {
+    flex: 1;
+    border: 0;
+    padding: 8px;
+    line-height: 1;
+  }
+
+  button[type="submit"],
+  button[type="button"] {
+    min-width: 0;
+    cursor: pointer;
+    padding: 8px 16px;
+    min-width: 0;
+    background: transparent;
+  }
+} 
