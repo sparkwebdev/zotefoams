@@ -1712,6 +1712,8 @@ input[type='submit'].btn {
   align-items: center;
   cursor: pointer;
   background: transparent;
+  border: none;
+  padding: 0;
 }
 
 .video-trigger img {
@@ -2009,6 +2011,14 @@ footer div.wpforms-container.wpforms-container-full:not(:empty) {
   border-bottom: solid 1px var(--color-text-light);
   --color-link-hover: #3b82f6;
   position: relative;
+}
+
+.has-sticky-header .site-header {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  background-color: #fff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .site-header .site-branding {

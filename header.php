@@ -25,7 +25,7 @@
 	<main id="page" class="site">
 		<a class="skip-link screen-reader-text" href="#primary"><?php esc_html_e('Skip to content', 'zotefoams'); ?></a>
 
-		<header id="masthead" class="site-header">
+		<header id="masthead" class="site-header" data-el-site-header>
 
 			<div class="utility-menu">
 				<?php
@@ -52,10 +52,10 @@
 
 				<nav id="site-navigation" class="main-navigation">
 					<button class="menu-toggle" aria-controls="primary-menu" aria-expanded="false">
+						<div class="menu-line"></div>
+						<div class="menu-line"></div>
+						<div class="menu-line"></div>
 						<span class="screen-reader-text"><?php esc_html_e('Toggle menu', 'zotefoams'); ?></span>
-						<div class="menu-line"></div>
-						<div class="menu-line"></div>
-						<div class="menu-line"></div>
 					</button>
 					<?php
 					wp_nav_menu(array(

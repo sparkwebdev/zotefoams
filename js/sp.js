@@ -402,3 +402,32 @@ window.addEventListener('message', function (event) {
     }
   }
 });
+
+(function () {
+  const updateHeaderHeight = () => {
+    const header = document.querySelector('[data-el-site-header]');
+    if (!header) return;
+
+    const headerHeight = header.offsetHeight;
+    document.documentElement.style.setProperty('--header-height', `${headerHeight}px`);
+  };
+
+  // Throttle resize events using requestAnimationFrame
+  let resizeTimeout = false;
+
+  const onResize = () => {
+    if (!resizeTimeout) {
+      resizeTimeout = true;
+      window.requestAnimationFrame(() => {
+        updateHeaderHeight();
+        resizeTimeout = false;
+      });
+    }
+  };
+
+  window.addEventListener('DOMContentLoaded', () => {
+    updateHeaderHeight(); // Initial run
+    document.body.classList.add('has-sticky-header');
+    window.addEventListener('resize', onResize); // Hook into resize once
+  });
+})();

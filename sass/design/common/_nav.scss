@@ -9,6 +9,16 @@ $breakpoint-large: 68rem;
   position: relative;
 }
 
+.has-sticky-header {
+  .site-header {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    background-color: #fff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+}
+
 .site-header .site-branding {
   flex-shrink: 0;
   margin: 5px 0;

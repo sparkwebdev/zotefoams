@@ -45,8 +45,7 @@
     "map": false
   },
   "scripts": {
-    "lint:scss": "wp-scripts lint-style 'sass/**/*.scss'",
-    "lint:js": "wp-scripts lint-js 'js/*.js'",
+    "lint:scss": "stylelint 'sass/**/*.scss' --fix && prettier --write 'sass/**/*.scss'",
     "sass:watch": "node-sass sass/ -o ./ --source-map true --output-style expanded --indent-type tab --indent-width 1 -w",
     "js:watch": "watch 'npm run js:bundle' js/*.js",
     "js:bundle": "concat -o js/bundle.js js/*.js",
