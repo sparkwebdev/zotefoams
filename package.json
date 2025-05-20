@@ -26,6 +26,7 @@
     "dir-archiver": "^1.1.1",
     "node-sass": "^7.0.3",
     "open": "^10.1.2",
+    "prettier": "^3.5.3",
     "rtlcss": "^3.5.0",
     "stylelint-config-prettier": "^9.0.5"
   },

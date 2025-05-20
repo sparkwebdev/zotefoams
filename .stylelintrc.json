@@ -12,6 +12,10 @@
     "value-list-comma-newline-after": null,
     "value-list-comma-newline-before": null,
     "value-list-comma-space-after": null,
-    "value-list-comma-space-before": null
+    "value-list-comma-space-before": null,
+    "rule-empty-line-before": ["always", {
+      "except": ["first-nested"],
+      "ignore": ["after-comment"]
+    }]
   }
 }
