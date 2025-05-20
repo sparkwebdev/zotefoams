@@ -91,7 +91,7 @@
 	</div>
 
 </footer><!-- #colophon -->
-</div><!-- #page -->
+</main><!-- #page -->
 
 <?php wp_footer(); ?>
 
