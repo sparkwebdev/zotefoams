@@ -31,14 +31,14 @@ $template_uri = get_template_directory_uri();
                     $month_year  = $event['calendar_carousel_month_year'] ?? '';
                     $description = $event['calendar_carousel_description'] ?? '';
                 ?>
-                    <div class="swiper-slide">
-                        <div class="swiper-slide-inner">
-                            <div class="date-wrapper">
+                    <div class="swiper-slide calendar-carousel__slide">
+                        <div class="calendar-carousel__slide-inner">
+                            <div class="calendar-carousel__date">
                                 <?php if ($date): ?>
-                                    <label class="date fs-700"><?php echo esc_html($date); ?></label>
+                                    <label class="fs-700"><?php echo esc_html($date); ?></label>
                                 <?php endif; ?>
                                 <?php if ($month_year): ?>
-                                    <label class="month-year fs-100"><?php echo esc_html($month_year); ?></label>
+                                    <label class="calendar-carousel__month-year fs-100"><?php echo esc_html($month_year); ?></label>
                                 <?php endif; ?>
                             </div>
                             <?php if ($description): ?>
@@ -52,6 +52,6 @@ $template_uri = get_template_directory_uri();
     <?php endif; ?>
 
     <?php if ($note): ?>
-        <label class="calendar-carousel-note"><?php echo esc_html($note); ?></label>
+        <label class="calendar-carousel__note"><?php echo esc_html($note); ?></label>
     <?php endif; ?>
 </div>

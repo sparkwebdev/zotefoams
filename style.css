@@ -5081,25 +5081,34 @@ a.read-more.hl.arrow:focus::after {
 
 /* Calendar carousel
  *	--------------------------------------------- */
-.calendar-carousel .swiper-slide-inner {
-  border: 1px solid #ccc;
-  display: flex;
-  padding: 15px;
+.calendar-carousel {
+  outline: 1px solid #ccc;
+  outline-offset: -1px;
 }
 
-.calendar-carousel .date-wrapper {
-  margin-left: 10px;
-  margin-right: 20px;
+.calendar-carousel__slide-inner {
+  border: 1px solid #ccc;
+  display: flex;
+  padding: 15px 15px 15px 20px;
+  gap: 20px;
+}
+
+.calendar-carousel__slide + .calendar-carousel__slide .calendar-carousel__slide-inner {
+  border-left: none;
+}
+
+.calendar-carousel__date {
   display: flex;
   flex-direction: column;
   flex-wrap: nowrap;
+  align-items: center;
 }
 
-.month-year {
+.calendar-carousel__month-year {
   text-wrap: nowrap;
 }
 
-.calendar-carousel-note {
+.calendar-carousel__note {
   color: #b5b5b5;
   margin-top: 15px;
   margin-left: 2px;
