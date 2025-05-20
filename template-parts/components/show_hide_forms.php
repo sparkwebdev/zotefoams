@@ -6,7 +6,7 @@ $items = get_field('show_hide_forms_items', 'option');
 
 <div class="show-hide-forms cont-m padding-t-100 margin-b-100 theme-none">
 
-	<div class="intro">
+	<div>
 		<?php if ($title) : ?>
 			<h3 class="fs-500 fw-600 margin-b-20"><?php echo esc_html($title); ?></h3>
 		<?php endif; ?>

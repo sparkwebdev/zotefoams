@@ -4455,21 +4455,21 @@ a.read-more.hl.arrow:focus::after {
 }
 
 /* Show Hide Forms
- *--------------------------------------------- */
+ * --------------------------------------------- */
 .show-hide-forms {
   display: flex;
   gap: 50px;
   flex-direction: column;
 }
 
-@media screen and (min-width: 48em) {
+.show-hide-forms > * {
+  flex: 1;
+}
+
+@media screen and (min-width: 768px) {
   .show-hide-forms {
     flex-direction: row;
   }
-}
-
-.show-hide-forms > div {
-  flex: 1;
 }
 
 /* Locations Map
