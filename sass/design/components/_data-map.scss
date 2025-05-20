@@ -1,28 +1,22 @@
 /* Data map
- *--------------------------------------------- */
-.stat {
-  background: rgba(255, 255, 255, 0.9);
-}
+ * --------------------------------------------- */
+.data-map {
+  &__stats {
+    display: flex;
+    width: unquote('min(700px, 100%)');
+    gap: 20px;
+    flex-wrap: wrap;
+  }
 
-.stats {
-  display: flex;
-  width: unquote('min(700px, 100%)');
-  gap: 20px;
-  flex-wrap: wrap;
-}
-
-.stat-1 {
-  width: 100%;
-}
-
-.stat-2,
-.stat-3 {
-  width: calc(50% - 10px);
-}
-
-@media screen and (max-width: 480px) {
-  .stat-2,
-  .stat-3 {
+  &__stat {
+    background: rgba(255, 255, 255, 0.9);
     width: 100%;
+  }
+
+  @media screen and (min-width: 480px) {
+    &__stat--2,
+    &__stat--3 {
+      width: calc(50% - 10px);
+    }
   }
 }

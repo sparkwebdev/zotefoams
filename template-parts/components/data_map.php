@@ -25,9 +25,9 @@ $map_image_url = $map_image ? $map_image['url'] : get_template_directory_uri() .
 
 <div class="data-map padding-t-b-100 image-cover theme-dark" style="background-image:url('<?php echo esc_url($bg_image_url); ?>')">
     <div class="cont-m">
-        <div class="stats">
+        <div class="data-map__stats">
             <?php foreach ($stats as $index => $stat): ?>
-                <div class="stat stat-<?php echo $index + 1; ?> padding-30">
+                <div class="data-map__stat data-map__stat--<?php echo $index + 1; ?> padding-30">
                     <?php if (!empty($stat['has_map_image'])): ?>
                         <img src="<?php echo esc_url($map_image_url); ?>" alt="Map" />
                     <?php endif; ?>

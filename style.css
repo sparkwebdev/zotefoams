@@ -4695,31 +4695,23 @@ a.read-more.hl.arrow:focus::after {
 }
 
 /* Data map
- *--------------------------------------------- */
-.stat {
-  background: rgba(255, 255, 255, 0.9);
-}
-
-.stats {
+ * --------------------------------------------- */
+.data-map__stats {
   display: flex;
   width: min(700px, 100%);
   gap: 20px;
   flex-wrap: wrap;
 }
 
-.stat-1 {
+.data-map__stat {
+  background: rgba(255, 255, 255, 0.9);
   width: 100%;
 }
 
-.stat-2,
-.stat-3 {
-  width: calc(50% - 10px);
-}
-
-@media screen and (max-width: 480px) {
-  .stat-2,
-  .stat-3 {
-    width: 100%;
+@media screen and (min-width: 480px) {
+  .data-map__stat--2,
+  .data-map__stat--3 {
+    width: calc(50% - 10px);
   }
 }
 
