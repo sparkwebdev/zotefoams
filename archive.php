@@ -73,9 +73,9 @@ if (have_posts()) :
 						if ($first_video_url) :
 					?>
 							<div class="articles__block-embed-youtube" style="background-image:url(<?php echo esc_url($youtube_cover_image); ?>)">
-								<a href="<?php echo esc_url($first_video_url); ?>" class="video-link open-video-overlay" rel="noopener noreferrer">
-									<img src="<?php echo esc_url(get_template_directory_uri() . '/images/youtube-play.svg'); ?>" alt="Play video" />
-								</a>
+								<button type="button" class="video-trigger" data-modal-trigger="video" data-video-url="<?php echo esc_url($first_video_url); ?>" aria-label="<?php esc_attr_e('Play Video', 'zotefoams'); ?>">
+									<img src="<?php echo esc_url(get_template_directory_uri() . '/images/youtube-play.svg'); ?>" alt="" />
+								</button>
 							</div>
 						<?php else : ?>
 							<img src="<?php echo esc_url(get_template_directory_uri() . '/images/placeholder-thumbnail.png'); ?>" alt="" class="margin-b-20">
@@ -92,9 +92,9 @@ if (have_posts()) :
 
 						<?php if ($title === 'Videos' && isset($first_video_url)) : ?>
 							<p class="articles__cta margin-b-40">
-								<a href="<?php echo esc_url($first_video_url); ?>" class="open-video-overlay hl arrow" rel="noopener noreferrer">
+								<button type="button" class="btn outline black" data-modal-trigger="video" data-video-url="<?php echo esc_url($first_video_url); ?>" aria-label="<?php echo esc_attr($cat_more_link_label); ?>">
 									<?php echo esc_html($cat_more_link_label); ?>
-								</a>
+								</button>
 							</p>
 						<?php elseif ($title === 'Videos') : ?>
 							<p class="articles__cta margin-b-40">No video found.</p>

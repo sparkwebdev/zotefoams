@@ -13,6 +13,10 @@ html {
   scroll-behavior: smooth;
 }
 
+body.modal-open {
+  overflow: hidden;
+}
+
 /* Component label
     --------------------------------------------- */
 .component-label {

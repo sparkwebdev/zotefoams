@@ -21,6 +21,7 @@
 .btn.outline.white {
   color: #fff;
   border: 1px solid #fff;
+  background-color: transparent;
 }
 
 .btn.outline.white:hover {
@@ -32,6 +33,7 @@
 .btn.outline.black {
   color: #000;
   border: 1px solid #000;
+  background-color: transparent;
 }
 
 .btn.outline.black:hover {
@@ -113,4 +115,5 @@ input[type='submit'].btn {
   border: 0;
   border-radius: 5px;
   padding: 13px 20px 15px;
+  cursor: pointer;
 }

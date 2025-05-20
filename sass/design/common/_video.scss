@@ -1,9 +1,8 @@
-/* Video overlay */
 .video-container {
   position: relative;
 }
 
-.video-link {
+.video-trigger {
   position: absolute;
   top: 0;
   left: 0;
@@ -12,64 +11,97 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  cursor: pointer;
+  background: transparent;
+
+  img {
+    transition: opacity 0.3s;
+    width: 20%;
+
+    &:hover {
+      opacity: 0.75;
+    }
+  }
 }
 
-.video-link img {
-  transition: opacity 0.3s;
-  width: 20%;
-}
-
-.video-link:hover img {
-  opacity: 0.6;
-}
-
-#video-overlay {
+.video-overlay {
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(0, 0, 0, 0.5);
-
-  /* Semi-transparent black background */
-  display: none;
-  justify-content: center;
-  align-items: center;
-  z-index: 10000;
-}
-
-#overlay-content {
-  position: relative;
-  width: 90%;
-
-  /* Max width of 90% of the viewport */
-  overflow: hidden;
+  background-color: rgba(0, 0, 0, 0.85);
   display: flex;
   justify-content: center;
   align-items: center;
-  max-height: calc(100vh - 100px);
-}
+  z-index: 10000;
+  padding: 50px;
+  box-sizing: border-box;
 
-#video-iframe {
-  width: 100%;
-  height: 100%;
-  aspect-ratio: 16 / 9;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
 
-  /* Maintain 16:9 aspect ratio */
-}
+  &.is-visible {
+    opacity: 1;
+    pointer-events: auto;
+  }
 
-#close-video {
-  position: absolute;
-  top: 10px;
-  right: 10px;
-  background: #f00;
-  color: #fff;
-  border: none;
-  padding: 5px 10px;
-  cursor: pointer;
-  z-index: 10;
-}
+  &__content,
+  &__iframe {
+    width: 100%;
+    max-width: 1280px;
+    aspect-ratio: 16 / 9;
+    max-height: calc(100vh - 100px);
+  }
 
-#close-video:hover {
-  background: #8b0000;
+  &__content {
+    position: relative;
+    background: #000;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.6);
+  }
+
+  &__iframe {
+    border: none;
+    display: block;
+  }
+
+  &__close {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: #3b82f6;
+    color: white;
+    border: none;
+    padding: 0.5rem 1rem;
+    cursor: pointer;
+    z-index: 10;
+    font-family: inherit;
+
+    &:hover {
+      opacity: 0.75;
+    }
+
+    &:focus {
+      outline: 2px solid #fff;
+      outline-offset: 2px;
+    }
+  }
+
+  // Optional: mobile tweaks
+  @media (max-width: 768px) {
+    padding: 1rem;
+
+    &__content,
+    &__iframe {
+      max-height: calc(100vh - 2rem);
+    }
+
+    &__close {
+      top: 0.5rem;
+      right: 0.5rem;
+      padding: 0.25rem 0.75rem;
+      font-size: 0.875rem;
+    }
+  }
 }

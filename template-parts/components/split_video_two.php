@@ -24,9 +24,9 @@ $image_url = $image ? $image['sizes']['large'] : get_template_directory_uri() . 
 
         <div class="half video-container image-cover" style="background-image:url('<?php echo esc_url($image_url); ?>');">
             <?php if ($video_url) : ?>
-                <a href="<?php echo esc_url($video_url); ?>" class="video-link open-video-overlay" rel="noopener noreferrer">
-                    <img src="<?php echo esc_url(get_template_directory_uri() . '/images/youtube-play.svg'); ?>" alt="<?php esc_attr_e('Play Video', 'zotefoams'); ?>" />
-                </a>
+                <button type="button" class="video-trigger" data-modal-trigger="video" data-video-url="<?php echo esc_url($video_url); ?>" aria-label="<?php esc_attr_e('Play Video', 'zotefoams'); ?>">
+					<img src="<?php echo esc_url(get_template_directory_uri() . '/images/youtube-play.svg'); ?>" alt="" />
+				</button>
             <?php endif; ?>
         </div>
     </div>

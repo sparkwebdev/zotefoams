@@ -180,15 +180,21 @@ function insert_video_overlay()
     }
     $overlay_inserted = true;
 ?>
-    <!-- Video Overlay Structure -->
-    <div id="video-overlay" style="display:none;">
-        <div id="overlay-content">
-            <button id="close-video">Close</button>
-            <iframe id="video-iframe" width="100%" height="100%" frameborder="0" 
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+    <!-- Video Overlay -->
+    <div
+        class="video-overlay" data-modal="video" role="dialog" aria-modal="true" aria-label="Video player" aria-hidden="true" tabindex="-1">
+        <div class="video-overlay__content">
+            <iframe
+                class="video-overlay__iframe" data-video-iframe width="100%" height="100%" frameborder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                 allowfullscreen></iframe>
         </div>
+
+        <button class="video-overlay__close" data-video-close aria-label="Close video overlay">
+            Close
+        </button>
     </div>
+
 <?php
 }
 add_action('wp_footer', 'insert_video_overlay');
