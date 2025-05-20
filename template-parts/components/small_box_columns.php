@@ -19,7 +19,7 @@ $items = get_sub_field('small_box_columns_items');
             <?php endif; ?>
         </div>
 
-        <div class="small-box-items">
+        <div class="small-box-columns__items">
             <?php if ($items) : ?>
                 <?php foreach ($items as $item) :
                     $image       = $item['small_box_columns_item_image'];
@@ -29,18 +29,16 @@ $items = get_sub_field('small_box_columns_items');
 
                     $image_url = $image ? $image['sizes']['thumbnail-square'] : get_template_directory_uri() . '/images/placeholder.png';
                 ?>
-                    <div class="small-box-item">
-                        <div class="small-box-image image-cover margin-b-20" style="background-image:url('<?php echo esc_url($image_url); ?>');"></div>
+                    <div>
+                        <img src="<?php echo esc_url($image_url); ?>" alt="<?php echo esc_attr($item_title); ?>" class="small-box-columns__image margin-b-20" loading="lazy" width="335" height="335" />
 
-                        <div>
-                            <?php if ($item_title) : ?>
-                                <p class="fs-300 fw-semibold"><?php echo esc_html($item_title); ?></p>
-                            <?php endif; ?>
+                        <?php if ($item_title) : ?>
+                            <p class="fs-300 fw-semibold"><?php echo esc_html($item_title); ?></p>
+                        <?php endif; ?>
 
-                            <?php if ($description) : ?>
-                                <p class="margin-b-20 grey-text"><?php echo esc_html($description); ?></p>
-                            <?php endif; ?>
-                        </div>
+                        <?php if ($description) : ?>
+                            <p class="margin-b-20 grey-text"><?php echo esc_html($description); ?></p>
+                        <?php endif; ?>
 
                         <?php if ($link) : ?>
                             <a href="<?php echo esc_url($link['url']); ?>" class="hl arrow read-more" target="<?php echo esc_attr($link['target']); ?>">

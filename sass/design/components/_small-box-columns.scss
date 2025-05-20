@@ -1,27 +1,18 @@
 /* 15 - Small box columns
- *  --------------------------------------------- */
-.small-box-items {
-  display: flex;
-  gap: 2%;
-}
+ * --------------------------------------------- */
+.small-box-columns {
+  &__items {
+    grid-template-columns: var(--grid-template-columns-small);
+    gap: 40px 20px;
+    display: grid;
+  }
 
-.small-box-item {
-  flex: 1;
-}
+  &__image {
+    width: 100%;
+    aspect-ratio: 1 / 1;
+  }
 
-.small-box-image {
-  height: 320px;
-}
-
-.small-box-content {
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-}
-
-.small-box-items {
-  grid-template-columns: var(--grid-template-columns-small);
-  gap: 40px 20px;
-  display: grid;
+  @media screen and (max-width: 479px) {
+    --grid-template-columns-small: repeat(auto-fit, minmax(15rem, 1fr));
+  }
 }
