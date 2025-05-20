@@ -1,4 +1,5 @@
 {
+  "customSyntax": "postcss-scss",
   "extends": ["stylelint-config-prettier"],
   "ignoreFiles": ["sass/_normalize.scss"],
   "rules": {
