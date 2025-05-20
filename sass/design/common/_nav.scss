@@ -248,7 +248,7 @@ $breakpoint-large: 68rem;
 }
 
 .main-navigation .menu-item-has-children > a:hover::after {
-  background-image: url(../images/icon-right-arrow-blue.svg);
+  background-image: url(images/icon-right-arrow-blue.svg);
   transform: rotate(-90deg) translateX(-20%);
 }
 
@@ -328,7 +328,7 @@ $breakpoint-large: 68rem;
 
 .main-navigation .mega-menu .sub-menu li.current-menu-item > a::before,
 .main-navigation .mega-menu .sub-menu li > a:hover::before {
-  background-image: url(../images/icon-right-arrow-blue.svg);
+  background-image: url(images/icon-right-arrow-blue.svg);
 }
 
 .main-navigation .mega-menu .sub-menu a {
@@ -546,7 +546,7 @@ $breakpoint-large: 68rem;
 
 .utility-menu .sub-menu li.current-menu-item > a::before,
 .utility-menu .sub-menu li > a:hover::before {
-  background-image: url(../images/icon-right-arrow-blue.svg);
+  background-image: url(images/icon-right-arrow-blue.svg);
 }
 
 @media screen and (min-width: 64rem) {

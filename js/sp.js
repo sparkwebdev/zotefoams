@@ -467,7 +467,6 @@ document.addEventListener('DOMContentLoaded', () => {
   const form = searchContainer.querySelector('form');
   const input = form.querySelector('input[type="text"]');
   const closeButton = form.querySelector('button[type="button"]');
-  console.log(form, input, closeButton);
   const nextMenuItem = searchItem.closest('li')?.nextElementSibling?.querySelector('a');
 
   const openSearch = () => {

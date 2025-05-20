@@ -2248,7 +2248,7 @@ footer div.wpforms-container.wpforms-container-full:not(:empty) {
 }
 
 .main-navigation .menu-item-has-children > a:hover::after {
-  background-image: url(../images/icon-right-arrow-blue.svg);
+  background-image: url(images/icon-right-arrow-blue.svg);
   transform: rotate(-90deg) translateX(-20%);
 }
 
@@ -2324,7 +2324,7 @@ footer div.wpforms-container.wpforms-container-full:not(:empty) {
 
 .main-navigation .mega-menu .sub-menu li.current-menu-item > a::before,
 .main-navigation .mega-menu .sub-menu li > a:hover::before {
-  background-image: url(../images/icon-right-arrow-blue.svg);
+  background-image: url(images/icon-right-arrow-blue.svg);
 }
 
 .main-navigation .mega-menu .sub-menu a {
@@ -2530,7 +2530,7 @@ footer div.wpforms-container.wpforms-container-full:not(:empty) {
 
 .utility-menu .sub-menu li.current-menu-item > a::before,
 .utility-menu .sub-menu li > a:hover::before {
-  background-image: url(../images/icon-right-arrow-blue.svg);
+  background-image: url(images/icon-right-arrow-blue.svg);
 }
 
 @media screen and (min-width: 64rem) {

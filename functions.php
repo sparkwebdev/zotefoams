@@ -125,7 +125,6 @@ function zotefoams_enqueue_assets()
     wp_enqueue_script('zotefoams-components-carousels-js', get_template_directory_uri() . '/js/components-carousels.js', array(), _S_VERSION, true);
 
     // Stevens (WIP) Assets
-    wp_enqueue_style('zotefoams-sp-style', get_template_directory_uri() . '/sp.css', array(), _S_VERSION);
     wp_enqueue_script('zotefoams-sp-js', get_template_directory_uri() . '/js/sp.js', array(), _S_VERSION, true);
 
     // Comment reply script (if applicable)
