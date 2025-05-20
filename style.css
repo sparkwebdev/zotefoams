@@ -3623,20 +3623,11 @@ a.read-more.hl.arrow:focus::after {
 }
 
 /* 03 - Icon columns
- *  --------------------------------------------- */
-.icon-columns-inner {
-  display: flex;
-  gap: 2%;
-}
-
-.icon-columns-inner > div {
-  flex: 1;
-}
-
-.icon-columns-inner {
+ * --------------------------------------------- */
+.icon-columns__inner {
+  display: grid;
   grid-template-columns: var(--grid-template-columns-small);
   gap: 30px;
-  display: grid;
 }
 
 /* 04 - News feed

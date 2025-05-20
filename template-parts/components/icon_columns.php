@@ -6,11 +6,12 @@ $columns  = get_sub_field('icon_columns_columns');
 $is_sustainability = is_page('Sustainability');
 $wrapper_class = $is_sustainability ? 'sustainability-icons black-text' : 'icon-columns light-grey-bg black-text';
 $theme_class = $is_sustainability ? 'theme-none' : 'theme-light';
-$columns_wrapper_class = $is_sustainability ? 'sustainability-icons-inner' : 'icon-columns-inner';
+$columns_wrapper_class = $is_sustainability ? 'sustainability-icons-inner' : 'icon-columns__inner';
 ?>
 
 <div class="<?php echo esc_attr($wrapper_class); ?> padding-t-b-100 <?php echo esc_attr($theme_class); ?>">
 
+	<?php if ($is_sustainability): ?>
 	<div class="sustainability-intro grey-text cont-m">
 		<div class="sustainability-intro-inner">
 			<?php if ($overline): ?>
@@ -21,6 +22,7 @@ $columns_wrapper_class = $is_sustainability ? 'sustainability-icons-inner' : 'ic
 			<?php endif; ?>
 		</div>
 	</div>
+	<?php endif; ?>
 
 	<div class="<?php echo esc_attr($columns_wrapper_class); ?> cont-m">
 		<?php if ($columns): ?>
@@ -29,7 +31,7 @@ $columns_wrapper_class = $is_sustainability ? 'sustainability-icons-inner' : 'ic
 				$title = $column['icon_columns_title'];
 				$text  = $column['icon_columns_text'];
 			?>
-				<div class="comp-08-item">
+				<div>
 					<?php if ($icon): ?>
 						<img class="margin-b-15" src="<?php echo esc_url($icon['url']); ?>" alt="<?php echo esc_attr($title); ?>" />
 					<?php endif; ?>
