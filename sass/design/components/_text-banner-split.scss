@@ -1,24 +1,24 @@
-/* 19 - Text banner split
-    --------------------------------------------- */
-.text-banner-text {
-  max-width: 600px;
-}
-
-.text-banner-split .image-cover {
-  min-height: 500px;
-}
-@media screen and (max-width: 767px) {
-  .text-banner-split .image-cover {
-    min-height: 280px;
+/* Text Banner Split
+ *  --------------------------------------------- */
+.text-banner-split {
+  &__text {
+    max-width: 600px;
   }
-}
-@media screen and (min-width: 1023px) {
-  .text-banner-split {
+
+  &__image {
+    min-height: 280px;
+
+    @media screen and (min-width: 768px) {
+      min-height: 500px;
+    }
+  }
+
+  @media screen and (min-width: 1024px) {
     display: flex;
     justify-content: space-between;
-  }
 
-  .text-banner-split .half {
-    width: 50%;
+    > * {
+      width: 50%;
+    }
   }
 }

@@ -3224,6 +3224,17 @@ body.touch-device .utility-menu .menu > li.dropdown-active > ul {
   }
 }
 
+/* Text Banner
+ * --------------------------------------------- */
+.text-banner .uppercase {
+  text-wrap: balance;
+  max-width: min(100%, 900px);
+}
+
+.text-banner:not(:has(+ .text-banner-split)) {
+  border-bottom: 1px solid #d1d1d1;
+}
+
 html {
   scroll-behavior: smooth;
 }
@@ -3494,39 +3505,28 @@ a.read-more.hl.arrow:focus::after {
   }
 }
 
-/* b2 - Text banner
+/* Text Banner Split
  *  --------------------------------------------- */
-.text-banner .uppercase {
-  text-wrap: balance;
-  max-width: min(100%, 900px);
-}
-
-.text-banner:not(:has(+ .text-banner-split)) {
-  border-bottom: 1px solid #d1d1d1;
-}
-
-/* 19 - Text banner split
-    --------------------------------------------- */
-.text-banner-text {
+.text-banner-split__text {
   max-width: 600px;
 }
 
-.text-banner-split .image-cover {
-  min-height: 500px;
+.text-banner-split__image {
+  min-height: 280px;
 }
 
-@media screen and (max-width: 767px) {
-  .text-banner-split .image-cover {
-    min-height: 280px;
+@media screen and (min-width: 768px) {
+  .text-banner-split__image {
+    min-height: 500px;
   }
 }
 
-@media screen and (min-width: 1023px) {
+@media screen and (min-width: 1024px) {
   .text-banner-split {
     display: flex;
     justify-content: space-between;
   }
-  .text-banner-split .half {
+  .text-banner-split > * {
     width: 50%;
   }
 }
@@ -4039,9 +4039,9 @@ a.read-more.hl.arrow:focus::after {
   }
 }
 
-/* 13 - Text Block
- *  --------------------------------------------- */
-.text-block-inner {
+/* Text Block
+ * --------------------------------------------- */
+.text-block__inner {
   max-width: 1000px;
 }
 
