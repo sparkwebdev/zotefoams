@@ -19,19 +19,6 @@
   margin-bottom: 1%;
 }
 
-.box-content {
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-}
-
-@media screen and (max-width: 767px) {
-  .box-content > div {
-    min-height: auto;
-  }
-}
-
 .market-box {
   z-index: 1;
   transition: background-color 0.3s ease-in;

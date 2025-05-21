@@ -67,47 +67,49 @@ if ($content_type === 'category' && !empty($category_ids)) {
         <?php endif; ?>
 
         <?php if (!empty($content_items)): ?>
-            <aside class="box-items box-items--<?php echo count($content_items); ?>">
-                <?php foreach ($content_items as $item): ?>
-                    <?php
-                    if ($content_type === 'category') {
-                        $title_text = $item->name;
-                        $excerpt = $item->description;
-                        $link_url = get_category_link($item->term_id);
-                        $thumbnail_id = get_field('category_image', 'category_' . $item->term_id);
-                        $thumbnail_url = wp_get_attachment_image_url($thumbnail_id, 'thumbnail');
-                    } elseif ($content_type === 'documents') {
-                        $title_text = $item['title'] ?? '';
-                        $excerpt = '';
-                        $link_url = $item['url'] ?? '#';
-                        $thumbnail_url = $link_url;
-                    } else {
-                        $title_text = $item->post_title;
-                        $excerpt = $item->post_excerpt;
-                        $link_url = get_permalink($item->ID);
-                        $thumbnail_url = get_the_post_thumbnail_url($item->ID, 'thumbnail');
-                    }
+            <div class="box-columns">
+                <aside class="box-columns__items box-columns__items--<?php echo count($content_items); ?>">
+                    <?php foreach ($content_items as $item): ?>
+                        <?php
+                        if ($content_type === 'category') {
+                            $title_text = $item->name;
+                            $excerpt = $item->description;
+                            $link_url = get_category_link($item->term_id);
+                            $thumbnail_id = get_field('category_image', 'category_' . $item->term_id);
+                            $thumbnail_url = wp_get_attachment_image_url($thumbnail_id, 'thumbnail');
+                        } elseif ($content_type === 'documents') {
+                            $title_text = $item['title'] ?? '';
+                            $excerpt = '';
+                            $link_url = $item['url'] ?? '#';
+                            $thumbnail_url = $link_url;
+                        } else {
+                            $title_text = $item->post_title;
+                            $excerpt = $item->post_excerpt;
+                            $link_url = get_permalink($item->ID);
+                            $thumbnail_url = get_the_post_thumbnail_url($item->ID, 'thumbnail');
+                        }
 
-                    if (!$thumbnail_url) {
-                        $thumbnail_url = get_template_directory_uri() . '/images/placeholder-thumbnail.png';
-                    }
-                    ?>
-                    <div class="box-item light-grey-bg">
-                        <div class="box-content padding-40">
-                            <div>
-                                <p class="fs-400 fw-semibold margin-b-20"><?php echo esc_html($title_text); ?></p>
-                                <?php if (!empty($excerpt)): ?>
-                                    <p class="margin-b-20 grey-text"><?php echo esc_html($excerpt); ?></p>
-                                <?php endif; ?>
+                        if (!$thumbnail_url) {
+                            $thumbnail_url = get_template_directory_uri() . '/images/placeholder-thumbnail.png';
+                        }
+                        ?>
+                        <div class="box-columns__item light-grey-bg">
+                            <div class="box-columns__content padding-40">
+                                <div>
+                                    <p class="fs-400 fw-semibold margin-b-20"><?php echo esc_html($title_text); ?></p>
+                                    <?php if (!empty($excerpt)): ?>
+                                        <p class="margin-b-20 grey-text"><?php echo esc_html($excerpt); ?></p>
+                                    <?php endif; ?>
+                                </div>
+                                <a href="<?php echo esc_url($link_url); ?>" class="hl arrow">
+                                    View <?php echo esc_html($content_type === 'category' ? $title_text : 'More'); ?>
+                                </a>
                             </div>
-                            <a href="<?php echo esc_url($link_url); ?>" class="hl arrow">
-                                View <?php echo esc_html($content_type === 'category' ? $title_text : 'More'); ?>
-                            </a>
+                            <div class="box-columns__image image-cover" style="background-image:url('<?php echo esc_url($thumbnail_url); ?>');"></div>
                         </div>
-                        <div class="box-image image-cover" style="background-image:url('<?php echo esc_url($thumbnail_url); ?>');"></div>
-                    </div>
-                <?php endforeach; ?>
-            </aside>
+                    <?php endforeach; ?>
+                </aside>
+            </div>
         <?php else: ?>
             <p>No content items found.</p>
         <?php endif; ?>

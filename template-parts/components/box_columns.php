@@ -20,7 +20,7 @@ $use_categories = ($behaviour === 'children' && $page_id == $posts_page_id);
         <?php endif; ?>
     </div>
 
-    <div class="box-items">
+    <div class="box-columns__items">
         <?php
         if ($use_categories) {
             $uncategorised_id = get_cat_ID('Uncategorised');
@@ -31,8 +31,8 @@ $use_categories = ($behaviour === 'children' && $page_id == $posts_page_id);
                 $image_id = get_field('category_image', 'category_' . $category->term_id);
                 $image_url = wp_get_attachment_image_url($image_id, 'medium') ?: get_template_directory_uri() . '/images/placeholder-thumbnail.png';
         ?>
-                <div class="box-item light-grey-bg">
-                    <div class="box-content padding-40">
+                <div class="box-columns__item light-grey-bg">
+                    <div class="box-columns__content padding-40">
                         <div>
                             <p class="fs-400 fw-semibold margin-b-20"><?php echo esc_html($category->name); ?></p>
                             <?php if ($category->description): ?>
@@ -41,7 +41,7 @@ $use_categories = ($behaviour === 'children' && $page_id == $posts_page_id);
                         </div>
                         <a href="<?php echo esc_url($cat_link); ?>" class="hl arrow read-more">View <?php echo esc_html($category->name); ?></a>
                     </div>
-                    <div class="box-image image-cover" style="background-image:url('<?php echo esc_url($image_url); ?>');"></div>
+                    <div class="box-columns__image image-cover" style="background-image:url('<?php echo esc_url($image_url); ?>');"></div>
                 </div>
             <?php endforeach;
         } elseif ($behaviour === 'pick') {
@@ -49,8 +49,8 @@ $use_categories = ($behaviour === 'children' && $page_id == $posts_page_id);
             foreach ($page_ids as $pid):
                 $thumb = get_the_post_thumbnail_url($pid, 'medium') ?: get_template_directory_uri() . '/images/placeholder-thumbnail.png';
             ?>
-                <div class="box-item light-grey-bg">
-                    <div class="box-content padding-40">
+                <div class="box-columns__item light-grey-bg">
+                    <div class="box-columns__content padding-40">
                         <div>
                             <p class="fs-400 fw-semibold margin-b-20"><?php echo esc_html(get_the_title($pid)); ?></p>
                             <?php if ($excerpt = get_the_excerpt($pid)): ?>
@@ -59,7 +59,7 @@ $use_categories = ($behaviour === 'children' && $page_id == $posts_page_id);
                         </div>
                         <a href="<?php echo esc_url(get_permalink($pid)); ?>" class="hl arrow read-more">Read more</a>
                     </div>
-                    <div class="box-image image-cover" style="background-image:url('<?php echo esc_url($thumb); ?>');"></div>
+                    <div class="box-columns__image image-cover" style="background-image:url('<?php echo esc_url($thumb); ?>');"></div>
                 </div>
             <?php endforeach;
         } elseif ($behaviour === 'children') {
@@ -70,8 +70,8 @@ $use_categories = ($behaviour === 'children' && $page_id == $posts_page_id);
             foreach ($child_pages as $child):
                 $thumb = get_the_post_thumbnail_url($child->ID, 'medium') ?: get_template_directory_uri() . '/images/placeholder-thumbnail.png';
             ?>
-                <div class="box-item light-grey-bg">
-                    <div class="box-content padding-40">
+                <div class="box-columns__item light-grey-bg">
+                    <div class="box-columns__content padding-40">
                         <div>
                             <p class="fs-400 fw-semibold margin-b-20"><?php echo esc_html(get_the_title($child->ID)); ?></p>
                             <?php if ($excerpt = get_the_excerpt($child->ID)): ?>
@@ -80,15 +80,15 @@ $use_categories = ($behaviour === 'children' && $page_id == $posts_page_id);
                         </div>
                         <a href="<?php echo esc_url(get_permalink($child->ID)); ?>" class="hl arrow read-more">Read more</a>
                     </div>
-                    <div class="box-image image-cover" style="background-image:url('<?php echo esc_url($thumb); ?>');"></div>
+                    <div class="box-columns__image image-cover" style="background-image:url('<?php echo esc_url($thumb); ?>');"></div>
                 </div>
             <?php endforeach;
         } elseif ($behaviour === 'manual' && $manual_items) {
             foreach ($manual_items as $item):
                 $img = $item['box_columns_item_image']['sizes']['thumbnail'] ?? null;
             ?>
-                <div class="box-item light-grey-bg">
-                    <div class="box-content padding-40">
+                <div class="box-columns__item light-grey-bg">
+                    <div class="box-columns__content padding-40">
                         <div>
                             <?php if ($item['box_columns_item_title']): ?>
                                 <p class="fs-400 fw-semibold margin-b-20"><?php echo esc_html($item['box_columns_item_title']); ?></p>
@@ -104,7 +104,7 @@ $use_categories = ($behaviour === 'children' && $page_id == $posts_page_id);
                         <?php endif; ?>
                     </div>
                     <?php if ($img): ?>
-                        <div class="box-image image-cover" style="background-image:url('<?php echo esc_url($img); ?>');"></div>
+                        <div class="box-columns__image image-cover" style="background-image:url('<?php echo esc_url($img); ?>');"></div>
                     <?php endif; ?>
                 </div>
         <?php endforeach;

@@ -3832,50 +3832,39 @@ a.read-more.hl.arrow:focus::after {
   transform: rotate(180deg);
 }
 
-/* 07 - Box columns
- *  --------------------------------------------- */
-.box-items {
-  display: flex;
-  gap: 2%;
+/* Box columns
+ * --------------------------------------------- */
+.box-columns__items {
+  grid-template-columns: var(--grid-template-columns);
+  gap: 20px;
+  display: grid;
 }
 
-.box-item {
-  display: flex;
-  flex: 1;
-  flex-direction: column;
+.box-columns__image {
+  height: 260px;
 }
 
-.box-content {
+.box-columns__content {
   position: relative;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
 }
 
-.box-image {
-  height: 260px;
-}
-
-.box-content > div {
-  min-height: 200px;
-}
-
-.box-items:not(:has(.box-item:nth-child(3))) .box-image {
-  height: 360px;
-  /* Height when there are only 2 items */
-}
-
-@media screen and (max-width: 1023px) {
-  .box-items:not(:has(.box-item:nth-child(3))) .box-image {
-    height: 260px;
-    /* Height when there are only 2 items */
+@media screen and (min-width: 1024px) {
+  .box-columns__content > div {
+    min-height: 200px;
   }
 }
 
-.box-items {
-  grid-template-columns: var(--grid-template-columns);
-  gap: 20px;
-  display: grid;
+.box-columns:not(:has(.box-columns__item:nth-child(3))) {
+  /* Height when there are only 2 items */
+}
+
+@media screen and (min-width: 1024px) {
+  .box-columns:not(:has(.box-columns__item:nth-child(3))) .box-columns__image {
+    height: 360px;
+  }
 }
 
 /* 09 - Markets list
@@ -3897,19 +3886,6 @@ a.read-more.hl.arrow:focus::after {
   height: 400px;
   justify-content: space-between;
   margin-bottom: 1%;
-}
-
-.box-content {
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-}
-
-@media screen and (max-width: 767px) {
-  .box-content > div {
-    min-height: auto;
-  }
 }
 
 .market-box {
