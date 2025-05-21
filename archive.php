@@ -116,9 +116,7 @@ if (have_posts()) :
 		?>
 	</div>
 
-	<footer class="pagination cont-m margin-t-70 margin-b-70">
-		<?php get_template_part('template-parts/pagination'); ?>
-	</footer>
+	<?php get_template_part('template-parts/pagination'); ?>
 
 <?php else : ?>
 	<?php get_template_part('template-parts/content', 'none'); ?>

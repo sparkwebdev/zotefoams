@@ -13,5 +13,7 @@ $pagination = paginate_links(array(
 ));
 
 if ($pagination) {
+	echo '<footer class="pagination cont-m margin-t-70 margin-b-70">';
 	echo wp_kses_post($pagination);
+	echo '</footer>';
 }
