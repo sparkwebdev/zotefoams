@@ -33,9 +33,9 @@ get_header();
 				<?php endif; ?>
 			</header>
 
-			<?php if (has_post_thumbnail()) : ?>
+			<?php /* if (has_post_thumbnail()) : ?>
 				<figure><?php zotefoams_post_thumbnail('large'); ?></figure>
-			<?php endif; ?>
+			<?php endif; */ ?>
 
 			<div class="entry-content">
 				<?php if (has_excerpt()) : ?>
