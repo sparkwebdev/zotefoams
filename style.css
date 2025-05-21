@@ -3857,7 +3857,7 @@ a.read-more.hl.arrow:focus::after {
   justify-content: space-between;
 }
 
-@media screen and (min-width: 1024px) {
+@media screen and (min-width: 768px) {
   .box-columns__content > div {
     min-height: 200px;
   }
@@ -4371,7 +4371,7 @@ a.read-more.hl.arrow:focus::after {
 
 /* Contact page
  *  --------------------------------------------- */
-.split-text-content div.wpforms-container-full:not(:empty),
+.split-text__content div.wpforms-container-full:not(:empty),
 .accordion-content div.wpforms-container-full:not(:empty) {
   margin: 0 auto 24px;
 }

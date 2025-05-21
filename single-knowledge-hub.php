@@ -27,7 +27,7 @@ while (have_posts()) : the_post();
 	</header>
 
 	<div class="text-block cont-m margin-t-100 margin-b-100 theme-none">
-		<div class="text-block-inner">
+		<div class="text-block__inner">
 			<p class="margin-b-20">Knowledge Powered By Zotefoams</p>
 			<?php if (has_excerpt()) : ?>
 				<div class="fs-600 fw-semibold">

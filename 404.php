@@ -23,7 +23,7 @@ get_header();
 </header>
 
 <div class="text-block cont-m margin-t-100 margin-b-100 theme-none">
-	<div class="text-block-inner">
+	<div class="text-block__inner">
 		<p class="grey-text fs-600 fw-semibold">
 			<?php esc_html_e('It looks like nothing was found at this location.', 'zotefoams'); ?>
 		</p>
