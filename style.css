@@ -1172,6 +1172,12 @@ textarea {
   margin: 0 auto;
 }
 
+.cont-xxs {
+  max-width: 650px;
+  width: 90%;
+  margin: 0 auto;
+}
+
 .half-half-carousel {
   display: flex;
   justify-content: space-between;
@@ -4180,13 +4186,6 @@ a.read-more.hl.arrow:focus::after {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-}
-
-/* Waste hierarchy
- *  --------------------------------------------- */
-.waste-hierarchy-intro {
-  max-width: 650px;
-  margin: 0 auto;
 }
 
 /* Financial document picker
