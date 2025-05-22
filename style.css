@@ -4164,30 +4164,6 @@ a.read-more.hl.arrow:focus::after {
   }
 }
 
-/* 16 - Video box columns
- *  --------------------------------------------- */
-.video-box-items {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 2%;
-}
-
-.video-box-item {
-  width: 32%;
-  margin-bottom: 3%;
-}
-
-.video-box-image {
-  height: 260px;
-}
-
-.video-box-content {
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-}
-
 /* Financial document picker
  *  --------------------------------------------- */
 .financial-documents-picker {
