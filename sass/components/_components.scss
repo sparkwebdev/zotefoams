@@ -4,11 +4,17 @@
 
 /* Posts and pages
 --------------------------------------------- */
-@import 'content/posts-and-pages';
+.page-content,
+.entry-content,
+.entry-summary {
+  margin: 1.5em 0 0;
+}
 
-/* Comments
---------------------------------------------- */
-@import 'comments/comments';
+.page-links {
+  clear: both;
+  margin: 0 0 1.5em;
+}
+
 
 /* Widgets
 --------------------------------------------- */
