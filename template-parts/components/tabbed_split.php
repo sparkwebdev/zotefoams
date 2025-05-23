@@ -46,8 +46,8 @@ $tabs         = get_sub_field('tabbed_split_tabs');
             $is_active  = $index === 0 ? 'active' : '';
         ?>
             <div class="tab-content <?php echo esc_attr($is_active); ?>" id="<?php echo esc_attr($tab_id); ?>">
-                <div class="half-half">
-                    <div class="half">
+                <div class="tab-content__inner">
+                    <div>
                         <div class="all-content padding-t-b-100">
                             <div class="top-content">
                                 <?php if ($title) : ?>
@@ -67,7 +67,7 @@ $tabs         = get_sub_field('tabbed_split_tabs');
                         </div>
                     </div>
 
-                    <div class="half image-cover" style="background-image:url('<?php echo esc_url($image_url); ?>');"></div>
+                    <div class="image-cover" style="background-image:url('<?php echo esc_url($image_url); ?>');"></div>
                 </div>
             </div>
         <?php endforeach; ?>

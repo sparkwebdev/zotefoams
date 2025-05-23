@@ -9,7 +9,7 @@ $container_class    = $has_intro_content ? 'light-grey-bg padding-50 theme-light
 
 <?php if ($documents_by_year) : ?>
 	<div class="financial-documents-picker cont-m <?php echo esc_attr($container_class); ?>">
-		<div class="half">
+		<div>
 			<?php if ($has_intro_content) : ?>
 				<div class="financial-documents-intro">
 					<?php if ($title) : ?>
@@ -23,7 +23,7 @@ $container_class    = $has_intro_content ? 'light-grey-bg padding-50 theme-light
 				<?php endif; ?>
 			<?php endif; ?>
 		</div>
-		<div class="half">
+		<div>
 			<div class="financial-documents">
 				<select class="yearSelect" id="<?php echo esc_attr($instance_id); ?>_yearSelect">
 					<?php foreach ($documents_by_year as $index => $year_data) : ?>

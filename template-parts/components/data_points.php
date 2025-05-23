@@ -12,7 +12,7 @@ function getDecimalPlaces($number)
 }
 ?>
 
-<div class="data-points half-half light-grey-bg padding-t-b-70 theme-light">
+<div class="data-points light-grey-bg padding-t-b-70 theme-light">
 
     <div class="cont-m">
         <?php if ($title): ?>

@@ -85,7 +85,7 @@ $use_categories = ($behaviour === 'children' && $page_id == $posts_page_id);
             <?php endforeach;
         } elseif ($behaviour === 'manual' && $manual_items) {
             foreach ($manual_items as $item):
-                $img = $item['box_columns_item_image']['sizes']['thumbnail'] ?? null;
+                $img = $item['box_columns_item_image']['sizes']['medium'] ?? null;
             ?>
                 <div class="box-columns__item light-grey-bg">
                     <div class="box-columns__content padding-40">
