@@ -1,0 +1,26 @@
+.highlight-panel {
+    position: relative;
+    z-index: 1;
+
+  &__inner {
+    padding-left: unquote("min(50px, 5%)");
+    padding-right: unquote("min(50px, 5%)");
+    width: 100%;
+  }
+
+  &__sub-image {
+    max-width: 90px;
+    border-radius: 10px;
+  }
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.21);
+    z-index: -1;
+  }
+}
