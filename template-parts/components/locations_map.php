@@ -8,9 +8,9 @@ $map_image = get_sub_field('locations_map_image');
 $map_image_url = $map_image['sizes']['large'] ?? get_template_directory_uri() . '/images/placeholder.png';
 ?>
 
-<div class="locations-map half-half padding-t-b-100 theme-dark">
+<div class="locations-map padding-t-b-100 theme-dark">
     <div class="cont-m">
-        <div class="map-intro margin-b-40">
+        <div class="locations-map__intro margin-b-40">
             <?php if ($title) : ?>
                 <p class="fw-semibold fs-600 white-text"><?php echo esc_html($title); ?></p>
             <?php endif; ?>
@@ -19,7 +19,7 @@ $map_image_url = $map_image['sizes']['large'] ?? get_template_directory_uri() . 
             <?php endif; ?>
         </div>
 
-        <div class="map-container">
+        <div class="locations-map__container">
             <?php if ($locations) : ?>
                 <?php foreach ($locations as $location) :
                     $description = $location['locations_map_description'] ?? '';
@@ -27,12 +27,12 @@ $map_image_url = $map_image['sizes']['large'] ?? get_template_directory_uri() . 
                     $from_left   = $location['from_left'] ?? '0';
                 ?>
                     <div
-                        class="location"
+                        class="locations-map__location"
                         onclick="locationClicked(this)"
                         style="top:<?php echo esc_attr($from_top); ?>%;left:<?php echo esc_attr($from_left); ?>%;">
 
                         <?php if ($description) : ?>
-                            <div class="popup">
+                            <div class="locations-map__popup">
                                 <p><?php echo wp_kses_post($description); ?></p>
                             </div>
                         <?php endif; ?>
@@ -40,7 +40,7 @@ $map_image_url = $map_image['sizes']['large'] ?? get_template_directory_uri() . 
                 <?php endforeach; ?>
             <?php endif; ?>
 
-            <img class="map" src="<?php echo esc_url($map_image_url); ?>" alt="<?php esc_attr_e('World map with locations', 'zotefoams'); ?>" />
+            <img class="locations-map__map" src="<?php echo esc_url($map_image_url); ?>" alt="<?php esc_attr_e('World map with locations', 'zotefoams'); ?>" />
         </div>
     </div>
 </div>

@@ -19,31 +19,25 @@ document.addEventListener( 'DOMContentLoaded', () => {
 // Component - Locations Map
 function locationClicked( sender ) {
 	// Hide all popups first
-	document.querySelectorAll( '.popup' ).forEach( ( popup ) => {
+	document.querySelectorAll( '.locations-map__popup' ).forEach( ( popup ) => {
 		popup.style.display = 'none';
 	} );
 
 	// Get the popup inside the clicked location
-	const popup = sender.querySelector( '.popup' );
+	const popup = sender.querySelector( '.locations-map__popup' );
 	if ( popup ) {
-		// Check if `position: anchor` is supported
-		if ( CSS.supports( 'position', 'anchor' ) ) {
-			popup.style.position = 'anchor';
-			sender.style.anchorName = '--popup-anchor';
-		} else {
-			popup.style.display = 'block';
-		}
+		popup.style.display = 'block';
 	}
 }
 
 // Optional: Close popups when clicking outside
 document.addEventListener( 'click', function( event ) {
-	const isLocation = event.target.closest( '.location' );
+	const isLocation = event.target.closest( '.locations-map__location' );
 
 	if ( isLocation ) {
 		locationClicked( isLocation );
 	} else {
-		document.querySelectorAll( '.popup' ).forEach( ( popup ) => {
+		document.querySelectorAll( '.locations-map__popup' ).forEach( ( popup ) => {
 			popup.style.display = 'none';
 		} );
 	}
