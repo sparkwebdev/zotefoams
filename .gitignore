@@ -3,3 +3,6 @@ vendor
 /tests/vrc/results/
 /tests/vrc/.cache
 .last-run.json
+
+# CSS map files
+*.css.map
