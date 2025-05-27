@@ -1,15 +1,15 @@
-@import 'common/utility-classes.scss';
-@import 'common/vars';
+@use 'common/utility-classes.scss';
+@use 'common/vars';
 
-@import 'common/buttons-links.scss';
-@import 'common/video.scss';
-@import 'common/search.scss';
-@import 'common/footer.scss';
-@import 'common/pagination';
-@import 'common/nav';
-@import 'common/articles';
-@import 'common/file-list';
-@import 'common/text-banner.scss';
+@use 'common/buttons-links.scss';
+@use 'common/video.scss';
+@use 'common/search.scss';
+@use 'common/footer.scss';
+@use 'common/pagination';
+@use 'common/nav';
+@use 'common/articles';
+@use 'common/file-list';
+@use 'common/text-banner.scss';
 
 html {
   scroll-behavior: smooth;
@@ -21,6 +21,7 @@ body.modal-open {
 
 /* Component label
     --------------------------------------------- */
+
 .component-label {
   width: 100%;
   background: #3b82f6;
@@ -31,6 +32,7 @@ body.modal-open {
 
 /* iframe heights
     --------------------------------------------- */
+
 iframe {
   width: 100%;
   border: none;

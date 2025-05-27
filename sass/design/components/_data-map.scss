@@ -1,9 +1,10 @@
 /* Data map
  * --------------------------------------------- */
+
 .data-map {
   &__stats {
     display: flex;
-    width: unquote('min(700px, 100%)');
+    width: min(700px, 100%);
     gap: 20px;
     flex-wrap: wrap;
   }

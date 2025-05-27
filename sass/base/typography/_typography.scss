@@ -1,3 +1,7 @@
+@use "sass:meta";
+@use '../../abstracts/abstracts' as *;
+
+
 body,
 button,
 input,
@@ -10,5 +14,5 @@ textarea {
   line-height: $font__line-height-body;
 }
 
-@import 'headings';
-@import 'copy';
+@include meta.load-css('headings');
+@include meta.load-css('copy');

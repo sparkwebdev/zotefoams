@@ -1,5 +1,6 @@
 /* Multi item carousel
  *	--------------------------------------------- */
+
 .multi-item-carousel.swiper {
   overflow: visible !important;
 }
@@ -56,7 +57,7 @@
 
 .multi-item-carousel .swiper-slide p {
   margin-bottom: 70px;
-  max-width: unquote('min(90%, 400px)');
+  max-width: min(90%, 400px);
   color: #707070;
   flex-grow: 1;
 }

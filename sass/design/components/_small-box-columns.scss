@@ -1,5 +1,6 @@
 /* 15 - Small box columns
  * --------------------------------------------- */
+
 .small-box-columns {
   &__items {
     grid-template-columns: var(--grid-template-columns-small);

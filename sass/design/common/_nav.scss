@@ -297,7 +297,7 @@ $breakpoint-large: 68rem;
 
 @media screen and (min-width: 64rem) {
   .mega-menu-section > .sub-menu {
-    width: unquote('min(100%, 36em)');
+    width: min(100%, 36em);
   }
 
   .main-navigation .mega-menu .sub-menu li {
@@ -565,7 +565,7 @@ $breakpoint-large: 68rem;
   .utility-menu .menu > li > ul,
   .utility-menu .menu > li:hover > ul,
   .utility-menu .menu > li.focus > ul {
-    width: unquote('max(28em + 100px, 100%)');
+    width: max(28em + 100px, 100%);
     left: auto;
     right: -15px;
     z-index: 9999;
@@ -681,12 +681,14 @@ $breakpoint-large: 68rem;
 }
 
 /* Remove transition effects for all navigation links on touch devices */
+
 body.touch-device .main-navigation a,
 body.touch-device .utility-menu a {
   transition: none;
 }
 
 /* Disable transitions on the mega menu */
+
 body.touch-device .main-navigation .mega-menu {
   transition: none;
 }
@@ -697,6 +699,7 @@ body.touch-device .mega-menu.active {
 }
 
 /* Override hover/focus based transitions on utility menu dropdowns */
+
 body.touch-device .utility-menu .menu > li:hover > ul,
 body.touch-device .utility-menu .menu > li.focus > ul {
   transition: none;
@@ -704,11 +707,13 @@ body.touch-device .utility-menu .menu > li.focus > ul {
 }
 
 /* Remove transitions from the utility sub-menus */
+
 body.touch-device .utility-menu .sub-menu {
   transition: none;
 }
 
 /* Disable transitions on the mega menu container */
+
 body.touch-device .mega-menu-container {
   transition: none;
 }

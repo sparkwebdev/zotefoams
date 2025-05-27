@@ -26,7 +26,7 @@
 
 .articles .post img {
   align-self: flex-start;
-  width: unquote('min(100%, 350px)');
+  width: min(100%, 350px);
 }
 
 .articles .post .video-trigger img {

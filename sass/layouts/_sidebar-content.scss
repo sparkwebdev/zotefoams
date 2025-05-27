@@ -1,3 +1,5 @@
+@use "sass:meta";
+
 .site {
   display: grid;
   grid-template-columns: ($size__site-sidebar) auto;
@@ -24,4 +26,4 @@
   grid-area: footer;
 }
 
-@import 'no-sidebar';
+@include meta.load-css('no-sidebar');

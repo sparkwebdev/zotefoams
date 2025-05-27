@@ -1,5 +1,6 @@
 /* 04 - News feed
  *  --------------------------------------------- */
+
 .title-strip {
   display: flex;
   justify-content: space-between;
@@ -68,6 +69,7 @@
 
 @media (max-width: 767px) {
   /* Temp layout fix */
+
   .feed-item-spacer {
     display: contents;
   }

@@ -24,11 +24,11 @@
     "concat-cli": "^4.0.0",
     "concurrently": "^9.1.2",
     "dir-archiver": "^1.1.1",
-    "node-sass": "^7.0.3",
     "open": "^10.1.2",
     "postcss-scss": "^4.0.9",
     "prettier": "^3.5.3",
     "rtlcss": "^3.5.0",
+    "sass": "^1.89.0",
     "stylelint-config-prettier": "^9.0.5"
   },
   "rtlcssConfig": {
@@ -46,12 +46,12 @@
   },
   "scripts": {
     "lint:scss": "stylelint 'sass/**/*.scss' --fix && prettier --write 'sass/**/*.scss'",
-    "sass:watch": "node-sass sass/ -o ./ --source-map true --output-style expanded --indent-type tab --indent-width 1 -w",
+    "sass:watch": "sass sass/:./ --source-map --style expanded --indent-type tab --indent-width 1 --watch",
     "js:watch": "watch 'npm run js:bundle' js/*.js",
     "js:bundle": "concat -o js/bundle.js js/*.js",
     "serve": "browser-sync start --proxy 'https://zotefoams-phase-2.local/' --https --files './style.css, js/bundle.js, ./**/*.php'",
     "watch:live": "concurrently \"npm run sass:watch\" \"npm run js:watch\" \"npm run serve\"",
-    "compile:css": "node-sass sass/ -o ./ --output-style expanded --indent-type tab --indent-width 1 && stylelint 'sass/**/*.scss' --fix && prettier --write style.css",
+    "compile:css": "sass sass/:./ --style expanded && stylelint 'sass/**/*.scss' --fix && prettier --write style.css",
     "compile:rtl": "rtlcss style.css style-rtl.css",
     "build": "npm run compile:css && npm run js:bundle && npm run compile:rtl",
     "bundle": "dir-archiver --src . --dest ../_s.zip --exclude .DS_Store .stylelintrc.json .eslintrc .git .gitattributes .github .gitignore README.md composer.json composer.lock node_modules vendor package-lock.json package.json .travis.yml phpcs.xml.dist sass style.css.map yarn.lock",

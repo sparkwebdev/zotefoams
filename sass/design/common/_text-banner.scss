@@ -1,9 +1,10 @@
 /* Text Banner
  * --------------------------------------------- */
+
 .text-banner {
   .uppercase {
     text-wrap: balance;
-    max-width: unquote('min(100%, 900px)');
+    max-width: min(100%, 900px);
   }
 
   &:not(:has(+ .text-banner-split)) {

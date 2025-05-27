@@ -1,3 +1,5 @@
+@use '../abstracts/abstracts' as *;
+
 /* Text meant only for screen readers. */
 .screen-reader-text {
   border: 0;
@@ -33,6 +35,7 @@
 }
 
 /* Do not show the outline on the skip link target. */
+
 #primary[tabindex='-1']:focus {
   outline: 0;
 }

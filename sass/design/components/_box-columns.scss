@@ -1,5 +1,6 @@
 /* Box columns
  * --------------------------------------------- */
+
 .box-columns {
   &__items {
     grid-template-columns: var(--grid-template-columns);
@@ -31,6 +32,7 @@
 
   &:not(:has(.box-columns__item:nth-child(3))) {
     /* Height when there are only 2 items */
+
     .box-columns__image {
       @media screen and (min-width: 1024px) {
         height: 360px;
