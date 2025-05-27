@@ -2,9 +2,40 @@
  * --------------------------------------------- */
 
 .icon-columns {
-  &__inner {
+  --cols: 1;
+
+  &__items {
     display: grid;
-    grid-template-columns: var(--grid-template-columns-small);
     gap: 30px;
+    grid-template-columns: repeat(var(--cols), 1fr);
+    @media screen and (min-width: 768px) {
+      --cols: 3;
+    }
+  }
+
+  &--half {
+    .icon-columns__items {
+      gap: 30px 50px;
+      @media screen and (min-width: 768px) {
+        --cols: 2;
+      }
+    }
+  }
+
+  &--centered {
+    text-align: center;
+
+    .icon-columns__items {
+      @media screen and (min-width: 768px) {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        padding: 0 5%;
+
+        > * {
+          flex: 0 0 calc(33% - 30px);
+        }
+      }
+    }
   }
 }

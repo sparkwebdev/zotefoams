@@ -3508,10 +3508,40 @@ a.read-more.hl.arrow:focus::after {
 
 /* 03 - Icon columns
  * --------------------------------------------- */
-.icon-columns__inner {
+.icon-columns {
+  --cols: 1;
+}
+.icon-columns__items {
   display: grid;
-  grid-template-columns: var(--grid-template-columns-small);
   gap: 30px;
+  grid-template-columns: repeat(var(--cols), 1fr);
+}
+@media screen and (min-width: 768px) {
+  .icon-columns__items {
+    --cols: 3;
+  }
+}
+.icon-columns--half .icon-columns__items {
+  gap: 30px 50px;
+}
+@media screen and (min-width: 768px) {
+  .icon-columns--half .icon-columns__items {
+    --cols: 2;
+  }
+}
+.icon-columns--centered {
+  text-align: center;
+}
+@media screen and (min-width: 768px) {
+  .icon-columns--centered .icon-columns__items {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    padding: 0 5%;
+  }
+  .icon-columns--centered .icon-columns__items > * {
+    flex: 0 0 calc(33% - 30px);
+  }
 }
 
 /* 04 - News feed
