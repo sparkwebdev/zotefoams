@@ -54,9 +54,7 @@ if (have_posts()) :
 							<?php if (get_the_excerpt()) : the_excerpt();
 							endif; ?>
 							<p class="articles__cta">
-								<a href="<?php echo esc_url($cat_more_link); ?>" class="btn black outline">
-									<?php echo esc_html($cat_more_link_label); ?>
-								</a>
+								<a href="<?php echo esc_url($cat_more_link); ?>" class="btn black outline"><?php echo esc_html($cat_more_link_label); ?></a>
 							</p>
 						</div>
 					</div>
@@ -100,9 +98,7 @@ if (have_posts()) :
 							<p class="articles__cta margin-b-40">No video found.</p>
 						<?php else : ?>
 							<p class="articles__cta">
-								<a href="<?php echo esc_url($cat_more_link); ?>" class="hl arrow read-more">
-									<?php echo esc_html($cat_more_link_label); ?>
-								</a>
+								<a href="<?php echo esc_url($cat_more_link); ?>" class="hl arrow read-more"><?php echo esc_html($cat_more_link_label); ?></a>
 							</p>
 						<?php endif; ?>
 					</div>

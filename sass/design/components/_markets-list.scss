@@ -101,7 +101,7 @@
 .market-box:hover a.hl.arrow::after,
 .market-box:has(a:focus) h3.hl.arrow::after,
 .market-box:has(a:focus) a.hl.arrow::after {
-  background-image: url(../images/icon-right-arrow-white.svg);
+  background-image: url(images/icon-right-arrow-white.svg);
 }
 
 .market-box:hover .market-image,
@@ -111,7 +111,7 @@
 
 .market-box a.hl.arrow::after:hover,
 .market-box a.hl.arrow::after:focus {
-  background-image: url(../images/icon-right-arrow-white.svg);
+  background-image: url(images/icon-right-arrow-white.svg);
 }
 
 .brands {

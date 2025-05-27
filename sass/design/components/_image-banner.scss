@@ -103,6 +103,7 @@
   .swiper-image .swiper-button-next-image {
     bottom: 20px;
     right: 20px;
+    left: 20px;
   }
 }
 
@@ -116,7 +117,7 @@
   align-items: center;
   pointer-events: none;
   z-index: 1;
-  background-image: url(/wp-content/themes/zotefoams/images/right-arrow-white.svg);
+  background-image: url(images/right-arrow-white.svg);
   background-repeat: no-repeat;
   background-position: center center;
 }

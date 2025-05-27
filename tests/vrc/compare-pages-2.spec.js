@@ -1,11 +1,14 @@
 import { test } from '@playwright/test';
-import { mkdirSync, writeFileSync, existsSync } from 'fs';
+import { mkdirSync, writeFileSync, existsSync, unlinkSync } from 'fs';
 import path from 'path';
 import sharp from 'sharp';
 import pixelmatch from 'pixelmatch';
 import { PNG } from 'pngjs';
 import { generateReport } from './generateReport.js';
 import open from 'open';
+import { pages as pagesLevel1 } from './src/pages-level-1.js';
+import { pages as pagesLevel2 } from './src/pages-level-2.js';
+import { pages as pagesLevel3 } from './src/pages-level-3.js';
 
 const deviceConfigs = {
   desktop: { width: 1600, height: 900 },
@@ -19,252 +22,199 @@ const devBase = 'https://zotefoams-phase-2.local';
 const liveBase = 'https://zotefoams.com';
 const outputDir = path.resolve('tests/vrc/results');
 
-const pages = [
-  { path: '/', name: 'home' },
-  // { path: '/who-we-are/', name: 'about' },
-  // { path: '/contact-us/', name: 'contact' },
-  // { path: '/404-xyz/', name: '404' },
-  // { path: '/news-centre/', name: 'news-centre' },
-  // { path: '/our-brands/', name: 'our-brands' },
-  // { path: '/markets/', name: 'markets' },
-  // { path: '/search?s=test', name: 'search' },
-  // { path: '/investors/financial-updates/', name: 'financial-updates' },
-  // { path: '/contact-us/', name: 'contact-us' },
-  // { path: '/governance/', name: 'governance' },
-  // { path: '/work-with-us/', name: 'work-with-us' },
-  // { path: '/investors/', name: 'investors' },
-  // { path: '/investors/share-price/', name: 'share-price' },
-  // { path: '/investors/directors/', name: 'directors' },
-  // { path: '/investors/directors/gary-mcgrath/', name: 'gary-mcgrath' },
-  // { path: '/investors/regulatory-news/', name: 'regulatory-news' },
-  // { path: '/markets/automotive/', name: 'automotive' },
-  // { path: '/our-brands/azote/', name: 'azote' },
-  // { path: '/knowledge-hub/', name: 'knowledge-hub' },
-  // { path: '/legal/', name: 'legal' },
-  // { path: '/legal/gender-pay-gap/', name: 'gender-pay-gap' },
-  // { path: '/who-we-are/sustainability/', name: 'sustainability' },
-  // { path: '/news-centre/case-studies/', name: 'case-studies' },
-  // { path: '/news-centre/events/', name: 'events' },
-  // { path: '/news-centre/news/', name: 'news' },
-  // { path: '/knowledge-hub/technical-literature/', name: 'technical-literature' },
-  // { path: '/knowledge-hub/videos/', name: 'videos' },
-  // { path: '/knowledge-hub/marketing-literature/', name: 'marketing-literature' },
-  // { path: '/knowledge-hub/statements-certificates/', name: 'statements-certificates' },
-  // { path: '/knowledge-hub/technical-literature/safety-information-sheets/', name: 'safety-information-sheets' },
-  // { path: '/zotefoams-confirms-its-commitment-to-sustainability-plastics-recycling-and-resource-management-with-recoup-membership/', name: 'recoup-membership' },
-  // { path: '/zotefoams-and-shincell-global-alliance/', name: 'shincell-global-alliance' },
-  // { path: '/zotefoams-enters-exclusivity-agreement-with-d30/', name: 'exclusivity-with-d30' },
-  // { path: '/foam-expo-north-america-24-26-june-2025-novi-michigan-usa-stand-1302/', name: 'foam-expo-usa-2025' },
-  // { path: '/pmec-india-25-27-november-2025-india-expo-centre-greater-noida-delhi-ncr-india-stand-rhc43/', name: 'pmec-india-2025' },
-  // { path: '/preliminary-results-unaudited-for-the-year-ended-31-december-2023/', name: 'preliminary-results-2023' },
-  // { path: '/performance-benefits-of-aviation-foam/', name: 'aviation-foam-benefits' },
-];
+const pages = [...pagesLevel1].splice(0, 1);
 
-const pages2 = [
-  { path: '/knowledge-hub/technical-literature/technical-information-sheets/', name: 'technical-information-sheets' },
-  { path: '/knowledge-hub/technical-literature/product-information-sheets/', name: 'product-information-sheets' },
-  { path: '/markets/mass-transportation/', name: 'mass-transportation' },
-  { path: '/markets/medical/', name: 'medical' },
-  { path: '/markets/product-protection/', name: 'product-protection' },
-  { path: '/markets/sports-leisure/', name: 'sports-leisure' },
-  { path: '/markets/construction-insulation/', name: 'construction-insulation' },
-  { path: '/our-brands/azote/evazote/', name: 'evazote' },
-  { path: '/our-brands/azote/plastazote/', name: 'plastazote' },
-  { path: '/our-brands/azote/supazote/', name: 'supazote' },
-  { path: '/our-brands/zotek/', name: 'zotek' },
-  { path: '/our-brands/zotek/zotek-f-osu-ht-aviation-aerospace/', name: 'zotek-f-osu-ht-aviation-aerospace' },
-  { path: '/our-brands/zotek/zotek-t/', name: 'zotek-t' },
-  { path: '/our-brands/ecozote-2/', name: 'ecozote-2' },
-  { path: '/our-brands/t-fit/', name: 't-fit' },
-  { path: '/legal/modern-slavery-statement/', name: 'modern-slavery-statement' },
-  { path: '/legal/conditions-of-sale/', name: 'conditions-of-sale' },
-  { path: '/legal/terms-of-use/', name: 'terms-of-use' },
-  { path: '/legal/policy-compliance-statement/', name: 'policy-compliance-statement' },
-  { path: '/our-brands/zotek/zotek-f/', name: 'zotek-f' },
-  { path: '/markets/aviation-aerospace/', name: 'aviation-aerospace' },
-  { path: '/news-centre/uncategorised/', name: 'uncategorised' },
-  { path: '/news-centre/videos/', name: 'videos' },
-  { path: '/documents-category/application-related-statements/', name: 'application-related-statements' },
-  { path: '/trading-update-and-group-ceo-succession/', name: 'ceo-succession' },
-  { path: '/zotefoams-announces-licensing-agreement-with-censco-for-manufacture-of-microcellular-foaming-equipment/', name: 'licensing-with-censco' },
-  { path: '/zotefoams-presents-a-more-sustainable-future-for-beverage-cartons-with-rezorce-mono-material-barrier-packaging/', name: 'rezorce-barrier-packaging' },
-  { path: '/rezorce-wins-german-packaging-award/', name: 'german-packaging-award' },
-  { path: '/lightweight-luxury-mgr-foamtexs-softwall-nextgen-is-50-lighter-thanks-to-zotek-f-osu-xr/', name: 'mgr-foamtex-softwall' },
-  { path: '/weight-of-business-jet-components-reduced-by-50-with-zotek-f-high-performance-foam/', name: 'jet-components-zotek-f' },
-  { path: '/ssc-record-impressive-energy-savings-using-zotefoams-lightweight-foam/', name: 'ssc-energy-savings' },
-  { path: '/zotefoams-annual-general-meeting-broadcast-2022/', name: 'agm-2022' },
-  { path: '/official-opening-of-zotefoams-plant-in-brzeg-poland-2021/', name: 'brzeg-poland-plant' },
-  { path: '/zotefoams-zotek-and-azote-foams-are-the-ultimate-lightweight-material-for-aircraft-interiors/', name: 'aircraft-interiors' },
-  { path: '/zotefoams-unique-three-stage-manufacturing-process/', name: 'three-stage-process' },
-  { path: '/zotefoams-h1-interim-results-2024/', name: 'h1-results-2024' },
-  { path: '/1264-2/', name: '1264-2' },
-  { path: '/capital-markets-day-18-march-2025-peel-hunt-office-london/', name: 'capital-markets-day-2025' },
-  { path: '/lorem-ipsum-sustainable-foam-innovations/', name: 'sustainable-foam-innovations' },
-  { path: '/full-year-trading-update-and-notice-of-capital-markets-day/', name: 'full-year-trading-update' },
-  { path: '/zotefoams-unveils-sustainable-seating-material-at-aix-2025/', name: 'aix-2025-seating-material' },
-  { path: '/k-show-8-15-october-2025-messe-dusseldorf-germany-stand-5a24/', name: 'k-show-2025' },
-  { path: '/the-battery-show-3-5-june-2025-messe-stuttgart-germany-stand-7-g41/', name: 'battery-show-2025' },
-  { path: '/interfoam-2-4-july-2025-hall-4-sniec-shanghai-china-stand-g09/', name: 'interfoam-2025' },
-  { path: '/china-dairy-show-23-25-may-2025-nanjing-international-exhibition-and-conference-center-jiangsu-china-stand-tbc/', name: 'china-dairy-show-2025' },
-];
+// Collection for all test results for the final report
+const allTestResults = [];
 
-const retest = [
-];
+// Ensure output directory exists once
+if (!existsSync(outputDir)) {
+  mkdirSync(outputDir, { recursive: true });
+}
 
-const failed = [
-];
-
-async function preparePage(context, url) {
+async function preparePage(context, url, pageName, deviceIdentifier) {
   const page = await context.newPage();
-  console.log(`Navigating to ${url}`);
-  await page.goto(url, { waitUntil: 'load' });
-  await page.waitForTimeout(2000);
+  console.log(`[${pageName}-${deviceIdentifier}] Navigating to ${url}`);
+  try {
+    // Using 'networkidle' can be more reliable than 'load' and a fixed timeout,
+    // as it waits for network activity to subside.
+    // Increased timeout for goto itself, as some pages might be slow.
+    await page.goto(url, { waitUntil: 'networkidle', timeout: 90000 }); // 90s for page navigation
+    // The fixed page.waitForTimeout(2000) has been removed.
+    // If 'networkidle' isn't enough, consider specific element waits or a very short explicit wait.
+  } catch (e) {
+    console.error(`[${pageName}-${deviceIdentifier}] Error navigating to ${url}: ${e.message}`);
+    await page.close(); // Clean up page if goto fails
+    throw e; // Re-throw to be caught by the test
+  }
 
   await page.evaluate(() => {
-    document.querySelectorAll('.cky-overlay, .cky-consent-container, cky-modal, .site-header, .site-footer').forEach(el => el.style.display = 'none');
+    document.querySelectorAll('.cky-overlay, .cky-consent-container, cky-modal, .site-header, .site-footer').forEach(el => {
+        if (el instanceof HTMLElement) el.style.display = 'none';
+    });
     document.querySelectorAll('.swiper').forEach((el) => {
-      const swiper = el.swiper;
-      if (swiper?.autoplay) swiper.autoplay.stop();
-      swiper?.slideTo(0, 0);
+      // @ts-ignore // Assuming 'swiper' is a custom property or from a library not typed here
+      const swiperInstance = el.swiper;
+      if (swiperInstance) {
+        if (swiperInstance.autoplay && typeof swiperInstance.autoplay.stop === 'function') {
+          swiperInstance.autoplay.stop();
+        }
+        if (typeof swiperInstance.slideTo === 'function') {
+          swiperInstance.slideTo(0, 0);
+        }
+      }
     });
   });
   return page;
 }
 
-test('Visual Regression: Multi-Device, Multi-Page', async ({ browser }) => {
-  if (!existsSync(outputDir)) mkdirSync(outputDir, { recursive: true });
+// Dynamically create a test for each page and device combination
+for (const device of includedDevices) {
+  const viewport = deviceConfigs[device];
 
-  const results = [];
+  for (const { path: pagePath, name: pageName } of pages) {
+    test(`VRT: ${pageName} on ${device}`, async ({ browser }, testInfo) => {
+      // You can set a specific timeout for these VRT tests if needed,
+      // e.g., if 60s (default) is too short for a single page comparison.
+      // This will override the global timeout for this specific test.
+      testInfo.setTimeout(120000); // 2 minutes per page-device combination
 
-  for (const device of includedDevices) {
-    const viewport = deviceConfigs[device];
-    let context;
-  
-    try {
-      context = await browser.newContext({ viewport });
-  
-      for (const { path: pagePath, name } of pages) {
-        const devUrl = devBase + pagePath;
-        const liveUrl = liveBase + pagePath;
-  
-        let devPage, livePage;
-  
+      const resultEntry = {
+        name: pageName,
+        device,
+        url: pagePath,
+        devUrl: `${devBase}${pagePath}`,
+        liveUrl: `${liveBase}${pagePath}`,
+        status: 'error', // Default, will be updated
+        diffPixels: 0,
+        errorMessage: null,
+        devScreenshotFile: `${pageName}_${device}_dev.png`,
+        liveScreenshotFile: `${pageName}_${device}_live.png`,
+        diffScreenshotFile: `${pageName}_${device}_diff.png`
+      };
+
+      let context;
+      let devPage;
+      let livePage;
+
+      try {
+        context = await browser.newContext({ viewport });
+
+        const devUrl = resultEntry.devUrl;
+        const liveUrl = resultEntry.liveUrl;
+
         try {
-          devPage = await preparePage(context, devUrl);
-          livePage = await preparePage(context, liveUrl);
-        } catch (err) {
-          console.error(`❌ Failed to load ${name} (${device}): ${err.message}`);
-          results.push({
-            name,
-            device,
-            url: pagePath,
-            devUrl,
-            liveUrl,
-            status: 'error',
-            diffPixels: 0
-          });
-          continue;
+          devPage = await preparePage(context, devUrl, pageName, `${device}-dev`);
+          livePage = await preparePage(context, liveUrl, pageName, `${device}-live`);
+        } catch (pageLoadError) {
+          console.error(`[${pageName}-${device}] Failed to load pages: ${pageLoadError.message}`);
+          resultEntry.errorMessage = `Page load failed: ${pageLoadError.message}`;
+          allTestResults.push(resultEntry);
+          if (devPage && !devPage.isClosed()) await devPage.close();
+          if (livePage && !livePage.isClosed()) await livePage.close();
+          if (context) await context.close();
+          throw pageLoadError; // Propagate error to fail the test
         }
-  
-        const devFile = `${name}_${device}_dev.png`;
-        const liveFile = `${name}_${device}_live.png`;
-        const diffFile = `${name}_${device}_diff.png`;
-  
-        const devPath = path.join(outputDir, devFile);
-        const livePath = path.join(outputDir, liveFile);
-        const diffPath = path.join(outputDir, diffFile);
-  
+
+        const devPath = path.join(outputDir, resultEntry.devScreenshotFile);
+        const livePath = path.join(outputDir, resultEntry.liveScreenshotFile);
+        const diffPath = path.join(outputDir, resultEntry.diffScreenshotFile);
+
+        console.log(`[${pageName}-${device}] Taking screenshots.`);
         await devPage.screenshot({ path: devPath, fullPage: true });
         await livePage.screenshot({ path: livePath, fullPage: true });
-  
-        try {
-          const devSharp = sharp(devPath);
-          const liveSharp = sharp(livePath);
-          const devMeta = await devSharp.metadata();
-          const liveMeta = await liveSharp.metadata();
-  
-          const minWidth = Math.min(devMeta.width, liveMeta.width);
-          const minHeight = Math.min(devMeta.height, liveMeta.height);
-  
-          const devBuffer = await devSharp.extract({ left: 0, top: 0, width: minWidth, height: minHeight }).png().toBuffer();
-          const liveBuffer = await liveSharp.extract({ left: 0, top: 0, width: minWidth, height: minHeight }).png().toBuffer();
-  
-          const devImg = PNG.sync.read(devBuffer);
-          const liveImg = PNG.sync.read(liveBuffer);
-          const diff = new PNG({ width: minWidth, height: minHeight });
-  
-          const diffPixels = pixelmatch(
-            devImg.data,
-            liveImg.data,
-            diff.data,
-            minWidth,
-            minHeight,
-            { threshold: 0.1 }
-          );
-  
-          if (diffPixels > 200) {
-            writeFileSync(diffPath, PNG.sync.write(diff));
-            results.push({
-              name,
-              device,
-              url: pagePath,
-              devUrl,
-              liveUrl,
-              status: 'diff',
-              diffPixels
-            });
-          } else {
-            results.push({
-              name,
-              device,
-              url: pagePath,
-              devUrl,
-              liveUrl,
-              status: 'pass',
-              diffPixels
-            });
-  
-            // Clean up images for passes
-            [devPath, livePath].forEach(p => {
-              try { require('fs').unlinkSync(p); } catch {}
-            });
-          }
-        } catch (err) {
-          console.error(`❌ Image processing failed for ${name} (${device}): ${err.message}`);
-          results.push({
-            name,
-            device,
-            url: pagePath,
-            devUrl,
-            liveUrl,
-            status: 'error',
-            diffPixels: 0
+
+        console.log(`[${pageName}-${device}] Comparing images.`);
+        const devSharp = sharp(devPath);
+        const liveSharp = sharp(livePath);
+        const devMeta = await devSharp.metadata();
+        const liveMeta = await liveSharp.metadata();
+
+        // Ensure metadata was retrieved (images were valid)
+        if (!devMeta.width || !devMeta.height || !liveMeta.width || !liveMeta.height) {
+            throw new Error('Could not get metadata for one or both images. Ensure images were saved correctly.');
+        }
+        
+        const minWidth = Math.min(devMeta.width, liveMeta.width);
+        const minHeight = Math.min(devMeta.height, liveMeta.height);
+
+        const devBuffer = await devSharp.extract({ left: 0, top: 0, width: minWidth, height: minHeight }).png().toBuffer();
+        const liveBuffer = await liveSharp.extract({ left: 0, top: 0, width: minWidth, height: minHeight }).png().toBuffer();
+
+        const devImg = PNG.sync.read(devBuffer);
+        const liveImg = PNG.sync.read(liveBuffer);
+        const diffImg = new PNG({ width: minWidth, height: minHeight });
+
+        const diffPixelsValue = pixelmatch(
+          devImg.data, liveImg.data, diffImg.data,
+          minWidth, minHeight, { threshold: 0.1, includeAA: true } // includeAA can help with anti-aliased text/edges
+        );
+        resultEntry.diffPixels = diffPixelsValue;
+
+        if (diffPixelsValue > 200) { // Your threshold for difference
+          writeFileSync(diffPath, PNG.sync.write(diffImg));
+          resultEntry.status = 'diff';
+          console.warn(`[${pageName}-${device}] Visual difference found: ${diffPixelsValue} pixels. Diff image: ${resultEntry.diffScreenshotFile}`);
+        } else {
+          resultEntry.status = 'pass';
+          console.log(`[${pageName}-${device}] Visual check passed.`);
+          // Clean up images for passes
+          [devPath, livePath].forEach(p => {
+            if (existsSync(p)) {
+              try {
+                unlinkSync(p);
+              } catch (e) {
+                console.warn(`[${pageName}-${device}] Could not delete ${p}: ${e.message}`);
+              }
+            }
           });
         }
-      }
-    } catch (err) {
-      console.error(`❌ Device context failed (${device}): ${err.message}`);
-      for (const { name, path: pagePath } of pages) {
-        results.push({
-          name,
-          device,
-          url: pagePath,
-          devUrl: devBase + pagePath,
-          liveUrl: liveBase + pagePath,
-          status: 'error',
-          diffPixels: 0
-        });
-      }
-    } finally {
-      try {
-        if (context) await context.close();
-      } catch (err) {
-        console.warn(`⚠️ Could not close context for ${device}: ${err.message}`);
-      }
-    }
-  }
-  
+        allTestResults.push(resultEntry);
 
-  const reportPath = generateReport(results, outputDir);
-  await open(reportPath);
+      } catch (error) {
+        console.error(`❌ Error in test [${pageName}-${device}]: ${error.message}\n${error.stack || ''}`);
+        resultEntry.status = 'error';
+        resultEntry.errorMessage = error.message;
+        
+        // Ensure result is pushed if not already (e.g. error before explicit push)
+        const existingResultIndex = allTestResults.findIndex(r => r.name === pageName && r.device === device);
+        if (existingResultIndex > -1) {
+            allTestResults[existingResultIndex] = { ...allTestResults[existingResultIndex], ...resultEntry};
+        } else {
+            allTestResults.push(resultEntry);
+        }
+        throw error; // Re-throw to ensure Playwright marks test as failed
+      } finally {
+        console.log(`[${pageName}-${device}] Cleaning up test resources.`);
+        if (devPage && !devPage.isClosed()) await devPage.close();
+        if (livePage && !livePage.isClosed()) await livePage.close();
+        if (context) await context.close();
+      }
+    });
+  }
+}
+
+test.afterAll(async () => {
+  console.log('All visual tests completed. Generating report...');
+  
+  // Deduplicate results in case of retries or complex error paths (keeps the latest attempt for a unique page-device combo)
+  const finalResultsMap = new Map();
+  for (const result of allTestResults) {
+    const key = `${result.name}-${result.device}`;
+    finalResultsMap.set(key, result); // Map ensures only the last entry for a key is kept
+  }
+  const finalUniqueResults = Array.from(finalResultsMap.values());
+
+  if (finalUniqueResults.length > 0) {
+    try {
+      const reportPath = generateReport(finalUniqueResults, outputDir); // Ensure generateReport can handle the new structure
+      console.log(`Report generated at: ${reportPath}`);
+      await open(reportPath); // open can be async
+      console.log('Report opened in browser.');
+    } catch (reportError) {
+        console.error(`Failed to generate or open report: ${reportError.message}`);
+    }
+  } else {
+    console.warn("No test results recorded. Check for early script termination or configuration issues.");
+  }
 });

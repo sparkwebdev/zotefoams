@@ -1,0 +1,20 @@
+export const pages = [
+  { path: '/', name: 'home' },
+  { path: '/who-we-are/', name: 'about' },
+  { path: '/contact-us/', name: 'contact' },
+  { path: '/news-centre/', name: 'news-centre' },
+  { path: '/our-brands/', name: 'our-brands' },
+  { path: '/our-brands/azote/', name: 'azote' },
+  { path: '/knowledge-hub/', name: 'knowledge-hub' },
+  { path: '/markets/', name: 'markets' },
+  { path: '/work-with-us/', name: 'work-with-us' },
+  { path: '/who-we-are/sustainability/', name: 'sustainability' },
+  { path: '/news-centre/case-studies/', name: 'case-studies' },
+  { path: '/news-centre/events/', name: 'events' },
+  { path: '/news-centre/news/', name: 'news' },
+  { path: '/investors/', name: 'investors' },
+  { path: '/search?s=test', name: 'search' },
+  { path: '/404-xyz/', name: '404' },
+  { path: '/contact-us/', name: 'contact-us' },
+  { path: '/governance/', name: 'governance' }
+];

@@ -1609,19 +1609,19 @@ textarea {
 }
 
 .btn.white.arrow::after {
-  background-image: url(/wp-content/themes/zotefoams/images/icon-right-arrow-white.svg);
+  background-image: url(images/icon-right-arrow-white.svg);
 }
 
 .btn.white.arrow:hover::after {
-  background-image: url(/wp-content/themes/zotefoams/images/icon-right-arrow-blue.svg);
+  background-image: url(images/icon-right-arrow-blue.svg);
 }
 
 .btn.black.arrow::after {
-  background-image: url(/wp-content/themes/zotefoams/images/icon-right-arrow-black.svg);
+  background-image: url(images/icon-right-arrow-black.svg);
 }
 
 .btn.black.arrow:hover::after {
-  background-image: url(/wp-content/themes/zotefoams/images/icon-right-arrow-blue.svg);
+  background-image: url(images/icon-right-arrow-blue.svg);
 }
 
 @media screen and (max-width: 480px) {
@@ -1639,7 +1639,7 @@ a.hl {
 
 a.hl.arrow::after {
   content: '';
-  background-image: url(/wp-content/themes/zotefoams/images/icon-right-arrow-blue.svg);
+  background-image: url(images/icon-right-arrow-blue.svg);
   background-repeat: no-repeat;
   background-size: 120%;
   background-position: center center;
@@ -1651,7 +1651,7 @@ a.hl.arrow::after {
 
 a.hl.download::after {
   content: '';
-  background-image: url(/wp-content/themes/zotefoams/images/icon-download.svg);
+  background-image: url(images/icon-download.svg);
   background-repeat: no-repeat;
   background-size: 120%;
   background-position: center center;
@@ -2985,7 +2985,7 @@ body.touch-device .utility-menu .menu > li.dropdown-active > ul {
 
 .file-list__dropdown-button::after {
   content: '';
-  background-image: url(../images/icon-right-arrow-white.svg);
+  background-image: url(images/icon-right-arrow-white.svg);
   background-position: center;
   background-repeat: no-repeat;
   background-size: 120%;
@@ -3244,7 +3244,7 @@ a.read-more:focus {
 
 a.read-more.hl.arrow:hover::after,
 a.read-more.hl.arrow:focus::after {
-  background-image: url(../images/icon-right-arrow-black.svg);
+  background-image: url(images/icon-right-arrow-black.svg);
 }
 
 .text-block ul,
@@ -3377,6 +3377,7 @@ a.read-more.hl.arrow:focus::after {
   .swiper-image .swiper-button-next-image {
     bottom: 20px;
     right: 20px;
+    left: 20px;
   }
 }
 /* Circle Container */
@@ -3388,7 +3389,7 @@ a.read-more.hl.arrow:focus::after {
   align-items: center;
   pointer-events: none;
   z-index: 1;
-  background-image: url(/wp-content/themes/zotefoams/images/right-arrow-white.svg);
+  background-image: url(images/right-arrow-white.svg);
   background-repeat: no-repeat;
   background-position: center center;
 }
@@ -3617,7 +3618,7 @@ a.read-more.hl.arrow:focus::after {
 }
 
 .doc-row:hover a.hl.download::after {
-  background-image: url(/wp-content/themes/zotefoams/images/icon-download-black.svg);
+  background-image: url(images/icon-download-black.svg);
 }
 
 .doc-cat {
@@ -3843,7 +3844,7 @@ a.read-more.hl.arrow:focus::after {
 .market-box:hover a.hl.arrow::after,
 .market-box:has(a:focus) h3.hl.arrow::after,
 .market-box:has(a:focus) a.hl.arrow::after {
-  background-image: url(../images/icon-right-arrow-white.svg);
+  background-image: url(images/icon-right-arrow-white.svg);
 }
 
 .market-box:hover .market-image,
@@ -3853,7 +3854,7 @@ a.read-more.hl.arrow:focus::after {
 
 .market-box a.hl.arrow::after:hover,
 .market-box a.hl.arrow::after:focus {
-  background-image: url(../images/icon-right-arrow-white.svg);
+  background-image: url(images/icon-right-arrow-white.svg);
 }
 
 .brands {

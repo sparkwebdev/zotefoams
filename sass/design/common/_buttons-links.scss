@@ -55,19 +55,19 @@
 }
 
 .btn.white.arrow::after {
-  background-image: url(/wp-content/themes/zotefoams/images/icon-right-arrow-white.svg);
+  background-image: url(images/icon-right-arrow-white.svg);
 }
 
 .btn.white.arrow:hover::after {
-  background-image: url(/wp-content/themes/zotefoams/images/icon-right-arrow-blue.svg);
+  background-image: url(images/icon-right-arrow-blue.svg);
 }
 
 .btn.black.arrow::after {
-  background-image: url(/wp-content/themes/zotefoams/images/icon-right-arrow-black.svg);
+  background-image: url(images/icon-right-arrow-black.svg);
 }
 
 .btn.black.arrow:hover::after {
-  background-image: url(/wp-content/themes/zotefoams/images/icon-right-arrow-blue.svg);
+  background-image: url(images/icon-right-arrow-blue.svg);
 }
 
 @media screen and (max-width: 480px) {
@@ -86,7 +86,7 @@ a.hl {
 
 a.hl.arrow::after {
   content: '';
-  background-image: url(/wp-content/themes/zotefoams/images/icon-right-arrow-blue.svg);
+  background-image: url(images/icon-right-arrow-blue.svg);
   background-repeat: no-repeat;
   background-size: 120%;
   background-position: center center;
@@ -98,7 +98,7 @@ a.hl.arrow::after {
 
 a.hl.download::after {
   content: '';
-  background-image: url(/wp-content/themes/zotefoams/images/icon-download.svg);
+  background-image: url(images/icon-download.svg);
   background-repeat: no-repeat;
   background-size: 120%;
   background-position: center center;
