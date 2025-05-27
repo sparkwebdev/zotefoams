@@ -342,6 +342,27 @@
                             },
                             "return_format": "array",
                             "allow_in_bindings": 0
+                        },
+                        {
+                            "key": "field_682f8b555dba9",
+                            "label": "Visual Variant",
+                            "name": "split_video_one_variant",
+                            "aria-label": "",
+                            "type": "true_false",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "message": "Apply component variant - image right with grey background",
+                            "default_value": 0,
+                            "allow_in_bindings": 0,
+                            "ui_on_text": "",
+                            "ui_off_text": "",
+                            "ui": 1
                         }
                     ],
                     "min": "",
@@ -560,7 +581,7 @@
                                     "label": "Text",
                                     "name": "icon_columns_text",
                                     "aria-label": "",
-                                    "type": "textarea",
+                                    "type": "wysiwyg",
                                     "instructions": "",
                                     "required": 0,
                                     "conditional_logic": 0,
@@ -569,15 +590,12 @@
                                         "class": "",
                                         "id": ""
                                     },
-                                    "tabs": "visual",
-                                    "media_upload": 0,
-                                    "toolbar": "basic",
                                     "default_value": "",
-                                    "maxlength": "",
                                     "allow_in_bindings": 1,
-                                    "rows": "",
-                                    "placeholder": "",
-                                    "new_lines": "",
+                                    "tabs": "all",
+                                    "toolbar": "basic",
+                                    "media_upload": 0,
+                                    "delay": 0,
                                     "parent_repeater": "field_67af89012pqrstu"
                                 }
                             ]
@@ -1304,20 +1322,21 @@
                                     "label": "Text",
                                     "name": "multi_item_carousel_slide_text",
                                     "aria-label": "",
-                                    "type": "textarea",
+                                    "type": "wysiwyg",
                                     "instructions": "",
-                                    "required": false,
-                                    "conditional_logic": false,
+                                    "required": 0,
+                                    "conditional_logic": 0,
                                     "wrapper": {
                                         "width": "",
                                         "class": "",
                                         "id": ""
                                     },
                                     "default_value": "",
-                                    "new_lines": "",
-                                    "maxlength": "",
-                                    "placeholder": "",
-                                    "rows": "",
+                                    "allow_in_bindings": 1,
+                                    "tabs": "all",
+                                    "toolbar": "basic",
+                                    "media_upload": 0,
+                                    "delay": 0,
                                     "parent_repeater": "field_67af67890micar5"
                                 },
                                 {
@@ -1364,6 +1383,27 @@
                                     "parent_repeater": "field_67af67890micar5"
                                 }
                             ]
+                        },
+                        {
+                            "key": "field_682f8bf45dbab",
+                            "label": "Visual Variant",
+                            "name": "multi_item_carousel_variant",
+                            "aria-label": "",
+                            "type": "true_false",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "message": "Apply component variant - white text on black",
+                            "default_value": 0,
+                            "allow_in_bindings": 0,
+                            "ui_on_text": "",
+                            "ui_off_text": "",
+                            "ui": 1
                         }
                     ],
                     "min": "",

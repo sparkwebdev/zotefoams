@@ -21,7 +21,16 @@
 
 /* Split Video One - Themed None
  *  --------------------------------------------- */
-.split-video-one.theme-none {
+
+.split-video-one--variant {
+  > :first-child {
+    @media screen and (min-width: 768px) {
+      order: 2;
+    }
+  }
+}
+
+.split-video-one:not(.split-video-one--variant) {
   > :last-child {
     padding: 30px 0 0 0;
     @media screen and (min-width: 768px) {

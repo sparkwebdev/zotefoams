@@ -5,12 +5,13 @@ $title       = get_sub_field('split_video_one_title');
 $text        = get_sub_field('split_video_one_text');
 $extra_text  = get_sub_field('split_video_one_extra_text');
 $link        = get_sub_field('split_video_one_link');
+$variant     = get_sub_field('split_video_one_variant');
 
 $image_url = $image ? $image['sizes']['large'] : get_template_directory_uri() . '/images/placeholder.png';
-$theme_class = is_page('Sustainability') ? 'theme-light' : 'theme-none';
+$wrapperClass = $variant ? 'split-video-one split-video-one--variant' : 'split-video-one';
 ?>
 
-<div class="split-video-one cont-m padding-t-b-100 <?php echo $theme_class; ?>">
+<div class="<?php echo $wrapperClass; ?> cont-m padding-t-b-100 theme-none">
 	<div class="video-container image-cover" style="background-image:url('<?php echo esc_url($image_url); ?>');">
 		<?php if ($video_url) : ?>
 			<button type="button" class="video-trigger" data-modal-trigger="video" data-video-url="<?php echo esc_url($video_url); ?>" aria-label="<?php esc_attr_e('Play Video', 'zotefoams'); ?>">
@@ -19,7 +20,7 @@ $theme_class = is_page('Sustainability') ? 'theme-light' : 'theme-none';
 		<?php endif; ?>
 	</div>
 
-	<div <?php echo is_page('Sustainability') ? 'class="light-grey-bg padding-50"' : ''; ?>>
+	<div <?php echo $variant ? 'class="light-grey-bg padding-50"' : ''; ?>>
 		<?php if ($title) : ?>
 			<p class="fs-200 fw-regular margin-b-30"><?php echo esc_html($title); ?></p>
 		<?php endif; ?>
