@@ -1,114 +1,85 @@
-/* Sustainability Development goals
+/* Sustainability - Development goals
  *  --------------------------------------------- */
-.development-goals-list {
-  display: flex;
-  gap: 2%;
-  flex-wrap: wrap;
-}
 
-.development-goals-list img {
-  margin-bottom: 2%;
-  width: 23.33%;
-}
+.development-goals {
+  &__list {
+    display: grid;
+    gap: 20px;
+    grid-template-columns: repeat(2, 1fr);
+    @media screen and (min-width: 767px) {
+      grid-template-columns: repeat(4, 1fr);
+    }
 
-@media screen and (max-width: 767px) {
-  .development-goals-list img {
-    width: 48%;
+    img {
+      width: 100%;
+    }
   }
 }
-
-/* Sustainability intro
- *      --------------------------------------------- */
-.sustainability-intro strong {
-  font-weight: 700;
-  color: #000;
-}
-
-.sustainability-intro-inner {
-  max-width: 1000px;
-}
-
-/* Sustainability icons
- *      --------------------------------------------- */
-.sustainability-icons-inner {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 4%;
-}
-
-.sustainability-icons-inner > div {
-  width: 48%;
-  flex: auto;
-  margin-bottom: 4%;
-}
-
-@media screen and (max-width: 767px) {
-  .sustainability-icons-inner > div {
-    width: 100%;
-  }
-}
-
-/* Sustainability Header stats
- *      --------------------------------------------- */
-.sustainability-stats-outer {
-  max-width: 850px;
-  align-self: flex-end;
-}
-
-.swiper-image .swiper-inner .sustainability-stats-outer p {
-  max-width: 850px;
-}
-
-.sustainaility-stat-heading {
-  border-top: 1px solid #fff;
-  border-bottom: 1px solid #fff;
-  margin-bottom: 20px;
-  padding: 10px 0;
-}
+/* Sustainability - Header stats
+ * --------------------------------------------- */
 
 .sustainability-stats {
-  display: flex;
-  gap: 3%;
-}
+  max-width: 850px;
+  align-self: flex-end;
+    margin-top: 100px;
 
-.sustainability-stats > div {
-  flex: 1;
+  &__heading {
+    border-top: 1px solid #fff;
+    border-bottom: 1px solid #fff;
+    margin-bottom: 30px !important;
+    padding: 10px 0;
+    max-width: 850px !important;
+  }
+
+  &__items {
+    display: flex;
+    gap: 15px;
+    flex-direction: column;
+  }
+
+  &__stat {
+    display: flex;
+    align-items: flex-start;
+    flex: 1;
+    gap: 15px;
+
+    img {
+      width: 38px;
+    }
+  }
+
+  @media screen and (max-width: 767px) {
+    .sustainability-stats__items {
+      p.fs-800 {
+        font-size: 28px;
+      }
+    }
+  }
+
+  @media screen and (min-width: 768px) {
+    margin-top: 20px;
+
+    &__heading {
+      margin-bottom: 20px !important;
+    }
+
+    &__items {
+      flex-direction: row;
+      gap: 30px;
+    }
+
+    &__stat {
+      flex-direction: column;
+
+      img {
+        width: auto;
+      }
+    }
+  }
 }
 
 @media screen and (max-width: 767px) {
   .page-id-153 .swiper-image {
     height: auto;
-  }
-
-  .sustainability-stats-outer {
-    margin-top: 100px;
-  }
-
-  .sustainaility-stat-heading {
-    margin-bottom: 30px !important;
-  }
-
-  .sustainability-stats p.fs-800 {
-    font-size: 28px;
-    margin-bottom: 0;
-  }
-
-  .sustainability-stats img {
-    width: 38px;
-    margin-right: 15px;
-  }
-
-  .sustainability-stats {
-    display: block;
-    gap: 0;
-  }
-
-  .sustainability-stat {
-    margin-bottom: 20px;
-  }
-
-  .sustainability-stat {
-    display: flex;
-    align-items: flex-start;
   }
 }

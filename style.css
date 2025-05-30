@@ -1147,6 +1147,12 @@ textarea {
   margin: 0 auto;
 }
 
+.cont-s {
+  max-width: 1000px;
+  width: 90%;
+  margin: 0 auto;
+}
+
 .cont-xs {
   max-width: 800px;
   width: 90%;
@@ -3527,6 +3533,9 @@ a.read-more.hl.arrow:focus::after {
     --cols: 3;
   }
 }
+.icon-columns .text-block h3 {
+  max-width: 1000px;
+}
 .icon-columns--half .icon-columns__items {
   gap: 30px 50px;
 }
@@ -4130,109 +4139,77 @@ a.read-more.hl.arrow:focus::after {
     font-size: 16px;
   }
 }
-/* Sustainability Development goals
+/* Sustainability - Development goals
  *  --------------------------------------------- */
-.development-goals-list {
-  display: flex;
-  gap: 2%;
-  flex-wrap: wrap;
+.development-goals__list {
+  display: grid;
+  gap: 20px;
+  grid-template-columns: repeat(2, 1fr);
 }
-
-.development-goals-list img {
-  margin-bottom: 2%;
-  width: 23.33%;
-}
-
-@media screen and (max-width: 767px) {
-  .development-goals-list img {
-    width: 48%;
+@media screen and (min-width: 767px) {
+  .development-goals__list {
+    grid-template-columns: repeat(4, 1fr);
   }
 }
-/* Sustainability intro
- *      --------------------------------------------- */
-.sustainability-intro strong {
-  font-weight: 700;
-  color: #000;
+.development-goals__list img {
+  width: 100%;
 }
 
-.sustainability-intro-inner {
-  max-width: 1000px;
-}
-
-/* Sustainability icons
- *      --------------------------------------------- */
-.sustainability-icons-inner {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 4%;
-}
-
-.sustainability-icons-inner > div {
-  width: 48%;
-  flex: auto;
-  margin-bottom: 4%;
-}
-
-@media screen and (max-width: 767px) {
-  .sustainability-icons-inner > div {
-    width: 100%;
-  }
-}
 /* Sustainability Header stats
  *      --------------------------------------------- */
-.sustainability-stats-outer {
+.sustainability-stats {
   max-width: 850px;
   align-self: flex-end;
+  margin-top: 100px;
 }
-
-.swiper-image .swiper-inner .sustainability-stats-outer p {
-  max-width: 850px;
-}
-
-.sustainaility-stat-heading {
+.sustainability-stats__heading {
   border-top: 1px solid #fff;
   border-bottom: 1px solid #fff;
-  margin-bottom: 20px;
+  margin-bottom: 30px !important;
   padding: 10px 0;
+  max-width: 850px !important;
 }
-
-.sustainability-stats {
+.sustainability-stats__items {
   display: flex;
-  gap: 3%;
+  gap: 15px;
+  flex-direction: column;
 }
-
-.sustainability-stats > div {
+.sustainability-stats__stat {
+  display: flex;
+  align-items: flex-start;
   flex: 1;
+  gap: 15px;
+}
+.sustainability-stats__stat img {
+  width: 38px;
+}
+@media screen and (max-width: 767px) {
+  .sustainability-stats .sustainability-stats__items p.fs-800 {
+    font-size: 28px;
+  }
+}
+@media screen and (min-width: 768px) {
+  .sustainability-stats {
+    margin-top: 20px;
+  }
+  .sustainability-stats__heading {
+    margin-bottom: 20px !important;
+  }
+  .sustainability-stats__items {
+    flex-direction: row;
+    gap: 30px;
+  }
+  .sustainability-stats__stat {
+    flex-direction: column;
+  }
+  .sustainability-stats__stat img {
+    width: auto;
+  }
 }
 
 @media screen and (max-width: 767px) {
   .page-id-153 .swiper-image {
     height: auto;
-  }
-  .sustainability-stats-outer {
-    margin-top: 100px;
-  }
-  .sustainaility-stat-heading {
-    margin-bottom: 30px !important;
-  }
-  .sustainability-stats p.fs-800 {
-    font-size: 28px;
-    margin-bottom: 0;
-  }
-  .sustainability-stats img {
-    width: 38px;
-    margin-right: 15px;
-  }
-  .sustainability-stats {
-    display: block;
-    gap: 0;
-  }
-  .sustainability-stat {
-    margin-bottom: 20px;
-  }
-  .sustainability-stat {
-    display: flex;
-    align-items: flex-start;
   }
 }
 /* Contact page

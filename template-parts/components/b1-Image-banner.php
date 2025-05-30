@@ -32,20 +32,20 @@
 						</div>
 
 						<?php if (is_page('Sustainability')): ?>
-							<div class="sustainability-stats-outer data-points-items">
-								<p class="sustainaility-stat-heading fw-bold fs-500 uppercase">
+							<div class="sustainability-stats data-points-items">
+								<p class="sustainability-stats__heading fw-bold fs-500 uppercase">
 									<?php echo esc_html($text); ?>
 								</p>
 
 								<?php if (have_rows('sustainability_stats')): ?>
-									<div class="sustainability-stats">
+									<div class="sustainability-stats__items">
 										<?php while (have_rows('sustainability_stats')): the_row();
 											$stat_icon = get_sub_field('sustainability_stat_icon');
 											$stat_number = get_sub_field('sustainability_stat_big_number') ?: 0;
 											$stat_suffix = get_sub_field('sustainability_stat_suffix') ?: '';
 											$stat_text = get_sub_field('sustainability_stat_text') ?: '';
 										?>
-											<div class="sustainability-stat">
+											<div class="sustainability-stats__stat">
 												<?php if (!empty($stat_icon)): ?>
 													<img src="<?php echo esc_url($stat_icon['url']); ?>" alt="<?php echo esc_attr($stat_text); ?>" loading="lazy" />
 												<?php endif; ?>

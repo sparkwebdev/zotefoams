@@ -13,6 +13,10 @@
     }
   }
 
+  .text-block h3 {
+    max-width: 1000px;
+  }
+
   &--half {
     .icon-columns__items {
       gap: 30px 50px;
