@@ -222,9 +222,9 @@ select {
  * Correct the inability to style clickable types in iOS and Safari.
  */
 button,
-[type='button'],
-[type='reset'],
-[type='submit'] {
+[type="button"],
+[type="reset"],
+[type="submit"] {
   -webkit-appearance: button;
 }
 
@@ -232,9 +232,9 @@ button,
  * Remove the inner border and padding in Firefox.
  */
 button::-moz-focus-inner,
-[type='button']::-moz-focus-inner,
-[type='reset']::-moz-focus-inner,
-[type='submit']::-moz-focus-inner {
+[type="button"]::-moz-focus-inner,
+[type="reset"]::-moz-focus-inner,
+[type="submit"]::-moz-focus-inner {
   border-style: none;
   padding: 0;
 }
@@ -243,9 +243,9 @@ button::-moz-focus-inner,
  * Restore the focus styles unset by the previous rule.
  */
 button:-moz-focusring,
-[type='button']:-moz-focusring,
-[type='reset']:-moz-focusring,
-[type='submit']:-moz-focusring {
+[type="button"]:-moz-focusring,
+[type="reset"]:-moz-focusring,
+[type="submit"]:-moz-focusring {
   outline: 1px dotted ButtonText;
 }
 
@@ -289,8 +289,8 @@ textarea {
  * 1. Add the correct box sizing in IE 10.
  * 2. Remove the padding in IE 10.
  */
-[type='checkbox'],
-[type='radio'] {
+[type="checkbox"],
+[type="radio"] {
   box-sizing: border-box;
   padding: 0;
 }
@@ -298,8 +298,8 @@ textarea {
 /**
  * Correct the cursor style of increment and decrement buttons in Chrome.
  */
-[type='number']::-webkit-inner-spin-button,
-[type='number']::-webkit-outer-spin-button {
+[type="number"]::-webkit-inner-spin-button,
+[type="number"]::-webkit-outer-spin-button {
   height: auto;
 }
 
@@ -307,7 +307,7 @@ textarea {
  * 1. Correct the odd appearance in Chrome and Safari.
  * 2. Correct the outline style in Safari.
  */
-[type='search'] {
+[type="search"] {
   -webkit-appearance: textfield;
   outline-offset: -2px;
 }
@@ -315,7 +315,7 @@ textarea {
 /**
  * Remove the inner padding in Chrome and Safari on macOS.
  */
-[type='search']::-webkit-search-decoration {
+[type="search"]::-webkit-search-decoration {
   -webkit-appearance: none;
 }
 
@@ -386,7 +386,7 @@ select,
 optgroup,
 textarea {
   color: #000;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen-Sans, Ubuntu, Cantarell, 'Helvetica Neue', sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
   font-size: 1rem;
   line-height: 1.5;
 }
@@ -422,7 +422,7 @@ address {
 
 pre {
   background: #eee;
-  font-family: 'Courier 10 Pitch', courier, monospace;
+  font-family: "Courier 10 Pitch", courier, monospace;
   line-height: 1.6;
   margin-bottom: 1.6em;
   max-width: 100%;
@@ -434,7 +434,7 @@ code,
 kbd,
 tt,
 var {
-  font-family: monaco, consolas, 'Andale Mono', 'DejaVu Sans Mono', monospace;
+  font-family: monaco, consolas, "Andale Mono", "DejaVu Sans Mono", monospace;
 }
 
 abbr,
@@ -549,9 +549,9 @@ a:active {
 /* Forms
 --------------------------------------------- */
 button,
-input[type='button'],
-input[type='reset'],
-input[type='submit'] {
+input[type="button"],
+input[type="reset"],
+input[type="submit"] {
   border: 1px solid;
   border-color: #ccc #ccc #bbb;
   border-radius: 3px;
@@ -561,58 +561,58 @@ input[type='submit'] {
   padding: 0.6em 1em 0.4em;
 }
 button:hover,
-input[type='button']:hover,
-input[type='reset']:hover,
-input[type='submit']:hover {
+input[type="button"]:hover,
+input[type="reset"]:hover,
+input[type="submit"]:hover {
   border-color: #ccc #bbb #aaa;
 }
 button:active,
 button:focus,
-input[type='button']:active,
-input[type='button']:focus,
-input[type='reset']:active,
-input[type='reset']:focus,
-input[type='submit']:active,
-input[type='submit']:focus {
+input[type="button"]:active,
+input[type="button"]:focus,
+input[type="reset"]:active,
+input[type="reset"]:focus,
+input[type="submit"]:active,
+input[type="submit"]:focus {
   border-color: #aaa #bbb #bbb;
 }
 
-input[type='text'],
-input[type='email'],
-input[type='url'],
-input[type='password'],
-input[type='search'],
-input[type='number'],
-input[type='tel'],
-input[type='range'],
-input[type='date'],
-input[type='month'],
-input[type='week'],
-input[type='time'],
-input[type='datetime'],
-input[type='datetime-local'],
-input[type='color'],
+input[type="text"],
+input[type="email"],
+input[type="url"],
+input[type="password"],
+input[type="search"],
+input[type="number"],
+input[type="tel"],
+input[type="range"],
+input[type="date"],
+input[type="month"],
+input[type="week"],
+input[type="time"],
+input[type="datetime"],
+input[type="datetime-local"],
+input[type="color"],
 textarea {
   color: #666;
   border: 1px solid #ccc;
   border-radius: 3px;
   padding: 3px;
 }
-input[type='text']:focus,
-input[type='email']:focus,
-input[type='url']:focus,
-input[type='password']:focus,
-input[type='search']:focus,
-input[type='number']:focus,
-input[type='tel']:focus,
-input[type='range']:focus,
-input[type='date']:focus,
-input[type='month']:focus,
-input[type='week']:focus,
-input[type='time']:focus,
-input[type='datetime']:focus,
-input[type='datetime-local']:focus,
-input[type='color']:focus,
+input[type="text"]:focus,
+input[type="email"]:focus,
+input[type="url"]:focus,
+input[type="password"]:focus,
+input[type="search"]:focus,
+input[type="number"]:focus,
+input[type="tel"]:focus,
+input[type="range"]:focus,
+input[type="date"]:focus,
+input[type="month"]:focus,
+input[type="week"]:focus,
+input[type="time"]:focus,
+input[type="datetime"]:focus,
+input[type="datetime-local"]:focus,
+input[type="color"]:focus,
 textarea:focus {
   color: #111;
 }
@@ -806,7 +806,7 @@ textarea {
   margin-bottom: 1.5em;
   max-width: 100%;
 }
-.wp-caption img[class*='wp-image-'] {
+.wp-caption img[class*="wp-image-"] {
   display: block;
   margin-left: auto;
   margin-right: auto;
@@ -908,7 +908,7 @@ textarea {
 }
 
 /* Do not show the outline on the skip link target. */
-#primary[tabindex='-1']:focus {
+#primary[tabindex="-1"]:focus {
   outline: 0;
 }
 
@@ -1604,7 +1604,7 @@ textarea {
 }
 
 .btn.outline.arrow::after {
-  content: '';
+  content: "";
   background-repeat: no-repeat;
   background-size: 120%;
   background-position: center center;
@@ -1644,7 +1644,7 @@ a.hl {
 }
 
 a.hl.arrow::after {
-  content: '';
+  content: "";
   background-image: url(images/icon-right-arrow-blue.svg);
   background-repeat: no-repeat;
   background-size: 120%;
@@ -1656,7 +1656,7 @@ a.hl.arrow::after {
 }
 
 a.hl.download::after {
-  content: '';
+  content: "";
   background-image: url(images/icon-download.svg);
   background-repeat: no-repeat;
   background-size: 120%;
@@ -1669,9 +1669,9 @@ a.hl.download::after {
 }
 
 button.btn,
-input[type='button'].btn,
-input[type='reset'].btn,
-input[type='submit'].btn {
+input[type="button"].btn,
+input[type="reset"].btn,
+input[type="submit"].btn {
   border: 0;
   border-radius: 5px;
   padding: 13px 20px 15px;
@@ -2096,7 +2096,7 @@ footer div.wpforms-container.wpforms-container-full:not(:empty) {
 
 .main-navigation .menu-item-has-children > a::after,
 .utility-menu .menu-item-has-children > a::after {
-  content: '';
+  content: "";
   background-size: 10px 10px;
   width: 20px;
   height: 1em;
@@ -2123,7 +2123,7 @@ footer div.wpforms-container.wpforms-container-full:not(:empty) {
 
 .main-navigation .sub-menu li > a::before,
 .utility-menu .sub-menu li > a::before {
-  content: '';
+  content: "";
   vertical-align: middle;
   background-size: 16px 16px;
   width: 20px;
@@ -2709,7 +2709,7 @@ body.touch-device .utility-menu .menu > li.dropdown-active > ul {
     border-left: 1px solid #d1d1d1;
   }
   .dropdown-toggle::after {
-    content: '';
+    content: "";
     background: url(images/icon-right-arrow-black.svg) center no-repeat;
     background-size: 10px 10px;
     width: 100%;
@@ -2738,14 +2738,14 @@ body.touch-device .utility-menu .menu > li.dropdown-active > ul {
   justify-self: flex-end;
   margin-left: auto;
 }
-.utility-search input[type='text'] {
+.utility-search input[type="text"] {
   flex: 1;
   border: 0;
   padding: 8px;
   line-height: 1;
 }
-.utility-search button[type='submit'],
-.utility-search button[type='button'] {
+.utility-search button[type="submit"],
+.utility-search button[type="button"] {
   min-width: 0;
   cursor: pointer;
   padding: 8px 16px;
@@ -2990,7 +2990,7 @@ body.touch-device .utility-menu .menu > li.dropdown-active > ul {
 }
 
 .file-list__dropdown-button::after {
-  content: '';
+  content: "";
   background-image: url(images/icon-right-arrow-white.svg);
   background-position: center;
   background-repeat: no-repeat;
@@ -3077,7 +3077,7 @@ body.touch-device .utility-menu .menu > li.dropdown-active > ul {
 
 .filter-options__checkbox:checked::after,
 .filter-options__checkbox:checked::before {
-  content: '';
+  content: "";
   transform-origin: center;
   background-color: var(--color-text);
   width: 22px;
@@ -3357,7 +3357,7 @@ a.read-more.hl.arrow:focus::after {
 
 .swiper-image .swiper-button-next::after,
 .swiper-rtl .swiper-button-prev::after {
-  content: '';
+  content: "";
 }
 
 .swiper-image .swiper-button-next-image:hover {
@@ -4155,8 +4155,8 @@ a.read-more.hl.arrow:focus::after {
   width: 100%;
 }
 
-/* Sustainability Header stats
- *      --------------------------------------------- */
+/* Sustainability - Header stats
+ * --------------------------------------------- */
 .sustainability-stats {
   max-width: 850px;
   align-self: flex-end;
@@ -4308,7 +4308,7 @@ a.read-more.hl.arrow:focus::after {
   z-index: 1;
 }
 .locations-map__location::after {
-  content: '';
+  content: "";
   width: 3vw;
   height: 3vw;
   border-radius: 50%;
@@ -4445,7 +4445,7 @@ a.read-more.hl.arrow:focus::after {
   border-radius: 10px;
 }
 .highlight-panel::before {
-  content: '';
+  content: "";
   position: absolute;
   top: 0;
   left: 0;

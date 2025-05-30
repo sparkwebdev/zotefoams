@@ -49,7 +49,7 @@ Nicolas Gallagher and Jonathan Neal https://necolas.github.io/normalize.css/
 --------------------------------------------------------------*/
 
 // Import variables and mixins.
-@use 'abstracts/abstracts';
+@use "abstracts/abstracts";
 
 /*--------------------------------------------------------------
 # Generic
@@ -57,16 +57,16 @@ Nicolas Gallagher and Jonathan Neal https://necolas.github.io/normalize.css/
 
 /* Normalize
 --------------------------------------------- */
-@use 'generic/normalize';
+@use "generic/normalize";
 
 /* Box sizing
 --------------------------------------------- */
-@use 'generic/box-sizing';
+@use "generic/box-sizing";
 
 /*--------------------------------------------------------------
 # Base
 --------------------------------------------------------------*/
-@use 'base/base';
+@use "base/base";
 
 /*--------------------------------------------------------------
 # Layouts
@@ -77,7 +77,7 @@ Nicolas Gallagher and Jonathan Neal https://necolas.github.io/normalize.css/
 /*--------------------------------------------------------------
 # Components
 --------------------------------------------------------------*/
-@use 'components/components';
+@use "components/components";
 
 /*--------------------------------------------------------------
 # Utilities
@@ -85,13 +85,13 @@ Nicolas Gallagher and Jonathan Neal https://necolas.github.io/normalize.css/
 
 /* Accessibility
 --------------------------------------------- */
-@use 'utilities/accessibility';
+@use "utilities/accessibility";
 
 /* Alignments
 --------------------------------------------- */
-@use 'utilities/alignments';
+@use "utilities/alignments";
 
 /* Design
 --------------------------------------------- */
-@use 'design/design';
-@use 'design/components' as components2;
+@use "design/design";
+@use "design/components" as components2;

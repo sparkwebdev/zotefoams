@@ -1,9 +1,9 @@
-@use '../../abstracts/abstracts' as *;
+@use "../../abstracts/abstracts" as *;
 
 button,
-input[type='button'],
-input[type='reset'],
-input[type='submit'] {
+input[type="button"],
+input[type="reset"],
+input[type="submit"] {
   border: 1px solid;
   border-color: $color__border-button;
   border-radius: 3px;

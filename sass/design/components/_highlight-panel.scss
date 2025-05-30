@@ -1,6 +1,6 @@
 .highlight-panel {
-    position: relative;
-    z-index: 1;
+  position: relative;
+  z-index: 1;
 
   &__inner {
     padding-left: min(50px, 5%);
@@ -14,7 +14,7 @@
   }
 
   &::before {
-    content: '';
+    content: "";
     position: absolute;
     top: 0;
     left: 0;

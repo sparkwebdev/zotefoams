@@ -44,7 +44,7 @@
 }
 
 .btn.outline.arrow::after {
-  content: '';
+  content: "";
   background-repeat: no-repeat;
   background-size: 120%;
   background-position: center center;
@@ -85,7 +85,7 @@ a.hl {
 }
 
 a.hl.arrow::after {
-  content: '';
+  content: "";
   background-image: url(images/icon-right-arrow-blue.svg);
   background-repeat: no-repeat;
   background-size: 120%;
@@ -97,7 +97,7 @@ a.hl.arrow::after {
 }
 
 a.hl.download::after {
-  content: '';
+  content: "";
   background-image: url(images/icon-download.svg);
   background-repeat: no-repeat;
   background-size: 120%;
@@ -110,9 +110,9 @@ a.hl.download::after {
 }
 
 button.btn,
-input[type='button'].btn,
-input[type='reset'].btn,
-input[type='submit'].btn {
+input[type="button"].btn,
+input[type="reset"].btn,
+input[type="submit"].btn {
   border: 0;
   border-radius: 5px;
   padding: 13px 20px 15px;

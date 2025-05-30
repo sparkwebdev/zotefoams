@@ -137,7 +137,7 @@ $breakpoint-large: 68rem;
 
 .main-navigation .menu-item-has-children > a::after,
 .utility-menu .menu-item-has-children > a::after {
-  content: '';
+  content: "";
   background-size: 10px 10px;
   width: 20px;
   height: 1em;
@@ -166,7 +166,7 @@ $breakpoint-large: 68rem;
 
 .main-navigation .sub-menu li > a::before,
 .utility-menu .sub-menu li > a::before {
-  content: '';
+  content: "";
   vertical-align: middle;
   background-size: 16px 16px;
   width: 20px;
@@ -811,7 +811,7 @@ body.touch-device .utility-menu .menu > li.dropdown-active > ul {
   }
 
   .dropdown-toggle::after {
-    content: '';
+    content: "";
     background: url(images/icon-right-arrow-black.svg) center no-repeat;
     background-size: 10px 10px;
     width: 100%;
@@ -845,7 +845,7 @@ body.touch-device .utility-menu .menu > li.dropdown-active > ul {
     margin-left: auto;
   }
 
-  input[type='text'] {
+  input[type="text"] {
     flex: 1;
     border: 0;
     padding: 8px;
@@ -860,4 +860,4 @@ body.touch-device .utility-menu .menu > li.dropdown-active > ul {
     min-width: 0;
     background: transparent;
   }
-} 
+}
