@@ -16,10 +16,10 @@ const deviceConfigs = {
   mobile: { width: 375, height: 812 }
 };
 
-const includedDevices = ['desktop'];
+const includedDevices = ['desktop', 'tablet', 'mobile'];
 
 const devBase = 'https://zotefoams-phase-2.local';
-const liveBase = 'https://zotefoams.com';
+const liveBase = 'https://zotefoams-live-ref.local';
 const outputDir = path.resolve('tests/vrc/results');
 
 const pages = [...pagesLevel1].splice(0, 1);
