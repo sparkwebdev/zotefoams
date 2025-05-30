@@ -581,7 +581,7 @@
                                     "label": "Text",
                                     "name": "icon_columns_text",
                                     "aria-label": "",
-                                    "type": "wysiwyg",
+                                    "type": "textarea",
                                     "instructions": "",
                                     "required": 0,
                                     "conditional_logic": 0,
@@ -590,12 +590,15 @@
                                         "class": "",
                                         "id": ""
                                     },
-                                    "default_value": "",
-                                    "allow_in_bindings": 1,
-                                    "tabs": "all",
-                                    "toolbar": "basic",
+                                    "tabs": "visual",
                                     "media_upload": 0,
-                                    "delay": 0,
+                                    "toolbar": "basic",
+                                    "default_value": "",
+                                    "maxlength": "",
+                                    "allow_in_bindings": 0,
+                                    "rows": "",
+                                    "placeholder": "",
+                                    "new_lines": "",
                                     "parent_repeater": "field_67af89012pqrstu"
                                 }
                             ]
@@ -1334,8 +1337,8 @@
                                     "default_value": "",
                                     "allow_in_bindings": 1,
                                     "tabs": "all",
-                                    "toolbar": "basic",
-                                    "media_upload": 0,
+                                    "toolbar": "full",
+                                    "media_upload": 1,
                                     "delay": 0,
                                     "parent_repeater": "field_67af67890micar5"
                                 },
@@ -4050,14 +4053,14 @@
                     "min": "",
                     "max": ""
                 },
-                "layout_682fb5e488303": {
-                    "key": "layout_682fb5e488303",
+                "layout_6837215b1df2f": {
+                    "key": "layout_6837215b1df2f",
                     "name": "highlight_panel",
                     "label": "Highlight Panel",
                     "display": "block",
                     "sub_fields": [
                         {
-                            "key": "field_682fb61a88306",
+                            "key": "field_683721601df31",
                             "label": "Background Image",
                             "name": "highlight_panel_background_image",
                             "aria-label": "",
@@ -4083,7 +4086,7 @@
                             "preview_size": "medium"
                         },
                         {
-                            "key": "field_682fb5f588305",
+                            "key": "field_683721721df32",
                             "label": "Lead Text",
                             "name": "highlight_panel_lead_text",
                             "aria-label": "",
@@ -4104,7 +4107,7 @@
                             "new_lines": "br"
                         },
                         {
-                            "key": "field_682fb64188307",
+                            "key": "field_6837217a1df33",
                             "label": "Sub Image",
                             "name": "highlight_panel_sub_image",
                             "aria-label": "",
@@ -4130,7 +4133,7 @@
                             "preview_size": "thumbnail-square"
                         },
                         {
-                            "key": "field_682fb67088308",
+                            "key": "field_683721831df34",
                             "label": "Sub Title",
                             "name": "highlight_panel_sub_title",
                             "aria-label": "",
@@ -4151,7 +4154,7 @@
                             "append": ""
                         },
                         {
-                            "key": "field_682fb68788309",
+                            "key": "field_683721901df35",
                             "label": "Sub Title Secondary",
                             "name": "highlight_panel_sub_title_secondary",
                             "aria-label": "",
