@@ -4653,8 +4653,11 @@ a.read-more.hl.arrow:focus::after {
 .multi-item-carousel .swiper-slide p {
   margin-bottom: 70px;
   max-width: min(90%, 400px);
-  color: #707070;
   flex-grow: 1;
+}
+
+.multi-item-carousel:not(.multi-item-carousel--variant) .swiper-slide p {
+  color: #707070;
 }
 
 .multi-item-carousel .swiper-slide img {
@@ -4694,6 +4697,24 @@ a.read-more.hl.arrow:focus::after {
     margin-bottom: 30px;
   }
 }
+.multi-item-carousel--variant .swiper-slide {
+  text-align: left;
+  display: block;
+}
+
+.multi-item-carousel--variant .swiper-slide p,
+.multi-item-carousel--variant .swiper-slide > * {
+  max-width: 460px;
+  margin-left: 10%;
+  margin-right: 10%;
+  margin-bottom: 1em;
+}
+
+.multi-item-carousel--variant .swiper-slide .btn {
+  margin-top: 60px;
+  text-align: center;
+}
+
 /* Dual carousel
  *	--------------------------------------------- */
 @media screen and (min-width: 48em) {
