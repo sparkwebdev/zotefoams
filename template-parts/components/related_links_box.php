@@ -3,7 +3,7 @@ $title = get_sub_field( 'related_links_box_title' );
 $links = get_sub_field( 'related_links_box_links' );
 ?>
 
-<aside class="related-links-box margin-t-0 padding-t-b-100 theme-none">
+<aside class="related-links-box margin-t-0 margin-b-0 padding-t-b-100 theme-none">
 	<div class="cont-xs">
 		<?php if ( ! empty( $title ) ) : ?>
 			<h3 class="related-links-box__title"><?php echo wp_kses_post( $title ); ?></h3>

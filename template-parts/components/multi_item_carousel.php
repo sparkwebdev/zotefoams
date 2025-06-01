@@ -10,7 +10,7 @@ $btnClass     = $isVariant ? 'btn white outline' : 'btn black outline';
 
 ?>
 
-<div class="multi-item-carousel-container padding-t-100 padding-b-100 theme-none">
+<div class="multi-item-carousel-container padding-t-b-100 theme-none">
 	<div class="cont-m">
 
 		<div class="title-strip margin-b-30">

@@ -4,19 +4,21 @@ $button = get_sub_field('show_hide_button'); // ACF Link field
 $items  = get_sub_field('show_hide_items');
 ?>
 
-<div class="accordion cont-m padding-t-100 margin-b-100 theme-none">
+<div class="accordion cont-m padding-t-b-100 theme-none">
 
-    <div class="title-strip margin-b-30">
-        <?php if ($title) : ?>
-            <h3 class="fs-500 fw-600"><?php echo esc_html($title); ?></h3>
-        <?php endif; ?>
+    <?php if ($title || $button) : ?>
+        <div class="title-strip padding-b-30">
+            <?php if ($title) : ?>
+                <h3 class="fs-500 fw-600"><?php echo esc_html($title); ?></h3>
+            <?php endif; ?>
 
-        <?php if ($button) : ?>
-            <a href="<?php echo esc_url($button['url']); ?>" class="btn black outline" target="<?php echo esc_attr($button['target']); ?>">
-                <?php echo esc_html($button['title']); ?>
-            </a>
-        <?php endif; ?>
-    </div>
+            <?php if ($button) : ?>
+                <a href="<?php echo esc_url($button['url']); ?>" class="btn black outline" target="<?php echo esc_attr($button['target']); ?>">
+                    <?php echo esc_html($button['title']); ?>
+                </a>
+            <?php endif; ?>
+        </div>
+    <?php endif; ?>
 
     <div class="accordion-items">
         <?php if ($items) : ?>

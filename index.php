@@ -22,8 +22,8 @@ get_header();
 				
 			</header>
 
-			<header class="text-banner margin-t-70">
-				<div class="cont-m margin-b-70">
+			<header class="text-banner padding-t-b-70">
+				<div class="cont-m">
 					<h1><?php single_post_title(); ?></h1>
 				</div>
 			</header>

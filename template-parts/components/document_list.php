@@ -136,7 +136,7 @@ elseif ($behaviour === 'manual' && !empty($manual_documents)) {
 }
 ?>
 
-<div class="doc-list-outer cont-m padding-t-100 padding-b-100 theme-none">
+<div class="doc-list-outer cont-m padding-t-b-100 theme-none">
     <div class="title-strip margin-b-30">
         <?php if ($title): ?>
             <h3 class="fs-500 fw-600"><?php echo esc_html($title); ?></h3>

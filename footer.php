@@ -11,6 +11,7 @@
  */
 
 ?>
+</main><!-- #page -->
 
 <footer id="colophon" class="site-footer padding-t-b-50">
 
@@ -91,7 +92,6 @@
 	</div>
 
 </footer><!-- #colophon -->
-</main><!-- #page -->
 
 <?php wp_footer(); ?>
 

@@ -16,8 +16,8 @@ if (have_posts()) :
 	$posts_page_id       = zotefoams_get_page_for_posts_id();
 ?>
 
-	<header class="text-banner margin-t-70">
-		<div class="cont-m margin-b-70">
+	<header class="text-banner padding-t-b-70">
+		<div class="cont-m">
 			<h1 class="uppercase grey-text fs-800 fw-extrabold">
 				<?php echo esc_html(get_the_title($posts_page_id)); ?>
 			</h1>
@@ -27,7 +27,7 @@ if (have_posts()) :
 		</div>
 	</header>
 
-	<div class="articles articles--<?php echo esc_attr($layout); ?> cont-m margin-t-70 margin-b-70">
+	<div class="articles articles--<?php echo esc_attr($layout); ?> cont-m padding-t-b-70 padding-b-100">
 		<?php
 		while (have_posts()) :
 			the_post();

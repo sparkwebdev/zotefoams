@@ -7,25 +7,31 @@
  */
 ?>
 
-<header class="text-banner margin-t-70">
-	<div class="cont-m margin-b-70">
+<header class="text-banner padding-t-b-70">
+	<div class="cont-m">
 		<h1 class="uppercase grey-text fs-800 fw-extrabold">
 			<?php echo is_search() ? esc_html__('Search', 'zotefoams') : esc_html__('404', 'zotefoams'); ?>
 		</h1>
 		<h2 class="uppercase black-text fs-800 fw-extrabold">
-			<?php esc_html_e('Nothing found', 'zotefoams'); ?>
+			<?php echo is_search() ? esc_html__('No results', 'zotefoams') : esc_html__('Nothing found', 'zotefoams'); ?>
 		</h2>
 	</div>
 </header>
 
-<div class="text-block cont-m margin-t-100 margin-b-100 theme-none">
+<div class="text-block cont-m padding-t-b-100 theme-none">
 	<div class="text-block__inner">
 		<?php if (is_search()) : ?>
-			<p class="grey-text fs-600 fw-semibold margin-b-20">
-				<?php esc_html_e('It looks like nothing was found at this location.', 'zotefoams'); ?>
+			<p class="grey-text fs-600 fw-semibold">
+				<?php
+				$search_query = esc_html(get_search_query());
+				printf(
+					esc_html__('Sorry, but nothing matched your search term \'%s\'.', 'zotefoams'),
+					$search_query
+				);
+				?>
 			</p>
-			<p>
-				<?php esc_html_e('Sorry, but nothing matched your search terms. Please try again with some different keywords.', 'zotefoams'); ?>
+			<p class="margin-t-20">
+				<?php esc_html_e('Please try again with some different keywords.', 'zotefoams'); ?>
 			</p>
 		<?php else : ?>
 			<p>
@@ -33,7 +39,7 @@
 			</p>
 		<?php endif; ?>
 
-		<div class="margin-t-30 margin-b-70">
+		<div class="margin-t-30">
 			<?php get_search_form(); ?>
 		</div>
 	</div>

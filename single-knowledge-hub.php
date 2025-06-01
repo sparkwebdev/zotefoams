@@ -15,8 +15,8 @@ while (have_posts()) : the_post();
 
 ?>
 
-	<header class="text-banner margin-t-70">
-		<div class="cont-m margin-b-70">
+	<header class="text-banner padding-t-b-70">
+		<div class="cont-m">
 			<h1 class="uppercase grey-text fs-800 fw-extrabold">
 				<?php echo esc_html($post_type_name); ?>
 			</h1>
@@ -26,11 +26,11 @@ while (have_posts()) : the_post();
 		</div>
 	</header>
 
-	<div class="text-block cont-m margin-t-100 margin-b-100 theme-none">
+	<div class="text-block cont-m padding-t-b-100 theme-none">
 		<div class="text-block__inner">
-			<p class="margin-b-20">Knowledge Powered By Zotefoams</p>
+			<p>Knowledge Powered By Zotefoams</p>
 			<?php if (has_excerpt()) : ?>
-				<div class="fs-600 fw-semibold">
+				<div class="fs-600 fw-semibold margin-t-20">
 					<p class="lead-text"><?php echo esc_html(get_the_excerpt()); ?></p>
 				</div>
 			<?php endif; ?>

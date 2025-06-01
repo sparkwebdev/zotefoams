@@ -4,7 +4,7 @@ $intro = get_field('show_hide_forms_intro', 'option');
 $items = get_field('show_hide_forms_items', 'option');
 ?>
 
-<div class="show-hide-forms cont-m padding-t-100 margin-b-100 theme-none">
+<div class="show-hide-forms cont-m padding-t-b-100 theme-none">
 
 	<div>
 		<?php if ($title) : ?>

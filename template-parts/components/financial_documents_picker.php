@@ -4,7 +4,7 @@ $text               = get_sub_field('financial_documents_picker_text');
 $documents_by_year  = get_sub_field('documents_by_year');
 $instance_id        = uniqid('docs_'); // Unique ID for JS bindings
 $has_intro_content  = !empty($text);
-$container_class    = $has_intro_content ? 'light-grey-bg padding-50 theme-light' : 'margin-b-100 theme-none';
+$container_class    = $has_intro_content ? 'light-grey-bg padding-50 theme-light' : 'padding-b-100 theme-none';
 ?>
 
 <?php if ($documents_by_year) : ?>

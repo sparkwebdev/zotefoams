@@ -4,7 +4,7 @@ $tab_text     = get_sub_field('tabbed_split_text');
 $tabs         = get_sub_field('tabbed_split_tabs');
 ?>
 
-<div class="cont-xs tabs-container margin-t-100 margin-b-20 theme-none">
+<div class="cont-xs tabs-container padding-t-b-100 theme-none">
     <?php if ($tab_overline || $tab_text) : ?>
         <div class="tabs-intro text-center margin-b-30">
             <?php if ($tab_overline) : ?>

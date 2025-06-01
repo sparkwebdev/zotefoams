@@ -10,7 +10,7 @@ get_header();
 ?>
 
 <?php while (have_posts()) : the_post(); ?>
-	<div class="cont-xs margin-t-70 margin-b-70">
+	<div class="cont-xs padding-t-b-70">
 		<article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
 			<header class="entry-header">
 				<?php

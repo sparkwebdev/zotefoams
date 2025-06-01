@@ -118,7 +118,7 @@ if ($documents_list) {
 }
 ?>
 
-<div class="cont-m margin-b-100">
+<div class="cont-m padding-t-b-100 theme-none">
     <?php if (! empty($documents_array)) : ?>
         <div data-component="file-list">
             <?php if (($show_categories_filter && ! empty($categories)) || ($show_brands_filter && ! empty($brands))) : ?>

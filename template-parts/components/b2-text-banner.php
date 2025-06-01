@@ -4,8 +4,8 @@ if ($pageHeaderText):
     $title = !empty($pageHeaderText['title']) ? $pageHeaderText['title'] : get_the_title();
     $subtitle = $pageHeaderText['subtitle'] ?? '';
 ?>
-    <header class="text-banner margin-t-70" role="banner" aria-label="Page Header">
-        <div class="cont-m margin-b-70">
+    <header class="text-banner padding-t-b-70" role="banner" aria-label="Page Header">
+        <div class="cont-m">
             <?php if (!empty($title)): ?>
                 <h1 class="uppercase grey-text fs-800 fw-extrabold animate__animated animate__fadeInDown">
                     <?php echo esc_html($title); ?>
