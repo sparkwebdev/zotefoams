@@ -293,6 +293,8 @@ if (isTouchDevice) {
   // Set up event listeners for main navigation and utility menu
   button.addEventListener("click", () => {
     siteNav.classList.toggle("toggled");
+    document.body.classList.toggle("no-scroll", siteNav.classList.contains("toggled")); // toggle no-scroll on body
+
     const isExpanded = button.getAttribute("aria-expanded") === "true";
     button.setAttribute("aria-expanded", (!isExpanded).toString());
   });
