@@ -25,10 +25,6 @@ $posts_page_id = function_exists('zotefoams_get_page_for_posts_id') ? zotefoams_
     </div>
 </header>
 
-<?php
-$today = date('Ymd');
-$current_category_id = get_queried_object_id(); // ID of the "Webinars" category
-?>
 <div class="text-block cont-m padding-t-b-100 theme-none">
     <div class="text-block__inner">
         <p class="margin-b-20">Upcoming Webinars</p>
@@ -37,6 +33,13 @@ $current_category_id = get_queried_object_id(); // ID of the "Webinars" category
         </div>
     </div>
 </div>
+<?php
+$today = date('Ymd');
+$current_category_id = get_queried_object_id(); // ID of the "Webinars" category
+?>
+
+
+    <div class="articles articles--list cont-m padding-t-b-70 padding-b-100 theme-none">
 <?php
 
 $future_args = [
@@ -54,7 +57,6 @@ $future_args = [
 $future_webinars = new WP_Query($future_args);
 
 if ($future_webinars->have_posts()) : ?>
-    <div class="articles articles--list cont-m padding-t-b-70 padding-b-100 theme-none">
         <?php
         while ($future_webinars->have_posts()) : $future_webinars->the_post();
             $cat_more_link = get_permalink();
@@ -149,23 +151,23 @@ wp_reset_postdata();
                     $thumbnail_url = get_template_directory_uri() . '/images/placeholder-thumbnail.png';
                 }
 
-$first_video_url = get_field('event_playback_url');
+                $first_video_url = get_field('event_playback_url');
 
-if (!$first_video_url) {
-    $first_video_url = zotefoams_get_first_youtube_url(get_the_ID());
-}
+                if (!$first_video_url) {
+                    $first_video_url = zotefoams_get_first_youtube_url(get_the_ID());
+                }
 
-$thumbnail_url = get_the_post_thumbnail_url(get_the_ID(), 'thumbnail');
+                $thumbnail_url = get_the_post_thumbnail_url(get_the_ID(), 'thumbnail');
 
-if (!$thumbnail_url && $first_video_url) {
-    $thumbnail_url = zotefoams_youtube_cover_image($first_video_url);
-}
+                if (!$thumbnail_url && $first_video_url) {
+                    $thumbnail_url = zotefoams_youtube_cover_image($first_video_url);
+                }
 
-if (!$thumbnail_url) {
-    $thumbnail_url = esc_url(get_template_directory_uri() . '/images/placeholder-thumbnail.png');
-}
+                if (!$thumbnail_url) {
+                    $thumbnail_url = esc_url(get_template_directory_uri() . '/images/placeholder-thumbnail.png');
+                }
 
-$youtube_cover_image = $thumbnail_url;
+                $youtube_cover_image = $thumbnail_url;
 
                 if ($first_video_url) :
                     $hasVideos = true;
@@ -203,5 +205,5 @@ $youtube_cover_image = $thumbnail_url;
     </div>
 
     <?php
-	require_video_overlay();
+    require_video_overlay();
     get_footer();
