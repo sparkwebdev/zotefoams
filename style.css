@@ -1122,6 +1122,10 @@ textarea {
   background-color: #3b82f6;
 }
 
+.tint-bg {
+  background-color: #ebf8ff;
+}
+
 /* Generic styling classes
  *  --------------------------------------------- */
 .image-cover {
@@ -3180,6 +3184,7 @@ body.touch-device .utility-menu .menu > li.dropdown-active > ul {
 }
 
 html {
+  scroll-padding-top: calc(var(--header-height) + var(--scroll-padding-top, 30px));
   scroll-behavior: smooth;
 }
 
@@ -3394,7 +3399,6 @@ a.read-more.hl.arrow:focus::after {
   .swiper-image .swiper-button-next-image {
     bottom: 20px;
     right: 20px;
-    left: 20px;
   }
 }
 /* Circle Container */
