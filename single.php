@@ -27,9 +27,22 @@ get_header();
 
 				if ('post' === get_post_type()) :
 				?>
-					<div class="margin-b-20 grey-text">
-						<?php zotefoams_posted_on(); ?>
-					</div>
+					<?php
+					$has_events_or_webinars = false;
+					foreach ($categories as $category) {
+						if ($category->name === 'Events' || $category->name === 'Webinars') {
+							$has_events_or_webinars = true;
+							break;
+						}
+					}
+					if ($has_events_or_webinars) {
+						get_template_part('template-parts/parts/events_details');
+					} else {
+						echo '<div class="margin-b-20 grey-text">';
+						zotefoams_posted_on();
+						echo '</div>';
+					}
+					?>
 				<?php endif; ?>
 			</header>
 

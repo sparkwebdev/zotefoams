@@ -382,3 +382,50 @@ function zotefoams_add_google_gtag_from_acf()
     }
 }
 add_action('wp_head', 'zotefoams_add_google_gtag_from_acf');
+
+
+function mytheme_upcoming_events_pre_get_posts( $query ) {
+    if ( is_admin() || ! $query->is_main_query() ) {
+        return;
+    }
+
+    if ( is_category('events') ) {
+
+        $today = date('Ymd');
+
+        $meta_query = [
+            'relation' => 'OR',
+            [
+                'key'     => 'event_start_date',
+                'value'   => $today,
+                'compare' => '>=',
+                'type'    => 'CHAR',
+            ],
+            [
+                'key'     => 'event_start_date',
+                'compare' => 'NOT EXISTS',
+            ],
+            [
+                'relation' => 'AND',
+                [
+                    'key'     => 'event_start_date',
+                    'value'   => $today,
+                    'compare' => '<',
+                    'type'    => 'CHAR',
+                ],
+                [
+                    'key'     => 'event_end_date',
+                    'value'   => $today,
+                    'compare' => '>=',
+                    'type'    => 'CHAR',
+                ],
+            ],
+        ];
+
+        $query->set( 'meta_query', $meta_query );
+        $query->set( 'orderby', 'meta_value' );
+        $query->set( 'meta_key', 'event_start_date' );
+        $query->set( 'order', 'ASC' );
+    }
+}
+add_action( 'pre_get_posts', 'mytheme_upcoming_events_pre_get_posts' );

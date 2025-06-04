@@ -48,8 +48,18 @@ if (have_posts()) :
 				<article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
 					<img src="<?php echo esc_url($thumbnail_url); ?>" alt="" class="thumbnail-square">
 					<div class="articles__content padding-40">
-						<div class="margin-b-20 grey-text"><?php zotefoams_posted_on(); ?></div>
-						<?php the_title('<h3 class="fs-400 fw-semibold margin-b-20">', '</h3>'); ?>
+						<?php if ($title !== 'Events' && $title !== 'Webinars') : ?>
+							<div class="margin-b-20 grey-text"><?php zotefoams_posted_on(); ?></div>
+							<?php the_title('<h3 class="fs-400 fw-semibold margin-b-20">', '</h3>'); ?>
+						<?php else: ?>
+							<?php the_title('<h3 class="fs-400 fw-semibold">', '</h3>'); ?>
+							<?php 
+							if (function_exists('get_field')) {
+								$start_date = get_field('event_start_date', get_the_ID());
+								$end_date = get_field('event_end_date', get_the_ID());
+								echo '<h3 class="fs-400 fw-semibold margin-b-20 blue-text">'.zotefoams_format_event_date_range($start_date, $end_date).'</h3>';
+							} ?>
+						<?php endif; ?>
 						<div class="articles__footer">
 							<?php if (get_the_excerpt()) : the_excerpt();
 							endif; ?>
