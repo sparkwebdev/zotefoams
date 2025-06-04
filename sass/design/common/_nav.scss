@@ -3,6 +3,13 @@
 $breakpoint-medium: 64rem;
 $breakpoint-large: 68rem;
 
+:root {
+  --header-height: 116px;
+  @media screen and (max-width: 767px) {
+    --header-height: 106px;
+  }
+}
+
 .site-header {
   border-bottom: solid 1px var(--color-text-light);
   --color-link-hover: #3b82f6;
