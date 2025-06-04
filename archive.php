@@ -33,10 +33,7 @@ if (have_posts()) :
 			the_post();
 
 			$cat_more_link   = esc_url(get_the_permalink());
-			$alt_thumbnail_id = get_field('alt_featured_image');
-			$thumbnail_url   = $alt_thumbnail_id
-				? wp_get_attachment_image_url($alt_thumbnail_id, 'thumbnail-square')
-				: get_the_post_thumbnail_url(get_the_ID(), $layout === 'list' ? 'thumbnail-square' : 'thumbnail');
+			$thumbnail_url   = get_the_post_thumbnail_url(get_the_ID(), $layout === 'list' ? 'thumbnail-square' : 'thumbnail');
 
 			if (! $thumbnail_url) {
 				$thumb_type    = $layout === 'list' ? 'thumbnail-square' : 'thumbnail';
