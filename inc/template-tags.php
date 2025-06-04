@@ -98,21 +98,21 @@ endif;
  * @param string|null $date ACF date field in 'Ymd' format (e.g., '20250604').
  * @return bool True if the date is before today.
  */
-function zotefoams_is_past_date($date = null) {
-    if (!$date) {
-        return false;
-    }
 
-    $date_obj = DateTime::createFromFormat('Ymd', $date);
-
-    if (!$date_obj) {
-        return false; // Failed to parse
-    }
-
-    $today = new DateTime('today');
-
-    return $date_obj < $today;
-}
+if (! function_exists('zotefoams_is_past_date')) :
+	function zotefoams_is_past_date($date = null)
+	{
+		if (!$date) {
+			return false;
+		}
+		$date_obj = DateTime::createFromFormat('Ymd', $date);
+		if (!$date_obj) {
+			return false; // Failed to parse
+		}
+		$today = new DateTime('today');
+		return $date_obj < $today;
+	}
+endif;
 
 
 if (! function_exists('zotefoams_entry_footer')) :

@@ -384,12 +384,21 @@ function zotefoams_add_google_gtag_from_acf()
 add_action('wp_head', 'zotefoams_add_google_gtag_from_acf');
 
 
-function mytheme_upcoming_events_pre_get_posts( $query ) {
-    if ( is_admin() || ! $query->is_main_query() ) {
+/**
+ * Modifies the main WordPress query to customize the display of upcoming events.
+ *
+ * This function hooks into the 'pre_get_posts' action to alter the query parameters
+ * for event-related queries, such as filtering by date or ordering events.
+ *
+ * @param WP_Query $query The WP_Query instance (passed by reference).
+ */
+function zotefoams_upcoming_events_pre_get_posts($query)
+{
+    if (is_admin() || ! $query->is_main_query()) {
         return;
     }
 
-    if ( is_category('events') ) {
+    if (is_category('events')) {
 
         $today = date('Ymd');
 
@@ -422,10 +431,10 @@ function mytheme_upcoming_events_pre_get_posts( $query ) {
             ],
         ];
 
-        $query->set( 'meta_query', $meta_query );
-        $query->set( 'orderby', 'meta_value' );
-        $query->set( 'meta_key', 'event_start_date' );
-        $query->set( 'order', 'ASC' );
+        $query->set('meta_query', $meta_query);
+        $query->set('orderby', 'meta_value');
+        $query->set('meta_key', 'event_start_date');
+        $query->set('order', 'ASC');
     }
 }
-add_action( 'pre_get_posts', 'mytheme_upcoming_events_pre_get_posts' );
+add_action('pre_get_posts', 'zotefoams_upcoming_events_pre_get_posts');
