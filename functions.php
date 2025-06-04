@@ -108,6 +108,14 @@ function zotefoams_enqueue_assets()
         array(),
         null
     );
+    if (is_page_template('our-history-template.php')) {
+        wp_enqueue_style(
+            'google-fonts',
+            'https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@1,400;1,600&display=swap',
+            array(),
+            null
+        );
+    }
 
     // Swiper CSS & JS
     wp_enqueue_style('swiper-css', 'https://cdn.jsdelivr.net/npm/swiper@latest/swiper-bundle.min.css');

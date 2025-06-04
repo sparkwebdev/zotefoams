@@ -543,4 +543,172 @@ document.addEventListener('DOMContentLoaded', () => {
       nextMenuItem?.focus();
     }
   });
+
+
+  
+
+
+(() => {
+  const SCROLL_PROPERTY = '--scroll-y';
+  const ACTIVE_NAV_CLASS = 'is-active';
+  const ARIA_CURRENT_ATTRIBUTE = 'aria-current';
+  const ARIA_CURRENT_VALUE = 'page';
+
+  let scrollTicking = false;
+  const visibleSectionIds = new Set();
+  let navLinks;
+  let scrollTargetElements;
+  let lastActiveId = null; // ← Track current section for URL updates
+
+  const updateScrollAnimations = (currentScrollY) => {
+    if (!scrollTargetElements?.length) return;
+    const viewportHeight = window.innerHeight;
+
+    const htmlStyles = window.getComputedStyle(document.documentElement);
+    const scrollPaddingTop = parseFloat(htmlStyles.scrollPaddingTop) || 0;
+    
+    const effectiveProgressRangeHeight = viewportHeight - scrollPaddingTop;
+
+    scrollTargetElements.forEach(el => {
+      const rect = el.getBoundingClientRect();
+      const elementTopInDocument = rect.top + currentScrollY;
+      const elementHeight = rect.height;
+      const elementBottomInDocument = elementTopInDocument + elementHeight;
+
+      let progressStart;
+      if (effectiveProgressRangeHeight <= 0) {
+        progressStart = (elementTopInDocument <= currentScrollY + scrollPaddingTop) ? 1 : 0;
+      } else {
+        const progressStartValue = (currentScrollY + viewportHeight - elementTopInDocument) / effectiveProgressRangeHeight;
+        progressStart = Math.min(Math.max(progressStartValue, 0), 1);
+      }
+      el.style.setProperty('--scroll-progress', progressStart.toFixed(3));
+
+      let progressEnd;
+      if (effectiveProgressRangeHeight <= 0) {
+        progressEnd = (elementBottomInDocument <= currentScrollY + scrollPaddingTop) ? 1 : 0;
+      } else {
+        const progressEndValue = (currentScrollY + viewportHeight - elementBottomInDocument) / effectiveProgressRangeHeight;
+        progressEnd = Math.min(Math.max(progressEndValue, 0), 1);
+      }
+      el.style.setProperty('--scroll-progress-end', progressEnd.toFixed(3));
+    });
+  };
+
+  const performScrollUpdates = () => {
+    const currentScrollY = window.scrollY;
+    document.documentElement.style.setProperty(SCROLL_PROPERTY, `${currentScrollY}px`);
+    updateScrollAnimations(currentScrollY);
+    scrollTicking = false;
+  };
+
+  const onScroll = () => {
+    if (!scrollTicking) {
+      requestAnimationFrame(performScrollUpdates);
+      scrollTicking = true;
+    }
+  };
+
+  const refreshActiveNavLinks = () => {
+    if (!navLinks?.length) return;
+
+    let bestCandidateId = null;
+    let highestVisibleTop = Infinity;
+
+    visibleSectionIds.forEach(id => {
+      const section = document.getElementById(id);
+      if (section) {
+        const rect = section.getBoundingClientRect();
+        if (rect.top < window.innerHeight && rect.bottom > 0 && rect.top < highestVisibleTop) {
+          highestVisibleTop = rect.top;
+          bestCandidateId = id;
+        }
+      }
+    });
+
+    navLinks.forEach(link => {
+      const href = link.getAttribute('href');
+      const linkTargetId = href?.startsWith('#') ? href.substring(1) : null;
+
+      if (linkTargetId && linkTargetId === bestCandidateId) {
+        link.classList.add(ACTIVE_NAV_CLASS);
+        link.setAttribute(ARIA_CURRENT_ATTRIBUTE, ARIA_CURRENT_VALUE);
+      } else {
+        link.classList.remove(ACTIVE_NAV_CLASS);
+        link.removeAttribute(ARIA_CURRENT_ATTRIBUTE);
+      }
+    });
+
+    // 🆕 Update URL hash without adding to history
+    if (bestCandidateId && bestCandidateId !== lastActiveId) {
+      history.replaceState(null, '', `#${bestCandidateId}`);
+      lastActiveId = bestCandidateId;
+    }
+  };
+
+  const handleSectionIntersection = (entries) => {
+    let changed = false;
+    entries.forEach(entry => {
+      const sectionId = entry.target.id;
+      if (entry.isIntersecting) {
+        if (!visibleSectionIds.has(sectionId)) {
+          visibleSectionIds.add(sectionId);
+          changed = true;
+        }
+      } else {
+        if (visibleSectionIds.has(sectionId)) {
+          visibleSectionIds.delete(sectionId);
+          changed = true;
+        }
+      }
+    });
+
+    if (changed) refreshActiveNavLinks();
+  };
+
+  const childElementVisibilityObserver = new IntersectionObserver(
+    (entries) => {
+      entries.forEach(entry => {
+        entry.target.classList.toggle('is-visible', entry.isIntersecting);
+      });
+    },
+    { threshold: 0.6 }
+  );
+
+  const initializeApp = () => {
+    navLinks = document.querySelectorAll('nav[aria-label="Timeline Navigation"] a');
+    scrollTargetElements = document.querySelectorAll('[data-js-el="scroll-target"]');
+    const mainSections = document.querySelectorAll('div.zf-history__years > section[id]');
+
+    if (scrollTargetElements.length > 0) {
+      scrollTargetElements.forEach(el => childElementVisibilityObserver.observe(el));
+    }
+
+    const sectionIntersectionObserver = new IntersectionObserver(handleSectionIntersection, { threshold: 0.2 });
+    if (mainSections.length > 0) {
+      mainSections.forEach(section => sectionIntersectionObserver.observe(section));
+    }
+
+    performScrollUpdates();
+    window.addEventListener('scroll', onScroll, { passive: true });
+
+    // 🆕 Handle deep link scroll on load
+    const hash = window.location.hash;
+    if (hash && document.getElementById(hash.substring(1))) {
+      requestAnimationFrame(() => {
+        const targetElement = document.getElementById(hash.substring(1));
+        if (targetElement) {
+          targetElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      });
+    }
+  };
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initializeApp);
+  } else {
+    initializeApp();
+  }
+})();
+
 });
