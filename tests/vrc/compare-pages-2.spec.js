@@ -22,7 +22,7 @@ const devBase = 'https://zotefoams-phase-2.local';
 const liveBase = 'https://zotefoams-live-ref.local';
 const outputDir = path.resolve('tests/vrc/results');
 
-const pages = [...pagesLevel1].splice(0, 1);
+const pages = [...pagesLevel1];
 
 // Collection for all test results for the final report
 const allTestResults = [];

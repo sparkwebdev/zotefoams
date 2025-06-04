@@ -1122,6 +1122,10 @@ textarea {
   background-color: #3b82f6;
 }
 
+.tint-bg {
+  background-color: #ebf8ff;
+}
+
 /* Generic styling classes
  *  --------------------------------------------- */
 .image-cover {
@@ -1982,6 +1986,15 @@ footer div.wpforms-container.wpforms-container-full:not(:empty) {
 
 /* Navigation
 --------------------------------------------- */
+:root {
+  --header-height: 116px;
+}
+@media screen and (max-width: 767px) {
+  :root {
+    --header-height: 106px;
+  }
+}
+
 .site-header {
   border-bottom: solid 1px var(--color-text-light);
   --color-link-hover: #3b82f6;
@@ -2560,6 +2573,30 @@ footer div.wpforms-container.wpforms-container-full:not(:empty) {
 }
 
 @media screen and (max-width: 63.99rem) {
+  html:has(body.no-scroll) {
+    scrollbar-gutter: stable;
+  }
+  body.no-scroll {
+    overflow: hidden;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    left: 0;
+  }
+  body.no-scroll .main-navigation.toggled {
+    padding-top: 0;
+  }
+  body.no-scroll .main-navigation.toggled .nav-menu {
+    position: fixed;
+    width: 100%;
+    top: var(--header-height);
+    bottom: calc(var(--header-height) / 2);
+    left: 0;
+    z-index: 1000;
+    background-color: #fff;
+    box-shadow: 0 40px 50px rgba(0, 0, 0, 0.95);
+    overflow-y: auto;
+  }
   .site-header-wrapper:has(.main-navigation.toggled) {
     box-shadow: 0 21px 21px rgba(0, 0, 0, 0.1019607843);
   }
@@ -3180,6 +3217,7 @@ body.touch-device .utility-menu .menu > li.dropdown-active > ul {
 }
 
 html {
+  scroll-padding-top: calc(var(--header-height) + var(--scroll-padding-top, 30px));
   scroll-behavior: smooth;
 }
 
@@ -3297,12 +3335,20 @@ a.read-more.hl.arrow:focus::after {
 }
 
 /* Image Banner
- *--------------------------------------------- */
+ * --------------------------------------------- */
+.swiper-image {
+  --swiper-image-min-height: 700px;
+}
+@media screen and (max-width: 767px) {
+  .swiper-image {
+    --swiper-image-min-height: 500px;
+  }
+}
+
 .swiper-image {
   width: 100%;
-  height: 85vh;
+  height: calc(100vh - var(--header-height));
   position: relative;
-  min-height: 900px;
 }
 
 .swiper-image .swiper-slide {
@@ -3377,24 +3423,15 @@ a.read-more.hl.arrow:focus::after {
 }
 
 @media screen and (max-width: 1200px) {
-  .swiper-image {
-    height: 75vh;
-    min-height: 700px;
-  }
   .swiper-image .swiper-button-next-image {
     bottom: 30px;
     right: 30px;
   }
 }
 @media screen and (max-width: 767px) {
-  .swiper-image {
-    height: 65vh;
-    min-height: 500px;
-  }
   .swiper-image .swiper-button-next-image {
     bottom: 20px;
     right: 20px;
-    left: 20px;
   }
 }
 /* Circle Container */

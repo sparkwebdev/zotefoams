@@ -55,6 +55,66 @@ if (! function_exists('zotefoams_posted_by')) :
 	}
 endif;
 
+
+/**
+ * Format an event date range smartly.
+ *
+ * @param string|null $start_date Date in 'Ymd' format (e.g., '20250501').
+ * @param string|null $end_date   Date in 'Ymd' format (e.g., '20250503').
+ * @return string Rendered date string.
+ */
+if (! function_exists('zotefoams_format_event_date_range')) :
+	function zotefoams_format_event_date_range($start_date = null, $end_date = null)
+	{
+		if (!$start_date && !$end_date) {
+			return '';
+		}
+
+		$start = $start_date ? DateTime::createFromFormat('Ymd', $start_date) : null;
+		$end   = $end_date ? DateTime::createFromFormat('Ymd', $end_date) : null;
+		$formatted_date = '';
+
+		if ($start && $end) {
+			if ($start->format('F Y') === $end->format('F Y')) {
+				// Same month and year: "1 to 3 May 2025"
+				$formatted_date = $start->format('j') . ' to ' . $end->format('j F Y');
+			} else {
+				// Different months: "1 May 2025 – 3 June 2025"
+				$formatted_date = $start->format('j F Y') . ' – ' . $end->format('j F Y');
+			}
+		} elseif ($start) {
+			$formatted_date = $start->format('j F Y');
+		} elseif ($end) {
+			$formatted_date = 'Until ' . $end->format('j F Y');
+		}
+
+		return $formatted_date;
+	}
+endif;
+
+/**
+ * Determine if a given date is in the past.
+ *
+ * @param string|null $date ACF date field in 'Ymd' format (e.g., '20250604').
+ * @return bool True if the date is before today.
+ */
+
+if (! function_exists('zotefoams_is_past_date')) :
+	function zotefoams_is_past_date($date = null)
+	{
+		if (!$date) {
+			return false;
+		}
+		$date_obj = DateTime::createFromFormat('Ymd', $date);
+		if (!$date_obj) {
+			return false; // Failed to parse
+		}
+		$today = new DateTime('today');
+		return $date_obj < $today;
+	}
+endif;
+
+
 if (! function_exists('zotefoams_entry_footer')) :
 	/**
 	 * Prints HTML with meta information for the categories, tags and comments.

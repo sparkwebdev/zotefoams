@@ -22,51 +22,51 @@
 
 <body <?php body_class(); ?>>
 	<?php wp_body_open(); ?>
-	<main id="page" class="site">
-		<a class="skip-link screen-reader-text" href="#primary"><?php esc_html_e('Skip to content', 'zotefoams'); ?></a>
+	<a class="skip-link screen-reader-text" href="#primary"><?php esc_html_e('Skip to content', 'zotefoams'); ?></a>
 
-		<header id="masthead" class="site-header" data-el-site-header>
+	<header id="masthead" class="site-header" data-el-site-header>
 
-			<div class="utility-menu">
+		<div class="utility-menu">
+			<?php
+			wp_nav_menu(array(
+				'theme_location' => 'utility_menu',
+				'container'      => false,
+				'depth'          => 2,
+			));
+			?>
+		</div>
+
+		<div class="site-header-wrapper">
+
+			<div class="site-branding">
+				<a href="<?php echo esc_url(home_url('/')); ?>">
+					<?php
+					$brand_logo = get_field('brand_logo', 'option');
+					if ($brand_logo) :
+					?>
+						<img src="<?php echo esc_url($brand_logo); ?>" alt="<?php esc_attr_e('Site Logo', 'zotefoams'); ?>" />
+					<?php endif; ?>
+				</a>
+			</div><!-- .site-branding -->
+
+			<nav id="site-navigation" class="main-navigation">
+				<button class="menu-toggle" aria-controls="primary-menu" aria-expanded="false">
+					<div class="menu-line"></div>
+					<div class="menu-line"></div>
+					<div class="menu-line"></div>
+					<span class="screen-reader-text"><?php esc_html_e('Toggle menu', 'zotefoams'); ?></span>
+				</button>
 				<?php
 				wp_nav_menu(array(
-					'theme_location' => 'utility_menu',
+					'theme_location' => 'primary_menu',
 					'container'      => false,
-					'depth'          => 2,
+					'depth'          => 3,
+					'walker'         => new Mega_Menu_Walker(),
+					'items_wrap'     => '%3$s',
 				));
 				?>
-			</div>
+			</nav><!-- #site-navigation -->
 
-			<div class="site-header-wrapper">
-
-				<div class="site-branding">
-					<a href="<?php echo esc_url(home_url('/')); ?>">
-						<?php
-						$brand_logo = get_field('brand_logo', 'option');
-						if ($brand_logo) :
-						?>
-							<img src="<?php echo esc_url($brand_logo); ?>" alt="<?php esc_attr_e('Site Logo', 'zotefoams'); ?>" />
-						<?php endif; ?>
-					</a>
-				</div><!-- .site-branding -->
-
-				<nav id="site-navigation" class="main-navigation">
-					<button class="menu-toggle" aria-controls="primary-menu" aria-expanded="false">
-						<div class="menu-line"></div>
-						<div class="menu-line"></div>
-						<div class="menu-line"></div>
-						<span class="screen-reader-text"><?php esc_html_e('Toggle menu', 'zotefoams'); ?></span>
-					</button>
-					<?php
-					wp_nav_menu(array(
-						'theme_location' => 'primary_menu',
-						'container'      => false,
-						'depth'          => 3,
-						'walker'         => new Mega_Menu_Walker(),
-						'items_wrap'     => '%3$s',
-					));
-					?>
-				</nav><!-- #site-navigation -->
-
-			</div>
-		</header><!-- #masthead -->
+		</div>
+	</header><!-- #masthead -->
+	<main id="page" class="site">

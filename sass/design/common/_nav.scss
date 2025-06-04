@@ -3,6 +3,13 @@
 $breakpoint-medium: 64rem;
 $breakpoint-large: 68rem;
 
+:root {
+  --header-height: 116px;
+  @media screen and (max-width: 767px) {
+    --header-height: 106px;
+  }
+}
+
 .site-header {
   border-bottom: solid 1px var(--color-text-light);
   --color-link-hover: #3b82f6;
@@ -620,6 +627,33 @@ $breakpoint-large: 68rem;
 }
 
 @media screen and (max-width: 63.99rem) {
+  html:has(body.no-scroll) {
+    scrollbar-gutter: stable;
+  }
+  body.no-scroll {
+    overflow: hidden;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    left: 0;
+
+    .main-navigation.toggled {
+      padding-top: 0;
+
+      .nav-menu {
+        position: fixed;
+        width: 100%;
+        top: var(--header-height);
+        bottom: calc(var(--header-height) / 2);
+        left: 0;
+        z-index: 1000;
+        background-color: #fff;
+        box-shadow: 0 40px 50px rgba(0, 0, 0, 0.95);
+        overflow-y: auto;
+      }
+    }
+  }
+
   .site-header-wrapper:has(.main-navigation.toggled) {
     box-shadow: 0 21px 21px #0000001a;
   }

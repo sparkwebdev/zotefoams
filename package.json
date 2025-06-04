@@ -46,7 +46,7 @@
   },
   "scripts": {
     "lint:scss": "stylelint 'sass/**/*.scss' --fix && prettier --write 'sass/**/*.scss'",
-    "sass:watch": "sass sass/:./ --source-map --style expanded --indent-type tab --indent-width 1 --watch",
+    "sass:watch": "sass sass/:./ --source-map --style expanded --watch",
     "js:watch": "watch 'npm run js:bundle' js/*.js",
     "js:bundle": "concat -o js/bundle.js js/*.js",
     "serve": "browser-sync start --proxy 'https://zotefoams-phase-2.local/' --https --files './style.css, js/bundle.js, ./**/*.php'",
