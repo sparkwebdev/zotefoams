@@ -25,7 +25,8 @@
   background-color: transparent;
 }
 
-.btn.outline.white:hover {
+.btn.outline.white:hover,
+.btn.outline.white:focus {
   color: #000;
   border: 1px solid #fff;
   background: #fff;
@@ -37,7 +38,8 @@
   background-color: transparent;
 }
 
-.btn.outline.black:hover {
+.btn.outline.black:hover,
+.btn.outline.black:focus {
   color: #fff;
   border: 1px solid #fff;
   background: #000;
@@ -58,7 +60,8 @@
   background-image: url(images/icon-right-arrow-white.svg);
 }
 
-.btn.white.arrow:hover::after {
+.btn.white.arrow:hover::after,
+.btn.white.arrow:focus::after {
   background-image: url(images/icon-right-arrow-blue.svg);
 }
 
@@ -66,7 +69,8 @@
   background-image: url(images/icon-right-arrow-black.svg);
 }
 
-.btn.black.arrow:hover::after {
+.btn.black.arrow:hover::after,
+.btn.black.arrow:focus::after {
   background-image: url(images/icon-right-arrow-blue.svg);
 }
 
@@ -117,4 +121,5 @@ input[type="submit"].btn {
   border-radius: 5px;
   padding: 13px 20px 15px;
   cursor: pointer;
+  outline: none;
 }
