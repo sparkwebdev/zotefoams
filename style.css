@@ -2877,6 +2877,7 @@ body.touch-device .utility-menu .menu > li.dropdown-active > ul {
 @media screen and (min-width: 48em) {
   .articles--list .post {
     flex-direction: row;
+    gap: 3rem;
   }
 }
 .articles--list .articles__content {
