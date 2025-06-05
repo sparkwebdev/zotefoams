@@ -455,7 +455,7 @@ document.addEventListener('DOMContentLoaded', () => {
   searchContainer.setAttribute('hidden', '');
 
   searchContainer.innerHTML = `
-    <form role="search" aria-label="Site search form">
+    <form role="search" aria-label="Site search form" action="/">
       <input type="text" name="s" placeholder="Search..." aria-label="Search input" required />
       <button type="submit" class="btn outline white">Go</button>
       <button type="button" class="btn outline white" aria-label="Close search form">✕</button>
