@@ -34,7 +34,8 @@
 }
 
 .swiper-image .swiper-inner p {
-  max-width: 770px;
+  max-width: 32em;
+  text-wrap: balance;
 }
 
 @media screen and (max-width: 1200px) {
