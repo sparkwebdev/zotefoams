@@ -10,7 +10,10 @@ if ($sub_image_id) {
 }
 ?>
 <div class="highlight-panel image-cover padding-t-b-100 theme-dark" style="background-image:url(<?php echo esc_url($image_url); ?>);">
-	<div class="highlight-panel__inner cont-xs padding-t-b-70 text-center white-text">
+	<?php
+	$container_class = ($lead_text && strlen(strip_tags($lead_text)) > 200) ? 'cont-s' : ($lead_text ? 'cont-xs' : '');
+	?>
+	<div class="highlight-panel__inner <?php echo esc_attr($container_class); ?> padding-t-b-70 text-center white-text">
 		<?php if ($lead_text) : ?>
 			<p class="fw-bold fs-600 margin-b-50">
 				<?php echo wp_kses_post($lead_text); ?>

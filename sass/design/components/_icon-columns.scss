@@ -29,6 +29,10 @@
   &--centered {
     text-align: center;
 
+    .text-block h3 {
+      margin-inline: inherit;
+    }
+
     .icon-columns__items {
       @media screen and (min-width: 768px) {
         display: flex;

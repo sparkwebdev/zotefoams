@@ -11,7 +11,7 @@ $image_url = $image ? $image['sizes']['large'] : get_template_directory_uri() . 
 $wrapperClass = $variant ? 'split-video-one split-video-one--variant' : 'split-video-one';
 ?>
 
-<div class="<?php echo $wrapperClass; ?> cont-m padding-t-b-100 theme-none">
+<div class="<?php echo $wrapperClass; ?> cont-m theme-none padding-t-b-100">
 	<div class="video-container image-cover" style="background-image:url('<?php echo esc_url($image_url); ?>');">
 		<?php if ($video_url) : ?>
 			<button type="button" class="video-trigger" data-modal-trigger="video" data-video-url="<?php echo esc_url($video_url); ?>" aria-label="<?php esc_attr_e('Play Video', 'zotefoams'); ?>">

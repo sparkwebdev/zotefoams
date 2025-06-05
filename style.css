@@ -3633,6 +3633,9 @@ a.read-more.hl.arrow:focus::after {
 .icon-columns--centered {
   text-align: center;
 }
+.icon-columns--centered .text-block h3 {
+  margin-inline: inherit;
+}
 @media screen and (min-width: 768px) {
   .icon-columns--centered .icon-columns__items {
     display: flex;
@@ -4556,7 +4559,7 @@ a.read-more.hl.arrow:focus::after {
   width: 100%;
 }
 .highlight-panel__sub-image {
-  max-width: 90px;
+  max-width: 140px;
   border-radius: 10px;
 }
 .highlight-panel::before {
@@ -4566,8 +4569,8 @@ a.read-more.hl.arrow:focus::after {
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(0, 0, 0, 0.21);
   z-index: -1;
+  background-image: linear-gradient(0deg, rgba(0, 0, 0, 0.65) 0%, rgba(0, 0, 0, 0.2) 100%);
 }
 
 /* Generic carousel styles
