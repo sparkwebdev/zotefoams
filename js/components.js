@@ -17,31 +17,70 @@ document.addEventListener( 'DOMContentLoaded', () => {
 } );
 
 // Component - Locations Map
-function locationClicked( sender ) {
-	// Hide all popups first
-	document.querySelectorAll( '.locations-map__popup' ).forEach( ( popup ) => {
+function showPopup(sender) {
+	// Hide all other popups
+	document.querySelectorAll('.locations-map__popup').forEach((popup) => {
 		popup.style.display = 'none';
-	} );
+		popup.classList.remove('fade-in'); // Remove any previous animation class
+	});
 
-	// Get the popup inside the clicked location
-	const popup = sender.querySelector( '.locations-map__popup' );
-	if ( popup ) {
-		popup.style.display = 'block';
+	const popup = sender.querySelector('.locations-map__popup');
+	if (popup) {
+		if (CSS.supports('position', 'anchor')) {
+			popup.style.position = 'anchor';
+			sender.style.anchorName = '--popup-anchor';
+		} else {
+			popup.style.display = 'block';
+			popup.style.position = 'absolute';
+			popup.style.top = '100%';
+			popup.style.left = '50%';
+			popup.style.transform = 'translateX(-50%)';
+		}
+		popup.classList.add('fade-in'); // 👈 Apply the animation
 	}
 }
 
-// Optional: Close popups when clicking outside
-document.addEventListener( 'click', function( event ) {
-	const isLocation = event.target.closest( '.locations-map__location' );
 
-	if ( isLocation ) {
-		locationClicked( isLocation );
-	} else {
-		document.querySelectorAll( '.locations-map__popup' ).forEach( ( popup ) => {
-			popup.style.display = 'none';
-		} );
-	}
-} );
+function hideAllPopups() {
+	document.querySelectorAll('.locations-map__popup').forEach((popup) => {
+		popup.style.display = 'none';
+		popup.classList.remove('fade-in');
+	});
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+	const locations = document.querySelectorAll('.locations-map__location');
+
+	locations.forEach((location) => {
+		const popup = location.querySelector('.locations-map__popup');
+
+		if (!popup) return;
+
+		// 🖱 Desktop: Hover interaction
+		if (!isTouchDevice) {
+			location.addEventListener('mouseenter', () => showPopup(location));
+			location.addEventListener('mouseleave', hideAllPopups);
+		} 
+		// 👆 Mobile: Tap interaction
+		else {
+			location.addEventListener('click', (e) => {
+				e.stopPropagation();
+				showPopup(location);
+			});
+		}
+
+		// Prevent popup click bubbling so it doesn't auto-close
+		popup.addEventListener('click', (e) => e.stopPropagation());
+	});
+
+	// 📲 Close popup when tapping outside (mobile)
+	document.addEventListener('click', (e) => {
+		if (!e.target.closest('.locations-map__location')) {
+			hideAllPopups();
+		}
+	});
+});
+
 
 // Data Points
 document.addEventListener( 'DOMContentLoaded', function() {

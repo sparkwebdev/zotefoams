@@ -4372,6 +4372,7 @@ a.read-more.hl.arrow:focus::after {
   filter: brightness(0) saturate(100%) invert(26%) sepia(23%) saturate(954%) hue-rotate(179deg) brightness(90%) contrast(87%);
 }
 .locations-map__location {
+  cursor: pointer;
   position: absolute;
   width: 0.4vw;
   height: 0.4vw;
@@ -4410,12 +4411,22 @@ a.read-more.hl.arrow:focus::after {
   top: 23px;
   left: calc(50% - 110px);
   width: 220px;
-  padding: 10px 20px;
+  padding: 15px 20px;
   border: solid 1px rgba(255, 255, 255, 0.3333333333);
   backdrop-filter: blur(10px);
   color: #fff;
-  background: rgba(255, 255, 255, 0.0666666667);
+  background: rgba(255, 255, 255, 0.1);
   font-size: 0.9em;
+}
+.locations-map__popup::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 10%;
+  background: linear-gradient(to bottom, rgba(4, 27, 65, 0.5), transparent);
+  z-index: -1;
 }
 .locations-map__popup.massachusetts {
   top: 32%;
@@ -4448,6 +4459,24 @@ a.read-more.hl.arrow:focus::after {
 .locations-map__popup.asia3 {
   top: 50%;
   left: 78.5%;
+}
+
+/* Fade-in Animation */
+@keyframes pointerFadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+.locations-map__popup.fade-in {
+  animation: pointerFadeIn 0.25s ease-out;
+}
+
+.locations-map__container:has(.fade-in) .locations-map__location:not(:has(.fade-in)) {
+  opacity: 0.25;
+  transition: opacity 0.5s;
 }
 
 /* Data points
