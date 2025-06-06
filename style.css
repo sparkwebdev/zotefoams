@@ -4,7 +4,7 @@ Theme URI: http://underscores.me/
 Author: David Park
 Author URI: http://underscores.me/
 Description: Description
-Version: 2.0.1
+Version: 2.0.2
 Tested up to: 5.4
 Requires PHP: 5.6
 License: GNU General Public License v2 or later
@@ -4570,127 +4570,55 @@ a.read-more.hl.arrow:focus::after {
   background-image: linear-gradient(0deg, rgba(0, 0, 0, 0.65) 0%, rgba(0, 0, 0, 0.2) 100%);
 }
 
-.step-slider-section {
-  --top-spacing: 60px;
-  position: relative;
-}
-
 .step-slider {
-  height: calc(100vh - var(--header-height));
-}
-@media screen and (min-width: 768px) {
-  .step-slider {
-    height: calc(100vh - var(--header-height) * 1);
-  }
-}
-.step-slider.swiper {
-  padding-top: var(--top-spacing);
-}
-@media screen and (min-width: 768px) {
-  .step-slider.swiper {
-    padding-top: 0;
-  }
-}
-.step-slider__overline {
-  border-bottom: solid 1px;
-  padding-bottom: 10px;
-}
-@media screen and (max-width: 767px) {
-  .step-slider__overline {
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    background-color: rgba(0, 0, 0, 0.5);
-    z-index: 2;
-    height: var(--top-spacing);
-    line-height: var(--top-spacing);
-    padding-left: 30px;
-    padding-right: 30px;
-  }
-}
-@media screen and (min-width: 768px) {
-  .step-slider__overline {
-    position: absolute;
-    left: calc(50% + 40px);
-    top: var(--top-spacing);
-  }
-}
-.step-slider__cols {
-  height: 100%;
-}
-@media screen and (min-width: 768px) {
-  .step-slider__cols {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-  }
-}
-.step-slider__image {
-  position: relative;
-  display: flex;
-}
-.step-slider__image img {
-  width: 100%;
-  position: relative;
-  z-index: 1;
-  box-shadow: 0 0 20px #000;
-  align-self: center;
-}
-.step-slider__content {
-  box-shadow: 0 0 20px #000;
-  position: relative;
-  z-index: 5;
+  max-width: 90%;
+  margin-left: auto;
+  margin-right: auto;
 }
 .step-slider__text {
   padding: 30px;
+  display: flex;
+  flex-direction: column;
+  gap: 50px;
 }
-@media screen and (min-width: 768px) {
-  .step-slider__text {
-    flex: 0 1 50%;
-    height: calc(100% - 150px);
-    align-items: flex-start;
-    display: flex;
-    flex-direction: column;
-    align-content: flex-start;
-    justify-content: flex-end;
-    padding: 100px 50px 50px 10%;
-    max-width: calc(514px - 8%);
-  }
+.step-slider__slide {
+  margin-bottom: 30px;
 }
+.step-slider__overline,
 .step-slider__title {
   border-bottom: solid 1px;
+  padding-bottom: 10px;
+}
+.step-slider__title {
   padding-bottom: 20px;
-  height: 50%;
-  align-content: end;
+  margin-top: 1em;
 }
 .step-slider__subtext {
-  height: 50%;
-  align-content: end;
   color: var(--color-text-light);
 }
 .step-slider__subtext strong {
   color: #fff;
 }
-.step-slider__image-mirror {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  inset: 0;
-  opacity: 0.5;
-  background-size: contain;
-  background-position: top center;
-}
-.step-slider__image-mirror::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: -1;
-  background-image: linear-gradient(0deg, rgba(0, 0, 0, 0.5) 0%, rgba(0, 0, 0, 0.2) 100%);
-  backdrop-filter: blur(15px);
+@media screen and (min-width: 1024px) {
+  .step-slider {
+    max-width: none;
+  }
+  .step-slider__slide {
+    position: sticky;
+    top: calc(var(--header-height) + 30px);
+    margin: 0 0 30px 0;
+    max-width: none;
+  }
+  .step-slider__cols {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .step-slider__text {
+    max-width: 564px;
+    gap: 0;
+    padding: 50px 50px 50px 10%;
+    justify-content: space-between;
+  }
 }
 
 /* Generic carousel styles
