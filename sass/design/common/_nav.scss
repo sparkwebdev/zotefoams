@@ -36,6 +36,8 @@ $breakpoint-large: 68rem;
 
 .site-header .site-branding a {
   display: block;
+  width: fit-content;
+  max-width: calc(90% - 40px);
 }
 
 .site-header .site-branding img {
@@ -648,12 +650,17 @@ $breakpoint-large: 68rem;
         position: fixed;
         width: 100%;
         top: var(--header-height);
-        bottom: calc(var(--header-height) / 2);
         left: 0;
         z-index: 1000;
         background-color: #fff;
         box-shadow: 0 20px 20px rgba(0, 0, 0, 0.15);
         overflow-y: auto;
+        padding-top: 20px;
+        min-height: 50vh;
+        max-height: calc(100vh - var(--header-height));
+        @supports (height: 100dvh) {
+          max-height: calc(100dvh - var(--header-height));
+        }
       }
     }
   }
