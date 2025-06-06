@@ -391,6 +391,22 @@ document.addEventListener('DOMContentLoaded', function () {
       }
     });
   });
+
+  const hash = window.location.hash;
+  if (hash) {
+    const targetItem = document.querySelector(hash);
+    if (targetItem && targetItem.classList.contains("accordion-item")) {
+      const header = targetItem.querySelector(".accordion-header");
+      if (header) {
+        header.click(); // Simulate the user clicking the header
+        targetItem.scrollIntoView({ behavior: "smooth", block: "start" });
+
+      // === Remove hash from URL without refreshing the page
+        history.replaceState(null, document.title, window.location.pathname + window.location.search);
+
+      }
+    }
+  }
 });
 
 window.addEventListener('message', function (event) {
