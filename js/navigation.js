@@ -124,7 +124,7 @@ if (isTouchDevice) {
   // Set up dropdown/mega menu handlers
   const setupDropdowns = (menuElement) => {
     // Attach click event to .dropdown-toggle buttons to toggle submenus.
-    menuElement.querySelectorAll(".dropdown-toggle").forEach((toggle) => {
+    menuElement.querySelectorAll(".dropdown-toggle, .menu-label").forEach((toggle) => {
       toggle.addEventListener("click", (e) => {
         e.stopPropagation();
         e.preventDefault();

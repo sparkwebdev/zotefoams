@@ -473,7 +473,7 @@ document.addEventListener('DOMContentLoaded', () => {
     searchContainer.removeAttribute('hidden');
     searchContainer.classList.add('is-visible');
     searchItem.setAttribute('aria-expanded', 'true');
-    input?.focus();
+    input?.focus({ preventScroll: true });
   };
 
   const closeSearch = () => {
