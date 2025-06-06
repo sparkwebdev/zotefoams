@@ -5,7 +5,10 @@ $breakpoint-large: 68rem;
 
 :root {
   --header-height: 116px;
-  @media screen and (max-width: 767px) {
+}
+
+@media screen and (max-width: 767px) {
+  :root {
     --header-height: 106px;
   }
 }
@@ -33,6 +36,8 @@ $breakpoint-large: 68rem;
 
 .site-header .site-branding a {
   display: block;
+  width: fit-content;
+  max-width: calc(90% - 40px);
 }
 
 .site-header .site-branding img {
@@ -630,6 +635,7 @@ $breakpoint-large: 68rem;
   html:has(body.no-scroll) {
     scrollbar-gutter: stable;
   }
+
   body.no-scroll {
     overflow: hidden;
     position: fixed;
@@ -644,12 +650,17 @@ $breakpoint-large: 68rem;
         position: fixed;
         width: 100%;
         top: var(--header-height);
-        bottom: calc(var(--header-height) / 2);
         left: 0;
         z-index: 1000;
         background-color: #fff;
-        box-shadow: 0 40px 50px rgba(0, 0, 0, 0.95);
+        box-shadow: 0 20px 20px rgba(0, 0, 0, 0.15);
         overflow-y: auto;
+        padding-top: 20px;
+        min-height: 50vh;
+        max-height: calc(100vh - var(--header-height));
+        @supports (height: 100dvh) {
+          max-height: calc(100dvh - var(--header-height));
+        }
       }
     }
   }
@@ -863,13 +874,38 @@ body.touch-device .utility-menu .menu > li.dropdown-active > ul {
 }
 
 .utility-search {
-  display: none;
+  &[hidden] {
+    display: block;
+  }
+  max-height: 0;
+  opacity: 0;
+  visibility: hidden;
+  overflow: hidden;
+  padding-top: 0;
+  padding-bottom: 0;
+  transition:
+    max-height 0.4s ease-in-out,
+    opacity 0.3s ease-in-out,
+    padding-top 0.4s ease-in-out,
+    padding-bottom 0.4s ease-in-out,
+    visibility 0s linear 0.4s;
 
   &.is-visible {
-    display: block;
-    padding: 0.5em 0 1em 0;
+    max-height: 10em;
+    opacity: 1;
+    visibility: visible;
+    padding-top: 0.5em;
+    padding-bottom: 1em;
+
+    transition:
+      max-height 0.4s ease-in-out,
+      opacity 0.3s ease-in-out,
+      padding-top 0.4s ease-in-out,
+      padding-bottom 0.4s ease-in-out,
+      visibility 0s linear 0s;
   }
 
+  // --- Styles for form, input, and buttons remain the same ---
   form {
     display: flex;
     gap: 0.5rem;
@@ -882,8 +918,13 @@ body.touch-device .utility-menu .menu > li.dropdown-active > ul {
   input[type="text"] {
     flex: 1;
     border: 0;
-    padding: 8px;
+    padding: 8px; // This is padding inside the input, not on .utility-search
     line-height: 1;
+
+    &:focus {
+      outline: solid 2px var(--color-link);
+      outline-offset: -1px;
+    }
   }
 
   button[type="submit"],
@@ -891,7 +932,12 @@ body.touch-device .utility-menu .menu > li.dropdown-active > ul {
     min-width: 0;
     cursor: pointer;
     padding: 8px 16px;
-    min-width: 0;
     background: transparent;
+
+    &:focus {
+      border-color: var(--color-text-light) !important;
+      color: var(--color-text-light) !important;
+      outline: none;
+    }
   }
 }

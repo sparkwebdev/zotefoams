@@ -11,7 +11,7 @@ $image_url = $image ? $image['sizes']['large'] : get_template_directory_uri() . 
 $wrapperClass = $variant ? 'split-video-one split-video-one--variant' : 'split-video-one';
 ?>
 
-<div class="<?php echo $wrapperClass; ?> cont-m padding-t-b-100 theme-none">
+<div class="<?php echo $wrapperClass; ?> cont-m theme-none padding-t-b-100">
 	<div class="video-container image-cover" style="background-image:url('<?php echo esc_url($image_url); ?>');">
 		<?php if ($video_url) : ?>
 			<button type="button" class="video-trigger" data-modal-trigger="video" data-video-url="<?php echo esc_url($video_url); ?>" aria-label="<?php esc_attr_e('Play Video', 'zotefoams'); ?>">
@@ -22,7 +22,7 @@ $wrapperClass = $variant ? 'split-video-one split-video-one--variant' : 'split-v
 
 	<div <?php echo $variant ? 'class="light-grey-bg padding-50"' : ''; ?>>
 		<?php if ($title) : ?>
-			<p class="fs-200 fw-regular margin-b-30"><?php echo esc_html($title); ?></p>
+			<p class="<?php echo $variant ? 'fs-400 fw-bold margin-b-30' : 'fs-200 fw-regular margin-b-30'; ?>"><?php echo esc_html($title); ?></p>
 		<?php endif; ?>
 
 		<?php if ($text) : ?>

@@ -391,6 +391,22 @@ document.addEventListener('DOMContentLoaded', function () {
       }
     });
   });
+
+  const hash = window.location.hash;
+  if (hash) {
+    const targetItem = document.querySelector(hash);
+    if (targetItem && targetItem.classList.contains("accordion-item")) {
+      const header = targetItem.querySelector(".accordion-header");
+      if (header) {
+        header.click(); // Simulate the user clicking the header
+        targetItem.scrollIntoView({ behavior: "smooth", block: "start" });
+
+      // === Remove hash from URL without refreshing the page
+        history.replaceState(null, document.title, window.location.pathname + window.location.search);
+
+      }
+    }
+  }
 });
 
 window.addEventListener('message', function (event) {
@@ -455,7 +471,7 @@ document.addEventListener('DOMContentLoaded', () => {
   searchContainer.setAttribute('hidden', '');
 
   searchContainer.innerHTML = `
-    <form role="search" aria-label="Site search form">
+    <form role="search" aria-label="Site search form" action="/">
       <input type="text" name="s" placeholder="Search..." aria-label="Search input" required />
       <button type="submit" class="btn outline white">Go</button>
       <button type="button" class="btn outline white" aria-label="Close search form">✕</button>
@@ -473,7 +489,7 @@ document.addEventListener('DOMContentLoaded', () => {
     searchContainer.removeAttribute('hidden');
     searchContainer.classList.add('is-visible');
     searchItem.setAttribute('aria-expanded', 'true');
-    input?.focus();
+    input?.focus({ preventScroll: true });
   };
 
   const closeSearch = () => {

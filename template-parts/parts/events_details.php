@@ -17,7 +17,7 @@ $playback_url          = get_field('event_playback_url');
 ) : ?>
     <div class="event-details padding-30 margin-t-b-40 light-grey-bg">
         <?php if ($event_name) : ?>
-            <div class="event-details__title margin-b-20 fs-600 fw-semibold blue-text">
+            <div class="event-details__title margin-b-20 fs-600 fw-semibold grey-text">
                 <?php echo esc_html($event_name); ?>
             </div>
         <?php endif; ?>

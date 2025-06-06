@@ -26,10 +26,7 @@ $map_image_url = $map_image['sizes']['large'] ?? get_template_directory_uri() . 
                     $from_top    = $location['from_top'] ?? '0';
                     $from_left   = $location['from_left'] ?? '0';
                 ?>
-                    <div
-                        class="locations-map__location"
-                        onclick="locationClicked(this)"
-                        style="top:<?php echo esc_attr($from_top); ?>%;left:<?php echo esc_attr($from_left); ?>%;">
+                    <div class="locations-map__location" style="top:<?php echo esc_html($from_top); ?>%;left:<?php echo esc_html($from_left); ?>%;">
 
                         <?php if ($description) : ?>
                             <div class="locations-map__popup">

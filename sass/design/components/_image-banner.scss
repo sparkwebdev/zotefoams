@@ -2,16 +2,12 @@
  * --------------------------------------------- */
 
 .swiper-image {
-  --swiper-image-min-height: 700px;
-  @media screen and (max-width: 767px) {
-    --swiper-image-min-height: 500px;
-  }
-}
-
-.swiper-image {
   width: 100%;
   height: calc(100vh - var(--header-height));
   position: relative;
+  @supports (height: 100dvh) {
+      height: calc(100dvh - var(--header-height));
+  }
 }
 
 .swiper-image .swiper-slide {
@@ -34,7 +30,8 @@
 }
 
 .swiper-image .swiper-inner p {
-  max-width: 770px;
+  max-width: 32em;
+  text-wrap: balance;
 }
 
 @media screen and (max-width: 1200px) {

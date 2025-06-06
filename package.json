@@ -55,7 +55,7 @@
     "compile:rtl": "rtlcss style.css style-rtl.css",
     "build": "npm run compile:css && npm run js:bundle && npm run compile:rtl",
     "bundle": "dir-archiver --src . --dest ../_s.zip --exclude .DS_Store .stylelintrc.json .eslintrc .git .gitattributes .github .gitignore README.md composer.json composer.lock node_modules vendor package-lock.json package.json .travis.yml phpcs.xml.dist sass style.css.map yarn.lock",
-    "test:compare": "playwright test tests/vrc/compare-pages-2.spec.js"
+    "test:compare": "playwright test tests/vrc/compare-pages.spec.js"
   },
   "dependencies": {
     "node-fetch": "^3.3.2",

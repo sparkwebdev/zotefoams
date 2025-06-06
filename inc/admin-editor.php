@@ -226,3 +226,42 @@ function zoatfoams_allowed_block_types($allowed_blocks, $editor_context)
     return $allowed_blocks;
 }
 add_filter('allowed_block_types_all', 'zoatfoams_allowed_block_types', 10, 2);
+
+
+function assign_unique_ids_to_flexible_content($post_id) {
+    if (defined('DOING_AUTOSAVE') && DOING_AUTOSAVE) return;
+    if (get_post_type($post_id) !== 'page') return;
+
+    $field_name = 'page_content';
+
+    if (!have_rows($field_name, $post_id)) return;
+
+    $layouts = get_field($field_name, $post_id);
+
+    foreach ($layouts as $index => $layout) {
+        if (empty($layout['unique_id'])) {
+            $unique_id_raw = uniqid('c_');
+            $layout['unique_id'] = sanitize_html_class($unique_id_raw);
+
+            update_sub_field(
+                [$field_name, $index + 1, 'unique_id'],
+                $layout['unique_id'],
+                $post_id
+            );
+        }
+    }
+}
+add_action('acf/save_post', 'assign_unique_ids_to_flexible_content', 20);
+
+
+add_filter('acf/prepare_field/name=unique_id', function ($field) {
+    // if (!current_user_can('administrator')) {
+        return false;
+    // }
+    return $field;
+});
+// add_filter('acf/prepare_field/name=unique_id', function($field) {
+//     $field['readonly'] = 1;
+//     $field['disabled'] = 0; // Important: allow value to submit!
+//     return $field;
+// });
