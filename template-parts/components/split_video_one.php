@@ -22,7 +22,7 @@ $wrapperClass = $variant ? 'split-video-one split-video-one--variant' : 'split-v
 
 	<div <?php echo $variant ? 'class="light-grey-bg padding-50"' : ''; ?>>
 		<?php if ($title) : ?>
-			<p class="fs-200 fw-regular margin-b-30"><?php echo esc_html($title); ?></p>
+			<p class="<?php echo $variant ? 'fs-400 fw-bold margin-b-30' : 'fs-200 fw-regular margin-b-30'; ?>"><?php echo esc_html($title); ?></p>
 		<?php endif; ?>
 
 		<?php if ($text) : ?>
