@@ -107,7 +107,7 @@ wp_reset_postdata();
             </div>
 
             <div class="split-text__content fs-300">
-                <?php echo do_shortcode('[wpforms id="3038" title="false"]'); ?>
+                <?php echo do_shortcode('[wpforms id="3036" title="false"]'); ?>
             </div>
         </div>
     </div>
