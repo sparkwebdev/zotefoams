@@ -29,7 +29,7 @@ $posts_page_id = function_exists('zotefoams_get_page_for_posts_id') ? zotefoams_
     <div class="text-block__inner">
         <p class="margin-b-20">Upcoming Webinars</p>
         <div class="grey-text fs-600 fw-semibold">
-            <p><strong>Zotefoams occasionally hosts free webinars</strong> about industry issues, new product launches, business plans and case studies. <strong><a href="#register-updates">Register for updates</a></strong> to find out about forthcoming webinars.</p>
+            <p><strong>Zotefoams occasionally hosts free webinars</strong> about industry issues, new product launches, business plans and case studies. <strong>Register below for updates</strong>.</p>
         </div>
     </div>
 </div>
