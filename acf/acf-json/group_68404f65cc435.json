@@ -16,7 +16,7 @@
                 "class": "",
                 "id": ""
             },
-            "message": "For Events and Webinars you may with to add extra details. Note: not all fields apply to both Events and Webinars",
+            "message": "For Events and Webinars you may want to add extra details. Note: not all fields apply to both Events and Webinars",
             "new_lines": "wpautop",
             "esc_html": 0
         },
@@ -242,5 +242,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1749051777
+    "modified": 1749215134
 }
