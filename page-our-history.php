@@ -70,7 +70,8 @@ $images = [
             <div class="cont-xs text-center fade-in">
                 <h1 class="screen-reader-text">Our History</h1>
                 <h2 class="uppercase h1">100&nbsp;Years of&nbsp;Innovation<br />
-                    <span class="font-alt">100&nbsp;Years of&nbsp;History</span></h2>
+                    <span class="font-alt">100&nbsp;Years of&nbsp;History</span>
+                </h2>
                 <p class="cont-xxs uppercase margin-t-40 h6 zf-history__text" style="max-width: 36em;">Zotefoams has a rich and vibrant history spanning more than 100 years that starts in the uk with tyres and rubber and moves through innovation into new products and global markets.</p>
             </div>
         </section>
@@ -117,10 +118,10 @@ $images = [
                     <div class="zf-history__images">
                         <img src="<?php echo $image_root . $images['20s'][1]; ?>" alt="" />
                         <img src="<?php echo $image_root . $images['20s'][2]; ?>" alt="" />
+                        <button class="zf-history__popup-marker" aria-describedby="popup-1920s-01">
+                            <div class="zf-history__popup" role="tooltip" aria-hidden="true" id="popup-1920s-01">The letter is from Charles Marshall to T Wall and Sons, who were developing their ice cream business.</div>
+                        </button>
                         <img src="<?php echo $image_root . $images['20s'][3]; ?>" alt="" />
-                        <div class="button">
-                            <div class="popup">The letter is from Charles Marshall to T Wall and Sons, who were developing their ice cream business.</div>
-                        </div>
                     </div>
                     <div class="zf-history__text text-center fade-in">
                         <p>In 1925, the company was renamed The Expanded Rubber Company Limited, with Onazote remaining as a brand name for expanded rubber decades to come. That same year saw the first recorded use of Onazote for refrigeration.
@@ -136,6 +137,10 @@ $images = [
                         <img src="<?php echo $image_root . $images['20s'][4]; ?>" alt="" />
                         <img src="<?php echo $image_root . $images['20s'][5]; ?>" alt="" />
                         <img src="<?php echo $image_root . $images['20s'][6]; ?>" alt="" />
+                        <button class="zf-history__popup-marker" aria-describedby="popup-1920s-02">
+                            <div class="zf-history__popup" role="tooltip" aria-hidden="true" id="popup-1920s-02">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque euismod, nisi eu consectetur cursus, nisl erat dictum enim, nec cursus erat erat nec enim.</div>
+                        </button>
+
                     </div>
                     <div class="zf-history__text text-center fade-in">
                         <h4 class="uppercase font-alt h4">Success Beckons</h4>
@@ -165,6 +170,11 @@ $images = [
                         <img src="<?php echo $image_root . $images['40s'][1]; ?>" alt="" />
                         <img src="<?php echo $image_root . $images['40s'][2]; ?>" alt="" />
                         <img src="<?php echo $image_root . $images['40s'][3]; ?>" alt="" />
+                        <button class="zf-history__popup-marker" aria-describedby="popup-1940s-01">
+                            <div class="zf-history__popup" role="tooltip" aria-hidden="true" id="popup-1940s-01">
+                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque euismod, nisi eu consectetur cursus, nisl erat dictum enim, nec cursus erat erat nec enim.
+                            </div>
+                        </button>
                     </div>
                     <div class="zf-history__text text-center fade-in">
                         <p><strong>Wartime saw a rapid increase in demand for Onazote and Rubazote, primarily in marine buoyancy and aviation applications.</strong></p>
@@ -181,6 +191,12 @@ $images = [
                     <div class="zf-history__images">
                         <img src="<?php echo $image_root . $images['40s'][4]; ?>" alt="" />
                         <img src="<?php echo $image_root . $images['40s'][5]; ?>" alt="" />
+
+                        <button class="zf-history__popup-marker" aria-describedby="popup-1940s-02">
+                            <div class="zf-history__popup" role="tooltip" aria-hidden="true" id="popup-1940s-02">
+                                Granules of FUF, driven by studio wind machines, provided the realistic blizzard effects for the iconic film, Scott of the Antarctic.
+                            </div>
+                        </button>
                     </div>
                     <div class="zf-history__text text-center fade-in">
                         <p>Developments included Formvar, an expanded vinyl with great impact strength, and FUF - expanded urea-formaldehyde resin. This looked like snow and was used to create the blizzard effects in the famous 1948 adventure film Scott of the Antarctic.</p>
@@ -194,6 +210,18 @@ $images = [
                     <div class="zf-history__images">
                         <img src="<?php echo $image_root . $images['40s'][6]; ?>" alt="" />
                         <img src="<?php echo $image_root . $images['40s'][7]; ?>" alt="" />
+
+                        <button class="zf-history__popup-marker" aria-describedby="popup-1940s-03">
+                            <div class="zf-history__popup" role="tooltip" aria-hidden="true" id="popup-13">
+                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque euismod, nisi eu consectetur cursus, nisl erat dictum enim, nec cursus erat erat nec enim.
+                            </div>
+                        </button>
+
+                        <button class="zf-history__popup-marker" aria-describedby="popup-1940s-03">
+                            <div class="zf-history__popup zf-history__popup--alt" role="tooltip" aria-hidden="true" id="popup-13">
+                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque euismod, nisi eu consectetur cursus, nisl erat dictum enim, nec cursus erat erat nec enim.
+                            </div>
+                        </button>
                     </div>
                     <div class="zf-history__text text-center fade-in">
                         <h4 class="uppercase h4 font-alt">A World Of Applications</h4>
@@ -211,8 +239,8 @@ $images = [
                 <div class="cont-xs zf-history__year-intro h2 is-sticky">
                     <h2 class="font-alt h2">1960s - 1970s</h2>
                     <p class="uppercase h2">Introducing<br />
-                    Plastazote® and Evazote®<br />
-                     - and the end of rubber</p>
+                        Plastazote® and Evazote®<br />
+                        - and the end of rubber</p>
                 </div>
             </header>
 
@@ -220,6 +248,12 @@ $images = [
                 <div class="zf-history__cols zf-history__cols--swap cont-m">
                     <div class="zf-history__images">
                         <img src="<?php echo $image_root . $images['60s'][1]; ?>" alt="" />
+
+                        <button class="zf-history__popup-marker" aria-describedby="popup-1960s-01">
+                            <div class="zf-history__popup" role="tooltip" aria-hidden="true" id="popup-1960s-01">
+                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque euismod, nisi eu consectetur cursus, nisl erat dictum enim, nec cursus erat erat nec enim.
+                            </div>
+                        </button>
                     </div>
                     <div class="zf-history__text text-center fade-in">
                         <p><strong>In 1962, Plastazote® was launched. This now-iconic brand, the foundation of the AZOTE® polyolefin foams, is produced from polyethylene and used in a vast range of applications.</strong></p>
@@ -258,6 +292,12 @@ $images = [
                 <div class="zf-history__cols cont-m">
                     <div class="zf-history__images">
                         <img src="<?php echo $image_root . $images['80s'][1]; ?>" alt="" />
+
+                        <button class="zf-history__popup-marker" aria-describedby="popup-1980s-01">
+                            <div class="zf-history__popup" role="tooltip" aria-hidden="true" id="popup-1980s-01">
+                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque euismod, nisi eu consectetur cursus, nisl erat dictum enim, nec cursus erat erat nec enim.
+                            </div>
+                        </button>
                     </div>
                     <div class="zf-history__text text-center fade-in">
                         <p><strong>1981, Plastazote® achieved royal recognition when it received the Prince Philip Award for polymers in the service of mankind. The Award was presented by its namesake, a champion of British technology and industry.</strong></p>
@@ -282,6 +322,12 @@ $images = [
                 <div class="zf-history__cols zf-history__cols--swap cont-m">
                     <div class="zf-history__images">
                         <img src="<?php echo $image_root . $images['00s'][1]; ?>" alt="" />
+
+                        <button class="zf-history__popup-marker" aria-describedby="popup-2000s-01">
+                            <div class="zf-history__popup zf-history__popup--alt" role="tooltip" aria-hidden="true" id="popup-2000s-01">
+                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque euismod, nisi eu consectetur cursus, nisl erat dictum enim, nec cursus erat erat nec enim.
+                            </div>
+                        </button>
                     </div>
                     <div class="zf-history__text text-center fade-in">
                         <p><strong>As the new millennium dawned, opportunities and optimism were abundant - but on the night of October 22, 2000, a fire at the Mitcham Road site caused damage running into millions of pounds and destroyed a third of the factory.</strong></p>
@@ -296,6 +342,12 @@ $images = [
                     <div class="zf-history__images">
                         <img src="<?php echo $image_root . $images['00s'][2]; ?>" alt="" />
                         <img src="<?php echo $image_root . $images['00s'][3]; ?>" alt="" />
+
+                        <button class="zf-history__popup-marker" aria-describedby="popup-2000s-02">
+                            <div class="zf-history__popup zf-history__popup--alt" role="tooltip" aria-hidden="true" id="popup-2000s-02">
+                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque euismod, nisi eu consectetur cursus, nisl erat dictum enim, nec cursus erat erat nec enim.
+                            </div>
+                        </button>
                     </div>
                     <div class="zf-history__text text-center fade-in">
                         <p>Rebuilding in the UK, the company completed new headquarters, manufacturing and R&D buildings.</p>
@@ -309,6 +361,11 @@ $images = [
                 <div class="zf-history__cols zf-history__cols--swap cont-m">
                     <div class="zf-history__images">
                         <img src="<?php echo $image_root . $images['00s'][4]; ?>" alt="" />
+                        <button class="zf-history__popup-marker" aria-describedby="popup-2000s-03">
+                            <div class="zf-history__popup zf-history__popup--alt" role="tooltip" aria-hidden="true" id="popup-2000s-03">
+                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque euismod, nisi eu consectetur cursus, nisl erat dictum enim, nec cursus erat erat nec enim.
+                            </div>
+                        </button>
                     </div>
                     <div class="zf-history__text text-center fade-in">
                         <p>As well as developing and manufacturing outstanding new products, the company continued to expand its global reach. In 2007, Zotefoams appointed its first distributor in Asia, and in 2013 entered a 50/50 joint venture with the Japanese INOAC Corporation to manufacture and sell AZOTE® polyolefin products in Asia and Australasia.</p>
@@ -360,6 +417,11 @@ $images = [
                 <div class="zf-history__cols cont-m">
                     <div class="zf-history__images">
                         <img src="<?php echo $image_root . $images['10s'][5]; ?>" alt="" />
+                        <button class="zf-history__popup-marker" aria-describedby="popup-2010s-01">
+                            <div class="zf-history__popup zf-history__popup--alt" role="tooltip" aria-hidden="true" id="popup-2010s-01">
+                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque euismod, nisi eu consectetur cursus, nisl erat dictum enim, nec cursus erat erat nec enim.
+                            </div>
+                        </button>
                     </div>
                     <div class="zf-history__text text-center fade-in">
                         <p>In 2019, the UK manufacturing site increased capacity for expansion of materials with a new factory housing two large high-temperature low-pressure (HTLP) autoclaves for the expansion of nitrogen-saturated slabs and in the same year, Zotefoams established a T-FIT sales and service centre in Ahmedabad, India to support the growing food and pharmaceutical sectors in the region.</p>
