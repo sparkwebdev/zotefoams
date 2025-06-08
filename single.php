@@ -7,6 +7,11 @@
  */
 
 get_header();
+if (post_password_required()) :
+
+	echo get_the_password_form();
+
+else :
 ?>
 
 <?php while (have_posts()) : the_post(); ?>
@@ -103,9 +108,12 @@ get_header();
 			</div>
 		</div>
 	</div>
-<?php endwhile; ?>
+<?php endwhile;
+?>
 
 <hr class="separator" />
+<?php 
+endif; ?>
 
 <?php get_template_part('template-parts/latest-posts'); ?>
 

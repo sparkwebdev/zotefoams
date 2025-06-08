@@ -6,6 +6,12 @@
 
 get_header();
 
+if (post_password_required()) :
+
+    echo get_the_password_form();
+
+else :
+
 $image_root = get_template_directory_uri() . '/images/history/';
 $thumbnail_url = get_template_directory_uri() . '/images/placeholder-thumbnail.png';
 $images = [
@@ -436,4 +442,8 @@ $images = [
 
     </div>
 </div>
-<?php get_footer(); ?>
+
+<?php
+endif;
+
+get_footer(); ?>

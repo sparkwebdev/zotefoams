@@ -65,6 +65,16 @@ footer .site-branding img {
   width: 174px;
 }
 
+.custom-password-form__inputs {
+	display: flex;
+	align-items: center;
+	gap: 0.35em;
+}
+
+.custom-password-form .custom-password-form__password {
+	padding: 10px;
+}
+
 .tag {
   color: var(--color-text);
 }

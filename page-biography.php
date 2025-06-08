@@ -19,27 +19,40 @@ get_header();
 	</div>
 </header>
 
-<div class="biography cont-m padding-t-b-100 theme-none">
-	<div>
-		<?php if (has_post_thumbnail()) : ?>
-			<figure><?php zotefoams_post_thumbnail('large'); ?></figure>
-		<?php endif; ?>
+<?php
+
+if (post_password_required()) :
+
+	echo get_the_password_form();
+
+else : ?>
+
+	<div class="biography cont-m padding-t-b-100 theme-none">
+		<div>
+			<?php if (has_post_thumbnail()) : ?>
+				<figure><?php zotefoams_post_thumbnail('large'); ?></figure>
+			<?php endif; ?>
+		</div>
+
+		<div>
+			<?php
+			while (have_posts()) :
+				the_post();
+				the_content();
+			endwhile;
+			?>
+		</div>
 	</div>
 
-	<div>
-		<?php
-		while (have_posts()) :
-			the_post();
-			the_content();
-		endwhile;
-		?>
+	<div class="cont-m padding-t-b-100 theme-none">
+		<div class="nav-links">
+			<a href="<?php echo esc_url(home_url('/directors')); ?>">« <?php esc_html_e('Back to Directors', 'zotefoams'); ?></a>
+		</div>
 	</div>
-</div>
 
-<div class="cont-m padding-t-b-100 theme-none">
-	<div class="nav-links">
-		<a href="<?php echo esc_url(home_url('/directors')); ?>">« <?php esc_html_e('Back to Directors', 'zotefoams'); ?></a>
-	</div>
-</div>
+<?php
+endif;
 
-<?php get_footer(); ?>
+get_footer();
+
+?>
