@@ -4,7 +4,7 @@ Theme URI: http://underscores.me/
 Author: David Park
 Author URI: http://underscores.me/
 Description: Description
-Version: 2.0.4
+Version: 2.0.5
 Tested up to: 5.4
 Requires PHP: 5.6
 License: GNU General Public License v2 or later
@@ -457,7 +457,7 @@ big {
 --------------------------------------------- */
 body {
   background: #eee;
-  font-family: Manrope, serif;
+  font-family: Manrope, sans-serif;
   font-optical-sizing: auto;
   font-style: normal;
   max-width: 2560px;

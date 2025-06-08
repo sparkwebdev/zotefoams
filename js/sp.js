@@ -489,8 +489,21 @@ document.addEventListener('DOMContentLoaded', () => {
     searchContainer.removeAttribute('hidden');
     searchContainer.classList.add('is-visible');
     searchItem.setAttribute('aria-expanded', 'true');
-    input?.focus({ preventScroll: true });
   };
+
+  // Prevent scroll on input
+  input?.addEventListener("input", (e) => {
+    e.preventDefault();
+    window.scrollTo(window.scrollX, window.scrollY);
+  });
+
+  input?.addEventListener("keydown", (e) => {
+    // Store current scroll position
+    const currentScrollY = window.scrollY;
+    setTimeout(() => {
+      window.scrollTo(window.scrollX, currentScrollY);
+    }, 0);
+  });
 
   const closeSearch = () => {
     searchContainer.classList.remove('is-visible');

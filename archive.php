@@ -8,12 +8,12 @@
 
 get_header();
 
-if (have_posts()) :
-
 	$title               = single_cat_title('', false);
 	$cat_more_link_label = zotefoams_map_cat_label($title);
 	$layout              = ($title === 'Case Studies' || $title === 'Videos') ? 'grid' : 'list';
 	$posts_page_id       = zotefoams_get_page_for_posts_id();
+	$category_description = category_description();
+
 ?>
 
 	<header class="text-banner padding-t-b-70">
@@ -26,6 +26,10 @@ if (have_posts()) :
 			</h2>
 		</div>
 	</header>
+
+<?php
+if (have_posts()) :
+?>
 
 	<div class="articles articles--<?php echo esc_attr($layout); ?> cont-m padding-t-b-70 padding-b-100">
 		<?php
@@ -50,11 +54,11 @@ if (have_posts()) :
 							<?php the_title('<h3 class="fs-400 fw-semibold margin-b-20">', '</h3>'); ?>
 						<?php else: ?>
 							<?php the_title('<h3 class="fs-400 fw-semibold">', '</h3>'); ?>
-							<?php 
+							<?php
 							if (function_exists('get_field')) {
 								$start_date = get_field('event_start_date', get_the_ID());
 								$end_date = get_field('event_end_date', get_the_ID());
-								echo '<h3 class="fs-400 fw-semibold margin-b-20 grey-text">'.zotefoams_format_event_date_range($start_date, $end_date).'</h3>';
+								echo '<h3 class="fs-400 fw-semibold margin-b-20 grey-text">' . zotefoams_format_event_date_range($start_date, $end_date) . '</h3>';
 							} ?>
 						<?php endif; ?>
 						<div class="articles__footer">
@@ -122,7 +126,17 @@ if (have_posts()) :
 	<?php get_template_part('template-parts/pagination'); ?>
 
 <?php else : ?>
-	<?php get_template_part('template-parts/content', 'none'); ?>
+
+	<div class="text-block cont-m padding-t-b-100 theme-none">
+		<div class="text-block__inner">
+			<p>
+				<?php esc_html_e('Coming soon', 'zotefoams'); ?> 
+			</p>
+			<?php if (!empty($category_description)) : ?>
+				<h3 class="fs-600 grey-text fw-semibold margin-t-20"><strong><?php echo wp_kses_post($category_description); ?></strong></h3>
+			<?php endif; ?>
+		</div>
+	</div>
 <?php endif; ?>
 
 <?php
