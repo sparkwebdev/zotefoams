@@ -22,76 +22,19 @@ Normalizing styles have been helped along thanks to the fine work of
 Nicolas Gallagher and Jonathan Neal https://necolas.github.io/normalize.css/
 */
 
-/*--------------------------------------------------------------
->>> TABLE OF CONTENTS:
-----------------------------------------------------------------
-# Generic
-	- Normalize
-	- Box sizing
-# Base
-	- Typography
-	- Elements
-	- Links
-	- Forms
-## Layouts
-# Components
-	- Navigation
-	- Posts and pages
-	- Comments
-	- Widgets
-	- Media
-	- Captions
-	- Galleries
-# Utilities
-	- Accessibility
-	- Alignments
-
---------------------------------------------------------------*/
-
-// Import variables and mixins.
+/* Variables and mixins.
+--------------------------------------------- */
 @use "abstracts/abstracts";
-
-/*--------------------------------------------------------------
-# Generic
---------------------------------------------------------------*/
 
 /* Normalize
 --------------------------------------------- */
-@use "generic/normalize";
+@use "normalize";
 
-/* Box sizing
+/* Base
 --------------------------------------------- */
-@use "generic/box-sizing";
-
-/*--------------------------------------------------------------
-# Base
---------------------------------------------------------------*/
 @use "base/base";
 
-/*--------------------------------------------------------------
-# Layouts
---------------------------------------------------------------*/
-// @import "layouts/content-sidebar"; // Uncomment this line for a sidebar on right side of your content.
-// @import "layouts/sidebar-content"; // Uncomment this line for a sidebar on left side of your content.
-
-/*--------------------------------------------------------------
-# Components
---------------------------------------------------------------*/
-@use "components/components";
-
-/*--------------------------------------------------------------
-# Utilities
---------------------------------------------------------------*/
-
-/* Accessibility
---------------------------------------------- */
-@use "utilities/accessibility";
-
-/* Alignments
---------------------------------------------- */
-@use "utilities/alignments";
-
-/* Design
---------------------------------------------- */
+// /* Design
+// --------------------------------------------- */
 @use "design/design";
 @use "design/components" as components2;
