@@ -1,82 +1,51 @@
-<?php 
-// Allow for passed variables, as well as ACF values
-$image = get_sub_field('split_video_one_image');
-$video_url = get_sub_field('split_video_one_video_url');
-$title = get_sub_field('split_video_one_title');
-$text = get_sub_field('split_video_one_text');
-$extra_text = get_sub_field('split_video_one_extra_text');
-$link = get_sub_field('split_video_one_link');
+<?php
+$image       = get_sub_field('split_video_one_image');
+$video_url   = get_sub_field('split_video_one_video_url');
+$title       = get_sub_field('split_video_one_title');
+$text        = get_sub_field('split_video_one_text');
+$extra_text  = get_sub_field('split_video_one_extra_text');
+$link        = get_sub_field('split_video_one_link');
+$variant     = get_sub_field('split_video_one_variant');
 
-// Extract 'large' size image URL from Image Array, or use placeholder.png as fallback
-$image_url = $image ? $image['sizes']['large'] : '';
+$image_url = $image ? $image['sizes']['large'] : get_template_directory_uri() . '/images/placeholder.png';
+$wrapperClass = $variant ? 'split-video-one split-video-one--variant' : 'split-video-one';
 ?>
 
-<?php if (is_page('Sustainability')) : ?>
-
-	<div class="split-grey half-half cont-m padding-b-100 theme-none">
-		<div class="half image-cover" style="background-image:url('<?php echo esc_url($image_url ? $image_url : get_template_directory_uri() . "/images/placeholder.png"); ?>');">
-		</div>
-		<div class="half light-grey-bg padding-50">
-			<div class="top">
-				<?php if ($title): ?>
-					<p class="fs-200 fw-regular margin-b-10"><?php echo esc_html($title); ?></p>
-				<?php endif; ?>
-				<?php if ($text): ?>
-					<div class="fs-400 fw-semibold margin-b-10"><?php echo wp_kses_post($text); ?></div>
-				<?php endif; ?>
-				<?php if ($extra_text): ?>
-					<span class="fs-300 text-margin margin-b-30">
-						<?php echo wp_kses_post($extra_text); ?>
-					</span>
-				<?php endif; ?>
-			</div>
-			<div class="bottom">
-				<?php if ($link): ?>
-					<a href="<?php echo esc_url($link['url']); ?>" class="hl arrow" target="<?php echo esc_attr($link['target']); ?>">
-						<?php echo esc_html($link['title']); ?>
-					</a>
-				<?php endif; ?>
-			</div>
-		</div>
+<div class="<?php echo $wrapperClass; ?> cont-m theme-none padding-t-b-100">
+	<div class="video-container image-cover" style="background-image:url('<?php echo esc_url($image_url); ?>');">
+		<?php if ($video_url) : ?>
+			<button type="button" class="video-trigger" data-modal-trigger="video" data-video-url="<?php echo esc_url($video_url); ?>" aria-label="<?php esc_attr_e('Play Video', 'zotefoams'); ?>">
+				<img src="<?php echo esc_url(get_template_directory_uri() . '/images/youtube-play.svg'); ?>" alt="" />
+			</button>
+		<?php endif; ?>
 	</div>
 
-<?php else : ?>
+	<div <?php echo $variant ? 'class="light-grey-bg padding-50"' : ''; ?>>
+		<?php if ($title) : ?>
+			<p class="<?php echo $variant ? 'fs-400 fw-bold margin-b-30' : 'fs-200 fw-regular margin-b-30'; ?>"><?php echo esc_html($title); ?></p>
+		<?php endif; ?>
 
-	<div class="split-video-one half-half cont-m padding-t-b-100 theme-none">
-		<div class="half video-container image-cover" 
-			style="background-image:url('<?php echo esc_url($image_url ? $image_url : get_template_directory_uri() . "/images/placeholder.png"); ?>');">
-			<?php if ($video_url): ?>
-				<a href="<?php echo esc_url($video_url); ?>" class="video-link open-video-overlay" rel="noopener noreferrer">
-					<img src="<?php echo get_template_directory_uri(); ?>/images/youtube-play.svg" />
+		<?php if ($text) : ?>
+			<div class="fs-500 fw-semibold margin-b-40"><?php echo wp_kses_post($text); ?></div>
+		<?php endif; ?>
+
+		<?php if ($extra_text) : ?>
+			<div class="fs-300 text-margin margin-b-50">
+				<?php echo wp_kses_post($extra_text); ?>
+			</div>
+		<?php endif; ?>
+
+		<?php if ($link) : ?>
+			<div class="margin-b-30">
+				<a href="<?php echo esc_url($link['url']); ?>" class="hl arrow" target="<?php echo esc_attr($link['target']); ?>">
+					<?php echo esc_html($link['title']); ?>
 				</a>
-			<?php endif; ?>
-		</div>
-		<div class="half">
-			<?php if ($title): ?>
-				<p class="fs-200 fw-regular margin-b-30"><?php echo esc_html($title); ?></p>
-			<?php endif; ?>
-			<?php if ($text): ?>
-				<div class="fs-500 fw-semibold margin-b-40"><?php echo wp_kses_post($text); ?></div>
-			<?php endif; ?>
-			<?php if ($extra_text): ?>
-				<span class="fs-300 text-margin margin-b-50">
-					<p><?php echo wp_kses_post($extra_text); ?></p>
-				</span>
-			<?php endif; ?>
-			<?php if ($link): ?>
-				<div class="margin-b-30">
-					<a href="<?php echo esc_url($link['url']); ?>" class="hl arrow" target="<?php echo esc_attr($link['target']); ?>">
-						<?php echo esc_html($link['title']); ?>
-					</a>
-				</div>
-			<?php endif; ?>
-		</div>
+			</div>
+		<?php endif; ?>
 	</div>
+</div>
 
-<?php endif; ?>
+
 
 <!-- Video Overlay Structure -->
-<?php
-// This call sets the flag so the overlay is output in wp_footer.
-require_video_overlay();
-?>
+<?php require_video_overlay(); ?>

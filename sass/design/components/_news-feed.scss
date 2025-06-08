@@ -1,0 +1,81 @@
+/* 04 - News feed
+ *  --------------------------------------------- */
+
+.title-strip {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.feed-items {
+  display: flex;
+  gap: 2%;
+}
+
+.feed-item {
+  flex: 1;
+  border: 1px solid #d1d1d1;
+  position: relative;
+}
+
+.feed-image {
+  height: 260px;
+}
+
+.feed-item a {
+  position: absolute;
+  bottom: 40px;
+  left: 40px;
+}
+
+@media screen and (max-width: 1200px) {
+  .feed-item a {
+    bottom: 30px;
+    left: 30px;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .title-strip {
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .title-strip h3 {
+    text-align: center;
+  }
+
+  .feed-item a {
+    bottom: 20px;
+    left: 20px;
+  }
+}
+
+.feed-items {
+  grid-template-columns: var(--grid-template-columns);
+  gap: 20px;
+  display: grid;
+}
+
+.feed-item {
+  cursor: pointer;
+  border: 1px solid #d1d1d1;
+  flex: 1;
+  transition: background 0.3s;
+  position: relative;
+}
+
+@media (max-width: 767px) {
+  /* Temp layout fix */
+
+  .feed-item-spacer {
+    display: contents;
+  }
+}
+
+.feed-item:hover,
+.feed-item:has(a:focus) {
+  background-color: var(--color-brand-contrast);
+}

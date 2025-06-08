@@ -1,0 +1,67 @@
+/* 05 - Document list
+ *  --------------------------------------------- */
+
+.doc-list {
+  display: flex;
+  flex-direction: column;
+  border-top: 1px solid #ddd;
+}
+
+.doc-row {
+  display: grid;
+  grid-template-columns: 20% 1fr auto;
+
+  /* First column ~20%, title expands, view stays fixed */
+  align-items: center;
+  padding: 16px 16px;
+  border-bottom: 1px solid #ddd;
+  gap: 16px;
+  transition: background 0.3s;
+}
+
+.doc-row:hover {
+  background: #bfea78;
+  cursor: pointer;
+}
+
+.doc-row:hover a.hl {
+  color: #000;
+}
+
+.doc-row:hover a.hl.download::after {
+  background-image: url(images/icon-download-black.svg);
+}
+
+.doc-cat {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.icon {
+  width: 32px;
+  height: 32px;
+  flex-shrink: 0;
+
+  /* Prevents shrinking */
+}
+
+.site-main .category {
+  color: #007bff;
+  font-size: 14px;
+  text-decoration: none;
+}
+
+.title {
+  font-size: 16px;
+  font-weight: 700;
+}
+
+.link {
+  color: #007bff;
+  font-size: 14px;
+  text-decoration: none;
+  justify-self: end;
+
+  /* Aligns "View" link to the right */
+}

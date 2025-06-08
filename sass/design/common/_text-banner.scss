@@ -1,0 +1,13 @@
+/* Text Banner
+ * --------------------------------------------- */
+
+.text-banner {
+  .uppercase {
+    text-wrap: balance;
+    max-width: min(100%, 900px);
+  }
+
+  &:not(:has(+ .text-banner-split)) {
+    border-bottom: 1px solid #d1d1d1;
+  }
+}

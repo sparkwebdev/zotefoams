@@ -342,6 +342,27 @@
                             },
                             "return_format": "array",
                             "allow_in_bindings": 0
+                        },
+                        {
+                            "key": "field_682f8b555dba9",
+                            "label": "Visual Variant",
+                            "name": "split_video_one_variant",
+                            "aria-label": "",
+                            "type": "true_false",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "message": "Apply component variant - image right with grey background",
+                            "default_value": 0,
+                            "allow_in_bindings": 0,
+                            "ui_on_text": "",
+                            "ui_off_text": "",
+                            "ui": 1
                         }
                     ],
                     "min": "",
@@ -574,7 +595,7 @@
                                     "toolbar": "basic",
                                     "default_value": "",
                                     "maxlength": "",
-                                    "allow_in_bindings": 1,
+                                    "allow_in_bindings": 0,
                                     "rows": "",
                                     "placeholder": "",
                                     "new_lines": "",
@@ -694,6 +715,27 @@
                                     "parent_repeater": "field_67af90123uvwxy3"
                                 }
                             ]
+                        },
+                        {
+                            "key": "field_6842d1441faf0",
+                            "label": "Unique ID",
+                            "name": "unique_id",
+                            "aria-label": "",
+                            "type": "text",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "default_value": "",
+                            "maxlength": "",
+                            "allow_in_bindings": 0,
+                            "placeholder": "",
+                            "prepend": "",
+                            "append": ""
                         }
                     ],
                     "min": "",
@@ -808,7 +850,8 @@
                                         "782": "Request a Sample",
                                         "787": "Request a Quote",
                                         "790": "Contact us",
-                                        "2048": "Newsletter Signup"
+                                        "2048": "Newsletter Signup",
+                                        "3036": "Register for updates"
                                     },
                                     "default_value": false,
                                     "return_format": "value",
@@ -1304,20 +1347,21 @@
                                     "label": "Text",
                                     "name": "multi_item_carousel_slide_text",
                                     "aria-label": "",
-                                    "type": "textarea",
+                                    "type": "wysiwyg",
                                     "instructions": "",
-                                    "required": false,
-                                    "conditional_logic": false,
+                                    "required": 0,
+                                    "conditional_logic": 0,
                                     "wrapper": {
                                         "width": "",
                                         "class": "",
                                         "id": ""
                                     },
                                     "default_value": "",
-                                    "new_lines": "",
-                                    "maxlength": "",
-                                    "placeholder": "",
-                                    "rows": "",
+                                    "allow_in_bindings": 1,
+                                    "tabs": "all",
+                                    "toolbar": "full",
+                                    "media_upload": 1,
+                                    "delay": 0,
                                     "parent_repeater": "field_67af67890micar5"
                                 },
                                 {
@@ -1364,6 +1408,27 @@
                                     "parent_repeater": "field_67af67890micar5"
                                 }
                             ]
+                        },
+                        {
+                            "key": "field_682f8bf45dbab",
+                            "label": "Visual Variant",
+                            "name": "multi_item_carousel_variant",
+                            "aria-label": "",
+                            "type": "true_false",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "message": "Apply component variant - white text on black",
+                            "default_value": 0,
+                            "allow_in_bindings": 0,
+                            "ui_on_text": "",
+                            "ui_off_text": "",
+                            "ui": 1
                         }
                     ],
                     "min": "",
@@ -4009,6 +4074,257 @@
                     ],
                     "min": "",
                     "max": ""
+                },
+                "layout_6837215b1df2f": {
+                    "key": "layout_6837215b1df2f",
+                    "name": "highlight_panel",
+                    "label": "Highlight Panel",
+                    "display": "block",
+                    "sub_fields": [
+                        {
+                            "key": "field_683721601df31",
+                            "label": "Background Image",
+                            "name": "highlight_panel_background_image",
+                            "aria-label": "",
+                            "type": "image",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "return_format": "id",
+                            "library": "all",
+                            "min_width": "",
+                            "min_height": "",
+                            "min_size": "",
+                            "max_width": "",
+                            "max_height": "",
+                            "max_size": "",
+                            "mime_types": "",
+                            "allow_in_bindings": 0,
+                            "preview_size": "medium"
+                        },
+                        {
+                            "key": "field_683721721df32",
+                            "label": "Lead Text",
+                            "name": "highlight_panel_lead_text",
+                            "aria-label": "",
+                            "type": "textarea",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "default_value": "",
+                            "maxlength": "",
+                            "allow_in_bindings": 0,
+                            "rows": "",
+                            "placeholder": "",
+                            "new_lines": "br"
+                        },
+                        {
+                            "key": "field_6837217a1df33",
+                            "label": "Sub Image",
+                            "name": "highlight_panel_sub_image",
+                            "aria-label": "",
+                            "type": "image",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "return_format": "id",
+                            "library": "all",
+                            "min_width": "",
+                            "min_height": "",
+                            "min_size": "",
+                            "max_width": "",
+                            "max_height": "",
+                            "max_size": "",
+                            "mime_types": "",
+                            "allow_in_bindings": 0,
+                            "preview_size": "thumbnail-square"
+                        },
+                        {
+                            "key": "field_683721831df34",
+                            "label": "Sub Title",
+                            "name": "highlight_panel_sub_title",
+                            "aria-label": "",
+                            "type": "text",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "default_value": "",
+                            "maxlength": "",
+                            "allow_in_bindings": 0,
+                            "placeholder": "",
+                            "prepend": "",
+                            "append": ""
+                        },
+                        {
+                            "key": "field_683721901df35",
+                            "label": "Sub Title Secondary",
+                            "name": "highlight_panel_sub_title_secondary",
+                            "aria-label": "",
+                            "type": "textarea",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "default_value": "",
+                            "maxlength": "",
+                            "allow_in_bindings": 0,
+                            "rows": 3,
+                            "placeholder": "",
+                            "new_lines": "br"
+                        }
+                    ],
+                    "min": "",
+                    "max": ""
+                },
+                "layout_6841c82db4601": {
+                    "key": "layout_6841c82db4601",
+                    "name": "step_slider",
+                    "label": "Step Slider",
+                    "display": "block",
+                    "sub_fields": [
+                        {
+                            "key": "field_6841c853b4604",
+                            "label": "Slides",
+                            "name": "step_slider_slides",
+                            "aria-label": "",
+                            "type": "repeater",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "layout": "table",
+                            "min": 0,
+                            "max": 0,
+                            "collapsed": "",
+                            "button_label": "Add Slide",
+                            "rows_per_page": 20,
+                            "sub_fields": [
+                                {
+                                    "key": "field_6841c866b4605",
+                                    "label": "Slide Image",
+                                    "name": "step_slider_slide_image",
+                                    "aria-label": "",
+                                    "type": "image",
+                                    "instructions": "",
+                                    "required": 0,
+                                    "conditional_logic": 0,
+                                    "wrapper": {
+                                        "width": "25",
+                                        "class": "",
+                                        "id": ""
+                                    },
+                                    "return_format": "array",
+                                    "library": "all",
+                                    "min_width": "",
+                                    "min_height": "",
+                                    "min_size": "",
+                                    "max_width": "",
+                                    "max_height": "",
+                                    "max_size": "",
+                                    "mime_types": "",
+                                    "allow_in_bindings": 0,
+                                    "preview_size": "small",
+                                    "parent_repeater": "field_6841c853b4604"
+                                },
+                                {
+                                    "key": "field_6841c840b4603",
+                                    "label": "Overline Title",
+                                    "name": "step_slider_slide_overline",
+                                    "aria-label": "",
+                                    "type": "text",
+                                    "instructions": "",
+                                    "required": 0,
+                                    "conditional_logic": 0,
+                                    "wrapper": {
+                                        "width": "20",
+                                        "class": "",
+                                        "id": ""
+                                    },
+                                    "default_value": "",
+                                    "maxlength": "",
+                                    "allow_in_bindings": 0,
+                                    "placeholder": "",
+                                    "prepend": "",
+                                    "append": "",
+                                    "parent_repeater": "field_6841c853b4604"
+                                },
+                                {
+                                    "key": "field_6841c87eb4606",
+                                    "label": "Slide Title",
+                                    "name": "step_slider_slide_title",
+                                    "aria-label": "",
+                                    "type": "text",
+                                    "instructions": "",
+                                    "required": 0,
+                                    "conditional_logic": 0,
+                                    "wrapper": {
+                                        "width": "20",
+                                        "class": "",
+                                        "id": ""
+                                    },
+                                    "default_value": "",
+                                    "maxlength": "",
+                                    "allow_in_bindings": 0,
+                                    "placeholder": "",
+                                    "prepend": "",
+                                    "append": "",
+                                    "parent_repeater": "field_6841c853b4604"
+                                },
+                                {
+                                    "key": "field_6841c88db4607",
+                                    "label": "Slide Text",
+                                    "name": "step_slider_slide_text",
+                                    "aria-label": "",
+                                    "type": "wysiwyg",
+                                    "instructions": "",
+                                    "required": 0,
+                                    "conditional_logic": 0,
+                                    "wrapper": {
+                                        "width": "35",
+                                        "class": "",
+                                        "id": ""
+                                    },
+                                    "default_value": "",
+                                    "allow_in_bindings": 0,
+                                    "tabs": "all",
+                                    "toolbar": "basic",
+                                    "media_upload": 0,
+                                    "delay": 0,
+                                    "parent_repeater": "field_6841c853b4604"
+                                }
+                            ]
+                        }
+                    ],
+                    "min": "",
+                    "max": ""
                 }
             },
             "min": "",
@@ -4039,5 +4355,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1741353041
+    "modified": 1749209447
 }

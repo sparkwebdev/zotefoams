@@ -8,10 +8,9 @@
   display: flex;
   flex-wrap: wrap;
   gap: 40px;
-  background-color: #F8F8F8;
+  background-color: #f8f8f8;
   margin-top: 60px;
 }
-
 
 .highlight-box > * {
   box-sizing: border-box;
@@ -37,21 +36,21 @@
 .highlight-box__link {
   margin-top: 40px;
   display: inline-flex;
-	transition:all 0.3s;
-	display: inline;
+  transition: all 0.3s;
+  display: inline;
   &::after {
-    content:"";
-    background-image:url(icon-right-arrow-blue.svg);
-    background-repeat:no-repeat;
-    background-size:120%;
-    background-position:center center;
-    width:6px;
-    height:10px;
-    margin-left:8px;
-    display:inline-flex;
+    content: "";
+    background-image: url(icon-right-arrow-blue.svg);
+    background-repeat: no-repeat;
+    background-size: 120%;
+    background-position: center center;
+    width: 6px;
+    height: 10px;
+    margin-left: 8px;
+    display: inline-flex;
   }
   &.highlight-box__link-download::after {
-    background-image:url(icon-download.svg);
+    background-image: url(icon-download.svg);
     width: 7px;
     height: 12px;
     margin-top: 1px;
@@ -60,22 +59,22 @@
 .highlight-box__link {
   margin-top: 40px;
   display: inline-flex;
-	transition:all 0.3s;
-	display: inline;
+  transition: all 0.3s;
+  display: inline;
 }
 .highlight-box__link::after {
-  content:"";
-  background-image:url(icon-right-arrow-blue.svg);
-  background-repeat:no-repeat;
-  background-size:120%;
-  background-position:center center;
-  width:6px;
-  height:10px;
-  margin-left:8px;
-  display:inline-flex;
+  content: "";
+  background-image: url(icon-right-arrow-blue.svg);
+  background-repeat: no-repeat;
+  background-size: 120%;
+  background-position: center center;
+  width: 6px;
+  height: 10px;
+  margin-left: 8px;
+  display: inline-flex;
 }
 .highlight-box__link-download::after {
-  background-image:url(icon-download.svg);
+  background-image: url(icon-download.svg);
   width: 7px;
   height: 12px;
   margin-top: 1px;
@@ -110,14 +109,14 @@
 
   .highlight-box__col:last-of-type {
     width: 300px;
-    flex-grow: 0; 
+    flex-grow: 0;
     flex-shrink: 0;
     display: flex;
     align-items: stretch;
   }
 
   .highlight-box__image {
-    flex: 1; 
+    flex: 1;
     display: flex;
     align-items: stretch;
     justify-content: center;
@@ -126,8 +125,8 @@
   }
 
   .highlight-box__image img {
-    width: 100%; 
+    width: 100%;
     height: 100%;
-    object-fit: cover; 
+    object-fit: cover;
   }
 }

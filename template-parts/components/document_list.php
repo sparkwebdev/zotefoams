@@ -1,153 +1,142 @@
-<?php 
-// Allow for passed variables, as well as ACF values
-$title = get_sub_field('document_list_title');
-$button = get_sub_field('document_list_button'); // ACF Link field
-$behaviour = get_sub_field('document_list_behaviour'); // latest, pick, manual
-$pick_hub = get_sub_field('document_list_pick_hub'); // Selected Knowledge Hub (optional)
-$pick_documents = get_sub_field('document_list_pick_documents'); // Picked documents (if 'pick' selected)
-$manual_documents = get_sub_field('document_list_documents'); // Manual documents (if 'manual' selected)
-$pick_count = get_sub_field('document_list_pick_count'); // Number of items to display
+<?php
+// ACF Field setup
+$title             = get_sub_field('document_list_title');
+$button            = get_sub_field('document_list_button');
+$behaviour         = get_sub_field('document_list_behaviour'); // 'latest', 'pick', or 'manual'
+$pick_hub          = get_sub_field('document_list_pick_hub');
+$pick_documents    = get_sub_field('document_list_pick_documents');
+$manual_documents  = get_sub_field('document_list_documents');
+$pick_count        = get_sub_field('document_list_pick_count');
 
 $documents_array = [];
 
-// 📌 Query for 'latest' behaviour (Include selected Hub + its Children)
-if ($behaviour === 'latest') {
-    $args = [
-        'post_type'      => 'knowledge-hub',
-        'posts_per_page' => -1,
-        'post_status'    => 'publish',
-    ];
+// 🔹 Helper: Category info with fallback icon
+function get_category_data($category_id, $fallback_title = 'Uncategorized')
+{
+    $name = $fallback_title;
+    $image_url = get_template_directory_uri() . '/images/icon-01.svg';
 
-    if ($pick_hub) {
-        // Get post object for the selected hub
-        $selected_hub = get_post($pick_hub);
+    if ($category_id) {
+        $term = get_term($category_id);
+        if ($term && !is_wp_error($term)) {
+            $name = $term->name;
+        }
 
-        if ($selected_hub->post_parent == 0) {
-            // 🔹 The selected hub is a top-level hub → Include its children
-            $args['post_parent__in'] = [$pick_hub];
-        } else {
-            // 🔹 The selected hub is a child hub → Only query this specific hub
-            $args['p'] = $pick_hub;
+        $image_id = get_field('category_image', 'category_' . $category_id);
+        if ($image_id) {
+            $image_url = wp_get_attachment_image_url($image_id, 'thumbnail');
         }
     }
 
-    // Fetch hubs based on adjusted query
-    $knowledge_hubs = get_posts($args);
+    return [
+        'name'  => $name,
+        'image' => $image_url,
+    ];
+}
 
-    // Loop through each Knowledge Hub and extract documents
-    foreach ($knowledge_hubs as $hub) {
+// 🔹 Helper: Create document object
+function create_document_entry($file, $category_data, $category_id, $all_brands = false, $brands = [])
+{
+    return (object) [
+        'file' => $file,
+        'category_label' => $category_data['name'],
+        'category_id' => $category_id,
+        'category_image' => $category_data['image'],
+        'all_brands' => $all_brands,
+        'associated_brands' => $brands,
+        'associated_brands_label' => array_map('get_the_title', $brands),
+    ];
+}
+
+// 📌 latest behaviour
+if ($behaviour === 'latest') {
+    $args = [
+        'post_type' => 'knowledge-hub',
+        'posts_per_page' => -1,
+        'post_status' => 'publish',
+    ];
+
+    if ($pick_hub) {
+        $hub = get_post($pick_hub);
+        $args += ($hub && $hub->post_parent == 0)
+            ? ['post_parent__in' => [$pick_hub]]
+            : ['p' => $pick_hub];
+    }
+
+    $hubs = get_posts($args);
+    foreach ($hubs as $hub) {
         $documents = get_field('documents_list', $hub->ID);
         if ($documents) {
-            foreach ($documents as $document) {
-                if (!empty($document['file'])) {
-                    // 🔹 Fetch category name (or fallback to hub title)
-                    $category_id = $document['category'] ?? '';
-                    $category_name = $category_id ? get_term($category_id)->name ?? '' : get_the_title($hub->ID);
-
-                    // 🔹 Fetch category icon (fallback to `icon-01.svg` if not found)
-                    $category_image_id = $category_id ? get_field('category_image', 'category_' . $category_id) : '';
-                    $category_image_url = $category_image_id 
-                        ? wp_get_attachment_image_url($category_image_id, 'thumbnail') 
-                        : get_template_directory_uri() . '/images/icon-01.svg';
-
-                    $documents_array[] = (object) [
-                        'file' => $document['file'],
-                        'category_label' => $category_name,
-                        'category_id' => $category_id,
-                        'category_image' => $category_image_url,
-                        'all_brands' => $document['all_brands'] ?? false,
-                        'associated_brands' => $document['associated_brands'] ?? [],
-                        'associated_brands_label' => array_map('get_the_title', $document['associated_brands'] ?? [])
-                    ];
+            foreach ($documents as $doc) {
+                if (!empty($doc['file'])) {
+                    $cat_id = $doc['category'] ?? '';
+                    $cat_data = get_category_data($cat_id, get_the_title($hub->ID));
+                    $documents_array[] = create_document_entry(
+                        $doc['file'],
+                        $cat_data,
+                        $cat_id,
+                        $doc['all_brands'] ?? false,
+                        $doc['associated_brands'] ?? []
+                    );
                 }
             }
         }
     }
 
-    // Limit the number of documents if needed
     if ($pick_count && count($documents_array) > $pick_count) {
         $documents_array = array_slice($documents_array, 0, $pick_count);
     }
 }
 
-
-// 📌 Query for 'pick' behaviour (selected documents)
+// 📌 pick behaviour
 elseif ($behaviour === 'pick' && !empty($pick_documents)) {
-    $selected_document_ids = array_map(fn($doc) => $doc['document_list_pick'], $pick_documents);
-
-    // Fetch all Knowledge Hubs that might contain these documents
-    $args = [
-        'post_type'      => 'knowledge-hub',
+    $selected_ids = array_filter(array_map(fn($doc) => $doc['document_list_pick'], $pick_documents));
+    $hubs = get_posts([
+        'post_type' => 'knowledge-hub',
         'posts_per_page' => -1,
-        'post_status'    => 'publish',
-    ];
-    $knowledge_hubs = get_posts($args);
+        'post_status' => 'publish',
+    ]);
 
-    // Check each Knowledge Hub for the selected documents
-    foreach ($knowledge_hubs as $hub) {
-        $documents_list = get_field('documents_list', $hub->ID);
-        
-        if (!empty($documents_list)) {
-            foreach ($documents_list as $document) {
-                if (!empty($document['file']['ID']) && in_array($document['file']['ID'], $selected_document_ids)) {
-                    
-                    // 🔹 Fetch category name
-                    $category_id = $document['category'] ?? '';
-                    $category_name = get_term($category_id)->name ?? get_the_title($hub->ID); // Fallback to Hub title
-                    
-                    // 🔹 Fetch category icon (from 'category_image' field)
-                    $category_image_id = get_field('category_image', 'category_' . $category_id);
-                    $category_image_url = $category_image_id ? wp_get_attachment_image_url($category_image_id, 'thumbnail') : get_template_directory_uri() . '/images/icon-01.svg';
-
-                    $documents_array[] = (object) [
-                        'file' => $document['file'],
-                        'category_label' => $category_name,
-                        'category_id' => $category_id,
-                        'category_image' => $category_image_url,
-                        'all_brands' => $document['all_brands'] ?? false,
-                        'associated_brands' => $document['associated_brands'] ?? [],
-                        'associated_brands_label' => array_map('get_the_title', $document['associated_brands'] ?? [])
-                    ];
+    foreach ($hubs as $hub) {
+        $docs = get_field('documents_list', $hub->ID);
+        if ($docs) {
+            foreach ($docs as $doc) {
+                $file_id = $doc['file']['ID'] ?? null;
+                if ($file_id && in_array($file_id, $selected_ids)) {
+                    $cat_id = $doc['category'] ?? '';
+                    $cat_data = get_category_data($cat_id, get_the_title($hub->ID));
+                    $documents_array[] = create_document_entry(
+                        $doc['file'],
+                        $cat_data,
+                        $cat_id,
+                        $doc['all_brands'] ?? false,
+                        $doc['associated_brands'] ?? []
+                    );
                 }
             }
         }
     }
 }
 
-
-
-
-
-// 📌 Query for 'manual' behaviour (Use ACF manual repeater)
+// 📌 manual behaviour
 elseif ($behaviour === 'manual' && !empty($manual_documents)) {
-    foreach ($manual_documents as $document) {
-        // 🔹 Fetch category name (or fallback to empty string)
-        $category_id = $document['document_list_category'] ?? '';
-        $category_name = $category_id ? get_term($category_id)->name ?? '' : '';
-
-        // 🔹 Fetch category icon (fallback to placeholder.svg)
-        $category_image_id = $category_id ? get_field('category_image', 'category_' . $category_id) : '';
-        $category_image_url = $category_image_id ? wp_get_attachment_image_url($category_image_id, 'thumbnail') : get_template_directory_uri() . '/images/placeholder.svg';
-
-        $documents_array[] = (object) [
-            'file' => [
-                'url' => $document['document_list_link']['url'] ?? '',
-                'title' => $document['document_list_doc_title'] ?? '',
-                'filename' => $document['document_list_doc_title'] ?? ''
+    foreach ($manual_documents as $doc) {
+        $cat_id = $doc['document_list_category'] ?? '';
+        $cat_data = get_category_data($cat_id, '');
+        $documents_array[] = create_document_entry(
+            [
+                'url' => $doc['document_list_link']['url'] ?? '',
+                'title' => $doc['document_list_doc_title'] ?? '',
+                'filename' => $doc['document_list_doc_title'] ?? '',
             ],
-            'category_label' => $category_name,
-            'category_id' => $category_id,
-            'category_image' => $category_image_url,
-            'all_brands' => false,
-            'associated_brands' => [],
-            'associated_brands_label' => []
-        ];
+            $cat_data,
+            $cat_id
+        );
     }
 }
 ?>
 
-<div class="doc-list-outer cont-m padding-t-100 padding-b-100 theme-none">
-    
+<div class="doc-list-outer cont-m padding-t-b-100 theme-none">
     <div class="title-strip margin-b-30">
         <?php if ($title): ?>
             <h3 class="fs-500 fw-600"><?php echo esc_html($title); ?></h3>
@@ -158,7 +147,7 @@ elseif ($behaviour === 'manual' && !empty($manual_documents)) {
             </a>
         <?php endif; ?>
     </div>
-    
+
     <?php if (!empty($documents_array)): ?>
         <div class="file-list">
             <table>
@@ -171,23 +160,18 @@ elseif ($behaviour === 'manual' && !empty($manual_documents)) {
                     </tr>
                 </thead>
                 <tbody>
-                    <?php foreach ($documents_array as $document): 
+                    <?php foreach ($documents_array as $document):
                         $file = $document->file;
                         $title = !empty($file['title']) ? $file['title'] : $file['filename'];
-                        ?>
+                    ?>
                         <tr class="file-list__item"
                             data-category="<?php echo esc_attr($document->category_id); ?>"
                             data-clickable-url="<?php echo esc_url($file['url']); ?>">
-                            
                             <td class="file-list__item-icon">
                                 <img src="<?php echo esc_url($document->category_image); ?>" alt="<?php echo esc_attr($document->category_label); ?>" class="icon">
                             </td>
-                            <td class="file-list__item-group">
-                                <?php echo esc_html($document->category_label); ?>
-                            </td>
-                            <td class="file-list__item-title">
-                                <?php echo esc_html($title); ?>
-                            </td>
+                            <td class="file-list__item-group"><?php echo esc_html($document->category_label); ?></td>
+                            <td class="file-list__item-title"><?php echo esc_html($title); ?></td>
                             <td class="file-list__item-action">
                                 <a href="<?php echo esc_url($file['url']); ?>" class="hl download" target="_blank" aria-label="View <?php echo esc_attr($title); ?>">
                                     View

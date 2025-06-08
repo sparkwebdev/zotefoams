@@ -1,0 +1,31 @@
+/* Split Video Two
+ *  --------------------------------------------- */
+
+.split-video-two {
+  > :first-child {
+    padding-left: 5%;
+    padding-right: 5%;
+  }
+
+  > :last-child {
+    min-width: 50%;
+    min-height: 280px;
+  }
+
+  @media screen and (min-width: 480px) {
+    > :last-child {
+      min-height: 400px;
+    }
+  }
+  @media screen and (min-width: 768px) {
+    display: flex;
+    justify-content: flex-end;
+
+    > :first-child {
+      padding-left: 0;
+      margin-left: 5%;
+      width: 100%;
+      max-width: 700px;
+    }
+  }
+}

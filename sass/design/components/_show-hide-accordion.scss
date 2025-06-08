@@ -1,0 +1,60 @@
+/* 06 - Show Hide Accordion
+ *  --------------------------------------------- */
+
+.accordion-items {
+  border-top: 1px solid #ddd;
+}
+
+.accordion-header {
+  background-color: transparent;
+  padding: 27px 0;
+  text-align: left;
+  width: 100%;
+  border: none;
+  cursor: pointer;
+  outline: none;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-radius: 0;
+  transition: all 0.3s;
+}
+
+@media screen and (max-width: 767px) {
+  .accordion-header {
+    padding: 15px 0;
+  }
+}
+
+.accordion-item {
+  border-bottom: 1px solid #ddd;
+}
+
+.accordion-item:hover {
+  border-bottom: 1px solid #333;
+}
+
+.accordion-content {
+  display: none;
+}
+
+.accordion-content p,
+.accordion-content ul,
+.accordion-content ol {
+  margin: 0;
+  padding: 0 5% 20px;
+}
+
+.accordion-content li {
+  margin-left: 15px;
+}
+
+.toggle-icon {
+  font-size: 20px;
+  transition: transform 0.2s;
+  margin-left: 10px;
+}
+
+.open .toggle-icon {
+  transform: rotate(180deg);
+}

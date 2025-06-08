@@ -1,0 +1,689 @@
+/* Font sizes
+ *--------------------------------------------- */
+
+/* Responsive Font Sizes with Relative Line Heights */
+
+.fs-900 {
+  font-size: 120px;
+  line-height: 0.9;
+  text-wrap: balance;
+}
+
+.fs-800 {
+  font-size: 74px;
+  line-height: 0.9;
+}
+
+.fs-700 {
+  font-size: 60px;
+  line-height: 1;
+}
+
+.fs-600 {
+  font-size: 34px;
+  line-height: 1.18;
+}
+
+.fs-500 {
+  font-size: 28px;
+  line-height: 1.29;
+}
+
+.fs-400 {
+  font-size: 21px;
+  line-height: 1.52;
+}
+
+.fs-300 {
+  font-size: 18px;
+  line-height: 1.56;
+}
+
+.fs-200 {
+  font-size: 16px;
+  line-height: 1.5;
+}
+
+.fs-100 {
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+@media screen and (max-width: 1200px) {
+  .fs-900 {
+    font-size: 74px;
+  }
+
+  .fs-800 {
+    font-size: 60px;
+  }
+
+  .fs-700 {
+    font-size: 48px;
+  }
+
+  .fs-600 {
+    font-size: 28px;
+  }
+}
+
+@media screen and (max-width: 1023px) {
+  .fs-700 {
+    font-size: 40px;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .fs-900 {
+    font-size: 40px;
+  }
+
+  .fs-800 {
+    font-size: 40px;
+  }
+
+  .fs-600 {
+    font-size: 24px;
+  }
+
+  .fs-500 {
+    font-size: 21px;
+  }
+
+  .fs-300 {
+    font-size: 16px;
+  }
+
+  .fs-400 {
+    font-size: 18px;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .fs-800 {
+    font-size: 40px;
+  }
+
+  .fs-700 {
+    font-size: 36px;
+  }
+}
+
+@media screen and (max-width: 380px) {
+  .fs-900 {
+    font-size: 30px;
+  }
+
+  .fs-800 {
+    font-size: 30px;
+  }
+}
+
+/* Font weights
+ *  --------------------------------------------- */
+
+.fw-extralight {
+  font-weight: 200;
+}
+
+.fw-light {
+  font-weight: 300;
+}
+
+.fw-regular {
+  font-weight: 400;
+}
+
+.fw-medium {
+  font-weight: 500;
+}
+
+.fw-semibold {
+  font-weight: 600;
+}
+
+.fw-bold {
+  font-weight: 700;
+}
+
+.fw-extrabold {
+  font-weight: 800;
+}
+
+/* Font margins
+ *  --------------------------------------------- */
+
+.text-margin {
+  display: block;
+}
+
+.text-margin p {
+  margin-bottom: 20px;
+}
+
+/* Colours
+ *  --------------------------------------------- */
+
+.white-text {
+  color: #fff;
+}
+
+.white-bg {
+  background-color: #fff;
+}
+
+.black-text {
+  color: #000;
+}
+
+.black-bg {
+  background-color: #000;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.grey-text {
+  color: #707070;
+}
+
+.light-grey-bg {
+  background-color: #f8f8f8;
+}
+
+.blue-text {
+  color: #3b82f6;
+}
+
+.blue-bg {
+  background-color: #3b82f6;
+}
+
+.tint-bg {
+  background-color: #ebf8ff;
+}
+
+/* Generic styling classes
+ *  --------------------------------------------- */
+
+.image-cover {
+  background-size: cover;
+  background-position: center center;
+}
+
+.uppercase {
+  text-transform: uppercase;
+}
+
+/* Containers
+ *  --------------------------------------------- */
+
+.cont-l {
+  max-width: 1800px;
+  width: 90%;
+  margin: 0 auto;
+}
+
+.cont-m {
+  max-width: 1400px;
+  width: 90%;
+  margin: 0 auto;
+}
+
+.cont-s {
+  max-width: 1000px;
+  width: 90%;
+  margin: 0 auto;
+}
+
+.cont-xs {
+  max-width: 800px;
+  width: 90%;
+  margin: 0 auto;
+}
+
+.cont-xxs {
+  max-width: 650px;
+  width: 90%;
+  margin: 0 auto;
+}
+
+/* Paddings & Margins
+ *  --------------------------------------------- */
+
+.margin-100 {
+  margin: 100px;
+}
+
+.margin-50 {
+  margin: 50px;
+}
+
+.margin-40 {
+  margin: 40px;
+}
+
+.margin-30 {
+  margin: 30px;
+}
+
+.margin-t-b-100 {
+  margin: 100px 0;
+}
+
+.margin-t-b-70 {
+  margin: 70px 0;
+}
+
+.margin-t-b-40 {
+  margin: 40px 0;
+}
+
+.margin-t-b-30 {
+  margin: 30px 0;
+}
+
+.margin-t-100 {
+  margin-top: 100px;
+}
+
+.margin-t-70 {
+  margin-top: 70px;
+}
+
+.margin-t-40 {
+  margin-top: 40px;
+}
+
+.margin-t-30 {
+  margin-top: 30px;
+}
+
+.margin-t-20 {
+  margin-top: 20px;
+}
+
+.margin-t-10 {
+  margin-top: 10px;
+}
+
+.margin-t-0 {
+  margin-top: 0;
+}
+
+.margin-b-100 {
+  margin-bottom: 100px;
+}
+
+.margin-b-80 {
+  margin-bottom: 80px;
+}
+
+.margin-b-70 {
+  margin-bottom: 70px;
+}
+
+.margin-b-50 {
+  margin-bottom: 50px;
+}
+
+.margin-b-40 {
+  margin-bottom: 40px;
+}
+
+.margin-b-30 {
+  margin-bottom: 30px;
+}
+
+.margin-b-20 {
+  margin-bottom: 20px;
+}
+
+.margin-b-15 {
+  margin-bottom: 15px;
+}
+
+.margin-b-10 {
+  margin-bottom: 10px;
+}
+
+.margin-b-0 {
+  margin-bottom: 0;
+}
+
+.margin-r-100 {
+  margin-right: 100px;
+}
+
+.margin-r-50 {
+  margin-right: 50px;
+}
+
+.margin-r-40 {
+  margin-right: 40px;
+}
+
+.margin-r-30 {
+  margin-right: 30px;
+}
+
+.margin-r-20 {
+  margin-right: 20px;
+}
+
+.margin-r-15 {
+  margin-right: 15px;
+}
+
+.margin-r-10 {
+  margin-right: 10px;
+}
+
+.padding-100 {
+  padding: 100px;
+}
+
+.padding-50 {
+  padding: 50px;
+}
+
+.padding-40 {
+  padding: 40px;
+}
+
+.padding-30 {
+  padding: 30px;
+}
+
+.padding-20 {
+  padding: 20px;
+}
+
+.padding-t-100 {
+  padding-top: 100px;
+}
+
+.padding-t-50 {
+  padding-top: 50px;
+}
+
+.padding-t-40 {
+  padding-top: 40px;
+}
+
+.padding-t-30 {
+  padding-top: 30px;
+}
+
+.padding-t-20 {
+  padding-top: 20px;
+}
+
+.padding-t-b-100 {
+  padding: 100px 0;
+}
+
+.padding-t-b-70 {
+  padding: 70px 0;
+}
+
+.padding-t-b-50 {
+  padding: 50px 0;
+}
+
+.padding-t-b-40 {
+  padding: 40px 0;
+}
+
+.padding-t-b-30 {
+  padding: 30px 0;
+}
+
+.padding-b-100 {
+  padding-bottom: 100px;
+}
+
+.padding-b-80 {
+  margin-bottom: 80px;
+}
+
+.padding-b-40 {
+  padding-bottom: 40px;
+}
+
+.padding-b-30 {
+  padding-bottom: 30px;
+}
+
+@media screen and (max-width: 1200px) {
+  .margin-100 {
+    margin: 70px;
+  }
+
+  .margin-50 {
+    margin: 30px;
+  }
+
+  .margin-40 {
+    margin: 30px;
+  }
+
+  .margin-30 {
+    margin: 20px;
+  }
+
+  .margin-t-b-100 {
+    margin: 70px 0;
+  }
+
+  .margin-t-b-70 {
+    margin: 50px 0;
+  }
+
+  .margin-t-b-40 {
+    margin: 30px 0;
+  }
+
+  .margin-t-b-30 {
+    margin: 20px 0;
+  }
+
+  .margin-t-100 {
+    margin-top: 70px;
+  }
+
+  .margin-t-70 {
+    margin-top: 50px;
+  }
+
+  .margin-t-40 {
+    margin-top: 40px;
+  }
+
+  .margin-t-30 {
+    margin-top: 20px;
+  }
+
+  .margin-t-20 {
+    margin-top: 15px;
+  }
+
+  .margin-t-10 {
+    margin-top: 10px;
+  }
+
+  .margin-b-100 {
+    margin-bottom: 70px;
+  }
+
+  .margin-b-80 {
+    margin-bottom: 60px;
+  }
+
+  .margin-b-70 {
+    margin-bottom: 50px;
+  }
+
+  .margin-b-50 {
+    margin-bottom: 30px;
+  }
+
+  .margin-b-40 {
+    margin-bottom: 30px;
+  }
+
+  .margin-b-30 {
+    margin-bottom: 20px;
+  }
+
+  .margin-b-20 {
+    margin-bottom: 15px;
+  }
+
+  .margin-r-100 {
+    margin-right: 70px;
+  }
+
+  .margin-r-50 {
+    margin-right: 30px;
+  }
+
+  .margin-r-40 {
+    margin-right: 30px;
+  }
+
+  .margin-r-30 {
+    margin-right: 30px;
+  }
+
+  .margin-r-20 {
+    margin-right: 15px;
+  }
+
+  .padding-100 {
+    padding: 70px;
+  }
+
+  .padding-50 {
+    padding: 30px;
+  }
+
+  .padding-40 {
+    padding: 30px;
+  }
+
+  .padding-30 {
+    padding: 20px;
+  }
+
+  .padding-20 {
+    padding: 15px;
+  }
+
+  .padding-t-100 {
+    padding-top: 70px;
+  }
+
+  .padding-t-50 {
+    padding-top: 30px;
+  }
+
+  .padding-t-40 {
+    padding-top: 30px;
+  }
+
+  .padding-t-30 {
+    padding-top: 20px;
+  }
+
+  .padding-t-20 {
+    padding-top: 15px;
+  }
+
+  .padding-t-b-100 {
+    padding: 70px 0;
+  }
+
+  .padding-t-b-70 {
+    padding: 50px 0;
+  }
+
+  .padding-t-b-50 {
+    padding: 30px 0;
+  }
+
+  .padding-t-b-40 {
+    padding: 30px 0;
+  }
+
+  .padding-t-b-30 {
+    padding: 20px 0;
+  }
+
+  .padding-b-100 {
+    padding-bottom: 70px;
+  }
+
+  .padding-b-80 {
+    margin-bottom: 60px;
+  }
+
+  .padding-b-40 {
+    padding-bottom: 30px;
+  }
+
+  .padding-b-30 {
+    padding-bottom: 20px;
+  }
+}
+
+@media screen and (max-width: 1200px) {
+  .padding-100 {
+    padding: 50px;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .padding-100 {
+    padding: 50px 5%;
+  }
+
+  .padding-t-b-100 {
+    padding: 50px 0;
+  }
+
+  .margin-t-100 {
+    margin-top: 40px;
+  }
+
+  .margin-t-70 {
+    margin-top: 40px;
+  }
+
+  .margin-b-100 {
+    margin-bottom: 40px;
+  }
+
+  .margin-b-70 {
+    margin-bottom: 40px;
+  }
+
+  .padding-50 {
+    padding: 30px 5%;
+  }
+
+  .padding-40 {
+    padding: 30px 5%;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .margin-b-20 {
+    margin-bottom: 10px;
+  }
+
+  .padding-100 {
+    padding: 40px 20px;
+  }
+}

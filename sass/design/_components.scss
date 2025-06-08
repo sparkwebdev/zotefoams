@@ -1,0 +1,71 @@
+@use "sass:meta";
+@use "components/image-banner.scss";
+@use "components/text-banner-split.scss";
+@use "components/split-video-one.scss";
+@use "components/split-video-two.scss";
+@use "components/icon-columns.scss";
+@use "components/news-feed.scss";
+@use "components/document-list.scss";
+@use "components/show-hide-accordion.scss";
+@use "components/box-columns.scss";
+@use "components/markets-list.scss";
+@use "components/split-text.scss";
+@use "components/text-block.scss";
+@use "components/tabbed-component.scss";
+@use "components/small-box-columns.scss";
+@use "components/financial-document-picker.scss";
+@use "components/sustainability-development-goals.scss";
+@use "components/contact.scss";
+@use "components/biography.scss";
+@use "components/show-hide-forms.scss";
+@use "components/locations-map.scss";
+@use "components/data-points.scss";
+@use "components/data-map.scss";
+@use "components/highlight-panel.scss";
+@use "components/step-slider.scss";
+@use "components/our-history.scss";
+
+/* Generic carousel styles
+--------------------------------------------- */
+
+.carousel-navigation img {
+  padding: 14px;
+  border-radius: 50%;
+}
+
+.carousel-navigation .split-swiper-button-prev {
+  margin-right: 5px;
+}
+
+.carousel-navigation .split-swiper-button-next {
+  margin-left: 5px;
+}
+
+.carousel-navigation.white img {
+  border: 1px solid rgba(255, 255, 255, 0.7);
+}
+
+.carousel-navigation.black img {
+  border: 1px solid rgba(0, 0, 0, 0.7);
+}
+
+.carousel-navigation-inner {
+  display: flex;
+}
+
+.carousel-navigation .swiper-button-disabled {
+  opacity: 0.5;
+}
+
+.carousel-navigation .swiper-button-disabled img {
+  cursor: default;
+}
+
+.carousel-navigation img {
+  cursor: pointer;
+}
+
+@include meta.load-css("components/carousel-split.scss");
+@include meta.load-css("components/carousel-multi.scss");
+@include meta.load-css("components/carousel-dual.scss");
+@include meta.load-css("components/carousel-calendar.scss");

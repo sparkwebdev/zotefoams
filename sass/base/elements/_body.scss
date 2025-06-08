@@ -1,3 +1,14 @@
+@use "../../abstracts/abstracts" as *;
+
 body {
-	background: $color__background-body; // Fallback for when there is no custom background color defined.
+  background: #eee;
+  font-family: Manrope, sans-serif;
+  font-optical-sizing: auto;
+  font-style: normal;
+  max-width: 2560px;
+  margin: 0 auto;
+}
+
+#page {
+  background: $color__background-screen;
 }

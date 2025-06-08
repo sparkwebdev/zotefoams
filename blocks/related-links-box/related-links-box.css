@@ -2,29 +2,34 @@
   margin-top: 50px;
   margin-bottom: 40px;
 }
+
 .related-links-box__title {
   text-align: center;
   font-weight: 600;
-	font-size: 28px;
-	line-height: 36px;
+  font-size: 28px;
+  line-height: 36px;
   margin-bottom: 30px;
 }
+
 .related-links-box__links {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
   margin-top: 20px;
 }
+
 .related-links-box__links ul {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    width: 100%;
-    border-top: solid 1px #d1d1d1;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  width: 100%;
+  border-top: solid 1px #d1d1d1;
 }
+
 .related-links-box__links ul li {
   border-bottom: solid 1px #d1d1d1;
 }
+
 .related-links-box__links a {
   display: flex;
   gap: 10px;
@@ -33,17 +38,21 @@
   justify-content: space-between;
   height: 100%;
   transition: color 0.3s;
+
   &::after {
     flex-shrink: 0;
   }
+
   &:hover,
   &:focus {
     color: #000;
   }
 }
+
 .related-links-box__links a::after {
   flex-shrink: 0;
 }
+
 .related-links-box__links a:hover,
 .related-links-box__links a:focus {
   color: #000;
@@ -58,38 +67,44 @@
       gap: 0 20px;
       flex-wrap: wrap;
       border-top: none;
-      > :nth-child(-n+2) {
+
+      > :nth-child(-n + 2) {
         border-top: solid 1px #d1d1d1;
       }
     }
   }
 }
+
 .related-links-box__link-download::after,
 .related-links-box__link-arrow::after {
-	content:"";
-	background-repeat:no-repeat;
-	background-size:120%;
-	background-position:center center;
-  display:inline-flex;
-	margin-left:8px;
+  content: "";
+  background-repeat: no-repeat;
+  background-size: 120%;
+  background-position: center center;
+  display: inline-flex;
+  margin-left: 8px;
 }
+
 .related-links-box__link-arrow::after {
-	width:6px;
-	height:10px;
-  display:inline-flex;
-	margin-left:8px;
-	background-image:url(icon-right-arrow-blue.svg);
+  width: 6px;
+  height: 10px;
+  display: inline-flex;
+  margin-left: 8px;
+  background-image: url(icon-right-arrow-blue.svg);
 }
+
 .related-links-box__link-arrow:hover::after,
 .related-links-box__link-arrow:focus::after {
-	background-image:url(icon-right-arrow-black.svg);
+  background-image: url(icon-right-arrow-black.svg);
 }
+
 .related-links-box__link-download::after {
-	width: 7px;
+  width: 7px;
   height: 12px;
-	margin-top: 1px;
-	background-image:url(icon-download.svg);
+  margin-top: 1px;
+  background-image: url(icon-download.svg);
 }
+
 @media (min-width: 600px) {
   .related-links-box {
     flex-wrap: nowrap;

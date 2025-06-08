@@ -124,7 +124,7 @@ if (isTouchDevice) {
   // Set up dropdown/mega menu handlers
   const setupDropdowns = (menuElement) => {
     // Attach click event to .dropdown-toggle buttons to toggle submenus.
-    menuElement.querySelectorAll(".dropdown-toggle").forEach((toggle) => {
+    menuElement.querySelectorAll(".dropdown-toggle, .menu-label").forEach((toggle) => {
       toggle.addEventListener("click", (e) => {
         e.stopPropagation();
         e.preventDefault();
@@ -293,6 +293,8 @@ if (isTouchDevice) {
   // Set up event listeners for main navigation and utility menu
   button.addEventListener("click", () => {
     siteNav.classList.toggle("toggled");
+    document.body.classList.toggle("no-scroll", siteNav.classList.contains("toggled")); // toggle no-scroll on body
+
     const isExpanded = button.getAttribute("aria-expanded") === "true";
     button.setAttribute("aria-expanded", (!isExpanded).toString());
   });

@@ -1,0 +1,134 @@
+@use "common/utility-classes.scss";
+@use "common/vars";
+
+@use "common/buttons-links.scss";
+@use "common/video.scss";
+@use "common/search.scss";
+@use "common/footer.scss";
+@use "common/pagination";
+@use "common/nav";
+@use "common/articles";
+@use "common/file-list";
+@use "common/text-banner.scss";
+
+html {
+  scroll-padding-top: calc(var(--header-height) + var(--scroll-padding-top, 30px));
+  scroll-behavior: smooth;
+}
+
+body.modal-open {
+  overflow: hidden;
+}
+
+/* Component label
+    --------------------------------------------- */
+
+.component-label {
+  width: 100%;
+  background: #3b82f6;
+  color: #fff;
+  text-align: center;
+  padding: 30px 0;
+}
+
+/* iframe heights
+    --------------------------------------------- */
+
+iframe {
+  width: 100%;
+  border: none;
+  overflow: visible;
+}
+
+/* Animate.css global timings
+    --------------------------------------------- */
+
+.animate__animated {
+  --animate-duration: 0.5s;
+}
+
+/* To sort
+    --------------------------------------------- */
+
+.theme-dark + .theme-dark,
+.theme-light + .theme-light,
+.theme-none + .theme-none {
+  padding-top: 0;
+}
+
+.separator {
+  border-top: var(--border-separator);
+  background-color: #0000;
+}
+
+footer .site-branding img {
+  width: 174px;
+}
+
+.tag {
+  color: var(--color-text);
+}
+
+[data-clickable-url],
+[data-clickable-target] {
+  cursor: pointer;
+}
+
+[data-clickable-url]:hover .articles__content,
+[data-clickable-url]:focus .articles__content,
+[data-clickable-target]:hover .articles__content,
+[data-clickable-target]:focus .articles__content {
+  background-color: var(--color-brand-contrast);
+}
+
+.single .entry-content p:not([class]),
+.single .entry-content h1:not([class]),
+.single .entry-content h2:not([class]),
+.single .entry-content h3:not([class]),
+.single .entry-content h4:not([class]),
+.single .entry-content h5:not([class]),
+.single .entry-content h6:not([class]) {
+  margin: revert;
+}
+
+a.read-more:hover,
+a.read-more:focus {
+  color: #000;
+}
+
+a.read-more.hl.arrow:hover::after,
+a.read-more.hl.arrow:focus::after {
+  background-image: url(images/icon-right-arrow-black.svg);
+}
+
+.text-block ul,
+.split-text ul {
+  margin-top: 30px;
+  padding: 0;
+}
+
+.text-block ul {
+  font-size: 18px;
+  line-height: 24px;
+}
+
+.split-video-one ul {
+  margin-bottom: 20px;
+  margin-top: 20px;
+  padding: 0;
+}
+
+.split-video-one ul li,
+.text-block ul li,
+.split-text ul li {
+  color: #707070;
+  background: url(images/bullet-tick.svg) 0 0.25em no-repeat;
+  padding-left: 1.65rem;
+  list-style: none;
+}
+
+.split-video-one ul li + li,
+.text-block ul li + li,
+.split-text ul li + li {
+  margin-top: 5px;
+}

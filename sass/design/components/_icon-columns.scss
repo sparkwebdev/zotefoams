@@ -1,0 +1,49 @@
+/* 03 - Icon columns
+ * --------------------------------------------- */
+
+.icon-columns {
+  --cols: 1;
+
+  &__items {
+    display: grid;
+    gap: 30px;
+    grid-template-columns: repeat(var(--cols), 1fr);
+    @media screen and (min-width: 768px) {
+      --cols: 3;
+    }
+  }
+
+  .text-block h3 {
+    max-width: 1000px;
+  }
+
+  &--half {
+    .icon-columns__items {
+      gap: 30px 50px;
+      @media screen and (min-width: 768px) {
+        --cols: 2;
+      }
+    }
+  }
+
+  &--centered {
+    text-align: center;
+
+    .text-block h3 {
+      margin-inline: inherit;
+    }
+
+    .icon-columns__items {
+      @media screen and (min-width: 768px) {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        padding: 0 5%;
+
+        > * {
+          flex: 0 0 calc(33% - 30px);
+        }
+      }
+    }
+  }
+}

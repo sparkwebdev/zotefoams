@@ -1,22 +1,26 @@
+@use "../../abstracts/abstracts" as *;
+
 a {
-	color: $color__link;
+  color: $color__link;
+  font-weight: 600;
+  text-decoration: none;
 
-	&:visited {
-		color: $color__link-visited;
-	}
+  &:visited {
+    color: $color__link-visited;
+  }
 
-	&:hover,
-	&:focus,
-	&:active {
-		color: $color__link-hover;
-	}
+  &:hover,
+  &:focus,
+  &:active {
+    color: $color__link-hover;
+  }
 
-	&:focus {
-		outline: thin dotted;
-	}
+  &:focus {
+    outline: thin dotted;
+  }
 
-	&:hover,
-	&:active {
-		outline: 0;
-	}
+  &:hover,
+  &:active {
+    outline: 0;
+  }
 }

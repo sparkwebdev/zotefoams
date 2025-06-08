@@ -1,0 +1,23 @@
+/* Data map
+ * --------------------------------------------- */
+
+.data-map {
+  &__stats {
+    display: flex;
+    width: min(700px, 100%);
+    gap: 20px;
+    flex-wrap: wrap;
+  }
+
+  &__stat {
+    background: rgba(255, 255, 255, 0.9);
+    width: 100%;
+  }
+
+  @media screen and (min-width: 480px) {
+    &__stat--2,
+    &__stat--3 {
+      width: calc(50% - 10px);
+    }
+  }
+}

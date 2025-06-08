@@ -1,0 +1,38 @@
+/* Calendar carousel
+ *	--------------------------------------------- */
+
+.calendar-carousel {
+  outline: 1px solid #ccc;
+  outline-offset: -1px;
+
+  &__slide-inner {
+    border: 1px solid #ccc;
+    display: flex;
+    padding: 15px 15px 15px 20px;
+    gap: 20px;
+  }
+
+  &__slide + .calendar-carousel__slide {
+    .calendar-carousel__slide-inner {
+      border-left: none;
+    }
+  }
+
+  &__date {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    align-items: center;
+  }
+
+  &__month-year {
+    text-wrap: nowrap;
+  }
+
+  &__note {
+    color: #b5b5b5;
+    margin-top: 15px;
+    margin-left: 2px;
+    display: block;
+  }
+}

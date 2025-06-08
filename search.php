@@ -1,4 +1,5 @@
 <?php
+
 /**
  * The template for displaying search results pages
  *
@@ -8,68 +9,58 @@
  */
 
 get_header();
+$search_query = get_search_query();
 ?>
 
-		<?php 
-		
-		if (!get_search_query()) : ?>
+<?php if (! $search_query || have_posts()) : ?>
 
-		<header class="text-banner margin-t-70">
-			<div class="cont-m margin-b-70">
-				<h1 class="uppercase grey-text fs-800 fw-extrabold">
-					<?php esc_html_e( 'Search', 'zotefoams' ); ?>
-				</h1>
-				<div class="margin-t-30">
+	<header class="text-banner padding-t-b-70">
+		<div class="cont-m">
+			<h1 class="uppercase grey-text fs-800 fw-extrabold">
+				<?php esc_html_e('Search', 'zotefoams'); ?>
+			</h1>
+			<div class="margin-t-30">
 				<?php get_search_form(); ?>
-				</div>
 			</div>
-		</header>
-		
-		<?php elseif ( have_posts() ) : ?>
-
-		<header class="text-banner margin-t-70">
-			<div class="cont-m margin-b-70">
-				<h1 class="uppercase grey-text fs-800 fw-extrabold">Search</h1>
-				<?php 
-				echo '<div class="margin-t-30 margin-b-30">';
-				get_search_form();
-				echo '</div>';?>
-				<h2 class="uppercase black-text fs-400 fw-extrabold  margin-t-70">
+			<?php if (have_posts() && $search_query) : ?>
+				<h2 class="uppercase black-text fs-400 fw-extrabold margin-t-70">
 					<?php
-					if (get_search_query()) {
-						/* translators: %s: search query. */
-						printf( esc_html__( 'Results for: \'%s\'', 'zotefoams' ), '<span>' . get_search_query() . '</span>' );
-					}
-					?></h2>
-			</div>
-		</header>
+					if ($search_query) :
 
-			<?php
-			/* Start the Loop */
-			while ( have_posts() ) :
-				the_post();
+						printf(
+							esc_html__('Results for: \'%s\'', 'zotefoams'),
+							'<span>' . esc_html($search_query) . '</span>'
+						);
+					endif;
+					?>
+				</h2>
+			<?php else : ?>
+				<p class=" margin-t-20">
+					<?php esc_html_e('Please enter some search keywords above.', 'zotefoams'); ?>
+				</p>
+			<?php endif; ?>
+		</div>
+	</header>
 
-				/**
-				 * Run the loop for the search to output the results.
-				 * If you want to overload this in a child theme then include a file
-				 * called content-search.php and that will be used instead.
-				 */
-				get_template_part( 'template-parts/content', 'search' );
+<?php endif; ?>
 
-			endwhile;
+<?php 
+if ($search_query && have_posts()) : 
+	while (have_posts()) :
+		the_post();
+		get_template_part('template-parts/content', 'search');
+	endwhile;
 
-			echo '<footer class="pagination cont-m margin-t-70 margin-b-70">';
-				get_template_part( 'template-parts/pagination' );
-			echo '</footer>';
+	get_template_part('template-parts/pagination');
+?>
 
-		else :
+<?php elseif ($search_query) : ?>
 
-			get_template_part( 'template-parts/content', 'none' );
+	<?php get_template_part('template-parts/content', 'none'); ?>
 
-		endif;
-		?>
+<?php endif; ?>
 
-	</main><!-- #main -->
+</main>
 
 <?php
 get_footer();

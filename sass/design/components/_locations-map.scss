@@ -1,0 +1,146 @@
+/* Locations Map
+ *--------------------------------------------- */
+
+.locations-map {
+  background-color: #041b40;
+
+  &__intro {
+    max-width: 700px;
+  }
+
+  &__container {
+    position: relative;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  &__map {
+    max-width: 100%;
+    display: block;
+    width: 100%;
+    filter: brightness(0) saturate(100%) invert(26%) sepia(23%) saturate(954%) hue-rotate(179deg) brightness(90%) contrast(87%);
+  }
+
+  &__location {
+    cursor: pointer;
+    position: absolute;
+    width: 0.4vw;
+    height: 0.4vw;
+    max-width: 8px;
+    max-height: 8px;
+    border-radius: 50%;
+    background-color: #fff;
+    display: -webkit-box;
+    display: flex;
+    -webkit-box-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    align-items: center;
+    z-index: 1;
+
+    &::after {
+      content: "";
+      width: 5vw;
+      height: 5vw;
+      border-radius: 50%;
+      border: solid 2px #fff;
+      position: absolute;
+      max-width: 50px;
+      max-height: 50px;
+      opacity: 0.5;
+    }
+
+    &:hover::after {
+      border: solid 10px #fff;
+    }
+
+    &::after:hover {
+      border: solid 10px #fff;
+    }
+  }
+
+  &__popup {
+    display: none;
+    position: absolute;
+    top: 23px;
+    left: calc(50% - 110px);
+    width: 220px;
+    padding: 15px 20px;
+    border: solid 1px #fff5;
+    backdrop-filter: blur(10px);
+    color: #fff;
+    background: rgba(255, 255, 255, 0.1);
+    font-size: 0.9em;
+
+    &::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 10%;
+      background: linear-gradient(to bottom, rgba(4, 27, 65, 0.5), transparent);
+      z-index: -1;
+    }
+
+    &.massachusetts {
+      top: 32%;
+      left: 22%;
+    }
+
+    &.croydon {
+      top: 43%;
+      left: 46.5%;
+    }
+
+    &.europe1 {
+      top: 43%;
+      left: 49.5%;
+    }
+
+    &.europe2 {
+      top: 44%;
+      left: 52%;
+    }
+
+    &.india {
+      top: 60%;
+      left: 66%;
+    }
+
+    &.asia1 {
+      top: 51%;
+      left: 76.5%;
+    }
+
+    &.asia2 {
+      top: 54%;
+      left: 77%;
+    }
+
+    &.asia3 {
+      top: 50%;
+      left: 78.5%;
+    }
+  }
+}
+
+/* Fade-in Animation */
+@keyframes pointerFadeIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+.locations-map__popup.fade-in {
+  animation: pointerFadeIn 0.25s ease-out;
+}
+
+.locations-map__container:has(.fade-in) .locations-map__location:not(:has(.fade-in)) {
+  opacity: 0.5;
+  transition: opacity 0.5s;
+}

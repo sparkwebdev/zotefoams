@@ -1,0 +1,19 @@
+/* 15 - Small box columns
+ * --------------------------------------------- */
+
+.small-box-columns {
+  &__items {
+    grid-template-columns: var(--grid-template-columns-small);
+    gap: 40px 20px;
+    display: grid;
+  }
+
+  &__image {
+    width: 100%;
+    aspect-ratio: 1 / 1;
+  }
+
+  @media screen and (max-width: 479px) {
+    --grid-template-columns-small: repeat(auto-fit, minmax(15rem, 1fr));
+  }
+}

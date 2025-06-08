@@ -1,0 +1,45 @@
+/* Biography page */
+
+.biography {
+  display: flex;
+  gap: 4%;
+
+  figure {
+    margin: 0;
+  }
+
+  p,
+  ul,
+  ol {
+    margin-bottom: 25px;
+  }
+
+  .wp-block-heading {
+    border-top: 1px solid #d1d1d1;
+    margin-bottom: 20px;
+    padding-top: 20px;
+
+    &:first-of-type {
+      border-top: 0;
+      padding-top: 0;
+    }
+  }
+
+  > div {
+    flex: 1;
+  }
+
+  .post-thumbnail {
+    img {
+      width: 100%;
+    }
+  }
+
+  @media screen and (max-width: 767px) {
+    flex-direction: column;
+
+    .post-thumbnail {
+      margin-bottom: 30px;
+    }
+  }
+}

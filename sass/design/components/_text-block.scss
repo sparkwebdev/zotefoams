@@ -1,0 +1,13 @@
+/* Text Block
+ * --------------------------------------------- */
+
+.text-block {
+  &__inner {
+    max-width: 1000px;
+  }
+
+  strong {
+    color: #000;
+    font-weight: 600;
+  }
+}

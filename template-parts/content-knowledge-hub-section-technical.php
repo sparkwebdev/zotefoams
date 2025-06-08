@@ -11,7 +11,7 @@ $child_pages = get_pages(array(
 ));
 ?>
 
-<nav class="cont-m margin-t-70 margin-b-100">
+<nav class="cont-m padding-t-b-100 theme-none">
     <div data-component="section-list">
         <?php if (!empty($brands) && count($brands) > 1) : ?>
             <div class="file-list__dropdown">
@@ -31,7 +31,7 @@ $child_pages = get_pages(array(
         <?php endif; ?>
 
         <div class="section-list">
-            <div class="articles articles--grid-alt margin-t-30">
+            <div class="articles articles--grid-alt">
                 <?php if (!empty($brands)) : ?>
                     <?php
                     // If there are brands, loop through each brand and then each child page.

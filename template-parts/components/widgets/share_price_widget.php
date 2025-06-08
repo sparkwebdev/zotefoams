@@ -1,1 +1,1 @@
-	<iframe id="share-price-widget" src="https://polaris.brighterir.com/public/zotefoams/data_table/share_price_widget"></iframe>
+<iframe id="share-price-widget" src="https://polaris.brighterir.com/public/zotefoams/data_table/share_price_widget"></iframe>

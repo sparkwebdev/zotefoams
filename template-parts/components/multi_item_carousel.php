@@ -1,116 +1,113 @@
+<?php
+$title        = get_sub_field('multi_item_carousel_title');
+$behaviour    = get_sub_field('multi_item_carousel_behaviour'); // 'pick', 'children', or 'manual'
+$page_id      = get_sub_field('multi_item_carousel_parent_id');
+$manual_slides = get_sub_field('multi_item_carousel_slides');
+$isVariant    = get_sub_field('multi_item_carousel_variant');
+$wrapperClass = $isVariant ? 'multi-item-carousel multi-item-carousel--variant' : 'multi-item-carousel';
+$slideClass   = $isVariant ? 'swiper-slide black-bg white-text' : 'swiper-slide';
+$btnClass     = $isVariant ? 'btn white outline' : 'btn black outline';
 
-<?php 
-// Allow for passed variables, as well as ACF values
-$title = get_sub_field('multi_item_carousel_title');
-$behaviour = get_sub_field('multi_item_carousel_behaviour'); // Pick / Children / Manual
-$page_id = get_sub_field('multi_item_carousel_parent_id'); // Selected parent page
-$manual_slides = get_sub_field('multi_item_carousel_slides'); // Manual items
 ?>
 
-<!-- Carousel 4 - Multi-Item Carousel -->
-<div class="multi-item-carousel-container padding-t-100 padding-b-100 theme-none">
+<div class="multi-item-carousel-container padding-t-b-100 theme-none">
 	<div class="cont-m">
-    
+
 		<div class="title-strip margin-b-30">
 			<?php if ($title): ?>
 				<h3 class="fs-500 fw-600"><?php echo esc_html($title); ?></h3>
 			<?php endif; ?>
-			<!-- Navigation -->
 			<div class="carousel-navigation black">
 				<div class="carousel-navigation-inner">
 					<div class="multi-swiper-button-prev">
-						<img src="<?php echo get_template_directory_uri(); ?>/images/left-arrow-black.svg" />
+						<img src="<?php echo esc_url(get_template_directory_uri()); ?>/images/left-arrow-black.svg" />
 					</div>
 					<div class="multi-swiper-button-next">
-						<img src="<?php echo get_template_directory_uri(); ?>/images/right-arrow-black.svg" />
+						<img src="<?php echo esc_url(get_template_directory_uri()); ?>/images/right-arrow-black.svg" />
 					</div>
 				</div>
 			</div>
 		</div>
 
-		<div class="swiper multi-item-carousel">
+		<div class="swiper <?php echo $wrapperClass; ?>">
 			<div class="swiper-wrapper">
-				<?php 
+
+				<?php
 				if ($behaviour === 'pick') {
-					$page_ids = get_sub_field('multi_item_carousel_page_ids');
-					if ($page_ids) {
-						foreach ($page_ids as $page_id) : 
-							$page_title = get_the_title($page_id);
-							$page_link = get_permalink($page_id);
-							$thumbnail_url = get_the_post_thumbnail_url($page_id, 'thumbnail-product');
-							?>
-							<div class="swiper-slide">
-								<h3 class="fs-600 fw-bold"><?php echo esc_html($page_title); ?></h3>
-								<?php if (get_the_excerpt($page_id)): ?>
-									<p><?php echo esc_html(get_the_excerpt($page_id)); ?></p>
-								<?php endif; ?>
-								<?php if ( $thumbnail_url ): ?>
-									<img src="<?php echo esc_url($thumbnail_url); ?>" alt="<?php echo esc_attr($page_title); ?>">
-								<?php endif; ?>
-								<a href="<?php echo esc_url($page_link); ?>" class="btn black outline">Read More</a>
-							</div>
-						<?php endforeach; 
-					}
+					$page_ids = get_sub_field('multi_item_carousel_page_ids') ?: [];
+
+					foreach ($page_ids as $id) {
+						$title   = get_the_title($id);
+						$link    = get_permalink($id);
+						$excerpt = get_the_excerpt($id);
+						$image   = get_the_post_thumbnail_url($id, 'thumbnail-product');
+				?>
+						<div class="<?php echo esc_attr($slideClass); ?>">
+							<h3 class="fs-600 fw-bold"><?php echo esc_html($title); ?></h3>
+							<?php if ($excerpt): ?>
+								<p><?php echo esc_html($excerpt); ?></p>
+							<?php endif; ?>
+							<?php if ($image): ?>
+								<img src="<?php echo esc_url($image); ?>" alt="<?php echo esc_attr($title); ?>">
+							<?php endif; ?>
+							<a href="<?php echo esc_url($link); ?>" class="<?php echo $btnClass; ?>">Read More</a>
+						</div>
+					<?php }
 				} elseif ($behaviour === 'children') {
-					// Fetch child pages
-					$child_pages = get_pages([
-						'parent' => $page_id,
+					$children = get_pages([
+						'parent'      => $page_id,
 						'sort_column' => 'menu_order',
-						'sort_order' => 'ASC',
+						'sort_order'  => 'ASC',
 					]);
 
-					if ($child_pages):
-						foreach ($child_pages as $child):
-							$child_id = $child->ID;
-							$child_title = get_the_title($child_id);
-							$child_link = get_permalink($child_id);
-							$thumbnail_url = get_the_post_thumbnail_url($child_id, 'thumbnail-product');
-							?>
-							<div class="swiper-slide">
-								<h3 class="fs-600 fw-bold"><?php echo esc_html($child_title); ?></h3>
-								<?php if (get_the_excerpt($child_id)): ?>
-									<p><?php echo esc_html(get_the_excerpt($child_id)); ?></p>
-								<?php endif; ?>
-								<?php if ( $thumbnail_url ): ?>
-									<img src="<?php echo esc_url($thumbnail_url); ?>" alt="<?php echo esc_attr($child_title); ?>">
-								<?php endif; ?>
-								<a href="<?php echo esc_url($child_link); ?>" class="btn black outline">Read More</a>
-							</div>
-						<?php endforeach;
-					endif;
-
+					foreach ($children as $child) {
+						$title   = get_the_title($child->ID);
+						$link    = get_permalink($child->ID);
+						$excerpt = get_the_excerpt($child->ID);
+						$image   = get_the_post_thumbnail_url($child->ID, 'thumbnail-product');
+					?>
+						<div class="<?php echo esc_attr($slideClass); ?>">
+							<h3 class="fs-600 fw-bold"><?php echo esc_html($title); ?></h3>
+							<?php if ($excerpt): ?>
+								<p><?php echo esc_html($excerpt); ?></p>
+							<?php endif; ?>
+							<?php if ($image): ?>
+								<img src="<?php echo esc_url($image); ?>" alt="<?php echo esc_attr($title); ?>">
+							<?php endif; ?>
+							<a href="<?php echo esc_url($link); ?>" class="<?php echo $btnClass; ?>">Read More</a>
+						</div>
+					<?php }
 				} elseif ($behaviour === 'manual' && $manual_slides) {
-					foreach ($manual_slides as $slide):
-						$slide_title = $slide['multi_item_carousel_slide_title'] ?? '';
-						$slide_text = $slide['multi_item_carousel_slide_text'] ?? '';
-						$slide_button = $slide['multi_item_carousel_slide_button'] ?? '';
-						$slide_image = $slide['multi_item_carousel_slide_image'] ?? null;
+					foreach ($manual_slides as $slide) {
+						$title   = $slide['multi_item_carousel_slide_title'] ?? '';
+						$text    = $slide['multi_item_carousel_slide_text'] ?? '';
+						$button  = $slide['multi_item_carousel_slide_button'] ?? [];
+						$image   = $slide['multi_item_carousel_slide_image']['sizes']['thumbnail-product'] ?? '';
 
-						$image_url = $slide_image ? $slide_image['sizes']['thumbnail-product'] : null;
-						?>
-						<div class="swiper-slide">
-							<?php if ($slide_title): ?>
-								<h3 class="fs-600 fw-bold"><?php echo esc_html($slide_title); ?></h3>
+						if (!$title && !$text && !$image && empty($button)) continue;
+					?>
+						<div class="<?php echo esc_attr($slideClass); ?>">
+							<?php if ($title): ?>
+								<h3 class="fs-600 fw-bold"><?php echo esc_html($title); ?></h3>
 							<?php endif; ?>
-							<?php if ($slide_text): ?>
-								<p><?php echo wp_kses_post($slide_text); ?></p>
+							<?php if ($text): ?>
+								<p><?php echo wp_kses_post($text); ?></p>
 							<?php endif; ?>
-							<?php if ($image_url): ?>
-								<img src="<?php echo esc_url($image_url); ?>" alt="<?php echo esc_attr($slide_title); ?>">
+							<?php if ($image): ?>
+								<img src="<?php echo esc_url($image); ?>" alt="<?php echo esc_attr($title); ?>">
 							<?php endif; ?>
-							<?php if ($slide_button): ?>
-								<a href="<?php echo esc_url($slide_button['url']); ?>" class="btn black outline" target="<?php echo esc_attr($slide_button['target']); ?>">
-									<?php echo esc_html($slide_button['title']); ?>
+							<?php if (!empty($button['url'])): ?>
+								<a href="<?php echo esc_url($button['url']); ?>" class="<?php echo $btnClass; ?>" target="<?php echo esc_attr($button['target'] ?? '_self'); ?>">
+									<?php echo esc_html($button['title'] ?? 'Read More'); ?>
 								</a>
 							<?php endif; ?>
 						</div>
-					<?php endforeach;
+				<?php }
 				}
 				?>
 			</div>
 
-		<div class="multi-swiper-scrollbar"></div>
+			<div class="multi-swiper-scrollbar"></div>
 		</div>
-	
 	</div>
 </div>
