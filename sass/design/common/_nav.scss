@@ -656,7 +656,7 @@ $breakpoint-large: 68rem;
         box-shadow: 0 20px 20px rgba(0, 0, 0, 0.15);
         overflow-y: auto;
         padding-top: 20px;
-        min-height: 50vh;
+        // min-height: 50vh;
         max-height: calc(100vh - var(--header-height));
         @supports (height: 100dvh) {
           max-height: calc(100dvh - var(--header-height));

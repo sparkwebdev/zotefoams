@@ -195,36 +195,6 @@ document.addEventListener('DOMContentLoaded', function () {
     }
   });
 
-  // Our History
-  document.querySelectorAll('.zf-history__popup-marker').forEach(function (button) {
-    button.addEventListener('focus', function() {
-      const tooltip = button.querySelector('.zf-history__popup');
-      if (tooltip) {
-        tooltip.setAttribute('aria-hidden', 'false');
-      }
-    });
-
-    button.addEventListener('blur', function() {
-      const tooltip = button.querySelector('.zf-history__popup');
-      if (tooltip) {
-        tooltip.setAttribute('aria-hidden', 'true');
-      }
-    });
-
-    button.addEventListener('mouseenter', function() {
-      const tooltip = button.querySelector('.zf-history__popup');
-      if (tooltip) {
-        tooltip.setAttribute('aria-hidden', 'false');
-      }
-    });
-
-    button.addEventListener('mouseleave', function() {
-      const tooltip = button.querySelector('.zf-history__popup');
-      if (tooltip) {
-        tooltip.setAttribute('aria-hidden', 'true');
-      }
-    });
-  });
 
 
   /* Component Init - Section List */
@@ -608,6 +578,36 @@ document.addEventListener('DOMContentLoaded', () => {
 
   
 
+  // Our History
+  document.querySelectorAll('.zf-history__popup-marker').forEach(function (button) {
+    button.addEventListener('focus', function() {
+      const tooltip = button.querySelector('.zf-history__popup');
+      if (tooltip) {
+        tooltip.setAttribute('aria-hidden', 'false');
+      }
+    });
+
+    button.addEventListener('blur', function() {
+      const tooltip = button.querySelector('.zf-history__popup');
+      if (tooltip) {
+        tooltip.setAttribute('aria-hidden', 'true');
+      }
+    });
+
+    button.addEventListener('mouseenter', function() {
+      const tooltip = button.querySelector('.zf-history__popup');
+      if (tooltip) {
+        tooltip.setAttribute('aria-hidden', 'false');
+      }
+    });
+
+    button.addEventListener('mouseleave', function() {
+      const tooltip = button.querySelector('.zf-history__popup');
+      if (tooltip) {
+        tooltip.setAttribute('aria-hidden', 'true');
+      }
+    });
+  });
 
 (() => {
   const SCROLL_PROPERTY = '--scroll-y';

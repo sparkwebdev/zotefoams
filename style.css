@@ -4,7 +4,7 @@ Theme URI: http://underscores.me/
 Author: David Park
 Author URI: http://underscores.me/
 Description: Description
-Version: 2.0.6
+Version: 2.0.7
 Tested up to: 5.4
 Requires PHP: 5.6
 License: GNU General Public License v2 or later
@@ -1691,11 +1691,6 @@ input[type="submit"].btn {
   font-weight: 400;
 }
 
-@media screen and (max-width: 480px) {
-  .site-footer {
-    margin-top: 50px;
-  }
-}
 .footer-content {
   display: flex;
   flex-direction: column;
@@ -2441,7 +2436,6 @@ footer div.wpforms-container.wpforms-container-full:not(:empty) {
     box-shadow: 0 20px 20px rgba(0, 0, 0, 0.15);
     overflow-y: auto;
     padding-top: 20px;
-    min-height: 50vh;
     max-height: calc(100vh - var(--header-height));
   }
   @supports (height: 100dvh) {
@@ -3660,6 +3654,12 @@ a.read-more.hl.arrow:focus::after {
   align-items: center;
   border-radius: 0;
   transition: all 0.3s;
+}
+.accordion-header:focus-visible {
+  text-decoration: underline;
+}
+.accordion-header:focus-visible .toggle-icon {
+  text-decoration: none;
 }
 
 @media screen and (max-width: 767px) {
