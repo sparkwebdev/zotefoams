@@ -4,7 +4,7 @@ Theme URI: http://underscores.me/
 Author: David Park
 Author URI: http://underscores.me/
 Description: Description
-Version: 2.0.12
+Version: 2.0.13
 Tested up to: 5.4
 Requires PHP: 5.6
 License: GNU General Public License v2 or later
@@ -4546,6 +4546,7 @@ html:has(.zf-history) {
 }
 .zf-history .h2.font-alt {
   font-size: clamp(1.853rem, 7.699vw, 5.25rem);
+  line-height: 1.05;
 }
 .zf-history .h3 {
   font-size: clamp(1.0625rem, 3.665vw, 2.5rem);

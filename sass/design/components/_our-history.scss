@@ -14,8 +14,8 @@ Our History
   // Scroll Snap feature
   @at-root {
     html:has(.zf-history) {
-        --scroll-padding-top: 0px;
-        scroll-behavior: auto;
+      --scroll-padding-top: 0px;
+      scroll-behavior: auto;
       @media screen and (min-height: $panelsMinViewHeight), screen and (min-width: $panelsMinViewWidth) {
         scroll-snap-type: y mandatory;
         scroll-snap-stop: always;
@@ -64,6 +64,7 @@ Our History
 
     &.font-alt {
       font-size: clamp(1.853rem, 7.699vw, 5.25rem);
+      line-height: 1.05;
     }
   }
 

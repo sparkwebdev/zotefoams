@@ -114,8 +114,7 @@ $images = [
             <header class="zf-history__panel" data-js-el="scroll-target">
                 <div class="cont-xs zf-history__year-intro h2 is-sticky">
                     <h2 class="font-alt h2">1920s - 1930s</h2>
-                    <p class="uppercase h2">The search for<br />
-                        optimal materials</p>
+                    <h3 class="uppercase h2">The search for optimal&nbsp;materials</h3>
                 </div>
             </header>
 
@@ -164,9 +163,7 @@ $images = [
             <header class="zf-history__panel" data-js-el="scroll-target">
                 <div class="cont-xs zf-history__year-intro h2 is-sticky">
                     <h2 class="font-alt h2">1940s - 1950s</h2>
-                    <p class="uppercase h2">Innovation and<br />
-                        Expansion in support<br />
-                        Of the nation</p>
+                    <h3 class="uppercase h2">Innovation and Expansion&nbsp;in&nbsp;support Of&nbsp;the&nbsp;nation</h3>
                 </div>
             </header>
 
@@ -244,9 +241,7 @@ $images = [
             <header class="zf-history__panel" data-js-el="scroll-target">
                 <div class="cont-xs zf-history__year-intro h2 is-sticky">
                     <h2 class="font-alt h2">1960s - 1970s</h2>
-                    <p class="uppercase h2">Introducing<br />
-                        Plastazote® and Evazote®<br />
-                        - and the end of rubber</p>
+                    <h3 class="uppercase h2">Introducing Plastazote®&nbsp;and Evazote® <br />- and the end of rubber</h3>
                 </div>
             </header>
 
@@ -290,7 +285,7 @@ $images = [
             <header class="zf-history__panel" data-js-el="scroll-target">
                 <div class="cont-xs zf-history__year-intro h2 is-sticky">
                     <h2 class="font-alt h2">1980s - 1990s</h2>
-                    <p class="uppercase h2">A New Era And The Birth Of&nbsp;Zotefoams Plc</p>
+                    <h3 class="uppercase h2">A New Era And The Birth Of&nbsp;Zotefoams Plc</h3>
                 </div>
             </header>
 
@@ -320,7 +315,7 @@ $images = [
             <header class="zf-history__panel" data-js-el="scroll-target">
                 <div class="cont-xs zf-history__year-intro h2 is-sticky">
                     <h2 class="font-alt h2">2000s</h2>
-                    <p class="uppercase h2">The High-Performance Decade</p>
+                    <h3 class="uppercase h2">The High-Performance Decade</h3>
                 </div>
             </header>
 
@@ -386,7 +381,7 @@ $images = [
             <header class="zf-history__panel" data-js-el="scroll-target">
                 <div class="cont-xs zf-history__year-intro h2 is-sticky">
                     <h2 class="font-alt h2">2010s - Today</h2>
-                    <p class="uppercase h2">A New Era and the Birth of Zotefoams Plc</p>
+                    <h3 class="uppercase h2">A New Era and the Birth of Zotefoams Plc</h3>
                 </div>
             </header>
 
