@@ -73,6 +73,12 @@
   cursor: auto;
   justify-content: unset;
   color: #fff;
+  max-width: 90%;
+
+  > p {
+    text-align: right;
+    text-wrap: balance;
+  }
 }
 
 .swiper-image .swiper-button-next::after,

@@ -8,13 +8,13 @@ Our History
   --transition-length: 0.25s;
   --transition-delay: 0.01s;
   --transition-delay-slow: 0.5s;
-  $panelsMinViewHeight: 0px;
-  // $panelsMinViewWidth: 1024px;
+  $panelsMinViewHeight: 1024px;
+  $panelsMinViewWidth: 1024px;
 
   // Scroll Snap feature
   @at-root {
     html:has(.zf-history) {
-      @media screen and (min-height: $panelsMinViewHeight) {
+      @media screen and (min-height: $panelsMinViewHeight), screen and (min-width: $panelsMinViewWidth) {
         --scroll-padding-top: 0px;
         scroll-snap-type: y mandatory;
         scroll-snap-stop: always;
@@ -30,11 +30,13 @@ Our History
 
   // Panels
   &__panel {
-    height: calc(100vh - var(--header-height));
-    scroll-snap-align: start;
+    min-height: calc(100vh - var(--header-height));
+    @media screen and (min-height: $panelsMinViewHeight), screen and (min-width: $panelsMinViewWidth) {
+      scroll-snap-align: start;
+    }
 
     @supports (height: 100dvh) {
-      height: calc(100dvh - var(--header-height));
+      min-height: calc(100dvh - var(--header-height));
     }
     // padding-top: 3vh;
     // padding-bottom: 6vh;
@@ -137,6 +139,12 @@ Our History
         max-width: 50%;
       }
     }
+
+    .zf-history__text:last-child {
+      @media screen and (max-width: 1199px) {
+        padding-bottom: 4vh;
+      }
+    }
   }
 
   // Panels
@@ -205,7 +213,7 @@ Our History
     .zf-history__text {
       // margin-top: 1em;
       @media screen and (max-width: 1199px) {
-        padding-bottom: 2vh;
+        // padding-bottom: 2vh;
       }
 
       :not(:first-child) {
@@ -213,32 +221,32 @@ Our History
       }
 
       .zf-history__text-inner {
-        @media screen and (max-width: 1199px) {
-          --sb-track-color: #9ec2fc;
-          --sb-thumb-color: #007bff;
-          --sb-size: 15px;
-          overflow-y: auto;
+        // @media screen and (max-width: 1199px) {
+        //   --sb-track-color: #9ec2fc;
+        //   --sb-thumb-color: #007bff;
+        //   --sb-size: 15px;
+        //   overflow-y: auto;
 
-          max-height: calc(60vh - 2em - 4vh - (var(--header-height) / 2));
+        //   max-height: calc(60vh - 2em - 4vh - (var(--header-height) / 2));
 
-          &::-webkit-scrollbar {
-            width: var(--sb-size);
-          }
+        //   &::-webkit-scrollbar {
+        //     width: var(--sb-size);
+        //   }
 
-          &::-webkit-scrollbar-track {
-            background: var(--sb-track-color);
-            border-radius: 3px;
-          }
+        //   &::-webkit-scrollbar-track {
+        //     background: var(--sb-track-color);
+        //     border-radius: 3px;
+        //   }
 
-          &::-webkit-scrollbar-thumb {
-            background: var(--sb-thumb-color);
-            border-radius: 3px;
-          }
+        //   &::-webkit-scrollbar-thumb {
+        //     background: var(--sb-thumb-color);
+        //     border-radius: 3px;
+        //   }
 
-          @supports not selector(::-webkit-scrollbar) {
-            scrollbar-color: var(--sb-thumb-color) var(--sb-track-color);
-          }
-        }
+        //   @supports not selector(::-webkit-scrollbar) {
+        //     scrollbar-color: var(--sb-thumb-color) var(--sb-track-color);
+        //   }
+        // }
       }
     }
   }
@@ -296,20 +304,6 @@ Our History
       position: absolute;
       right: 0;
     }
-      @media screen and (max-width: 599px) {
-        &::after {
-          content: "";
-          display: block;
-          background: linear-gradient(to bottom, var(--bg, #000), transparent 100%);
-          opacity: 0.85;
-          position: absolute;
-          bottom: -4em;
-          left: -5%;
-          right: -5%;
-          height: 4em;
-          // z-index: -1;
-        }
-      }
 
     + .zf-history__text {
       // padding-top: 1em;
@@ -320,32 +314,57 @@ Our History
         max-width: 60em;
         position: relative;
         // z-index: 1;
-        height: calc(60vh - 2em - (var(--header-height) / 2));
-        @supports (height: 100dvh) {
-          height: calc(60dvh - 2em - (var(--header-height) / 2));
-        }
-      }
-      @media screen and (max-width: 599px) {
-        &::before {
-          content: "";
-          display: block;
-          background: linear-gradient(to top, var(--bg, #000), transparent 100%);
-          position: absolute;
-          bottom: 4vh;
-          left: 0;
-          right: 18px;
-          height: 30px;
-          z-index: 1;
-        }
+        // height: calc(60vh - 2em - (var(--header-height) / 2));
+        // @supports (height: 100dvh) {
+        //   height: calc(60dvh - 2em - (var(--header-height) / 2));
+        // }
       }
 
       .zf-history__text-inner {
         @media screen and (max-width: 1199px) {
-          padding-bottom: 2vh;
+          padding-bottom: 6vh;
         }
       }
     }
   }
+
+  &__images {
+    @media screen and (max-width: 599px) {
+      &::after {
+        content: "";
+        display: block;
+        background: linear-gradient(to bottom, var(--bg, #000), transparent 100%);
+        position: absolute;
+        bottom: -8em;
+        left: 50%;
+        height: 8em;
+        width: 100vw;
+        transform: translateX(-50%);
+        // z-index: -1;
+      }
+    }
+  }
+
+  // .is-visible {
+  //   &__images {
+
+  //     + .zf-history__text {
+  //       @media screen and (max-width: 599px) {
+  //         &::before {
+  //           content: "";
+  //           display: block;
+  //           background: linear-gradient(to top, var(--bg, #000), transparent 100%);
+  //           position: absolute;
+  //           bottom: 4vh;
+  //           left: 0;
+  //           right: 18px;
+  //           height: 30px;
+  //           z-index: 1;
+  //         }
+  //       }
+  //     }
+  //   }
+  // }
 
   &__text {
     :not(:first-child) {
@@ -376,7 +395,7 @@ Our History
 
     article.zf-history__panel {
       // background-color: var(--bg, #000);
-        background: linear-gradient(to bottom, transparent 0%, transparent 20%, var(--bg, #000) 50%, transparent 80%);
+      background: linear-gradient(to bottom, transparent 0%, transparent 20%, var(--bg, #000) 50%, transparent 80%);
 
       // &:last-of-type {
       //   background: linear-gradient(to bottom, transparent 0%, var(--bg, #000) 75%);
@@ -445,14 +464,16 @@ Our History
     transition: transform 0.5s ease-in-out;
     transition-delay: 0.01s;
     will-change: transform;
-    // max-height: 40vh;
-
     @media screen and (max-width: 1199px) {
-      max-height: calc(40vh - 2em - (var(--header-height) / 2));
-      @supports (height: 100dvh) {
-        max-height: calc(40dvh - 2em - (var(--header-height) / 2));
-      }
+    max-height: 35vh;
     }
+
+    // @media screen and (max-width: 1199px) {
+    //   max-height: calc(40vh - 2em - (var(--header-height) / 2));
+    //   @supports (height: 100dvh) {
+    //     max-height: calc(40dvh - 2em - (var(--header-height) / 2));
+    //   }
+    // }
   }
 }
 
