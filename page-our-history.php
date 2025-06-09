@@ -437,6 +437,7 @@ $images = [
                     </div></div>
                 </div>
             </article>
+            <p class="text-center padding-t-b-50"><a href="#page" class="">Back to top</a></p>
 
         </section>
         <!-- <div id="panel-indicators" class="panel-indicators"></div> -->

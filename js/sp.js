@@ -714,6 +714,34 @@ document.addEventListener('DOMContentLoaded', () => {
       lastActiveId = bestCandidateId;
     }
   };
+  // 🆕 Custom smooth scrolling for in-page anchor links
+  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function (e) {
+      const targetId = this.getAttribute('href').substring(1);
+      const targetElement = document.getElementById(targetId);
+      if (!targetElement) return;
+
+      e.preventDefault();
+
+      // Temporarily disable scroll snap
+      const scrollContainer = document.documentElement;
+      scrollContainer.style.scrollSnapType = 'none';
+
+      // Adjust for any fixed/sticky headers if needed
+      const yOffset = -80; // tweak this value as needed
+      const y = targetElement.getBoundingClientRect().top + window.pageYOffset + yOffset;
+
+      window.scrollTo({ top: y, behavior: 'smooth' });
+
+      // Re-enable scroll snap after a short delay
+      setTimeout(() => {
+        scrollContainer.style.scrollSnapType = ''; // fallback to stylesheet-defined value
+      }, 500); // match your smooth scroll duration
+
+      // Update URL without jump
+      history.replaceState(null, '', `#${targetId}`);
+    });
+  });
 
   const handleSectionIntersection = (entries) => {
     let changed = false;

@@ -3,7 +3,7 @@ Our History
 */
 
 .zf-history {
-  --scroll-progress: 1;
+  --scroll-progress2: 1;
   --opacity-start: 0.5;
   --transition-length: 0.25s;
   --transition-delay: 0.01s;
@@ -14,8 +14,9 @@ Our History
   // Scroll Snap feature
   @at-root {
     html:has(.zf-history) {
-      @media screen and (min-height: $panelsMinViewHeight), screen and (min-width: $panelsMinViewWidth) {
         --scroll-padding-top: 0px;
+        scroll-behavior: auto;
+      @media screen and (min-height: $panelsMinViewHeight), screen and (min-width: $panelsMinViewWidth) {
         scroll-snap-type: y mandatory;
         scroll-snap-stop: always;
 
@@ -105,7 +106,7 @@ Our History
   }
 
   .is-visible .fade-in {
-    opacity: var(--scroll-progress);
+    opacity: var(--scroll-progress2);
   }
 
   // Cover Images tweak
@@ -115,6 +116,11 @@ Our History
     background-size: 175% auto;
     background-attachment: fixed;
     background-repeat: no-repeat;
+    @at-root {
+      .touch-device & {
+        background-attachment: scroll;
+      }
+    }
     @media screen and (min-width: 1200px) {
       background-size: 90% auto;
     }
@@ -134,7 +140,7 @@ Our History
 
     &-secondary {
       // justify-content: flex-start !important; // Sort
-      // transform: translateY(calc(var(--scroll-progress) * -300px));
+      // transform: translateY(calc(var(--scroll-progress2) * -300px));
       img {
         max-width: 50%;
       }
@@ -268,6 +274,10 @@ Our History
     // padding-bottom: 6vh;
     flex-grow: 1;
     gap: 10px;
+    justify-content: center;
+    @media screen and (min-width: 600px) {
+      gap: 50px;
+    }
 
     @media screen and (min-width: 1200px) {
       display: grid;
@@ -311,7 +321,7 @@ Our History
       align-self: center;
 
       @media screen and (max-width: 1199px) {
-        max-width: 60em;
+        max-width: 40em;
         position: relative;
         // z-index: 1;
         // height: calc(60vh - 2em - (var(--header-height) / 2));
@@ -329,18 +339,24 @@ Our History
   }
 
   &__images {
-    @media screen and (max-width: 599px) {
+    @media screen and (max-width: 1199px) {
       &::after {
         content: "";
         display: block;
-        background: linear-gradient(to bottom, var(--bg, #000), transparent 100%);
+        background: linear-gradient(to top, var(--bg, #000) 0, var(--bg, #000) calc(100% - 1em), transparent 100%);
+        opacity: 0.9;
         position: absolute;
-        bottom: -8em;
+        bottom: calc(-8em - 30px);
         left: 50%;
         height: 8em;
         width: 100vw;
         transform: translateX(-50%);
         // z-index: -1;
+      }
+    }
+    @media screen and (max-width: 599px) {
+      &::after {
+        bottom: -8em;
       }
     }
   }
@@ -390,6 +406,7 @@ Our History
       left: 0;
       right: 0;
       height: var(--header-height);
+      margin-bottom: calc(var(--header-height) * -1);
       z-index: 1;
     }
 
@@ -410,7 +427,7 @@ Our History
 
 .zf-history__panel {
   > * {
-    opacity: calc(var(--opacity-start) + calc(var(--scroll-progress) * 2));
+    opacity: calc(var(--opacity-start) + calc(var(--scroll-progress2) * 2));
     transition: opacity var(--transition-length) ease-out;
     transition-delay: var(--transition-delay);
   }
@@ -427,7 +444,7 @@ Our History
 .zf-history__intro-secondary {
   --transition-delay: 0;
   --opacity-start: 0.2;
-  opacity: calc(var(--opacity-start) + calc(var(--scroll-progress) * 1));
+  opacity: calc(var(--opacity-start) + calc(var(--scroll-progress2) * 1));
 }
 
 .is-sticky {
@@ -441,11 +458,11 @@ Our History
 }
 // .zf-history__intro {
 //   .is-sticky {
-//     transform: translateY(calc(var(--scroll-progress) * calc(-1 * var(--header-height))));
+//     transform: translateY(calc(var(--scroll-progress2) * calc(-1 * var(--header-height))));
 //     transition:
 //       transform 0.5s ease-in-out,
 //       opacity 0.35s ease-in-out;
-//     opacity: calc(0.5 + calc(var(--scroll-progress) * 1));
+//     opacity: calc(0.5 + calc(var(--scroll-progress2) * 1));
 //     transition-delay: 0s;
 //     //  transition-delay: 0.5s;
 //     //   bottom: 0;
@@ -465,7 +482,7 @@ Our History
     transition-delay: 0.01s;
     will-change: transform;
     @media screen and (max-width: 1199px) {
-    max-height: 35vh;
+      max-height: 35vh;
     }
 
     // @media screen and (max-width: 1199px) {
@@ -498,8 +515,8 @@ Our History
     --invert-rotate: var(--invert-rotate, var(--invert-all, -1));
     --invert-move: var(--invert-move, var(--invert-all, -1));
 
-    --transition-rotate: rotate(calc(0deg + var(--scroll-progress) * calc(4deg * var(--invert, -1))));
-    --transition-move: translate(calc(var(--scroll-progress) * calc(5% * var(--invert, -1))), calc(var(--scroll-progress) * calc(10% * var(--invert, -1))));
+    --transition-rotate: rotate(calc(0deg + var(--scroll-progress2) * calc(4deg * var(--invert, -1))));
+    --transition-move: translate(calc(var(--scroll-progress2) * calc(5% * var(--invert, -1))), calc(var(--scroll-progress2) * calc(10% * var(--invert, -1))));
   }
 }
 
@@ -617,7 +634,7 @@ Our History
         }
 
         &:nth-of-type(2) {
-          transform: translate(calc(var(--scroll-progress) * -70%), calc(var(--scroll-progress) * -10%));
+          transform: translate(calc(var(--scroll-progress2) * -70%), calc(var(--scroll-progress2) * -10%));
         }
 
         &:nth-of-type(3) {
@@ -1037,7 +1054,7 @@ Our History
 // }
 
 [data-js-fx="mb"] {
-  // margin-bottom: calc(var(--scroll-progress) * -200px);
+  // margin-bottom: calc(var(--scroll-progress2) * -200px);
 }
 
 [data-js-fx="mt"] {
@@ -1045,9 +1062,9 @@ Our History
 }
 
 [data-js-fx="up"] {
-  // transform: translateY(calc(var(--scroll-progress) * -200px));
-  // margin-top: calc(var(--scroll-progress) * -200px);
-  //   margin-top: calc(300px - (var(--scroll-progress) * 300px));
+  // transform: translateY(calc(var(--scroll-progress2) * -200px));
+  // margin-top: calc(var(--scroll-progress2) * -200px);
+  //   margin-top: calc(300px - (var(--scroll-progress2) * 300px));
 }
 
 .zf-history__images {
@@ -1190,7 +1207,7 @@ Our History
 // }
 #progress-bar {
   position: fixed;
-  bottom: 0;
+  top: var(--header-height);
   left: 0;
   height: 6px;
   width: 0%;

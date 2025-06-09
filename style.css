@@ -4,7 +4,7 @@ Theme URI: http://underscores.me/
 Author: David Park
 Author URI: http://underscores.me/
 Description: Description
-Version: 2.0.10
+Version: 2.0.12
 Tested up to: 5.4
 Requires PHP: 5.6
 License: GNU General Public License v2 or later
@@ -4497,15 +4497,18 @@ a.read-more.hl.arrow:focus::after {
 Our History 
 */
 .zf-history {
-  --scroll-progress: 1;
+  --scroll-progress2: 1;
   --opacity-start: 0.5;
   --transition-length: 0.25s;
   --transition-delay: 0.01s;
   --transition-delay-slow: 0.5s;
 }
+html:has(.zf-history) {
+  --scroll-padding-top: 0px;
+  scroll-behavior: auto;
+}
 @media screen and (min-height: 1024px), screen and (min-width: 1024px) {
   html:has(.zf-history) {
-    --scroll-padding-top: 0px;
     scroll-snap-type: y mandatory;
     scroll-snap-stop: always;
   }
@@ -4574,7 +4577,7 @@ Our History
   transition: opacity 1s ease-in-out;
 }
 .zf-history .is-visible .fade-in {
-  opacity: var(--scroll-progress);
+  opacity: var(--scroll-progress2);
 }
 .zf-history .image-cover {
   background-image: var(--bg-img);
@@ -4583,6 +4586,10 @@ Our History
   background-attachment: fixed;
   background-repeat: no-repeat;
 }
+.touch-device .zf-history .image-cover {
+  background-attachment: scroll;
+}
+
 @media screen and (min-width: 1200px) {
   .zf-history .image-cover {
     background-size: 90% auto;
@@ -4667,6 +4674,12 @@ Our History
   padding-top: 4em;
   flex-grow: 1;
   gap: 10px;
+  justify-content: center;
+}
+@media screen and (min-width: 600px) {
+  .zf-history__cols {
+    gap: 50px;
+  }
 }
 @media screen and (min-width: 1200px) {
   .zf-history__cols {
@@ -4703,7 +4716,7 @@ Our History
 }
 @media screen and (max-width: 1199px) {
   .zf-history__images + .zf-history__text {
-    max-width: 60em;
+    max-width: 40em;
     position: relative;
   }
 }
@@ -4712,17 +4725,23 @@ Our History
     padding-bottom: 6vh;
   }
 }
-@media screen and (max-width: 599px) {
+@media screen and (max-width: 1199px) {
   .zf-history__images::after {
     content: "";
     display: block;
-    background: linear-gradient(to bottom, var(--bg, #000), transparent 100%);
+    background: linear-gradient(to top, var(--bg, #000) 0, var(--bg, #000) calc(100% - 1em), transparent 100%);
+    opacity: 0.9;
     position: absolute;
-    bottom: -8em;
+    bottom: calc(-8em - 30px);
     left: 50%;
     height: 8em;
     width: 100vw;
     transform: translateX(-50%);
+  }
+}
+@media screen and (max-width: 599px) {
+  .zf-history__images::after {
+    bottom: -8em;
   }
 }
 .zf-history__text :not(:first-child) {
@@ -4744,6 +4763,7 @@ Our History
   left: 0;
   right: 0;
   height: var(--header-height);
+  margin-bottom: calc(var(--header-height) * -1);
   z-index: 1;
 }
 .zf-history__section article.zf-history__panel {
@@ -4751,7 +4771,7 @@ Our History
 }
 
 .zf-history__panel > * {
-  opacity: calc(var(--opacity-start) + var(--scroll-progress) * 2);
+  opacity: calc(var(--opacity-start) + var(--scroll-progress2) * 2);
   transition: opacity var(--transition-length) ease-out;
   transition-delay: var(--transition-delay);
 }
@@ -4765,7 +4785,7 @@ Our History
 .zf-history__intro-secondary {
   --transition-delay: 0;
   --opacity-start: 0.2;
-  opacity: calc(var(--opacity-start) + var(--scroll-progress) * 1);
+  opacity: calc(var(--opacity-start) + var(--scroll-progress2) * 1);
 }
 
 .zf-history__text {
@@ -4797,8 +4817,8 @@ Our History
 .zf-history__panel img {
   --invert-rotate: var(--invert-rotate, var(--invert-all, -1));
   --invert-move: var(--invert-move, var(--invert-all, -1));
-  --transition-rotate: rotate(calc(0deg + var(--scroll-progress) * calc(4deg * var(--invert, -1))));
-  --transition-move: translate(calc(var(--scroll-progress) * calc(5% * var(--invert, -1))), calc(var(--scroll-progress) * calc(10% * var(--invert, -1))));
+  --transition-rotate: rotate(calc(0deg + var(--scroll-progress2) * calc(4deg * var(--invert, -1))));
+  --transition-move: translate(calc(var(--scroll-progress2) * calc(5% * var(--invert, -1))), calc(var(--scroll-progress2) * calc(10% * var(--invert, -1))));
 }
 .zf-history__panel img:first-child {
   position: relative;
@@ -4878,7 +4898,7 @@ Our History
   transform: var(--transition-rotate) var(--transition-move);
 }
 #years-1940s .zf-history__panel.is-visible:nth-of-type(1) img:nth-of-type(2) {
-  transform: translate(calc(var(--scroll-progress) * -70%), calc(var(--scroll-progress) * -10%));
+  transform: translate(calc(var(--scroll-progress2) * -70%), calc(var(--scroll-progress2) * -10%));
 }
 #years-1940s .zf-history__panel.is-visible:nth-of-type(1) img:nth-of-type(3) {
   transform: var(--transition-rotate) var(--transition-move);
@@ -5186,7 +5206,7 @@ Our History
 }
 #progress-bar {
   position: fixed;
-  bottom: 0;
+  top: var(--header-height);
   left: 0;
   height: 6px;
   width: 0%;
