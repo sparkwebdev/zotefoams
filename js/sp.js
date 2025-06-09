@@ -619,7 +619,8 @@ document.addEventListener('DOMContentLoaded', () => {
   const visibleSectionIds = new Set();
   let navLinks;
   let scrollTargetElements;
-  let lastActiveId = null; // ← Track current section for URL updates
+  let lastActiveId = null;
+  // let dots = [];
 
   const updateScrollAnimations = (currentScrollY) => {
     if (!scrollTargetElements?.length) return;
@@ -661,6 +662,13 @@ document.addEventListener('DOMContentLoaded', () => {
     document.documentElement.style.setProperty(SCROLL_PROPERTY, `${currentScrollY}px`);
     updateScrollAnimations(currentScrollY);
     scrollTicking = false;
+    const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+    const scrollPercent = (currentScrollY / docHeight) * 100;
+
+    const progressBar = document.getElementById('progress-bar');
+    if (progressBar) {
+      progressBar.style.width = `${scrollPercent}%`;
+    }
   };
 
   const onScroll = () => {
@@ -727,19 +735,37 @@ document.addEventListener('DOMContentLoaded', () => {
     if (changed) refreshActiveNavLinks();
   };
 
-  const childElementVisibilityObserver = new IntersectionObserver(
-    (entries) => {
-      entries.forEach(entry => {
-        entry.target.classList.toggle('is-visible', entry.isIntersecting);
-      });
-    },
-    { threshold: 0.6 }
-  );
+  childElementVisibilityObserver = new IntersectionObserver(
+  (entries) => {
+    entries.forEach(entry => {
+    entry.target.classList.toggle('is-visible', entry.isIntersecting);
+
+    // // Find index of this entry.target in scrollTargetElements
+    // const index = Array.from(scrollTargetElements).indexOf(entry.target);
+
+    // if (index !== -1) {
+    //   dots[index].classList.toggle('is-active', entry.isIntersecting);
+    // }
+  });
+
+  },
+  { threshold: 0.6 }
+);
 
   const initializeApp = () => {
     navLinks = document.querySelectorAll('nav[aria-label="Timeline Navigation"] a');
     scrollTargetElements = document.querySelectorAll('[data-js-el="scroll-target"]');
     const mainSections = document.querySelectorAll('div.zf-history__years > section[id]');
+
+    // const indicatorContainer = document.getElementById('panel-indicators');
+
+    // // Create dots
+    // Array.from(scrollTargetElements).forEach(() => {
+    //   const dot = document.createElement('div');
+    //   dot.classList.add('dot');
+    //   indicatorContainer.appendChild(dot);
+    //   dots.push(dot);
+    // });
 
     if (scrollTargetElements.length > 0) {
       scrollTargetElements.forEach(el => childElementVisibilityObserver.observe(el));
