@@ -4805,8 +4805,7 @@ html:has(.zf-history) {
 }
 
 .zf-history__panel .zf-history__images {
-  margin-left: auto;
-  margin-right: auto;
+  margin: 0 auto;
   width: fit-content;
   max-width: 800px;
   align-self: center;
@@ -4937,7 +4936,11 @@ html:has(.zf-history) {
   --invert: 1;
   filter: drop-shadow(2px 3px 6px #111);
 }
-#years-1940s .zf-history__panel:nth-of-type(1) .zf-history__popup-marker {
+#years-1940s .zf-history__panel:nth-of-type(1) .zf-history__popup-marker:nth-of-type(1) {
+  left: 20%;
+  top: 70%;
+}
+#years-1940s .zf-history__panel:nth-of-type(1) .zf-history__popup-marker:nth-of-type(2) {
   right: 20%;
   top: 70%;
 }
@@ -5012,6 +5015,10 @@ html:has(.zf-history) {
   --invert: -0.75;
   transform-origin: top right;
 }
+#years-1960s .zf-history__panel:nth-of-type(2) .zf-history__popup-marker {
+  right: 15%;
+  bottom: 15%;
+}
 
 #years-1980s .zf-history__panel.is-visible:nth-of-type(1) img:nth-of-type(1) {
   transform: var(--transition-rotate) var(--transition-move);
@@ -5042,7 +5049,7 @@ html:has(.zf-history) {
 
 #years-2000s .zf-history__panel:nth-of-type(1) img:nth-of-type(1) {
   margin-bottom: 12%;
-  max-width: min(70vw, 600px);
+  max-width: min(70vw, 500px);
   --invert: 0.75;
   transform-origin: top left;
   filter: drop-shadow(2px 3px 6px #666);
@@ -5087,6 +5094,9 @@ html:has(.zf-history) {
 #years-2010s .zf-history__panel.is-visible:nth-of-type(3) img:nth-of-type(1) {
   transform: var(--transition-rotate) var(--transition-move);
 }
+#years-2010s .zf-history__panel.is-visible:nth-of-type(3) img:nth-of-type(2) {
+  transform: var(--transition-rotate) var(--transition-move);
+}
 
 #years-2010s .zf-history__panel:nth-of-type(1) img:nth-of-type(1) {
   transform-origin: right top;
@@ -5116,12 +5126,24 @@ html:has(.zf-history) {
   scale: 0.65;
 }
 #years-2010s .zf-history__panel:nth-of-type(3) img:nth-of-type(1) {
-  --invert: 0.75;
+  left: -2%;
+  scale: 0.85;
+  margin-bottom: 0;
+  max-width: 70%;
+}
+#years-2010s .zf-history__panel:nth-of-type(3) img:nth-of-type(2) {
+  --invert: 1;
   scale: 0.85;
   margin-bottom: 8%;
+  right: -2%;
+  max-width: 70%;
 }
-#years-2010s .zf-history__panel:nth-of-type(3) .zf-history__popup-marker {
-  left: 20%;
+#years-2010s .zf-history__panel:nth-of-type(3) .zf-history__popup-marker:nth-of-type(1) {
+  left: 8%;
+  bottom: 20%;
+}
+#years-2010s .zf-history__panel:nth-of-type(3) .zf-history__popup-marker:nth-of-type(2) {
+  right: 8%;
   bottom: 20%;
 }
 
@@ -5144,7 +5166,6 @@ html:has(.zf-history) {
   display: flex;
   justify-content: center;
   align-items: center;
-  z-index: 1;
   padding: 0;
 }
 .zf-history__images .zf-history__popup-marker .zf-history__popup {
@@ -5162,6 +5183,8 @@ html:has(.zf-history) {
   font-size: 14px;
   width: 16em;
   max-width: 50vw;
+  z-index: 1;
+  line-height: 1.3;
 }
 .zf-history__images .zf-history__popup-marker .zf-history__popup--alt {
   right: auto;
@@ -5188,6 +5211,7 @@ html:has(.zf-history) {
   max-height: 60px;
   opacity: 0.85;
   animation: marker-pulse 1.25s infinite ease-in-out;
+  background-color: rgba(0, 0, 0, 0.35);
 }
 .zf-history__images .zf-history__popup-marker:hover::after,
 .zf-history__images .zf-history__popup-marker:focus::after {

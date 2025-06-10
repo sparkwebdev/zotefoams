@@ -497,8 +497,7 @@ Our History
 
 .zf-history__panel {
   .zf-history__images {
-    margin-left: auto;
-    margin-right: auto;
+    margin: 0 auto;
     width: fit-content;
     max-width: 800px;
     align-self: center;
@@ -701,7 +700,12 @@ Our History
         }
       }
 
-      .zf-history__popup-marker {
+      .zf-history__popup-marker:nth-of-type(1) {
+        left: 20%;
+        top: 70%;
+      }
+
+      .zf-history__popup-marker:nth-of-type(2) {
         right: 20%;
         top: 70%;
       }
@@ -823,6 +827,11 @@ Our History
           // margin-bottom: 20%;
         }
       }
+
+      .zf-history__popup-marker {
+        right: 15%;
+        bottom: 15%;
+      }
     }
   }
 }
@@ -897,7 +906,7 @@ Our History
         &:nth-of-type(1) {
           // margin-top: -12%;
           margin-bottom: 12%;
-          max-width: min(70vw, 600px);
+          max-width: min(70vw, 500px);
           --invert: 0.75;
           transform-origin: top left;
           filter: drop-shadow(2px 3px 6px #666);
@@ -976,6 +985,10 @@ Our History
         &:nth-of-type(1) {
           transform: var(--transition-rotate) var(--transition-move);
         }
+
+        &:nth-of-type(2) {
+          transform: var(--transition-rotate) var(--transition-move);
+        }
       }
     }
   }
@@ -1026,14 +1039,28 @@ Our History
     &:nth-of-type(3) {
       img {
         &:nth-of-type(1) {
-          --invert: 0.75;
+          left: -2%;
+          scale: 0.85;
+          margin-bottom: 0;
+          max-width: 70%;
+        }
+
+        &:nth-of-type(2) {
+          --invert: 1;
           scale: 0.85;
           margin-bottom: 8%;
+          right: -2%;
+          max-width: 70%;
         }
       }
 
-      .zf-history__popup-marker {
-        left: 20%;
+      .zf-history__popup-marker:nth-of-type(1) {
+        left: 8%;
+        bottom: 20%;
+      }
+
+      .zf-history__popup-marker:nth-of-type(2) {
+        right: 8%;
         bottom: 20%;
       }
     }
@@ -1083,7 +1110,6 @@ Our History
     display: flex;
     justify-content: center;
     align-items: center;
-    z-index: 1;
     padding: 0;
 
     .zf-history__popup {
@@ -1101,6 +1127,8 @@ Our History
       font-size: 14px;
       width: 16em;
       max-width: 50vw;
+      z-index: 1;
+      line-height: 1.3;
     }
 
     .zf-history__popup--alt {
@@ -1132,6 +1160,7 @@ Our History
       max-height: 60px;
       opacity: 0.85;
       animation: marker-pulse 1.25s infinite ease-in-out;
+      background-color: rgba(0,0,0,0.35);
     }
 
     &:hover::after,
