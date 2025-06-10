@@ -156,5 +156,9 @@ a.read-more.hl.arrow:focus::after {
       width: 300px;
       flex-shrink: 0;
     }
+
+    &__description {
+      flex-grow: 1;
+    }
   }
 }

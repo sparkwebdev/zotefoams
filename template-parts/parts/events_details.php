@@ -28,7 +28,7 @@ $playback_url          = get_field('event_playback_url');
         ?>
         <div class="events-details__description">
             <?php if ($short_description) : ?>
-                <div class="events-details__description grey-text fs-300 margin-b-20">
+                <div class="grey-text fs-300 margin-b-20">
                     <?php echo wp_kses_post($short_description); ?>
                 </div>
             <?php endif; ?>
