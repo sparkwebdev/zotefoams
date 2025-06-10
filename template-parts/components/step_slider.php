@@ -4,7 +4,7 @@ $slides         = get_sub_field('step_slider_slides');
 ?>
 
 <?php if ($slides) : ?>
-<section class="step-slider theme-dark">
+<div class="step-slider theme-dark">
 	<?php if ($overline_title) : ?>
 		<h2 class="step_slider_slide_overline fs-200 fw-regular"><?php echo esc_html($overline_title); ?></h2>
 	<?php endif; ?>
@@ -18,9 +18,10 @@ $slides         = get_sub_field('step_slider_slides');
 		?>
 			<div class="step-slider__slide black-bg white-text">
 				<div class="step-slider__cols">
-					<!-- <div class="step-slider__image image-cover" style="background-image: url(<?php echo esc_url($image_url); ?>"> -->
+					<?php /*
+					<div class="step-slider__image image-cover" style="background-image: url(<?php echo esc_url($image_url); ?>">
 						<img class="step-slider__image" src="<?php echo esc_url($image_url); ?>" alt="<?php echo esc_attr($title); ?>" />
-					<!-- </div> -->
+					</div> */ ?>
 
 					<div class="step-slider__text">
 						<?php if ($overline) : ?>
@@ -39,5 +40,5 @@ $slides         = get_sub_field('step_slider_slides');
 				</div>
 			</div>
 		<?php endforeach; ?>
-</section>
+</div>
 <?php endif; ?>

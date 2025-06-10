@@ -25,8 +25,10 @@ $map_image_url = $map_image['sizes']['large'] ?? get_template_directory_uri() . 
                     $description = $location['locations_map_description'] ?? '';
                     $from_top    = $location['from_top'] ?? '0';
                     $from_left   = $location['from_left'] ?? '0';
+                    $locationClass = $from_left < 40 ? "locations-map__location locations-map__location--left" : "locations-map__location"
+                        
                 ?>
-                    <div class="locations-map__location" style="top:<?php echo esc_html($from_top); ?>%;left:<?php echo esc_html($from_left); ?>%;">
+                    <div class="<?php echo $locationClass; ?>" style="top:<?php echo esc_html($from_top); ?>%;left:<?php echo esc_html($from_left); ?>%;">
 
                         <?php if ($description) : ?>
                             <div class="locations-map__popup">
