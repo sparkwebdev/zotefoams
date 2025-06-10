@@ -4,7 +4,7 @@ Theme URI: http://underscores.me/
 Author: David Park
 Author URI: http://underscores.me/
 Description: Description
-Version: 2.0.16
+Version: 2.0.17
 Tested up to: 5.4
 Requires PHP: 5.6
 License: GNU General Public License v2 or later
@@ -5168,9 +5168,13 @@ html:has(.zf-history) {
 }
 #years-2010s .zf-history__panel:nth-of-type(2) img:nth-of-type(2) {
   right: -35%;
-  bottom: -10%;
-  max-width: min(60vw, 500px);
-  scale: 0.65;
+  top: 10%;
+  max-width: min(50vw, 300px);
+  scale: 0.9;
+}
+#years-2010s .zf-history__panel:nth-of-type(2) .zf-history__popup-marker {
+  right: 8%;
+  bottom: 40%;
 }
 #years-2010s .zf-history__panel:nth-of-type(3) img:nth-of-type(1) {
   left: -2%;

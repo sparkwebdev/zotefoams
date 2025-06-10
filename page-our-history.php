@@ -59,7 +59,7 @@ $images = [
         "image19-min.jpg",
         "Nike-Trainers-min.png",
         "azote-2000s-03-1-768x576-min.jpg",
-        "ECS-merged2-768x733-min.png",
+        "our_brands_t-fit_hygiene_group_821x1024-min.png",
         "Polish-factory-min.jpg",
         "CA_5931_ZF_May_CA2_0009-min.jpg",
     ]
@@ -237,7 +237,7 @@ $images = [
             <header class="zf-history__panel" data-js-el="scroll-target">
                 <div class="cont-xs zf-history__year-intro h2 is-sticky">
                     <h2 class="font-alt h2">1960s - 1970s</h2>
-                    <h3 class="uppercase h2">Introducing Plastazote®&nbsp;and Evazote® <br />- and the end of rubber</h3>
+                    <h3 class="uppercase h2">Introducing Plastazote<SUP>®</SUP>&nbsp;and Evazote<SUP>®</SUP> <br />- and the end of rubber</h3>
                 </div>
             </header>
 
@@ -246,13 +246,13 @@ $images = [
                     <figure class="zf-history__images">
                         <img src="<?php echo $image_root . $images['60s'][1]; ?>" alt="" />
                         <button class="zf-history__popup-marker" aria-describedby="popup-1960s-01">
-                            <figcaption class="zf-history__popup" role="tooltip" aria-hidden="true" id="popup-1960s-01">Jensen Company specified Plastazote® for its impact/energy absorption.</figcaption>
+                            <figcaption class="zf-history__popup" role="tooltip" aria-hidden="true" id="popup-1960s-01">Jensen Company specified Plastazote<SUP>®</SUP> for its impact/energy absorption.</figcaption>
                         </button>
                     </figure>
                     <div class="zf-history__text text-center fade-in"><div class="zf-history__text-inner">
-                        <p><strong>In 1962, Plastazote® was launched. This now-iconic brand, the foundation of the AZOTE® polyolefin foams, is produced from polyethylene and used in a vast range of applications.</strong></p>
+                        <p><strong>In 1962, Plastazote<SUP>®</SUP> was launched. This now-iconic brand, the foundation of the AZOTE<SUP>®</SUP> polyolefin foams, is produced from polyethylene and used in a vast range of applications.</strong></p>
                         <p>In its infancy, Plastazote was in great demand for medical and healthcare applications, such as neck and body splints, orthotics and limb supports. This was thanks to the purity of the materials, derived from the unique three-stage manufacturing process.</p>
-                        <p>1968 saw the introduction of Evazote® EVA copolymer foam, a further world-class product, boasting additional toughness and resilience.</p>
+                        <p>1968 saw the introduction of Evazote<SUP>®</SUP> EVA copolymer foam, a further world-class product, boasting additional toughness and resilience.</p>
                         <p>Plastazote was specified by famous brands such as the Jensen Company, which used the material for impact and energy absorption in its revered Interceptor.</p>
                     </div></div>
                 </div>
@@ -295,8 +295,8 @@ $images = [
                         </button>
                     </figure>
                     <div class="zf-history__text text-center fade-in"><div class="zf-history__text-inner">
-                        <p><strong>1981, Plastazote® achieved royal recognition when it received the Prince Philip Award for polymers in the service of mankind. The Award was presented by its namesake, a champion of British technology and industry.</strong></p>
-                        <p>The next decade saw continuing growth and success on the global stage, firmly establishing Plastazote and Evazote® as the world's leading technical foam brands.</p>
+                        <p><strong>1981, Plastazote<SUP>®</SUP> achieved royal recognition when it received the Prince Philip Award for polymers in the service of mankind. The Award was presented by its namesake, a champion of British technology and industry.</strong></p>
+                        <p>The next decade saw continuing growth and success on the global stage, firmly establishing Plastazote and Evazote<SUP>®</SUP> as the world's leading technical foam brands.</p>
                         <p>In 1992 a management buyout established Zotefoams Limited; this was followed by a flotation on the London Stock Exchange (ZTF:LON) in 1995, which gave birth to Zotefoams plc.</p>
                         <p>International growth continued following the flotation, with the establishment of a North American sales subsidiary, Zotefoams Inc, to meet rapidly growing demand with local service.</p>
                     </div></div>
@@ -325,7 +325,7 @@ $images = [
                     <div class="zf-history__text text-center fade-in"><div class="zf-history__text-inner">
                         <p><strong>As the new millennium dawned, opportunities and optimism were abundant - but on the night of October 22, 2000, a fire at the Mitcham Road site caused damage running into millions of pounds and destroyed a third of the factory.</strong></p>
                         <p>No cause was ever identified but, as the company rebuilt, safety was, and remains to this day, the primary consideration.</p>
-                        <p>In the aftermath of the fire, the management team, then led by Group CEO David Stirling, reassessed the prospects for the business. The development of the ZOTEK® High-Performance Products (HPP) portfolio traces its origins back to that time, with the decision to leverage the capabilities of the three-stage process for new, advanced materials. These unique materials would meet demanding regulatory and application requirements, using Zotefoams' technology and knowhow.</p>
+                        <p>In the aftermath of the fire, the management team, then led by Group CEO David Stirling, reassessed the prospects for the business. The development of the ZOTEK<SUP>®</SUP> High-Performance Products (HPP) portfolio traces its origins back to that time, with the decision to leverage the capabilities of the three-stage process for new, advanced materials. These unique materials would meet demanding regulatory and application requirements, using Zotefoams' technology and knowhow.</p>
                         <p>Rebuilding in the UK, the company completed new headquarters, manufacturing and R&D buildings.</p>
                     </div></div>
                 </div>
@@ -343,7 +343,7 @@ $images = [
                     </figure>
                     <div class="zf-history__text text-center fade-in"><div class="zf-history__text-inner">
                         <p>In 2001, Zotefoams Inc moved into a purpose-built facility in Kentucky, strategically located for ease of access to major manufacturing hubs in the USA. ZOTEK F 30, produced from PVDF polymer and the first commercial grade in the HPP family, was launched in 2004, followed in 2008 by the first ZOTEK N nylon foam.</p>
-                        <p>Also in 2008, T-TUBES - now T-FIT® - technical insulation range was developed, which harnesses the properties of ZOTEK materials for demanding applications in cleanrooms, aseptic and general industrial areas.</p>
+                        <p>Also in 2008, T-TUBES - now T-FIT<SUP>®</SUP> - technical insulation range was developed, which harnesses the properties of ZOTEK materials for demanding applications in cleanrooms, aseptic and general industrial areas.</p>
                     </div></div>
                 </div>
             </article>
@@ -353,11 +353,11 @@ $images = [
                     <figure class="zf-history__images">
                         <img src="<?php echo $image_root . $images['00s'][4]; ?>" alt="" />
                         <button class="zf-history__popup-marker" aria-describedby="popup-2000s-03">
-                            <figcaption class="zf-history__popup zf-history__popup--alt" role="tooltip" aria-hidden="true" id="popup-2000s-03">MEL was the powerhouse behind Zotefoams’ groundbreaking ReZorce® mono-material barrier packaging range.</figcaption>
+                            <figcaption class="zf-history__popup zf-history__popup--alt" role="tooltip" aria-hidden="true" id="popup-2000s-03">MEL was the powerhouse behind Zotefoams’ groundbreaking ReZorce<SUP>®</SUP> mono-material barrier packaging range.</figcaption>
                         </button>
                     </figure>
                     <div class="zf-history__text text-center fade-in"><div class="zf-history__text-inner">
-                        <p>As well as developing and manufacturing outstanding new products, the company continued to expand its global reach. In 2007, Zotefoams appointed its first distributor in Asia, and in 2013 entered a 50/50 joint venture with the Japanese INOAC Corporation to manufacture and sell AZOTE® polyolefin products in Asia and Australasia.</p>
+                        <p>As well as developing and manufacturing outstanding new products, the company continued to expand its global reach. In 2007, Zotefoams appointed its first distributor in Asia, and in 2013 entered a 50/50 joint venture with the Japanese INOAC Corporation to manufacture and sell AZOTE<SUP>®</SUP> polyolefin products in Asia and Australasia.</p>
                         <p>In 2008 Zotefoams established a stake in Massachusetts-based MuCell Extrusion Technology LLC, a joint venture formed to exploit and license a proprietary microcellular foaming technology for extrusion processes. Four years later and as MuCell Extrusion LLC (MEL), the company became a wholly owned Zotefoams subsidiary.</p>
                     </div></div>
                 </div>
@@ -392,9 +392,12 @@ $images = [
                     <figure class="zf-history__images">
                         <img src="<?php echo $image_root . $images['10s'][3]; ?>" alt="" />
                         <img src="<?php echo $image_root . $images['10s'][4]; ?>" alt="" />
+                        <button class="zf-history__popup-marker" aria-describedby="popup-2010s-00">
+                            <figcaption class="zf-history__popup" role="tooltip" aria-hidden="true" id="popup-2010s-00">T-FIT® Hygiene insulation for aseptic product areas.</figcaption>
+                        </button>
                     </figure>
                     <div class="zf-history__text text-center fade-in"><div class="zf-history__text-inner">
-                        <h4 class="uppercase h4 font-alt">2015 T-fit® Unique Insulation Technology</h4>
+                        <h4 class="uppercase h4 font-alt">2015 T-fit<SUP>®</SUP> Unique Insulation Technology</h4>
                         <p>Alongside the development of outstanding new products, Zotefoams has increased its global presence through new subsidiaries and joint venture partnerships. A 2015 joint venture in China to manufacture and sell the T-FIT insulation range is now wholly owned and, as Zotefoams T-FIT Material Technology (Kunshan) Co Ltd, enjoying considerable success.</p>
                         <p>In Asia and Australasia, AZOTE polyolefin foams are promoted through a joint venture company based in Hong Kong, bringing the benefits of these exceptional materials to manufacturers in the region and notably the automotive industry.</p>
                         <p>In 2018, Zotefoams Inc extended its facility and added extrusion and a high-pressure (HP) autoclave to complement the existing HTLP capabilities at its site, making the USA manufacture and supply of many AZOTE grades a reality. A second HP autoclave came onstream in 2020.</p>

@@ -18,10 +18,7 @@ $slides         = get_sub_field('step_slider_slides');
 		?>
 			<div class="step-slider__slide black-bg white-text">
 				<div class="step-slider__cols">
-					<?php /*
-					<div class="step-slider__image image-cover" style="background-image: url(<?php echo esc_url($image_url); ?>">
-						<img class="step-slider__image" src="<?php echo esc_url($image_url); ?>" alt="<?php echo esc_attr($title); ?>" />
-					</div> */ ?>
+					<img class="step-slider__image" src="<?php echo esc_url($image_url); ?>" alt="<?php echo esc_attr($title); ?>" />
 
 					<div class="step-slider__text">
 						<?php if ($overline) : ?>
