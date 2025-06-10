@@ -28,7 +28,14 @@ else :
 					echo '</div>';
 				}
 
-				the_title('<h1 class="fs-600 fw-semibold margin-b-20">', '</h1>');
+				if (function_exists('get_field')) {
+					$event_name = get_field('event_name');
+					if ($event_name) {
+						echo '<h1 class="fs-600 fw-semibold margin-b-20">' . $event_name . '</h1>';
+					} else {
+						the_title('<h1 class="fs-600 fw-semibold margin-b-20">', '</h1>');
+					}
+				}
 
 				if ('post' === get_post_type()) :
 				?>

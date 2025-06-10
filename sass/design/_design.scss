@@ -142,3 +142,19 @@ a.read-more.hl.arrow:focus::after {
 .split-text ul li + li {
   margin-top: 5px;
 }
+
+/* Events Details */
+.events-details {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  @media screen and (min-width: 768px) {
+    flex-direction: row-reverse;
+    gap: 5%;
+
+    .post-thumbnail {
+      width: 300px;
+      flex-shrink: 0;
+    }
+  }
+}
