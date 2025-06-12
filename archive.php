@@ -108,7 +108,7 @@ if (have_posts()) :
 					endif;
 					?>
 
-					<div class="articles__content <?php post_class($title === 'Case Studies' ? 'padding-40' : ''); ?>">
+					<div <?php post_class($title === 'Case Studies' ? 'articles__content padding-40' : 'articles__content'); ?>>
 						<?php the_title('<h3 class="fs-400 fw-semibold margin-b-20">', '</h3>'); ?>
 
 						<?php if (get_the_excerpt()) : ?>
