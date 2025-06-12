@@ -195,36 +195,6 @@ document.addEventListener('DOMContentLoaded', function () {
     }
   });
 
-  // Our History
-  document.querySelectorAll('.zf-history__popup-marker').forEach(function (button) {
-    button.addEventListener('focus', function() {
-      const tooltip = button.querySelector('.zf-history__popup');
-      if (tooltip) {
-        tooltip.setAttribute('aria-hidden', 'false');
-      }
-    });
-
-    button.addEventListener('blur', function() {
-      const tooltip = button.querySelector('.zf-history__popup');
-      if (tooltip) {
-        tooltip.setAttribute('aria-hidden', 'true');
-      }
-    });
-
-    button.addEventListener('mouseenter', function() {
-      const tooltip = button.querySelector('.zf-history__popup');
-      if (tooltip) {
-        tooltip.setAttribute('aria-hidden', 'false');
-      }
-    });
-
-    button.addEventListener('mouseleave', function() {
-      const tooltip = button.querySelector('.zf-history__popup');
-      if (tooltip) {
-        tooltip.setAttribute('aria-hidden', 'true');
-      }
-    });
-  });
 
 
   /* Component Init - Section List */
@@ -608,6 +578,36 @@ document.addEventListener('DOMContentLoaded', () => {
 
   
 
+  // Our History
+  document.querySelectorAll('.zf-history__popup-marker').forEach(function (button) {
+    button.addEventListener('focus', function() {
+      const tooltip = button.querySelector('.zf-history__popup');
+      if (tooltip) {
+        tooltip.setAttribute('aria-hidden', 'false');
+      }
+    });
+
+    button.addEventListener('blur', function() {
+      const tooltip = button.querySelector('.zf-history__popup');
+      if (tooltip) {
+        tooltip.setAttribute('aria-hidden', 'true');
+      }
+    });
+
+    button.addEventListener('mouseenter', function() {
+      const tooltip = button.querySelector('.zf-history__popup');
+      if (tooltip) {
+        tooltip.setAttribute('aria-hidden', 'false');
+      }
+    });
+
+    button.addEventListener('mouseleave', function() {
+      const tooltip = button.querySelector('.zf-history__popup');
+      if (tooltip) {
+        tooltip.setAttribute('aria-hidden', 'true');
+      }
+    });
+  });
 
 (() => {
   const SCROLL_PROPERTY = '--scroll-y';
@@ -619,7 +619,8 @@ document.addEventListener('DOMContentLoaded', () => {
   const visibleSectionIds = new Set();
   let navLinks;
   let scrollTargetElements;
-  let lastActiveId = null; // ← Track current section for URL updates
+  let lastActiveId = null;
+  // let dots = [];
 
   const updateScrollAnimations = (currentScrollY) => {
     if (!scrollTargetElements?.length) return;
@@ -661,6 +662,13 @@ document.addEventListener('DOMContentLoaded', () => {
     document.documentElement.style.setProperty(SCROLL_PROPERTY, `${currentScrollY}px`);
     updateScrollAnimations(currentScrollY);
     scrollTicking = false;
+    const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+    const scrollPercent = (currentScrollY / docHeight) * 100;
+
+    const progressBar = document.getElementById('progress-bar');
+    if (progressBar) {
+      progressBar.style.width = `${scrollPercent}%`;
+    }
   };
 
   const onScroll = () => {
@@ -706,6 +714,34 @@ document.addEventListener('DOMContentLoaded', () => {
       lastActiveId = bestCandidateId;
     }
   };
+  // 🆕 Custom smooth scrolling for in-page anchor links
+  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function (e) {
+      const targetId = this.getAttribute('href').substring(1);
+      const targetElement = document.getElementById(targetId);
+      if (!targetElement) return;
+
+      e.preventDefault();
+
+      // Temporarily disable scroll snap
+      const scrollContainer = document.documentElement;
+      scrollContainer.style.scrollSnapType = 'none';
+
+      // Adjust for any fixed/sticky headers if needed
+      const yOffset = -80; // tweak this value as needed
+      const y = targetElement.getBoundingClientRect().top + window.pageYOffset + yOffset;
+
+      window.scrollTo({ top: y, behavior: 'smooth' });
+
+      // Re-enable scroll snap after a short delay
+      setTimeout(() => {
+        scrollContainer.style.scrollSnapType = ''; // fallback to stylesheet-defined value
+      }, 500); // match your smooth scroll duration
+
+      // Update URL without jump
+      history.replaceState(null, '', `#${targetId}`);
+    });
+  });
 
   const handleSectionIntersection = (entries) => {
     let changed = false;
@@ -727,19 +763,37 @@ document.addEventListener('DOMContentLoaded', () => {
     if (changed) refreshActiveNavLinks();
   };
 
-  const childElementVisibilityObserver = new IntersectionObserver(
-    (entries) => {
-      entries.forEach(entry => {
-        entry.target.classList.toggle('is-visible', entry.isIntersecting);
-      });
-    },
-    { threshold: 0.6 }
-  );
+  childElementVisibilityObserver = new IntersectionObserver(
+  (entries) => {
+    entries.forEach(entry => {
+    entry.target.classList.toggle('is-visible', entry.isIntersecting);
+
+    // // Find index of this entry.target in scrollTargetElements
+    // const index = Array.from(scrollTargetElements).indexOf(entry.target);
+
+    // if (index !== -1) {
+    //   dots[index].classList.toggle('is-active', entry.isIntersecting);
+    // }
+  });
+
+  },
+  { threshold: 0.6 }
+);
 
   const initializeApp = () => {
     navLinks = document.querySelectorAll('nav[aria-label="Timeline Navigation"] a');
     scrollTargetElements = document.querySelectorAll('[data-js-el="scroll-target"]');
     const mainSections = document.querySelectorAll('div.zf-history__years > section[id]');
+
+    // const indicatorContainer = document.getElementById('panel-indicators');
+
+    // // Create dots
+    // Array.from(scrollTargetElements).forEach(() => {
+    //   const dot = document.createElement('div');
+    //   dot.classList.add('dot');
+    //   indicatorContainer.appendChild(dot);
+    //   dots.push(dot);
+    // });
 
     if (scrollTargetElements.length > 0) {
       scrollTargetElements.forEach(el => childElementVisibilityObserver.observe(el));

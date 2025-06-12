@@ -18,6 +18,14 @@
   align-items: center;
   border-radius: 0;
   transition: all 0.3s;
+
+  &:focus-visible {
+    text-decoration: underline;
+
+    .toggle-icon {
+      text-decoration: none;
+    }
+  }
 }
 
 @media screen and (max-width: 767px) {

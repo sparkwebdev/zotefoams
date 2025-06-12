@@ -313,6 +313,7 @@ if (isTouchDevice) {
       closeAll();
       siteNav.classList.remove("toggled");
       button.setAttribute("aria-expanded", "false");
+      document.body.classList.toggle("no-scroll", siteNav.classList.contains("toggled")); // toggle no-scroll on body
     }
   });
 

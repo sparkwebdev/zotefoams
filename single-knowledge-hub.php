@@ -26,30 +26,38 @@ while (have_posts()) : the_post();
 		</div>
 	</header>
 
-	<div class="text-block cont-m padding-t-b-100 theme-none">
-		<div class="text-block__inner">
-			<p>Knowledge Powered By Zotefoams</p>
-			<?php if (has_excerpt()) : ?>
-				<div class="fs-600 fw-semibold margin-t-20">
-					<p class="lead-text"><?php echo esc_html(get_the_excerpt()); ?></p>
-				</div>
-			<?php endif; ?>
+	<?php
+	if (post_password_required()) :
+
+		echo get_the_password_form();
+
+	else : ?>
+
+		<div class="text-block cont-m padding-t-b-100 theme-none">
+			<div class="text-block__inner">
+				<p>Knowledge Powered By Zotefoams</p>
+				<?php if (has_excerpt()) : ?>
+					<div class="fs-600 fw-semibold margin-t-20">
+						<p class="lead-text"><?php echo esc_html(get_the_excerpt()); ?></p>
+					</div>
+				<?php endif; ?>
+			</div>
 		</div>
-	</div>
 
 <?php
-	$children = get_pages(array(
-		'child_of'    => get_the_ID(),
-		'post_type'   => 'knowledge-hub',
-		'post_status' => 'publish',
-	));
+		$children = get_pages(array(
+			'child_of'    => get_the_ID(),
+			'post_type'   => 'knowledge-hub',
+			'post_status' => 'publish',
+		));
 
-	if (! empty($children)) {
-		get_template_part('template-parts/content', 'knowledge-hub-section-technical');
-	} else {
-		get_template_part('template-parts/content', 'knowledge-hub-section');
-	}
+		if (! empty($children)) {
+			get_template_part('template-parts/content', 'knowledge-hub-section-technical');
+		} else {
+			get_template_part('template-parts/content', 'knowledge-hub-section');
+		}
 
+	endif;
 endwhile;
 
 get_footer();

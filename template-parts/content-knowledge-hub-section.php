@@ -1,13 +1,13 @@
 <?php
 // Toggle these flags to show/hide filters & columns.
 $show_categories = true; // Should always be true.
+$isTechnical = get_the_title($post->post_parent) == 'Technical Literature';
 $show_categories_filter = get_the_title($post->post_parent) == 'Technical Literature' ? false : true;
 $show_categories_column = true;
 $show_brands = true;
 $show_brands_filter = get_the_title($post->post_parent) == 'Technical Literature' ? true : false;
 $show_brands_column = false;
 $has_multiple_filters = $show_categories_filter && $show_brands_filter;
-
 // Retrieve the repeater field.
 $documents_list = get_field('documents_list');
 
@@ -38,7 +38,22 @@ if ($documents_list) {
                 $cat_image = get_field('category_image', 'category_' . $term->term_id);
                 $thumbnail_url = $cat_image ? wp_get_attachment_image_url($cat_image, 'small') : '';
                 if (! $thumbnail_url) {
-                    $thumbnail_url = get_template_directory_uri() . '/images/icon-01.svg';
+                    if ($isTechnical) {
+                        $title = get_the_title($post);
+                        switch ($title) {
+                            case 'Product Information Sheets':
+                                $thumbnail_url = get_template_directory_uri() . '/images/icon-22.svg';
+                                break;
+                            case 'Technical Information Sheets':
+                                $thumbnail_url = get_template_directory_uri() . '/images/icon-03.svg';
+                                break;
+                            case 'Safety Information Sheets':
+                                $thumbnail_url = get_template_directory_uri() . '/images/icon-04.svg';
+                                break;
+                        }
+                    } else {
+                        $thumbnail_url = get_template_directory_uri() . '/images/icon-01.svg';
+                    }
                 }
             }
         }
