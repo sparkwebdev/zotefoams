@@ -40,7 +40,7 @@ $speakers         = get_field('event_speakers');
 <?php endif; ?>
 
 <?php if ($registration_url && !$playback_url) : ?>
-    <div class="event-register margin-t-40" id="event-register">
+    <div class="event-register padding-t-40" id="event-register">
         <h2 class="fs400 ">Register to attend<?php if ($name) { echo " '" . esc_html($name) . "'"; }  ?></h2>
         <div class="padding-30 margin-t-20 margin-b-20 light-grey-bg">
             <iframe width="100%" height="560" frameborder="0" src="<?php echo $registration_url; ?>" title="<?php echo $name ? $name : "Zotefoams Webinar"; ?> | Zotefoams Plc"></iframe>
