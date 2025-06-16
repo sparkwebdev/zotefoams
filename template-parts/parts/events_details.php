@@ -24,7 +24,6 @@ $category_slug = '';
 if ( ! empty( $categories ) ) {
     $category_slug = $categories[0]->slug;
 }
-
 ?>
     <div class="events-details event-details--<?php echo $category_slug; ?> padding-30 margin-t-b-40 light-grey-bg">
         <?php /*if ($event_name) : ?>
@@ -75,7 +74,7 @@ if ( ! empty( $categories ) ) {
                 <?php if ($playback_url) : ?>
                     <p class="margin-t-20"><a class="btn black outline" href="<?php echo esc_url($playback_url); ?>" target="_blank" rel="noopener">Watch video</a></p>
                 <?php elseif ($registration_url) : ?>
-                    <p class="margin-t-20"><a class="btn black outline" href="<?php echo esc_url($registration_url); ?>" target="_blank" rel="noopener">Register here</a></p>
+                    <p class="margin-t-20"><a class="btn black outline" href="#event-register" rel="noopener">Register here</a></p>
                 <?php endif; ?>
             </div>
         </div>
