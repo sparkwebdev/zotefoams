@@ -16,16 +16,16 @@ $speakers         = get_field('event_speakers');
                     <div class="event-speakers__speaker">
                         <?php 
                         $image = $speaker['event_speaker_image'] ?? null;
-                        $name  = $speaker['event_speaker_name'] ?? '';
+                        $speakersName  = $speaker['event_speaker_name'] ?? '';
                         $role  = $speaker['event_speaker_role'] ?? '';
 
                         $image_url = $image ? $image['sizes']['thumbnail-square'] : get_template_directory_uri() . '/images/placeholder-thumbnail-square.png';
 
                         if ($image_url) :
-                            echo '<img src="' . esc_url($image_url) . '" alt="' . $name . ' profile" />';
+                            echo '<img src="' . esc_url($image_url) . '" alt="' . $speakersName . ' profile" />';
                         endif;
-                        if ($name) :
-                            echo '<h3 class="fs-300 fw-regular">' . $name . '</h3>';
+                        if ($speakersName) :
+                            echo '<h3 class="fs-300 fw-regular">' . $speakersName . '</h3>';
                         endif;
                         if ($role) :
                             echo '<h4 class="fs-300 fw-regular grey-text">' . $role . '</h4>';

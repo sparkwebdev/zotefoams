@@ -249,48 +249,6 @@
             "placeholder": "e.g. https:\/\/www.youtube.com\/watch?v=c8NF1_gySTY"
         },
         {
-            "key": "field_68501b697e3a5",
-            "label": "Long description",
-            "name": "event_long_description",
-            "aria-label": "",
-            "type": "wysiwyg",
-            "instructions": "",
-            "required": 0,
-            "conditional_logic": 0,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "default_value": "",
-            "allow_in_bindings": 0,
-            "tabs": "all",
-            "toolbar": "basic",
-            "media_upload": 0,
-            "delay": 0
-        },
-        {
-            "key": "field_68501b8b7e3a6",
-            "label": "Agenda",
-            "name": "event_agenda",
-            "aria-label": "",
-            "type": "wysiwyg",
-            "instructions": "",
-            "required": 0,
-            "conditional_logic": 0,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "default_value": "",
-            "allow_in_bindings": 0,
-            "tabs": "all",
-            "toolbar": "basic",
-            "media_upload": 0,
-            "delay": 0
-        },
-        {
             "key": "field_684fefef9c8fe",
             "label": "Speakers",
             "name": "event_speakers",
@@ -421,5 +379,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1750080696
+    "modified": 1750086478
 }
