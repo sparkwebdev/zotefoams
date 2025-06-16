@@ -147,21 +147,30 @@ a.read-more.hl.arrow:focus::after {
 }
 
 /* Events Details */
-.events-details {
-  display: flex;
-  flex-direction: column;
+.event-details {
+  img {
+    display: block;
+    margin-bottom: 1px;
+  }
+}
+
+.event-speakers__list {
+  display: grid;
   gap: 20px;
-  @media screen and (min-width: 768px) {
-    flex-direction: row-reverse;
+
+  img {
+    display: block;
+    width: 100%;
+    margin-bottom: 10px;
+  }
+
+  @media screen and (min-width: 480px) {
+    grid-template-columns: repeat(2, 1fr);
     gap: 5%;
+  }
 
-    .post-thumbnail {
-      width: 300px;
-      flex-shrink: 0;
-    }
-
-    &__description {
-      flex-grow: 1;
-    }
+  @media screen and (min-width: 768px) {
+    grid-template-columns: repeat(auto-fill, minmax(0, 320px));
+    gap: 2.5%;
   }
 }

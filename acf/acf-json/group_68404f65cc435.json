@@ -47,7 +47,7 @@
             "name": "event_short_description",
             "aria-label": "",
             "type": "textarea",
-            "instructions": "Enter a new name if you want a different name to appear in the",
+            "instructions": "",
             "required": 0,
             "conditional_logic": 0,
             "wrapper": {
@@ -106,6 +106,27 @@
             "return_format": "Ymd",
             "first_day": 1,
             "allow_in_bindings": 0
+        },
+        {
+            "key": "field_684be4216b2a1",
+            "label": "Time",
+            "name": "event_time",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "maxlength": "",
+            "allow_in_bindings": 0,
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
         },
         {
             "key": "field_6840514309ce9",
@@ -171,11 +192,11 @@
             "append": ""
         },
         {
-            "key": "field_6840517e09cec",
-            "label": "Registration URL",
-            "name": "event_registration_url",
+            "key": "field_684be3fe6b2a0",
+            "label": "Cost",
+            "name": "event_cost",
             "aria-label": "",
-            "type": "url",
+            "type": "text",
             "instructions": "",
             "required": 0,
             "conditional_logic": 0,
@@ -185,8 +206,29 @@
                 "id": ""
             },
             "default_value": "",
+            "maxlength": "",
             "allow_in_bindings": 0,
-            "placeholder": ""
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_6840517e09cec",
+            "label": "Registration URL",
+            "name": "event_registration_url",
+            "aria-label": "",
+            "type": "url",
+            "instructions": "Livestorm URL",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "allow_in_bindings": 0,
+            "placeholder": "e.g. https:\/\/app.livestorm.co\/p\/4ba28fcd-5fed-44d6-b0e0-8b027ddb9b91\/form"
         },
         {
             "key": "field_684051a709ced",
@@ -194,6 +236,24 @@
             "name": "event_playback_url",
             "aria-label": "",
             "type": "url",
+            "instructions": "Youtube URL",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "allow_in_bindings": 0,
+            "placeholder": "e.g. https:\/\/www.youtube.com\/watch?v=c8NF1_gySTY"
+        },
+        {
+            "key": "field_68501b697e3a5",
+            "label": "Long description",
+            "name": "event_long_description",
+            "aria-label": "",
+            "type": "wysiwyg",
             "instructions": "",
             "required": 0,
             "conditional_logic": 0,
@@ -204,7 +264,126 @@
             },
             "default_value": "",
             "allow_in_bindings": 0,
-            "placeholder": ""
+            "tabs": "all",
+            "toolbar": "basic",
+            "media_upload": 0,
+            "delay": 0
+        },
+        {
+            "key": "field_68501b8b7e3a6",
+            "label": "Agenda",
+            "name": "event_agenda",
+            "aria-label": "",
+            "type": "wysiwyg",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "allow_in_bindings": 0,
+            "tabs": "all",
+            "toolbar": "basic",
+            "media_upload": 0,
+            "delay": 0
+        },
+        {
+            "key": "field_684fefef9c8fe",
+            "label": "Speakers",
+            "name": "event_speakers",
+            "aria-label": "",
+            "type": "repeater",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "layout": "table",
+            "pagination": 0,
+            "min": 0,
+            "max": 0,
+            "collapsed": "",
+            "button_label": "Add Speaker",
+            "rows_per_page": 20,
+            "sub_fields": [
+                {
+                    "key": "field_684ff01d9c901",
+                    "label": "Image",
+                    "name": "event_speaker_image",
+                    "aria-label": "",
+                    "type": "image",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "return_format": "array",
+                    "library": "all",
+                    "min_width": "",
+                    "min_height": "",
+                    "min_size": "",
+                    "max_width": "",
+                    "max_height": "",
+                    "max_size": "",
+                    "mime_types": "",
+                    "allow_in_bindings": 0,
+                    "preview_size": "thumbnail",
+                    "parent_repeater": "field_684fefef9c8fe"
+                },
+                {
+                    "key": "field_684ff0029c8ff",
+                    "label": "Name",
+                    "name": "event_speaker_name",
+                    "aria-label": "",
+                    "type": "text",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "maxlength": "",
+                    "allow_in_bindings": 0,
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": "",
+                    "parent_repeater": "field_684fefef9c8fe"
+                },
+                {
+                    "key": "field_684ff0149c900",
+                    "label": "Role",
+                    "name": "event_speaker_role",
+                    "aria-label": "",
+                    "type": "text",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "maxlength": "",
+                    "allow_in_bindings": 0,
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": "",
+                    "parent_repeater": "field_684fefef9c8fe"
+                }
+            ]
         }
     ],
     "location": [
@@ -242,5 +421,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1749215134
+    "modified": 1750080696
 }

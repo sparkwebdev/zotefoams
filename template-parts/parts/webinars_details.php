@@ -11,6 +11,8 @@ $stand_number          = get_field('event_stand_number');
 $cost                  = get_field('event_cost');
 $registration_url      = get_field('event_registration_url');
 $playback_url          = get_field('event_playback_url');
+$long_description      = get_field('event_long_description');
+$agenda                = get_field('event_agenda');
 
 if (has_post_thumbnail()) {
     $image_url = get_the_post_thumbnail_url(get_the_ID(), 'large');
@@ -77,6 +79,23 @@ if (has_post_thumbnail()) {
             </div>
         </div>
     </div>
+
+    <?php if ($long_description || $agenda) : ?>
+        <div class="split-text cont-m padding-t-100 grey-text theme-none">
+            <?php if ($short_description) : ?>
+                <div class="split-text__title margin-b-20 fs-600 fw-semibold">
+                    <?php echo wp_kses_post($long_description); ?>
+                </div>
+            <?php endif; ?>
+
+            <?php if ($agenda) : ?>
+                <div class="split-text__content grey-text fs-300">
+                    <h3 class="fs-300 blue-text uppercase">Agenda</h3>
+                    <?php echo do_shortcode($agenda);  ?>
+                </div>
+            <?php endif; ?>
+        </div>
+    <?php endif; ?>
 
     <div class="cont-xs padding-t-b-40">
 <?php endif; ?>
