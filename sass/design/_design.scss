@@ -100,7 +100,10 @@ footer .site-branding img {
 .single .entry-content h3:not([class]),
 .single .entry-content h4:not([class]),
 .single .entry-content h5:not([class]),
-.single .entry-content h6:not([class]) {
+.single .entry-content h6:not([class]),
+.single .entry-content ul:not([class]),
+.single .entry-content ol:not([class]),
+.single .entry-content .wp-block-list {
   margin: revert;
 }
 

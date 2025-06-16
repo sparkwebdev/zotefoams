@@ -4,7 +4,7 @@ Theme URI: http://underscores.me/
 Author: David Park
 Author URI: http://underscores.me/
 Description: Description
-Version: 2.1.3
+Version: 2.1.4
 Tested up to: 5.4
 Requires PHP: 5.6
 License: GNU General Public License v2 or later
@@ -1837,14 +1837,14 @@ footer div.wpforms-container.wpforms-container-full:not(:empty) {
   border-bottom: solid 1px var(--color-text-light);
   --color-link-hover: #3b82f6;
   position: relative;
+  background-color: #fff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .has-sticky-header .site-header {
   position: sticky;
   top: 0;
   z-index: 1000;
-  background-color: #fff;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .site-header .site-branding {
@@ -3494,7 +3494,10 @@ footer .site-branding img {
 .single .entry-content h3:not([class]),
 .single .entry-content h4:not([class]),
 .single .entry-content h5:not([class]),
-.single .entry-content h6:not([class]) {
+.single .entry-content h6:not([class]),
+.single .entry-content ul:not([class]),
+.single .entry-content ol:not([class]),
+.single .entry-content .wp-block-list {
   margin: revert;
 }
 
@@ -3597,7 +3600,7 @@ a.read-more.hl.arrow:focus::after {
 }
 
 .swiper-image .swiper-inner h1 {
-  max-width: 1100px;
+  max-width: 1200px;
 }
 
 .swiper-image .swiper-inner p {

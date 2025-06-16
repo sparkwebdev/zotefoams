@@ -17,6 +17,8 @@ $breakpoint-large: 68rem;
   border-bottom: solid 1px var(--color-text-light);
   --color-link-hover: #3b82f6;
   position: relative;
+  background-color: #fff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .has-sticky-header {
@@ -24,8 +26,6 @@ $breakpoint-large: 68rem;
     position: sticky;
     top: 0;
     z-index: 1000;
-    background-color: #fff;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   }
 }
 
