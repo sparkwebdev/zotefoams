@@ -9,7 +9,7 @@ $speakers         = get_field('event_speakers');
 <?php if ($speakers) : ?>
     </div><?php // close outer container to go full width ?>
     <div class="event-speakers padding-t-b-70 light-grey-bg">
-        <div class="cont-m">
+        <div class="cont-xs">
             <h2>Speakers</h2>
             <div class="event-speakers__list margin-t-40">
                 <?php foreach ($speakers as $speaker) : ?>
