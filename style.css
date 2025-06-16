@@ -3544,9 +3544,32 @@ a.read-more.hl.arrow:focus::after {
 }
 
 /* Events Details */
-.event-details img {
+.events-details img {
   display: block;
-  margin-bottom: 1px;
+  margin-bottom: 20px;
+}
+
+/* Events Details - Events */
+.event-details--events {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+.event-details--events img {
+  margin-bottom: 0;
+}
+@media screen and (min-width: 768px) {
+  .event-details--events {
+    flex-direction: row-reverse;
+    gap: 5%;
+  }
+  .event-details--events .post-thumbnail {
+    width: 300px;
+    flex-shrink: 0;
+  }
+  .event-details--events__description {
+    flex-grow: 1;
+  }
 }
 
 .event-speakers__list {

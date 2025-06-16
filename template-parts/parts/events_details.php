@@ -16,8 +16,17 @@ $playback_url          = get_field('event_playback_url');
 <?php if (
     $event_name || $short_description || $start_date || $end_date || $time || 
     $venue || $country || $stand_number || $cost || $registration_url || $playback_url
-) : ?>
-    <div class="events-details padding-30 margin-t-b-40 light-grey-bg">
+    
+) : 
+
+$categories = get_the_category();
+$category_slug = '';
+if ( ! empty( $categories ) ) {
+    $category_slug = $categories[0]->slug;
+}
+
+?>
+    <div class="events-details event-details--<?php echo $category_slug; ?> padding-30 margin-t-b-40 light-grey-bg">
         <?php /*if ($event_name) : ?>
             <div class="events-details__title margin-b-20 fs-600 fw-semibold grey-text">
                 <?php echo esc_html($event_name); ?>
@@ -30,7 +39,7 @@ $playback_url          = get_field('event_playback_url');
         ?>
         <div class="events-details__description">
             <?php if ($short_description) : ?>
-                <div class="grey-text fs-300 margin-t-20 margin-b-20">
+                <div class="grey-text fs-300 margin-b-20">
                     <?php echo wp_kses_post($short_description); ?>
                 </div>
             <?php endif; ?>
