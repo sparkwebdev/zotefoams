@@ -45,6 +45,6 @@ $speakers         = get_field('event_speakers');
         <div class="padding-30 margin-t-20 margin-b-20 light-grey-bg">
             <iframe width="100%" height="560" frameborder="0" src="<?php echo $registration_url; ?>" title="<?php echo $name ? $name : "Zotefoams Webinar"; ?> | Zotefoams Plc"></iframe>
         </div>
-        <p>For more information, please contact <a href="mailto:marketing@zotefoams.com">marketing@zotefoams.com</a>.</p>
+        <p class="light-grey-bg padding-30 fs-400" style="border-left: solid 3px #3b82f6;">For more information, please contact <strong><a href="mailto:marketing@zotefoams.com">marketing@zotefoams.com</strong></a>.</p>
     </div>
 <?php endif; ?>

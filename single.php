@@ -47,8 +47,10 @@ else :
 							break;
 						}
 					}
-					if ($has_events_or_webinars) {
+					if ($category->name === 'Events') {
 						get_template_part('template-parts/parts/events_details');
+					} elseif ($category->name === 'Webinars') {
+						get_template_part('template-parts/parts/webinars_details');
 					} else {
 						echo '<div class="margin-b-20 grey-text">';
 						zotefoams_posted_on();
