@@ -25,6 +25,28 @@
             "rows_per_page": 20,
             "sub_fields": [
                 {
+                    "key": "field_6845d11bdb1c4",
+                    "label": "Video?",
+                    "name": "video",
+                    "aria-label": "",
+                    "type": "true_false",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "8",
+                        "class": "",
+                        "id": ""
+                    },
+                    "message": "",
+                    "default_value": 0,
+                    "allow_in_bindings": 0,
+                    "ui_on_text": "",
+                    "ui_off_text": "",
+                    "ui": 1,
+                    "parent_repeater": "field_67c58d6ffce9f"
+                },
+                {
                     "key": "field_67c58d6ffcea0",
                     "label": "Document File",
                     "name": "file",
@@ -32,9 +54,17 @@
                     "type": "file",
                     "instructions": "",
                     "required": 0,
-                    "conditional_logic": 0,
+                    "conditional_logic": [
+                        [
+                            {
+                                "field": "field_6845d11bdb1c4",
+                                "operator": "!=",
+                                "value": "1"
+                            }
+                        ]
+                    ],
                     "wrapper": {
-                        "width": "32",
+                        "width": "30",
                         "class": "",
                         "id": ""
                     },
@@ -47,6 +77,36 @@
                     "parent_repeater": "field_67c58d6ffce9f"
                 },
                 {
+                    "key": "field_6845d17913b00",
+                    "label": "Video URL",
+                    "name": "video_url",
+                    "aria-label": "",
+                    "type": "text",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": [
+                        [
+                            {
+                                "field": "field_6845d11bdb1c4",
+                                "operator": "==",
+                                "value": "1"
+                            }
+                        ]
+                    ],
+                    "wrapper": {
+                        "width": "30",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "maxlength": "",
+                    "allow_in_bindings": 0,
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": "",
+                    "parent_repeater": "field_67c58d6ffce9f"
+                },
+                {
                     "key": "field_67c7537462bf4",
                     "label": "Category",
                     "name": "category",
@@ -56,7 +116,7 @@
                     "required": 0,
                     "conditional_logic": 0,
                     "wrapper": {
-                        "width": "26",
+                        "width": "22",
                         "class": "",
                         "id": ""
                     },
@@ -113,21 +173,21 @@
                         ]
                     ],
                     "wrapper": {
-                        "width": "28",
+                        "width": "26",
                         "class": "",
                         "id": ""
                     },
                     "choices": {
-                        "604": "AZOTE",
-                        "618": "— Supazote",
-                        "620": "— Evazote",
-                        "622": "— Plastazote",
-                        "606": "Zotek",
-                        "612": "— Zotek F",
-                        "614": "— Zotek F OSU &amp; HT Aviation &amp; Aerospace",
-                        "616": "— Zotek T",
-                        "608": "Ecozote",
-                        "610": "T-Fit"
+                        "604": "AZOTE®",
+                        "620": "— Evazote®",
+                        "622": "— Plastazote®",
+                        "618": "— Supazote®",
+                        "606": "ZOTEK®",
+                        "612": "— ZOTEK® F",
+                        "614": "— ZOTEK® F OSU",
+                        "616": "— ZOTEK® T",
+                        "608": "Ecozote®",
+                        "610": "T-FIT®"
                     },
                     "default_value": [],
                     "return_format": "value",
@@ -160,5 +220,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1741220601
+    "modified": 1749406113
 }

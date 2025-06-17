@@ -17,6 +17,8 @@ $breakpoint-large: 68rem;
   border-bottom: solid 1px var(--color-text-light);
   --color-link-hover: #3b82f6;
   position: relative;
+  background-color: #fff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .has-sticky-header {
@@ -24,8 +26,6 @@ $breakpoint-large: 68rem;
     position: sticky;
     top: 0;
     z-index: 1000;
-    background-color: #fff;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   }
 }
 
@@ -37,7 +37,7 @@ $breakpoint-large: 68rem;
 .site-header .site-branding a {
   display: block;
   width: fit-content;
-  max-width: calc(90% - 40px);
+  max-width: 174px;
 }
 
 .site-header .site-branding img {
@@ -638,10 +638,7 @@ $breakpoint-large: 68rem;
 
   body.no-scroll {
     overflow: hidden;
-    position: fixed;
-    width: 100%;
-    top: 0;
-    left: 0;
+    position: relative;
 
     .main-navigation.toggled {
       padding-top: 0;
@@ -653,15 +650,29 @@ $breakpoint-large: 68rem;
         left: 0;
         z-index: 1000;
         background-color: #fff;
-        box-shadow: 0 20px 20px rgba(0, 0, 0, 0.15);
+        box-shadow: 0 20px 20px rgba(0, 0, 0, 0.35);
         overflow-y: auto;
         padding-top: 20px;
-        min-height: 50vh;
+        padding-bottom: 30px;
+        // min-height: 50vh;
         max-height: calc(100vh - var(--header-height));
         @supports (height: 100dvh) {
           max-height: calc(100dvh - var(--header-height));
         }
       }
+
+        &::before {
+          content: "";
+          display: block;
+          background: rgba(0, 0, 0, 0.9);
+          opacity: 0.85;
+          position: fixed;
+          bottom: 0;
+          top: var(--header-height);
+          left: 0;
+          right: 0;
+          pointer-events: none;
+        }
     }
   }
 

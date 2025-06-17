@@ -7,6 +7,11 @@
  */
 
 get_header();
+if (post_password_required()) :
+
+	echo get_the_password_form();
+
+else :
 ?>
 
 <?php while (have_posts()) : the_post(); ?>
@@ -23,7 +28,14 @@ get_header();
 					echo '</div>';
 				}
 
-				the_title('<h1 class="fs-600 fw-semibold margin-b-20">', '</h1>');
+				if (function_exists('get_field')) {
+					$event_name = get_field('event_name');
+					if ($event_name) {
+						echo '<h1 class="fs-600 fw-semibold margin-b-20">' . $event_name . '</h1>';
+					} else {
+						the_title('<h1 class="fs-600 fw-semibold margin-b-20">', '</h1>');
+					}
+				}
 
 				if ('post' === get_post_type()) :
 				?>
@@ -35,8 +47,10 @@ get_header();
 							break;
 						}
 					}
-					if ($has_events_or_webinars) {
+					if ($category->name === 'Events') {
 						get_template_part('template-parts/parts/events_details');
+					} elseif ($category->name === 'Webinars') {
+						get_template_part('template-parts/parts/webinars_details');
 					} else {
 						echo '<div class="margin-b-20 grey-text">';
 						zotefoams_posted_on();
@@ -64,6 +78,12 @@ get_header();
 				));
 				?>
 			</div>
+
+			<?php
+			if ($has_events_or_webinars) {
+				get_template_part('template-parts/parts/events_speakers_registration');
+			} 
+			?>
 		</article>
 
 		<?php
@@ -103,9 +123,12 @@ get_header();
 			</div>
 		</div>
 	</div>
-<?php endwhile; ?>
+<?php endwhile;
+?>
 
 <hr class="separator" />
+<?php 
+endif; ?>
 
 <?php get_template_part('template-parts/latest-posts'); ?>
 

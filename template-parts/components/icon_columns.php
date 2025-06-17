@@ -49,7 +49,7 @@ if (!empty($columns)) {
 			?>
 				<div>
 					<?php if ($icon): ?>
-						<img class="margin-b-15" src="<?php echo esc_url($icon['url']); ?>" alt="<?php echo esc_attr($title); ?>" />
+						<img src="<?php echo esc_url($icon['url']); ?>" alt="<?php echo esc_attr($title); ?>" />
 					<?php endif; ?>
 					<?php if ($title): ?>
 						<p class="fs-400 fw-bold margin-b-20"><?php echo esc_html($title); ?></p>

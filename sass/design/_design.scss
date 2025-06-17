@@ -11,6 +11,9 @@
 @use "common/file-list";
 @use "common/text-banner.scss";
 
+/* Mailchimp */
+@use "common/mailchimp.scss";
+
 html {
   scroll-padding-top: calc(var(--header-height) + var(--scroll-padding-top, 30px));
   scroll-behavior: smooth;
@@ -65,6 +68,16 @@ footer .site-branding img {
   width: 174px;
 }
 
+.custom-password-form__inputs {
+  display: flex;
+  align-items: center;
+  gap: 0.35em;
+}
+
+.custom-password-form .custom-password-form__password {
+  padding: 10px;
+}
+
 .tag {
   color: var(--color-text);
 }
@@ -87,7 +100,10 @@ footer .site-branding img {
 .single .entry-content h3:not([class]),
 .single .entry-content h4:not([class]),
 .single .entry-content h5:not([class]),
-.single .entry-content h6:not([class]) {
+.single .entry-content h6:not([class]),
+.single .entry-content ul:not([class]),
+.single .entry-content ol:not([class]),
+.single .entry-content .wp-block-list {
   margin: revert;
 }
 
@@ -131,4 +147,56 @@ a.read-more.hl.arrow:focus::after {
 .text-block ul li + li,
 .split-text ul li + li {
   margin-top: 5px;
+}
+
+/* Events Details */
+.events-details {
+  img {
+    display: block;
+    margin-bottom: 20px;
+  }
+}
+
+/* Events Details - Events */
+.event-details--events {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+
+  img {
+    margin-bottom: 0;
+  }
+  @media screen and (min-width: 768px) {
+    flex-direction: row-reverse;
+    gap: 5%;
+
+    .post-thumbnail {
+      width: 300px;
+      flex-shrink: 0;
+    }
+
+    &__description {
+      flex-grow: 1;
+    }
+  }
+}
+
+.event-speakers__list {
+  display: grid;
+  gap: 20px;
+
+  img {
+    display: block;
+    width: 100%;
+    margin-bottom: 10px;
+  }
+
+  @media screen and (min-width: 480px) {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 5%;
+  }
+
+  @media screen and (min-width: 768px) {
+    grid-template-columns: repeat(3, 1fr);
+  }
 }
