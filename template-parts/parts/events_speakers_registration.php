@@ -1,5 +1,8 @@
 <?php
 // Get ACF fields
+if (!function_exists('get_field')) {
+    return;
+}
 $name             = get_field('event_name');
 $registration_url = get_field('event_registration_url');
 $playback_url     = get_field('event_playback_url');

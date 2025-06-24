@@ -1,5 +1,8 @@
 <?php
 // Get ACF fields
+if (!function_exists('get_field')) {
+    return;
+}
 $event_name            = get_field('event_name');
 $short_description     = get_field('event_short_description');
 $start_date            = get_field('event_start_date');

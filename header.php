@@ -41,11 +41,13 @@
 			<div class="site-branding">
 				<a href="<?php echo esc_url(home_url('/')); ?>">
 					<?php
-					$brand_logo = get_field('brand_logo', 'option');
-					if ($brand_logo) :
+					if (function_exists('get_field')) :
+						$brand_logo = get_field('brand_logo', 'option');
+						if ($brand_logo) :
 					?>
-						<img src="<?php echo esc_url($brand_logo); ?>" alt="<?php esc_attr_e('Site Logo', 'zotefoams'); ?>" />
-					<?php endif; ?>
+							<img src="<?php echo esc_url($brand_logo); ?>" alt="<?php esc_attr_e('Site Logo', 'zotefoams'); ?>" />
+					<?php endif;
+					endif; ?>
 				</a>
 			</div><!-- .site-branding -->
 

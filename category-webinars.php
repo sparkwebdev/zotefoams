@@ -161,9 +161,11 @@ wp_reset_postdata();
                 $thumbnail_url = get_template_directory_uri() . '/images/placeholder-thumbnail.png';
             }
 
-            $first_video_url = get_field('event_playback_url');
+            if (function_exists('get_field')) {
+                $first_video_url = get_field('event_playback_url');
+            }
 
-            if (!$first_video_url) {
+            if (!isset($first_video_url)) {
                 $first_video_url = zotefoams_get_first_youtube_url(get_the_ID());
             }
 
