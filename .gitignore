@@ -6,3 +6,4 @@ vendor
 
 # CSS map files
 *.css.map
+.DS_Store

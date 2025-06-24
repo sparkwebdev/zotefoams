@@ -24,22 +24,13 @@ $posts_page_id = function_exists('zotefoams_get_page_for_posts_id') ? zotefoams_
         </h2>
     </div>
 </header>
-
-<div class="text-block cont-m padding-t-b-100 theme-none">
-    <div class="text-block__inner">
-        <p class="margin-b-20">Upcoming Webinars</p>
-        <div class="grey-text fs-600 fw-semibold">
-            <p><strong>Zotefoams occasionally hosts free webinars</strong> about industry issues, new product launches, business plans and case studies. <strong>Register below for updates</strong>.</p>
-        </div>
-    </div>
-</div>
 <?php
 $today = date('Ymd');
 $current_category_id = get_queried_object_id(); // ID of the "Webinars" category
 ?>
 
 
-    <div class="articles articles--list cont-m padding-t-b-70 padding-b-100 theme-none">
+
 <?php
 
 $future_args = [
@@ -57,6 +48,14 @@ $future_args = [
 $future_webinars = new WP_Query($future_args);
 
 if ($future_webinars->have_posts()) : ?>
+    <div class="text-block cont-m padding-t-b-70 theme-none">
+        <div class="text-block__inner">
+            <div class="grey-text fs-600 fw-semibold">
+                <p><strong>Upcoming Webinars</strong></p>
+            </div>
+        </div>
+    </div>
+    <div class="articles articles--list cont-m padding-t-b-70 padding-b-100 theme-none">
         <?php
         while ($future_webinars->have_posts()) : $future_webinars->the_post();
             $cat_more_link = get_permalink();
@@ -90,126 +89,137 @@ if ($future_webinars->have_posts()) : ?>
         <?php
         endwhile;
         ?>
-    <?php else : ?>
-        <p>No upcoming webinars currently scheduled. Please check back soon.</p>
-    <?php
-endif;
-wp_reset_postdata();
-    ?>
     </div>
-
-
-    <div class="padding-t-b-100 theme-light light-grey-bg" id="register-updates">
-        <div class="split-text cont-m">
-            <div class="split-text__title margin-b-20 fs-600 fw-semibold">
-                <p class="fw-bold margin-b-30">Register for updates</p>
-                <p class="grey-text">If you would like to receive email notifications about forthcoming webinars, please complete the form.</p>
-            </div>
-
-            <div class="split-text__content fs-300">
-                <?php echo do_shortcode('[wpforms id="3036" title="false"]'); ?>
-            </div>
-        </div>
-    </div>
+<?php else : ?>
 
     <div class="text-block cont-m padding-t-b-100 theme-none">
         <div class="text-block__inner">
-            <p class="margin-b-20">Past Webinars</p>
+            <p class="margin-b-20">Upcoming Webinars</p>
             <div class="grey-text fs-600 fw-semibold">
-                <p><strong>Explore previous webinar recordings</strong> covering industry trends, product launches, and real-world case studies.</p>
+                <p><strong>Zotefoams occasionally hosts free webinars</strong> about industry issues, new product launches, business plans and case studies. <strong>Register below for updates</strong>.</p>
             </div>
         </div>
     </div>
+    <div class="cont-m padding-t-b-70 padding-b-100 theme-none">
+        <p>No upcoming webinars currently scheduled. Please check back soon.</p>
+    </div>
+<?php
+endif;
+wp_reset_postdata();
+?>
 
-    <div class="articles articles--grid cont-m padding-t-b-70 padding-b-100 theme-none">
-        <?php
-        $paged = (get_query_var('paged')) ? get_query_var('paged') : 1; // get_query_var for main query, for custom query, use its own paged var
 
-        $past_args = [
-            'post_type'         => 'post', // Assuming webinars are standard posts
-            'cat'               => $current_category_id,
-            'posts_per_page'    => -1,
-            'paged'             => $paged, // Use paged for WP_Query pagination
-            'meta_key'          => 'event_start_date',
-            'meta_value'        => $today,
-            'meta_compare'      => '<',
-            'orderby'           => 'meta_value',
-            'order'             => 'DESC',
-            'meta_type'         => 'CHAR',
-        ];
-        $past_webinars = new WP_Query($past_args);
+<div class="padding-t-b-100 theme-light light-grey-bg" id="register-updates">
+    <div class="split-text cont-m">
+        <div class="split-text__title margin-b-20 fs-600 fw-semibold">
+            <p class="fw-bold margin-b-30">Register for updates</p>
+            <p class="grey-text">If you would like to receive email notifications about forthcoming webinars, please complete the form.</p>
+        </div>
 
-        if ($past_webinars->have_posts()) :
-            $hasVideos = false;
-            while ($past_webinars->have_posts()) : $past_webinars->the_post();
-                // Prepare variables for the template part
-                $cat_more_link = get_permalink();
-                $cat_more_link_label = 'Watch Recording';
+        <div class="split-text__content fs-300">
+            <?php echo do_shortcode('[wpforms id="3036" title="false"]'); ?>
+        </div>
+    </div>
+</div>
 
-                $thumbnail_url = get_the_post_thumbnail_url(get_the_ID(), 'thumbnail');
-                if (!$thumbnail_url) {
-                    $thumbnail_url = get_template_directory_uri() . '/images/placeholder-thumbnail.png';
-                }
+<div class="text-block cont-m padding-t-b-100 theme-none">
+    <div class="text-block__inner">
+        <p class="margin-b-20">Past Webinars</p>
+        <div class="grey-text fs-600 fw-semibold">
+            <p><strong>Explore previous webinar recordings</strong> covering industry trends, product launches, and real-world case studies.</p>
+        </div>
+    </div>
+</div>
 
-                $first_video_url = get_field('event_playback_url');
+<div class="articles articles--grid cont-m padding-t-b-70 padding-b-100 theme-none">
+    <?php
+    $paged = (get_query_var('paged')) ? get_query_var('paged') : 1; // get_query_var for main query, for custom query, use its own paged var
 
-                if (!$first_video_url) {
-                    $first_video_url = zotefoams_get_first_youtube_url(get_the_ID());
-                }
+    $past_args = [
+        'post_type'         => 'post', // Assuming webinars are standard posts
+        'cat'               => $current_category_id,
+        'posts_per_page'    => -1,
+        'paged'             => $paged, // Use paged for WP_Query pagination
+        'meta_key'          => 'event_start_date',
+        'meta_value'        => $today,
+        'meta_compare'      => '<',
+        'orderby'           => 'meta_value',
+        'order'             => 'DESC',
+        'meta_type'         => 'CHAR',
+    ];
+    $past_webinars = new WP_Query($past_args);
 
-                $thumbnail_url = get_the_post_thumbnail_url(get_the_ID(), 'thumbnail');
+    if ($past_webinars->have_posts()) :
+        $hasVideos = false;
+        while ($past_webinars->have_posts()) : $past_webinars->the_post();
+            // Prepare variables for the template part
+            $cat_more_link = get_permalink();
+            $cat_more_link_label = 'Watch Recording';
 
-                if (!$thumbnail_url && $first_video_url) {
-                    $thumbnail_url = zotefoams_youtube_cover_image($first_video_url);
-                }
+            $thumbnail_url = get_the_post_thumbnail_url(get_the_ID(), 'thumbnail');
+            if (!$thumbnail_url) {
+                $thumbnail_url = get_template_directory_uri() . '/images/placeholder-thumbnail.png';
+            }
 
-                if (!$thumbnail_url) {
-                    $thumbnail_url = esc_url(get_template_directory_uri() . '/images/placeholder-thumbnail.png');
-                }
+            $first_video_url = get_field('event_playback_url');
 
-                $youtube_cover_image = $thumbnail_url;
+            if (!$first_video_url) {
+                $first_video_url = zotefoams_get_first_youtube_url(get_the_ID());
+            }
 
-                if ($first_video_url) :
-                    $hasVideos = true;
-        ?>
-                    <article id="post-<?php the_ID(); ?>" <?php post_class($title === 'Case Studies' ? 'light-grey-bg' : ''); ?>>
-                        <div class="articles__block-embed-youtube" style="background-image:url(<?php echo esc_url($youtube_cover_image); ?>)">
-                            <button type="button" class="video-trigger" data-modal-trigger="video" data-video-url="<?php echo esc_url($first_video_url); ?>" aria-label="<?php esc_attr_e('Play Video', 'zotefoams'); ?>">
-                                <img src="<?php echo esc_url(get_template_directory_uri() . '/images/youtube-play.svg'); ?>" alt="" />
-                            </button>
-                        </div>
+            $thumbnail_url = get_the_post_thumbnail_url(get_the_ID(), 'thumbnail');
 
-                        <div class="articles__content">
-                            <?php the_title('<h3 class="fs-400 fw-semibold">', '</h3>'); ?>
-                            <?php
-                            if (function_exists('get_field')) {
-                                $start_date = get_field('event_start_date', get_the_ID());
-                                $end_date = get_field('event_end_date', get_the_ID());
-                                echo '<h3 class="fs-400 fw-semibold margin-b-20 grey-text">' . zotefoams_format_event_date_range($start_date, $end_date) . '</h3>';
-                            } ?>
+            if (!$thumbnail_url && $first_video_url) {
+                $thumbnail_url = zotefoams_youtube_cover_image($first_video_url);
+            }
 
-                            <?php /* if (get_the_excerpt()) : ?>
+            if (!$thumbnail_url) {
+                $thumbnail_url = esc_url(get_template_directory_uri() . '/images/placeholder-thumbnail.png');
+            }
+
+            $youtube_cover_image = $thumbnail_url;
+
+            if ($first_video_url) :
+                $hasVideos = true;
+    ?>
+                <article id="post-<?php the_ID(); ?>" <?php post_class($title === 'Case Studies' ? 'light-grey-bg' : ''); ?>>
+                    <div class="articles__block-embed-youtube" style="background-image:url(<?php echo esc_url($youtube_cover_image); ?>)">
+                        <button type="button" class="video-trigger" data-modal-trigger="video" data-video-url="<?php echo esc_url($first_video_url); ?>" aria-label="<?php esc_attr_e('Play Video', 'zotefoams'); ?>">
+                            <img src="<?php echo esc_url(get_template_directory_uri() . '/images/youtube-play.svg'); ?>" alt="" />
+                        </button>
+                    </div>
+
+                    <div class="articles__content">
+                        <?php the_title('<h3 class="fs-400 fw-semibold">', '</h3>'); ?>
+                        <?php
+                        if (function_exists('get_field')) {
+                            $start_date = get_field('event_start_date', get_the_ID());
+                            $end_date = get_field('event_end_date', get_the_ID());
+                            echo '<h3 class="fs-400 fw-semibold margin-b-20 grey-text">' . zotefoams_format_event_date_range($start_date, $end_date) . '</h3>';
+                        } ?>
+
+                        <?php /* if (get_the_excerpt()) : ?>
                                 <div class="margin-b-20 grey-text"><?php the_excerpt(); ?></div>
                             <?php endif;*/ ?>
 
-                            <p class="articles__cta margin-b-40">
-                                <button type="button" class="btn outline black" data-modal-trigger="video" data-video-url="<?php echo esc_url($first_video_url); ?>" aria-label="<?php echo esc_attr($cat_more_link_label); ?>">
-                                    <?php echo esc_html($cat_more_link_label); ?>
-                                </button>
-                            </p>
-                        </div>
-                    </article>
-            <?php endif;
-
-            endwhile;
-        endif;
-        if (!$hasVideos) : ?>
-            <p>There are no past webinars to display at this time.</p>
+                        <p class="articles__cta margin-b-40">
+                            <button type="button" class="btn outline black" data-modal-trigger="video" data-video-url="<?php echo esc_url($first_video_url); ?>" aria-label="<?php echo esc_attr($cat_more_link_label); ?>">
+                                <?php echo esc_html($cat_more_link_label); ?>
+                            </button>
+                        </p>
+                    </div>
+                </article>
         <?php endif;
-        wp_reset_postdata();
-        ?>
-    </div>
 
-    <?php
-    require_video_overlay();
-    get_footer();
+        endwhile;
+    endif;
+    if (!$hasVideos) : ?>
+        <p>There are no past webinars to display at this time.</p>
+    <?php endif;
+    wp_reset_postdata();
+    ?>
+</div>
+
+<?php
+require_video_overlay();
+get_footer();
