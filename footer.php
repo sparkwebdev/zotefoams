@@ -123,6 +123,7 @@ s.parentNode.insertBefore(b, s);})(window.lintrk);
 </script>
 <noscript>
 <img height="1" width="1" style="display:none;" alt="" src="https://px.ads.linkedin.com/collect/?pid=1827026&fmt=gif" />
+</noscript>
 </body>
 
 </html>
