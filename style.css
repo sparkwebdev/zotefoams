@@ -4,7 +4,7 @@ Theme URI: http://underscores.me/
 Author: David Park
 Author URI: http://underscores.me/
 Description: Description
-Version: 2.1.5
+Version: 2.1.6
 Tested up to: 5.4
 Requires PHP: 5.6
 License: GNU General Public License v2 or later
@@ -3497,7 +3497,17 @@ footer .site-branding img {
 .single .entry-content h6:not([class]),
 .single .entry-content ul:not([class]),
 .single .entry-content ol:not([class]),
-.single .entry-content .wp-block-list {
+.single .entry-content .wp-block-list,
+.article-content p:not([class]),
+.article-content h1:not([class]),
+.article-content h2:not([class]),
+.article-content h3:not([class]),
+.article-content h4:not([class]),
+.article-content h5:not([class]),
+.article-content h6:not([class]),
+.article-content ul:not([class]),
+.article-content ol:not([class]),
+.article-content .wp-block-list {
   margin: revert;
 }
 

@@ -17,7 +17,7 @@ if (function_exists('get_field')) {
 			$title = !empty($pageHeaderText['title']) ? $pageHeaderText['title'] : get_the_title();
 			$subtitle = $pageHeaderText['subtitle'] ?? '';
 ?>
-			<div class="cont-xs padding-t-b-70">
+			<div class="cont-xs padding-t-b-70 padding-b-30 theme-none">
 				<header class="entry-header">
 					<div class="margin-b-20 grey-text"><span class="tag"><?php echo $title; ?></span> </div>
 					<h1 class="fs-600 fw-semibold margin-b-20"><?php echo $subtitle; ?></h1>
@@ -35,32 +35,32 @@ if (post_password_required()) :
 	echo get_the_password_form();
 
 else :
+?>
 
-	if (function_exists('get_field')) {
-		if (have_rows('page_content')) {
-			$i = 1;
-			while (have_rows('page_content')) {
-				the_row();
-				$component = get_row_layout();
 
-				if (is_page('Components')) {
-					echo '<div class="blue-bg"><div class="white-text cont-m padding-t-b-30"><h2>' . esc_html(ucwords(str_replace('_', ' ', $component))) . ' ' . esc_html($i) . '</h2></div></div>';
-				}
+	<div class="article-content cont-xs padding-t-b-70 theme-none">
+		<div>
+			<?php if (has_post_thumbnail()) : ?>
+				<figure><?php zotefoams_post_thumbnail('large'); ?></figure>
+			<?php endif; ?>
+		</div>
 
-				include locate_template('/template-parts/components/' . $component . '.php', false, false);
-				$i++;
-			}
-		}
-
+		<?php
+		while (have_posts()) :
+			the_post();
+			the_content();
+		endwhile;
 		?>
+	</div>
 
-	<div class="cont-xs padding-t-b-70">
+	<div class="cont-xs padding-t-b-70 theme-none">
 	<?php 
-		include locate_template('/template-parts/pagination_sibling_articles.php', false, false);
+		include locate_template('/template-parts/pagination-sibling-articles.php', false, false);
 	?>
 	</div>
 
 	<?php 
+	if (function_exists('get_field')) {
 		if (get_field('page_footer_contact_forms')) {
 			include locate_template('/template-parts/components/show_hide_forms.php', false, false);
 		}

@@ -1,4 +1,4 @@
-<div class="post-navigation post-navigation--single margin-t-70 margin-b-70">
+<div class="post-navigation post-navigation--single margin-b-70">
     <?php
     global $post;
 

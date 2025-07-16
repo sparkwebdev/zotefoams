@@ -51,7 +51,7 @@ function disable_gutenberg_except_posts($use_block_editor, $post)
     }
 
     // Allow Gutenberg for posts and 'knowledge-hub' custom post type
-    if ($post->post_type === 'post' || $post->post_type === 'knowledge-hub') {
+    if ($post->post_type === 'post' || ($post->post_type === 'page' && get_page_template_slug($post->ID) === 'page-article.php') || $post->post_type === 'knowledge-hub') {
         return $use_block_editor;
     }
 
@@ -81,8 +81,8 @@ function remove_classic_editor_support()
 
     $post_id = isset($_GET['post']) ? intval($_GET['post']) : 0;
 
-    if ($post_id && get_page_template_slug($post_id) === 'page-biography.php') {
-        return; // Do not remove editor for pages with the 'page-biography' template
+    if ($post_id && get_page_template_slug($post_id) === 'page-biography.php' || $post_id && get_page_template_slug($post_id) === 'page-article.php') {
+        return; // Do not remove editor for pages with the 'Biography' or 'Article' templates
     }
 
     remove_post_type_support('page', 'editor'); // Hide editor for all other pages
@@ -190,7 +190,7 @@ function zoatfoams_allowed_block_types($allowed_blocks, $editor_context)
     // 'acf/highlight-box',
     // 'acf/related-links-box',
     if (!empty($editor_context->post)) {
-        if ($editor_context->post->post_type === 'post') {
+        if ($editor_context->post->post_type === 'post' || ($editor_context->post->post_type === 'page' && get_page_template_slug($editor_context->post->ID) === 'page-article.php')) {
             return [
                 'core/heading',
                 'core/paragraph',
@@ -203,9 +203,9 @@ function zoatfoams_allowed_block_types($allowed_blocks, $editor_context)
                 // 'core/gallery',
                 'core/file',
                 'core/audio',
-                // 'core/columns',
-                // 'core/group',
-                // 'core/row',
+                'core/columns',
+                'core/group',
+                'core/row',
                 'core/shortcode',
                 'core/html',
                 'core/embed',

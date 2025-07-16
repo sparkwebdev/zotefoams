@@ -4348,6 +4348,11 @@
                 "param": "page_template",
                 "operator": "!=",
                 "value": "page-our-history.php"
+            },
+            {
+                "param": "page_template",
+                "operator": "!=",
+                "value": "page-article.php"
             }
         ]
     ],
@@ -4360,5 +4365,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1749405445
+    "modified": 1750778114
 }

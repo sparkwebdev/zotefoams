@@ -94,17 +94,20 @@ footer .site-branding img {
   background-color: var(--color-brand-contrast);
 }
 
-.single .entry-content p:not([class]),
-.single .entry-content h1:not([class]),
-.single .entry-content h2:not([class]),
-.single .entry-content h3:not([class]),
-.single .entry-content h4:not([class]),
-.single .entry-content h5:not([class]),
-.single .entry-content h6:not([class]),
-.single .entry-content ul:not([class]),
-.single .entry-content ol:not([class]),
-.single .entry-content .wp-block-list {
-  margin: revert;
+.single .entry-content,
+.article-content {
+  p:not([class]),
+  h1:not([class]),
+  h2:not([class]),
+  h3:not([class]),
+  h4:not([class]),
+  h5:not([class]),
+  h6:not([class]),
+  ul:not([class]),
+  ol:not([class]),
+  .wp-block-list {
+    margin: revert;
+  }
 }
 
 a.read-more:hover,
