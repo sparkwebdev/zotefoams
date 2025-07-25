@@ -174,6 +174,16 @@ require get_template_directory() . '/inc/admin-editor.php';
 require_once get_template_directory() . '/inc/mega-menu-walker.php';
 
 /**
+ * Load helper classes for improved code organization.
+ */
+require_once get_template_directory() . '/inc/helpers/class-component-renderer.php';
+require_once get_template_directory() . '/inc/helpers/class-image-helper.php';
+require_once get_template_directory() . '/inc/helpers/class-button-helper.php';
+require_once get_template_directory() . '/inc/helpers/class-theme-helper.php';
+require_once get_template_directory() . '/inc/helpers/class-carousel-helper.php';
+require_once get_template_directory() . '/inc/helpers/class-utility-functions.php';
+
+/**
  * Register our block's with WordPress's register_block_type();
  *
  * @link https://developer.wordpress.org/reference/functions/register_block_type/
