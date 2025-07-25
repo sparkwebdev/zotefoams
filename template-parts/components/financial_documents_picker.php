@@ -39,7 +39,7 @@ $container_class    = $has_intro_content ? 'light-grey-bg padding-50 theme-light
 						$visible  = $index === 0 ? 'block' : 'none';
 						$documents = $year_data['documents'] ?? [];
 					?>
-						<ul class="document-list document-year" data-year="<?php echo $year; ?>" style="display: <?php echo $visible; ?>;">
+						<ul class="document-list document-year" data-year="<?php echo esc_attr($year); ?>" style="display: <?php echo esc_attr($visible); ?>;">
 							<?php if (is_array($documents) && !empty($documents)) : ?>
 								<?php foreach ($documents as $document) :
 									$link = $document['document_link'] ?? null;

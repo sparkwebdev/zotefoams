@@ -29,7 +29,7 @@ $btnClass     = $isVariant ? 'btn white outline' : 'btn black outline';
 			</div>
 		</div>
 
-		<div class="swiper <?php echo $wrapperClass; ?>">
+		<div class="swiper <?php echo esc_attr($wrapperClass); ?>">
 			<div class="swiper-wrapper">
 
 				<?php
@@ -50,7 +50,7 @@ $btnClass     = $isVariant ? 'btn white outline' : 'btn black outline';
 							<?php if ($image): ?>
 								<img src="<?php echo esc_url($image); ?>" alt="<?php echo esc_attr($title); ?>">
 							<?php endif; ?>
-							<a href="<?php echo esc_url($link); ?>" class="<?php echo $btnClass; ?>">Read More</a>
+							<a href="<?php echo esc_url($link); ?>" class="<?php echo esc_attr($btnClass); ?>">Read More</a>
 						</div>
 					<?php }
 				} elseif ($behaviour === 'children') {
@@ -74,7 +74,7 @@ $btnClass     = $isVariant ? 'btn white outline' : 'btn black outline';
 							<?php if ($image): ?>
 								<img src="<?php echo esc_url($image); ?>" alt="<?php echo esc_attr($title); ?>">
 							<?php endif; ?>
-							<a href="<?php echo esc_url($link); ?>" class="<?php echo $btnClass; ?>">Read More</a>
+							<a href="<?php echo esc_url($link); ?>" class="<?php echo esc_attr($btnClass); ?>">Read More</a>
 						</div>
 					<?php }
 				} elseif ($behaviour === 'manual' && $manual_slides) {
@@ -97,7 +97,7 @@ $btnClass     = $isVariant ? 'btn white outline' : 'btn black outline';
 								<img src="<?php echo esc_url($image); ?>" alt="<?php echo esc_attr($title); ?>">
 							<?php endif; ?>
 							<?php if (!empty($button['url'])): ?>
-								<a href="<?php echo esc_url($button['url']); ?>" class="<?php echo $btnClass; ?>" target="<?php echo esc_attr($button['target'] ?? '_self'); ?>">
+								<a href="<?php echo esc_url($button['url']); ?>" class="<?php echo esc_attr($btnClass); ?>" target="<?php echo esc_attr($button['target'] ?? '_self'); ?>">
 									<?php echo esc_html($button['title'] ?? 'Read More'); ?>
 								</a>
 							<?php endif; ?>

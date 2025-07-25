@@ -27,7 +27,7 @@ $map_image_url = $map_image ? $map_image['url'] : get_template_directory_uri() .
     <div class="cont-m">
         <div class="data-map__stats">
             <?php foreach ($stats as $index => $stat): ?>
-                <div class="data-map__stat data-map__stat--<?php echo $index + 1; ?> padding-30">
+                <div class="data-map__stat data-map__stat--<?php echo absint($index + 1); ?> padding-30">
                     <?php if (!empty($stat['has_map_image'])): ?>
                         <img src="<?php echo esc_url($map_image_url); ?>" alt="Map" />
                     <?php endif; ?>

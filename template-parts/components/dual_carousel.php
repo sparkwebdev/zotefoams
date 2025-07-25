@@ -82,7 +82,7 @@ if ($parent_id) {
                             <img
                                 src="<?php echo esc_url($bg_image_url); ?>"
                                 alt="<?php echo esc_attr($bg_alt); ?>"
-                                <?php echo $use_black_arrows ? 'style="object-fit: contain !important;"' : ''; ?> />
+                                <?php if ($use_black_arrows) echo 'style="object-fit: contain !important;"'; ?> />
                         </div>
                     </div>
                 <?php endforeach; ?>
