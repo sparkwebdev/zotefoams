@@ -52,7 +52,6 @@ function zotefoams_map_cat_label($label)
             return 'View ' . rtrim($label, 's');
     }
 }
-add_action('wp_head', 'zotefoams_pingback_header');
 
 
 /**
