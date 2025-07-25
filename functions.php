@@ -476,3 +476,112 @@ function zotefoams_custom_password_form() {
     return $output;
 }
 add_filter( 'the_password_form', 'zotefoams_custom_password_form' );
+
+/**
+ * Enqueue MailChimp validation scripts and configuration.
+ *
+ * @return void
+ */
+function zotefoams_enqueue_mailchimp_scripts()
+{
+    // Enqueue MailChimp validation script
+    wp_enqueue_script(
+        'mailchimp-validate',
+        'https://s3.amazonaws.com/downloads.mailchimp.com/js/mc-validate.js',
+        array('jquery'),
+        null,
+        true
+    );
+
+    // Add MailChimp field configuration
+    $mailchimp_config = "
+        (function($) {
+            window.fnames = new Array(); 
+            window.ftypes = new Array();
+            fnames[0]='EMAIL';ftypes[0]='email';
+            fnames[1]='FNAME';ftypes[1]='text';
+            fnames[2]='LNAME';ftypes[2]='text';
+            fnames[3]='ADDRESS';ftypes[3]='address';
+            fnames[4]='PHONE';ftypes[4]='phone';
+            fnames[5]='MMERGE5';ftypes[5]='text';
+            fnames[6]='MMERGE6';ftypes[6]='text';
+            fnames[7]='MMERGE7';ftypes[7]='text';
+            fnames[8]='MMERGE8';ftypes[8]='number';
+            fnames[9]='MMERGE9';ftypes[9]='text';
+            fnames[10]='MMERGE10';ftypes[10]='text';
+            fnames[11]='MMERGE11';ftypes[11]='text';
+            fnames[12]='MMERGE12';ftypes[12]='text';
+        }(jQuery));
+        var \$mcj = jQuery.noConflict(true);
+    ";
+
+    wp_add_inline_script('mailchimp-validate', $mailchimp_config);
+}
+
+/**
+ * Enqueue LinkedIn analytics tracking scripts.
+ *
+ * @return void
+ */
+function zotefoams_enqueue_linkedin_analytics()
+{
+    // Check if ACF is available and get partner ID from options
+    $partner_id = '1827026'; // Default fallback
+    if (function_exists('get_field')) {
+        $acf_partner_id = get_field('linkedin_partner_id', 'option');
+        if ($acf_partner_id) {
+            $partner_id = sanitize_text_field($acf_partner_id);
+        }
+    }
+
+    // LinkedIn tracking initialization
+    $linkedin_init = "
+        _linkedin_partner_id = '" . esc_js($partner_id) . "';
+        window._linkedin_data_partner_ids = window._linkedin_data_partner_ids || [];
+        window._linkedin_data_partner_ids.push(_linkedin_partner_id);
+    ";
+
+    // LinkedIn tracking script loader
+    $linkedin_loader = "
+        (function(l) {
+            if (!l){
+                window.lintrk = function(a,b){window.lintrk.q.push([a,b])};
+                window.lintrk.q=[];
+            }
+            var s = document.getElementsByTagName('script')[0];
+            var b = document.createElement('script');
+            b.type = 'text/javascript';
+            b.async = true;
+            b.src = 'https://snap.licdn.com/li.lms-analytics/insight.min.js';
+            s.parentNode.insertBefore(b, s);
+        })(window.lintrk);
+    ";
+
+    // Add scripts inline to footer
+    wp_add_inline_script('jquery', $linkedin_init . $linkedin_loader, 'after');
+}
+
+/**
+ * Output LinkedIn noscript tracking pixel.
+ *
+ * @return void
+ */
+function zotefoams_linkedin_noscript_pixel()
+{
+    $partner_id = '1827026'; // Default fallback
+    if (function_exists('get_field')) {
+        $acf_partner_id = get_field('linkedin_partner_id', 'option');
+        if ($acf_partner_id) {
+            $partner_id = sanitize_text_field($acf_partner_id);
+        }
+    }
+
+    echo '<noscript><img height="1" width="1" style="display:none;" alt="" src="' . esc_url('https://px.ads.linkedin.com/collect/?pid=' . $partner_id . '&fmt=gif') . '" /></noscript>';
+}
+
+// Enqueue scripts conditionally (e.g., not in admin, not for logged-in admins, etc.)
+if (!is_admin()) {
+    add_action('wp_enqueue_scripts', 'zotefoams_enqueue_mailchimp_scripts');
+    add_action('wp_enqueue_scripts', 'zotefoams_enqueue_linkedin_analytics');
+    add_action('wp_head', 'zotefoams_linkedin_noscript_pixel', 99);
+}
