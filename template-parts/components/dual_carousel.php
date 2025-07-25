@@ -7,9 +7,16 @@ $is_market_pages = $markets_page_id && (get_the_ID() == $markets_page_id || $pos
 $theme_style = $is_market_pages ? 'light-grey-bg theme-light' : 'black-bg white-text theme-dark';
 $theme_button_style = $is_market_pages ? 'black' : 'white';
 
+// Determine arrow color based on page context
+$arrow_color = 'white'; // Default
 $parent_id = wp_get_post_parent_id(get_the_ID());
-$use_black_arrows = ($parent_id == 11); // Hardcoded logic
-$arrow_color = $use_black_arrows ? 'black' : 'white';
+
+// Use black arrows for specific page contexts
+if ($parent_id) {
+    $parent_title = get_the_title($parent_id);
+    $use_black_arrows = in_array(strtolower($parent_title), ['our brands', 'brands', 'products']);
+    $arrow_color = $use_black_arrows ? 'black' : 'white';
+}
 ?>
 
 <div class="swiper-dual-carousel text-center <?php echo esc_attr($theme_style); ?>">
