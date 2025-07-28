@@ -1,12 +1,16 @@
 <?php
-$title  = get_sub_field('show_hide_title');
-$button = get_sub_field('show_hide_button'); // ACF Link field
-$items  = get_sub_field('show_hide_items');
-$unique_id  = get_sub_field('unique_id');
+// Get field data using safe helper functions
+$title  = zotefoams_get_sub_field_safe('show_hide_title', '', 'string');
+$button = zotefoams_get_sub_field_safe('show_hide_button', [], 'url');
+$items  = zotefoams_get_sub_field_safe('show_hide_items', [], 'array');
+$unique_id  = zotefoams_get_sub_field_safe('unique_id', '', 'string');
 $sanitized_unique_id = str_replace('.', '-', $unique_id);
+
+// Generate classes to match original structure exactly
+$wrapper_classes = 'accordion cont-m padding-t-b-100 theme-none';
 ?>
 
-<div class="accordion cont-m padding-t-b-100 theme-none" id="<?php echo esc_attr($sanitized_unique_id); ?>">
+<div class="<?php echo $wrapper_classes; ?>" id="<?php echo esc_attr($sanitized_unique_id); ?>">
 
     <?php if ($title || $button) : ?>
         <div class="title-strip padding-b-30">

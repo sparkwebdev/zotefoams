@@ -1,14 +1,18 @@
 <?php
-$title     = get_sub_field('locations_map_title');
-$subtitle  = get_sub_field('locations_map_subtitle');
-$locations = get_sub_field('locations_map_locations');
-$map_image = get_sub_field('locations_map_image');
+// Get field data using safe helper functions
+$title     = zotefoams_get_sub_field_safe('locations_map_title', '', 'string');
+$subtitle  = zotefoams_get_sub_field_safe('locations_map_subtitle', '', 'string');
+$locations = zotefoams_get_sub_field_safe('locations_map_locations', [], 'array');
+$map_image = zotefoams_get_sub_field_safe('locations_map_image', [], 'image');
 
-// Extract image URL or fallback
-$map_image_url = $map_image['sizes']['large'] ?? get_template_directory_uri() . '/images/placeholder.png';
+// Image handling with Image Helper
+$map_image_url = Zotefoams_Image_Helper::get_image_url($map_image, 'large', 'locations-map');
+
+// Generate classes to match original structure exactly
+$wrapper_classes = 'locations-map padding-t-b-100 theme-dark';
 ?>
 
-<div class="locations-map padding-t-b-100 theme-dark">
+<div class="<?php echo $wrapper_classes; ?>">
     <div class="cont-m">
         <div class="locations-map__intro margin-b-40">
             <?php if ($title) : ?>

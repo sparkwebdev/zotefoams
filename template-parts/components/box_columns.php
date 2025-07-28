@@ -1,14 +1,18 @@
 <?php
-$title = get_sub_field('box_columns_title');
-$button = get_sub_field('box_columns_button');
-$behaviour = get_sub_field('box_columns_behaviour');
-$page_id = get_sub_field('box_columns_parent_id');
-$manual_items = get_sub_field('box_columns_items');
+// Get field data using safe helper functions
+$title = zotefoams_get_sub_field_safe('box_columns_title', '', 'string');
+$button = zotefoams_get_sub_field_safe('box_columns_button', [], 'url');
+$behaviour = zotefoams_get_sub_field_safe('box_columns_behaviour', '', 'string');
+$page_id = zotefoams_get_sub_field_safe('box_columns_parent_id', 0, 'int');
+$manual_items = zotefoams_get_sub_field_safe('box_columns_items', [], 'array');
 $posts_page_id = zotefoams_get_page_for_posts_id();
 $use_categories = ($behaviour === 'children' && $page_id == $posts_page_id);
+
+// Generate classes to match original structure exactly
+$wrapper_classes = 'box-columns cont-m padding-t-b-100 theme-none';
 ?>
 
-<div class="box-columns cont-m padding-t-b-100 theme-none">
+<div class="<?php echo $wrapper_classes; ?>">
     <div class="title-strip margin-b-30">
         <?php if ($title): ?>
             <h3 class="fs-500 fw-600"><?php echo esc_html($title); ?></h3>
@@ -29,7 +33,7 @@ $use_categories = ($behaviour === 'children' && $page_id == $posts_page_id);
             foreach ($categories as $category):
                 $cat_link = get_category_link($category->term_id);
                 $image_id = get_field('category_image', 'category_' . $category->term_id);
-                $image_url = wp_get_attachment_image_url($image_id, 'medium') ?: get_template_directory_uri() . '/images/placeholder-thumbnail.png';
+                $image_url = Zotefoams_Image_Helper::get_image_url($image_id, 'medium', 'thumbnail');
         ?>
                 <div class="box-columns__item light-grey-bg">
                     <div class="box-columns__content padding-40">

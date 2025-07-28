@@ -1,10 +1,15 @@
 <?php
-$tab_overline = get_sub_field('tabbed_split_overline');
-$tab_text     = get_sub_field('tabbed_split_text');
-$tabs         = get_sub_field('tabbed_split_tabs');
+// Get field data using safe helper functions
+$tab_overline = zotefoams_get_sub_field_safe('tabbed_split_overline', '', 'string');
+$tab_text     = zotefoams_get_sub_field_safe('tabbed_split_text', '', 'string');
+$tabs         = zotefoams_get_sub_field_safe('tabbed_split_tabs', [], 'array');
+
+// Generate classes to match original structure exactly
+$wrapper_classes = 'cont-xs tabs-container padding-t-b-100 theme-none';
+$content_wrapper_classes = 'content-container light-grey-bg';
 ?>
 
-<div class="cont-xs tabs-container padding-t-b-100 theme-none">
+<div class="<?php echo $wrapper_classes; ?>">
     <?php if ($tab_overline || $tab_text) : ?>
         <div class="tabs-intro text-center margin-b-30">
             <?php if ($tab_overline) : ?>
@@ -34,7 +39,7 @@ $tabs         = get_sub_field('tabbed_split_tabs');
     <?php endif; ?>
 </div>
 
-<div class="content-container light-grey-bg">
+<div class="<?php echo $content_wrapper_classes; ?>">
     <?php if ($tabs) : ?>
         <?php foreach ($tabs as $index => $tab) :
             $tab_id     = sanitize_title($tab['tabbed_split_tab_title']);
@@ -42,7 +47,7 @@ $tabs         = get_sub_field('tabbed_split_tabs');
             $text       = $tab['tabbed_split_content_text'];
             $button     = $tab['tabbed_split_button'];
             $image      = $tab['tabbed_split_image'];
-            $image_url  = $image ? $image['sizes']['large'] : get_template_directory_uri() . '/images/placeholder.png';
+            $image_url  = Zotefoams_Image_Helper::get_image_url($image, 'large', 'tabbed-split');
             $is_active  = $index === 0 ? 'active' : '';
         ?>
             <div class="tab-content <?php echo esc_attr($is_active); ?>" id="<?php echo esc_attr($tab_id); ?>">

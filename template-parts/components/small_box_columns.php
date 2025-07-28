@@ -1,10 +1,14 @@
 <?php
-$section_title = get_sub_field('small_box_columns_title');
-$section_button = get_sub_field('small_box_columns_button'); // ACF Link field
-$items = get_sub_field('small_box_columns_items');
+// Get field data using safe helper functions
+$section_title = zotefoams_get_sub_field_safe('small_box_columns_title', '', 'string');
+$section_button = zotefoams_get_sub_field_safe('small_box_columns_button', [], 'url');
+$items = zotefoams_get_sub_field_safe('small_box_columns_items', [], 'array');
+
+// Generate classes to match original structure exactly
+$wrapper_classes = 'small-box-columns padding-t-b-100 theme-none';
 ?>
 
-<div class="small-box-columns padding-t-b-100 theme-none">
+<div class="<?php echo $wrapper_classes; ?>">
     <div class="cont-m">
 
         <div class="title-strip margin-b-30">
@@ -27,10 +31,17 @@ $items = get_sub_field('small_box_columns_items');
                     $description = $item['small_box_columns_item_description'];
                     $link        = $item['small_box_columns_item_link'];
 
-                    $image_url = $image ? $image['sizes']['thumbnail-square'] : get_template_directory_uri() . '/images/placeholder.png';
+                    $image_url = Zotefoams_Image_Helper::get_image_url($image, 'thumbnail-square', 'thumbnail-square');
                 ?>
                     <div>
-                        <img src="<?php echo esc_url($image_url); ?>" alt="<?php echo esc_attr($item_title); ?>" class="small-box-columns__image margin-b-20" loading="lazy" width="335" height="335" />
+                        <?php echo Zotefoams_Image_Helper::render_image($image, [
+                            'size'    => 'thumbnail-square',
+                            'context' => 'thumbnail-square',
+                            'class'   => 'small-box-columns__image margin-b-20',
+                            'alt'     => $item_title,
+                            'width'   => '335',
+                            'height'  => '335'
+                        ]); ?>
 
                         <?php if ($item_title) : ?>
                             <p class="fs-300 fw-semibold"><?php echo esc_html($item_title); ?></p>

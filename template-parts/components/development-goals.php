@@ -11,9 +11,12 @@ $icon_filenames = [
 ];
 
 $icons_base_url = get_template_directory_uri() . '/images/esg-icons/';
+
+// Generate classes to match original structure exactly
+$wrapper_classes = 'development-goals padding-t-b-100 theme-none';
 ?>
 
-<div class="development-goals padding-t-b-100 theme-none">
+<div class="<?php echo $wrapper_classes; ?>">
 
 	<div class="text-block cont-m margin-b-70">
 		<div class="text-block__inner">

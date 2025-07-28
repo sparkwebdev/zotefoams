@@ -1,12 +1,12 @@
 <?php
-// ACF Field setup
-$title             = get_sub_field('document_list_title');
-$button            = get_sub_field('document_list_button');
-$behaviour         = get_sub_field('document_list_behaviour'); // 'latest', 'pick', or 'manual'
-$pick_hub          = get_sub_field('document_list_pick_hub');
-$pick_documents    = get_sub_field('document_list_pick_documents');
-$manual_documents  = get_sub_field('document_list_documents');
-$pick_count        = get_sub_field('document_list_pick_count');
+// Get field data using safe helper functions
+$title             = zotefoams_get_sub_field_safe('document_list_title', '', 'string');
+$button            = zotefoams_get_sub_field_safe('document_list_button', [], 'url');
+$behaviour         = zotefoams_get_sub_field_safe('document_list_behaviour', '', 'string'); // 'latest', 'pick', or 'manual'
+$pick_hub          = zotefoams_get_sub_field_safe('document_list_pick_hub', 0, 'int');
+$pick_documents    = zotefoams_get_sub_field_safe('document_list_pick_documents', [], 'array');
+$manual_documents  = zotefoams_get_sub_field_safe('document_list_documents', [], 'array');
+$pick_count        = zotefoams_get_sub_field_safe('document_list_pick_count', 0, 'int');
 
 $documents_array = [];
 
@@ -134,9 +134,12 @@ elseif ($behaviour === 'manual' && !empty($manual_documents)) {
         );
     }
 }
+
+// Generate classes to match original structure exactly
+$wrapper_classes = 'doc-list-outer cont-m padding-t-b-100 theme-none';
 ?>
 
-<div class="doc-list-outer cont-m padding-t-b-100 theme-none">
+<div class="<?php echo $wrapper_classes; ?>">
     <div class="title-strip margin-b-30">
         <?php if ($title): ?>
             <h3 class="fs-500 fw-600"><?php echo esc_html($title); ?></h3>

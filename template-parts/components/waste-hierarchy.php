@@ -1,4 +1,9 @@
-<div class="text-center light-grey-bg padding-t-b-100 theme-light">
+<?php
+// Generate classes to match original structure exactly
+$wrapper_classes = 'text-center light-grey-bg padding-t-b-100 theme-light';
+?>
+
+<div class="<?php echo $wrapper_classes; ?>">
 	<div class="cont-xxs">
 		<div class="text-center">
 			<h3 class="fs-600 margin-b-20"><?php esc_html_e('The Hierarchy of Waste', 'zotefoams'); ?></h3>

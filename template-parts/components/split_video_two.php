@@ -1,13 +1,17 @@
 <?php
-$image      = get_sub_field('split_video_two_image');
-$video_url  = get_sub_field('split_video_two_video_url');
-$title      = get_sub_field('split_video_two_title');
-$text       = get_sub_field('split_video_two_text');
+// Get field data using safe helper functions
+$image      = zotefoams_get_sub_field_safe('split_video_two_image', [], 'image');
+$video_url  = zotefoams_get_sub_field_safe('split_video_two_video_url', '', 'string');
+$title      = zotefoams_get_sub_field_safe('split_video_two_title', '', 'string');
+$text       = get_sub_field('split_video_two_text'); // Keep HTML intact
 
-$image_url = $image ? $image['sizes']['large'] : get_template_directory_uri() . '/images/placeholder.png';
+$image_url = Zotefoams_Image_Helper::get_image_url($image, 'large', 'split-video');
+
+// Generate classes to match original structure exactly
+$wrapper_classes = 'split-video-two black-bg white-text theme-dark';
 ?>
 
-<div class="split-video-two black-bg white-text theme-dark">
+<div class="<?php echo $wrapper_classes; ?>">
     <div class="padding-t-b-100">
         <?php if ($title) : ?>
             <p class="fs-600 fw-regular margin-b-30"><?php echo esc_html($title); ?></p>

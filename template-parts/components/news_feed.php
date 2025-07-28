@@ -1,9 +1,10 @@
 <?php
-$section_title = get_sub_field('news_feed_title');
-$button        = get_sub_field('news_feed_button'); // ACF Link field
-$behaviour     = get_sub_field('news_feed_behaviour');
-$post_ids      = get_sub_field('news_feed_post_ids');
-$news_items    = get_sub_field('news_feed_items');
+// Get field data using safe helper functions
+$section_title = zotefoams_get_sub_field_safe('news_feed_title', '', 'string');
+$button        = zotefoams_get_sub_field_safe('news_feed_button', [], 'url');
+$behaviour     = zotefoams_get_sub_field_safe('news_feed_behaviour', '', 'string');
+$post_ids      = zotefoams_get_sub_field_safe('news_feed_post_ids', [], 'array');
+$news_items    = zotefoams_get_sub_field_safe('news_feed_items', [], 'array');
 
 // Determine items based on behaviour
 if ($behaviour === 'pick' && !empty($post_ids)) {
@@ -18,7 +19,12 @@ if ($behaviour === 'pick' && !empty($post_ids)) {
 }
 ?>
 
-<div class="news-feed cont-m padding-t-b-100 theme-none">
+<?php
+// Generate classes to match original structure exactly
+$wrapper_classes = 'news-feed cont-m padding-t-b-100 theme-none';
+?>
+
+<div class="<?php echo $wrapper_classes; ?>">
 
     <div class="title-strip margin-b-30">
         <?php if ($section_title) : ?>

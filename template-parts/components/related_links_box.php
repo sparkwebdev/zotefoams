@@ -1,9 +1,18 @@
 <?php
-$title = get_sub_field( 'related_links_box_title' );
-$links = get_sub_field( 'related_links_box_links' );
+// Get field data using safe helper functions
+$title = get_sub_field('related_links_box_title'); // Keep HTML intact
+$links = zotefoams_get_sub_field_safe('related_links_box_links', [], 'array');
+
+// Get theme-aware wrapper classes
+$wrapper_classes = Zotefoams_Theme_Helper::get_wrapper_classes([
+    'component' => 'related-links-box',
+    'theme'     => 'none',
+    'spacing'   => 'margin-t-0 margin-b-0 padding-t-b-100',
+    'container' => '',
+]);
 ?>
 
-<aside class="related-links-box margin-t-0 margin-b-0 padding-t-b-100 theme-none">
+<aside class="<?php echo $wrapper_classes; ?>">
 	<div class="cont-xs">
 		<?php if ( ! empty( $title ) ) : ?>
 			<h3 class="related-links-box__title"><?php echo wp_kses_post( $title ); ?></h3>
@@ -19,7 +28,7 @@ $links = get_sub_field( 'related_links_box_links' );
 							$link_url    = $link_data['url'] ?? '';
 							$link_title  = $link_data['title'] ?? '';
 							$link_target = $link_data['target'] ?? '_self';
-							$is_file     = $link_url && wp_check_filetype( $link_url )['ext'];
+							$is_file     = Zotefoams_Image_Helper::is_file_url($link_url);
 							$link_class  = $is_file ? 'related-links-box__link-download' : 'related-links-box__link-arrow';
 					?>
 						<li>

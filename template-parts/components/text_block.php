@@ -1,18 +1,13 @@
 <?php
 // Get field data using safe helper functions
 $overline = zotefoams_get_sub_field_safe('text_block_overline', '', 'string');
-$text     = zotefoams_get_sub_field_safe('text_block_text', '', 'string');
+$text     = get_sub_field('text_block_text'); // Keep HTML content intact
 
-// Get theme-aware wrapper classes
-$wrapper_classes = Zotefoams_Theme_Helper::get_wrapper_classes([
-    'component' => 'text-block',
-    'theme'     => 'none',
-    'spacing'   => 'padding-t-b-100',
-]);
+// Generate classes to match original structure exactly
+$wrapper_classes = 'text-block cont-m padding-t-b-100 theme-none';
 ?>
 
 <div class="<?php echo $wrapper_classes; ?>">
-	<div class="cont-m">
 		<div class="text-block__inner">
 			<?php if ($overline) : ?>
 				<p class="margin-b-20"><?php echo esc_html($overline); ?></p>
@@ -24,5 +19,4 @@ $wrapper_classes = Zotefoams_Theme_Helper::get_wrapper_classes([
 				</div>
 			<?php endif; ?>
 		</div>
-	</div>
 </div>
