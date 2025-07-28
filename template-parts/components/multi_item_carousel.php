@@ -1,16 +1,20 @@
 <?php
-$title        = get_sub_field('multi_item_carousel_title');
-$behaviour    = get_sub_field('multi_item_carousel_behaviour'); // 'pick', 'children', or 'manual'
-$page_id      = get_sub_field('multi_item_carousel_parent_id');
-$manual_slides = get_sub_field('multi_item_carousel_slides');
-$isVariant    = get_sub_field('multi_item_carousel_variant');
+// Get field data using safe helper functions
+$title        = zotefoams_get_sub_field_safe('multi_item_carousel_title', '', 'string');
+$behaviour    = zotefoams_get_sub_field_safe('multi_item_carousel_behaviour', '', 'string'); // 'pick', 'children', or 'manual'
+$page_id      = zotefoams_get_sub_field_safe('multi_item_carousel_parent_id', 0, 'int');
+$manual_slides = zotefoams_get_sub_field_safe('multi_item_carousel_slides', [], 'array');
+$isVariant    = zotefoams_get_sub_field_safe('multi_item_carousel_variant', false, 'boolean');
 $wrapperClass = $isVariant ? 'multi-item-carousel multi-item-carousel--variant' : 'multi-item-carousel';
 $slideClass   = $isVariant ? 'swiper-slide black-bg white-text' : 'swiper-slide';
 $btnClass     = $isVariant ? 'btn white outline' : 'btn black outline';
 
+// Generate classes to match original structure exactly
+$container_classes = 'multi-item-carousel-container padding-t-b-100 theme-none';
+
 ?>
 
-<div class="multi-item-carousel-container padding-t-b-100 theme-none">
+<div class="<?php echo $container_classes; ?>">
 	<div class="cont-m">
 
 		<div class="title-strip margin-b-30">
@@ -34,7 +38,7 @@ $btnClass     = $isVariant ? 'btn white outline' : 'btn black outline';
 
 				<?php
 				if ($behaviour === 'pick') {
-					$page_ids = get_sub_field('multi_item_carousel_page_ids') ?: [];
+					$page_ids = zotefoams_get_sub_field_safe('multi_item_carousel_page_ids', [], 'array');
 
 					foreach ($page_ids as $id) {
 						$title   = get_the_title($id);

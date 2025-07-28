@@ -1,11 +1,15 @@
 <?php 
-$title     = get_sub_field('calendar_carousel_title');
-$events    = get_sub_field('calendar_carousel_events');
-$note      = get_sub_field('calendar_carousel_note');
+// Get field data using safe helper functions
+$title     = zotefoams_get_sub_field_safe('calendar_carousel_title', '', 'string');
+$events    = zotefoams_get_sub_field_safe('calendar_carousel_events', [], 'array');
+$note      = zotefoams_get_sub_field_safe('calendar_carousel_note', '', 'string');
 $template_uri = get_template_directory_uri();
+
+// Generate classes to match original structure exactly
+$wrapper_classes = 'cont-m padding-t-b-100 theme-none';
 ?>
 
-<div class="cont-m padding-t-b-100 theme-none">
+<div class="<?php echo $wrapper_classes; ?>">
     <div class="title-strip margin-b-30">
         <?php if ($title): ?>
             <h3 class="fs-500 fw-600"><?php echo esc_html($title); ?></h3>

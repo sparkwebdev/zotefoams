@@ -1,9 +1,14 @@
-<?php if (have_rows('page_header_image')): ?>
-	<div class="image-banner swiper swiper-image">
+<?php 
+// Generate classes to match original structure exactly
+$wrapper_classes = 'image-banner swiper swiper-image';
+
+if (have_rows('page_header_image')): ?>
+	<div class="<?php echo $wrapper_classes; ?>">
 		<div class="swiper-wrapper">
 
 			<?php while (have_rows('page_header_image')): the_row();
-				$image_id = get_sub_field('image');
+				// Get field data with safe handling where possible
+				$image_id = get_sub_field('image'); // ACF repeater sub-field
 				$title = get_sub_field('title') ?: get_the_title();
 				$text = get_sub_field('text') ?: '';
 				$caption = get_sub_field('caption') ?: '';

@@ -1,9 +1,13 @@
 <?php
-$slides = get_sub_field('split_carousel_slides');
+// Get field data using safe helper functions
+$slides = zotefoams_get_sub_field_safe('split_carousel_slides', [], 'array');
+
+// Generate classes to match original structure exactly
+$wrapper_classes = 'swiper-carousel split-carousel light-grey-bg theme-light';
 ?>
 
 <!-- Carousel 3 - Split Carousel -->
-<div class="swiper-carousel split-carousel light-grey-bg theme-light">
+<div class="<?php echo $wrapper_classes; ?>">
 
     <div class="swiper swiper-split">
         <div class="swiper-wrapper">
@@ -15,7 +19,7 @@ $slides = get_sub_field('split_carousel_slides');
                     $button   = $slide['split_carousel_button']; // ACF Link field
                     $image    = $slide['split_carousel_image'];
 
-                    $image_url = $image ? $image['sizes']['large'] : get_template_directory_uri() . '/images/placeholder.png';
+                    $image_url = Zotefoams_Image_Helper::get_image_url($image, 'large', 'split-carousel');
                 ?>
                     <div class="swiper-slide">
                         <img src="<?php echo esc_url($image_url); ?>" alt="<?php echo esc_attr($title); ?>">

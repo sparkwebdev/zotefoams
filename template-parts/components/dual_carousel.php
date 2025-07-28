@@ -1,5 +1,6 @@
 <?php
-$slides = get_sub_field('dual_carousel_slides');
+// Get field data using safe helper functions
+$slides = zotefoams_get_sub_field_safe('dual_carousel_slides', [], 'array');
 
 $markets_page_id = zotefoams_get_page_id_by_title('Markets') ?: zotefoams_get_page_id_by_title('Industries');
 $is_market_pages = $markets_page_id && (get_the_ID() == $markets_page_id || $post->post_parent == $markets_page_id);
@@ -12,9 +13,12 @@ $arrow_color = 'white'; // Default
 $parent_id = wp_get_post_parent_id(get_the_ID());
 $use_black_arrows = ($parent_id == 11); // Hardcoded logic
 $arrow_color = $use_black_arrows ? 'black' : 'white';
+
+// Generate classes to match original structure exactly
+$wrapper_classes = 'swiper-dual-carousel text-center ' . $theme_style;
 ?>
 
-<div class="swiper-dual-carousel text-center <?php echo esc_attr($theme_style); ?>">
+<div class="<?php echo $wrapper_classes; ?>">
 
     <div class="swiper swiper-dual-carousel-text">
         <div class="swiper-wrapper">
@@ -25,7 +29,7 @@ $arrow_color = $use_black_arrows ? 'black' : 'white';
                     $image      = $slide['dual_carousel_image']['sizes']['large'] ?? '';
                     $text       = $slide['dual_carousel_text'] ?? '';
                     $button     = $slide['dual_carousel_button'] ?? null;
-                    $image_url  = $image ?: get_template_directory_uri() . '/images/placeholder.png';
+                    $image_url  = Zotefoams_Image_Helper::get_image_url($slide['dual_carousel_image'], 'large', 'dual-carousel') ?: get_template_directory_uri() . '/images/placeholder.png';
                 ?>
                     <div class="swiper-slide">
                         <div class="slide-inner">
@@ -69,7 +73,7 @@ $arrow_color = $use_black_arrows ? 'black' : 'white';
         <div class="swiper-wrapper">
             <?php if ($slides): ?>
                 <?php foreach ($slides as $slide):
-                    $bg_image_url = $slide['dual_carousel_bg_image']['sizes']['large'] ?? get_template_directory_uri() . '/images/placeholder.png';
+                    $bg_image_url = Zotefoams_Image_Helper::get_image_url($slide['dual_carousel_bg_image'], 'large', 'dual-carousel-bg') ?: get_template_directory_uri() . '/images/placeholder.png';
                     $bg_alt = $slide['dual_carousel_title'] ?? 'Carousel Background';
                 ?>
                     <div class="swiper-slide">
