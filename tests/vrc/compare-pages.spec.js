@@ -18,11 +18,27 @@ const deviceConfigs = {
 
 const includedDevices = ['desktop', 'tablet', 'mobile'];
 
+// Configure your URLs here - update these for your specific environment
 const devBase = 'https://zotefoams-phase-2.local';
-const liveBase = 'https://zotefoams-live-ref.local';
+const liveBase = 'https://zoteliveref.local';
 const outputDir = path.resolve('tests/vrc/results');
 
-const pages = [...pagesLevel1];
+// Choose which page level to test (1 = main pages, 2 = extended, 3 = all)
+const testLevel = process.env.VRC_LEVEL || '1';
+let pages = [];
+
+switch (testLevel) {
+  case '3':
+    pages = [...pagesLevel1, ...pagesLevel2, ...pagesLevel3];
+    break;
+  case '2':
+    pages = [...pagesLevel1, ...pagesLevel2];
+    break;
+  case '1':
+  default:
+    pages = [...pagesLevel1];
+    break;
+}
 
 // Collection for all test results for the final report
 const allTestResults = [];
@@ -35,36 +51,79 @@ if (!existsSync(outputDir)) {
 async function preparePage(context, url, pageName, deviceIdentifier) {
   const page = await context.newPage();
   console.log(`[${pageName}-${deviceIdentifier}] Navigating to ${url}`);
+  
   try {
-    // Using 'networkidle' can be more reliable than 'load' and a fixed timeout,
-    // as it waits for network activity to subside.
-    // Increased timeout for goto itself, as some pages might be slow.
-    await page.goto(url, { waitUntil: 'networkidle', timeout: 90000 }); // 90s for page navigation
-    // The fixed page.waitForTimeout(2000) has been removed.
-    // If 'networkidle' isn't enough, consider specific element waits or a very short explicit wait.
+    // Wait for the page to load completely
+    await page.goto(url, { waitUntil: 'networkidle', timeout: 120000 });
+    
+    // Hide elements that might cause false positives in VRC
+    await page.evaluate(() => {
+      // Hide dynamic content that might change between captures
+      document.querySelectorAll('[data-testid="current-time"], .timestamp, .current-date').forEach(el => {
+        if (el instanceof HTMLElement) el.style.display = 'none';
+      });
+      
+      // Hide any real-time widgets or counters
+      document.querySelectorAll('.share-price-widget, .live-counter, .timestamp').forEach(el => {
+        if (el instanceof HTMLElement) el.style.display = 'none';
+      });
+      
+      // Hide cookie banners and overlays
+      document.querySelectorAll('.cky-overlay, .cky-consent-container, .cky-modal, .cookie-notice').forEach(el => {
+        if (el instanceof HTMLElement) el.style.display = 'none';
+      });
+      
+      // Stop any animations or transitions that might cause inconsistency
+      const style = document.createElement('style');
+      style.textContent = `
+        *, *::before, *::after {
+          animation-duration: 0s !important;
+          animation-delay: 0s !important;
+          transition-duration: 0s !important;
+          transition-delay: 0s !important;
+          scroll-behavior: auto !important;
+        }
+        
+        /* Hide swiper navigation and pagination for consistent screenshots */
+        .swiper-button-next,
+        .swiper-button-prev,
+        .swiper-pagination {
+          opacity: 0 !important;
+        }
+        
+        /* Ensure carousels show first slide consistently */
+        .swiper-wrapper {
+          transform: translateX(0px) !important;
+        }
+      `;
+      document.head.appendChild(style);
+      
+      // Reset all carousels to first slide
+      document.querySelectorAll('.swiper').forEach((el) => {
+        const swiperInstance = el.swiper;
+        if (swiperInstance) {
+          if (swiperInstance.autoplay && typeof swiperInstance.autoplay.stop === 'function') {
+            swiperInstance.autoplay.stop();
+          }
+          if (typeof swiperInstance.slideTo === 'function') {
+            swiperInstance.slideTo(0, 0);
+          }
+        }
+      });
+    });
+    
+    // Wait for fonts and images to load
+    await page.waitForLoadState('networkidle');
+    
+    // Additional wait for any remaining async content
+    await page.waitForTimeout(1000);
+    
   } catch (e) {
     console.error(`[${pageName}-${deviceIdentifier}] Error navigating to ${url}: ${e.message}`);
-    await page.close(); // Clean up page if goto fails
-    throw e; // Re-throw to be caught by the test
+    await page.close();
+    throw e;
   }
 
-  await page.evaluate(() => {
-    document.querySelectorAll('.cky-overlay, .cky-consent-container, cky-modal, .site-header, .site-footer').forEach(el => {
-        if (el instanceof HTMLElement) el.style.display = 'none';
-    });
-    document.querySelectorAll('.swiper').forEach((el) => {
-      // @ts-ignore // Assuming 'swiper' is a custom property or from a library not typed here
-      const swiperInstance = el.swiper;
-      if (swiperInstance) {
-        if (swiperInstance.autoplay && typeof swiperInstance.autoplay.stop === 'function') {
-          swiperInstance.autoplay.stop();
-        }
-        if (typeof swiperInstance.slideTo === 'function') {
-          swiperInstance.slideTo(0, 0);
-        }
-      }
-    });
-  });
   return page;
 }
 
@@ -98,7 +157,10 @@ for (const device of includedDevices) {
       let livePage;
 
       try {
-        context = await browser.newContext({ viewport });
+        context = await browser.newContext({ 
+          viewport,
+          ignoreHTTPSErrors: true, // For local development with self-signed certs
+        });
 
         const devUrl = resultEntry.devUrl;
         const liveUrl = resultEntry.liveUrl;
@@ -195,22 +257,37 @@ for (const device of includedDevices) {
 }
 
 test.afterAll(async () => {
-  console.log('All visual tests completed. Generating report...');
+  console.log('\n🎯 All Zotefoams VRC tests completed. Generating report...');
   
-  // Deduplicate results in case of retries or complex error paths (keeps the latest attempt for a unique page-device combo)
+  // Deduplicate results in case of retries
   const finalResultsMap = new Map();
   for (const result of allTestResults) {
     const key = `${result.name}-${result.device}`;
-    finalResultsMap.set(key, result); // Map ensures only the last entry for a key is kept
+    finalResultsMap.set(key, result);
   }
   const finalUniqueResults = Array.from(finalResultsMap.values());
 
   if (finalUniqueResults.length > 0) {
     try {
-      const reportPath = generateReport(finalUniqueResults, outputDir); // Ensure generateReport can handle the new structure
-      console.log(`Report generated at: ${reportPath}`);
-      await open(reportPath); // open can be async
-      console.log('Report opened in browser.');
+      const reportPath = generateReport(finalUniqueResults, outputDir);
+      console.log(`📊 Report generated at: ${reportPath}`);
+      
+      // Show summary in console
+      const stats = finalUniqueResults.reduce((acc, result) => {
+        acc[result.status] = (acc[result.status] || 0) + 1;
+        acc.total++;
+        return acc;
+      }, { pass: 0, diff: 0, error: 0, total: 0 });
+      
+      console.log(`\n📈 Test Summary:`);
+      console.log(`   Total: ${stats.total}`);
+      console.log(`   ✅ Passed: ${stats.pass}`);
+      console.log(`   ⚠️  Differences: ${stats.diff || 0}`);
+      console.log(`   ❌ Errors: ${stats.error || 0}`);
+      console.log(`   Success Rate: ${((stats.pass / stats.total) * 100).toFixed(1)}%\n`);
+      
+      await open(reportPath);
+      console.log('🌐 Report opened in browser.');
     } catch (reportError) {
         console.error(`Failed to generate or open report: ${reportError.message}`);
     }
