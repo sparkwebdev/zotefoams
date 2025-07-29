@@ -40,7 +40,7 @@ $wrapper_classes = 'box-columns cont-m padding-t-b-100 theme-none';
                 </div>
             <?php endforeach;
         } elseif ($behaviour === 'pick') {
-            $page_ids = get_sub_field('box_columns_page_ids');
+            $page_ids = zotefoams_get_sub_field_safe('box_columns_page_ids', [], 'array');
             foreach ($page_ids as $pid):
                 $thumb = get_the_post_thumbnail_url($pid, 'medium') ?: get_template_directory_uri() . '/images/placeholder-thumbnail.png';
             ?>
@@ -59,8 +59,8 @@ $wrapper_classes = 'box-columns cont-m padding-t-b-100 theme-none';
             <?php endforeach;
         } elseif ($behaviour === 'children') {
             $child_pages = ($page_id == zotefoams_get_page_id_by_title('Knowledge Hub'))
-                ? get_pages(['post_type' => 'knowledge-hub', 'parent' => 0, 'sort_column' => 'menu_order'])
-                : get_pages(['parent' => $page_id, 'sort_column' => 'menu_order']);
+                ? zotefoams_get_child_pages(0, ['post_type' => 'knowledge-hub'])
+                : zotefoams_get_child_pages($page_id);
 
             foreach ($child_pages as $child):
                 $thumb = get_the_post_thumbnail_url($child->ID, 'medium') ?: get_template_directory_uri() . '/images/placeholder-thumbnail.png';
@@ -93,9 +93,9 @@ $wrapper_classes = 'box-columns cont-m padding-t-b-100 theme-none';
                             <?php endif; ?>
                         </div>
                         <?php if ($item['box_columns_item_button']): ?>
-                            <a href="<?php echo esc_url($item['box_columns_item_button']['url']); ?>" class="hl arrow read-more" target="<?php echo esc_attr($item['box_columns_item_button']['target']); ?>">
-                                <?php echo esc_html($item['box_columns_item_button']['title']); ?>
-                            </a>
+                            <?php echo zotefoams_render_link($item['box_columns_item_button'], [
+                                'class' => 'hl arrow read-more'
+                            ]); ?>
                         <?php endif; ?>
                     </div>
                     <?php if ($img): ?>

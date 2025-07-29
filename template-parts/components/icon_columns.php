@@ -40,14 +40,18 @@ $wrapper_classes = Zotefoams_Theme_Helper::get_wrapper_classes([
 <div class="<?php echo $wrapper_classes; ?>">
 
 	<?php if ($overline || $intro): ?>
-	<div class="text-block cont-m margin-b-70">
-		<?php if ($overline): ?>
-			<p class="margin-b-20"><?php echo wp_kses_post($overline); ?></p>
-		<?php endif; ?>
-		<?php if ($intro): ?>
-			<h3 class="fs-600 grey-text fw-semibold"><?php echo wp_kses_post($intro); ?></h3>
-		<?php endif; ?>
-	</div>
+		<?php 
+		$content = '';
+		if ($overline) {
+			$content .= '<p class="margin-b-20">' . wp_kses_post($overline) . '</p>';
+		}
+		if ($intro) {
+			$content .= '<h3 class="fs-600 grey-text fw-semibold">' . wp_kses_post($intro) . '</h3>';
+		}
+		echo zotefoams_render_content_block($content, [
+			'spacing' => 'margin-b-70'
+		]);
+		?>
     <?php endif; ?>
 		
 	<?php if ($columns): ?>

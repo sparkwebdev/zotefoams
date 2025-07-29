@@ -7,12 +7,12 @@ if (have_rows('page_header_image')): ?>
 		<div class="swiper-wrapper">
 
 			<?php while (have_rows('page_header_image')): the_row();
-				// Get field data with safe handling where possible
-				$image_id = get_sub_field('image'); // ACF repeater sub-field
-				$title = get_sub_field('title') ?: get_the_title();
-				$text = get_sub_field('text') ?: '';
-				$caption = get_sub_field('caption') ?: '';
-				$link = get_sub_field('link');
+				// Get field data using safe helper functions
+				$image_id = zotefoams_get_sub_field_safe('image', 0, 'int');
+				$title = zotefoams_get_sub_field_safe('title', get_the_title(), 'string');
+				$text = zotefoams_get_sub_field_safe('text', '', 'string');
+				$caption = zotefoams_get_sub_field_safe('caption', '', 'string');
+				$link = zotefoams_get_sub_field_safe('link', [], 'array');
 				$image_url = wp_get_attachment_image_url($image_id, 'large') ?: get_template_directory_uri() . '/images/placeholder.png';
 			?>
 				<div class="swiper-slide image-cover"
@@ -45,14 +45,17 @@ if (have_rows('page_header_image')): ?>
 								<?php if (have_rows('sustainability_stats')): ?>
 									<div class="sustainability-stats__items">
 										<?php while (have_rows('sustainability_stats')): the_row();
-											$stat_icon = get_sub_field('sustainability_stat_icon');
-											$stat_number = get_sub_field('sustainability_stat_big_number') ?: 0;
-											$stat_suffix = get_sub_field('sustainability_stat_suffix') ?: '';
-											$stat_text = get_sub_field('sustainability_stat_text') ?: '';
+											$stat_icon = zotefoams_get_sub_field_safe('sustainability_stat_icon', [], 'image');
+											$stat_number = zotefoams_get_sub_field_safe('sustainability_stat_big_number', 0, 'int');
+											$stat_suffix = zotefoams_get_sub_field_safe('sustainability_stat_suffix', '', 'string');
+											$stat_text = zotefoams_get_sub_field_safe('sustainability_stat_text', '', 'string');
 										?>
 											<div class="sustainability-stats__stat">
 												<?php if (!empty($stat_icon)): ?>
-													<img src="<?php echo esc_url($stat_icon['url']); ?>" alt="<?php echo esc_attr($stat_text); ?>" loading="lazy" />
+													<?php echo Zotefoams_Image_Helper::render_image($stat_icon, [
+														'alt' => $stat_text,
+														'size' => 'large'
+													]); ?>
 												<?php endif; ?>
 												<div>
 													<p class="fs-800 fw-bold animate__animated animate__delay-1s value margin-b-10"

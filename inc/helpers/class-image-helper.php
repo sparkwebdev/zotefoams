@@ -31,27 +31,28 @@ class Zotefoams_Image_Helper
      * @param mixed $image ACF image field or attachment ID
      * @param string $size WordPress image size
      * @param string $context Image context for fallback selection
-     * @return string
+     * @param bool $use_placeholder Whether to return placeholder images when no image exists
+     * @return string|false
      */
-    public static function get_image_url($image, $size = 'large', $context = 'large')
+    public static function get_image_url($image, $size = 'large', $context = 'large', $use_placeholder = true)
     {
         // Handle ACF image array
         if (is_array($image)) {
-            return self::get_acf_image_url($image, $size, $context);
+            return self::get_acf_image_url($image, $size, $context, $use_placeholder);
         }
 
         // Handle attachment ID
         if (is_numeric($image)) {
-            return self::get_attachment_image_url($image, $size, $context);
+            return self::get_attachment_image_url($image, $size, $context, $use_placeholder);
         }
 
         // Handle post thumbnail
         if ($image === 'thumbnail' && is_singular()) {
             $thumbnail_url = get_the_post_thumbnail_url(get_the_ID(), $size);
-            return $thumbnail_url ?: self::get_fallback_url($context);
+            return $thumbnail_url ?: ($use_placeholder ? self::get_fallback_url($context) : false);
         }
 
-        return self::get_fallback_url($context);
+        return $use_placeholder ? self::get_fallback_url($context) : false;
     }
 
     /**
@@ -60,9 +61,10 @@ class Zotefoams_Image_Helper
      * @param array $image ACF image array
      * @param string $size Image size
      * @param string $context Fallback context
-     * @return string
+     * @param bool $use_placeholder Whether to return placeholder images
+     * @return string|false
      */
-    private static function get_acf_image_url($image, $size, $context)
+    private static function get_acf_image_url($image, $size, $context, $use_placeholder = true)
     {
         // Check for specific size
         if (isset($image['sizes'][$size])) {
@@ -74,7 +76,7 @@ class Zotefoams_Image_Helper
             return esc_url($image['url']);
         }
 
-        return self::get_fallback_url($context);
+        return $use_placeholder ? self::get_fallback_url($context) : false;
     }
 
     /**
@@ -83,12 +85,13 @@ class Zotefoams_Image_Helper
      * @param int $attachment_id Attachment ID
      * @param string $size Image size
      * @param string $context Fallback context
-     * @return string
+     * @param bool $use_placeholder Whether to return placeholder images
+     * @return string|false
      */
-    private static function get_attachment_image_url($attachment_id, $size, $context)
+    private static function get_attachment_image_url($attachment_id, $size, $context, $use_placeholder = true)
     {
         $image_url = wp_get_attachment_image_url($attachment_id, $size);
-        return $image_url ?: self::get_fallback_url($context);
+        return $image_url ?: ($use_placeholder ? self::get_fallback_url($context) : false);
     }
 
     /**

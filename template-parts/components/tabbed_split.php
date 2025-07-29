@@ -30,7 +30,10 @@ $content_wrapper_classes = 'content-container light-grey-bg';
             ?>
                 <div class="tab <?php echo esc_attr($is_active); ?>" data-tab="<?php echo esc_attr($tab_id); ?>">
                     <?php if ($icon) : ?>
-                        <img src="<?php echo esc_url($icon['url']); ?>" alt="<?php echo esc_attr($tab['tabbed_split_tab_title']); ?>" />
+                        <?php echo Zotefoams_Image_Helper::render_image($icon, [
+                            'alt' => $tab['tabbed_split_tab_title'],
+                            'size' => 'large'
+                        ]); ?>
                     <?php endif; ?>
                     <p><?php echo esc_html($tab['tabbed_split_tab_title']); ?></p>
                 </div>

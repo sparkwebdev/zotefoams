@@ -58,17 +58,13 @@ $container_classes = 'multi-item-carousel-container padding-t-b-100 theme-none';
 						</div>
 					<?php }
 				} elseif ($behaviour === 'children') {
-					$children = get_pages([
-						'parent'      => $page_id,
-						'sort_column' => 'menu_order',
-						'sort_order'  => 'ASC',
-					]);
+					$children = zotefoams_get_child_pages($page_id);
 
 					foreach ($children as $child) {
 						$title   = get_the_title($child->ID);
 						$link    = get_permalink($child->ID);
 						$excerpt = get_the_excerpt($child->ID);
-						$image   = get_the_post_thumbnail_url($child->ID, 'thumbnail-product');
+						$image   = get_the_post_thumbnail_url($child->ID, 'thumbnail-product') ?: Zotefoams_Image_Helper::get_image_url(get_post_thumbnail_id($child->ID), 'thumbnail-product', 'thumbnail');
 					?>
 						<div class="<?php echo esc_attr($slideClass); ?>">
 							<h3 class="fs-600 fw-bold"><?php echo esc_html($title); ?></h3>
@@ -86,7 +82,7 @@ $container_classes = 'multi-item-carousel-container padding-t-b-100 theme-none';
 						$title   = $slide['multi_item_carousel_slide_title'] ?? '';
 						$text    = $slide['multi_item_carousel_slide_text'] ?? '';
 						$button  = $slide['multi_item_carousel_slide_button'] ?? [];
-						$image   = $slide['multi_item_carousel_slide_image']['sizes']['thumbnail-product'] ?? '';
+						$image   = Zotefoams_Image_Helper::get_image_url($slide['multi_item_carousel_slide_image'] ?? [], 'thumbnail-product', 'thumbnail', false);
 
 						if (!$title && !$text && !$image && empty($button)) continue;
 					?>
@@ -101,9 +97,10 @@ $container_classes = 'multi-item-carousel-container padding-t-b-100 theme-none';
 								<img src="<?php echo esc_url($image); ?>" alt="<?php echo esc_attr($title); ?>">
 							<?php endif; ?>
 							<?php if (!empty($button['url'])): ?>
-								<a href="<?php echo esc_url($button['url']); ?>" class="<?php echo esc_attr($btnClass); ?>" target="<?php echo esc_attr($button['target'] ?? '_self'); ?>">
-									<?php echo esc_html($button['title'] ?? 'Read More'); ?>
-								</a>
+								<?php echo zotefoams_render_link($button, [
+									'class' => $btnClass,
+									'text' => $button['title'] ?? 'Read More'
+								]); ?>
 							<?php endif; ?>
 						</div>
 				<?php }

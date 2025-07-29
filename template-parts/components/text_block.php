@@ -1,7 +1,7 @@
 <?php
 // Get field data using safe helper functions
 $overline = zotefoams_get_sub_field_safe('text_block_overline', '', 'string');
-$text     = get_sub_field('text_block_text'); // Keep HTML content intact
+$text     = get_sub_field('text_block_text'); // Keep HTML content intact for rich text field
 
 // Generate classes to match original structure exactly
 $wrapper_classes = 'text-block cont-m padding-t-b-100 theme-none';

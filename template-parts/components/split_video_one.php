@@ -40,11 +40,10 @@ $wrapper_classes = $wrapperClass . ' cont-m theme-none padding-t-b-100';
 		<?php endif; ?>
 
 		<?php if ($link) : ?>
-			<div class="margin-b-30">
-				<a href="<?php echo esc_url($link['url']); ?>" class="hl arrow" target="<?php echo esc_attr($link['target']); ?>">
-					<?php echo esc_html($link['title']); ?>
-				</a>
-			</div>
+			<?php echo zotefoams_render_link($link, [
+				'class' => 'hl arrow',
+				'wrapper' => 'margin-b-30'
+			]); ?>
 		<?php endif; ?>
 	</div>
 </div>

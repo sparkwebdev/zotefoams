@@ -24,7 +24,7 @@ function get_category_data($category_id, $fallback_title = 'Uncategorized')
 
         $image_id = get_field('category_image', 'category_' . $category_id);
         if ($image_id) {
-            $image_url = wp_get_attachment_image_url($image_id, 'thumbnail');
+            $image_url = Zotefoams_Image_Helper::get_image_url($image_id, 'thumbnail', 'thumbnail');
         }
     }
 

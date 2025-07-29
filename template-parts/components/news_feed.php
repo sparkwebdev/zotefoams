@@ -95,9 +95,9 @@ $wrapper_classes = 'news-feed cont-m padding-t-b-100 theme-none';
                     </div>
 
                     <?php if ($link && !empty($link['url'])) : ?>
-                        <a href="<?php echo esc_url($link['url']); ?>" class="hl arrow read-more" target="<?php echo esc_attr($link['target'] ?? ''); ?>">
-                            <?php echo esc_html($link['title']); ?>
-                        </a>
+                        <?php echo zotefoams_render_link($link, [
+                            'class' => 'hl arrow read-more'
+                        ]); ?>
                     <?php endif; ?>
                 </div>
             <?php endforeach; ?>

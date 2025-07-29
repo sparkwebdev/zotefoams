@@ -238,3 +238,91 @@ function zotefoams_get_responsive_image_attrs($image, $size = 'large', $args = [
         'srcset'  => Zotefoams_Image_Helper::get_image_srcset($image, $size),
     ];
 }
+
+/**
+ * Render a link with consistent structure and security.
+ *
+ * @param array $link ACF link field data
+ * @param array $args Link rendering arguments
+ * @return string
+ */
+function zotefoams_render_link($link, $args = [])
+{
+    if (empty($link) || empty($link['url'])) {
+        return '';
+    }
+
+    $defaults = [
+        'class'      => '',
+        'wrapper'    => '',
+        'text'       => $link['title'] ?? '',
+        'target'     => $link['target'] ?? '_self',
+        'aria_label' => '',
+    ];
+
+    $args = wp_parse_args($args, $defaults);
+
+    // Build link attributes
+    $href = esc_url($link['url']);
+    $class = $args['class'] ? ' class="' . esc_attr($args['class']) . '"' : '';
+    $target = $args['target'] ? ' target="' . esc_attr($args['target']) . '"' : '';
+    $aria_label = $args['aria_label'] ? ' aria-label="' . esc_attr($args['aria_label']) . '"' : '';
+    $text = esc_html($args['text']);
+
+    // Add security attributes for external links
+    $rel = '';
+    if ($args['target'] === '_blank' && strpos($href, home_url()) === false) {
+        $rel = ' rel="noopener noreferrer"';
+    }
+
+    // Temporary: Add formatting whitespace to match original HTML for VRC testing
+    $link_html = sprintf('<a href="%s"%s%s%s%s>
+                    %s                </a>', $href, $class, $target, $aria_label, $rel, $text);
+
+    // Wrap if wrapper specified
+    if ($args['wrapper']) {
+        $link_html = sprintf('<div class="%s">%s</div>', esc_attr($args['wrapper']), $link_html);
+    }
+
+    return $link_html;
+}
+
+/**
+ * Render a content block with consistent structure.
+ *
+ * @param string $content Block content
+ * @param array $args Block rendering arguments
+ * @return string
+ */
+function zotefoams_render_content_block($content, $args = [])
+{
+    if (empty($content)) {
+        return '';
+    }
+
+    $defaults = [
+        'container'  => 'cont-m',
+        'class'      => 'text-block',
+        'spacing'    => '',
+        'tag'        => 'div',
+    ];
+
+    $args = wp_parse_args($args, $defaults);
+
+    // Build classes
+    $classes = [];
+    if ($args['class']) {
+        $classes[] = $args['class'];
+    }
+    if ($args['container']) {
+        $classes[] = $args['container'];
+    }
+    if ($args['spacing']) {
+        $classes[] = $args['spacing'];
+    }
+
+    $class_attr = !empty($classes) ? ' class="' . esc_attr(implode(' ', $classes)) . '"' : '';
+    $tag = esc_attr($args['tag']);
+
+    return sprintf('<%s%s>%s</%s>', $tag, $class_attr, wp_kses_post($content), $tag);
+}
