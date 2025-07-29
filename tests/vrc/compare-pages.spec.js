@@ -16,7 +16,14 @@ const deviceConfigs = {
   mobile: { width: 375, height: 812 }
 };
 
-const includedDevices = ['desktop', 'tablet', 'mobile'];
+// Configure which devices to test (can be overridden with VRC_DEVICES env var)
+// Options: 'desktop', 'tablet', 'mobile' or 'desktop-only'
+const deviceSelection = process.env.VRC_DEVICES || 'all';
+const includedDevices = deviceSelection === 'desktop-only' 
+  ? ['desktop'] 
+  : deviceSelection === 'all' 
+    ? ['desktop', 'tablet', 'mobile']
+    : deviceSelection.split(',').map(d => d.trim());
 
 // Configure your URLs here - update these for your specific environment
 const devBase = 'https://zotefoams-phase-2.local';
@@ -46,6 +53,52 @@ switch (testLevel) {
 
 // Collection for all test results for the final report
 const allTestResults = [];
+
+// Generate report function for reuse
+async function generateCurrentReport() {
+  console.log('\n🎯 Generating VRC report...');
+  
+  // Deduplicate results in case of retries
+  const finalResultsMap = new Map();
+  for (const result of allTestResults) {
+    const key = `${result.name}-${result.device}`;
+    finalResultsMap.set(key, result);
+  }
+  const finalUniqueResults = Array.from(finalResultsMap.values());
+
+  if (finalUniqueResults.length > 0) {
+    try {
+      const reportPath = generateReport(finalUniqueResults, outputDir, {
+        bailedOut,
+        maxFailures,
+        failureCount
+      });
+      console.log(`📊 Report generated at: ${reportPath}`);
+      
+      // Show summary in console
+      const stats = finalUniqueResults.reduce((acc, result) => {
+        acc[result.status] = (acc[result.status] || 0) + 1;
+        acc.total++;
+        return acc;
+      }, { pass: 0, diff: 0, error: 0, total: 0 });
+      
+      console.log(`\n📈 Test Summary:`)
+      console.log(`   Total: ${stats.total}`);
+      console.log(`   ✅ Passed: ${stats.pass}`);
+      console.log(`   ⚠️  Differences: ${stats.diff || 0}`);
+      console.log(`   ❌ Errors: ${stats.error || 0}`);
+      console.log(`   Success Rate: ${((stats.pass / stats.total) * 100).toFixed(1)}%\n`);
+      
+      await open(reportPath);
+      console.log('🌐 Report opened in browser.');
+      return reportPath;
+    } catch (reportError) {
+      console.error(`Failed to generate or open report: ${reportError.message}`);
+    }
+  } else {
+    console.warn("No test results recorded. Check for early script termination or configuration issues.");
+  }
+}
 
 // Ensure output directory exists once
 if (!existsSync(outputDir)) {
@@ -233,6 +286,8 @@ for (const device of includedDevices) {
           if (failureCount >= maxFailures) {
             bailedOut = true;
             console.warn(`⚠️  Reached maximum failures (${maxFailures}). Stopping test execution.`);
+            // Generate report immediately when bailing out
+            await generateCurrentReport();
           }
         } else {
           resultEntry.status = 'pass';
@@ -260,6 +315,8 @@ for (const device of includedDevices) {
         if (failureCount >= maxFailures) {
           bailedOut = true;
           console.warn(`⚠️  Reached maximum failures (${maxFailures}). Stopping test execution.`);
+          // Generate report immediately when bailing out
+          await generateCurrentReport();
         }
         
         // Ensure result is pushed if not already (e.g. error before explicit push)
@@ -281,45 +338,6 @@ for (const device of includedDevices) {
 }
 
 test.afterAll(async () => {
-  console.log('\n🎯 All Zotefoams VRC tests completed. Generating report...');
-  
-  // Deduplicate results in case of retries
-  const finalResultsMap = new Map();
-  for (const result of allTestResults) {
-    const key = `${result.name}-${result.device}`;
-    finalResultsMap.set(key, result);
-  }
-  const finalUniqueResults = Array.from(finalResultsMap.values());
-
-  if (finalUniqueResults.length > 0) {
-    try {
-      const reportPath = generateReport(finalUniqueResults, outputDir, {
-        bailedOut,
-        maxFailures,
-        failureCount
-      });
-      console.log(`📊 Report generated at: ${reportPath}`);
-      
-      // Show summary in console
-      const stats = finalUniqueResults.reduce((acc, result) => {
-        acc[result.status] = (acc[result.status] || 0) + 1;
-        acc.total++;
-        return acc;
-      }, { pass: 0, diff: 0, error: 0, total: 0 });
-      
-      console.log(`\n📈 Test Summary:`);
-      console.log(`   Total: ${stats.total}`);
-      console.log(`   ✅ Passed: ${stats.pass}`);
-      console.log(`   ⚠️  Differences: ${stats.diff || 0}`);
-      console.log(`   ❌ Errors: ${stats.error || 0}`);
-      console.log(`   Success Rate: ${((stats.pass / stats.total) * 100).toFixed(1)}%\n`);
-      
-      await open(reportPath);
-      console.log('🌐 Report opened in browser.');
-    } catch (reportError) {
-        console.error(`Failed to generate or open report: ${reportError.message}`);
-    }
-  } else {
-    console.warn("No test results recorded. Check for early script termination or configuration issues.");
-  }
+  console.log('\n🎯 All Zotefoams VRC tests completed.');
+  await generateCurrentReport();
 });
