@@ -25,6 +25,10 @@ const outputDir = path.resolve('tests/vrc/results');
 
 // Choose which page level to test (1 = main pages, 2 = extended, 3 = all)
 const testLevel = process.env.VRC_LEVEL || '1';
+// Configure bail-out behavior (stop after X failures)
+const maxFailures = parseInt(process.env.VRC_MAX_FAILURES || '5');
+let failureCount = 0;
+let bailedOut = false;
 let pages = [];
 
 switch (testLevel) {
@@ -133,6 +137,12 @@ for (const device of includedDevices) {
 
   for (const { path: pagePath, name: pageName } of pages) {
     test(`VRT: ${pageName} on ${device}`, async ({ browser }, testInfo) => {
+      // Check if we should bail out due to too many failures
+      if (bailedOut || failureCount >= maxFailures) {
+        test.skip(`Bailed out after ${maxFailures} failures`);
+        return;
+      }
+
       // You can set a specific timeout for these VRT tests if needed,
       // e.g., if 60s (default) is too short for a single page comparison.
       // This will override the global timeout for this specific test.
@@ -216,7 +226,14 @@ for (const device of includedDevices) {
         if (diffPixelsValue > 200) { // Your threshold for difference
           writeFileSync(diffPath, PNG.sync.write(diffImg));
           resultEntry.status = 'diff';
+          failureCount++;
           console.warn(`[${pageName}-${device}] Visual difference found: ${diffPixelsValue} pixels. Diff image: ${resultEntry.diffScreenshotFile}`);
+          
+          // Check if we've hit the failure limit
+          if (failureCount >= maxFailures) {
+            bailedOut = true;
+            console.warn(`⚠️  Reached maximum failures (${maxFailures}). Stopping test execution.`);
+          }
         } else {
           resultEntry.status = 'pass';
           console.log(`[${pageName}-${device}] Visual check passed.`);
@@ -237,6 +254,13 @@ for (const device of includedDevices) {
         console.error(`❌ Error in test [${pageName}-${device}]: ${error.message}\n${error.stack || ''}`);
         resultEntry.status = 'error';
         resultEntry.errorMessage = error.message;
+        failureCount++;
+        
+        // Check if we've hit the failure limit
+        if (failureCount >= maxFailures) {
+          bailedOut = true;
+          console.warn(`⚠️  Reached maximum failures (${maxFailures}). Stopping test execution.`);
+        }
         
         // Ensure result is pushed if not already (e.g. error before explicit push)
         const existingResultIndex = allTestResults.findIndex(r => r.name === pageName && r.device === device);
@@ -269,7 +293,11 @@ test.afterAll(async () => {
 
   if (finalUniqueResults.length > 0) {
     try {
-      const reportPath = generateReport(finalUniqueResults, outputDir);
+      const reportPath = generateReport(finalUniqueResults, outputDir, {
+        bailedOut,
+        maxFailures,
+        failureCount
+      });
       console.log(`📊 Report generated at: ${reportPath}`);
       
       // Show summary in console

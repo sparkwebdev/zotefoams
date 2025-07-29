@@ -5,9 +5,10 @@ import path from 'path';
  * Generate HTML report for Visual Regression Testing results
  * @param {Array} results - Array of test result objects
  * @param {string} outputDir - Directory where report and images are stored
+ * @param {Object} options - Optional configuration including bail-out info
  * @returns {string} Path to generated report file
  */
-export function generateReport(results, outputDir) {
+export function generateReport(results, outputDir, options = {}) {
   const reportPath = path.join(outputDir, 'vrc-report.html');
   
   // Calculate summary statistics
@@ -68,6 +69,7 @@ export function generateReport(results, outputDir) {
     .filter-btn:hover { background: #f3f4f6; box-shadow: 0 1px 2px rgba(0,0,0,0.05); }
     .filter-btn.active:hover { background: #1d4ed8; }
     .success-rate { background: #f0f9ff; border: 1px solid #bae6fd; color: #0c4a6e; padding: 15px; border-radius: 6px; margin-bottom: 20px; text-align: center; font-weight: 600; }
+    .bail-out-notice { background: #fef3c7; border: 1px solid #fed7aa; color: #92400e; padding: 15px; border-radius: 6px; margin-bottom: 20px; text-align: center; font-weight: 600; }
     .zotefoams-logo { float: right; opacity: 0.1; font-size: 18px; font-weight: bold; margin-top: 5px; }
   </style>
 </head>
@@ -79,6 +81,13 @@ export function generateReport(results, outputDir) {
       <p>Generated: ${new Date().toLocaleString()}</p>
       <div class="subtitle">Comparing Development vs Reference versions</div>
     </div>
+    
+    ${options.bailedOut ? `
+    <div class="bail-out-notice">
+      ⚠️ <strong>Test execution stopped early</strong> - Reached maximum failures limit (${options.maxFailures}). 
+      Some tests may not have been executed. Consider fixing failing tests before running full suite.
+    </div>
+    ` : ''}
     
     <div class="success-rate">
       Test Success Rate: ${successRate}% (${stats.pass}/${stats.total} tests passed)
