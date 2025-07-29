@@ -26,17 +26,7 @@ $wrapper_classes = 'news-feed cont-m padding-t-b-100 theme-none';
 
 <div class="<?php echo $wrapper_classes; ?>">
 
-    <div class="title-strip margin-b-30">
-        <?php if ($section_title) : ?>
-            <h3 class="fs-500 fw-600"><?php echo esc_html($section_title); ?></h3>
-        <?php endif; ?>
-
-        <?php if ($button) : ?>
-            <a href="<?php echo esc_url($button['url']); ?>" class="btn black outline" target="<?php echo esc_attr($button['target']); ?>">
-                <?php echo esc_html($button['title']); ?>
-            </a>
-        <?php endif; ?>
-    </div>
+    <?php echo zotefoams_render_title_strip($section_title, $button); ?>
 
     <div class="feed-items">
         <?php if ($news_items) : ?>

@@ -10,10 +10,7 @@ $wrapper_classes = 'cont-m padding-t-b-100 theme-none';
 ?>
 
 <div class="<?php echo $wrapper_classes; ?>">
-    <div class="title-strip margin-b-30">
-        <?php if ($title): ?>
-            <h3 class="fs-500 fw-600"><?php echo esc_html($title); ?></h3>
-        <?php endif; ?>
+    <?php echo zotefoams_render_title_strip($title, null); ?>
 
         <div class="carousel-navigation black">
             <div class="carousel-navigation-inner">

@@ -11,17 +11,7 @@ $wrapper_classes = 'small-box-columns padding-t-b-100 theme-none';
 <div class="<?php echo $wrapper_classes; ?>">
     <div class="cont-m">
 
-        <div class="title-strip margin-b-30">
-            <?php if ($section_title) : ?>
-                <h3 class="fs-500 fw-600"><?php echo esc_html($section_title); ?></h3>
-            <?php endif; ?>
-
-            <?php if ($section_button) : ?>
-                <a href="<?php echo esc_url($section_button['url']); ?>" class="btn black outline" target="<?php echo esc_attr($section_button['target']); ?>">
-                    <?php echo esc_html($section_button['title']); ?>
-                </a>
-            <?php endif; ?>
-        </div>
+        <?php echo zotefoams_render_title_strip($section_title, $section_button); ?>
 
         <div class="small-box-columns__items">
             <?php if ($items) : ?>

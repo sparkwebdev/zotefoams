@@ -60,20 +60,7 @@ if ($content_type === 'category' && !empty($category_ids)) {
 
 <div class="<?php echo $wrapper_classes; ?>">
     <div class="cont-m">
-        <?php if ($title || $link): ?>
-            <div class="title-strip margin-b-30">
-                <?php if ($title): ?>
-                    <h3 class="fs-500 fw-600"><?php echo esc_html($title); ?></h3>
-                <?php endif; ?>
-                <?php if ($link): ?>
-                    <a href="<?php echo esc_url($link['url'] ?? '#'); ?>"
-                        class="btn black outline"
-                        target="<?php echo esc_attr($link['target'] ?? '_self'); ?>">
-                        <?php echo esc_html($link['title'] ?? 'Read More'); ?>
-                    </a>
-                <?php endif; ?>
-            </div>
-        <?php endif; ?>
+        <?php echo zotefoams_render_title_strip($title, $link); ?>
 
         <?php if (!empty($content_items)): ?>
             <div class="box-columns">

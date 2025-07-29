@@ -140,16 +140,7 @@ $wrapper_classes = 'doc-list-outer cont-m padding-t-b-100 theme-none';
 ?>
 
 <div class="<?php echo $wrapper_classes; ?>">
-    <div class="title-strip margin-b-30">
-        <?php if ($title): ?>
-            <h3 class="fs-500 fw-600"><?php echo esc_html($title); ?></h3>
-        <?php endif; ?>
-        <?php if ($button): ?>
-            <a href="<?php echo esc_url($button['url']); ?>" class="btn black outline" target="<?php echo esc_attr($button['target']); ?>">
-                <?php echo esc_html($button['title']); ?>
-            </a>
-        <?php endif; ?>
-    </div>
+    <?php echo zotefoams_render_title_strip($title, $button); ?>
 
     <?php if (!empty($documents_array)): ?>
         <div class="file-list">

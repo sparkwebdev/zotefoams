@@ -64,11 +64,7 @@ $content_wrapper_classes = 'content-container light-grey-bg';
                                 <?php endif; ?>
                             </div>
 
-                            <?php if ($button) : ?>
-                                <a href="<?php echo esc_url($button['url']); ?>" class="hl arrow" target="<?php echo esc_attr($button['target']); ?>">
-                                    <?php echo esc_html($button['title']); ?>
-                                </a>
-                            <?php endif; ?>
+                            <?php echo Zotefoams_Button_Helper::render($button, ['style' => 'arrow']); ?>
                         </div>
                     </div>
 

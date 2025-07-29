@@ -32,9 +32,10 @@ $wrapper_classes = 'text-banner-split theme-dark';
             <?php endif; ?>
 
             <?php if ($link) : ?>
-                <a href="<?php echo esc_url($link['url']); ?>" class="btn white outline fw-regular" target="<?php echo esc_attr($link['target']); ?>">
-                    <?php echo esc_html($link['title']); ?>
-                </a>
+                <?php echo Zotefoams_Button_Helper::render($link, [
+                    'style' => 'white',
+                    'class' => 'fw-regular'
+                ]); ?>
             <?php endif; ?>
         </div>
     </div>
