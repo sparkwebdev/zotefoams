@@ -56,9 +56,9 @@
     "compile:css": "sass sass/:./ --style expanded && stylelint 'sass/**/*.scss' --fix && prettier --write style.css",
     "build": "npm run compile:css && npm run js:bundle",
     "bundle": "dir-archiver --src . --dest ../_s.zip --exclude .DS_Store .stylelintrc.json .eslintrc .git .gitattributes .github .gitignore README.md composer.json composer.lock node_modules vendor package-lock.json package.json .travis.yml phpcs.xml.dist sass style.css.map yarn.lock",
-    "test:vrc": "playwright test tests/vrc/compare-pages.spec.js",
-    "test:vrc:level2": "VRC_LEVEL=2 playwright test tests/vrc/compare-pages.spec.js",
-    "test:vrc:all": "VRC_LEVEL=3 playwright test tests/vrc/compare-pages.spec.js",
+    "test:vrc": "npm run vrc:clean && playwright test tests/vrc/compare-pages.spec.js",
+    "test:vrc:level2": "npm run vrc:clean && VRC_LEVEL=2 playwright test tests/vrc/compare-pages.spec.js",
+    "test:vrc:all": "npm run vrc:clean && VRC_LEVEL=3 playwright test tests/vrc/compare-pages.spec.js",
     "test:install": "playwright install chromium",
     "vrc:clean": "rimraf tests/vrc/results"
   },
