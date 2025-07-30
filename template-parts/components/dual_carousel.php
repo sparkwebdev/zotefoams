@@ -57,14 +57,14 @@ $wrapper_classes = 'swiper-dual-carousel text-center ' . $theme_style;
         </div>
 
         <!-- Navigation -->
-        <div class="carousel-navigation <?php echo esc_attr($arrow_color); ?>">
+        <div class="carousel-navigation <?php echo esc_attr($arrow_color); ?>" role="group" aria-label="Carousel navigation">
             <div class="carousel-navigation-inner">
-                <div class="swiper-button-prev-dual-carousel">
-                    <img src="<?php echo esc_url(get_template_directory_uri() . "/images/left-arrow-{$arrow_color}.svg"); ?>" alt="Previous">
-                </div>
-                <div class="swiper-button-next-dual-carousel">
-                    <img src="<?php echo esc_url(get_template_directory_uri() . "/images/right-arrow-{$arrow_color}.svg"); ?>" alt="Next">
-                </div>
+                <button type="button" class="swiper-button-prev-dual-carousel carousel-btn-reset" aria-label="Previous slide" tabindex="0">
+                    <img src="<?php echo esc_url(get_template_directory_uri() . "/images/left-arrow-{$arrow_color}.svg"); ?>" alt="" role="presentation">
+                </button>
+                <button type="button" class="swiper-button-next-dual-carousel carousel-btn-reset" aria-label="Next slide" tabindex="0">
+                    <img src="<?php echo esc_url(get_template_directory_uri() . "/images/right-arrow-{$arrow_color}.svg"); ?>" alt="" role="presentation">
+                </button>
             </div>
         </div>
     </div>

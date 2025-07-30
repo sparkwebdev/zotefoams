@@ -61,14 +61,14 @@ $wrapper_classes = 'swiper-carousel split-carousel light-grey-bg theme-light';
     <!-- Navigation -->
     <div class="navigation-wrapper">
         <div class="split-swiper-pagination"></div>
-        <div class="carousel-navigation black">
+        <div class="carousel-navigation black" role="group" aria-label="Carousel navigation">
             <div class="carousel-navigation-inner">
-                <div class="split-swiper-button-prev">
-                    <img src="<?php echo esc_url(get_template_directory_uri() . '/images/left-arrow-black.svg'); ?>" alt="<?php esc_attr_e('Previous slide', 'zotefoams'); ?>" />
-                </div>
-                <div class="split-swiper-button-next">
-                    <img src="<?php echo esc_url(get_template_directory_uri() . '/images/right-arrow-black.svg'); ?>" alt="<?php esc_attr_e('Next slide', 'zotefoams'); ?>" />
-                </div>
+                <button type="button" class="split-swiper-button-prev carousel-btn-reset" aria-label="<?php esc_attr_e('Previous slide', 'zotefoams'); ?>" tabindex="0">
+                    <img src="<?php echo esc_url(get_template_directory_uri() . '/images/left-arrow-black.svg'); ?>" alt="" role="presentation" />
+                </button>
+                <button type="button" class="split-swiper-button-next carousel-btn-reset" aria-label="<?php esc_attr_e('Next slide', 'zotefoams'); ?>" tabindex="0">
+                    <img src="<?php echo esc_url(get_template_directory_uri() . '/images/right-arrow-black.svg'); ?>" alt="" role="presentation" />
+                </button>
             </div>
         </div>
     </div>

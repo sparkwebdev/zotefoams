@@ -84,7 +84,7 @@ if (have_rows('page_header_image')): ?>
 		</div>
 
 		<?php if (count(get_field('page_header_image')) > 1): ?>
-			<div class="swiper-button-next swiper-button-next-image white-text">
+			<button type="button" class="swiper-button-next swiper-button-next-image white-text carousel-btn-reset" aria-label="Next slide" tabindex="0">
 				<p class="fw-regular fs-100 uppercase margin-r-15">
 					NEXT: <span class="fw-bold"></span>
 				</p>
@@ -94,7 +94,7 @@ if (have_rows('page_header_image')): ?>
 						<circle class="circle-progress circle-progress-image" cx="25" cy="25" r="23"></circle>
 					</svg>
 				</div>
-			</div>
+			</button>
 		<?php endif; ?>
 	</div>
 <?php endif; ?>

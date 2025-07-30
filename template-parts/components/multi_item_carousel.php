@@ -26,14 +26,14 @@ $container_classes = 'multi-item-carousel-container padding-t-b-100 theme-none';
 			<?php if ($title): ?>
 				<h3 class="fs-500 fw-600"><?php echo esc_html($title); ?></h3>
 			<?php endif; ?>
-			<div class="carousel-navigation black">
+			<div class="carousel-navigation black" role="group" aria-label="Carousel navigation">
 				<div class="carousel-navigation-inner">
-					<div class="multi-swiper-button-prev">
-						<img src="<?php echo esc_url(get_template_directory_uri()); ?>/images/left-arrow-black.svg" />
-					</div>
-					<div class="multi-swiper-button-next">
-						<img src="<?php echo esc_url(get_template_directory_uri()); ?>/images/right-arrow-black.svg" />
-					</div>
+					<button type="button" class="multi-swiper-button-prev carousel-btn-reset" aria-label="Previous slide" tabindex="0">
+						<img src="<?php echo esc_url(get_template_directory_uri()); ?>/images/left-arrow-black.svg" alt="" role="presentation" />
+					</button>
+					<button type="button" class="multi-swiper-button-next carousel-btn-reset" aria-label="Next slide" tabindex="0">
+						<img src="<?php echo esc_url(get_template_directory_uri()); ?>/images/right-arrow-black.svg" alt="" role="presentation" />
+					</button>
 				</div>
 			</div>
 		</div>

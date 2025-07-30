@@ -12,14 +12,14 @@ $wrapper_classes = 'cont-m padding-t-b-100 theme-none';
 <div class="<?php echo $wrapper_classes; ?>">
     <?php echo zotefoams_render_title_strip($title, null); ?>
 
-        <div class="carousel-navigation black">
+        <div class="carousel-navigation black" role="group" aria-label="Calendar navigation">
             <div class="carousel-navigation-inner">
-                <div class="calendar-swiper-button-prev">
-                    <img src="<?php echo esc_url($template_uri); ?>/images/left-arrow-black.svg" alt="Previous" />
-                </div>
-                <div class="calendar-swiper-button-next">
-                    <img src="<?php echo esc_url($template_uri); ?>/images/right-arrow-black.svg" alt="Next" />
-                </div>
+                <button type="button" class="calendar-swiper-button-prev carousel-btn-reset" aria-label="Previous events" tabindex="0">
+                    <img src="<?php echo esc_url($template_uri); ?>/images/left-arrow-black.svg" alt="" role="presentation" />
+                </button>
+                <button type="button" class="calendar-swiper-button-next carousel-btn-reset" aria-label="Next events" tabindex="0">
+                    <img src="<?php echo esc_url($template_uri); ?>/images/right-arrow-black.svg" alt="" role="presentation" />
+                </button>
             </div>
         </div>
     </div>
