@@ -27,7 +27,7 @@ $map_image_url = Zotefoams_Image_Helper::get_image_url($map_image, 'large', 'dat
 $wrapper_classes = 'data-map padding-t-b-100 image-cover theme-dark';
 ?>
 
-<div class="<?php echo $wrapper_classes; ?>" style="background-image:url('<?php echo esc_url($bg_image_url); ?>')">
+<div class="<?php echo esc_attr($wrapper_classes); ?>" style="background-image:url('<?php echo esc_url($bg_image_url); ?>')">
     <div class="cont-m">
         <div class="data-map__stats">
             <?php foreach ($stats as $index => $stat): ?>

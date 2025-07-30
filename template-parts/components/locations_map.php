@@ -32,7 +32,7 @@ $wrapper_classes = 'locations-map padding-t-b-100 theme-dark';
                     $locationClass = $from_left < 40 ? "locations-map__location locations-map__location--left" : "locations-map__location"
                         
                 ?>
-                    <div class="<?php echo $locationClass; ?>" style="top:<?php echo esc_html($from_top); ?>%;left:<?php echo esc_html($from_left); ?>%;">
+                    <div class="<?php echo esc_attr($locationClass); ?>" style="top:<?php echo esc_attr($from_top); ?>%;left:<?php echo esc_attr($from_left); ?>%;">
 
                         <?php if ($description) : ?>
                             <div class="locations-map__popup">

@@ -68,9 +68,9 @@ $wrapper_classes = 'news-feed cont-m padding-t-b-100 theme-none';
 
                         <?php if ($item_title || $event_name) : 
 							if ($event_name) {
-								echo '<h3 class="'.$headingClass.'">' . $event_name . '</h3>';
+								echo '<h3 class="' . esc_attr($headingClass) . '">' . esc_html($event_name) . '</h3>';
 							} else {
-								echo '<h3 class="'.$headingClass.'">' . esc_html($item_title) . '</h3>';
+								echo '<h3 class="' . esc_attr($headingClass) . '">' . esc_html($item_title) . '</h3>';
 							}	                        
                         ?>
                         <?php endif; ?>

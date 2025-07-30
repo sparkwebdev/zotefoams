@@ -10,7 +10,7 @@ $sanitized_unique_id = str_replace('.', '-', $unique_id);
 $wrapper_classes = 'accordion cont-m padding-t-b-100 theme-none';
 ?>
 
-<div class="<?php echo $wrapper_classes; ?>" id="<?php echo esc_attr($sanitized_unique_id); ?>">
+<div class="<?php echo esc_attr($wrapper_classes); ?>" id="<?php echo esc_attr($sanitized_unique_id); ?>">
 
     <?php echo zotefoams_render_title_strip($title, $button, ['wrapper_class' => 'title-strip padding-b-30']); ?>
 

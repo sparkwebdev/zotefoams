@@ -24,9 +24,9 @@ $wrapper_classes = $wrapperClass . ' cont-m theme-none padding-t-b-100';
 		<?php endif; ?>
 	</div>
 
-	<div <?php echo $variant ? 'class="light-grey-bg padding-50"' : ''; ?>>
+	<div <?php echo $variant ? 'class="' . esc_attr('light-grey-bg padding-50') . '"' : ''; ?>>
 		<?php if ($title) : ?>
-			<p class="<?php echo $variant ? 'fs-400 fw-bold margin-b-30' : 'fs-200 fw-regular margin-b-30'; ?>"><?php echo esc_html($title); ?></p>
+			<p class="<?php echo esc_attr($variant ? 'fs-400 fw-bold margin-b-30' : 'fs-200 fw-regular margin-b-30'); ?>"><?php echo esc_html($title); ?></p>
 		<?php endif; ?>
 
 		<?php if ($text) : ?>

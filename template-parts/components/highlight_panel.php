@@ -23,7 +23,7 @@ $wrapper_classes = Zotefoams_Theme_Helper::get_wrapper_classes([
     'container' => '', // No container needed at wrapper level
 ]);
 ?>
-<div class="<?php echo $wrapper_classes; ?>" style="background-image:url(<?php echo esc_url($image_url); ?>);">
+<div class="<?php echo esc_attr($wrapper_classes); ?>" style="background-image:url(<?php echo esc_url($image_url); ?>);">
 	<?php
 	$container_class = ($lead_text && strlen(strip_tags($lead_text)) > 200) ? 'cont-s' : ($lead_text ? 'cont-xs' : '');
 	$text_color = Zotefoams_Theme_Helper::get_text_color('dark');

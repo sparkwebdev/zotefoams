@@ -64,7 +64,7 @@ if ($content_type === 'category' && !empty($category_ids)) {
 
         <?php if (!empty($content_items)): ?>
             <div class="box-columns">
-                <aside class="box-columns__items box-columns__items--<?php echo count($content_items); ?>">
+                <aside class="box-columns__items box-columns__items--<?php echo esc_attr(count($content_items)); ?>">
                     <?php foreach ($content_items as $item): ?>
                         <?php
                         if ($content_type === 'category') {
