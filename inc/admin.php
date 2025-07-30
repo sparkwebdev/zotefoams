@@ -6,7 +6,12 @@
 add_filter('show_admin_bar', '__return_false');
 
 /**
- * Edit Admin layout.
+ * Customize admin area styling and layout.
+ * 
+ * Applies custom CSS to improve the WordPress admin interface,
+ * particularly for ACF field groups and post edit screens.
+ * 
+ * @return void
  */
 function my_acf_admin_head()
 {

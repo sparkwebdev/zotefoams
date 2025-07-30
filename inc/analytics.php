@@ -11,6 +11,12 @@ if (!defined('ABSPATH')) {
 
 /**
  * Add Google Analytics tracking code from ACF options.
+ * 
+ * Dynamically injects Google Analytics Global Site Tag (gtag.js)
+ * based on the tracking ID configured in ACF theme options.
+ * Only loads if google_analytics_tracking_id option is set.
+ * 
+ * @return void
  */
 function zotefoams_add_google_gtag_from_acf()
 {
@@ -35,6 +41,12 @@ add_action('wp_head', 'zotefoams_add_google_gtag_from_acf');
 
 /**
  * Enqueue LinkedIn analytics scripts if configured.
+ * 
+ * Loads LinkedIn Insight Tag for conversion tracking and analytics
+ * based on the partner ID configured in ACF theme options.
+ * Only loads if linkedin_partner_id option is set.
+ * 
+ * @return void
  */
 function zotefoams_enqueue_linkedin_analytics()
 {

@@ -11,6 +11,12 @@ if (!defined('ABSPATH')) {
 
 /**
  * Enqueue Mailchimp scripts and initialize subscription forms.
+ * 
+ * Dynamically loads Mailchimp's JavaScript based on ACF option values.
+ * Requires mailchimp_list_id and mailchimp_server to be configured
+ * in the theme options.
+ * 
+ * @return void
  */
 function zotefoams_enqueue_mailchimp_scripts()
 {

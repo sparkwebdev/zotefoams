@@ -12,9 +12,15 @@ if (!defined('ABSPATH')) {
 /**
  * Sets up theme defaults and registers support for various WordPress features.
  *
+ * Registers theme support for features like post thumbnails, HTML5 markup,
+ * custom logo, navigation menus, and RSS feeds. Also registers custom image sizes
+ * and sets up internationalization.
+ * 
  * Note that this function is hooked into the after_setup_theme hook, which
  * runs before the init hook. The init hook is too late for some features, such
  * as indicating support for post thumbnails.
+ * 
+ * @return void
  */
 function zotefoams_setup()
 {

@@ -1,4 +1,9 @@
 <?php
+/**
+ * Multi Item Carousel Component
+ * Displays carousel with configurable behaviour (pick, children, manual)
+ */
+
 // Get field data using safe helper functions
 $title        = zotefoams_get_sub_field_safe('multi_item_carousel_title', '', 'string');
 $behaviour    = zotefoams_get_sub_field_safe('multi_item_carousel_behaviour', '', 'string'); // 'pick', 'children', or 'manual'

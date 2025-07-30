@@ -11,6 +11,13 @@ if (!defined('ABSPATH')) {
 
 /**
  * Register custom ACF blocks.
+ * 
+ * Registers the theme's custom Gutenberg blocks that use ACF for data:
+ * - quote-box: Styled quote containers
+ * - highlight-box: Promotional content blocks  
+ * - related-links-box: Link collection blocks
+ * 
+ * @return void
  */
 function zotefoams_register_acf_blocks()
 {

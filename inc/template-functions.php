@@ -25,6 +25,8 @@ add_filter('body_class', 'zotefoams_body_classes');
 
 /**
  * Add a pingback url auto-discovery header for single posts, pages, or attachments.
+ * 
+ * @return void
  */
 function zotefoams_pingback_header()
 {
@@ -36,7 +38,13 @@ add_action('wp_head', 'zotefoams_pingback_header');
 
 
 /**
- * Determine/map labels to category
+ * Map category names to appropriate call-to-action labels
+ * 
+ * Returns context-appropriate button text based on post category.
+ * Used throughout the theme to provide relevant CTAs for different content types.
+ * 
+ * @param string $label Category name to map
+ * @return string Mapped call-to-action label
  */
 function zotefoams_map_cat_label($label)
 {

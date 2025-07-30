@@ -34,6 +34,9 @@ require get_template_directory() . '/inc/acf-config.php';
 // ACF helper functions (must load early for components)
 require get_template_directory() . '/inc/acf-helpers.php';
 
+// Debug system for better developer experience
+require get_template_directory() . '/inc/debug.php';
+
 // Analytics integration (Google Analytics, LinkedIn, etc.)
 require get_template_directory() . '/inc/analytics.php';
 
