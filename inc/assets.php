@@ -22,13 +22,9 @@ function zotefoams_enqueue_assets()
     wp_enqueue_style('swiper-css', 'https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css');
     wp_enqueue_script('swiper-js', 'https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js', array(), null, true);
 
-    // Enqueue jQuery and individual theme scripts with proper dependencies
+    // Enqueue jQuery and main theme bundle (ES module build)
     wp_enqueue_script('jquery');
-    wp_enqueue_script('zotefoams-navigation', get_template_directory_uri() . '/js/navigation.js', array(), _S_VERSION, true);
-    wp_enqueue_script('zotefoams-components-js', get_template_directory_uri() . '/js/components.js', array(), _S_VERSION, true);
-    wp_enqueue_script('zotefoams-components-carousels-js', get_template_directory_uri() . '/js/components-carousels.js', array(), _S_VERSION, true);
-    wp_enqueue_script('zotefoams-sp-js', get_template_directory_uri() . '/js/sp.js', array(), _S_VERSION, true);
-    wp_enqueue_script('zotefoams-history-js', get_template_directory_uri() . '/js/our-history.js', array(), _S_VERSION, true);
+    wp_enqueue_script('zotefoams-bundle', get_template_directory_uri() . '/js/bundle.js', array(), _S_VERSION, true);
 
     // Enqueue comment reply script on single posts/pages with comments open
     if (is_singular() && comments_open() && get_option('thread_comments')) {
@@ -36,7 +32,7 @@ function zotefoams_enqueue_assets()
     }
 
     // Global AJAX handler for theme
-    wp_localize_script('zotefoams-components-js', 'zotefoams_ajax', array(
+    wp_localize_script('zotefoams-bundle', 'zotefoams_ajax', array(
         'ajax_url' => admin_url('admin-ajax.php'),
         'nonce' => wp_create_nonce('zotefoams_nonce'),
     ));

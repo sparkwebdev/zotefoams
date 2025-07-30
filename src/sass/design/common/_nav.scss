@@ -661,18 +661,18 @@ $breakpoint-large: 68rem;
         }
       }
 
-        &::before {
-          content: "";
-          display: block;
-          background: rgba(0, 0, 0, 0.9);
-          opacity: 0.85;
-          position: fixed;
-          bottom: 0;
-          top: var(--header-height);
-          left: 0;
-          right: 0;
-          pointer-events: none;
-        }
+      &::before {
+        content: "";
+        display: block;
+        background: rgba(0, 0, 0, 0.9);
+        opacity: 0.85;
+        position: fixed;
+        bottom: 0;
+        top: var(--header-height);
+        left: 0;
+        right: 0;
+        pointer-events: none;
+      }
     }
   }
 

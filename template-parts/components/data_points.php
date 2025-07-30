@@ -60,7 +60,7 @@ $wrapper_classes = Zotefoams_Theme_Helper::get_wrapper_classes([
                         ]); ?>
                     <?php endif; ?>
 
-                    <p class="animate__animated animate__delay-1s value fw-bold fs-700 margin-b-10" <?php echo $attr_string; ?>>0</p>
+                    <p class="value fw-bold fs-700 margin-b-10" <?php echo $attr_string; ?>>0</p>
 
                     <?php if ($label): ?>
                         <label class="sub-title fs-100"><?php echo esc_html($label); ?></label>

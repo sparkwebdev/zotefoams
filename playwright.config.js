@@ -4,6 +4,8 @@ import { defineConfig } from "@playwright/test";
 export default defineConfig({
   testDir: "./tests",
   timeout: 60 * 1000,
+  fullyParallel: true,
+  workers: 8,
   expect: {
     timeout: 5000,
     toHaveScreenshot: { threshold: 0.3 }, // tweak sensitivity
