@@ -51,7 +51,12 @@ export function generateReport(results, outputDir, options = {}) {
     .result { margin-bottom: 30px; padding: 25px; border: 1px solid #e5e7eb; border-radius: 8px; background: #fafafa; }
     .result-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; }
     .result-title { font-size: 20px; font-weight: 600; color: #1f2937; }
-    .result-url { font-size: 14px; color: #6b7280; margin-top: 6px; font-family: 'Monaco', 'Menlo', monospace; background: #f3f4f6; padding: 4px 8px; border-radius: 4px; }
+    .result-urls { margin-top: 8px; display: flex; gap: 16px; flex-wrap: wrap; }
+    .result-url { font-size: 13px; font-family: 'Monaco', 'Menlo', monospace; background: #f3f4f6; padding: 6px 10px; border-radius: 4px; text-decoration: none; color: #374151; border: 1px solid #e5e7eb; transition: all 0.2s; }
+    .result-url:hover { background: #e5e7eb; border-color: #d1d5db; text-decoration: none; }
+    .result-url-dev { border-left: 3px solid #10b981; }
+    .result-url-ref { border-left: 3px solid #3b82f6; }
+    .result-url-label { font-size: 11px; text-transform: uppercase; font-weight: 600; letter-spacing: 0.5px; color: #6b7280; margin-right: 6px; }
     .status { padding: 6px 12px; border-radius: 6px; font-size: 13px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; }
     .status-pass { background: #dcfce7; color: #15803d; }
     .status-diff { background: #fef3c7; color: #d97706; }
@@ -125,7 +130,14 @@ export function generateReport(results, outputDir, options = {}) {
           <div class="result-header">
             <div>
               <div class="result-title">${result.name} - ${result.device}</div>
-              <div class="result-url">${result.devUrl}</div>
+              <div class="result-urls">
+                <a href="${result.devUrl}" target="_blank" class="result-url result-url-dev">
+                  <span class="result-url-label">DEV</span>${result.devUrl}
+                </a>
+                <a href="${result.liveUrl}" target="_blank" class="result-url result-url-ref">
+                  <span class="result-url-label">REF</span>${result.liveUrl}
+                </a>
+              </div>
             </div>
             <span class="status status-${result.status}">${result.status}</span>
           </div>
