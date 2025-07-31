@@ -8,6 +8,9 @@ import commonjs from '@rollup/plugin-commonjs';
 import terser from '@rollup/plugin-terser';
 import scss from 'rollup-plugin-scss';
 import { writeFileSync } from 'fs';
+import postcss from 'postcss';
+import autoprefixer from 'autoprefixer';
+import cssnano from 'cssnano';
 
 const isProduction = false; // Always use development mode
 
@@ -33,25 +36,44 @@ export default defineConfig({
 
 		// Process SCSS files
 		scss({
-			output: function (styles, styleNodes) {
+			output: async function (styles, styleNodes) {
+				// PostCSS plugins configuration
+				const plugins = [
+					autoprefixer({
+						overrideBrowserslist: [
+							'last 2 versions',
+							'> 1%',
+							'not dead',
+							'not ie 11'
+						]
+					})
+				];
+
+				// Add minification in production
+				if (isProduction) {
+					plugins.push(cssnano({
+						preset: 'default'
+					}));
+				}
+
+				// Process CSS with PostCSS
+				const result = await postcss(plugins).process(styles, { 
+					from: undefined,
+					map: !isProduction ? { inline: false } : false
+				});
+				
 				// Force output to root directory
-				writeFileSync('style.css', styles);
+				writeFileSync('style.css', result.css);
 				
 				// Generate source map in development
-				if (!isProduction && styleNodes && styleNodes.map) {
-					writeFileSync('style.css.map', JSON.stringify(styleNodes.map));
+				if (!isProduction && result.map) {
+					writeFileSync('style.css.map', result.map.toString());
 				}
 			},
-			outputStyle: 'compressed',
+			outputStyle: isProduction ? 'compressed' : 'expanded',
 			sourceMap: !isProduction,
 			includePaths: ['src/sass/'],
-			watch: ['src/sass/**/*.scss'],
-			
-			// PostCSS processing
-			processor: css => {
-				// Here we could add autoprefixer, etc. in the future
-				return css;
-			}
+			watch: ['src/sass/**/*.scss']
 		}),
 
 		// Copy static assets if needed (add rollup-plugin-copy when required)

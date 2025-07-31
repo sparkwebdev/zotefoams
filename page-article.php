@@ -26,7 +26,7 @@ if (function_exists('get_field')) {
 <?php
 		endif;
 	} elseif ($page_header_type === 'image') {
-		include locate_template('/template-parts/components/b1-Image-banner.php', false, false);
+		include locate_template('/template-parts/components/image-banner.php', false, false);
 	}
 }
 
