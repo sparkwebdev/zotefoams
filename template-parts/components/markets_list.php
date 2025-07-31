@@ -3,7 +3,7 @@
 $title          = zotefoams_get_sub_field_safe('markets_list_title', '', 'string');
 $button         = zotefoams_get_sub_field_safe('markets_list_button', [], 'url');
 $behaviour      = zotefoams_get_sub_field_safe('markets_list_behaviour', '', 'string');
-$marketPageID   = zotefoams_get_page_id_by_title('Markets') ?: zotefoams_get_page_id_by_title('Industries');
+$market_page_id = zotefoams_get_page_id_by_title('Markets') ?: zotefoams_get_page_id_by_title('Industries');
 $manual_items   = zotefoams_get_sub_field_safe('markets_list_markets', [], 'array');
 $selected_pages = zotefoams_get_sub_field_safe('markets_list_ids', [], 'array');
 
@@ -23,7 +23,7 @@ $wrapper_classes = Zotefoams_Theme_Helper::get_wrapper_classes([
 
     <?php if ($behaviour === 'all') :
         $child_pages = get_pages([
-            'child_of'    => $marketPageID,
+            'child_of'    => $market_page_id,
             'sort_column' => 'menu_order',
             'sort_order'  => 'ASC',
         ]);

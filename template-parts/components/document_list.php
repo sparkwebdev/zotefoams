@@ -10,7 +10,7 @@ $pick_count        = zotefoams_get_sub_field_safe('document_list_pick_count', 0,
 
 $documents_array = [];
 
-// 🔹 Helper: Category info with fallback icon
+// Helper: Category info with fallback icon
 function get_category_data($category_id, $fallback_title = 'Uncategorized')
 {
     $name = $fallback_title;
@@ -34,7 +34,7 @@ function get_category_data($category_id, $fallback_title = 'Uncategorized')
     ];
 }
 
-// 🔹 Helper: Create document object
+// Helper: Create document object
 function create_document_entry($file, $category_data, $category_id, $all_brands = false, $brands = [])
 {
     return (object) [
@@ -48,7 +48,7 @@ function create_document_entry($file, $category_data, $category_id, $all_brands 
     ];
 }
 
-// 📌 latest behaviour
+// Latest behaviour
 if ($behaviour === 'latest') {
     $args = [
         'post_type' => 'knowledge-hub',
@@ -88,7 +88,7 @@ if ($behaviour === 'latest') {
     }
 }
 
-// 📌 pick behaviour
+// Pick behaviour
 elseif ($behaviour === 'pick' && !empty($pick_documents)) {
     $selected_ids = array_filter(array_map(fn($doc) => $doc['document_list_pick'], $pick_documents));
     $hubs = get_posts([
@@ -118,7 +118,7 @@ elseif ($behaviour === 'pick' && !empty($pick_documents)) {
     }
 }
 
-// 📌 manual behaviour
+// Manual behaviour
 elseif ($behaviour === 'manual' && !empty($manual_documents)) {
     foreach ($manual_documents as $doc) {
         $cat_id = $doc['document_list_category'] ?? '';

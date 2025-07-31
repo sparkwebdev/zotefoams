@@ -7,7 +7,7 @@ $text     = get_sub_field('text_block_text'); // Keep HTML content intact for ri
 $wrapper_classes = 'text-block cont-m padding-t-b-100 theme-none';
 ?>
 
-<div class="<?php echo $wrapper_classes; ?>">
+<div class="<?php echo esc_attr($wrapper_classes); ?>">
 		<div class="text-block__inner">
 			<?php if ($overline) : ?>
 				<p class="margin-b-20"><?php echo esc_html($overline); ?></p>

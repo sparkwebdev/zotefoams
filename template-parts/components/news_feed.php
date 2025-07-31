@@ -24,7 +24,7 @@ if ($behaviour === 'pick' && !empty($post_ids)) {
 $wrapper_classes = 'news-feed cont-m padding-t-b-100 theme-none';
 ?>
 
-<div class="<?php echo $wrapper_classes; ?>">
+<div class="<?php echo esc_attr($wrapper_classes); ?>">
 
     <?php echo zotefoams_render_title_strip($section_title, $button); ?>
 

@@ -12,7 +12,7 @@ $use_categories = ($behaviour === 'children' && $page_id == $posts_page_id);
 $wrapper_classes = 'box-columns cont-m padding-t-b-100 theme-none';
 ?>
 
-<div class="<?php echo $wrapper_classes; ?>">
+<div class="<?php echo esc_attr($wrapper_classes); ?>">
     <?php echo zotefoams_render_title_strip($title, $button); ?>
 
     <div class="box-columns__items">

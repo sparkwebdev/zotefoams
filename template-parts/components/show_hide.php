@@ -1,9 +1,9 @@
 <?php
 // Get field data using safe helper functions
-$title  = zotefoams_get_sub_field_safe('show_hide_title', '', 'string');
-$button = zotefoams_get_sub_field_safe('show_hide_button', [], 'url');
-$items  = zotefoams_get_sub_field_safe('show_hide_items', [], 'array');
-$unique_id  = zotefoams_get_sub_field_safe('unique_id', '', 'string');
+$title     = zotefoams_get_sub_field_safe('show_hide_title', '', 'string');
+$button    = zotefoams_get_sub_field_safe('show_hide_button', [], 'url');
+$items     = zotefoams_get_sub_field_safe('show_hide_items', [], 'array');
+$unique_id = zotefoams_get_sub_field_safe('unique_id', '', 'string');
 $sanitized_unique_id = str_replace('.', '-', $unique_id);
 
 // Generate classes to match original structure exactly
