@@ -1,0 +1,213 @@
+/* Interactive Image
+ *--------------------------------------------- */
+
+.interactive-image {
+  background-color: #041b40;
+
+  &__intro {
+    max-width: 700px;
+  }
+
+  &__container {
+    position: relative;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  &__bg {
+    max-width: 100%;
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+
+  &__point {
+    cursor: pointer;
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1;
+
+    // Circle marker styles (default)
+    &--circle {
+      width: 0.4vw;
+      height: 0.4vw;
+      max-width: 8px;
+      max-height: 8px;
+      border-radius: 50%;
+      background-color: #fff;
+      transform: translate(-50%, -50%);
+
+      &::after {
+        content: "";
+        width: 5vw;
+        height: 5vw;
+        border-radius: 50%;
+        border: solid 2px #fff;
+        position: absolute;
+        max-width: 50px;
+        max-height: 50px;
+        opacity: 0.5;
+      }
+
+      &:hover::after {
+        border: solid 10px #fff;
+      }
+    }
+
+    // Numbered marker styles
+    &--numbered {
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      background-color: #0073aa;
+      color: #fff;
+      font-weight: 600;
+      font-size: 20px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+      transition: transform 0.2s ease;
+      transform: translate(-50%, -50%);
+
+      &::before {
+        content: attr(data-point-number);
+      }
+
+      &:hover {
+        transform: translate(-50%, -50%) scale(1.1);
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+      }
+    }
+
+    &:has(.fade-in) {
+      z-index: 2;
+
+      .interactive-image__popup {
+        z-index: 3;
+      }
+    }
+
+    &--left {
+      .interactive-image__popup {
+        left: auto;
+        right: calc(50% - 110px);
+        transform: translateX(0);
+      }
+    }
+  }
+
+  &__popup {
+    display: none;
+    position: absolute;
+    top: 23px;
+    left: calc(50% - 110px);
+    width: 220px;
+    padding: 15px 20px;
+    border: solid 1px #fff5;
+    backdrop-filter: blur(10px);
+    color: #fff;
+    background: linear-gradient(to bottom, rgba(255, 255, 255, 0.1), rgba(4, 27, 65, 0.5));
+    font-size: 0.9em;
+    
+    // Adjust top position for numbered markers
+    .interactive-image__point--numbered & {
+      top: 35px;
+    }
+    
+    // Default center-aligned positioning
+    &--center-aligned {
+      left: 50%;
+      transform: translateX(-50%);
+    }
+    
+    // Left-aligned for points near left edge
+    &--left-aligned {
+      left: 0;
+      transform: none;
+    }
+    
+    // Right-aligned for points near right edge
+    &--right-aligned {
+      left: auto;
+      right: 0;
+      transform: none;
+    }
+
+    &::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 10%;
+      background: linear-gradient(to bottom, rgba(4, 27, 65, 0.5), transparent);
+      z-index: -1;
+    }
+  }
+}
+
+/* Fade-in Animation */
+@keyframes interactiveImageFadeIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+.interactive-image__popup.fade-in {
+  animation: interactiveImageFadeIn 0.25s ease-out;
+}
+
+.interactive-image__container:has(.fade-in) .interactive-image__point:not(:has(.fade-in)) {
+  opacity: 0.5;
+  transition: opacity 0.5s;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .interactive-image {
+    &__point {
+      &--circle {
+        width: 8px;
+        height: 8px;
+        max-width: 8px;
+        max-height: 8px;
+        transform: translate(-50%, -50%);
+
+        &::after {
+          width: 40px;
+          height: 40px;
+          max-width: 40px;
+          max-height: 40px;
+        }
+      }
+
+      &--numbered {
+        width: 32px;
+        height: 32px;
+        font-size: 16px;
+        transform: translate(-50%, -50%);
+        
+        &:hover {
+          transform: translate(-50%, -50%) scale(1.1);
+        }
+      }
+    }
+
+    &__popup {
+      width: 200px;
+      left: calc(50% - 100px);
+      font-size: 0.85em;
+      padding: 12px 15px;
+      
+      // Update center-aligned for smaller width
+      &--center-aligned {
+        left: 50%;
+        transform: translateX(-50%);
+      }
+    }
+  }
+}

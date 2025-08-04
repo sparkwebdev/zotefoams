@@ -4706,6 +4706,179 @@ a.read-more.hl.arrow:focus::after {
   transition: opacity 0.5s;
 }
 
+/* Interactive Image
+ *--------------------------------------------- */
+.interactive-image {
+  background-color: #041b40;
+}
+.interactive-image__intro {
+  max-width: 700px;
+}
+.interactive-image__container {
+  position: relative;
+  margin-left: auto;
+  margin-right: auto;
+}
+.interactive-image__bg {
+  max-width: 100%;
+  display: block;
+  width: 100%;
+  height: auto;
+}
+.interactive-image__point {
+  cursor: pointer;
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1;
+}
+.interactive-image__point--circle {
+  width: 0.4vw;
+  height: 0.4vw;
+  max-width: 8px;
+  max-height: 8px;
+  border-radius: 50%;
+  background-color: #fff;
+  transform: translate(-50%, -50%);
+}
+.interactive-image__point--circle::after {
+  content: "";
+  width: 5vw;
+  height: 5vw;
+  border-radius: 50%;
+  border: solid 2px #fff;
+  position: absolute;
+  max-width: 50px;
+  max-height: 50px;
+  opacity: 0.5;
+}
+.interactive-image__point--circle:hover::after {
+  border: solid 10px #fff;
+}
+.interactive-image__point--numbered {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  background-color: #0073aa;
+  color: #fff;
+  font-weight: 600;
+  font-size: 20px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  transition: transform 0.2s ease;
+  transform: translate(-50%, -50%);
+}
+.interactive-image__point--numbered::before {
+  content: attr(data-point-number);
+}
+.interactive-image__point--numbered:hover {
+  transform: translate(-50%, -50%) scale(1.1);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+.interactive-image__point:has(.fade-in) {
+  z-index: 2;
+}
+.interactive-image__point:has(.fade-in) .interactive-image__popup {
+  z-index: 3;
+}
+.interactive-image__point--left .interactive-image__popup {
+  left: auto;
+  right: calc(50% - 110px);
+  transform: translateX(0);
+}
+.interactive-image__popup {
+  display: none;
+  position: absolute;
+  top: 23px;
+  left: calc(50% - 110px);
+  width: 220px;
+  padding: 15px 20px;
+  border: solid 1px rgba(255, 255, 255, 0.3333333333);
+  backdrop-filter: blur(10px);
+  color: #fff;
+  background: linear-gradient(to bottom, rgba(255, 255, 255, 0.1), rgba(4, 27, 65, 0.5));
+  font-size: 0.9em;
+}
+.interactive-image__point--numbered .interactive-image__popup {
+  top: 35px;
+}
+.interactive-image__popup--center-aligned {
+  left: 50%;
+  transform: translateX(-50%);
+}
+.interactive-image__popup--left-aligned {
+  left: 0;
+  transform: none;
+}
+.interactive-image__popup--right-aligned {
+  left: auto;
+  right: 0;
+  transform: none;
+}
+.interactive-image__popup::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 10%;
+  background: linear-gradient(to bottom, rgba(4, 27, 65, 0.5), transparent);
+  z-index: -1;
+}
+
+/* Fade-in Animation */
+@keyframes interactiveImageFadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+.interactive-image__popup.fade-in {
+  animation: interactiveImageFadeIn 0.25s ease-out;
+}
+
+.interactive-image__container:has(.fade-in) .interactive-image__point:not(:has(.fade-in)) {
+  opacity: 0.5;
+  transition: opacity 0.5s;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .interactive-image__point--circle {
+    width: 8px;
+    height: 8px;
+    max-width: 8px;
+    max-height: 8px;
+    transform: translate(-50%, -50%);
+  }
+  .interactive-image__point--circle::after {
+    width: 40px;
+    height: 40px;
+    max-width: 40px;
+    max-height: 40px;
+  }
+  .interactive-image__point--numbered {
+    width: 32px;
+    height: 32px;
+    font-size: 16px;
+    transform: translate(-50%, -50%);
+  }
+  .interactive-image__point--numbered:hover {
+    transform: translate(-50%, -50%) scale(1.1);
+  }
+  .interactive-image__popup {
+    width: 200px;
+    left: calc(50% - 100px);
+    font-size: 0.85em;
+    padding: 12px 15px;
+  }
+  .interactive-image__popup--center-aligned {
+    left: 50%;
+    transform: translateX(-50%);
+  }
+}
 /* Data points
  *--------------------------------------------- */
 .data-points h3 {

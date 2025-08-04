@@ -117,3 +117,32 @@ function zotefoams_add_knowledge_hub_admin_inline_styles()
     }
 }
 add_action('admin_head', 'zotefoams_add_knowledge_hub_admin_inline_styles');
+
+/**
+ * Enqueue admin scripts and styles for Interactive Image component.
+ */
+function zotefoams_enqueue_interactive_image_admin_assets()
+{
+    $screen = get_current_screen();
+    
+    // Only load on post edit screens where ACF is present
+    if ($screen && in_array($screen->post_type, array('page', 'post')) && $screen->base === 'post') {
+        // Enqueue admin CSS
+        wp_enqueue_style(
+            'zotefoams-admin-interactive-image',
+            get_template_directory_uri() . '/css/admin-interactive-image.css',
+            array('acf-input'),
+            '1.5.1'
+        );
+        
+        // Enqueue admin JavaScript
+        wp_enqueue_script(
+            'zotefoams-admin-interactive-image',
+            get_template_directory_uri() . '/js/admin-interactive-image.js',
+            array('jquery', 'acf-input'),
+            '1.5.1',
+            true
+        );
+    }
+}
+add_action('admin_enqueue_scripts', 'zotefoams_enqueue_interactive_image_admin_assets');

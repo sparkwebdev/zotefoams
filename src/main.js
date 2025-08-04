@@ -15,6 +15,7 @@ import './components/navigation.js';
 import './components/carousel-init.js';
 import './components/tabbed-split.js';
 import './components/locations-map.js';
+import './components/interactive-image.js';
 import './components/data-points.js';
 import './components/file-list.js';
 import './components/section-list.js';
