@@ -22,6 +22,6 @@ import './components/section-list.js';
 import './components/video-modal.js';
 import './components/accordion.js';
 import './components/utility-search.js';
+import './components/our-history.js';
 
 // Theme initialization
-console.log('Zotefoams Theme loaded - ES Module System with all components');

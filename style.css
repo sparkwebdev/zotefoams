@@ -4,7 +4,7 @@ Theme URI: http://underscores.me/
 Author: David Park
 Author URI: http://underscores.me/
 Description: Description
-Version: 3.0.1
+Version: 3.0.2
 Tested up to: 5.4
 Requires PHP: 5.6
 License: GNU General Public License v2 or later
@@ -3717,17 +3717,21 @@ a.read-more.hl.arrow:focus::after {
   stroke-width: 2;
   stroke-dasharray: 144.513;
   stroke-dashoffset: 144.513;
+  transition: stroke-dashoffset 5s linear;
 }
 
-.swiper-slide-active .circle-progress {
-  stroke-dashoffset: 0;
+.swiper-image.swiper-initialized .circle-progress-image {
+  animation: fillCircle 5s linear infinite;
 }
 
-.swiper-slide-next .circle-progress,
-.swiper-slide-prev .circle-progress {
-  stroke-dashoffset: 144.513;
+@keyframes fillCircle {
+  0% {
+    stroke-dashoffset: 144.513;
+  }
+  100% {
+    stroke-dashoffset: 0;
+  }
 }
-
 @media screen and (max-width: 480px) {
   .image-banner p.fs-600 {
     font-size: 21px;

@@ -22,10 +22,8 @@ function initCarousels() {
                 el: '.swiper-pagination',
                 clickable: true,
             },
-            effect: 'fade',
-            fadeEffect: {
-                crossFade: true,
-            },
+            // Changed from 'fade' to default 'slide' effect
+            speed: 600,
             on: {
                 slideChangeTransitionStart: function() {
                     // Hide animated elements only in THIS carousel's slides
@@ -77,6 +75,12 @@ function initCarousels() {
         
         if (!textCarousel || !imageCarousel) return;
 
+        // Hide all animated elements initially
+        const allAnimatedElements = textCarousel.querySelectorAll('.animate__animated:not(.value)');
+        allAnimatedElements.forEach(el => {
+            el.style.opacity = '0';
+        });
+
         const textSwiper = new Swiper(textCarousel, {
             loop: true,
             effect: 'fade',
@@ -90,17 +94,18 @@ function initCarousels() {
             },
             on: {
                 slideChangeTransitionStart: function() {
-                    // Hide animated elements only in THIS carousel's slides
-                    this.slides.forEach(slide => {
-                        const animatedElements = slide.querySelectorAll('.animate__animated:not(.value)');
-                        animatedElements.forEach(el => {
-                            el.style.opacity = '0';
-                            el.classList.remove('animate__fadeInUp', 'animate__fadeInDown', 'animate__fadeInLeft', 'animate__fadeInRight');
-                        });
+                    // Hide animated elements in non-active slides
+                    this.slides.forEach((slide, slideIndex) => {
+                        if (slideIndex !== this.activeIndex) {
+                            const animatedElements = slide.querySelectorAll('.animate__animated:not(.value)');
+                            animatedElements.forEach(el => {
+                                el.style.opacity = '0';
+                                el.classList.remove('animate__fadeInUp', 'animate__fadeInDown', 'animate__fadeInLeft', 'animate__fadeInRight');
+                            });
+                        }
                     });
-                },
-                slideChangeTransitionEnd: function() {
-                    // Animate elements in the active slide
+                    
+                    // Immediately animate elements in the active slide
                     const activeSlide = this.slides[this.activeIndex];
                     if (activeSlide) {
                         const animatedElements = activeSlide.querySelectorAll('.animate__animated:not(.value)');
@@ -112,20 +117,21 @@ function initCarousels() {
                         });
                     }
                 },
+                slideChangeTransitionEnd: function() {
+                    // Animation now happens on start, not end
+                },
                 init: function() {
-                    // Animate elements in the initial slide
-                    setTimeout(() => {
-                        const activeSlide = this.slides[this.activeIndex];
-                        if (activeSlide) {
-                            const animatedElements = activeSlide.querySelectorAll('.animate__animated:not(.value)');
-                            animatedElements.forEach((el, index) => {
-                                setTimeout(() => {
-                                    el.style.opacity = '1';
-                                    el.classList.add('animate__fadeInDown');
-                                }, index * 200);
-                            });
-                        }
-                    }, 300); // Small delay for initialization
+                    // Animate elements in the initial slide immediately
+                    const activeSlide = this.slides[this.activeIndex];
+                    if (activeSlide) {
+                        const animatedElements = activeSlide.querySelectorAll('.animate__animated:not(.value)');
+                        animatedElements.forEach((el, index) => {
+                            setTimeout(() => {
+                                el.style.opacity = '1';
+                                el.classList.add('animate__fadeInDown');
+                            }, 100 + (index * 200)); // Small initial delay then stagger
+                        });
+                    }
                 }
             }
         });
@@ -189,7 +195,7 @@ function initCarousels() {
     });
 
     // Calendar Carousel
-    const calendarCarousels = document.querySelectorAll('.calendar-carousel .swiper');
+    const calendarCarousels = document.querySelectorAll('.calendar-carousel');
     calendarCarousels.forEach((carousel) => {
         new Swiper(carousel, {
             slidesPerView: 1,

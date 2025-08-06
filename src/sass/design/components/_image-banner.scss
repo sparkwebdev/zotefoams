@@ -138,15 +138,21 @@
   stroke-width: 2;
   stroke-dasharray: 144.513;
   stroke-dashoffset: 144.513;
+  transition: stroke-dashoffset 5s linear;
 }
 
-.swiper-slide-active .circle-progress {
-  stroke-dashoffset: 0;
+// Animation triggers when swiper has active slide
+.swiper-image.swiper-initialized .circle-progress-image {
+  animation: fillCircle 5s linear infinite;
 }
 
-.swiper-slide-next .circle-progress,
-.swiper-slide-prev .circle-progress {
-  stroke-dashoffset: 144.513;
+@keyframes fillCircle {
+  0% {
+    stroke-dashoffset: 144.513;
+  }
+  100% {
+    stroke-dashoffset: 0;
+  }
 }
 
 @media screen and (max-width: 480px) {

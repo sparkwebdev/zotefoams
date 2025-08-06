@@ -10,8 +10,10 @@ $wrapper_classes = 'cont-m padding-t-b-100 theme-none';
 ?>
 
 <div class="<?php echo $wrapper_classes; ?>">
-    <?php echo zotefoams_render_title_strip($title, null); ?>
-
+    <div class="title-strip margin-b-30">
+        <?php if ($title): ?>
+            <h3 class="fs-500 fw-600"><?php echo esc_html($title); ?></h3>
+        <?php endif; ?>
         <div class="carousel-navigation black" role="group" aria-label="Calendar navigation">
             <div class="carousel-navigation-inner">
                 <button type="button" class="calendar-swiper-button-prev carousel-btn-reset" aria-label="Previous events" tabindex="0">
@@ -24,9 +26,11 @@ $wrapper_classes = 'cont-m padding-t-b-100 theme-none';
         </div>
     </div>
 
-    <?php if (!empty($events)): ?>
-        <div class="swiper calendar-carousel">
-            <div class="swiper-wrapper">
+    <div class="calendar-carousel-wrapper">
+
+        <?php if (!empty($events)): ?>
+            <div class="swiper calendar-carousel">
+                <div class="swiper-wrapper">
                 <?php foreach ($events as $event): 
                     $date        = $event['calendar_carousel_date'] ?? '';
                     $month_year  = $event['calendar_carousel_month_year'] ?? '';
@@ -51,6 +55,7 @@ $wrapper_classes = 'cont-m padding-t-b-100 theme-none';
             </div>
         </div>
     <?php endif; ?>
+    </div><!-- .calendar-carousel-wrapper -->
 
     <?php if ($note): ?>
         <label class="calendar-carousel__note"><?php echo esc_html($note); ?></label>

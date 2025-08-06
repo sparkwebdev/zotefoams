@@ -188,6 +188,12 @@ function initNavigation() {
                         megaMenu.addEventListener("mouseenter", clearTimer);
                         megaMenu.addEventListener("mouseleave", hideMenu);
 
+                        // Allow regular clicks to navigate to the link URL
+                        link.addEventListener("click", (e) => {
+                            // Don't prevent default - let the link navigate
+                            // The hover handlers will manage the mega menu display
+                        });
+
                         // Keyboard navigation for mega menus.
                         link.addEventListener("keydown", (e) => {
                             if (e.key === "Enter" || e.key === " " || e.key === "ArrowDown") {
@@ -243,14 +249,27 @@ function initNavigation() {
                     }
                 } else {
                     // Regular dropdown (typically utility menus).
-                    // If this menu item does NOT contain a .dropdown-toggle element, attach a click handler
-                    // to toggle the submenu. Otherwise, leave the link to act normally.
-                    if (!link.parentNode.querySelector('.dropdown-toggle')) {
-                        link.addEventListener("click", (e) => {
-                            e.preventDefault();
-                            const menuItem = link.parentNode;
-                            menuItem.classList.toggle("dropdown-active");
-                        });
+                    // For utility menu items: behavior depends on device type
+                    const isUtilityMenu = link.closest('.utility-menu');
+                    const hasDropdownToggle = link.parentNode.querySelector('.dropdown-toggle');
+                    
+                    // On touch devices or when there's no dropdown toggle, prevent navigation and toggle submenu
+                    // On desktop with dropdown toggle, allow natural navigation
+                    if (isUtilityMenu && !hasDropdownToggle) {
+                        // Utility menu items without dropdown toggle (like Knowledge Hub)
+                        // Need different behavior for touch vs non-touch
+                        if (isTouchDevice) {
+                            // On mobile/touch: click should toggle submenu
+                            link.addEventListener("click", (e) => {
+                                const submenu = link.parentNode.querySelector('ul');
+                                if (submenu) {
+                                    e.preventDefault();
+                                    const menuItem = link.parentNode;
+                                    menuItem.classList.toggle("dropdown-active");
+                                }
+                            });
+                        }
+                        // On desktop: clicks navigate naturally (no preventDefault)
                     }
                     link.addEventListener("keydown", (e) => {
                         if (e.key === "Enter" || e.key === " " || e.key === "ArrowDown") {
@@ -283,11 +302,35 @@ function initNavigation() {
         siteNav.classList.toggle("toggled");
         const isExpanded = button.getAttribute("aria-expanded") === "true";
         button.setAttribute("aria-expanded", (!isExpanded).toString());
+        
+        // Toggle no-scroll class on body for mobile menu scrolling
+        if (siteNav.classList.contains("toggled")) {
+            document.body.classList.add("no-scroll");
+        } else {
+            document.body.classList.remove("no-scroll");
+        }
     });
 
     setupDropdowns(siteNav);
     if (utilityMenu) {
         setupDropdowns(utilityMenu);
+    }
+
+    // On mobile/touch devices, make menu-labels clickable to toggle their submenus
+    if (isTouchDevice) {
+        document.querySelectorAll('.menu-label').forEach((label) => {
+            const menuItem = label.parentNode;
+            const dropdownToggle = menuItem.querySelector('.dropdown-toggle');
+            if (dropdownToggle) {
+                label.style.cursor = 'pointer';
+                label.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    // Trigger the dropdown toggle button
+                    dropdownToggle.click();
+                });
+            }
+        });
     }
 
     // Close menus when clicking outside
@@ -299,38 +342,43 @@ function initNavigation() {
             closeAll();
             siteNav.classList.remove("toggled");
             button.setAttribute("aria-expanded", "false");
+            document.body.classList.remove("no-scroll");
         }
     });
 
     // Handle keyboard for standard links without aria-controls
     document.querySelectorAll(".menu-item-has-children > a").forEach((link) => {
         if (!link.getAttribute("aria-controls")) {
-            link.addEventListener("keydown", (e) => {
-                const menuItem = link.parentNode;
-                if (
-                    (e.key === "Enter" || e.key === " " || e.key === "ArrowDown") &&
-                    (menuItem.classList.contains("menu-item-has-children") ||
-                        menuItem.querySelector("ul"))
-                ) {
-                    e.preventDefault();
-                    menuItem.classList.toggle("dropdown-active");
+            // Check if this has a dropdown toggle button (mobile menu) - if so, don't interfere
+            const hasDropdownToggle = link.parentNode.querySelector('.dropdown-toggle');
+            if (!hasDropdownToggle) {
+                link.addEventListener("keydown", (e) => {
+                    const menuItem = link.parentNode;
                     if (
-                        e.key === "ArrowDown" &&
-                        menuItem.classList.contains("dropdown-active")
+                        (e.key === "Enter" || e.key === " " || e.key === "ArrowDown") &&
+                        (menuItem.classList.contains("menu-item-has-children") ||
+                            menuItem.querySelector("ul"))
                     ) {
-                        const submenu = menuItem.querySelector("ul");
-                        if (submenu) {
-                            const firstLink = submenu.querySelector("a");
-                            if (firstLink) {
-                                firstLink.focus();
+                        e.preventDefault();
+                        menuItem.classList.toggle("dropdown-active");
+                        if (
+                            e.key === "ArrowDown" &&
+                            menuItem.classList.contains("dropdown-active")
+                        ) {
+                            const submenu = menuItem.querySelector("ul");
+                            if (submenu) {
+                                const firstLink = submenu.querySelector("a");
+                                if (firstLink) {
+                                    firstLink.focus();
+                                }
                             }
                         }
+                    } else if (e.key === "Escape") {
+                        closeAll();
+                        link.focus();
                     }
-                } else if (e.key === "Escape") {
-                    closeAll();
-                    link.focus();
-                }
-            });
+                });
+            }
         }
     });
 }
