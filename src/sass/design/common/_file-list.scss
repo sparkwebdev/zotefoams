@@ -60,6 +60,7 @@
 .file-list__dropdown {
   display: inline-block;
   position: relative;
+  z-index: 100; /* Create stacking context for dropdown */
 }
 
 .file-list__dropdown-button {
@@ -99,7 +100,7 @@
 .filter-toggle__options {
   background-color: var(--color-link);
   color: var(--color-surface);
-  z-index: 1000;
+  z-index: 9999; /* Increased to ensure it appears above other elements */
   white-space: nowrap;
   border-radius: 0 5px 5px;
   width: fit-content;

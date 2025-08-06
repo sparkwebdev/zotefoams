@@ -4,7 +4,7 @@ Theme URI: http://underscores.me/
 Author: David Park
 Author URI: http://underscores.me/
 Description: Description
-Version: 3.0.2
+Version: 3.0.3
 Tested up to: 5.4
 Requires PHP: 5.6
 License: GNU General Public License v2 or later
@@ -2892,6 +2892,7 @@ body.touch-device .utility-menu .menu > li.dropdown-active > ul {
 .file-list__dropdown {
   display: inline-block;
   position: relative;
+  z-index: 100; /* Create stacking context for dropdown */
 }
 
 .file-list__dropdown-button {
@@ -2931,7 +2932,7 @@ body.touch-device .utility-menu .menu > li.dropdown-active > ul {
 .filter-toggle__options {
   background-color: var(--color-link);
   color: var(--color-surface);
-  z-index: 1000;
+  z-index: 9999; /* Increased to ensure it appears above other elements */
   white-space: nowrap;
   border-radius: 0 5px 5px;
   width: -moz-fit-content;
@@ -3622,7 +3623,7 @@ a.read-more.hl.arrow:focus::after {
 
 @media screen and (max-width: 1200px) {
   .swiper-image .swiper-inner p {
-    max-width: 100%;
+    max-width: calc(100% - 4em);
     margin-bottom: 10px;
   }
 }

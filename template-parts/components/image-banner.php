@@ -73,7 +73,7 @@ if (have_rows('page_header_image')): ?>
 								<?php endif; ?>
 							</div>
 						<?php else: ?>
-							<p class="fw-bold fs-600 uppercase animate__animated" style="opacity:0;">
+							<p class="fw-bold fs-600 uppercase animate__animated margin-t-20" style="opacity:0;">
 								<?php echo esc_html($text); ?>
 							</p>
 						<?php endif; ?>

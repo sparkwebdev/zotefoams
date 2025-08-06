@@ -40,10 +40,17 @@ function initUtilitySearch() {
   const closeButton = form.querySelector('button[type="button"]');
   const nextMenuItem = searchItem.closest('li')?.nextElementSibling?.querySelector('a');
 
-  const openSearch = () => {
+  const openSearch = (focusInput = false) => {
     searchContainer.removeAttribute('hidden');
     searchContainer.classList.add('is-visible');
     searchItem.setAttribute('aria-expanded', 'true');
+    
+    // Focus the input if requested (for keyboard activation)
+    if (focusInput && input) {
+      setTimeout(() => {
+        input.focus();
+      }, 100);
+    }
   };
 
   // Prevent scroll on input
@@ -81,11 +88,16 @@ function initUtilitySearch() {
     toggleSearch();
   });
 
-  // Enter/Space key opens
+  // Enter/Space key opens with focus on input
   searchItem.addEventListener('keydown', (e) => {
     if (['Enter', ' '].includes(e.key)) {
       e.preventDefault();
-      toggleSearch();
+      const isHidden = searchContainer.hasAttribute('hidden');
+      if (isHidden) {
+        openSearch(true); // Focus input when opening via keyboard
+      } else {
+        closeSearch();
+      }
     }
   });
 
@@ -98,8 +110,11 @@ function initUtilitySearch() {
     }
   });
 
-  // Close button click
+  // Close button click - clear input and close
   closeButton?.addEventListener('click', () => {
+    if (input) {
+      input.value = ''; // Clear the search input
+    }
     closeSearch();
     searchItem.focus();
   });
