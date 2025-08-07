@@ -80,7 +80,7 @@
       }
 
       &:hover {
-        transform: translate(-50%, -50%) scale(1.1);
+        transform: translate(-50%, -50%);
         box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
       }
     }
@@ -95,9 +95,16 @@
 
     &--left {
       .interactive-image__popup {
+        left: 10px;
+        transform: translateX(-25%);
+      }
+    }
+    
+    &--right {
+      .interactive-image__popup {
         left: auto;
-        right: calc(50% - 110px);
-        transform: translateX(0);
+        right: 10px;
+        transform: translateX(25%);
       }
     }
   }
@@ -113,13 +120,11 @@
     backdrop-filter: blur(10px);
     color: #fff;
     background: linear-gradient(to bottom, rgba(255, 255, 255, 0.1), rgba(4, 27, 65, 0.5));
-    font-size: 0.9em;
+    font-size: 0.9rem;
     
     // Adjust top position and width for numbered markers
     .interactive-image__point--numbered & {
       top: 35px;
-      font-size: 0.9rem; // Use rem to avoid compounding
-      width: 250px;
     }
     
     // Default center-aligned positioning
@@ -200,7 +205,7 @@
         transform: translate(-50%, -50%);
         
         &:hover {
-          transform: translate(-50%, -50%) scale(1.1);
+          transform: translate(-50%, -50%);
         }
       }
     }
@@ -208,7 +213,7 @@
     &__popup {
       width: 200px;
       left: calc(50% - 100px);
-      font-size: 0.85em;
+      font-size: 0.85rem;
       padding: 12px 15px;
       
       // Update center-aligned for smaller width

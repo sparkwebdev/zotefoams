@@ -40,8 +40,10 @@ $wrapper_classes = 'interactive-image padding-t-b-100 ' . $theme_class;
                     // Determine point classes
                     $pointClass = 'interactive-image__point';
                     $pointClass .= $output_numbers ? ' interactive-image__point--numbered' : ' interactive-image__point--circle';
-                    if ($from_left < 40) {
+                    if ($from_left < 30) {
                         $pointClass .= ' interactive-image__point--left';
+                    } elseif ($from_left > 70) {
+                        $pointClass .= ' interactive-image__point--right';
                     }
                 ?>
                     <div class="<?php echo esc_attr($pointClass); ?>" 
