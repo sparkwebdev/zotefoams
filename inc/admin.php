@@ -17,9 +17,11 @@ function my_acf_admin_head()
 {
 ?>
 	<style type="text/css">
+		#editor .postbox>.postbox-header:hover,
 		.postbox-header,
 		.acf-flexible-content .layout .acf-fc-layout-handle {
 			background: #1d2327;
+			color: #fff;
 		}
 
 		.postbox-header .hndle,

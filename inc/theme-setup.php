@@ -50,16 +50,16 @@ function zotefoams_setup()
      */
     add_theme_support('post-thumbnails');
     add_image_size('thumbnail-square', 350, 350, true); // Custom image size: cropped
-    add_image_size('thumbnail-product', 270, 200, true); // Custom image size: cropped
-    add_image_size('banner', 1200, 600, true); // Custom image size for banners
+    add_image_size('thumbnail-product', 690, 460, true); // Custom image size: cropped
+    add_image_size('small', 700, 9999, false); // Custom image size: not cropped
 
     // This theme uses wp_nav_menu() in one location.
     register_nav_menus(
         array(
-            'primary_menu' => esc_html__('Primary Menu', 'zotefoams'),
-            'utility_menu' => esc_html__('Utility Menu', 'zotefoams'),
-            'quick_links_menu' => esc_html__('Quick Links Menu', 'zotefoams'),
-            'legal_menu' => esc_html__('Legal Menu', 'zotefoams'),
+            'primary_menu' => esc_html__('Primary', 'zotefoams'),
+            'utility_menu' => esc_html__('Utility', 'zotefoams'),
+            'quick_links_menu' => esc_html__('Quick', 'zotefoams'),
+            'legal_menu' => esc_html__('Legal', 'zotefoams'),
         )
     );
 
@@ -77,36 +77,6 @@ function zotefoams_setup()
             'caption',
             'style',
             'script',
-        )
-    );
-
-    // Set up the WordPress core custom background feature.
-    add_theme_support(
-        'custom-background',
-        apply_filters(
-            'zotefoams_custom_background_args',
-            array(
-                'default-color' => 'ffffff',
-                'default-image' => '',
-            )
-        )
-    );
-
-    // Add theme support for selective refresh for widgets.
-    add_theme_support('customize-selective-refresh-widgets');
-
-    /**
-     * Add support for core custom logo.
-     *
-     * @link https://codex.wordpress.org/Theme_Logo
-     */
-    add_theme_support(
-        'custom-logo',
-        array(
-            'height'      => 250,
-            'width'       => 250,
-            'flex-width'  => true,
-            'flex-height' => true,
         )
     );
 }

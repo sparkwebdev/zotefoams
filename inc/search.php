@@ -25,10 +25,16 @@ add_filter('get_search_form', 'zotefoams_filter_search_form');
 
 /**
  * Add custom rewrite rules for search functionality.
+ * 
+ * Creates a /search/ endpoint that redirects to the search page.
+ * This handles the fallback when JavaScript is disabled and the 
+ * utility menu search link (/search/) is clicked directly.
  */
 function zotefoams_custom_search_rewrite()
 {
-    // Add custom rewrite rules if needed
-    // add_rewrite_rule('^search/([^/]*)/?', 'index.php?s=$matches[1]', 'top');
+    // Handle /search/ URL to show empty search results page
+    add_rewrite_rule('^search/?$', 'index.php?s=', 'top');
+    // Handle /search/term/ URLs for direct search links
+    add_rewrite_rule('^search/([^/]+)/?$', 'index.php?s=$matches[1]', 'top');
 }
 add_action('init', 'zotefoams_custom_search_rewrite');

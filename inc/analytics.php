@@ -40,70 +40,46 @@ function zotefoams_add_google_gtag_from_acf()
 add_action('wp_head', 'zotefoams_add_google_gtag_from_acf');
 
 /**
- * Enqueue LinkedIn analytics scripts if configured.
+ * Output LinkedIn analytics scripts and noscript pixel.
  * 
- * Loads LinkedIn Insight Tag for conversion tracking and analytics
- * based on the partner ID configured in ACF theme options.
- * Only loads if linkedin_partner_id option is set.
+ * Loads LinkedIn Insight Tag for conversion tracking and analytics.
+ * Uses hardcoded partner ID or pulls from ACF options if available.
+ * Includes noscript fallback for users without JavaScript.
  * 
  * @return void
  */
 function zotefoams_enqueue_linkedin_analytics()
 {
-    // Default fallback ID
+    // Default partner ID
     $partner_id = '1827026';
     
-    // Check if ACF is available and get partner ID from options
-    if (function_exists('get_field')) {
-        $acf_partner_id = get_field('linkedin_partner_id', 'option');
-        if (!empty($acf_partner_id)) {
-            $partner_id = sanitize_text_field($acf_partner_id);
-        }
-    }
-
-    // LinkedIn tracking initialization
-    $linkedin_init = "
-        _linkedin_partner_id = '" . esc_js($partner_id) . "';
-        window._linkedin_data_partner_ids = window._linkedin_data_partner_ids || [];
-        window._linkedin_data_partner_ids.push(_linkedin_partner_id);
-    ";
-
-    // LinkedIn tracking script loader
-    $linkedin_loader = "
-        (function(l) {
-            if (!l){
-                window.lintrk = function(a,b){window.lintrk.q.push([a,b])};
-                window.lintrk.q=[];
-            }
-            var s = document.getElementsByTagName('script')[0];
-            var b = document.createElement('script');
-            b.type = 'text/javascript';
-            b.async = true;
-            b.src = 'https://snap.licdn.com/li.lms-analytics/insight.min.js';
-            s.parentNode.insertBefore(b, s);
-        })(window.lintrk);
-    ";
-
-    // Add scripts inline to footer
-    wp_add_inline_script('jquery', $linkedin_init . $linkedin_loader, 'after');
-}
-
-/**
- * Add LinkedIn noscript pixel for users without JavaScript.
- */
-function zotefoams_linkedin_noscript_pixel()
-{
-    if (function_exists('get_field')) {
-        $linkedin_partner_id = get_field('linkedin_partner_id', 'option');
-        
-        if ($linkedin_partner_id) {
-            ?>
-            <noscript>
-                <img height="1" width="1" style="display:none;" alt="" src="https://px.ads.linkedin.com/collect/?pid=<?php echo esc_attr($linkedin_partner_id); ?>&fmt=gif" />
-            </noscript>
-            <?php
-        }
-    }
+    // Check if ACF is available and get partner ID from options — NOT IMPLEMENTED
+    // if (function_exists('get_field')) {
+    //     $acf_partner_id = get_field('linkedin_partner_id', 'option');
+    //     if (!empty($acf_partner_id)) {
+    //         $partner_id = sanitize_text_field($acf_partner_id);
+    //     }
+    // }
+    ?>
+    <script type="text/javascript">
+    _linkedin_partner_id = "<?php echo esc_js($partner_id); ?>";
+    window._linkedin_data_partner_ids = window._linkedin_data_partner_ids || [];
+    window._linkedin_data_partner_ids.push(_linkedin_partner_id);
+    </script>
+    <script type="text/javascript">
+    (function(l) {
+    if (!l){window.lintrk = function(a,b){window.lintrk.q.push([a,b])};
+    window.lintrk.q=[]}
+    var s = document.getElementsByTagName("script")[0];
+    var b = document.createElement("script");
+    b.type = "text/javascript";b.async = true;
+    b.src = 'https://snap.licdn.com/li.lms-analytics/insight.min.js';
+    s.parentNode.insertBefore(b, s);})(window.lintrk);
+    </script>
+    <noscript>
+    <img height="1" width="1" style="display:none;" alt="" src="https://px.ads.linkedin.com/collect/?pid=<?php echo esc_attr($partner_id); ?>&fmt=gif" />
+    </noscript>
+    <?php
 }
 
 /**
@@ -113,6 +89,5 @@ function zotefoams_linkedin_noscript_pixel()
  * This prevents tracking of admin users and improves admin performance.
  */
 if (!is_admin()) {
-    add_action('wp_enqueue_scripts', 'zotefoams_enqueue_linkedin_analytics');
-    add_action('wp_body_open', 'zotefoams_linkedin_noscript_pixel', 5);
+    add_action('wp_footer', 'zotefoams_enqueue_linkedin_analytics', 20);
 }

@@ -275,9 +275,20 @@ function assign_unique_ids_to_flexible_content($post_id) {
 add_action('acf/save_post', 'assign_unique_ids_to_flexible_content', 20);
 
 
+/**
+ * Hide the unique_id field from ACF admin interface.
+ * 
+ * This field stores auto-generated IDs for flexible content layouts
+ * (created by assign_unique_ids_to_flexible_content() on save).
+ * These IDs enable component-specific CSS/JS targeting.
+ * 
+ * Current: Hidden from all users to prevent accidental modification
+ * Alternative 1: Show only to administrators (uncomment line 282)
+ * Alternative 2: Make read-only but visible (uncomment lines 286-290)
+ */
 add_filter('acf/prepare_field/name=unique_id', function ($field) {
     // if (!current_user_can('administrator')) {
-        return false;
+        return false; // Hide field completely
     // }
     return $field;
 });

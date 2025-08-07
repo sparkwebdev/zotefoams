@@ -38,6 +38,10 @@ add_filter('acf/settings/load_json', 'zotefoams_acf_json_load_point');
 /**
  * Populate ACF select field with WPForms.
  *
+ * This function hooks into ACF's `acf/load_field` filter to dynamically 
+ * populate the choices for the field named "show_hide_forms_form" 
+ * with available WPForms.
+ *
  * @param array $field The field array.
  * @return array Modified field array.
  */
@@ -68,55 +72,60 @@ function zotefoams_populate_acf_with_wpforms($field)
 add_filter('acf/load_field/name=show_hide_forms_form', 'zotefoams_populate_acf_with_wpforms');
 
 /**
- * Populate ACF select field with brand taxonomy terms.
+ * Populate ACF select field with brand pages from "Our brands" hierarchy.
  *
  * @param array $field The field array.
  * @return array Modified field array.
  */
 function zotefoams_populate_acf_with_brands($field)
 {
-    // Reset choices
-    $field['choices'] = array();
+    // Clear existing choices
+    $field['choices'] = [];
 
-    // Get brand terms
-    $brands = get_terms(array(
-        'taxonomy' => 'brands',
-        'hide_empty' => false,
-    ));
+    // Get the page ID for 'Our brands' (case-insensitive)
+    $brands_page_id = zotefoams_get_page_id_by_title('Our brands');
 
-    if (!empty($brands) && !is_wp_error($brands)) {
-        foreach ($brands as $brand) {
-            $field['choices'][$brand->term_id] = $brand->name;
+    if ($brands_page_id) {
+        // Get child and grandchild pages
+        $args = [
+            'post_type'      => 'page',
+            'post_parent'    => $brands_page_id,
+            'posts_per_page' => -1,
+            'orderby'        => 'menu_order',
+            'order'          => 'ASC',
+        ];
+
+        $child_pages = get_posts($args);
+
+        if (!empty($child_pages)) {
+            foreach ($child_pages as $page) {
+                // Add child page
+                $field['choices'][$page->ID] = $page->post_title;
+
+                // Get grandchild pages
+                $grandchild_args = [
+                    'post_type'      => 'page',
+                    'post_parent'    => $page->ID,
+                    'posts_per_page' => -1,
+                    'orderby'        => 'menu_order',
+                    'order'          => 'ASC',
+                ];
+
+                $grandchild_pages = get_posts($grandchild_args);
+
+                if (!empty($grandchild_pages)) {
+                    foreach ($grandchild_pages as $grandchild) {
+                        // Add grandchild page with indentation for clarity
+                        $field['choices'][$grandchild->ID] = '— ' . $grandchild->post_title;
+                    }
+                }
+            }
         }
     }
 
     return $field;
 }
 add_filter('acf/load_field/name=associated_brands', 'zotefoams_populate_acf_with_brands');
-
-/**
- * Add custom admin column styles for Knowledge Hub post type.
- */
-function zotefoams_add_knowledge_hub_admin_column_styles()
-{
-    $screen = get_current_screen();
-    
-    if ($screen && ($screen->post_type === 'knowledge-hub' || $screen->id === 'edit-knowledge-hub')) {
-        echo '<style>
-            .wp-list-table .column-taxonomy-knowledge_hub_category { width: 15%; }
-            .wp-list-table .column-taxonomy-knowledge_hub_product { width: 15%; }
-            .wp-list-table .column-taxonomy-knowledge_hub_market { width: 15%; }
-            .wp-list-table .column-date { width: 10%; }
-            .wp-list-table .column-title { width: 35%; }
-            
-            /* Knowledge Hub category colors */
-            .knowledge-hub-category-article { background-color: #e3f2fd; padding: 2px 6px; border-radius: 3px; }
-            .knowledge-hub-category-case-study { background-color: #f3e5f5; padding: 2px 6px; border-radius: 3px; }
-            .knowledge-hub-category-technical-data { background-color: #e8f5e8; padding: 2px 6px; border-radius: 3px; }
-        </style>';
-    }
-}
-add_action('admin_head', 'zotefoams_add_knowledge_hub_admin_column_styles');
 
 /**
  * Protect Knowledge Hub ACF gallery field from unintended interactions.
