@@ -35,3 +35,12 @@ function zotefoams_enqueue_mailchimp_scripts()
         }
     }
 }
+
+/**
+ * Register Mailchimp hooks only on frontend.
+ * 
+ * Ensures Mailchimp scripts are not loaded in WordPress admin area.
+ */
+if (!is_admin()) {
+    add_action('wp_head', 'zotefoams_enqueue_mailchimp_scripts');
+}

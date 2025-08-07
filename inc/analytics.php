@@ -14,14 +14,14 @@ if (!defined('ABSPATH')) {
  * 
  * Dynamically injects Google Analytics Global Site Tag (gtag.js)
  * based on the tracking ID configured in ACF theme options.
- * Only loads if google_analytics_tracking_id option is set.
+ * Only loads if google_analytics_measurement_id option is set.
  * 
  * @return void
  */
 function zotefoams_add_google_gtag_from_acf()
 {
     if (function_exists('get_field')) {
-        $ga_tracking_id = get_field('google_analytics_tracking_id', 'option');
+        $ga_tracking_id = get_field('google_analytics_measurement_id', 'option');
         
         if ($ga_tracking_id) {
             ?>
@@ -104,4 +104,15 @@ function zotefoams_linkedin_noscript_pixel()
             <?php
         }
     }
+}
+
+/**
+ * Register analytics hooks only on frontend.
+ * 
+ * Ensures analytics scripts are not loaded in WordPress admin area.
+ * This prevents tracking of admin users and improves admin performance.
+ */
+if (!is_admin()) {
+    add_action('wp_enqueue_scripts', 'zotefoams_enqueue_linkedin_analytics');
+    add_action('wp_body_open', 'zotefoams_linkedin_noscript_pixel', 5);
 }

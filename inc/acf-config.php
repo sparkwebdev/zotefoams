@@ -95,9 +95,9 @@ function zotefoams_populate_acf_with_brands($field)
 add_filter('acf/load_field/name=associated_brands', 'zotefoams_populate_acf_with_brands');
 
 /**
- * Add custom admin styles for Knowledge Hub post type.
+ * Add custom admin column styles for Knowledge Hub post type.
  */
-function zotefoams_add_knowledge_hub_admin_inline_styles()
+function zotefoams_add_knowledge_hub_admin_column_styles()
 {
     $screen = get_current_screen();
     
@@ -114,6 +114,33 @@ function zotefoams_add_knowledge_hub_admin_inline_styles()
             .knowledge-hub-category-case-study { background-color: #f3e5f5; padding: 2px 6px; border-radius: 3px; }
             .knowledge-hub-category-technical-data { background-color: #e8f5e8; padding: 2px 6px; border-radius: 3px; }
         </style>';
+    }
+}
+add_action('admin_head', 'zotefoams_add_knowledge_hub_admin_column_styles');
+
+/**
+ * Protect Knowledge Hub ACF gallery field from unintended interactions.
+ * 
+ * Prevents deletion and reordering of document attachments in the
+ * Knowledge Hub ACF gallery field to maintain document integrity.
+ */
+function zotefoams_add_knowledge_hub_admin_inline_styles()
+{
+    $screen = get_current_screen();
+    
+    if (isset($screen->post_type) && $screen->post_type === 'knowledge-hub') {
+        ?>
+        <style>
+            #acf-field_67c58a842cccb .acf-gallery-attachments .acf-gallery-attachment {
+                pointer-events: none;
+            }
+
+            #acf-field_67c58a842cccb .actions .acf-gallery-remove,
+            #acf-field_67c58a842cccb .acf-gallery-sort {
+                display: none;
+            }
+        </style>
+        <?php
     }
 }
 add_action('admin_head', 'zotefoams_add_knowledge_hub_admin_inline_styles');
