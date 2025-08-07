@@ -3,14 +3,16 @@
 $title          = zotefoams_get_sub_field_safe('interactive_image_title', '', 'string');
 $subtitle       = zotefoams_get_sub_field_safe('interactive_image_subtitle', '', 'string');
 $output_numbers = zotefoams_get_sub_field_safe('interactive_image_output_numbers', false, 'bool');
+$light_theme    = zotefoams_get_sub_field_safe('interactive_image_light_theme', false, 'bool');
 $points         = zotefoams_get_sub_field_safe('interactive_image_points', [], 'array');
 $bg_image       = zotefoams_get_sub_field_safe('interactive_image_bg', [], 'image');
 
 // Image handling with Image Helper
 $bg_image_url = Zotefoams_Image_Helper::get_image_url($bg_image, 'large', 'interactive-image');
 
-// Generate classes to match original structure exactly
-$wrapper_classes = 'interactive-image padding-t-b-100 theme-dark';
+// Generate classes based on theme setting
+$theme_class = $light_theme ? 'theme-light' : 'theme-dark';
+$wrapper_classes = 'interactive-image padding-t-b-100 ' . $theme_class;
 ?>
 
 <div class="<?php echo $wrapper_classes; ?>">
@@ -18,7 +20,7 @@ $wrapper_classes = 'interactive-image padding-t-b-100 theme-dark';
         <?php if ($title || $subtitle) : ?>
             <div class="interactive-image__intro margin-b-40">
                 <?php if ($title) : ?>
-                    <p class="fw-semibold fs-600 white-text"><?php echo esc_html($title); ?></p>
+                    <p class="fw-semibold fs-600<?php echo !$light_theme ? ' white-text' : ''; ?>"><?php echo esc_html($title); ?></p>
                 <?php endif; ?>
                 <?php if ($subtitle) : ?>
                     <p class="fw-semibold fs-600 blue-text"><?php echo esc_html($subtitle); ?></p>
@@ -50,7 +52,22 @@ $wrapper_classes = 'interactive-image padding-t-b-100 theme-dark';
 
                         <?php if ($point_content) : ?>
                             <div class="interactive-image__popup">
-                                <p><?php echo nl2br(esc_html($point_content)); ?></p>
+                                <?php 
+                                // Check if content contains <br> tags
+                                if (preg_match('/<br\s*\/?>/i', $point_content)) {
+                                    // Split on first <br> tag
+                                    $parts = preg_split('/<br\s*\/?>/i', $point_content, 2);
+                                    // Output first line in strong, then the rest
+                                    echo '<p><strong>' . wp_kses($parts[0], array()) . '</strong>';
+                                    if (isset($parts[1])) {
+                                        echo '<br>' . wp_kses($parts[1], array('br' => array()));
+                                    }
+                                    echo '</p>';
+                                } else {
+                                    // No <br> tags, output as normal
+                                    echo '<p>' . wp_kses($point_content, array('br' => array())) . '</p>';
+                                }
+                                ?>
                             </div>
                         <?php endif; ?>
                     </div>

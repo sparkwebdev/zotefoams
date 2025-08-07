@@ -4,7 +4,7 @@ Theme URI: http://underscores.me/
 Author: David Park
 Author URI: http://underscores.me/
 Description: Description
-Version: 3.0.4
+Version: 3.0.5
 Tested up to: 5.4
 Requires PHP: 5.6
 License: GNU General Public License v2 or later
@@ -4716,6 +4716,9 @@ a.read-more.hl.arrow:focus::after {
 .interactive-image {
   background-color: #041b40;
 }
+.interactive-image.theme-light {
+  background-color: #f8f8f8;
+}
 .interactive-image__intro {
   max-width: 700px;
 }
@@ -4723,11 +4726,12 @@ a.read-more.hl.arrow:focus::after {
   position: relative;
   margin-left: auto;
   margin-right: auto;
+  width: -moz-fit-content;
+  width: fit-content;
 }
 .interactive-image__bg {
   max-width: 100%;
   display: block;
-  width: 100%;
   height: auto;
 }
 .interactive-image__point {
@@ -4766,10 +4770,11 @@ a.read-more.hl.arrow:focus::after {
   height: 42px;
   border-radius: 50%;
   background-color: #0073aa;
+  border: 1px solid #fff;
   color: #fff;
   font-weight: 600;
   font-size: 20px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
   transition: transform 0.2s ease;
   transform: translate(-50%, -50%);
 }
@@ -4778,7 +4783,7 @@ a.read-more.hl.arrow:focus::after {
 }
 .interactive-image__point--numbered:hover {
   transform: translate(-50%, -50%) scale(1.1);
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
 }
 .interactive-image__point:has(.fade-in) {
   z-index: 2;
@@ -4806,6 +4811,8 @@ a.read-more.hl.arrow:focus::after {
 }
 .interactive-image__point--numbered .interactive-image__popup {
   top: 35px;
+  font-size: 0.9rem;
+  width: 250px;
 }
 .interactive-image__popup--center-aligned {
   left: 50%;

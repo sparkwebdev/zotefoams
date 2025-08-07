@@ -4342,7 +4342,7 @@
                             "required": 0,
                             "conditional_logic": 0,
                             "wrapper": {
-                                "width": "35",
+                                "width": "30",
                                 "class": "",
                                 "id": ""
                             },
@@ -4363,7 +4363,7 @@
                             "required": 0,
                             "conditional_logic": 0,
                             "wrapper": {
-                                "width": "35",
+                                "width": "30",
                                 "class": "",
                                 "id": ""
                             },
@@ -4384,12 +4384,34 @@
                             "required": 0,
                             "conditional_logic": 0,
                             "wrapper": {
-                                "width": "30",
+                                "width": "20",
                                 "class": "",
                                 "id": ""
                             },
                             "message": "",
                             "default_value": 0,
+                            "allow_in_bindings": 0,
+                            "ui_on_text": "",
+                            "ui_off_text": "",
+                            "ui": 1
+                        },
+                        {
+                            "key": "field_6894aa9f36e3e",
+                            "label": "Light theme?",
+                            "name": "interactive_image_light_theme",
+                            "aria-label": "",
+                            "type": "true_false",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "20",
+                                "class": "",
+                                "id": ""
+                            },
+                            "message": "",
+                            "default_value": 0,
+                            "allow_in_bindings": 0,
                             "ui_on_text": "",
                             "ui_off_text": "",
                             "ui": 1
@@ -4556,5 +4578,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1754344057
+    "modified": 1754575510
 }

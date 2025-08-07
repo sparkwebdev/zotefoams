@@ -3,6 +3,11 @@
 
 .interactive-image {
   background-color: #041b40;
+  
+  // Light theme variant
+  &.theme-light {
+    background-color: #f8f8f8;
+  }
 
   &__intro {
     max-width: 700px;
@@ -12,12 +17,12 @@
     position: relative;
     margin-left: auto;
     margin-right: auto;
+    width: fit-content;
   }
 
   &__bg {
     max-width: 100%;
     display: block;
-    width: 100%;
     height: auto;
   }
 
@@ -62,10 +67,11 @@
       height: 42px;
       border-radius: 50%;
       background-color: #0073aa;
+      border: 1px solid #fff;
       color: #fff;
       font-weight: 600;
       font-size: 20px;
-      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
       transition: transform 0.2s ease;
       transform: translate(-50%, -50%);
 
@@ -75,7 +81,7 @@
 
       &:hover {
         transform: translate(-50%, -50%) scale(1.1);
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
       }
     }
 
@@ -109,9 +115,11 @@
     background: linear-gradient(to bottom, rgba(255, 255, 255, 0.1), rgba(4, 27, 65, 0.5));
     font-size: 0.9em;
     
-    // Adjust top position for numbered markers
+    // Adjust top position and width for numbered markers
     .interactive-image__point--numbered & {
       top: 35px;
+      font-size: 0.9rem; // Use rem to avoid compounding
+      width: 250px;
     }
     
     // Default center-aligned positioning
