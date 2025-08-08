@@ -6,7 +6,12 @@
 add_post_type_support('page', 'excerpt');
 
 /**
- * Function to change "posts" to "News Centre" in the admin side menu
+ * Change "posts" to "News Centre" in the admin side menu
+ * 
+ * Customizes the WordPress admin menu to rebrand the default
+ * "Posts" section as "News Centre" with appropriate icon and labels.
+ * 
+ * @return void
  */
 function change_post_menu_label()
 {
@@ -22,7 +27,13 @@ function change_post_menu_label()
 add_action('admin_menu', 'change_post_menu_label');
 
 /**
- * Function to change post object labels to "news centre"
+ * Change post object labels to "News Centre"
+ * 
+ * Updates all WordPress post object labels to use "News Centre"
+ * terminology instead of the default "Post" labels throughout
+ * the admin interface.
+ * 
+ * @return void
  */
 function change_post_object_label()
 {
@@ -228,6 +239,16 @@ function zoatfoams_allowed_block_types($allowed_blocks, $editor_context)
 add_filter('allowed_block_types_all', 'zoatfoams_allowed_block_types', 10, 2);
 
 
+/**
+ * Assign unique IDs to flexible content layouts
+ * 
+ * Automatically generates and assigns unique IDs to ACF flexible content
+ * layouts when a page is saved. This enables component-specific styling
+ * and JavaScript targeting.
+ * 
+ * @param int $post_id The post ID being saved
+ * @return void
+ */
 function assign_unique_ids_to_flexible_content($post_id) {
     if (defined('DOING_AUTOSAVE') && DOING_AUTOSAVE) return;
     if (get_post_type($post_id) !== 'page') return;
@@ -254,9 +275,20 @@ function assign_unique_ids_to_flexible_content($post_id) {
 add_action('acf/save_post', 'assign_unique_ids_to_flexible_content', 20);
 
 
+/**
+ * Hide the unique_id field from ACF admin interface.
+ * 
+ * This field stores auto-generated IDs for flexible content layouts
+ * (created by assign_unique_ids_to_flexible_content() on save).
+ * These IDs enable component-specific CSS/JS targeting.
+ * 
+ * Current: Hidden from all users to prevent accidental modification
+ * Alternative 1: Show only to administrators (uncomment line 282)
+ * Alternative 2: Make read-only but visible (uncomment lines 286-290)
+ */
 add_filter('acf/prepare_field/name=unique_id', function ($field) {
     // if (!current_user_can('administrator')) {
-        return false;
+        return false; // Hide field completely
     // }
     return $field;
 });

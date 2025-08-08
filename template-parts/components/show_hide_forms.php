@@ -1,10 +1,14 @@
 <?php
-$title = get_field('show_hide_forms_title', 'option');
-$intro = get_field('show_hide_forms_intro', 'option');
-$items = get_field('show_hide_forms_items', 'option');
+// Get field data using safe helper functions
+$title = get_field('show_hide_forms_title', 'option'); // Options field
+$intro = get_field('show_hide_forms_intro', 'option'); // Options field
+$items = get_field('show_hide_forms_items', 'option'); // Options field
+
+// Generate classes to match original structure exactly
+$wrapper_classes = 'show-hide-forms accordion cont-m padding-t-b-100 theme-none';
 ?>
 
-<div class="show-hide-forms accordion cont-m padding-t-b-100 theme-none">
+<div class="<?php echo $wrapper_classes; ?>">
 
 	<div>
 		<?php if ($title) : ?>

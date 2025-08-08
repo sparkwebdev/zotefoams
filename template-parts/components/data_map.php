@@ -1,33 +1,37 @@
 <?php
-$bg_image     = get_sub_field('data_map_bg');
-$map_image    = get_sub_field('data_map_map_image');
+// Get field data using safe helper functions
+$bg_image     = zotefoams_get_sub_field_safe('data_map_bg', [], 'image');
+$map_image    = zotefoams_get_sub_field_safe('data_map_map_image', [], 'image');
 
 $stats = [
     [
-        'value' => get_sub_field('data_map_stat_1_value'),
-        'text'  => get_sub_field('data_map_stat_1_text'),
+        'value' => zotefoams_get_sub_field_safe('data_map_stat_1_value', '', 'string'),
+        'text'  => zotefoams_get_sub_field_safe('data_map_stat_1_text', '', 'string'),
         'has_map_image' => true,
     ],
     [
-        'value' => get_sub_field('data_map_stat_2_value'),
-        'text'  => get_sub_field('data_map_stat_2_text'),
+        'value' => zotefoams_get_sub_field_safe('data_map_stat_2_value', '', 'string'),
+        'text'  => zotefoams_get_sub_field_safe('data_map_stat_2_text', '', 'string'),
     ],
     [
-        'value' => get_sub_field('data_map_stat_3_value'),
-        'text'  => get_sub_field('data_map_stat_3_text'),
+        'value' => zotefoams_get_sub_field_safe('data_map_stat_3_value', '', 'string'),
+        'text'  => zotefoams_get_sub_field_safe('data_map_stat_3_text', '', 'string'),
     ]
 ];
 
-// Image fallbacks
-$bg_image_url  = $bg_image ? $bg_image['url'] : get_template_directory_uri() . '/images/data-map-bg.jpg';
-$map_image_url = $map_image ? $map_image['url'] : get_template_directory_uri() . '/images/data-map.png';
+// Image handling with Image Helper
+$bg_image_url  = Zotefoams_Image_Helper::get_image_url($bg_image, 'large', 'data-map-bg') ?: get_template_directory_uri() . '/images/data-map-bg.jpg';
+$map_image_url = Zotefoams_Image_Helper::get_image_url($map_image, 'large', 'data-map') ?: get_template_directory_uri() . '/images/data-map.png';
+
+// Generate classes to match original structure exactly
+$wrapper_classes = 'data-map padding-t-b-100 image-cover theme-dark';
 ?>
 
-<div class="data-map padding-t-b-100 image-cover theme-dark" style="background-image:url('<?php echo esc_url($bg_image_url); ?>')">
+<div class="<?php echo esc_attr($wrapper_classes); ?>" style="background-image:url('<?php echo esc_url($bg_image_url); ?>')">
     <div class="cont-m">
         <div class="data-map__stats">
             <?php foreach ($stats as $index => $stat): ?>
-                <div class="data-map__stat data-map__stat--<?php echo $index + 1; ?> padding-30">
+                <div class="data-map__stat data-map__stat--<?php echo absint($index + 1); ?> padding-30">
                     <?php if (!empty($stat['has_map_image'])): ?>
                         <img src="<?php echo esc_url($map_image_url); ?>" alt="Map" />
                     <?php endif; ?>

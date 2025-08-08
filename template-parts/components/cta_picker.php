@@ -1,13 +1,14 @@
 <?php
-$title         = get_sub_field('cta_picker_title');
-$link          = get_sub_field('cta_picker_link');
-$content_type  = get_sub_field('cta_picker_content_type') ?: null;
-$show_latest   = get_sub_field('cta_picker_show_latest') ?? true;
-$item_count    = get_sub_field('cta_picker_count') ?? 3;
-$content_ids   = get_sub_field('cta_picker_content_ids');
-$category_ids  = get_sub_field('cta_picker_categories');
-$documents     = get_sub_field('cta_picker_documents');
-$layout        = get_sub_field('cta_picker_layout');
+// Get field data using safe helper functions
+$title         = zotefoams_get_sub_field_safe('cta_picker_title', '', 'string');
+$link          = zotefoams_get_sub_field_safe('cta_picker_link', [], 'url');
+$content_type  = zotefoams_get_sub_field_safe('cta_picker_content_type', null, 'string');
+$show_latest   = zotefoams_get_sub_field_safe('cta_picker_show_latest', true, 'bool');
+$item_count    = zotefoams_get_sub_field_safe('cta_picker_count', 3, 'int');
+$content_ids   = zotefoams_get_sub_field_safe('cta_picker_content_ids', [], 'array');
+$category_ids  = zotefoams_get_sub_field_safe('cta_picker_categories', [], 'array');
+$documents     = zotefoams_get_sub_field_safe('cta_picker_documents', [], 'array');
+$layout        = zotefoams_get_sub_field_safe('cta_picker_layout', '', 'string');
 
 $layout_class_map = [
     'Grid'            => 'grid-layout',
@@ -16,6 +17,14 @@ $layout_class_map = [
     'List'            => 'list-layout'
 ];
 $layout_class = $layout_class_map[$layout] ?? '';
+
+// Get theme-aware wrapper classes
+$wrapper_classes = Zotefoams_Theme_Helper::get_wrapper_classes([
+    'component' => 'cta-picker-container ' . $layout_class,
+    'theme'     => 'light',
+    'spacing'   => 'padding-t-b-70',
+    'container' => '',
+]);
 
 $content_items = [];
 
@@ -49,26 +58,13 @@ if ($content_type === 'category' && !empty($category_ids)) {
 }
 ?>
 
-<div class="cta-picker-container <?php echo esc_attr($layout_class); ?> light-grey-bg padding-t-b-70 theme-light">
+<div class="<?php echo $wrapper_classes; ?>">
     <div class="cont-m">
-        <?php if ($title || $link): ?>
-            <div class="title-strip margin-b-30">
-                <?php if ($title): ?>
-                    <h3 class="fs-500 fw-600"><?php echo esc_html($title); ?></h3>
-                <?php endif; ?>
-                <?php if ($link): ?>
-                    <a href="<?php echo esc_url($link['url'] ?? '#'); ?>"
-                        class="btn black outline"
-                        target="<?php echo esc_attr($link['target'] ?? '_self'); ?>">
-                        <?php echo esc_html($link['title'] ?? 'Read More'); ?>
-                    </a>
-                <?php endif; ?>
-            </div>
-        <?php endif; ?>
+        <?php echo zotefoams_render_title_strip($title, $link); ?>
 
         <?php if (!empty($content_items)): ?>
             <div class="box-columns">
-                <aside class="box-columns__items box-columns__items--<?php echo count($content_items); ?>">
+                <aside class="box-columns__items box-columns__items--<?php echo esc_attr(count($content_items)); ?>">
                     <?php foreach ($content_items as $item): ?>
                         <?php
                         if ($content_type === 'category') {
@@ -76,7 +72,7 @@ if ($content_type === 'category' && !empty($category_ids)) {
                             $excerpt = $item->description;
                             $link_url = get_category_link($item->term_id);
                             $thumbnail_id = get_field('category_image', 'category_' . $item->term_id);
-                            $thumbnail_url = wp_get_attachment_image_url($thumbnail_id, 'thumbnail');
+                            $thumbnail_url = Zotefoams_Image_Helper::get_image_url($thumbnail_id, 'thumbnail', 'thumbnail');
                         } elseif ($content_type === 'documents') {
                             $title_text = $item['title'] ?? '';
                             $excerpt = '';
@@ -86,12 +82,10 @@ if ($content_type === 'category' && !empty($category_ids)) {
                             $title_text = $item->post_title;
                             $excerpt = $item->post_excerpt;
                             $link_url = get_permalink($item->ID);
-                            $thumbnail_url = get_the_post_thumbnail_url($item->ID, 'thumbnail');
+                            $thumbnail_url = Zotefoams_Image_Helper::get_image_url(get_post_thumbnail_id($item->ID), 'thumbnail', 'thumbnail');
                         }
 
-                        if (!$thumbnail_url) {
-                            $thumbnail_url = get_template_directory_uri() . '/images/placeholder-thumbnail.png';
-                        }
+                        // Image Helper already handles fallbacks
                         ?>
                         <div class="box-columns__item light-grey-bg">
                             <div class="box-columns__content padding-40">

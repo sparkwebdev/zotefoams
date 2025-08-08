@@ -1,29 +1,29 @@
 <?php
-$title          = get_sub_field('markets_list_title');
-$button         = get_sub_field('markets_list_button'); // ACF Link field
-$behaviour      = get_sub_field('markets_list_behaviour'); // All / Pick / Manual
-$marketPageID   = zotefoams_get_page_id_by_title('Markets') ?: zotefoams_get_page_id_by_title('Industries');
-$manual_items   = get_sub_field('markets_list_markets'); // Manual markets
-$selected_pages = get_sub_field('markets_list_ids'); // Picked markets
+// Get field data using safe helper functions
+$title          = zotefoams_get_sub_field_safe('markets_list_title', '', 'string');
+$button         = zotefoams_get_sub_field_safe('markets_list_button', [], 'url');
+$behaviour      = zotefoams_get_sub_field_safe('markets_list_behaviour', '', 'string');
+$market_page_id = zotefoams_get_page_id_by_title('Markets') ?: zotefoams_get_page_id_by_title('Industries');
+$manual_items   = zotefoams_get_sub_field_safe('markets_list_markets', [], 'array');
+$selected_pages = zotefoams_get_sub_field_safe('markets_list_ids', [], 'array');
+
+// Get theme-aware wrapper classes
+$wrapper_classes = Zotefoams_Theme_Helper::get_wrapper_classes([
+    'component' => '',
+    'theme'     => 'light',
+    'spacing'   => 'padding-t-b-70',
+    'container' => '',
+]);
 ?>
 
-<div class="light-grey-bg padding-t-b-70 theme-light">
+<div class="<?php echo $wrapper_classes; ?>">
     <div class="cont-m">
-        <div class="title-strip margin-b-30">
-            <?php if ($title) : ?>
-                <h3 class="fs-500 fw-600"><?php echo esc_html($title); ?></h3>
-            <?php endif; ?>
-            <?php if ($button) : ?>
-                <a href="<?php echo esc_url($button['url']); ?>" class="btn black outline" target="<?php echo esc_attr($button['target'] ?? '_self'); ?>">
-                    <?php echo esc_html($button['title']); ?>
-                </a>
-            <?php endif; ?>
-        </div>
+        <?php echo zotefoams_render_title_strip($title, $button); ?>
     </div>
 
     <?php if ($behaviour === 'all') :
         $child_pages = get_pages([
-            'child_of'    => $marketPageID,
+            'child_of'    => $market_page_id,
             'sort_column' => 'menu_order',
             'sort_order'  => 'ASC',
         ]);
@@ -34,7 +34,7 @@ $selected_pages = get_sub_field('markets_list_ids'); // Picked markets
                     $id = $child->ID;
                     $page_title = get_the_title($id);
                     $page_link = get_permalink($id);
-                    $image_url = get_the_post_thumbnail_url($id, 'large') ?: get_template_directory_uri() . '/images/placeholder-thumbnail.png';
+                    $image_url = Zotefoams_Image_Helper::get_image_url(get_post_thumbnail_id($id), 'large', 'large');
                     $brands = get_field('associated_brands', $id);
                 ?>
                     <div class="market-box padding-50 white-bg text-center" data-clickable-url="<?php echo esc_url($page_link); ?>">
@@ -62,7 +62,7 @@ $selected_pages = get_sub_field('markets_list_ids'); // Picked markets
             <?php foreach ($selected_pages as $id) :
                 $page_title = get_the_title($id);
                 $page_link = get_permalink($id);
-                $image_url = get_the_post_thumbnail_url($id, 'large') ?: get_template_directory_uri() . '/images/placeholder-thumbnail.png';
+                $image_url = Zotefoams_Image_Helper::get_image_url(get_post_thumbnail_id($id), 'large', 'large');
                 $brands = get_field('associated_brands', $id);
             ?>
                 <div class="market-box padding-50 white-bg text-center" data-clickable-url="<?php echo esc_url($page_link); ?>">
@@ -91,7 +91,7 @@ $selected_pages = get_sub_field('markets_list_ids'); // Picked markets
                 $brands     = $item['markets_list_brands'] ?? [];
                 $link       = $item['markets_list_link'] ?? [];
                 $image      = $item['markets_list_image'] ?? null;
-                $image_url  = $image['sizes']['large'] ?? get_template_directory_uri() . '/images/placeholder-thumbnail.png';
+                $image_url  = Zotefoams_Image_Helper::get_image_url($image, 'large', 'large');
                 $link_url   = $link['url'] ?? '#';
                 $link_title = $link['title'] ?? 'Read more';
                 $link_target = !empty($link['target']) ? ' target="' . esc_attr($link['target']) . '"' : '';

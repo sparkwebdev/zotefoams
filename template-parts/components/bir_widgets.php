@@ -1,8 +1,8 @@
 <?php
 $posts_page_id = zotefoams_get_page_for_posts_id();
 
-// Retrieve the Brighter IR widget selection
-$brighter_ir_widget = get_sub_field('brighter_ir_widget');
+// Get field data using safe helper functions
+$brighter_ir_widget = zotefoams_get_sub_field_safe('brighter_ir_widget', '', 'string');
 
 // Only proceed if a widget value exists
 if ($brighter_ir_widget) {

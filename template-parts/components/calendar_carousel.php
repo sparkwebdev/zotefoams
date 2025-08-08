@@ -1,31 +1,36 @@
 <?php 
-$title     = get_sub_field('calendar_carousel_title');
-$events    = get_sub_field('calendar_carousel_events');
-$note      = get_sub_field('calendar_carousel_note');
+// Get field data using safe helper functions
+$title     = zotefoams_get_sub_field_safe('calendar_carousel_title', '', 'string');
+$events    = zotefoams_get_sub_field_safe('calendar_carousel_events', [], 'array');
+$note      = zotefoams_get_sub_field_safe('calendar_carousel_note', '', 'string');
 $template_uri = get_template_directory_uri();
+
+// Generate classes to match original structure exactly
+$wrapper_classes = 'cont-m padding-t-b-100 theme-none';
 ?>
 
-<div class="cont-m padding-t-b-100 theme-none">
+<div class="<?php echo $wrapper_classes; ?>">
     <div class="title-strip margin-b-30">
         <?php if ($title): ?>
             <h3 class="fs-500 fw-600"><?php echo esc_html($title); ?></h3>
         <?php endif; ?>
-
-        <div class="carousel-navigation black">
+        <div class="carousel-navigation black" role="group" aria-label="Calendar navigation">
             <div class="carousel-navigation-inner">
-                <div class="calendar-swiper-button-prev">
-                    <img src="<?php echo esc_url($template_uri); ?>/images/left-arrow-black.svg" alt="Previous" />
-                </div>
-                <div class="calendar-swiper-button-next">
-                    <img src="<?php echo esc_url($template_uri); ?>/images/right-arrow-black.svg" alt="Next" />
-                </div>
+                <button type="button" class="calendar-swiper-button-prev carousel-btn-reset" aria-label="Previous events" tabindex="0">
+                    <img src="<?php echo esc_url($template_uri); ?>/images/left-arrow-black.svg" alt="" role="presentation" />
+                </button>
+                <button type="button" class="calendar-swiper-button-next carousel-btn-reset" aria-label="Next events" tabindex="0">
+                    <img src="<?php echo esc_url($template_uri); ?>/images/right-arrow-black.svg" alt="" role="presentation" />
+                </button>
             </div>
         </div>
     </div>
 
-    <?php if (!empty($events)): ?>
-        <div class="swiper calendar-carousel">
-            <div class="swiper-wrapper">
+    <div class="calendar-carousel-wrapper">
+
+        <?php if (!empty($events)): ?>
+            <div class="swiper calendar-carousel">
+                <div class="swiper-wrapper">
                 <?php foreach ($events as $event): 
                     $date        = $event['calendar_carousel_date'] ?? '';
                     $month_year  = $event['calendar_carousel_month_year'] ?? '';
@@ -50,6 +55,7 @@ $template_uri = get_template_directory_uri();
             </div>
         </div>
     <?php endif; ?>
+    </div><!-- .calendar-carousel-wrapper -->
 
     <?php if ($note): ?>
         <label class="calendar-carousel__note"><?php echo esc_html($note); ?></label>

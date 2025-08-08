@@ -1,18 +1,22 @@
 <?php
-$overline = get_sub_field('text_block_overline');
-$text     = get_sub_field('text_block_text');
+// Get field data using safe helper functions
+$overline = zotefoams_get_sub_field_safe('text_block_overline', '', 'string');
+$text     = get_sub_field('text_block_text'); // Keep HTML content intact for rich text field
+
+// Generate classes to match original structure exactly
+$wrapper_classes = 'text-block cont-m padding-t-b-100 theme-none';
 ?>
 
-<div class="text-block cont-m padding-t-b-100 theme-none">
-	<div class="text-block__inner">
-		<?php if ($overline) : ?>
-			<p class="margin-b-20"><?php echo esc_html($overline); ?></p>
-		<?php endif; ?>
+<div class="<?php echo esc_attr($wrapper_classes); ?>">
+		<div class="text-block__inner">
+			<?php if ($overline) : ?>
+				<p class="margin-b-20"><?php echo esc_html($overline); ?></p>
+			<?php endif; ?>
 
-		<?php if ($text) : ?>
-			<div class="grey-text fs-600 fw-semibold">
-				<?php echo wp_kses_post($text); ?>
-			</div>
-		<?php endif; ?>
-	</div>
+			<?php if ($text) : ?>
+				<div class="grey-text fs-600 fw-semibold">
+					<?php echo wp_kses_post($text); ?>
+				</div>
+			<?php endif; ?>
+		</div>
 </div>

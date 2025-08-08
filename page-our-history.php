@@ -99,7 +99,7 @@ $images = [
     <div class="zf-history__years">
 
         <!-- Sticky Navigation for Date Ranges -->
-        <nav aria-label="Timeline Navigation" data-js-el="scroll-target">
+        <nav aria-label="Timeline Navigation" data-js-el="timeline-nav">
             <ul>
                 <li><a href="#years-1920s">1920<span class="zf-history__minimise">s</span><span class="zf-history__separator">-</span><span class="zf-history__minimise">19</span>30s</a></li>
                 <li><a href="#years-1940s">1940<span class="zf-history__minimise">s</span><span class="zf-history__separator">-</span><span class="zf-history__minimise">19</span>50s</a></li>

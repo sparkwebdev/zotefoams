@@ -1,9 +1,10 @@
 <?php
-$section_title = get_sub_field('news_feed_title');
-$button        = get_sub_field('news_feed_button'); // ACF Link field
-$behaviour     = get_sub_field('news_feed_behaviour');
-$post_ids      = get_sub_field('news_feed_post_ids');
-$news_items    = get_sub_field('news_feed_items');
+// Get field data using safe helper functions
+$section_title = zotefoams_get_sub_field_safe('news_feed_title', '', 'string');
+$button        = zotefoams_get_sub_field_safe('news_feed_button', [], 'url');
+$behaviour     = zotefoams_get_sub_field_safe('news_feed_behaviour', '', 'string');
+$post_ids      = zotefoams_get_sub_field_safe('news_feed_post_ids', [], 'array');
+$news_items    = zotefoams_get_sub_field_safe('news_feed_items', [], 'array');
 
 // Determine items based on behaviour
 if ($behaviour === 'pick' && !empty($post_ids)) {
@@ -18,43 +19,41 @@ if ($behaviour === 'pick' && !empty($post_ids)) {
 }
 ?>
 
-<div class="news-feed cont-m padding-t-b-100 theme-none">
+<?php
+// Generate classes to match original structure exactly
+$wrapper_classes = 'news-feed cont-m padding-t-b-100 theme-none';
+?>
 
-    <div class="title-strip margin-b-30">
-        <?php if ($section_title) : ?>
-            <h3 class="fs-500 fw-600"><?php echo esc_html($section_title); ?></h3>
-        <?php endif; ?>
+<div class="<?php echo esc_attr($wrapper_classes); ?>">
 
-        <?php if ($button) : ?>
-            <a href="<?php echo esc_url($button['url']); ?>" class="btn black outline" target="<?php echo esc_attr($button['target']); ?>">
-                <?php echo esc_html($button['title']); ?>
-            </a>
-        <?php endif; ?>
-    </div>
+    <?php echo zotefoams_render_title_strip($section_title, $button); ?>
 
     <div class="feed-items">
         <?php if ($news_items) : ?>
             <?php foreach ($news_items as $news_item) :
+                // Initialize variables for both manual and automatic modes
                 if ($behaviour === 'manual') {
-                    $image     = $news_item['news_feed_image'] ?? null;
-                    $category  = $news_item['news_feed_category'] ?? '';
+                    $image      = $news_item['news_feed_image'] ?? null;
+                    $category   = $news_item['news_feed_category'] ?? '';
                     $item_title = $news_item['news_feed_title'] ?? '';
-                    $link      = is_array($news_item['news_feed_link'] ?? null) ? $news_item['news_feed_link'] : null;
-					$start_date = '';
-					$event_name = '';
-					$headingClass = "fs-400 fw-semibold margin-b-80";
+                    $link       = is_array($news_item['news_feed_link'] ?? null) ? $news_item['news_feed_link'] : null;
+                    $start_date = '';
+                    $event_name = '';
                 } else {
-                    $image     = get_the_post_thumbnail_url($news_item->ID, 'large');
+                    $image      = get_the_post_thumbnail_url($news_item->ID, 'medium');
                     $categories = get_the_category($news_item->ID);
-                    $category  = !empty($categories) ? $categories[0]->name : '';
+                    $category   = !empty($categories) ? $categories[0]->name : '';
                     $item_title = get_the_title($news_item->ID);
-                    $link      = ['url' => get_permalink($news_item->ID), 'title' => 'Read More'];
-					$start_date = get_field('event_start_date', $news_item->ID);
-					$event_name = get_field('event_name', $news_item->ID);
-					$headingClass = $start_date ? "fs-400 fw-semibold" : "fs-400 fw-semibold margin-b-80";
+                    $link       = ['url' => get_permalink($news_item->ID), 'title' => 'Read More'];
+                    $start_date = get_field('event_start_date', $news_item->ID);
+                    $event_name = get_field('event_name', $news_item->ID);
                 }
+                
+                // Determine title and CSS class based on content type
+                $display_title = $event_name ?: $item_title;
+                $heading_class = ($start_date && $behaviour !== 'manual') ? 'fs-400 fw-semibold' : 'fs-400 fw-semibold margin-b-80';
 
-                $image_url = $image ? (is_array($image) ? $image['sizes']['large'] : $image) : null;
+                $image_url = $image ? (is_array($image) ? $image['sizes']['medium'] : $image) : null;
             ?>
                 <div class="feed-item"
                     <?php if ($link && !empty($link['url'])) : ?>
@@ -70,13 +69,8 @@ if ($behaviour === 'pick' && !empty($post_ids)) {
                             <p class="fs-100 margin-b-20 grey-text"><?php echo esc_html($category); ?></p>
                         <?php endif; ?>
 
-                        <?php if ($item_title || $event_name) : 
-							if ($event_name) {
-								echo '<h3 class="'.$headingClass.'">' . $event_name . '</h3>';
-							} else {
-								echo '<h3 class="'.$headingClass.'">' . esc_html($item_title) . '</h3>';
-							}	                        
-                        ?>
+                        <?php if ($display_title) : ?>
+                            <h3 class="<?php echo esc_attr($heading_class); ?>"><?php echo esc_html($display_title); ?></h3>
                         <?php endif; ?>
                         
                         <?php 
@@ -99,22 +93,13 @@ if ($behaviour === 'pick' && !empty($post_ids)) {
                     </div>
 
                     <?php if ($link && !empty($link['url'])) : ?>
-                        <a href="<?php echo esc_url($link['url']); ?>" class="hl arrow read-more" target="<?php echo esc_attr($link['target'] ?? ''); ?>">
-                            <?php echo esc_html($link['title']); ?>
-                        </a>
+                        <?php echo zotefoams_render_link($link, [
+                            'class' => 'hl arrow read-more'
+                        ]); ?>
                     <?php endif; ?>
                 </div>
             <?php endforeach; ?>
 
-            <?php
-            // Layout spacing fix for 1 or 2 items
-            $count = count($news_items);
-            if ($count === 1) {
-                echo '<div class="feed-item-spacer"></div><div class="feed-item-spacer"></div>';
-            } elseif ($count === 2) {
-                echo '<div class="feed-item-spacer"></div>';
-            }
-            ?>
         <?php endif; ?>
     </div>
 

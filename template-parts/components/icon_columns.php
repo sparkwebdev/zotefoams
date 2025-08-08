@@ -1,16 +1,18 @@
 <?php
-$overline = get_sub_field('icon_columns_intro_overline');
-$intro    = get_sub_field('icon_columns_intro');
-$columns  = get_sub_field('icon_columns_columns');
+// Get field data using safe helper functions
+$overline = get_sub_field('icon_columns_intro_overline'); // Keep HTML intact
+$intro    = get_sub_field('icon_columns_intro'); // Keep HTML intact
+$columns  = zotefoams_get_sub_field_safe('icon_columns_columns', [], 'array');
 
 $is_sustainability = is_page('Sustainability');
-$wrapper_class = 'icon-columns';
+
+// Build component-specific classes
+$component_classes = 'icon-columns';
+$theme = ($overline || $intro) ? 'none' : 'light';
 
 if (!empty($columns)) {
     $count = count($columns);
-	$wrapper_class .= ($overline || $intro) ? ' theme-none' : ' light-grey-bg theme-light';
-    $wrapper_class .= ($count == 2 || $count == 4) ? ' icon-columns--half' : '';
-	// $wrapper_class .= ($count === 5) ? ' icon-columns--centered' : '';
+    $component_classes .= ($count == 2 || $count == 4) ? ' icon-columns--half' : '';
 
     // Check if ALL columns have empty 'text' field
     $all_columns_without_text = true;
@@ -22,22 +24,34 @@ if (!empty($columns)) {
     }
 
     if ($all_columns_without_text) {
-        $wrapper_class .= ' icon-columns--centered';
+        $component_classes .= ' icon-columns--centered';
     }
 }
+
+// Get theme-aware wrapper classes
+$wrapper_classes = Zotefoams_Theme_Helper::get_wrapper_classes([
+    'component' => $component_classes,
+    'theme'     => $theme,
+    'spacing'   => 'padding-t-b-100',
+    'container' => '',
+]);
 ?>
 
-<div class="<?php echo esc_attr($wrapper_class); ?> padding-t-b-100">
+<div class="<?php echo $wrapper_classes; ?>">
 
 	<?php if ($overline || $intro): ?>
-	<div class="text-block cont-m margin-b-70">
-		<?php if ($overline): ?>
-			<p class="margin-b-20"><?php echo wp_kses_post($overline); ?></p>
-		<?php endif; ?>
-		<?php if ($intro): ?>
-			<h3 class="fs-600 grey-text fw-semibold"><?php echo wp_kses_post($intro); ?></h3>
-		<?php endif; ?>
-	</div>
+		<?php 
+		$content = '';
+		if ($overline) {
+			$content .= '<p class="margin-b-20">' . wp_kses_post($overline) . '</p>';
+		}
+		if ($intro) {
+			$content .= '<h3 class="fs-600 grey-text fw-semibold">' . wp_kses_post($intro) . '</h3>';
+		}
+		echo zotefoams_render_content_block($content, [
+			'spacing' => 'margin-b-70'
+		]);
+		?>
     <?php endif; ?>
 		
 	<?php if ($columns): ?>
@@ -49,7 +63,10 @@ if (!empty($columns)) {
 			?>
 				<div>
 					<?php if ($icon): ?>
-						<img src="<?php echo esc_url($icon['url']); ?>" alt="<?php echo esc_attr($title); ?>" />
+						<?php echo Zotefoams_Image_Helper::render_image($icon, [
+							'alt' => $title,
+							'size' => 'large'
+						]); ?>
 					<?php endif; ?>
 					<?php if ($title): ?>
 						<p class="fs-400 fw-bold margin-b-20"><?php echo esc_html($title); ?></p>

@@ -1,19 +1,20 @@
 <?php
-$image = get_sub_field('text_banner_split_image');
-$title = get_sub_field('text_banner_split_title');
-$text  = get_sub_field('text_banner_split_text');
-$link  = get_sub_field('text_banner_split_link'); // ACF Link field (array)
+// Get field data using safe helper functions
+$image = zotefoams_get_sub_field_safe('text_banner_split_image', [], 'image');
+$title = zotefoams_get_sub_field_safe('text_banner_split_title', '', 'string');
+$text  = get_sub_field('text_banner_split_text'); // Keep HTML intact
+$link  = zotefoams_get_sub_field_safe('text_banner_split_link', [], 'url');
 
-if ($image) {
-    $image_url = $image['sizes']['large'];
-} elseif (has_post_thumbnail()) {
+$image_url = Zotefoams_Image_Helper::get_image_url($image, 'large', 'text-banner-split');
+if (!$image_url && has_post_thumbnail()) {
     $image_url = get_the_post_thumbnail_url(get_the_ID(), 'large');
-} else {
-    $image_url = get_template_directory_uri() . '/images/placeholder.png';
 }
+
+// Generate classes to match original structure exactly
+$wrapper_classes = 'text-banner-split theme-dark';
 ?>
 
-<div class="text-banner-split theme-dark">
+<div class="<?php echo $wrapper_classes; ?>">
     <div class="text-banner-split__image image-cover" style="background-image:url('<?php echo esc_url($image_url); ?>');"></div>
 
     <div class="black-bg white-text padding-100">
@@ -31,9 +32,10 @@ if ($image) {
             <?php endif; ?>
 
             <?php if ($link) : ?>
-                <a href="<?php echo esc_url($link['url']); ?>" class="btn white outline fw-regular" target="<?php echo esc_attr($link['target']); ?>">
-                    <?php echo esc_html($link['title']); ?>
-                </a>
+                <?php echo Zotefoams_Button_Helper::render($link, [
+                    'style' => 'white',
+                    'class' => 'fw-regular'
+                ]); ?>
             <?php endif; ?>
         </div>
     </div>

@@ -1,6 +1,7 @@
 <?php
-$title = get_sub_field('data_points_title');
-$items = get_sub_field('data_points_items');
+// Get field data using safe helper functions
+$title = zotefoams_get_sub_field_safe('data_points_title', '', 'string');
+$items = zotefoams_get_sub_field_safe('data_points_items', [], 'array');
 
 // Function to determine the number of decimal places
 function getDecimalPlaces($number)
@@ -10,9 +11,17 @@ function getDecimalPlaces($number)
     }
     return 0;
 }
+
+// Get theme-aware wrapper classes
+$wrapper_classes = Zotefoams_Theme_Helper::get_wrapper_classes([
+    'component' => 'data-points',
+    'theme'     => 'light',
+    'spacing'   => 'padding-t-b-70',
+    'container' => '',
+]);
 ?>
 
-<div class="data-points light-grey-bg padding-t-b-70 theme-light">
+<div class="<?php echo $wrapper_classes; ?>">
 
     <div class="cont-m">
         <?php if ($title): ?>
@@ -45,10 +54,13 @@ function getDecimalPlaces($number)
             ?>
                 <div class="data-points-item">
                     <?php if ($icon): ?>
-                        <img src="<?php echo esc_url($icon['url']); ?>" alt="<?php echo esc_attr($label ?: 'Data point'); ?>" />
+                        <?php echo Zotefoams_Image_Helper::render_image($icon, [
+                            'alt' => $label ?: 'Data point',
+                            'size' => 'large'
+                        ]); ?>
                     <?php endif; ?>
 
-                    <p class="animate__animated animate__delay-1s value fw-bold fs-700 margin-b-10" <?php echo $attr_string; ?>>0</p>
+                    <p class="value fw-bold fs-700 margin-b-10" <?php echo $attr_string; ?>>0</p>
 
                     <?php if ($label): ?>
                         <label class="sub-title fs-100"><?php echo esc_html($label); ?></label>

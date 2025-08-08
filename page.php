@@ -15,9 +15,9 @@ if (function_exists('get_field')) {
 	$page_header_type = get_field('page_header_type');
 
 	if ($page_header_type === 'text') {
-		include locate_template('/template-parts/components/b2-text-banner.php', false, false);
+		include locate_template('/template-parts/components/text-banner.php', false, false);
 	} elseif ($page_header_type === 'image') {
-		include locate_template('/template-parts/components/b1-Image-banner.php', false, false);
+		include locate_template('/template-parts/components/image-banner.php', false, false);
 	}
 }
 

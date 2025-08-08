@@ -11,22 +11,29 @@ $icon_filenames = [
 ];
 
 $icons_base_url = get_template_directory_uri() . '/images/esg-icons/';
+
+// Generate classes to match original structure exactly
+$wrapper_classes = 'development-goals padding-t-b-100 theme-none';
 ?>
 
-<div class="development-goals padding-t-b-100 theme-none">
+<div class="<?php echo $wrapper_classes; ?>">
 
-	<div class="text-block cont-m margin-b-70">
-		<div class="text-block__inner">
-			<?php if ($overline): ?>
-				<p class="margin-b-20 grey-text">Development Goals</p>
-			<?php endif; ?>
-			<?php if ($intro): ?>
-				<h3 class="fs-600 grey-text fw-semibold"><strong>
-					Zotefoams supports the United Nations Sustainable Development Goals and have aligned a number of our processes and activities to these.
-				</strong></h3>
-			<?php endif; ?>
-		</div>
-	</div>
+	<?php 
+	$content = '<div class="text-block__inner">';
+	if ($overline) {
+		$content .= '<p class="margin-b-20 grey-text">Development Goals</p>';
+	}
+	if ($intro) {
+		$content .= '<h3 class="fs-600 grey-text fw-semibold"><strong>
+			Zotefoams supports the United Nations Sustainable Development Goals and have aligned a number of our processes and activities to these.
+		</strong></h3>';
+	}
+	$content .= '</div>';
+	
+	echo zotefoams_render_content_block($content, [
+		'spacing' => 'margin-b-70'
+	]);
+	?>
 
 	<div class="development-goals__list cont-m">
 		<?php foreach ($icon_filenames as $filename): ?>

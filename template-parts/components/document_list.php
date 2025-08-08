@@ -1,16 +1,16 @@
 <?php
-// ACF Field setup
-$title             = get_sub_field('document_list_title');
-$button            = get_sub_field('document_list_button');
-$behaviour         = get_sub_field('document_list_behaviour'); // 'latest', 'pick', or 'manual'
-$pick_hub          = get_sub_field('document_list_pick_hub');
-$pick_documents    = get_sub_field('document_list_pick_documents');
-$manual_documents  = get_sub_field('document_list_documents');
-$pick_count        = get_sub_field('document_list_pick_count');
+// Get field data using safe helper functions
+$title             = zotefoams_get_sub_field_safe('document_list_title', '', 'string');
+$button            = zotefoams_get_sub_field_safe('document_list_button', [], 'url');
+$behaviour         = zotefoams_get_sub_field_safe('document_list_behaviour', '', 'string'); // 'latest', 'pick', or 'manual'
+$pick_hub          = zotefoams_get_sub_field_safe('document_list_pick_hub', 0, 'int');
+$pick_documents    = zotefoams_get_sub_field_safe('document_list_pick_documents', [], 'array');
+$manual_documents  = zotefoams_get_sub_field_safe('document_list_documents', [], 'array');
+$pick_count        = zotefoams_get_sub_field_safe('document_list_pick_count', 0, 'int');
 
 $documents_array = [];
 
-// 🔹 Helper: Category info with fallback icon
+// Helper: Category info with fallback icon
 function get_category_data($category_id, $fallback_title = 'Uncategorized')
 {
     $name = $fallback_title;
@@ -24,7 +24,7 @@ function get_category_data($category_id, $fallback_title = 'Uncategorized')
 
         $image_id = get_field('category_image', 'category_' . $category_id);
         if ($image_id) {
-            $image_url = wp_get_attachment_image_url($image_id, 'thumbnail');
+            $image_url = Zotefoams_Image_Helper::get_image_url($image_id, 'thumbnail', 'thumbnail');
         }
     }
 
@@ -34,7 +34,7 @@ function get_category_data($category_id, $fallback_title = 'Uncategorized')
     ];
 }
 
-// 🔹 Helper: Create document object
+// Helper: Create document object
 function create_document_entry($file, $category_data, $category_id, $all_brands = false, $brands = [])
 {
     return (object) [
@@ -48,7 +48,7 @@ function create_document_entry($file, $category_data, $category_id, $all_brands 
     ];
 }
 
-// 📌 latest behaviour
+// Latest behaviour
 if ($behaviour === 'latest') {
     $args = [
         'post_type' => 'knowledge-hub',
@@ -88,7 +88,7 @@ if ($behaviour === 'latest') {
     }
 }
 
-// 📌 pick behaviour
+// Pick behaviour
 elseif ($behaviour === 'pick' && !empty($pick_documents)) {
     $selected_ids = array_filter(array_map(fn($doc) => $doc['document_list_pick'], $pick_documents));
     $hubs = get_posts([
@@ -118,7 +118,7 @@ elseif ($behaviour === 'pick' && !empty($pick_documents)) {
     }
 }
 
-// 📌 manual behaviour
+// Manual behaviour
 elseif ($behaviour === 'manual' && !empty($manual_documents)) {
     foreach ($manual_documents as $doc) {
         $cat_id = $doc['document_list_category'] ?? '';
@@ -134,19 +134,13 @@ elseif ($behaviour === 'manual' && !empty($manual_documents)) {
         );
     }
 }
+
+// Generate classes to match original structure exactly
+$wrapper_classes = 'doc-list-outer cont-m padding-t-b-100 theme-none';
 ?>
 
-<div class="doc-list-outer cont-m padding-t-b-100 theme-none">
-    <div class="title-strip margin-b-30">
-        <?php if ($title): ?>
-            <h3 class="fs-500 fw-600"><?php echo esc_html($title); ?></h3>
-        <?php endif; ?>
-        <?php if ($button): ?>
-            <a href="<?php echo esc_url($button['url']); ?>" class="btn black outline" target="<?php echo esc_attr($button['target']); ?>">
-                <?php echo esc_html($button['title']); ?>
-            </a>
-        <?php endif; ?>
-    </div>
+<div class="<?php echo $wrapper_classes; ?>">
+    <?php echo zotefoams_render_title_strip($title, $button); ?>
 
     <?php if (!empty($documents_array)): ?>
         <div class="file-list">

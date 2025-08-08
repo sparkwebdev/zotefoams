@@ -1,10 +1,14 @@
 <?php
-$overline_title = get_sub_field('step_slider_overline_title');
-$slides         = get_sub_field('step_slider_slides');
+// Get field data using safe helper functions
+$overline_title = zotefoams_get_sub_field_safe('step_slider_overline_title', '', 'string');
+$slides         = zotefoams_get_sub_field_safe('step_slider_slides', [], 'array');
+
+// Generate classes to match original structure exactly
+$wrapper_classes = 'step-slider theme-dark';
 ?>
 
 <?php if ($slides) : ?>
-<div class="step-slider theme-dark">
+<div class="<?php echo $wrapper_classes; ?>">
 	<?php if ($overline_title) : ?>
 		<h2 class="step_slider_slide_overline fs-200 fw-regular"><?php echo esc_html($overline_title); ?></h2>
 	<?php endif; ?>
@@ -14,7 +18,7 @@ $slides         = get_sub_field('step_slider_slides');
 			$overline = $slide['step_slider_slide_overline'];
 			$title = $slide['step_slider_slide_title'];
 			$text  = $slide['step_slider_slide_text'];
-			$image_url = $image ? $image['sizes']['large'] : get_template_directory_uri() . '/images/placeholder.png';
+			$image_url = Zotefoams_Image_Helper::get_image_url($image, 'large', 'step-slider');
 		?>
 			<div class="step-slider__slide black-bg white-text">
 				<div class="step-slider__cols">

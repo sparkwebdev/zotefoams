@@ -1,24 +1,19 @@
 <?php
-$title = get_sub_field('box_columns_title');
-$button = get_sub_field('box_columns_button');
-$behaviour = get_sub_field('box_columns_behaviour');
-$page_id = get_sub_field('box_columns_parent_id');
-$manual_items = get_sub_field('box_columns_items');
+// Get field data using safe helper functions
+$title = zotefoams_get_sub_field_safe('box_columns_title', '', 'string');
+$button = zotefoams_get_sub_field_safe('box_columns_button', [], 'url');
+$behaviour = zotefoams_get_sub_field_safe('box_columns_behaviour', '', 'string');
+$page_id = zotefoams_get_sub_field_safe('box_columns_parent_id', 0, 'int');
+$manual_items = zotefoams_get_sub_field_safe('box_columns_items', [], 'array');
 $posts_page_id = zotefoams_get_page_for_posts_id();
 $use_categories = ($behaviour === 'children' && $page_id == $posts_page_id);
+
+// Generate classes to match original structure exactly
+$wrapper_classes = 'box-columns cont-m padding-t-b-100 theme-none';
 ?>
 
-<div class="box-columns cont-m padding-t-b-100 theme-none">
-    <div class="title-strip margin-b-30">
-        <?php if ($title): ?>
-            <h3 class="fs-500 fw-600"><?php echo esc_html($title); ?></h3>
-        <?php endif; ?>
-        <?php if ($button): ?>
-            <a href="<?php echo esc_url($button['url']); ?>" class="btn black outline" target="<?php echo esc_attr($button['target']); ?>">
-                <?php echo esc_html($button['title']); ?>
-            </a>
-        <?php endif; ?>
-    </div>
+<div class="<?php echo esc_attr($wrapper_classes); ?>">
+    <?php echo zotefoams_render_title_strip($title, $button); ?>
 
     <div class="box-columns__items">
         <?php
@@ -29,7 +24,7 @@ $use_categories = ($behaviour === 'children' && $page_id == $posts_page_id);
             foreach ($categories as $category):
                 $cat_link = get_category_link($category->term_id);
                 $image_id = get_field('category_image', 'category_' . $category->term_id);
-                $image_url = wp_get_attachment_image_url($image_id, 'medium') ?: get_template_directory_uri() . '/images/placeholder-thumbnail.png';
+                $image_url = Zotefoams_Image_Helper::get_image_url($image_id, 'medium', 'thumbnail');
         ?>
                 <div class="box-columns__item light-grey-bg">
                     <div class="box-columns__content padding-40">
@@ -45,7 +40,7 @@ $use_categories = ($behaviour === 'children' && $page_id == $posts_page_id);
                 </div>
             <?php endforeach;
         } elseif ($behaviour === 'pick') {
-            $page_ids = get_sub_field('box_columns_page_ids');
+            $page_ids = zotefoams_get_sub_field_safe('box_columns_page_ids', [], 'array');
             foreach ($page_ids as $pid):
                 $thumb = get_the_post_thumbnail_url($pid, 'medium') ?: get_template_directory_uri() . '/images/placeholder-thumbnail.png';
             ?>
@@ -64,8 +59,8 @@ $use_categories = ($behaviour === 'children' && $page_id == $posts_page_id);
             <?php endforeach;
         } elseif ($behaviour === 'children') {
             $child_pages = ($page_id == zotefoams_get_page_id_by_title('Knowledge Hub'))
-                ? get_pages(['post_type' => 'knowledge-hub', 'parent' => 0, 'sort_column' => 'menu_order'])
-                : get_pages(['parent' => $page_id, 'sort_column' => 'menu_order']);
+                ? zotefoams_get_child_pages(0, ['post_type' => 'knowledge-hub'])
+                : zotefoams_get_child_pages($page_id);
 
             foreach ($child_pages as $child):
                 $thumb = get_the_post_thumbnail_url($child->ID, 'medium') ?: get_template_directory_uri() . '/images/placeholder-thumbnail.png';
@@ -98,9 +93,9 @@ $use_categories = ($behaviour === 'children' && $page_id == $posts_page_id);
                             <?php endif; ?>
                         </div>
                         <?php if ($item['box_columns_item_button']): ?>
-                            <a href="<?php echo esc_url($item['box_columns_item_button']['url']); ?>" class="hl arrow read-more" target="<?php echo esc_attr($item['box_columns_item_button']['target']); ?>">
-                                <?php echo esc_html($item['box_columns_item_button']['title']); ?>
-                            </a>
+                            <?php echo zotefoams_render_link($item['box_columns_item_button'], [
+                                'class' => 'hl arrow read-more'
+                            ]); ?>
                         <?php endif; ?>
                     </div>
                     <?php if ($img): ?>

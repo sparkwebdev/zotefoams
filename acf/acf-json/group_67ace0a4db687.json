@@ -4325,6 +4325,219 @@
                     ],
                     "min": "",
                     "max": ""
+                },
+                "layout_interactive_image": {
+                    "key": "layout_interactive_image",
+                    "name": "interactive_image",
+                    "label": "Interactive Image",
+                    "display": "block",
+                    "sub_fields": [
+                        {
+                            "key": "field_interactive_image_title",
+                            "label": "Title",
+                            "name": "interactive_image_title",
+                            "aria-label": "",
+                            "type": "text",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "30",
+                                "class": "",
+                                "id": ""
+                            },
+                            "default_value": "",
+                            "maxlength": "",
+                            "allow_in_bindings": 0,
+                            "placeholder": "",
+                            "prepend": "",
+                            "append": ""
+                        },
+                        {
+                            "key": "field_interactive_image_subtitle",
+                            "label": "Subtitle",
+                            "name": "interactive_image_subtitle",
+                            "aria-label": "",
+                            "type": "text",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "30",
+                                "class": "",
+                                "id": ""
+                            },
+                            "default_value": "",
+                            "maxlength": "",
+                            "allow_in_bindings": 0,
+                            "placeholder": "",
+                            "prepend": "",
+                            "append": ""
+                        },
+                        {
+                            "key": "field_output_numbers",
+                            "label": "Output numbers?",
+                            "name": "interactive_image_output_numbers",
+                            "aria-label": "",
+                            "type": "true_false",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "20",
+                                "class": "",
+                                "id": ""
+                            },
+                            "message": "",
+                            "default_value": 0,
+                            "allow_in_bindings": 0,
+                            "ui_on_text": "",
+                            "ui_off_text": "",
+                            "ui": 1
+                        },
+                        {
+                            "key": "field_6894aa9f36e3e",
+                            "label": "Light theme?",
+                            "name": "interactive_image_light_theme",
+                            "aria-label": "",
+                            "type": "true_false",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "20",
+                                "class": "",
+                                "id": ""
+                            },
+                            "message": "",
+                            "default_value": 0,
+                            "allow_in_bindings": 0,
+                            "ui_on_text": "",
+                            "ui_off_text": "",
+                            "ui": 1
+                        },
+                        {
+                            "key": "field_interactive_image_bg",
+                            "label": "Background Image",
+                            "name": "interactive_image_bg",
+                            "aria-label": "",
+                            "type": "image",
+                            "instructions": "",
+                            "required": 1,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "return_format": "array",
+                            "library": "all",
+                            "min_width": "",
+                            "min_height": "",
+                            "min_size": "",
+                            "max_width": "",
+                            "max_height": "",
+                            "max_size": "",
+                            "mime_types": "",
+                            "allow_in_bindings": 0,
+                            "preview_size": "medium"
+                        },
+                        {
+                            "key": "field_interactive_image_points",
+                            "label": "Interactive Points",
+                            "name": "interactive_image_points",
+                            "aria-label": "",
+                            "type": "repeater",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "layout": "table",
+                            "min": 0,
+                            "max": 99,
+                            "collapsed": "field_point_content",
+                            "button_label": "Add Point",
+                            "rows_per_page": 20,
+                            "sub_fields": [
+                                {
+                                    "key": "field_from_top",
+                                    "label": "Position from Top (%)",
+                                    "name": "from_top",
+                                    "aria-label": "",
+                                    "type": "number",
+                                    "instructions": "",
+                                    "required": 1,
+                                    "conditional_logic": 0,
+                                    "wrapper": {
+                                        "width": "15",
+                                        "class": "",
+                                        "id": ""
+                                    },
+                                    "default_value": 50,
+                                    "min": 0,
+                                    "max": 100,
+                                    "allow_in_bindings": 0,
+                                    "placeholder": "",
+                                    "step": 0.10000000000000001,
+                                    "prepend": "",
+                                    "append": "%",
+                                    "parent_repeater": "field_interactive_image_points"
+                                },
+                                {
+                                    "key": "field_from_left",
+                                    "label": "Position from Left (%)",
+                                    "name": "from_left",
+                                    "aria-label": "",
+                                    "type": "number",
+                                    "instructions": "",
+                                    "required": 1,
+                                    "conditional_logic": 0,
+                                    "wrapper": {
+                                        "width": "15",
+                                        "class": "",
+                                        "id": ""
+                                    },
+                                    "default_value": 50,
+                                    "min": 0,
+                                    "max": 100,
+                                    "allow_in_bindings": 0,
+                                    "placeholder": "",
+                                    "step": 0.10000000000000001,
+                                    "prepend": "",
+                                    "append": "%",
+                                    "parent_repeater": "field_interactive_image_points"
+                                },
+                                {
+                                    "key": "field_point_content",
+                                    "label": "Point Content",
+                                    "name": "point_content",
+                                    "aria-label": "",
+                                    "type": "textarea",
+                                    "instructions": "",
+                                    "required": 1,
+                                    "conditional_logic": 0,
+                                    "wrapper": {
+                                        "width": "70",
+                                        "class": "",
+                                        "id": ""
+                                    },
+                                    "default_value": "",
+                                    "allow_in_bindings": 0,
+                                    "rows": 2,
+                                    "new_lines": "br",
+                                    "maxlength": "",
+                                    "placeholder": "",
+                                    "parent_repeater": "field_interactive_image_points"
+                                }
+                            ]
+                        }
+                    ],
+                    "min": "",
+                    "max": ""
                 }
             },
             "min": "",
@@ -4365,5 +4578,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1750778114
+    "modified": 1754575510
 }

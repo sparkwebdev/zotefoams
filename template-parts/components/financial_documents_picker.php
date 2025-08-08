@@ -1,14 +1,18 @@
 <?php
-$title              = get_sub_field('financial_documents_picker_title');
-$text               = get_sub_field('financial_documents_picker_text');
-$documents_by_year  = get_sub_field('documents_by_year');
+// Get field data using safe helper functions
+$title              = zotefoams_get_sub_field_safe('financial_documents_picker_title', '', 'string');
+$text               = get_sub_field('financial_documents_picker_text'); // Keep HTML intact
+$documents_by_year  = zotefoams_get_sub_field_safe('documents_by_year', [], 'array');
 $instance_id        = uniqid('docs_'); // Unique ID for JS bindings
 $has_intro_content  = !empty($text);
 $container_class    = $has_intro_content ? 'light-grey-bg padding-50 theme-light' : 'padding-b-100 theme-none';
+
+// Generate classes to match original structure exactly
+$wrapper_classes = 'financial-documents-picker cont-m ' . $container_class;
 ?>
 
 <?php if ($documents_by_year) : ?>
-	<div class="financial-documents-picker cont-m <?php echo esc_attr($container_class); ?>">
+	<div class="<?php echo esc_attr($wrapper_classes); ?>">
 		<div>
 			<?php if ($has_intro_content) : ?>
 				<div class="financial-documents-intro">
@@ -39,7 +43,7 @@ $container_class    = $has_intro_content ? 'light-grey-bg padding-50 theme-light
 						$visible  = $index === 0 ? 'block' : 'none';
 						$documents = $year_data['documents'] ?? [];
 					?>
-						<ul class="document-list document-year" data-year="<?php echo $year; ?>" style="display: <?php echo $visible; ?>;">
+						<ul class="document-list document-year" data-year="<?php echo esc_attr($year); ?>" style="display: <?php echo esc_attr($visible); ?>;">
 							<?php if (is_array($documents) && !empty($documents)) : ?>
 								<?php foreach ($documents as $document) :
 									$link = $document['document_link'] ?? null;
