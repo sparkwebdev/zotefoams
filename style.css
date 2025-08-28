@@ -4,7 +4,7 @@ Theme URI: http://underscores.me/
 Author: David Park
 Author URI: http://underscores.me/
 Description: Description
-Version: 3.0.6
+Version: 3.0.7
 Tested up to: 5.4
 Requires PHP: 5.6
 License: GNU General Public License v2 or later
@@ -2130,6 +2130,11 @@ footer div.wpforms-container.wpforms-container-full:not(:empty) {
     display: flex;
     flex-direction: column;
   }
+  .main-navigation .menu-item-has-children .sub-menu:has(> .sub-sub-item .sub-menu) {
+    flex-direction: row;
+    flex-wrap: nowrap;
+    gap: 20px;
+  }
 }
 .main-navigation .mega-menu .sub-menu li ul li {
   flex-basis: 100%;
@@ -2572,6 +2577,7 @@ body.touch-device .utility-menu .menu > li.dropdown-active > ul {
     align-items: center;
   }
   .main-navigation .menu-item-has-children > a,
+  .main-navigation .menu-item-has-children .sub-sub-item > a,
   .main-navigation .menu-item-has-children > .menu-label {
     flex-basis: calc(100% - 60px);
   }
@@ -2585,7 +2591,8 @@ body.touch-device .utility-menu .menu > li.dropdown-active > ul {
   .main-navigation .sub-menu > li a {
     /* padding-left: 15px; */
   }
-  .main-navigation .menu-item-has-children .sub-menu--mobile {
+  .main-navigation .menu-item-has-children .sub-menu--mobile,
+  .main-navigation .menu-item-has-children .sub-menu:has(> .sub-sub-item) {
     flex-basis: 100%;
   }
   .main-navigation .menu-item-has-children > a::after {

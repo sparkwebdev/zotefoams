@@ -16,6 +16,12 @@ class Mega_Menu_Walker extends Walker_Nav_Menu
         if ($depth > 0) {
             $classes[] = 'sub-item';
         }
+        if ($depth === 2) {
+            $classes[] = 'sub-sub-item';
+        }
+        if ($depth === 3) {
+            $classes[] = 'sub-sub-sub-item';
+        }
         $class_names = join(' ', apply_filters('nav_menu_css_class', array_filter($classes), $item, $args, $depth));
         $class_names = $class_names ? ' class="' . esc_attr($class_names) . '"' : '';
 
@@ -60,8 +66,8 @@ class Mega_Menu_Walker extends Walker_Nav_Menu
             $output .= '<a' . $attributes . '>' . $link_before . esc_html($item->title) . $link_after . '</a>';
         }
 
-        // Output the toggle button for items with children up to 3 levels deep.
-        if (!empty($item->has_children) && $depth < 3) {
+        // Output the toggle button for items with children up to 4 levels deep.
+        if (!empty($item->has_children) && $depth < 4) {
             $output .= '<button class="dropdown-toggle" aria-label="Toggle submenu"></button>';
         }
         $output .= $after;
@@ -126,7 +132,7 @@ class Mega_Menu_Walker extends Walker_Nav_Menu
 
             unset($children_elements[$element->$id_field]);
         } elseif ($element->has_children) {
-            if (isset($children_elements[$element->$id_field]) && ($max_depth == 0 || $max_depth > $depth + 1)) {
+            if (isset($children_elements[$element->$id_field]) && ($max_depth == 0 || $max_depth > $depth + 1 || $depth <= 3)) {
                 $output .= '<ul class="sub-menu">';
                 foreach ($children_elements[$element->$id_field] as $child) {
                     $this->display_element($child, $children_elements, $max_depth, $depth + 1, $args, $output);

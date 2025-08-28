@@ -44,11 +44,15 @@ else : ?>
 		</div>
 	</div>
 
+	<?php 
+	$nav_data = Zotefoams_Navigation_Helper::get_dynamic_back_link();
+	if ($nav_data) : ?>
 	<div class="cont-m padding-t-b-100 theme-none">
 		<div class="nav-links">
-			<a href="<?php echo esc_url(home_url('/directors')); ?>">« <?php esc_html_e('Back to Directors', 'zotefoams'); ?></a>
+			<?php Zotefoams_Navigation_Helper::render_dynamic_back_link(); ?>
 		</div>
 	</div>
+	<?php endif; ?>
 
 <?php
 endif;

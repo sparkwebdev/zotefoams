@@ -328,6 +328,12 @@ $breakpoint-large: 68rem;
     display: flex;
     flex-direction: column;
   }
+
+  .main-navigation .menu-item-has-children .sub-menu:has(> .sub-sub-item .sub-menu) {
+    flex-direction: row;
+    flex-wrap: nowrap;
+    gap: 20px;
+  }
 }
 
 .main-navigation .mega-menu .sub-menu li ul li {
@@ -828,6 +834,7 @@ body.touch-device .utility-menu .menu > li.dropdown-active > ul {
   }
 
   .main-navigation .menu-item-has-children > a,
+  .main-navigation .menu-item-has-children .sub-sub-item > a,
   .main-navigation .menu-item-has-children > .menu-label {
     flex-basis: calc(100% - 60px);
   }
@@ -845,7 +852,8 @@ body.touch-device .utility-menu .menu > li.dropdown-active > ul {
     /* padding-left: 15px; */
   }
 
-  .main-navigation .menu-item-has-children .sub-menu--mobile {
+  .main-navigation .menu-item-has-children .sub-menu--mobile,
+  .main-navigation .menu-item-has-children .sub-menu:has(> .sub-sub-item) {
     flex-basis: 100%;
   }
 
