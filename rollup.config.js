@@ -12,17 +12,62 @@ import postcss from 'postcss';
 import autoprefixer from 'autoprefixer';
 import cssnano from 'cssnano';
 
-const isProduction = false; // Always use development mode
+const isProduction = false; // Development mode - minification disabled for debugging
 
-export default defineConfig({
-	input: 'src/main.js',
-	
-	output: {
-		file: 'js/bundle.js',
-		format: 'iife', // Immediately Invoked Function Expression for WordPress compatibility
-		name: 'ZotefoamsTheme',
-		sourcemap: !isProduction
+export default defineConfig([
+	// Critical bundle configuration - loads first in head
+	{
+		input: 'src/critical.js',
+		
+		output: {
+			file: 'js/critical.js',
+			format: 'iife',
+			name: 'ZotefoamsCritical',
+			sourcemap: !isProduction
+		},
+
+		plugins: [
+			// Resolve node modules
+			nodeResolve({
+				browser: true,
+				preferBuiltins: false
+			}),
+
+			// Convert CommonJS modules to ES6
+			commonjs(),
+
+			// Minify in production
+			isProduction && terser({
+				compress: {
+					drop_console: false,
+					drop_debugger: true
+				},
+				mangle: {
+					keep_fnames: true
+				},
+				format: {
+					comments: false
+				}
+			})
+		].filter(Boolean),
+
+		// Watch mode configuration
+		watch: {
+			include: ['src/critical/**', 'src/utils/**'],
+			exclude: ['node_modules/**']
+		}
 	},
+	
+	// Main bundle configuration - loads in footer
+	{
+		input: 'src/main.js',
+		
+		output: {
+			file: 'js/bundle.js',
+			format: 'iife', // Immediately Invoked Function Expression for WordPress compatibility
+			name: 'ZotefoamsTheme',
+			sourcemap: !isProduction
+		},
 
 	plugins: [
 		// Resolve node modules
@@ -105,9 +150,10 @@ export default defineConfig({
 		// e.g., 'jquery' if using WordPress jQuery
 	],
 
-	// Watch mode configuration
-	watch: {
-		include: ['src/**', 'sass/**'],
-		exclude: ['node_modules/**']
+		// Watch mode configuration
+		watch: {
+			include: ['src/**', 'sass/**'],
+			exclude: ['node_modules/**', 'src/critical/**']
+		}
 	}
-});
+]);

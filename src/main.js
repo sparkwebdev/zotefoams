@@ -6,12 +6,10 @@
 // Import main stylesheet
 import './sass/style.scss';
 
-// Import core utilities (must load first)
-import './utils/dom-utilities.js';
+// Import non-critical utilities
 import './utils/site-utilities.js';
 
-// Import all components
-import './components/navigation.js';
+// Import all non-critical components
 import './components/carousel-init.js';
 import './components/tabbed-split.js';
 import './components/locations-map.js';

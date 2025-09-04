@@ -52,6 +52,7 @@
     "map": false
   },
   "scripts": {
+    "build": "rollup -c",
     "lint": "stylelint 'src/sass/**/*.scss' --fix && prettier --write 'src/sass/**/*.scss'",
     "start": "concurrently \"rollup -c --watch\" \"browser-sync start --proxy 'https://zotefoams-phase-2.local/' --https --files './style.css, js/bundle.js, ./**/*.php'\"",
     "test": "rimraf tests/vrc/results && VRC_DEVICES=desktop-only playwright test tests/vrc/compare-pages.spec.js",

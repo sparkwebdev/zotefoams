@@ -2,6 +2,7 @@
 
 ## Pending Issues (To Fix)
 
+- [ ] **Enable Asset Minification** - Set `isProduction = true` in rollup.config.js to enable JavaScript and CSS minification for production deployment
 - [ ] **Image Banner autoplay pause** - Hovering on Next button should pause slide autoplay
 - [ ] **Split Carousel keyboard controls** - Keyboard navigation could be improved for better accessibility
 - [ ] **Accordion/Show-Hide plus/minus icons** - Plus/minus icons display incorrectly when using keyboard navigation

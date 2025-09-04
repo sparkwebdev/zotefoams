@@ -18,6 +18,9 @@ function zotefoams_enqueue_assets()
     wp_enqueue_style('zotefoams-style', get_stylesheet_uri(), array(), _S_VERSION);
     wp_style_add_data('zotefoams-style', 'rtl', 'replace');
 
+    // Enqueue critical JavaScript bundle in head as BLOCKING for immediate functionality
+    wp_enqueue_script('zotefoams-critical', get_template_directory_uri() . '/js/critical.js', array(), _S_VERSION, false);
+
     // Load Swiper CSS and JS from CDN first
     wp_enqueue_style('swiper-css', 'https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css');
     wp_enqueue_script('swiper-js', 'https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js', array(), null, true);
