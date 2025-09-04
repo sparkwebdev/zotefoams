@@ -4,17 +4,17 @@
  */
 
 (() => {
-    // Detect touch devices, add a class to the body, and set megaNavMode accordingly
-    const isTouchDevice =
-        "ontouchstart" in window ||
-        navigator.maxTouchPoints > 0 ||
-        navigator.msMaxTouchPoints > 0;
-    
-    if (isTouchDevice) {
-        document.body.classList.add("touch-device");
-    }
-
     function initNavigation() {
+        // Detect touch devices, add a class to the body, and set megaNavMode accordingly
+        const isTouchDevice =
+            "ontouchstart" in window ||
+            navigator.maxTouchPoints > 0 ||
+            navigator.msMaxTouchPoints > 0;
+        
+        if (isTouchDevice && document.body) {
+            document.body.classList.add("touch-device");
+        }
+
         const siteNav = document.getElementById("site-navigation");
         
         if (!siteNav) {
@@ -39,110 +39,110 @@
 
         menu.classList.add("nav-menu");
 
-    // Helper function: get focusable elements within a container
-    const getFocusable = (container) =>
-        Array.from(
-            container.querySelectorAll(
-                'a, button, input, textarea, select, [tabindex]:not([tabindex="-1"])'
-            )
-        );
+        // Helper function: get focusable elements within a container
+        const getFocusable = (container) =>
+            Array.from(
+                container.querySelectorAll(
+                    'a, button, input, textarea, select, [tabindex]:not([tabindex="-1"])'
+                )
+            );
 
-    // Helper functions to close mega menus and utility menus
-    const closeMegaMenus = () => {
-        document
-            .querySelectorAll(".mega-menu.active")
-            .forEach((el) => el.classList.remove("active"));
-        const container = document.querySelector(".mega-menu-container");
-        if (container && !container.querySelector(".mega-menu.active")) {
-            container.classList.remove("active");
-        }
-        // Reset aria-expanded on links that control mega menus
-        document.querySelectorAll("[aria-controls]").forEach((link) => {
-            const controlId = link.getAttribute("aria-controls");
-            const controlledEl = controlId && document.getElementById(controlId);
-            if (controlledEl && controlledEl.classList.contains("mega-menu")) {
-                link.setAttribute("aria-expanded", "false");
-            }
-        });
-    };
-
-    const closeUtilityMenus = () => {
-        document
-            .querySelectorAll(".utility-menu .dropdown-active")
-            .forEach((el) => el.classList.remove("dropdown-active"));
-    };
-
-    // Global closeAll function
-    const closeAll = () => {
-        document
-            .querySelectorAll(".dropdown-active, .mega-menu.active")
-            .forEach((el) => el.classList.remove("dropdown-active", "active"));
-        const container = document.querySelector(".mega-menu-container");
-        if (container) {
-            container.classList.remove("active");
-        }
-        document
-            .querySelectorAll("[aria-controls]")
-            .forEach((link) => link.setAttribute("aria-expanded", "false"));
-    };
-
-    // Keyboard navigation within mega menus
-    const handleMegaKeyNav = (e) => {
-        const megaMenu = e.currentTarget;
-        if (e.key === "Escape") {
-            e.preventDefault();
-            megaMenu.classList.remove("active");
+        // Helper functions to close mega menus and utility menus
+        const closeMegaMenus = () => {
+            document
+                .querySelectorAll(".mega-menu.active")
+                .forEach((el) => el.classList.remove("active"));
             const container = document.querySelector(".mega-menu-container");
             if (container && !container.querySelector(".mega-menu.active")) {
                 container.classList.remove("active");
             }
-            if (megaMenu._topLink) {
-                megaMenu._topLink.focus();
+            // Reset aria-expanded on links that control mega menus
+            document.querySelectorAll("[aria-controls]").forEach((link) => {
+                const controlId = link.getAttribute("aria-controls");
+                const controlledEl = controlId && document.getElementById(controlId);
+                if (controlledEl && controlledEl.classList.contains("mega-menu")) {
+                    link.setAttribute("aria-expanded", "false");
+                }
+            });
+        };
+
+        const closeUtilityMenus = () => {
+            document
+                .querySelectorAll(".utility-menu .dropdown-active")
+                .forEach((el) => el.classList.remove("dropdown-active"));
+        };
+
+        // Global closeAll function
+        const closeAll = () => {
+            document
+                .querySelectorAll(".dropdown-active, .mega-menu.active")
+                .forEach((el) => el.classList.remove("dropdown-active", "active"));
+            const container = document.querySelector(".mega-menu-container");
+            if (container) {
+                container.classList.remove("active");
             }
-            megaMenu.removeEventListener("keydown", handleMegaKeyNav);
-        } else if (e.key === "Tab") {
-            const focusable = getFocusable(megaMenu);
-            const currentIndex = focusable.indexOf(document.activeElement);
-            if (
-                (e.shiftKey && currentIndex === 0) ||
-                (!e.shiftKey && currentIndex === focusable.length - 1)
-            ) {
+            document
+                .querySelectorAll("[aria-controls]")
+                .forEach((link) => link.setAttribute("aria-expanded", "false"));
+        };
+
+        // Keyboard navigation within mega menus
+        const handleMegaKeyNav = (e) => {
+            const megaMenu = e.currentTarget;
+            if (e.key === "Escape") {
                 e.preventDefault();
                 megaMenu.classList.remove("active");
-                const topLinks = Array.from(
-                    document.querySelectorAll("#menu-primary > li > a")
-                );
-                const index = topLinks.indexOf(megaMenu._topLink);
-                const targetLink = e.shiftKey
-                    ? index > 0
-                        ? topLinks[index - 1]
-                        : megaMenu._topLink
-                    : index < topLinks.length - 1
-                        ? topLinks[index + 1]
-                        : megaMenu._topLink;
-                targetLink.focus();
+                const container = document.querySelector(".mega-menu-container");
+                if (container && !container.querySelector(".mega-menu.active")) {
+                    container.classList.remove("active");
+                }
+                if (megaMenu._topLink) {
+                    megaMenu._topLink.focus();
+                }
                 megaMenu.removeEventListener("keydown", handleMegaKeyNav);
+            } else if (e.key === "Tab") {
+                const focusable = getFocusable(megaMenu);
+                const currentIndex = focusable.indexOf(document.activeElement);
+                if (
+                    (e.shiftKey && currentIndex === 0) ||
+                    (!e.shiftKey && currentIndex === focusable.length - 1)
+                ) {
+                    e.preventDefault();
+                    megaMenu.classList.remove("active");
+                    const topLinks = Array.from(
+                        document.querySelectorAll("#menu-primary > li > a")
+                    );
+                    const index = topLinks.indexOf(megaMenu._topLink);
+                    const targetLink = e.shiftKey
+                        ? index > 0
+                            ? topLinks[index - 1]
+                            : megaMenu._topLink
+                        : index < topLinks.length - 1
+                            ? topLinks[index + 1]
+                            : megaMenu._topLink;
+                    targetLink.focus();
+                    megaMenu.removeEventListener("keydown", handleMegaKeyNav);
+                }
             }
-        }
-    };
+        };
 
-    // Set up dropdown/mega menu handlers
-    const setupDropdowns = (menuElement) => {
-        // Attach click event to .dropdown-toggle buttons to toggle submenus.
-        menuElement.querySelectorAll(".dropdown-toggle").forEach((toggle) => {
-            toggle.addEventListener("click", (e) => {
-                e.stopPropagation();
-                e.preventDefault();
-                const menuItem = toggle.parentNode;
-                menuItem.classList.toggle("dropdown-active");
+        // Set up dropdown/mega menu handlers
+        const setupDropdowns = (menuElement) => {
+            // Attach click event to .dropdown-toggle buttons to toggle submenus.
+            menuElement.querySelectorAll(".dropdown-toggle").forEach((toggle) => {
+                toggle.addEventListener("click", (e) => {
+                    e.stopPropagation();
+                    e.preventDefault();
+                    const menuItem = toggle.parentNode;
+                    menuItem.classList.toggle("dropdown-active");
+                });
             });
-        });
 
-        // Process anchor links that have children.
-        menuElement
-            .querySelectorAll(".menu-item-has-children > a, [aria-controls]")
-            .forEach((link) => {
-                const controlId = link.getAttribute("aria-controls");
+            // Process anchor links that have children.
+            menuElement
+                .querySelectorAll(".menu-item-has-children > a, [aria-controls]")
+                .forEach((link) => {
+                    const controlId = link.getAttribute("aria-controls");
                 if (controlId) {
                     // Mega menu branch
                     const megaMenu = document.getElementById(controlId);
@@ -298,93 +298,93 @@
                     });
                 }
             });
-    };
+        };
 
-    // Set up event listeners for main navigation and utility menu
-    button.addEventListener("click", () => {
-        siteNav.classList.toggle("toggled");
-        const isExpanded = button.getAttribute("aria-expanded") === "true";
-        button.setAttribute("aria-expanded", (!isExpanded).toString());
-        
-        // Toggle no-scroll class on body for mobile menu scrolling
-        if (siteNav.classList.contains("toggled")) {
-            document.body.classList.add("no-scroll");
-        } else {
-            document.body.classList.remove("no-scroll");
-        }
-    });
-
-    setupDropdowns(siteNav);
-    if (utilityMenu) {
-        setupDropdowns(utilityMenu);
-    }
-
-    // On mobile/touch devices, make menu-labels clickable to toggle their submenus
-    if (isTouchDevice) {
-        document.querySelectorAll('.menu-label').forEach((label) => {
-            const menuItem = label.parentNode;
-            const dropdownToggle = menuItem.querySelector('.dropdown-toggle');
-            if (dropdownToggle) {
-                label.style.cursor = 'pointer';
-                label.addEventListener('click', (e) => {
-                    e.preventDefault();
-                    e.stopPropagation();
-                    // Trigger the dropdown toggle button
-                    dropdownToggle.click();
-                });
+        // Set up event listeners for main navigation and utility menu
+        button.addEventListener("click", () => {
+            siteNav.classList.toggle("toggled");
+            const isExpanded = button.getAttribute("aria-expanded") === "true";
+            button.setAttribute("aria-expanded", (!isExpanded).toString());
+            
+            // Toggle no-scroll class on body for mobile menu scrolling
+            if (siteNav.classList.contains("toggled")) {
+                document.body.classList.add("no-scroll");
+            } else {
+                document.body.classList.remove("no-scroll");
             }
         });
-    }
 
-    // Close menus when clicking outside
-    document.addEventListener("click", (e) => {
-        if (
-            !siteNav.contains(e.target) &&
-            !(utilityMenu && utilityMenu.contains(e.target))
-        ) {
-            closeAll();
-            siteNav.classList.remove("toggled");
-            button.setAttribute("aria-expanded", "false");
-            document.body.classList.remove("no-scroll");
+        setupDropdowns(siteNav);
+        if (utilityMenu) {
+            setupDropdowns(utilityMenu);
         }
-    });
 
-    // Handle keyboard for standard links without aria-controls
-    document.querySelectorAll(".menu-item-has-children > a").forEach((link) => {
-        if (!link.getAttribute("aria-controls")) {
-            // Check if this has a dropdown toggle button (mobile menu) - if so, don't interfere
-            const hasDropdownToggle = link.parentNode.querySelector('.dropdown-toggle');
-            if (!hasDropdownToggle) {
-                link.addEventListener("keydown", (e) => {
-                    const menuItem = link.parentNode;
-                    if (
-                        (e.key === "Enter" || e.key === " " || e.key === "ArrowDown") &&
-                        (menuItem.classList.contains("menu-item-has-children") ||
-                            menuItem.querySelector("ul"))
-                    ) {
+        // On mobile/touch devices, make menu-labels clickable to toggle their submenus
+        if (isTouchDevice) {
+            document.querySelectorAll('.menu-label').forEach((label) => {
+                const menuItem = label.parentNode;
+                const dropdownToggle = menuItem.querySelector('.dropdown-toggle');
+                if (dropdownToggle) {
+                    label.style.cursor = 'pointer';
+                    label.addEventListener('click', (e) => {
                         e.preventDefault();
-                        menuItem.classList.toggle("dropdown-active");
+                        e.stopPropagation();
+                        // Trigger the dropdown toggle button
+                        dropdownToggle.click();
+                    });
+                }
+            });
+        }
+
+        // Close menus when clicking outside
+        document.addEventListener("click", (e) => {
+            if (
+                !siteNav.contains(e.target) &&
+                !(utilityMenu && utilityMenu.contains(e.target))
+            ) {
+                closeAll();
+                siteNav.classList.remove("toggled");
+                button.setAttribute("aria-expanded", "false");
+                document.body.classList.remove("no-scroll");
+            }
+        });
+
+        // Handle keyboard for standard links without aria-controls
+        document.querySelectorAll(".menu-item-has-children > a").forEach((link) => {
+            if (!link.getAttribute("aria-controls")) {
+                // Check if this has a dropdown toggle button (mobile menu) - if so, don't interfere
+                const hasDropdownToggle = link.parentNode.querySelector('.dropdown-toggle');
+                if (!hasDropdownToggle) {
+                    link.addEventListener("keydown", (e) => {
+                        const menuItem = link.parentNode;
                         if (
-                            e.key === "ArrowDown" &&
-                            menuItem.classList.contains("dropdown-active")
+                            (e.key === "Enter" || e.key === " " || e.key === "ArrowDown") &&
+                            (menuItem.classList.contains("menu-item-has-children") ||
+                                menuItem.querySelector("ul"))
                         ) {
-                            const submenu = menuItem.querySelector("ul");
-                            if (submenu) {
-                                const firstLink = submenu.querySelector("a");
-                                if (firstLink) {
-                                    firstLink.focus();
+                            e.preventDefault();
+                            menuItem.classList.toggle("dropdown-active");
+                            if (
+                                e.key === "ArrowDown" &&
+                                menuItem.classList.contains("dropdown-active")
+                            ) {
+                                const submenu = menuItem.querySelector("ul");
+                                if (submenu) {
+                                    const firstLink = submenu.querySelector("a");
+                                    if (firstLink) {
+                                        firstLink.focus();
+                                    }
                                 }
                             }
+                        } else if (e.key === "Escape") {
+                            closeAll();
+                            link.focus();
                         }
-                    } else if (e.key === "Escape") {
-                        closeAll();
-                        link.focus();
-                    }
-                });
+                    });
+                }
             }
-        }
-    });
-    
+        });
+        
         // Mark navigation as initialized to prevent duplicate setup
         siteNav.setAttribute('data-critical-nav-initialized', 'true');
         
