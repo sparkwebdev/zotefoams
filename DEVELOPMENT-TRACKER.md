@@ -4,6 +4,9 @@
 
 - [ ] **Enable Asset Minification** - Set `isProduction = true` in rollup.config.js to enable JavaScript and CSS minification for production deployment
 - [ ] **Image Banner autoplay pause** - Hovering on Next button should pause slide autoplay
+- [ ] **iPad Pro menu display mismatch** - Desktop view displays on ipad Pro but menu interactions are mobile
+- [ ] **Preload menu chevrons** - Menu is interacive before chevrons are visible
+- [ ] **IKnowledge Hub mwnu drobdown keyboard controls** - Space/Enter should show dropdown (like main menu)
 - [ ] **Split Carousel keyboard controls** - Keyboard navigation could be improved for better accessibility
 - [ ] **Accordion/Show-Hide plus/minus icons** - Plus/minus icons display incorrectly when using keyboard navigation
 - [ ] **Step Slider keyboard interaction** - Keyboard navigation could be improved for better accessibility
