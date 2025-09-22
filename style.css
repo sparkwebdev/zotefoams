@@ -2227,8 +2227,8 @@ footer div.wpforms-container.wpforms-container-full:not(:empty) {
   align-items: center;
   gap: 6px;
   width: 40px;
-  height: 40px;
-  display: flex;
+  height: 37px;
+  display: grid;
   position: absolute;
   top: 15px;
   right: 5%;
@@ -4012,23 +4012,23 @@ a.read-more.hl.arrow:focus::after {
 
 .accordion-header {
   background-color: transparent;
-  padding: 27px 0;
+  padding: 10px 0;
+  margin: 17px 0;
   text-align: left;
   width: 100%;
   border: none;
   cursor: pointer;
-  outline: none;
   display: flex;
   justify-content: space-between;
   align-items: center;
   border-radius: 0;
   transition: all 0.3s;
 }
-.accordion-header:focus-visible {
-  text-decoration: underline;
+.accordion-header:not(:focus-visible) {
+  outline: none;
 }
-.accordion-header:focus-visible .toggle-icon {
-  text-decoration: none;
+.accordion-header:focus-visible {
+  outline-offset: 3px;
 }
 
 @media screen and (max-width: 767px) {

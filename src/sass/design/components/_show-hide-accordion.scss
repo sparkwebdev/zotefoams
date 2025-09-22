@@ -7,24 +7,23 @@
 
 .accordion-header {
   background-color: transparent;
-  padding: 27px 0;
+  padding: 10px 0;
+  margin: 17px 0;
   text-align: left;
   width: 100%;
   border: none;
   cursor: pointer;
-  outline: none;
   display: flex;
   justify-content: space-between;
   align-items: center;
   border-radius: 0;
   transition: all 0.3s;
 
+  &:not(:focus-visible) {
+    outline: none;
+  }
   &:focus-visible {
-    text-decoration: underline;
-
-    .toggle-icon {
-      text-decoration: none;
-    }
+    outline-offset: 3px;
   }
 }
 
