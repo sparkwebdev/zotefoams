@@ -12,7 +12,7 @@
   bottom: 0;
   right: 0;
   z-index: 2;
-  width: 50%;
+  width: calc(50% - 50px);
   margin-bottom: 30px;
 }
 
@@ -54,6 +54,7 @@
 .swiper-split .swiper-slide-content {
   flex-direction: column;
   padding-top: 50px;
+  padding-left: 50px;
   margin-bottom: 120px;
 }
 
@@ -65,6 +66,7 @@
 @media screen and (max-width: 767px) {
   .swiper-split .swiper-slide-content {
     padding-right: 0;
+    padding-left: 0;
   }
 
   .swiper-carousel.split-carousel {

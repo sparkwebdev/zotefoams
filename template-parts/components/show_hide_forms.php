@@ -1,8 +1,14 @@
 <?php
 // Get field data using safe helper functions
-$title = get_field('show_hide_forms_title', 'option'); // Options field
-$intro = get_field('show_hide_forms_intro', 'option'); // Options field
-$items = get_field('show_hide_forms_items', 'option'); // Options field
+if (isset($globalForms) && $globalForms) {
+	$title = get_field('show_hide_forms_title', 'option'); // Options field
+	$intro = get_field('show_hide_forms_intro', 'option'); // Options field
+	$items = get_field('show_hide_forms_items', 'option'); // Options field
+} else {
+	$title = get_sub_field('show_hide_forms_title');
+	$intro = get_sub_field('show_hide_forms_intro');
+	$items = get_sub_field('show_hide_forms_items');
+}
 
 // Generate classes to match original structure exactly
 $wrapper_classes = 'show-hide-forms accordion cont-m padding-t-b-100 theme-none';

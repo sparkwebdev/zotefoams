@@ -45,6 +45,7 @@ else :
 		}
 
 		if (get_field('page_footer_contact_forms')) {
+			$globalForms = true;
 			include locate_template('/template-parts/components/show_hide_forms.php', false, false);
 		}
 	}
