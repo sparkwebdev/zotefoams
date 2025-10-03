@@ -290,14 +290,8 @@
 	    if (url) {
 	      const matchingChild = article.querySelector('[href="' + url + '"]');
 	      if (matchingChild) {
-	        article.addEventListener('click', function (event) {
-	          if (event.metaKey || event.ctrlKey) {
-	            window.open(url, '_blank');
-	          } else if (event.shiftKey) {
-	            window.open(url);
-	          } else {
-	            matchingChild.click();
-	          }
+	        article.addEventListener('click', function () {
+	          matchingChild.click();
 	        });
 	      }
 	    }
