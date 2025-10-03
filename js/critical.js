@@ -7,25 +7,6 @@
      */
 
     (() => {
-        // Preload critical navigation icons
-        function preloadNavigationIcons() {
-            const icons = [
-                'images/icon-right-arrow-black.svg',
-                'images/icon-right-arrow-white.svg',
-                'images/icon-right-arrow-blue.svg'
-            ];
-
-            icons.forEach(iconPath => {
-                const link = document.createElement('link');
-                link.rel = 'preload';
-                link.as = 'image';
-                link.href = iconPath;
-                document.head.appendChild(link);
-            });
-        }
-
-        // Preload icons immediately
-        preloadNavigationIcons();
         function initNavigation() {
             // Detect touch devices, add a class to the body, and set megaNavMode accordingly
             const isTouchDevice =
