@@ -536,23 +536,24 @@
                                     "aria-label": "",
                                     "type": "image",
                                     "instructions": "",
-                                    "required": false,
-                                    "conditional_logic": false,
+                                    "required": 0,
+                                    "conditional_logic": 0,
                                     "wrapper": {
                                         "width": "",
                                         "class": "",
                                         "id": ""
                                     },
                                     "return_format": "array",
-                                    "preview_size": "medium",
                                     "library": "all",
-                                    "min_width": 0,
-                                    "min_height": 0,
-                                    "min_size": 0,
-                                    "max_width": 0,
-                                    "max_height": 0,
-                                    "max_size": 0,
+                                    "min_width": "",
+                                    "min_height": "",
+                                    "min_size": "",
+                                    "max_width": "",
+                                    "max_height": "",
+                                    "max_size": "",
                                     "mime_types": "",
+                                    "allow_in_bindings": 1,
+                                    "preview_size": "thumbnail",
                                     "parent_repeater": "field_67af89012pqrstu"
                                 },
                                 {
@@ -581,7 +582,7 @@
                                     "label": "Text",
                                     "name": "icon_columns_text",
                                     "aria-label": "",
-                                    "type": "textarea",
+                                    "type": "wysiwyg",
                                     "instructions": "",
                                     "required": 0,
                                     "conditional_logic": 0,
@@ -590,18 +591,36 @@
                                         "class": "",
                                         "id": ""
                                     },
-                                    "tabs": "visual",
-                                    "media_upload": 0,
-                                    "toolbar": "basic",
                                     "default_value": "",
-                                    "maxlength": "",
-                                    "allow_in_bindings": 0,
-                                    "rows": "",
-                                    "placeholder": "",
-                                    "new_lines": "",
+                                    "allow_in_bindings": 1,
+                                    "tabs": "all",
+                                    "toolbar": "basic",
+                                    "media_upload": 0,
+                                    "delay": 0,
                                     "parent_repeater": "field_67af89012pqrstu"
                                 }
                             ]
+                        },
+                        {
+                            "key": "field_67af89012pqrstuv1",
+                            "label": "Visual Variant",
+                            "name": "icon_columns_variant",
+                            "aria-label": "",
+                            "type": "true_false",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "message": "Apply visual variant styling - grey background, square images with rounded corners, shadow",
+                            "default_value": 0,
+                            "allow_in_bindings": 0,
+                            "ui_on_text": "",
+                            "ui_off_text": "",
+                            "ui": 1
                         }
                     ],
                     "min": "",
@@ -847,11 +866,13 @@
                                         "id": ""
                                     },
                                     "choices": {
-                                        "782": "Request a Sample",
-                                        "787": "Request a Quote",
+                                        "": "Select a form...",
                                         "790": "Contact us",
+                                        "3723": "K-SHOW Competition Entry",
                                         "2048": "Newsletter Signup",
-                                        "3036": "Register for updates"
+                                        "3036": "Register for updates",
+                                        "787": "Request a Quote",
+                                        "782": "Request a Sample"
                                     },
                                     "default_value": false,
                                     "return_format": "value",
@@ -861,7 +882,9 @@
                                     "ui": 0,
                                     "ajax": 0,
                                     "placeholder": "",
-                                    "parent_repeater": "field_67b499a71a146"
+                                    "parent_repeater": "field_67b499a71a146",
+                                    "create_options": 0,
+                                    "save_options": 0
                                 }
                             ]
                         }
@@ -1226,7 +1249,9 @@
                             "allow_in_bindings": 0,
                             "ui": 0,
                             "ajax": 0,
-                            "placeholder": ""
+                            "placeholder": "",
+                            "create_options": 0,
+                            "save_options": 0
                         },
                         {
                             "key": "field_67af67890micar3",
@@ -2185,7 +2210,9 @@
                             "allow_in_bindings": false,
                             "ui": false,
                             "ajax": false,
-                            "placeholder": ""
+                            "placeholder": "",
+                            "create_options": 0,
+                            "save_options": 0
                         },
                         {
                             "key": "field_67af90123lmnopq9",
@@ -2413,7 +2440,9 @@
                             "ui": 0,
                             "multiple": 0,
                             "ajax": 0,
-                            "placeholder": ""
+                            "placeholder": "",
+                            "create_options": 0,
+                            "save_options": 0
                         },
                         {
                             "key": "field_67b7fgh123pickdocs",
@@ -2728,7 +2757,9 @@
                             "allow_in_bindings": 0,
                             "ui": 0,
                             "ajax": 0,
-                            "placeholder": ""
+                            "placeholder": "",
+                            "create_options": 0,
+                            "save_options": 0
                         },
                         {
                             "key": "field_67b70587970ea",
@@ -2994,7 +3025,9 @@
                             "allow_in_bindings": 0,
                             "ui": 0,
                             "ajax": 0,
-                            "placeholder": ""
+                            "placeholder": "",
+                            "create_options": 0,
+                            "save_options": 0
                         },
                         {
                             "key": "field_67b6fe5745c82",
@@ -3400,7 +3433,9 @@
                             "allow_in_bindings": 0,
                             "ui": 0,
                             "ajax": 0,
-                            "placeholder": ""
+                            "placeholder": "",
+                            "create_options": 0,
+                            "save_options": 0
                         },
                         {
                             "key": "field_67af90123stuvw3",
@@ -3429,7 +3464,9 @@
                             "allow_in_bindings": 0,
                             "ui": 0,
                             "ajax": 0,
-                            "placeholder": ""
+                            "placeholder": "",
+                            "create_options": 0,
+                            "save_options": 0
                         },
                         {
                             "key": "field_67af90123stuvw7",
@@ -3471,7 +3508,9 @@
                             "allow_in_bindings": 0,
                             "ui": 0,
                             "ajax": 0,
-                            "placeholder": ""
+                            "placeholder": "",
+                            "create_options": 0,
+                            "save_options": 0
                         },
                         {
                             "key": "field_67af90123stuvw8",
@@ -3929,7 +3968,9 @@
                             "allow_in_bindings": 0,
                             "ui": 0,
                             "ajax": 0,
-                            "placeholder": ""
+                            "placeholder": "",
+                            "create_options": 0,
+                            "save_options": 0
                         }
                     ],
                     "min": "",
@@ -4482,7 +4523,7 @@
                                     "max": 100,
                                     "allow_in_bindings": 0,
                                     "placeholder": "",
-                                    "step": 0.10000000000000001,
+                                    "step": 0.1,
                                     "prepend": "",
                                     "append": "%",
                                     "parent_repeater": "field_interactive_image_points"
@@ -4506,7 +4547,7 @@
                                     "max": 100,
                                     "allow_in_bindings": 0,
                                     "placeholder": "",
-                                    "step": 0.10000000000000001,
+                                    "step": 0.1,
                                     "prepend": "",
                                     "append": "%",
                                     "parent_repeater": "field_interactive_image_points"
@@ -4578,5 +4619,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1754575510
+    "modified": 1759498133
 }

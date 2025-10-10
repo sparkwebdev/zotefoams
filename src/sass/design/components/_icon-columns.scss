@@ -19,6 +19,7 @@
 
   .text-block h3 {
     max-width: 1000px;
+    text-wrap: balance;
   }
 
   &--half {
@@ -48,6 +49,22 @@
           flex: 0 0 calc(33% - 30px);
         }
       }
+    }
+  }
+
+  &--variant {
+    .icon-columns__items {
+      gap: 50px;
+      .grey-text > * {
+        margin-top: revert;
+      }
+    }
+    img {
+      max-width: 106px;
+      aspect-ratio: 1;
+      object-fit: cover;
+      border-radius: 20px;
+      box-shadow: 10px 10px 24px rgba(0, 0, 0, 0.25)
     }
   }
 }

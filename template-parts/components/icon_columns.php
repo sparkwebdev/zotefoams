@@ -3,12 +3,14 @@
 $overline = get_sub_field('icon_columns_intro_overline'); // Keep HTML intact
 $intro    = get_sub_field('icon_columns_intro'); // Keep HTML intact
 $columns  = zotefoams_get_sub_field_safe('icon_columns_columns', [], 'array');
+$isVariant = zotefoams_get_sub_field_safe('icon_columns_variant', false, 'boolean');
 
 $is_sustainability = is_page('Sustainability');
 
 // Build component-specific classes
-$component_classes = 'icon-columns';
+$component_classes = $isVariant ? 'icon-columns icon-columns--variant' : 'icon-columns';
 $theme = ($overline || $intro) ? 'none' : 'light';
+//$theme = $isVariant ? 'none' : (($overline || $intro) ? 'none' : 'light');
 
 if (!empty($columns)) {
     $count = count($columns);
@@ -40,10 +42,11 @@ $wrapper_classes = Zotefoams_Theme_Helper::get_wrapper_classes([
 <div class="<?php echo $wrapper_classes; ?>">
 
 	<?php if ($overline || $intro): ?>
-		<?php 
+		<?php
 		$content = '';
 		if ($overline) {
-			$content .= '<p class="margin-b-20">' . wp_kses_post($overline) . '</p>';
+			$overline_classes = $isVariant ? 'fw-semibold fs-600' : 'margin-b-20';
+			$content .= '<p class="' . $overline_classes . '">' . wp_kses_post($overline) . '</p>';
 		}
 		if ($intro) {
 			$content .= '<h3 class="fs-600 grey-text fw-semibold">' . wp_kses_post($intro) . '</h3>';
@@ -63,16 +66,22 @@ $wrapper_classes = Zotefoams_Theme_Helper::get_wrapper_classes([
 			?>
 				<div>
 					<?php if ($icon): ?>
-						<?php echo Zotefoams_Image_Helper::render_image($icon, [
+						<?php
+						$icon_size = $isVariant ? 'thumbnail-square' : 'large';
+						echo Zotefoams_Image_Helper::render_image($icon, [
 							'alt' => $title,
-							'size' => 'large'
-						]); ?>
+							'size' => $icon_size
+						]);
+						?>
 					<?php endif; ?>
 					<?php if ($title): ?>
 						<p class="fs-400 fw-bold margin-b-20"><?php echo esc_html($title); ?></p>
 					<?php endif; ?>
 					<?php if ($text): ?>
-						<p class="grey-text"><?php echo wp_kses_post($text); ?></p>
+						<?php $text_classes = $isVariant ? 'grey-text fs-300' : 'grey-text'; ?>
+						<div class="<?php echo $text_classes; ?>">
+							<?php echo wp_kses_post($text); ?>
+						</div>
 					<?php endif; ?>
 				</div>
 			<?php endforeach; ?>
@@ -81,6 +90,5 @@ $wrapper_classes = Zotefoams_Theme_Helper::get_wrapper_classes([
 </div>
 
 <?php if ($is_sustainability): ?>
-	<?php include locate_template('/template-parts/components/waste-hierarchy.php', false, false); ?>
 	<?php include locate_template('/template-parts/components/development-goals.php', false, false); ?>
 <?php endif; ?>
