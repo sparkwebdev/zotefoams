@@ -43,13 +43,7 @@ export default defineConfig([
 				exclude: 'node_modules/**',
 				presets: [
 					['@babel/preset-env', {
-						targets: {
-							ie: '11',
-							edge: '15',
-							chrome: '49',
-							firefox: '52',
-							safari: '10'
-						},
+						targets: '> 0.5%, last 2 versions, not dead',
 						modules: false,
 						bugfixes: true
 					}]

@@ -7,11 +7,9 @@
 (() => {
     // Global error handler to catch any script errors
     try {
-        console.log('[Navigation v0.01] Script loaded - starting initialization');
-        console.log('[Navigation] Browser:', navigator.userAgent);
+        console.log('[Navigation v0.03] Script loaded');
 
     function initNavigation() {
-        console.log('[Navigation] initNavigation() called');
 
         // Enhanced touch device detection with override check
         // Some browsers (Chrome v140+) incorrectly report maxTouchPoints on desktop
@@ -22,15 +20,6 @@
         // Prefer hover mode on desktop even if touch is detected
         const isTouchDevice = hasTouch && !isLikelyDesktop;
 
-        console.log('[Navigation] Device detection:', {
-            hasTouch,
-            hasPointerFine,
-            isLikelyDesktop,
-            finalDecision: isTouchDevice ? 'touch' : 'desktop',
-            screenWidth: screen.width,
-            maxTouchPoints: navigator.maxTouchPoints
-        });
-        
         if (isTouchDevice && document.body) {
             document.body.classList.add("touch-device");
         }
@@ -38,17 +27,13 @@
         const siteNav = document.getElementById("site-navigation");
 
         if (!siteNav) {
-            console.warn('[Navigation] #site-navigation not found - aborting');
             return false;
         }
 
         // Check if already initialized to prevent duplicate setup
         if (siteNav.hasAttribute('data-critical-nav-initialized')) {
-            console.log('[Navigation] Already initialized - skipping');
             return true;
         }
-
-        console.log('[Navigation] #site-navigation found');
 
         const button = siteNav.querySelector("button");
         const menu = siteNav.querySelector("ul");
@@ -58,11 +43,8 @@
         const megaNavMode = isTouchDevice ? "click" : "hover";
         const hoverDelay = 200; // ms
 
-        console.log('[Navigation] Mode:', megaNavMode, '| Button:', !!button, '| Menu:', !!menu);
-
         // Early returns for missing elements
         if (!button || !menu) {
-            console.warn('[Navigation] Missing required elements - button or menu not found');
             if (!menu && button) {
                 button.style.display = "none";
             }
@@ -70,7 +52,6 @@
         }
 
         menu.classList.add("nav-menu");
-        console.log('[Navigation] Added nav-menu class');
 
         // Store hide timers in a Map for better tracking
         const hideTimers = new Map();
@@ -209,29 +190,17 @@
                     // Mega menu branch
                     const megaMenu = document.getElementById(controlId);
                     if (!megaMenu) {
-                        console.error('[Navigation] Mega menu not found:', controlId);
                         return;
                     }
 
-                    // Diagnostic logging
-                    console.log('[Navigation] Processing mega menu:', {
-                        controlId,
-                        mode: megaNavMode,
-                        exists: !!megaMenu,
-                        linkHref: link.href,
-                        linkText: link.textContent.trim()
-                    });
-
                     // Prevent duplicate initialization
                     if (link.hasAttribute('data-mega-nav-initialized')) {
-                        console.log('[Navigation] Menu link already initialized:', controlId);
                         return;
                     }
                     link.setAttribute('data-mega-nav-initialized', 'true');
 
                     if (megaNavMode === "hover") {
                         // For hover-enabled devices, attach hover and keyboard events.
-                        console.log('[Navigation] Setting up hover mode for mega menu:', controlId);
                         
                         const menuItem = link.parentNode;
                         const timerId = `mega-${controlId}`;
@@ -244,7 +213,6 @@
                         };
 
                         const showMenu = () => {
-                            console.log('[Navigation] Showing mega menu:', controlId);
                             clearTimer();
                             
                             // Close other mega menus first
@@ -272,7 +240,6 @@
 
                         const hideMenu = () => {
                             const timer = setTimeout(() => {
-                                console.log('[Navigation] Hiding mega menu:', controlId);
                                 megaMenu.classList.remove("active");
                                 
                                 setTimeout(() => {
@@ -422,10 +389,8 @@
             }
         });
 
-        console.log('[Navigation] Setting up dropdowns for main nav');
         setupDropdowns(siteNav);
         if (utilityMenu) {
-            console.log('[Navigation] Setting up dropdowns for utility menu');
             setupDropdowns(utilityMenu);
         }
 
@@ -497,26 +462,20 @@
         
         // Mark navigation as initialized to prevent duplicate setup
         siteNav.setAttribute('data-critical-nav-initialized', 'true');
-        console.log('[Navigation] ✓ Initialization complete');
 
         return true;
     }
 
     // Try immediately, then use polling fallback for critical loading
     if (!initNavigation()) {
-        console.log('[Navigation] Initial attempt failed, starting polling...');
         let attempts = 0;
         const maxAttempts = 50; // 5 seconds max
 
         const pollForNav = setInterval(function() {
             attempts++;
-            console.log('[Navigation] Poll attempt', attempts, 'of', maxAttempts);
 
             if (initNavigation() || attempts >= maxAttempts) {
                 clearInterval(pollForNav);
-                if (attempts >= maxAttempts) {
-                    console.error('[Navigation] ✗ Failed to initialize after', maxAttempts, 'attempts');
-                }
             }
         }, 100); // Every 100ms
     }
