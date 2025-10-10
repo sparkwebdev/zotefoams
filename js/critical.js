@@ -3,7 +3,7 @@
 
     (() => {
       try {
-        console.log('[Navigation v0.03] Script loaded');
+        console.log('[Navigation v0.04] Script loaded');
         function initNavigation() {
           const hasTouch = "ontouchstart" in window || navigator.maxTouchPoints > 0 || navigator.msMaxTouchPoints > 0;
           const hasPointerFine = window.matchMedia && window.matchMedia("(pointer: fine)").matches;

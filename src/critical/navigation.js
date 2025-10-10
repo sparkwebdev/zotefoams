@@ -7,7 +7,7 @@
 (() => {
     // Global error handler to catch any script errors
     try {
-        console.log('[Navigation v0.03] Script loaded');
+        console.log('[Navigation v0.04] Script loaded');
 
     function initNavigation() {
 
