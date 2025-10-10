@@ -6,6 +6,7 @@ import { defineConfig } from 'rollup';
 import { nodeResolve } from '@rollup/plugin-node-resolve';
 import commonjs from '@rollup/plugin-commonjs';
 import terser from '@rollup/plugin-terser';
+import babel from '@rollup/plugin-babel';
 import scss from 'rollup-plugin-scss';
 import { writeFileSync } from 'fs';
 import postcss from 'postcss';
@@ -35,6 +36,25 @@ export default defineConfig([
 
 			// Convert CommonJS modules to ES6
 			commonjs(),
+
+			// Transpile to ES5 for enterprise browser compatibility (IE11, old Edge)
+			babel({
+				babelHelpers: 'bundled',
+				exclude: 'node_modules/**',
+				presets: [
+					['@babel/preset-env', {
+						targets: {
+							ie: '11',
+							edge: '15',
+							chrome: '49',
+							firefox: '52',
+							safari: '10'
+						},
+						modules: false,
+						bugfixes: true
+					}]
+				]
+			}),
 
 			// Minify in production
 			isProduction && terser({
