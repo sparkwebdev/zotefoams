@@ -2,14 +2,22 @@
 
 ## Pending Issues (To Fix)
 
-- [ ] **Enable Asset Minification** - Set `isProduction = true` in rollup.config.js to enable JavaScript and CSS minification for production deployment
-- [ ] **Image Banner autoplay pause** - Hovering on Next button should pause slide autoplay
-- [ ] **iPad Pro menu display mismatch** - Desktop view displays on ipad Pro but menu interactions are mobile
+### a11y issues
+
 - [ ] **Knowledge Hub menu drobdown keyboard controls** - Space/Enter should show dropdown (like main menu)
 - [ ] **Split Carousel keyboard controls** - Keyboard navigation could be improved for better accessibility
 - [ ] **Step Slider keyboard interaction** - Keyboard navigation could be improved for better accessibility
-- [ ] **File list filter visibility** - Filter dropdown shouldn't show when there's only one category
 - [ ] **Screen reader ARIA labels** - Test and improve ARIA labels for carousel announcements, button labels, form fields, and dynamic content updates
+- [ ] **Utility menu ARIA roles** - Add `role="menuitem"` to top links and `role="menu"` to sub-`ul`s for enhanced screen reader clarity
+- [ ] **ARIA live region feedback** - Add hidden `<div aria-live="polite">` that announces menu state changes (open/close) to screen reader users
+- [ ] **Reduced motion support** - Disable CSS transitions when user has `prefers-reduced-motion: reduce` media query set for accessibility compliance
+
+### Other issues
+
+- [x] **Enable Asset Minification** - ~~Set `isProduction = true` in rollup.config.js to enable JavaScript and CSS minification for production deployment~~ **COMPLETED** - Production mode enabled, critical.js reduced from 13.6KB to 6.5KB (52% reduction)
+- [ ] **Image Banner autoplay pause** - Hovering on Next button should pause slide autoplay
+- [ ] **iPad Pro menu display mismatch** - Desktop view displays on ipad Pro but menu interactions are mobile
+- [ ] **File list filter visibility** - Filter dropdown shouldn't show when there's only one category
 - [ ] **Hardcoded parent ID in dual_carousel.php** - Line 14 has hardcoded parent ID 11 for arrow color - should use page title/slug lookup instead
 - [ ] **Remove .section-list functionality** - Not used, can be removed from codebase
 - [ ] **Knowledge Hub video support** - Implement video modal for YouTube links (code stashed as 'knowledge-hub-videos')

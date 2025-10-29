@@ -18,8 +18,8 @@ function zotefoams_enqueue_assets()
     wp_enqueue_style('zotefoams-style', get_stylesheet_uri(), array(), _S_VERSION);
     wp_style_add_data('zotefoams-style', 'rtl', 'replace');
 
-    // Enqueue critical JavaScript bundle in head as BLOCKING for immediate functionality
-    wp_enqueue_script('zotefoams-critical', get_template_directory_uri() . '/js/critical.js', array(), _S_VERSION, false);
+    // Note: Critical JS is inlined in wp_footer (see zotefoams_inline_critical_js below)
+    // Inlining eliminates HTTP request delay for immediate navigation functionality
 
     // Load Swiper CSS and JS from CDN first
     wp_enqueue_style('swiper-css', 'https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css');
@@ -53,6 +53,25 @@ function zotefoams_enqueue_assets()
     }
 }
 add_action('wp_enqueue_scripts', 'zotefoams_enqueue_assets');
+
+/**
+ * Inline critical JavaScript before closing body tag for immediate functionality.
+ *
+ * Inlining in footer ensures:
+ * - Navigation elements exist when script executes
+ * - No HTTP request delay (executes immediately)
+ * - Functional before images load
+ */
+function zotefoams_inline_critical_js()
+{
+    $critical_js_path = get_template_directory() . '/js/critical.js';
+
+    if (file_exists($critical_js_path)) {
+        $critical_js = file_get_contents($critical_js_path);
+        echo '<script>' . $critical_js . '</script>';
+    }
+}
+add_action('wp_footer', 'zotefoams_inline_critical_js', 1);
 
 /**
  * Add preload attribute to Google Fonts for performance.

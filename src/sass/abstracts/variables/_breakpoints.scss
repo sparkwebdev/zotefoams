@@ -1,0 +1,7 @@
+// Navigation breakpoints
+$bp-md: 64rem;
+$bp-lg: 68rem;
+
+// Max-width breakpoints (for use with max-width media queries)
+$bp-upto-md: calc($bp-md - 0.01rem);
+$bp-upto-lg: calc($bp-lg - 0.01rem);

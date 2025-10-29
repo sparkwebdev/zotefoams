@@ -1,0 +1,135 @@
+/* Mobile Navigation Styles */
+@use "../../../../abstracts/abstracts" as *;
+
+@media screen and (max-width: $bp-upto-md) {
+
+  .main-navigation {
+    .nav-menu {
+      display: none;
+      background-color: #fff;
+      li a {
+        padding: 10px 5%;
+      }
+    }
+
+    ul ul {
+      display: none;
+    }
+
+    &.toggled {
+      padding-top: 0;
+      .nav-menu {
+        display: block;
+        position: fixed;
+        width: 100%;
+        top: var(--header-height);
+        left: 0;
+        z-index: 1000;
+        overflow-y: auto;
+        max-height: calc(100vh - var(--header-height));
+        padding-top: 20px;
+        padding-bottom: 30px;
+
+        @supports (height: 100dvh) {
+          max-height: calc(100dvh - var(--header-height));
+        }
+      }
+
+      /* Overlay Background */
+      &::before {
+        content: "";
+        position: fixed;
+        inset: var(--header-height) 0 0 0;
+        background: rgb(0 0 0 / 0.765);
+        pointer-events: none;
+      }
+    }
+
+    .sub-menu {
+      padding-left: calc(5% + 5px);
+      ul {
+        padding-left: 15px;
+      }
+      li a {
+        padding-left: 0;
+      }
+      ul a {
+        padding-top: 5px;
+      }
+    }
+
+    .menu-item-has-children {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+
+      > a,
+      .sub-sub-item > a,
+      > .menu-label {
+        flex-basis: calc(100% - 60px);
+      }
+
+      .sub-menu--mobile {
+        padding-block: 10px;
+      }
+      .sub-menu--mobile,
+      .sub-menu:has(> .sub-sub-item) {
+        flex-basis: 100%;
+      }
+      > ul {
+        background-color: var(--tone-off-white);
+        a {
+          font-size: 0.9em;
+        }
+      }
+    }
+
+    .current-menu-item > a,
+    .current-menu-parent > a,
+    .current-menu-ancestor > a {
+      --nav-link-color: var(--color-link);
+      text-decoration: underline 3px;
+      text-decoration-color: inherit;
+      text-underline-offset: 5px;
+    }
+
+  }
+
+  /* Dropdown Toggle */
+  .dropdown-toggle {
+    display: flex;
+    background: transparent;
+    cursor: pointer;
+    width: 60px;
+    height: calc(1em + 20px);
+    border: none;
+    border-radius: 0;
+    border-left: 1px solid #d1d1d1;
+    &::after {
+      background: url(images/icon-right-arrow-black.svg) center / 10px 10px no-repeat;
+      content: "";
+      width: 100%;
+      height: 20px;
+      display: block;
+      transform: rotate(90deg);
+    }
+  }
+
+  .dropdown-toggle[aria-expanded="true"]::after {
+    transform: rotate(-90deg);
+  }
+
+  body.touch-device .menu-label {
+    cursor: pointer;
+  }
+
+  /* Prevent Body Scroll when Mobile Nav is Open */
+  html:has(body.no-scroll) {
+    scrollbar-gutter: stable;
+  }
+
+  body.no-scroll {
+    overflow: hidden;
+    position: relative;
+  }
+}
