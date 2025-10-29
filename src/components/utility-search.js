@@ -3,6 +3,7 @@
  * Enhanced search functionality in the utility menu with accessibility
  */
 import { ZotefoamsReadyUtils } from '../utils/dom-utilities.js';
+import { updateHeaderHeight } from '../utils/site-utilities.js';
 
 function initUtilitySearch() {
   const menu = document.querySelector('#menu-utility');
@@ -72,6 +73,13 @@ function initUtilitySearch() {
     searchContainer.setAttribute('hidden', '');
     searchItem.setAttribute('aria-expanded', 'false');
   };
+
+  // Recalculate header height once the slide animation finishes
+  searchContainer.addEventListener('transitionend', (e) => {
+    if (e.target === searchContainer) {
+      updateHeaderHeight();
+    }
+  });
 
   const toggleSearch = () => {
     const isHidden = searchContainer.hasAttribute('hidden');

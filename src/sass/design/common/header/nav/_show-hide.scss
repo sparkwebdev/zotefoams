@@ -1,0 +1,55 @@
+/* ================================================
+   Show/Hide & Toggle States (ARIA-controlled)
+   ================================================ */
+@use "../../../../abstracts/abstracts" as *;
+
+/* Mobile Menu */
+@media screen and (max-width: $bp-upto-md) {
+  .main-navigation {
+    .dropdown-toggle {
+      // transition: transform 0.3s;
+      &[aria-expanded="true"] ~ ul {
+        display: block;
+      }
+    }
+  }
+}
+
+/* Mega Menu */
+.mega-menu {
+  opacity: 0;
+  visibility: hidden;
+
+  &[aria-hidden="false"] {
+    opacity: 1;
+    visibility: visible;
+  }
+}
+
+/* Utility Menu */
+.utility-menu {
+  .sub-menu {
+    opacity: 0;
+    visibility: hidden;
+
+    &[aria-hidden="false"] {
+      opacity: 1;
+      visibility: visible;
+    }
+  }
+}
+
+/* Transitions */
+.mega-menu,
+.utility-menu .sub-menu {
+  transition:
+    opacity 0.4s ease-in-out,
+    visibility 0.35s ease-in-out;
+}
+
+.mega-menu[aria-hidden="false"],
+.utility-menu .sub-menu[aria-hidden="false"] {
+  transition:
+    opacity 0.25s ease-in-out,
+    visibility 0.2s ease-in-out;
+}

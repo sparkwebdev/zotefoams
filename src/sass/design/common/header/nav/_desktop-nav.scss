@@ -1,0 +1,29 @@
+@use "../../../../abstracts/abstracts" as *;
+
+@media screen and (min-width: $bp-md) {
+  .main-navigation {
+    ul {
+      display: flex;
+      gap: 10px;
+    }
+
+    .menu > li {
+      border-bottom: 3px solid transparent;
+      &.current-menu-item,
+      &.current-menu-parent,
+      &.current-menu-ancestor {
+        --nav-link-color: var(--color-link);
+        border-bottom-color: var(--nav-link-color);
+      }
+      > a {
+        padding: 18px 0;
+      }
+    }
+  }
+  
+  /* Mobile Navigation Hide */
+  .dropdown-toggle,
+  .sub-menu.sub-menu--mobile {
+    display: none;
+  }
+}

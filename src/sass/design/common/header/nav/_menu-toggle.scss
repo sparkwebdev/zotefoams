@@ -1,0 +1,44 @@
+/* Menu Toggle (Mobile Hamburger) */
+@use "../../../../abstracts/abstracts" as *;
+
+.menu-toggle {
+  cursor: pointer;
+  z-index: 999;
+  background: none;
+  border: none;
+  display: grid;
+  place-items: center;
+  gap: 6px;
+  width: 40px;
+  height: 37px;
+  position: absolute;
+  top: 15px;
+  right: 5%;
+
+  .menu-line {
+    background-color: #000;
+    width: 30px;
+    height: 3px;
+    transition:
+      transform 0.3s ease-in-out,
+      opacity 0.3s ease-in-out;
+  }
+
+  @media screen and (min-width: $bp-md) {
+    display: none;
+  }
+}
+
+.toggled .menu-toggle .menu-line {
+  &:first-child {
+    transform: translateY(9px) rotate(45deg);
+  }
+
+  &:nth-child(2) {
+    opacity: 0;
+  }
+
+  &:nth-child(3) {
+    transform: translateY(-9px) rotate(-45deg);
+  }
+}

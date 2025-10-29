@@ -3,8 +3,8 @@
 // Modern ES module system with unified build process
 // =============================================================================
 
-// Import main stylesheet
-import './sass/style.scss';
+// NOTE: SASS is now compiled separately via npm run watch:sass
+// See package.json for the build configuration
 
 // Import non-critical utilities
 import './utils/site-utilities.js';
