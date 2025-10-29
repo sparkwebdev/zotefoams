@@ -34,6 +34,18 @@ $search_query = get_search_query();
 					endif;
 					?>
 				</h2>
+				<?php
+				global $wp_query;
+				$current_page = max(1, get_query_var('paged'));
+				$total_pages = $wp_query->max_num_pages;
+
+				// Only show page number if there's more than one page
+				if ($total_pages > 1) :
+					?>
+					<p class="grey-text fs-300 margin-t-10">
+						<?php printf(__('Page %d of %d', 'zotefoams'), $current_page, $total_pages); ?>
+					</p>
+				<?php endif; ?>
 			<?php else : ?>
 				<p class=" margin-t-20">
 					<?php esc_html_e('Please enter some search keywords above.', 'zotefoams'); ?>
@@ -46,10 +58,12 @@ $search_query = get_search_query();
 
 <?php 
 if ($search_query && have_posts()) : 
+	echo '<div class="cont-s padding-t-b-70 search-results-list">';
 	while (have_posts()) :
 		the_post();
 		get_template_part('template-parts/content', 'search');
 	endwhile;
+	echo '</div>';
 
 	get_template_part('template-parts/pagination');
 ?>
