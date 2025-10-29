@@ -24,11 +24,11 @@
 <body <?php body_class('has-sticky-header'); ?>>
 	<!-- Google Tag Manager (noscript) --> <noscript><iframe src=https://www.googletagmanager.com/ns.html?id=GTM-N8JK6JJF height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript> <!-- End Google Tag Manager (noscript) -->
 	<?php wp_body_open(); ?>
-	<a class="skip-link screen-reader-text" href="#primary"><?php esc_html_e('Skip to content', 'zotefoams'); ?></a>
+	<a class="skip-link screen-reader-text" href="#page"><?php esc_html_e('Skip to content', 'zotefoams'); ?></a>
 
 	<header id="masthead" class="site-header" data-el-site-header>
 
-		<div class="utility-menu">
+		<nav class="utility-menu" aria-label="Utility" data-js-nav="utility">
 			<?php
 			wp_nav_menu(array(
 				'theme_location' => 'utility_menu',
@@ -36,7 +36,7 @@
 				'depth'          => 2,
 			));
 			?>
-		</div>
+		</nav>
 
 		<div class="site-header-wrapper">
 
@@ -53,8 +53,8 @@
 				</a>
 			</div><!-- .site-branding -->
 
-			<nav id="site-navigation" class="main-navigation">
-				<button class="menu-toggle" aria-controls="primary-menu" aria-expanded="false">
+			<nav id="site-navigation" class="main-navigation" aria-label="Primary" data-js-nav="main">
+				<button class="menu-toggle" aria-controls="menu-primary" aria-expanded="false" data-js-nav="toggle">
 					<div class="menu-line"></div>
 					<div class="menu-line"></div>
 					<div class="menu-line"></div>

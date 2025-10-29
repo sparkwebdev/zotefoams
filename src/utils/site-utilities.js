@@ -41,15 +41,15 @@ function initIframeHeightAdjustment() {
 }
 
 // Header height CSS variable updater
+const updateHeaderHeight = () => {
+  const header = document.querySelector('[data-el-site-header]');
+  if (!header) return;
+
+  const headerHeight = header.offsetHeight;
+  document.documentElement.style.setProperty('--header-height', `${headerHeight}px`);
+};
+
 function initHeaderHeightUpdater() {
-  const updateHeaderHeight = () => {
-    const header = document.querySelector('[data-el-site-header]');
-    if (!header) return;
-
-    const headerHeight = header.offsetHeight;
-    document.documentElement.style.setProperty('--header-height', `${headerHeight}px`);
-  };
-
   // Throttle resize events using requestAnimationFrame
   let resizeTimeout = false;
 
@@ -82,5 +82,6 @@ export {
   initClickableUrls, 
   initOverlayFadeIn, 
   initIframeHeightAdjustment, 
-  initHeaderHeightUpdater 
+  initHeaderHeightUpdater,
+  updateHeaderHeight
 };

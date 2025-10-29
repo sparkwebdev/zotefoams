@@ -123,7 +123,7 @@ class Mega_Menu_Walker extends Walker_Nav_Menu
                 '</div>' .
                 '<div class="mega-menu-content">' .
                 '<div class="mega-menu-section">' .
-                '<h3 class="fs-100 uppercase blue-text">' . $menu_title . '</h3>' .
+                '<h3><a class="fs-100 uppercase blue-text" href="' . $menu_url . '">' . $menu_title . '</a></h3>' .
                 '<ul class="sub-menu">' . $temp_output . '</ul>' .
                 '</div>' .
                 '</div>' .
@@ -154,9 +154,9 @@ class Mega_Menu_Walker extends Walker_Nav_Menu
         $mega_output = '';
 
         if (!empty($this->mega_menu_markup)) {
-            $mega_output = '<div class="mega-menu-container">' . implode('', $this->mega_menu_markup) . '</div>';
+            $mega_output = implode('', $this->mega_menu_markup);
         }
 
-        return '<ul id="menu-primary" class="menu nav-menu">' . $items . '</ul>' . $mega_output;
+        return '<ul id="menu-primary" class="menu nav-menu" data-js-nav="menu">' . $items . '</ul>' . $mega_output;
     }
 }

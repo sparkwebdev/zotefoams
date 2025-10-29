@@ -234,6 +234,8 @@ export const ZotefoamsDeviceUtils = {
 	initTouchSupport() {
 		if (this.isTouchDevice()) {
 			ZotefoamsClassUtils.add(document.body, 'touch-device');
+		} else {
+			ZotefoamsClassUtils.add(document.body, 'no-touch-device');
 		}
 	}
 };
@@ -308,6 +310,72 @@ export const ZotefoamsURLUtils = {
 };
 
 /**
+ * Accessibility Utilities - Keyboard navigation and ARIA support
+ */
+export const ZotefoamsAccessibilityUtils = {
+	/**
+	 * Get all focusable elements within a container
+	 * @param {HTMLElement} container - Container element to search within
+	 * @returns {Array<HTMLElement>} Array of focusable elements
+	 */
+	getFocusableElements(container) {
+		if (!container) return [];
+		return Array.from(
+			container.querySelectorAll(
+				'a, button, input, textarea, select, [tabindex]:not([tabindex="-1"])'
+			)
+		);
+	},
+
+	/**
+	 * Set aria-expanded attribute
+	 * @param {HTMLElement} element - Element to update
+	 * @param {boolean} expanded - Expanded state
+	 */
+	setAriaExpanded(element, expanded) {
+		if (element) {
+			element.setAttribute("aria-expanded", expanded.toString());
+		}
+	},
+
+	/**
+	 * Set multiple ARIA attributes at once
+	 * @param {HTMLElement} element - Element to update
+	 * @param {Object} attributes - Object with ARIA attribute names and values
+	 */
+	setAriaAttributes(element, attributes) {
+		if (!element) return;
+		Object.entries(attributes).forEach(([key, value]) => {
+			element.setAttribute(key, value.toString());
+		});
+	},
+
+	/**
+	 * Toggle aria-hidden state
+	 * @param {HTMLElement} element - Element to update
+	 * @param {boolean} hidden - Hidden state
+	 */
+	setAriaHidden(element, hidden) {
+		if (element) {
+			element.setAttribute("aria-hidden", hidden.toString());
+		}
+	},
+
+	/**
+	 * Focus element with optional trap
+	 * @param {HTMLElement} element - Element to focus
+	 * @param {boolean} setTabindex - Whether to set tabindex="-1" for non-focusable elements
+	 */
+	focus(element, setTabindex = false) {
+		if (!element) return;
+		if (setTabindex && !element.hasAttribute('tabindex')) {
+			element.setAttribute('tabindex', '-1');
+		}
+		element.focus();
+	}
+};
+
+/**
  * Ready State Utilities - Centralized DOMContentLoaded patterns
  */
 export const ZotefoamsReadyUtils = {
@@ -337,8 +405,3 @@ export const ZotefoamsReadyUtils = {
 		});
 	}
 };
-
-// Initialize touch support on load
-ZotefoamsReadyUtils.ready(() => {
-	ZotefoamsDeviceUtils.initTouchSupport();
-});

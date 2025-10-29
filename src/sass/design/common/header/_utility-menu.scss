@@ -1,0 +1,75 @@
+/* Utility Menu */
+@use "../../../abstracts/abstracts" as *;
+
+.utility-menu {
+  --color-text-light: #9ec2fc;
+  background: #000;
+  position: relative;
+  padding: 0 20px;
+
+  .menu {
+    display: flex;
+    justify-content: flex-end;
+    gap: 15px;
+
+    a {
+      --nav-link-color: #fff;
+      display: block;
+      font-size: 0.9em;
+      padding: 10px 0;
+
+      &:hover,
+      &:focus {
+        --nav-link-color: var(--color-text-light);
+      }
+    }
+
+    > li {
+      > ul {
+        width: 100%;
+        left: 0;
+        right: 0;
+      }
+
+      @media screen and (min-width: $bp-md) {
+        position: relative;
+
+        > ul {
+          width: max(28em + 100px, 100%);
+          left: auto;
+          right: -15px;
+          z-index: 9999;
+        }
+      }
+    }
+
+    // Eeek a few more fixels of space on very small screens
+    @media screen and (max-width: 379px) {
+      gap: 10px;
+      a {
+        font-size: 0.85em;
+      }
+    }
+  }
+
+  .sub-menu {
+    z-index: 99999;
+    background: #000;
+    flex-wrap: wrap;
+    position: absolute;
+    top: 100%;
+    right: 0;
+    box-shadow: var(--nav-box-shadow);
+    padding: 20px;
+    gap: 0 10px;
+    display: flex;
+
+    li {
+      flex-basis: calc(50% - 20px);
+
+      @media screen and (min-width: $bp-md) {
+        flex-basis: 14em;
+      }
+    }
+  }
+}
