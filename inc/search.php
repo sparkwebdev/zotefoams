@@ -38,3 +38,6 @@ function zotefoams_custom_search_rewrite()
     add_rewrite_rule('^search/([^/]+)/?$', 'index.php?s=$matches[1]', 'top');
 }
 add_action('init', 'zotefoams_custom_search_rewrite');
+
+// Load enhanced search results functionality
+require get_template_directory() . '/inc/search-results.php';

@@ -1644,31 +1644,19 @@ input[type=submit].btn {
     min-width: 0;
   }
 }
-.search-results article {
-  border-bottom: 1px solid #ccc;
-}
-
-.search-results article .search-thumb img {
-  max-width: 250px;
-  margin-left: 50px;
-}
-
-.search-results article .entry-summary p {
-  margin-bottom: 30px;
-}
-
-.search-results article .search-header {
+.search-results-list {
   display: flex;
-  justify-content: space-between;
+  flex-direction: column;
+  gap: 30px;
+}
+.search-results-list article {
+  padding-bottom: 30px;
+  border-bottom: 1px solid #ccc;
 }
 
 @media screen and (max-width: 767px) {
   .search-form {
     flex-direction: column;
-  }
-  .search-results article .search-thumb img {
-    max-width: 150px;
-    margin-left: 15px;
   }
 }
 .search-form {
