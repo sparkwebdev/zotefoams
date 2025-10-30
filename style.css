@@ -3815,6 +3815,32 @@ a.read-more.hl.arrow:focus::after {
   }
 }
 
+/* Columns Content
+ * --------------------------------------------- */
+.columns-content__wrapper {
+  display: grid;
+  gap: 30px;
+  grid-template-columns: 1fr;
+}
+@media screen and (min-width: 768px) {
+  .columns-content__wrapper {
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 30px;
+  }
+}
+.columns-content__image img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+.columns-content__column p:last-child {
+  margin-bottom: 0;
+}
+.columns-content .text-block h3 {
+  max-width: 1000px;
+  text-wrap: balance;
+}
+
 /* 09 - Markets list
  *  --------------------------------------------- */
 .markets-list {

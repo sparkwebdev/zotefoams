@@ -1,0 +1,34 @@
+/* Columns Content
+ * --------------------------------------------- */
+
+.columns-content {
+  &__wrapper {
+    display: grid;
+    gap: 30px;
+    grid-template-columns: 1fr;
+
+    @media screen and (min-width: 768px) {
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 30px;
+    }
+  }
+
+  &__image {
+    img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+  }
+
+  &__column {
+    p:last-child {
+      margin-bottom: 0;
+    }
+  }
+
+  .text-block h3 {
+    max-width: 1000px;
+    text-wrap: balance;
+  }
+}
