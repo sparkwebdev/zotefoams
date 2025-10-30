@@ -22,9 +22,9 @@
 			// Only add file size if file exists
 			if ($file_path && file_exists($file_path)) {
 				$file_size = size_format(filesize($file_path), 1);
-				$title .= ' <span class="fs-300 fw-100">[' . $file_type . ', ' . $file_size . ']</span>';
+				$title .= ' <span class="fs-300 fw-100 nowrap">[' . $file_type . ', ' . $file_size . ']</span>';
 			} else {
-				$title .= ' <span class="fs-300 fw-100">[' . $file_type . ']</span>';
+				$title .= ' <span class="fs-300 fw-100 nowrap">[' . $file_type . ']</span>';
 			}
 		}
 

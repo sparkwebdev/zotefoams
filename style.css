@@ -4,7 +4,7 @@ Theme URI: http://underscores.me/
 Author: David Park
 Author URI: http://underscores.me/
 Description: Description
-Version: 3.2.0
+Version: 3.2.1
 Tested up to: 5.4
 Requires PHP: 5.6
 License: GNU General Public License v2 or later
@@ -972,6 +972,10 @@ textarea {
 
 .uppercase {
   text-transform: uppercase;
+}
+
+.nowrap {
+  white-space: nowrap;
 }
 
 /* Containers
@@ -2406,6 +2410,14 @@ footer div.wpforms-container.wpforms-container-full:not(:empty) {
     flex-direction: row;
     gap: 3rem;
   }
+  .articles .post img {
+    width: 250px;
+  }
+}
+@media screen and (min-width: 64em) {
+  .articles .post img {
+    width: 350px;
+  }
 }
 .articles--list .articles__content {
   flex-direction: column;
@@ -2414,6 +2426,11 @@ footer div.wpforms-container.wpforms-container-full:not(:empty) {
   padding-bottom: 0;
 }
 
+@media screen and (min-width: 64em) {
+  .articles--list .articles__content {
+    flex-basis: calc(100% - 350px - 3em);
+  }
+}
 .articles--list .articles__footer {
   border-bottom: solid 1px var(--color-text-light);
   flex-direction: column;
@@ -2423,7 +2440,7 @@ footer div.wpforms-container.wpforms-container-full:not(:empty) {
   display: flex;
 }
 
-@media screen and (min-width: 64em) {
+@media screen and (min-width: 75em) {
   .articles--list .articles__footer {
     grid-template-columns: 1fr auto;
     align-items: center;
@@ -5403,10 +5420,6 @@ html:has(.zf-history) {
 #years-2010s .zf-history__panel:nth-of-type(3) .zf-history__popup-marker:nth-of-type(2) {
   right: 8%;
   bottom: 20%;
-}
-
-[data-js-fx=mt] {
-  border: solid red;
 }
 
 .zf-history__images {
