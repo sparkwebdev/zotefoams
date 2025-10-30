@@ -59,11 +59,11 @@
       width: 154px;
       display: block;
 
-      @media screen and (min-width: $bp-md) {
+      @media screen and (min-width: $bp-lg) {
         width: 154px;
       }
 
-      @media screen and (min-width: $bp-lg) {
+      @media screen and (min-width: $bp-xl) {
         width: 174px;
       }
     }
@@ -85,7 +85,7 @@
   display: flex;
   position: relative;
 
-  @media screen and (min-width: $bp-md) {
+  @media screen and (min-width: $bp-lg) {
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
@@ -140,7 +140,7 @@
     content: "";
   }
 }
-@media screen and (min-width: $bp-md) {
+@media screen and (min-width: $bp-lg) {
   .menu-item-has-children > a::after,
   .sub-menu li a::before {
     content: "";

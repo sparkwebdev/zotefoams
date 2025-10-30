@@ -30,7 +30,7 @@
         right: 0;
       }
 
-      @media screen and (min-width: $bp-md) {
+      @media screen and (min-width: $bp-lg) {
         position: relative;
 
         > ul {
@@ -67,7 +67,7 @@
     li {
       flex-basis: calc(50% - 20px);
 
-      @media screen and (min-width: $bp-md) {
+      @media screen and (min-width: $bp-lg) {
         flex-basis: 14em;
       }
     }

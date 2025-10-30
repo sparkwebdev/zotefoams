@@ -1,7 +1,7 @@
 /* Mobile Navigation Styles */
 @use "../../../../abstracts/abstracts" as *;
 
-@media screen and (max-width: $bp-upto-md) {
+@media screen and (max-width: $bp-upto-lg) {
   .main-navigation {
     .nav-menu {
       display: none;
