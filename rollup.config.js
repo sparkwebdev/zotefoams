@@ -1,5 +1,12 @@
 // =============================================================================
-// Rollup Configuration - Unified JS/CSS Build System
+// Rollup Configuration - JavaScript Build Pipeline
+// =============================================================================
+//
+// This config handles ONLY JavaScript compilation (critical.js + bundle.js).
+// CSS is compiled separately via Dart SASS + PostCSS for better performance.
+//
+// See BUILD.md for full build system documentation and rationale.
+//
 // =============================================================================
 
 import { defineConfig } from 'rollup';
@@ -7,13 +14,8 @@ import { nodeResolve } from '@rollup/plugin-node-resolve';
 import commonjs from '@rollup/plugin-commonjs';
 import terser from '@rollup/plugin-terser';
 import babel from '@rollup/plugin-babel';
-import scss from 'rollup-plugin-scss';
-import { writeFileSync } from 'fs';
-import postcss from 'postcss';
-import autoprefixer from 'autoprefixer';
-import cssnano from 'cssnano';
 
-const isProduction = false; // Development mode - minification disabled for debugging
+const isProduction = true; // Production mode - minification enabled
 
 export default defineConfig([
 	// Critical bundle configuration - loads first in head
@@ -93,48 +95,6 @@ export default defineConfig([
 		// Convert CommonJS modules to ES6
 		commonjs(),
 
-		// Process SCSS files
-		scss({
-			output: async function (styles, styleNodes) {
-				// PostCSS plugins configuration
-				const plugins = [
-					autoprefixer({
-						overrideBrowserslist: [
-							'last 2 versions',
-							'> 1%',
-							'not dead',
-							'not ie 11'
-						]
-					})
-				];
-
-				// Add minification in production
-				if (isProduction) {
-					plugins.push(cssnano({
-						preset: 'default'
-					}));
-				}
-
-				// Process CSS with PostCSS
-				const result = await postcss(plugins).process(styles, { 
-					from: undefined,
-					map: !isProduction ? { inline: false } : false
-				});
-				
-				// Force output to root directory
-				writeFileSync('style.css', result.css);
-				
-				// Generate source map in development
-				if (!isProduction && result.map) {
-					writeFileSync('style.css.map', result.map.toString());
-				}
-			},
-			outputStyle: isProduction ? 'compressed' : 'expanded',
-			sourceMap: !isProduction,
-			includePaths: ['src/sass/'],
-			watch: ['src/sass/**/*.scss']
-		}),
-
 		// Copy static assets if needed (add rollup-plugin-copy when required)
 		// copy({
 		//   targets: [
@@ -166,7 +126,7 @@ export default defineConfig([
 
 		// Watch mode configuration
 		watch: {
-			include: ['src/**', 'sass/**'],
+			include: ['src/**'],
 			exclude: ['node_modules/**', 'src/critical/**']
 		}
 	}

@@ -51,10 +51,13 @@ Three custom Gutenberg blocks in `blocks/`:
 Extensive ACF field groups and custom post types configured in `acf/acf-json/`. The theme heavily relies on ACF for flexible content management across all components.
 
 ### Build System & Assets
-**Build Pipeline:** Rollup + PostCSS with Autoprefixer and cssnano
-- `npm run start` - Development with BrowserSync and watch mode
-- JavaScript bundled to `js/bundle.js` (ES modules, ~13.5KB minified)
+**Build Pipeline:** Split architecture - Rollup for JS, Dart SASS + PostCSS for CSS
+- `npm run start` - Development with BrowserSync and watch mode (4 concurrent processes)
+- `npm run build` - Production build (JS + CSS compilation)
+- JavaScript bundled to `js/critical.js` (head, ~13KB) + `js/bundle.js` (footer, ~13.5KB)
 - CSS compiled from SASS to `style.css` with PostCSS optimizations
+
+**📖 See BUILD.md for detailed build system documentation, rationale, and troubleshooting**
 
 **SASS Structure** in `src/sass/`:
 - `abstracts/` - Variables, mixins, functions
