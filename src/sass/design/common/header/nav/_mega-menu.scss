@@ -24,6 +24,7 @@
     flex-grow: 1;
     display: flex;
   }
+
   &-intro,
   &-content {
     padding: 30px 5%;
@@ -57,13 +58,13 @@
 
       ul li {
         flex-basis: 100%;
+
         a {
           font-size: 0.9em;
         }
       }
     }
   }
-
 
   &-section {
     > .sub-menu {
@@ -84,10 +85,12 @@
       }
     }
   }
+
   .menu-item-has-children .sub-menu:has(> .sub-sub-item .sub-menu) {
     flex-direction: row;
     flex-wrap: nowrap;
     gap: 20px;
+
     ul {
       padding-left: 25px;
     }

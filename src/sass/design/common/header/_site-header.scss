@@ -30,13 +30,16 @@
     display: block;
     font-weight: 500;
     transition: color 0.3s;
+
     &:not(.blue-text) {
       color: var(--nav-link-color);
     }
+
     &:hover,
     &:focus {
       --nav-link-color: var(--color-link);
     }
+
     &:not(.uppercase) {
       text-transform: capitalize;
     }
@@ -64,9 +67,7 @@
         width: 174px;
       }
     }
-
   }
-
 }
 
 .has-sticky-header {
@@ -93,7 +94,6 @@
   }
 }
 
-
 /* Icon pseudo-elements */
 .menu-item-has-children > a::after,
 .sub-menu li a::before {
@@ -104,25 +104,31 @@
   height: 10px;
   display: inline-block;
 }
+
 .menu-item-has-children > a {
   &::after {
     transform: rotate(90deg);
   }
+
   &[aria-expanded="true"]::after {
     background-image: var(--chevron-image-hover);
     transform: rotate(-90deg);
   }
 }
+
 .sub-menu a {
   display: flex;
   align-items: baseline;
+
   &::before {
     margin-right: 5px;
   }
+
   &::after {
     content: none;
   }
 }
+
 .utility-menu {
   --chevron-image: url(images/icon-right-arrow-white.svg);
   --chevron-image-hover: url(images/icon-right-arrow-white.svg);
@@ -130,7 +136,7 @@
 
 .utility-menu {
   .menu-item-has-children > a::after,
-    .sub-menu li a::before  {
+  .sub-menu li a::before {
     content: "";
   }
 }
@@ -139,6 +145,7 @@
   .sub-menu li a::before {
     content: "";
   }
+
   .sub-menu li a::after {
     content: none;
   }

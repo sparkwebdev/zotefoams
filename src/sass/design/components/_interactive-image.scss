@@ -3,7 +3,7 @@
 
 .interactive-image {
   background-color: #041b40;
-  
+
   // Light theme variant
   &.theme-light {
     background-color: #f8f8f8;
@@ -99,7 +99,7 @@
         transform: translateX(-25%);
       }
     }
-    
+
     &--right {
       .interactive-image__popup {
         left: auto;
@@ -121,24 +121,24 @@
     color: #fff;
     background: linear-gradient(to bottom, rgba(255, 255, 255, 0.1), rgba(4, 27, 65, 0.5));
     font-size: 0.9rem;
-    
+
     // Adjust top position and width for numbered markers
     .interactive-image__point--numbered & {
       top: 35px;
     }
-    
+
     // Default center-aligned positioning
     &--center-aligned {
       left: 50%;
       transform: translateX(-50%);
     }
-    
+
     // Left-aligned for points near left edge
     &--left-aligned {
       left: 0;
       transform: none;
     }
-    
+
     // Right-aligned for points near right edge
     &--right-aligned {
       left: auto;
@@ -203,7 +203,7 @@
         height: 32px;
         font-size: 16px;
         transform: translate(-50%, -50%);
-        
+
         &:hover {
           transform: translate(-50%, -50%);
         }
@@ -215,7 +215,7 @@
       left: calc(50% - 100px);
       font-size: 0.85rem;
       padding: 12px 15px;
-      
+
       // Update center-aligned for smaller width
       &--center-aligned {
         left: 50%;

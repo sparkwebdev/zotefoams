@@ -1,21 +1,23 @@
 /* Linguise plugin exceptions
  *	--------------------------------------------- */
 @media screen and (max-width: 1200px) {
-	body:has(.linguise_switcher_wrapper) .swiper-image .swiper-button-next-image {
-      bottom: 15px;
-      left: 30px;
-      right: auto;
-	}
-	body:has(.linguise_switcher_wrapper) .swiper-image .swiper-button-next-image > p {
-		margin-right: 10px !important;
-	}
+  body:has(.linguise_switcher_wrapper) .swiper-image .swiper-button-next-image {
+    bottom: 15px;
+    left: 30px;
+    right: auto;
+  }
+
+  body:has(.linguise_switcher_wrapper) .swiper-image .swiper-button-next-image > p {
+    margin-right: 10px !important;
+  }
+
   body:has(.linguise_switcher_wrapper) .swiper-image .swiper-inner p {
     max-width: 100%;
   }
 }
 
 @media screen and (max-width: 767px) {
-	body:has(.linguise_switcher_wrapper) .swiper-image .swiper-button-next-image {
-      left: 5%;
-	}
+  body:has(.linguise_switcher_wrapper) .swiper-image .swiper-button-next-image {
+    left: 5%;
+  }
 }

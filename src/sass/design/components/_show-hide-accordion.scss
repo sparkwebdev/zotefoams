@@ -22,6 +22,7 @@
   &:not(:focus-visible) {
     outline: none;
   }
+
   &:focus-visible {
     outline-offset: 3px;
   }
