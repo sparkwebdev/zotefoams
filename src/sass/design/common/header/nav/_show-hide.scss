@@ -4,7 +4,7 @@
 @use "../../../../abstracts/abstracts" as *;
 
 /* Mobile Menu */
-@media screen and (max-width: $bp-upto-md) {
+@media screen and (max-width: $bp-upto-lg) {
   .main-navigation {
     .dropdown-toggle {
       // transition: transform 0.3s;

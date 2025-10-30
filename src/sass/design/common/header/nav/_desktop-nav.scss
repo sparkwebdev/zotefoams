@@ -1,6 +1,6 @@
 @use "../../../../abstracts/abstracts" as *;
 
-@media screen and (min-width: $bp-md) {
+@media screen and (min-width: $bp-lg) {
   .main-navigation {
     ul {
       display: flex;
