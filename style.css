@@ -1915,6 +1915,10 @@ footer div.wpforms-container.wpforms-container-full:not(:empty) {
   transform: rotate(-90deg);
 }
 
+.sub-menu a {
+  display: flex;
+  align-items: baseline;
+}
 .sub-menu a::before {
   margin-right: 5px;
 }
@@ -2084,7 +2088,7 @@ footer div.wpforms-container.wpforms-container-full:not(:empty) {
   .dropdown-toggle[aria-expanded=true]::after {
     transform: rotate(-90deg);
   }
-  body.touch-device .menu-label {
+  .menu-label {
     cursor: pointer;
   }
   /* Prevent Body Scroll when Mobile Nav is Open */
@@ -2253,7 +2257,6 @@ footer div.wpforms-container.wpforms-container-full:not(:empty) {
 }
 .utility-menu .menu a {
   --nav-link-color: #fff;
-  display: block;
   font-size: 0.9em;
   padding: 10px 0;
 }

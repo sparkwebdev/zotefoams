@@ -114,6 +114,8 @@
   }
 }
 .sub-menu a {
+  display: flex;
+  align-items: baseline;
   &::before {
     margin-right: 5px;
   }

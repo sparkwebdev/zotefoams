@@ -20,7 +20,7 @@ import { ZotefoamsDeviceUtils } from '../utils/dom-utilities.js';
             ZotefoamsDeviceUtils.initTouchSupport();
         }
 
-        console.log('[Navigation v1.0.0] Script loaded');
+        console.log('[Navigation v1.0.1] Script loaded');
 
         function initNavigation() {
             const siteNav = document.querySelector("[data-js-nav='main']");
@@ -175,14 +175,16 @@ import { ZotefoamsDeviceUtils } from '../utils/dom-utilities.js';
 
                 if (megaNavMode === "hover") {
                     // DESKTOP: Hover mode
-                    const showMenu = () => {
-                        if (!allowHover) return;
+                    let localHideTimer = null;
 
-                        if (hideTimer) {
-                            clearTimeout(hideTimer);
-                            hideTimer = null;
+                    const showMenu = () => {
+                        // Cancel this menu's hide timer
+                        if (localHideTimer) {
+                            clearTimeout(localHideTimer);
+                            localHideTimer = null;
                         }
 
+                        // Close any other open mega menus
                         closeMegaMenus();
                         closeUtilityMenus();
 
@@ -191,25 +193,26 @@ import { ZotefoamsDeviceUtils } from '../utils/dom-utilities.js';
                     };
 
                     const hideMenu = () => {
-                        hideTimer = setTimeout(() => {
+                        // Delay hiding just this menu
+                        localHideTimer = setTimeout(() => {
                             megaMenu.setAttribute('aria-hidden', 'true');
                             setAriaExpanded(link, false);
-                            hideTimer = null;
+                            localHideTimer = null;
                         }, HOVER_DELAY_MS);
                     };
 
-                    const clearTimer = () => {
-                        if (hideTimer) {
-                            clearTimeout(hideTimer);
-                            hideTimer = null;
+                    const cancelHide = () => {
+                        if (localHideTimer) {
+                            clearTimeout(localHideTimer);
+                            localHideTimer = null;
                         }
                     };
 
+                    // Event wiring
                     menuItem.addEventListener("mouseenter", showMenu);
                     menuItem.addEventListener("mouseleave", hideMenu);
-                    megaMenu.addEventListener("mouseenter", clearTimer);
+                    megaMenu.addEventListener("mouseenter", cancelHide);
                     megaMenu.addEventListener("mouseleave", hideMenu);
-
                 } else {
                     // TOUCH: Click mode - toggle mega menu open/closed (desktop only)
                     link.addEventListener("click", (e) => {
@@ -319,19 +322,6 @@ import { ZotefoamsDeviceUtils } from '../utils/dom-utilities.js';
 
             // Setup utility menu (hover for desktop, click for touch)
             setupUtilityMenu();
-
-            // =========================================================================
-            // DESKTOP SAFETY: Ensure hover menus close properly when leaving navigation
-            // =========================================================================
-            if (megaNavMode === "hover") {
-                // When the mouse leaves the entire navigation area
-                siteNav.addEventListener("mouseleave", () => {
-                    closeAll();
-                });
-
-                // Also close if user switches tabs or windows mid-hover
-                window.addEventListener("blur", closeAll);
-            }
 
 
             // Make menu labels clickable
