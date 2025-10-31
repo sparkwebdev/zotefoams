@@ -1,0 +1,254 @@
+/* Panel Switcher
+ * --------------------------------------------- */
+@use "../../abstracts/abstracts" as *;
+
+.panel-switcher {
+
+  .text-block h3 {
+    max-width: 1000px;
+  }
+  /* Hide radio inputs but keep them accessible */
+  &__radio {
+    position: absolute;
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  &__overline {
+    display: block;
+    padding-bottom: 10px;
+    border-bottom: solid 1px var(--color-text-light);
+  }
+
+  &__wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+
+    @media screen and (min-width: $bp-lg) {
+      flex-direction: row;
+      gap: 10%;
+    }
+  }
+
+  &__nav {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+
+    @media screen and (min-width: $bp-lg) {
+      flex: 0 0 300px;
+    }
+  }
+
+  // Desktop navigation items
+  &__nav-item {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    padding: 10px 0;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    color: #707070;
+    font-size: 24px;
+
+    &:hover {
+      color: var(--color-link);
+    }
+  }
+
+  // Mobile accordion headers (h2 or button)
+  &__accordion-header,
+  &__accordion-toggle {
+    display: none;
+    width: 100%;
+    margin: 0;
+    font-size: 24px;
+    font-weight: 400;
+    color: #707070;
+    background: none;
+    border: none;
+    text-align: left;
+
+    @media screen and (max-width: $bp-upto-lg) {
+      display: flex;
+      align-items: center;
+      gap: 0;
+      padding: 20px 0;
+    }
+  }
+
+  // Static h2 heading (no JS)
+  &__accordion-header {
+    @media screen and (max-width: $bp-upto-lg) {
+      cursor: default;
+      color: #000;
+      font-weight: 500;
+    }
+  }
+
+  // Interactive button (with JS)
+  &__accordion-toggle {
+    @media screen and (max-width: $bp-upto-lg) {
+      cursor: pointer;
+      transition: color 0.2s ease;
+
+      &:hover {
+        color: var(--color-link);
+      }
+
+      &[aria-expanded="true"] {
+        color: #000;
+
+        .panel-switcher__accordion-title {
+          font-weight: 500;
+        }
+      }
+    }
+  }
+
+  // Arrow icons (shared styles)
+  &__arrow,
+  &__accordion-arrow {
+    flex-shrink: 0;
+    height: auto;
+    opacity: 0;
+    transform: translateX(-10px);
+    transition: all 0.3s ease;
+  }
+
+  // Desktop arrow (always 24px width)
+  &__arrow {
+    width: 24px;
+  }
+
+  // Mobile arrow (collapsed by default)
+  &__accordion-arrow {
+    width: 0;
+    margin-right: 0;
+
+    // Show when accordion is expanded
+    [data-panel-switcher].js-enabled .panel-switcher__accordion-toggle[aria-expanded="true"] & {
+      width: 24px;
+      margin-right: 15px;
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+
+  &__title,
+  &__accordion-title {
+    font-weight: 400;
+    transition: all 0.2s ease;
+    flex: 1;
+  }
+
+  &__panels {
+    flex: 1;
+    position: relative;
+  }
+
+  &__panel {
+    display: none;
+    animation: fadeIn 0.3s ease;
+
+    @media screen and (max-width: $bp-upto-lg) {
+      display: block !important;
+    }
+  }
+
+  // Content wrapper for grid accordion
+  &__content {
+    @media screen and (min-width: $bp-lg) {
+      display: contents;
+    }
+
+    @media screen and (max-width: $bp-upto-lg) {
+      display: block;
+      padding-bottom: 20px;
+
+      [data-panel-switcher].js-enabled & {
+        display: grid;
+        grid-template-rows: 0fr;
+        padding-bottom: 0;
+        transition: grid-template-rows 0.4s ease, padding 0.4s ease;
+      }
+
+      [data-panel-switcher].js-enabled .panel-switcher__accordion-toggle[aria-expanded="true"] ~ & {
+        grid-template-rows: 1fr;
+        padding-bottom: 20px;
+      }
+    }
+  }
+
+  &__content-inner {
+    @media screen and (min-width: $bp-lg) {
+      display: contents;
+    }
+
+    @media screen and (max-width: $bp-upto-lg) {
+      [data-panel-switcher].js-enabled & {
+        overflow: hidden;
+      }
+    }
+  }
+
+  &__icon {
+    margin-bottom: 30px;
+    flex-shrink: 0;
+
+    img {
+      width: 130px;
+      min-width: 130px;
+      aspect-ratio: 1/1;
+      object-fit: cover;
+      border-radius: 16px;
+      box-shadow: 12px 12px 24px rgba(0, 0, 0, 0.15);
+    }
+  }
+
+  &__text {
+    p:last-child {
+      margin-bottom: 0;
+    }
+  }
+
+  // Desktop: Radio button switching
+  @for $i from 0 through 20 {
+    &__radio:nth-of-type(#{$i + 1}):checked {
+      ~ .panel-switcher__wrapper .panel-switcher__nav-item:nth-of-type(#{$i + 1}) {
+        color: #000;
+
+        .panel-switcher__arrow {
+          opacity: 1;
+          transform: translateX(0);
+        }
+
+        .panel-switcher__title {
+          font-weight: 500;
+        }
+      }
+
+      ~ .panel-switcher__wrapper .panel-switcher__panel[data-panel="#{$i}"] {
+        display: flex;
+        gap: 50px;
+      }
+    }
+  }
+
+  // Mobile: Hide desktop navigation
+  @media screen and (max-width: $bp-upto-lg) {
+    &__nav {
+      display: none;
+    }
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}

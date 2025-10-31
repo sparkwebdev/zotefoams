@@ -19,6 +19,7 @@ import './components/file-list.js';
 import './components/section-list.js';
 import './components/video-modal.js';
 import './components/accordion.js';
+import './components/panel-switcher.js';
 import './components/utility-search.js';
 import './components/our-history.js';
 
