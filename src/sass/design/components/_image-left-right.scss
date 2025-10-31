@@ -1,0 +1,65 @@
+/* Image Left/Right
+ * --------------------------------------------- */
+@use "../../abstracts/abstracts" as *;
+
+.image-left-right {
+
+  &:has(+ .image-left-right),
+  &:last-child {
+    padding-bottom: 0;
+  }
+  &__image {
+    min-height: min(400px, 50vh);
+  }
+
+  &__content {
+    padding: 50px 5%;
+
+    @media screen and (min-width: $bp-lg) {
+      padding: 100px;
+    }
+  }
+
+  &__content-inner {
+    max-width: 560px;
+  }
+
+  &__icon-list {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+  }
+
+  &__icon-item {
+    display: flex;
+    gap: 20px;
+    align-items: flex-start;
+
+    img {
+      flex-shrink: 0;
+      max-width: 60px;
+    }
+
+    p:last-child {
+      margin-bottom: 0;
+    }
+  }
+
+  @media screen and (min-width: $bp-lg) {
+    display: flex;
+
+    > * {
+      width: 50%;
+    }
+
+    /* Reverse variant - image on right */
+    &--reverse {
+      flex-direction: row-reverse;
+
+      .image-left-right__content {
+        max-width: calc(700px + 5%);
+        padding-left: 5%;
+      }
+    }
+  }
+}

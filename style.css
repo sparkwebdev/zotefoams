@@ -3822,7 +3822,7 @@ a.read-more.hl.arrow:focus::after {
   gap: 30px;
   grid-template-columns: 1fr;
 }
-@media screen and (min-width: 768px) {
+@media screen and (min-width: 48rem) {
   .columns-content__wrapper {
     grid-template-columns: 1fr 1fr 1fr;
     gap: 30px;
@@ -3839,6 +3839,59 @@ a.read-more.hl.arrow:focus::after {
 .columns-content .text-block h3 {
   max-width: 1000px;
   text-wrap: balance;
+}
+
+/* Image Left/Right
+ * --------------------------------------------- */
+.image-left-right:has(+ .image-left-right), .image-left-right:last-child {
+  padding-bottom: 0;
+}
+.image-left-right__image {
+  min-height: min(400px, 50vh);
+}
+.image-left-right__content {
+  padding: 50px 5%;
+}
+@media screen and (min-width: 64rem) {
+  .image-left-right__content {
+    padding: 100px;
+  }
+}
+.image-left-right__content-inner {
+  max-width: 560px;
+}
+.image-left-right__icon-list {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+.image-left-right__icon-item {
+  display: flex;
+  gap: 20px;
+  align-items: flex-start;
+}
+.image-left-right__icon-item img {
+  flex-shrink: 0;
+  max-width: 60px;
+}
+.image-left-right__icon-item p:last-child {
+  margin-bottom: 0;
+}
+@media screen and (min-width: 64rem) {
+  .image-left-right {
+    display: flex;
+    /* Reverse variant - image on right */
+  }
+  .image-left-right > * {
+    width: 50%;
+  }
+  .image-left-right--reverse {
+    flex-direction: row-reverse;
+  }
+  .image-left-right--reverse .image-left-right__content {
+    max-width: calc(700px + 5%);
+    padding-left: 5%;
+  }
 }
 
 /* 09 - Markets list
