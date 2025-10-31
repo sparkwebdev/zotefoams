@@ -28,11 +28,11 @@ $wrapper_classes = Zotefoams_Theme_Helper::get_wrapper_classes([
     <div class="image-left-right__content">
         <div class="image-left-right__content-inner">
             <?php if ($heading): ?>
-                <h2 class="fs-600 fw-semibold margin-b-30"><?php echo esc_html($heading); ?></h2>
+                <h2 class="fs-500 fw-semibold margin-b-30"><?php echo esc_html($heading); ?></h2>
             <?php endif; ?>
 
             <?php if ($text): ?>
-                <div class="margin-b-50 grey-text">
+                <div class="margin-b-50 grey-text fs-300">
                     <?php echo wp_kses_post($text); ?>
                 </div>
             <?php endif; ?>
@@ -53,7 +53,7 @@ $wrapper_classes = Zotefoams_Theme_Helper::get_wrapper_classes([
                                 ?>
                             <?php endif; ?>
                             <?php if ($icon_text): ?>
-                                <div class="grey-text">
+                                <div class="grey-text fs-300">
                                     <?php echo wp_kses_post($icon_text); ?>
                                 </div>
                             <?php endif; ?>

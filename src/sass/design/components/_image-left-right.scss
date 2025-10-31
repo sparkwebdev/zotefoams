@@ -8,6 +8,7 @@
   &:last-child {
     padding-bottom: 0;
   }
+  
   &__image {
     min-height: min(400px, 50vh);
   }
@@ -16,12 +17,19 @@
     padding: 50px 5%;
 
     @media screen and (min-width: $bp-lg) {
-      padding: 100px;
+      padding: 80px;
+    }
+
+    @media screen and (min-width: $bp-xl) {
+      padding: 120px;
     }
   }
 
   &__content-inner {
     max-width: 560px;
+    strong {
+      color: #000;
+    }
   }
 
   &__icon-list {
@@ -40,7 +48,7 @@
       max-width: 60px;
     }
 
-    p:last-child {
+    :last-child {
       margin-bottom: 0;
     }
   }
@@ -57,7 +65,7 @@
       flex-direction: row-reverse;
 
       .image-left-right__content {
-        max-width: calc(700px + 5%);
+        max-width: calc($size__page-content / 2 + 5%);
         padding-left: 5%;
       }
     }

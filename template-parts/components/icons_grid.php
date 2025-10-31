@@ -30,13 +30,13 @@ $wrapper_classes = Zotefoams_Theme_Helper::get_wrapper_classes([
 
     <?php if ($items): ?>
         <div class="icons-grid__wrapper cont-m">
-            <div class="icons-grid__grid">
+            <div class="icons-grid__grid" role="list" aria-label="<?php echo esc_attr($intro ?: __('Icons grid items', 'zotefoams')); ?>">
                 <?php foreach ($items as $item): ?>
-                    <div class="icons-grid__item">
+                    <div class="icons-grid__item light-grey-bg" role="listitem">
                         <?php if ($item['icon_image']): ?>
                             <?php
                             echo Zotefoams_Image_Helper::render_image($item['icon_image'], [
-                                'alt' => $item['icon_image']['alt'] ?? '',
+                                'alt' => $item['icon_image']['alt'] ?: $item['title'] ?: '',
                                 'size' => 'thumbnail-square',
                                 'class' => 'icons-grid__icon'
                             ]);
@@ -46,17 +46,17 @@ $wrapper_classes = Zotefoams_Theme_Helper::get_wrapper_classes([
                         <div class="icons-grid__content">
 
                             <?php if ($item['title']): ?>
-                                <h4 class="icons-grid__title"><?php echo esc_html($item['title']); ?></h4>
+                                <h4 class="icons-grid__title fs-500"><?php echo esc_html($item['title']); ?></h4>
                             <?php endif; ?>
 
                             <?php if ($item['text']): ?>
-                                <div class="icons-grid__text">
+                                <div class="icons-grid__text grey-text">
                                     <?php echo wp_kses_post(wpautop($item['text'])); ?>
                                 </div>
                             <?php endif; ?>
                         </div>
                         <?php if ($item['background_image']): ?>
-                            <div class="icons-grid__background">
+                            <div class="icons-grid__background" aria-hidden="true">
                                 <?php
                                 echo Zotefoams_Image_Helper::render_image($item['background_image'], [
                                     'alt' => '',

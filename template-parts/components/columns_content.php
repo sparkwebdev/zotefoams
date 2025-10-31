@@ -43,13 +43,13 @@ $wrapper_classes = Zotefoams_Theme_Helper::get_wrapper_classes([
 		<?php endif; ?>
 
 		<?php if ($column_one): ?>
-			<div class="columns-content__column">
+			<div class="columns-content__column grey-text fs-300">
 				<?php echo wp_kses_post($column_one); ?>
 			</div>
 		<?php endif; ?>
 
 		<?php if ($column_two): ?>
-			<div class="columns-content__column">
+			<div class="columns-content__column grey-text fs-300">
 				<?php echo wp_kses_post($column_two); ?>
 			</div>
 		<?php endif; ?>

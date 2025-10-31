@@ -1,3 +1,5 @@
+@use "../../abstracts/abstracts" as *;
+
 /* Font sizes
  *--------------------------------------------- */
 
@@ -230,7 +232,7 @@
 }
 
 .cont-m {
-  max-width: 1400px;
+  max-width: $size__page-content;
   width: 90%;
   margin: 0 auto;
 }

@@ -3,15 +3,27 @@
 @use "../../abstracts/abstracts" as *;
 
 .columns-content {
+
+  .text-block h3 {
+    max-width: 1000px;
+    text-wrap: balance;
+  }
+  
   &__wrapper {
     display: grid;
     gap: 30px;
     grid-template-columns: 1fr;
 
     @media screen and (min-width: $bp-md) {
-      grid-template-columns: 1fr 1fr 1fr;
-      gap: 30px;
+      gap: 8%;
+      grid-template-columns: 0.75fr 1fr 1fr;
+
+      &:not(:has(.columns-content__image)) {
+        grid-template-columns: 1fr 1fr 1fr;
+        gap: 5%;
+      }
     }
+
   }
 
   &__image {
@@ -26,10 +38,8 @@
     p:last-child {
       margin-bottom: 0;
     }
-  }
-
-  .text-block h3 {
-    max-width: 1000px;
-    text-wrap: balance;
+    strong {
+      color: #000;
+    }
   }
 }
