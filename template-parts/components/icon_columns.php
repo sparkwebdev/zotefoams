@@ -88,7 +88,3 @@ $wrapper_classes = Zotefoams_Theme_Helper::get_wrapper_classes([
 		</div>
 	<?php endif; ?>
 </div>
-
-<?php if ($is_sustainability): ?>
-	<?php include locate_template('/template-parts/components/development-goals.php', false, false); ?>
-<?php endif; ?>
