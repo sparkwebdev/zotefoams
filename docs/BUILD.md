@@ -87,10 +87,36 @@ npm run build:sass
 npm run lint
 ```
 **What it does:**
-1. Runs Stylelint on all SASS files with auto-fix
-2. Runs Prettier to format SASS files
+1. Runs ESLint on all JavaScript files (`src/**/*.js`) with auto-fix
+2. Runs Stylelint on all SASS files with auto-fix
+3. Runs Prettier to format SASS files
 
-**When to use:** Before committing SASS changes, fixing style issues
+**When to use:** Before committing code changes, fixing style and quality issues
+
+**ESLint Configuration:**
+- Uses WordPress coding standards (`.eslintrc`)
+- Warns on console statements, unused variables, and code quality issues
+- Auto-fixes formatting and style issues
+
+### Theme Bundling
+
+```bash
+npm run bundle
+```
+**What it does:**
+1. Creates a production-ready theme package at `../zotefoams.zip`
+2. Excludes all development files and dependencies
+3. Includes only essential theme files for distribution
+
+**When to use:** Creating deployable theme packages for production sites
+
+**Excluded from bundle:**
+- Source files (`src/` directory)
+- Development dependencies (`node_modules`, config files)
+- Development documentation (`docs/`, `tests/`)
+- Build artifacts (source maps, etc.)
+
+**Bundle size:** ~13MB (production-optimized)
 
 ## Build Configuration Files
 

@@ -10,11 +10,13 @@ This is the Zotefoams WordPress theme built on the Underscores (_s) starter them
 
 ### Build and Development
 - `npm run start` - Full development server with live reload (BrowserSync) and Rollup watch mode
-- `npm run lint` - Lint and format SASS files with Stylelint and Prettier
+- `npm run build` - Production build (JS + CSS compilation)
+- `npm run lint` - Lint and format JavaScript (ESLint) and SASS files (Stylelint + Prettier)
+- `npm run bundle` - Create production-ready theme package (zotefoams.zip) excluding development files
 
 ### Code Quality
 - `composer lint:wpcs` - Check PHP files against WordPress Coding Standards
-- `composer lint:php` - Check PHP files for syntax errors  
+- `composer lint:php` - Check PHP files for syntax errors
 - `composer make-pot` - Generate translation .pot file
 
 ### Testing
@@ -72,12 +74,13 @@ Specialized page templates:
 - `page-our-history.php` - Company history timeline
 - `single-knowledge-hub.php` - Knowledge base articles
 
-### JavaScript 
+### JavaScript
 ES module system in `src/`:
 - `src/main.js` - Main entry point importing all modules
 - `src/components/` - Component-specific modules (carousel, accordion, video modal, etc.)
 - `src/utils/` - Reusable utilities (DOM, site, device detection)
 - Output: `js/bundle.js` with source maps for debugging
+- **ESLint configured** with WordPress coding standards (`.eslintrc`) for code quality
 
 ### Development Environment
 - Uses Local by Flywheel (proxy: `https://zotefoams-phase-2.local/`)
@@ -100,13 +103,21 @@ The theme follows modern WordPress practices with a modular functions.php struct
 - `functions-original-backup.php` - Original 715-line functions.php backup
 
 ## Key File Locations
-- Theme functions: `functions.php` and `inc/` directory (modularized)  
+- Theme functions: `functions.php` and `inc/` directory (modularized)
 - Component templates: `template-parts/components/` (31 components)
 - Custom blocks: `blocks/`
 - SASS source: `src/sass/` (moved from `sass/`)
 - JavaScript source: `src/` (ES modules)
-- Compiled assets: `style.css`, `js/bundle.js` 
+- Compiled assets: `style.css`, `js/bundle.js`
 - ACF configuration: `acf/acf-json/`
+- Documentation: `docs/` (BUILD.md, CLAUDE.md, DEVELOPMENT-TRACKER.md, meganav.md)
+
+## Theme Deployment
+The theme includes a production bundle command that creates a clean, distributable package:
+- **Command:** `npm run bundle`
+- **Output:** `../zotefoams.zip` (13.09 MB)
+- **Excludes:** All development files (src/, node_modules, configs, tests, docs)
+- **Includes:** Only production-ready files (compiled CSS/JS, PHP templates, images, ACF configs)
 
 ## Navigation Menus
 Four registered menu locations:

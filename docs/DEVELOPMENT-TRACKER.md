@@ -11,10 +11,10 @@
 - [ ] **Utility menu ARIA roles** - Add `role="menuitem"` to top links and `role="menu"` to sub-`ul`s for enhanced screen reader clarity
 - [ ] **ARIA live region feedback** - Add hidden `<div aria-live="polite">` that announces menu state changes (open/close) to screen reader users
 - [ ] **Reduced motion support** - Disable CSS transitions when user has `prefers-reduced-motion: reduce` media query set for accessibility compliance
+- [ ] **Panel Switcher** - Look to improve aria attributes; Ttry to sync active tab across mobile/desktop
 
 ### Other issues
 
-- [x] **Enable Asset Minification** - ~~Set `isProduction = true` in rollup.config.js to enable JavaScript and CSS minification for production deployment~~ **COMPLETED** - Production mode enabled, critical.js reduced from 13.6KB to 6.5KB (52% reduction)
 - [ ] **Image Banner autoplay pause** - Hovering on Next button should pause slide autoplay
 - [ ] **iPad Pro menu display mismatch** - Desktop view displays on ipad Pro but menu interactions are mobile
 - [ ] **File list filter visibility** - Filter dropdown shouldn't show when there's only one category
@@ -43,46 +43,3 @@
 - [ ] **Component Unit Testing** - Implement PHPUnit testing framework for complex components
 - [ ] **REST API Migration** - Consider for dynamic content loading to improve perceived performance
 - [ ] **Nonce Verification** - Implement for any future AJAX handlers (none currently identified)
-
-## Change History
-
-### Interactive Image Component Updates
-- Added light/dark theme toggle support with ACF field `interactive_image_light_theme`
-- Implemented smart popup positioning for edge cases (30%/70% thresholds)
-- Enhanced numbered markers with white border and improved drop shadow
-- Added automatic bold formatting for first line when content contains `<br>` tags
-- Improved responsive font sizing with rem units for mobile displays
-- Fixed popup width and positioning for better content display
-
-### Admin and Configuration Fixes
-- Fixed LinkedIn Analytics and Mailchimp scripts registration
-- Restored original ACF field population for associated_brands (pages hierarchy, not taxonomy)
-- Fixed Google Analytics field name consistency (google_analytics_measurement_id)
-- Added search rewrite rules for /search/ URL handling
-- Restored original image sizes configuration (small, thumbnail-product)
-- Fixed navigation menu label formatting
-- Removed unused admin column styles for Knowledge Hub
-
-### Comprehensive Optimization and Modernization
-- Modern build system: Rollup + PostCSS pipeline with Autoprefixer and cssnano
-- Package.json streamlined: Complex scripts → 4 essential commands (`start`, `test`, `test:all`, `lint`)
-- JavaScript optimization: ES modules, 75% bundle size reduction (55KB → 13.5KB)
-- Safe code refactoring: Variable alignment, comment standardization, consistent escaping
-- News feed improvements: CSS Grid spacer elimination, title logic consolidation
-- Image optimization: Large → medium images where appropriate
-- Component code quality: Consistent patterns across all 31 components
-- Zero visual regressions: All changes verified with 100% VRC test success rates
-
-### Functions.php Modularization
-- Extracted 715-line functions.php into 9 logical modules for better organization
-- Created modular structure: theme-setup.php, assets.php, acf-config.php, analytics.php, etc.
-- Functions.php reduced from 715 lines to 70 lines (90% reduction)
-- Improved code maintainability and follows modern WordPress development practices
-- All existing functionality preserved with zero breaking changes
-
-### Component Migration Project
-- All 31 components migrated with safe helper functions and explicit CSS classes
-- Comprehensive VRC testing shows perfect results (177/177 tests passed)
-- All carousel components fully functional
-- All standard components using consistent patterns for better maintainability
-- Helper classes now actively used across components
