@@ -60,14 +60,16 @@
   },
   "scripts": {
     "build": "rollup -c && npm run build:sass",
-    "build:sass": "sass src/sass/style.scss:style.css --style=expanded --no-source-map && postcss style.css -o style.css",
-    "watch:sass": "sass src/sass/style.scss:style.css --watch --style=expanded --no-source-map",
+    "build:production": "NODE_ENV=production rollup -c && npm run build:sass:production",
+    "build:sass": "sass src/sass/style.scss:style.css --style=expanded --source-map && postcss style.css -o style.css",
+    "build:sass:production": "sass src/sass/style.scss:style.css --style=compressed --no-source-map && postcss style.css -o style.css",
+    "watch:sass": "sass src/sass/style.scss:style.css --watch --style=expanded --source-map",
     "watch:postcss": "postcss style.css -o style.css --watch",
     "lint": "eslint 'src/**/*.js' --fix && stylelint 'src/sass/**/*.scss' --fix && prettier --write 'src/sass/**/*.scss'",
     "start": "concurrently \"rollup -c --watch\" \"npm run watch:sass\" \"npm run watch:postcss\" \"browser-sync start --proxy 'https://zotefoams-phase-2.local/' --port 3001 --https --files 'style.css' --files 'js/bundle.js' --files '**/*.php' --ignore 'node_modules'\"",
     "test": "rimraf tests/vrc/results && VRC_DEVICES=desktop-only playwright test tests/vrc/compare-pages.spec.js",
     "test:all": "rimraf tests/vrc/results && VRC_LEVEL=3 VRC_MAX_FAILURES=20 VRC_DEVICES=desktop-only playwright test tests/vrc/compare-pages.spec.js",
-    "bundle": "dir-archiver --src . --dest ../zotefoams.zip --exclude .DS_Store .babelrc.json .stylelintrc.json .eslintrc .vscode .git .gitattributes .github .gitignore README.md node_modules package-lock.json package.json phpcs.xml.dist style.css.map .claude tests docs rollup.config.js .prettierrc playwright.config.js postcss.config.js src composer.json"
+    "bundle": "npm run build:production && dir-archiver --src . --dest ../zotefoams.zip --exclude .DS_Store .babelrc.json .stylelintrc.json .eslintrc .vscode .git .gitattributes .github .gitignore README.md node_modules package-lock.json package.json phpcs.xml.dist *.map .claude tests docs rollup.config.js .prettierrc playwright.config.js postcss.config.js src composer.json"
   },
   "dependencies": {
     "node-fetch": "^3.3.2",

@@ -12,6 +12,7 @@
 - [ ] **ARIA live region feedback** - Add hidden `<div aria-live="polite">` that announces menu state changes (open/close) to screen reader users
 - [ ] **Reduced motion support** - Disable CSS transitions when user has `prefers-reduced-motion: reduce` media query set for accessibility compliance
 - [ ] **Panel Switcher** - Look to improve aria attributes; Ttry to sync active tab across mobile/desktop
+- [ ] **Mega Nav** - Visually label external link items
 
 ### Other issues
 

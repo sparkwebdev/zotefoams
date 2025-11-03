@@ -15,7 +15,7 @@ import commonjs from '@rollup/plugin-commonjs';
 import terser from '@rollup/plugin-terser';
 import babel from '@rollup/plugin-babel';
 
-const isProduction = true; // Production mode - minification enabled
+const isProduction = process.env.NODE_ENV === 'production'; // Dynamic production mode based on environment
 
 export default defineConfig([
 	// Critical bundle configuration - loads first in head
