@@ -3850,9 +3850,6 @@ a.read-more.hl.arrow:focus::after {
 
 /* Image Left/Right
  * --------------------------------------------- */
-.image-left-right:has(+ .image-left-right), .image-left-right:last-child {
-  padding-bottom: 0;
-}
 .image-left-right__image {
   min-height: min(400px, 50vh);
 }
@@ -3889,7 +3886,7 @@ a.read-more.hl.arrow:focus::after {
   flex-shrink: 0;
   max-width: 60px;
 }
-.image-left-right__icon-item :last-child {
+.image-left-right__icon-item:last-child {
   margin-bottom: 0;
 }
 @media screen and (min-width: 64rem) {
