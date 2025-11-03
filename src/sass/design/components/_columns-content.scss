@@ -3,12 +3,11 @@
 @use "../../abstracts/abstracts" as *;
 
 .columns-content {
-
   .text-block h3 {
     max-width: 1000px;
     text-wrap: balance;
   }
-  
+
   &__wrapper {
     display: grid;
     gap: 30px;
@@ -23,7 +22,6 @@
         gap: 5%;
       }
     }
-
   }
 
   &__image {
@@ -38,6 +36,7 @@
     p:last-child {
       margin-bottom: 0;
     }
+
     strong {
       color: #000;
     }

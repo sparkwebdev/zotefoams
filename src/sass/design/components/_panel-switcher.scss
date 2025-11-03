@@ -3,7 +3,6 @@
 @use "../../abstracts/abstracts" as *;
 
 .panel-switcher {
-
   .text-block h3 {
     max-width: 1000px;
     text-wrap: balance;
@@ -167,7 +166,9 @@
       opacity: 0;
       visibility: hidden;
       pointer-events: none;
-      transition: opacity 0.3s ease, visibility 0.3s ease;
+      transition:
+        opacity 0.3s ease,
+        visibility 0.3s ease;
 
       // Respect user's motion preferences
       @media (prefers-reduced-motion: reduce) {
@@ -195,7 +196,9 @@
         display: grid;
         grid-template-rows: 0fr;
         padding-bottom: 0;
-        transition: grid-template-rows 0.4s ease, padding 0.4s ease;
+        transition:
+          grid-template-rows 0.4s ease,
+          padding 0.4s ease;
       }
 
       [data-panel-switcher].js-enabled .panel-switcher__accordion-toggle[aria-expanded="true"] ~ & {
@@ -234,6 +237,7 @@
   &__text {
     > * {
       margin-bottom: revert;
+
       &:last-child {
         margin-bottom: 0;
       }

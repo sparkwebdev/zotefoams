@@ -3,7 +3,6 @@
 @use "../../abstracts/abstracts" as *;
 
 .image-left-right {
-  
   &__image {
     min-height: min(400px, 50vh);
   }
@@ -22,6 +21,7 @@
 
   &__content-inner {
     max-width: 560px;
+
     strong {
       color: #000;
     }
@@ -65,5 +65,4 @@
       }
     }
   }
-
 }

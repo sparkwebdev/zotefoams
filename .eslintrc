@@ -4,5 +4,17 @@
     ],
     "env": {
         "browser": true
+    },
+    "globals": {
+        "Swiper": "readonly"
+    },
+    "rules": {
+        "no-console": "warn",
+        "no-unused-vars": "warn",
+        "no-shadow": "warn",
+        "jsdoc/require-param-type": "off",
+        "no-mixed-operators": "off",
+        "brace-style": "off",
+        "no-nested-ternary": "warn"
     }
 }

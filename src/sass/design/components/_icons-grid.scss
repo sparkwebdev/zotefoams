@@ -3,7 +3,6 @@
 @use "../../abstracts/abstracts" as *;
 
 .icons-grid {
-
   .text-block h3 {
     max-width: 1000px;
     text-wrap: balance;
@@ -103,11 +102,12 @@
     }
 
     &::after {
-      content: '';
+      content: "";
       position: absolute;
       inset: 0;
       background: rgba(0, 0, 0, 0.5);
     }
+
     .icons-grid__item:hover & {
       opacity: 1;
     }
