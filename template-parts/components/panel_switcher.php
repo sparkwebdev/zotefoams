@@ -20,14 +20,14 @@ $arrow_svg = get_template_directory_uri() . '/images/tab-arrow-right.svg';
         <?php
         echo zotefoams_render_content_block(
             '<h3 class="fs-600 grey-text fw-semibold">' . wp_kses_post($intro) . '</h3>',
-            ['spacing' => 'margin-b-50']
+            ['spacing' => 'margin-b-70']
         );
         ?>
     <?php endif; ?>
     <div class="cont-m">
 
         <?php if ($overline): ?>
-            <p class="panel-switcher__overline margin-b-30 grey-text"><?php echo esc_html($overline); ?></p>
+            <p class="panel-switcher__overline margin-b-70 grey-text"><?php echo esc_html($overline); ?></p>
         <?php endif; ?>
 
         <?php if ($panels): ?>
@@ -49,9 +49,9 @@ $arrow_svg = get_template_directory_uri() . '/images/tab-arrow-right.svg';
                 <!-- Desktop navigation -->
                 <div class="panel-switcher__nav" role="tablist" aria-label="<?php echo esc_attr($overline ?: __('Panel navigation', 'zotefoams')); ?>">
                     <?php foreach ($panels as $index => $panel): ?>
-                        <label for="<?php echo esc_attr($component_id . '-' . $index); ?>" class="panel-switcher__nav-item">
+                        <label for="<?php echo esc_attr($component_id . '-' . $index); ?>" class="panel-switcher__nav-item grey-text">
                             <img src="<?php echo $arrow_svg; ?>" alt="" class="panel-switcher__arrow">
-                            <span class="panel-switcher__title"><?php echo esc_html($panel['panel_switcher_title']); ?></span>
+                            <span class="panel-switcher__title fw-medium"><?php echo esc_html($panel['panel_switcher_title']); ?></span>
                         </label>
                     <?php endforeach; ?>
                 </div>
@@ -61,9 +61,9 @@ $arrow_svg = get_template_directory_uri() . '/images/tab-arrow-right.svg';
                     <?php foreach ($panels as $index => $panel): ?>
                         <div class="panel-switcher__panel" data-panel="<?php echo $index; ?>">
                             <!-- Mobile: h2 header (becomes button with JS) -->
-                            <h2 class="panel-switcher__accordion-header" data-accordion-header>
+                            <h2 class="panel-switcher__accordion-header grey-text" data-accordion-header>
                                 <img src="<?php echo $arrow_svg; ?>" alt="" class="panel-switcher__accordion-arrow">
-                                <span class="panel-switcher__accordion-title"><?php echo esc_html($panel['panel_switcher_title']); ?></span>
+                                <span class="panel-switcher__accordion-title fw-medium"><?php echo esc_html($panel['panel_switcher_title']); ?></span>
                             </h2>
 
                             <div class="panel-switcher__content" id="<?php echo esc_attr($component_id . '-content-' . $index); ?>" role="tabpanel" aria-labelledby="<?php echo esc_attr($component_id . '-' . $index); ?>">

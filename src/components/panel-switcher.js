@@ -6,6 +6,7 @@
  * Desktop: Enhanced radio button accessibility and ARIA state management
  * Mobile: h2 headings converted to buttons with accordion behavior
  */
+
 import { ZotefoamsReadyUtils } from '../utils/dom-utilities.js';
 
 function initPanelSwitcher() {
@@ -84,7 +85,7 @@ function initMobileAccordion(wrapper, wrapperIndex) {
   headers.forEach((header, index) => {
     const panel = header.closest('.panel-switcher__panel');
     const content = panel.querySelector('.panel-switcher__content');
-    const contentId = content?.id; // Use existing ID from PHP
+    const contentId = content?.id;
 
     // Create button to replace h2
     const button = document.createElement('button');

@@ -6,7 +6,14 @@
 
   .text-block h3 {
     max-width: 1000px;
+    text-wrap: balance;
   }
+
+  &__overline {
+    padding-bottom: 20px;
+    border-bottom: solid 1px var(--color-text-light);
+  }
+
   &__radio {
     position: absolute;
     width: 1px;
@@ -23,12 +30,6 @@
     }
   }
 
-  &__overline {
-    display: block;
-    padding-bottom: 10px;
-    border-bottom: solid 1px var(--color-text-light);
-  }
-
   &__wrapper {
     display: flex;
     flex-direction: column;
@@ -43,11 +44,11 @@
   &__nav {
     display: flex;
     flex-direction: column;
-    gap: 0;
+    gap: 20px;
 
     @media screen and (min-width: $bp-lg) {
-      flex: 0 0 auto;
-      max-width: 28em;
+      flex: 1 0 33.33%;
+      max-width: 24em;
     }
   }
 
@@ -55,10 +56,8 @@
     display: flex;
     align-items: center;
     gap: 15px;
-    padding: 10px 0;
     cursor: pointer;
     transition: all 0.2s ease;
-    color: #707070;
     font-size: 24px;
 
     &:hover {
@@ -72,7 +71,6 @@
     width: 100%;
     margin: 0;
     font-size: 24px;
-    font-weight: 400;
     color: #707070;
     background: none;
     border: none;
@@ -82,7 +80,7 @@
       display: flex;
       align-items: center;
       gap: 0;
-      padding: 20px 0;
+      padding: 0;
     }
   }
 
@@ -90,7 +88,6 @@
     @media screen and (max-width: $bp-upto-lg) {
       cursor: default;
       color: #000;
-      font-weight: 500;
     }
   }
 
@@ -148,7 +145,6 @@
 
   &__title,
   &__accordion-title {
-    font-weight: 400;
     transition: all 0.2s ease;
     flex: 1;
   }
@@ -159,10 +155,13 @@
   }
 
   &__panel {
+    gap: 60px;
     display: none;
 
     @media screen and (max-width: $bp-upto-lg) {
-      display: block !important;
+      display: flex;
+      gap: 30px;
+      flex-direction: column;
     }
   }
 
@@ -173,7 +172,7 @@
 
     @media screen and (max-width: $bp-upto-lg) {
       display: block;
-      padding-bottom: 20px;
+      padding-bottom: 50px;
 
       [data-panel-switcher].js-enabled & {
         display: grid;
@@ -184,7 +183,7 @@
 
       [data-panel-switcher].js-enabled .panel-switcher__accordion-toggle[aria-expanded="true"] ~ & {
         grid-template-rows: 1fr;
-        padding-bottom: 20px;
+        padding-bottom: 50px;
       }
     }
   }
@@ -216,8 +215,11 @@
   }
 
   &__text {
-    p:last-child {
-      margin-bottom: 0;
+    > * {
+      margin-bottom: revert;
+      &:last-child {
+        margin-bottom: 0;
+      }
     }
   }
 
@@ -232,14 +234,12 @@
         }
 
         .panel-switcher__title {
-          font-weight: 500;
           text-wrap: balance;
         }
       }
 
       ~ .panel-switcher__wrapper .panel-switcher__panel[data-panel="#{$i}"] {
         display: flex;
-        gap: 60px;
       }
     }
 
