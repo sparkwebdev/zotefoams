@@ -20,7 +20,7 @@ $wrapper_classes = Zotefoams_Theme_Helper::get_wrapper_classes([
             $content .= '<p class="margin-b-20">' . wp_kses_post($overline) . '</p>';
         }
         if ($intro) {
-            $content .= '<h3 class="fs-600 grey-text fw-semibold">' . wp_kses_post($intro) . '</h3>';
+            $content .= '<h3 class="fs-600 fw-semibold grey-text">' . wp_kses_post($intro) . '</h3>';
         }
         echo zotefoams_render_content_block($content, [
             'spacing' => 'margin-b-70'
@@ -30,9 +30,9 @@ $wrapper_classes = Zotefoams_Theme_Helper::get_wrapper_classes([
 
     <?php if ($items): ?>
         <div class="icons-grid__wrapper cont-m">
-            <div class="icons-grid__grid" role="list" aria-label="<?php echo esc_attr($intro ?: __('Icons grid items', 'zotefoams')); ?>">
+            <div class="icons-grid__grid">
                 <?php foreach ($items as $item): ?>
-                    <div class="icons-grid__item light-grey-bg" role="listitem">
+                    <div class="icons-grid__item light-grey-bg">
                         <?php if ($item['icon_image']): ?>
                             <?php
                             echo Zotefoams_Image_Helper::render_image($item['icon_image'], [
@@ -46,7 +46,7 @@ $wrapper_classes = Zotefoams_Theme_Helper::get_wrapper_classes([
                         <div class="icons-grid__content">
 
                             <?php if ($item['title']): ?>
-                                <h4 class="icons-grid__title fs-500"><?php echo esc_html($item['title']); ?></h4>
+                                <h4 class="icons-grid__title fw-regular fs-500"><?php echo esc_html($item['title']); ?></h4>
                             <?php endif; ?>
 
                             <?php if ($item['text']): ?>
