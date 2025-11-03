@@ -78,6 +78,7 @@
 
   &__title {
     margin-bottom: 30px;
+    text-wrap: balance;
 
     @media screen and (min-width: $bp-md) {
       margin-bottom: 50px;

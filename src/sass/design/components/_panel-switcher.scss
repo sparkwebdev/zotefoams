@@ -156,7 +156,24 @@
 
   &__panel {
     gap: 60px;
-    display: none;
+
+    // Desktop: All panels positioned for fade transition
+    @media screen and (min-width: $bp-lg) {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      display: flex;
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+      transition: opacity 0.3s ease, visibility 0.3s ease;
+
+      // Respect user's motion preferences
+      @media (prefers-reduced-motion: reduce) {
+        transition: none;
+      }
+    }
 
     @media screen and (max-width: $bp-upto-lg) {
       display: flex;
@@ -239,7 +256,17 @@
       }
 
       ~ .panel-switcher__wrapper .panel-switcher__panel[data-panel="#{$i}"] {
-        display: flex;
+        // Mobile: Show with flex layout
+        @media screen and (max-width: $bp-upto-lg) {
+          display: flex;
+        }
+
+        // Desktop: Fade in active panel (already display: flex from base styles)
+        @media screen and (min-width: $bp-lg) {
+          opacity: 1;
+          visibility: visible;
+          pointer-events: auto;
+        }
       }
     }
 
