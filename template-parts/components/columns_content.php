@@ -6,7 +6,7 @@ $column_one = get_sub_field('columns_content_column_one');
 $column_two = get_sub_field('columns_content_column_two');
 
 $wrapper_classes = Zotefoams_Theme_Helper::get_wrapper_classes([
-    'component' => 'columns-content',
+    'component' => 'columns-content grey-text fs-300',
     'theme'     => 'none',
     'spacing'   => 'padding-t-b-100',
     'container' => '',
@@ -43,13 +43,13 @@ $wrapper_classes = Zotefoams_Theme_Helper::get_wrapper_classes([
 		<?php endif; ?>
 
 		<?php if ($column_one): ?>
-			<div class="columns-content__column grey-text fs-300">
+			<div class="columns-content__column">
 				<?php echo wp_kses_post($column_one); ?>
 			</div>
 		<?php endif; ?>
 
 		<?php if ($column_two): ?>
-			<div class="columns-content__column grey-text fs-300">
+			<div class="columns-content__column">
 				<?php echo wp_kses_post($column_two); ?>
 			</div>
 		<?php endif; ?>
