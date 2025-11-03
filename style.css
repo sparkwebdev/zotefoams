@@ -4339,6 +4339,11 @@ a.read-more.hl.arrow:focus::after {
 .icons-grid__wrapper {
   position: relative;
 }
+@media screen and (max-width: 47.99rem) {
+  .icons-grid__wrapper {
+    width: 100%;
+  }
+}
 .icons-grid__grid {
   display: grid;
   grid-template-columns: 1fr;
@@ -4357,7 +4362,7 @@ a.read-more.hl.arrow:focus::after {
 .icons-grid__item {
   position: relative;
   margin-top: 70px;
-  padding: 0 40px 40px;
+  padding: 0 5% 40px;
   transition: all 0.3s ease;
   overflow: visible;
   min-height: min(400px, 50vh);
