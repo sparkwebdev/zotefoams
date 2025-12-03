@@ -578,7 +578,6 @@
 				spaceBetween: 10,
 				on: {
 					slideChangeTransitionStart() {
-						// When image carousel is swiped, trigger text animations
 						animateTextSlide( textSwiper );
 					},
 				},
