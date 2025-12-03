@@ -212,7 +212,9 @@
 	            const submenuId = `mobile-submenu-${index}`;
 	            submenu.setAttribute('id', submenuId);
 	            toggle.setAttribute('aria-controls', submenuId);
-	            toggle.setAttribute('aria-expanded', 'false');
+	            const parentLi = toggle.closest('li');
+	            const isDefaultExpanded = parentLi && parentLi.classList.contains('default-expanded');
+	            toggle.setAttribute('aria-expanded', isDefaultExpanded ? 'true' : 'false');
 	            toggle.addEventListener('click', e => {
 	              e.stopPropagation();
 	              e.preventDefault();

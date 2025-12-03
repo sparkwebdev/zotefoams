@@ -148,7 +148,13 @@ import { ZotefoamsDeviceUtils } from '../utils/dom-utilities.js';
 						const submenuId = `mobile-submenu-${ index }`;
 						submenu.setAttribute( 'id', submenuId );
 						toggle.setAttribute( 'aria-controls', submenuId );
-						toggle.setAttribute( 'aria-expanded', 'false' );
+
+						// Check if parent has .default-expanded class
+						const parentLi = toggle.closest( 'li' );
+						const isDefaultExpanded = parentLi && parentLi.classList.contains( 'default-expanded' );
+
+						// Set initial aria-expanded state
+						toggle.setAttribute( 'aria-expanded', isDefaultExpanded ? 'true' : 'false' );
 
 						toggle.addEventListener( 'click', ( e ) => {
 							e.stopPropagation();

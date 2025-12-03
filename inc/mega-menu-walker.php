@@ -36,7 +36,6 @@ class Mega_Menu_Walker extends Walker_Nav_Menu
         // Add ARIA controls for top-level items with children (for mega menus)
         if (!empty($item->has_children) && $depth === 0) {
             $atts['aria-controls'] = 'mega-menu-' . $item->ID;
-            $atts['aria-expanded'] = 'false';
         }
 
         $atts = apply_filters('nav_menu_link_attributes', $atts, $item, $args, $depth);
