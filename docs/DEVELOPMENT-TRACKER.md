@@ -4,7 +4,7 @@
 
 ### a11y issues
 
-- [ ] **Knowledge Hub menu drobdown keyboard controls** - Space/Enter should show dropdown (like main menu)
+- [ ] **Knowledge Hub menu drobdown keyboard controls** - Enter should link Knowledge Hub
 - [ ] **Split Carousel keyboard controls** - Keyboard navigation could be improved for better accessibility
 - [ ] **Step Slider keyboard interaction** - Keyboard navigation could be improved for better accessibility
 - [ ] **Screen reader ARIA labels** - Test and improve ARIA labels for carousel announcements, button labels, form fields, and dynamic content updates
@@ -16,8 +16,8 @@
 
 ### Other issues
 
+- [ ] **Git publish to sites pipeline** - Auto deploy on PR
 - [ ] **Image Banner autoplay pause** - Hovering on Next button should pause slide autoplay
-- [ ] **iPad Pro menu display mismatch** - Desktop view displays on ipad Pro but menu interactions are mobile
 - [ ] **File list filter visibility** - Filter dropdown shouldn't show when there's only one category
 - [ ] **Hardcoded parent ID in dual_carousel.php** - Line 14 has hardcoded parent ID 11 for arrow color - should use page title/slug lookup instead
 - [ ] **Remove .section-list functionality** - Not used, can be removed from codebase

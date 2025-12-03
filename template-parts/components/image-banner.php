@@ -1,12 +1,13 @@
 <?php 
 // Generate classes to match original structure exactly
 $wrapper_classes = 'image-banner swiper swiper-image';
-
+$slide_index = 0;
 if (have_rows('page_header_image')): ?>
 	<div class="<?php echo $wrapper_classes; ?>">
 		<div class="swiper-wrapper">
 
 			<?php while (have_rows('page_header_image')): the_row();
+				$slide_index++;
 				// Get field data using safe helper functions
 				$image_id = zotefoams_get_sub_field_safe('image', 0, 'int');
 				$title = zotefoams_get_sub_field_safe('title', get_the_title(), 'string');
@@ -14,6 +15,7 @@ if (have_rows('page_header_image')): ?>
 				$caption = zotefoams_get_sub_field_safe('caption', '', 'string');
 				$link = zotefoams_get_sub_field_safe('link', [], 'array');
 				$image_url = wp_get_attachment_image_url($image_id, 'large') ?: get_template_directory_uri() . '/images/placeholder.png';
+				$heading_tag = ($slide_index === 1) ? 'h1' : 'h2';
 			?>
 				<div class="swiper-slide image-cover"
 					style="background-image:url(<?php echo esc_url($image_url); ?>);"
@@ -23,9 +25,9 @@ if (have_rows('page_header_image')): ?>
 
 					<div class="swiper-inner padding-50 white-text">
 						<div class="title-button">
-							<h1 class="fw-extrabold fs-900 uppercase margin-b-30 animate__animated" style="opacity:0;">
+							<<?php echo $heading_tag; ?> class="fw-extrabold fs-900 uppercase margin-b-30 animate__animated" style="opacity:0;">
 								<?php echo esc_html($title); ?>
-							</h1>
+							</<?php echo $heading_tag; ?>>
 							<?php if (!empty($link)): ?>
 								<a href="<?php echo esc_url($link['url']); ?>"
 									class="btn white outline arrow animate__animated"

@@ -4,7 +4,7 @@ Theme URI: http://underscores.me/
 Author: David Park
 Author URI: http://underscores.me/
 Description: Description
-Version: 3.3.1
+Version: 3.3.2
 Tested up to: 5.4
 Requires PHP: 5.6
 License: GNU General Public License v2 or later
@@ -3320,7 +3320,7 @@ a.read-more.hl.arrow:focus::after {
   z-index: 1;
 }
 
-.swiper-image .swiper-inner h1 {
+.swiper-image .swiper-inner .title-button {
   max-width: 1200px;
 }
 
