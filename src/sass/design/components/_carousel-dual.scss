@@ -51,6 +51,10 @@
   margin: 0 auto;
 }
 
+.swiper-dual-carousel-text .animate__animated:not(.value) {
+  opacity: 0;
+}
+
 .swiper-dual-carousel .carousel-navigation {
   display: flex;
   flex-direction: column;

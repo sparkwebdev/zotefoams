@@ -4,7 +4,7 @@ Theme URI: http://underscores.me/
 Author: David Park
 Author URI: http://underscores.me/
 Description: Description
-Version: 3.3.2
+Version: 3.3.3
 Tested up to: 5.4
 Requires PHP: 5.6
 License: GNU General Public License v2 or later
@@ -781,7 +781,7 @@ textarea {
  *--------------------------------------------- */
 /* Responsive Font Sizes with Relative Line Heights */
 .fs-900 {
-  font-size: 120px;
+  font-size: 110px;
   line-height: 0.9;
   text-wrap: balance;
 }
@@ -826,6 +826,11 @@ textarea {
   line-height: 1.5;
 }
 
+@media screen and (max-width: 1400px) {
+  .fs-900 {
+    font-size: 90px;
+  }
+}
 @media screen and (max-width: 1200px) {
   .fs-900 {
     font-size: 74px;
@@ -6440,6 +6445,10 @@ html:has(.zf-history) {
   margin: 0 auto;
 }
 
+.swiper-dual-carousel-text .animate__animated:not(.value) {
+  opacity: 0;
+}
+
 .swiper-dual-carousel .carousel-navigation {
   display: flex;
   flex-direction: column;
@@ -6571,5 +6580,4 @@ html:has(.zf-history) {
     left: 5%;
   }
 }
-
 /*# sourceMappingURL=style.css.map */

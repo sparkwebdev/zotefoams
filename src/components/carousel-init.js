@@ -83,6 +83,32 @@ function initCarousels() {
 			el.style.opacity = '0';
 		} );
 
+		// Shared animation function for text carousel slides
+		const animateTextSlide = ( swiper ) => {
+			// Hide animated elements in non-active slides
+			swiper.slides.forEach( ( slide, slideIndex ) => {
+				if ( slideIndex !== swiper.activeIndex ) {
+					const animatedElements = slide.querySelectorAll( '.animate__animated:not(.value)' );
+					animatedElements.forEach( ( el ) => {
+						el.style.opacity = '0';
+						el.classList.remove( 'animate__fadeInUp', 'animate__fadeInDown', 'animate__fadeInLeft', 'animate__fadeInRight' );
+					} );
+				}
+			} );
+
+			// Immediately animate elements in the active slide
+			const activeSlide = swiper.slides[ swiper.activeIndex ];
+			if ( activeSlide ) {
+				const animatedElements = activeSlide.querySelectorAll( '.animate__animated:not(.value)' );
+				animatedElements.forEach( ( el, index ) => {
+					setTimeout( () => {
+						el.style.opacity = '1';
+						el.classList.add( 'animate__fadeInDown' );
+					}, index * 200 ); // Stagger animations
+				} );
+			}
+		};
+
 		const textSwiper = new Swiper( textCarousel, {
 			loop: true,
 			effect: 'fade',
@@ -96,28 +122,7 @@ function initCarousels() {
 			},
 			on: {
 				slideChangeTransitionStart() {
-					// Hide animated elements in non-active slides
-					this.slides.forEach( ( slide, slideIndex ) => {
-						if ( slideIndex !== this.activeIndex ) {
-							const animatedElements = slide.querySelectorAll( '.animate__animated:not(.value)' );
-							animatedElements.forEach( ( el ) => {
-								el.style.opacity = '0';
-								el.classList.remove( 'animate__fadeInUp', 'animate__fadeInDown', 'animate__fadeInLeft', 'animate__fadeInRight' );
-							} );
-						}
-					} );
-
-					// Immediately animate elements in the active slide
-					const activeSlide = this.slides[ this.activeIndex ];
-					if ( activeSlide ) {
-						const animatedElements = activeSlide.querySelectorAll( '.animate__animated:not(.value)' );
-						animatedElements.forEach( ( el, index ) => {
-							setTimeout( () => {
-								el.style.opacity = '1';
-								el.classList.add( 'animate__fadeInDown' );
-							}, index * 200 ); // Stagger animations
-						} );
-					}
+					animateTextSlide( this );
 				},
 				slideChangeTransitionEnd() {
 					// Animation now happens on start, not end
@@ -141,6 +146,11 @@ function initCarousels() {
 		const imageSwiper = new Swiper( imageCarousel, {
 			loop: true,
 			spaceBetween: 10,
+			on: {
+				slideChangeTransitionStart() {
+					animateTextSlide( textSwiper );
+				},
+			},
 		} );
 
 		// Sync carousels

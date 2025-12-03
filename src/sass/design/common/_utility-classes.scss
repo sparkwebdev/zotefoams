@@ -6,7 +6,7 @@
 /* Responsive Font Sizes with Relative Line Heights */
 
 .fs-900 {
-  font-size: 120px;
+  font-size: 110px;
   line-height: 0.9;
   text-wrap: balance;
 }
@@ -49,6 +49,12 @@
 .fs-100 {
   font-size: 14px;
   line-height: 1.5;
+}
+
+@media screen and (max-width: 1400px) {
+  .fs-900 {
+    font-size: 90px;
+  }
 }
 
 @media screen and (max-width: 1200px) {
