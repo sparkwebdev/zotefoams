@@ -1,5 +1,8 @@
-.related-links-box {
+.related-links-box:not([class*="margin-t-"]) {
   margin-top: 50px;
+}
+
+.related-links-box:not([class*="margin-b-"]) {
   margin-bottom: 40px;
 }
 

@@ -41,6 +41,9 @@ function zotefoams_enqueue_assets()
     ));
 
 
+    // Enqueue related-links-box block styles (also used outside the block editor via flexible content)
+    wp_enqueue_style( 'acf-related-links-box-style' );
+
     // Load Animate.css for animations
     wp_enqueue_style('animate-css', 'https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css', array(), '4.1.1');
 
