@@ -72,7 +72,7 @@ function zotefoams_populate_acf_with_wpforms($field)
 add_filter('acf/load_field/name=show_hide_forms_form', 'zotefoams_populate_acf_with_wpforms');
 
 /**
- * Populate ACF select field with brand pages from "Our brands" hierarchy.
+ * Populate ACF select field with brand pages from "Our Materials" hierarchy.
  *
  * @param array $field The field array.
  * @return array Modified field array.
@@ -82,8 +82,8 @@ function zotefoams_populate_acf_with_brands($field)
     // Clear existing choices
     $field['choices'] = [];
 
-    // Get the page ID for 'Our brands' (case-insensitive)
-    $brands_page_id = zotefoams_get_page_id_by_title('Our brands');
+    // Get the page ID for 'Our Materials' from constant
+    $brands_page_id = defined('ZOTEFOAMS_OUR_MATERIALS_PAGE_ID') ? ZOTEFOAMS_OUR_MATERIALS_PAGE_ID : null;
 
     if ($brands_page_id) {
         // Get child and grandchild pages

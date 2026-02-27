@@ -67,28 +67,31 @@ if ($documents_list) {
             $all_brands = isset($row['all_brands']) && $row['all_brands'] ? true : false;
 
             if ($all_brands) {
-                // Get the page ID of "Our Brands"
-                $our_brands_page_id = zotefoams_get_page_id_by_title('Our Brands');
+                // Get the "Our Materials" page ID from constant
+                $our_brands_page_id = defined('ZOTEFOAMS_OUR_MATERIALS_PAGE_ID') ? ZOTEFOAMS_OUR_MATERIALS_PAGE_ID : null;
 
-                // Query all descendant pages (child, grandchild, etc.) of "Our Brands"
-                $args = array(
-                    'child_of'    => $our_brands_page_id,
-                    'sort_column' => 'post_title',
-                    'sort_order'  => 'ASC',
-                    'post_type'   => 'page',
-                );
-                $child_pages = get_pages($args);
+                // Only proceed if we have a valid page ID
+                if ($our_brands_page_id) {
+                    // Query all descendant pages (child, grandchild, etc.) of "Our Materials"
+                    $args = array(
+                        'child_of'    => $our_brands_page_id,
+                        'sort_column' => 'post_title',
+                        'sort_order'  => 'ASC',
+                        'post_type'   => 'page',
+                    );
+                    $child_pages = get_pages($args);
 
-                if (! empty($child_pages)) {
-                    foreach ($child_pages as $child) {
-                        $brand_id = $child->ID;
-                        $associated_brand_ids[] = $brand_id;
-                        $brand_title = get_the_title($brand_id);
-                        $associated_brand_labels[] = $brand_title;
+                    if (! empty($child_pages)) {
+                        foreach ($child_pages as $child) {
+                            $brand_id = $child->ID;
+                            $associated_brand_ids[] = $brand_id;
+                            $brand_title = get_the_title($brand_id);
+                            $associated_brand_labels[] = $brand_title;
 
-                        // Build unique filter options.
-                        if (! isset($brands[$brand_id])) {
-                            $brands[$brand_id] = $brand_title;
+                            // Build unique filter options.
+                            if (! isset($brands[$brand_id])) {
+                                $brands[$brand_id] = $brand_title;
+                            }
                         }
                     }
                 }
@@ -136,7 +139,7 @@ if ($documents_list) {
 <div class="cont-m padding-t-b-100 theme-none">
     <?php if (! empty($documents_array)) : ?>
         <div data-component="file-list">
-            <?php if (($show_categories_filter && ! empty($categories)) || ($show_brands_filter && ! empty($brands))) : ?>
+            <?php if (($show_categories_filter && count($categories) > 1) || ($show_brands_filter && count($brands) > 1)) : ?>
                 <div class="file-list__dropdown">
                     <button id="filter-toggle" class="file-list__dropdown-button hl arrow">
                         Filter

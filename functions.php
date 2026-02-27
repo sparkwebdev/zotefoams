@@ -13,6 +13,14 @@ if (!defined('_S_VERSION')) {
 }
 
 /**
+ * Define key page IDs for theme functionality
+ * These should match the actual page IDs in your WordPress installation
+ */
+if (!defined('ZOTEFOAMS_OUR_MATERIALS_PAGE_ID')) {
+    define('ZOTEFOAMS_OUR_MATERIALS_PAGE_ID', 9); // "Our Materials" page ID
+}
+
+/**
  * Load theme modules in order of dependency
  */
 
