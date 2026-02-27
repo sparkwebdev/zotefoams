@@ -1,4 +1,7 @@
 <?php
+// Enqueue the block's registered stylesheet (registered via block.json)
+wp_enqueue_style( 'acf-related-links-box-style' );
+
 // Get field data using safe helper functions
 $title = get_sub_field('related_links_box_title'); // Keep HTML intact
 $links = zotefoams_get_sub_field_safe('related_links_box_links', [], 'array');
