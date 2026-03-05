@@ -60,9 +60,8 @@
   },
   "scripts": {
     "build": "rollup -c && npm run build:sass",
-    "build:production": "NODE_ENV=production rollup -c && npm run build:sass:production",
+    "build:production": "NODE_ENV=production rollup -c && NODE_ENV=production npm run build:sass",
     "build:sass": "sass src/sass/style.scss:style.css --style=expanded --source-map && postcss style.css -o style.css",
-    "build:sass:production": "sass src/sass/style.scss:style.css --style=compressed --no-source-map && postcss style.css -o style.css",
     "watch:sass": "sass src/sass/style.scss:style.css --watch --style=expanded --source-map",
     "watch:postcss": "postcss style.css -o style.css --watch",
     "lint": "eslint 'src/**/*.js' --fix && stylelint 'src/sass/**/*.scss' --fix && prettier --write 'src/sass/**/*.scss'",

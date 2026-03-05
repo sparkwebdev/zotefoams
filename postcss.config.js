@@ -15,6 +15,8 @@
 //
 // =============================================================================
 
+const isProduction = process.env.NODE_ENV === 'production';
+
 export default {
 	plugins: {
 		autoprefixer: {
@@ -24,6 +26,7 @@ export default {
 				'not dead',         // Exclude browsers without updates for 24 months
 				'not ie 11'         // Exclude IE11 (no longer supported)
 			]
-		}
+		},
+		...(isProduction && { cssnano: {} })
 	}
 };
