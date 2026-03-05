@@ -1,7 +1,7 @@
 <?php
 // Get field data using safe helper functions
 $title              = zotefoams_get_sub_field_safe('financial_documents_picker_title', '', 'string');
-$text               = get_sub_field('financial_documents_picker_text'); // Keep HTML intact
+$text               = zotefoams_get_sub_field_safe('financial_documents_picker_text', '', 'html');
 $documents_by_year  = zotefoams_get_sub_field_safe('documents_by_year', [], 'array');
 $instance_id        = uniqid('docs_'); // Unique ID for JS bindings
 $has_intro_content  = !empty($text);

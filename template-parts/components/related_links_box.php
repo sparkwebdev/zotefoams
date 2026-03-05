@@ -1,6 +1,6 @@
 <?php
 // Get field data using safe helper functions
-$title = get_sub_field('related_links_box_title'); // Keep HTML intact
+$title = zotefoams_get_sub_field_safe('related_links_box_title', '', 'html');
 $links = zotefoams_get_sub_field_safe('related_links_box_links', [], 'array');
 
 // Get theme-aware wrapper classes

@@ -110,7 +110,7 @@ The theme follows modern WordPress practices with a modular functions.php struct
 - JavaScript source: `src/` (ES modules)
 - Compiled assets: `style.css`, `js/bundle.js`
 - ACF configuration: `acf/acf-json/`
-- Documentation: `docs/` (BUILD.md, CLAUDE.md, DEVELOPMENT-TRACKER.md, meganav.md)
+- Documentation: `docs/` (BUILD.md, CLAUDE.md, COMPONENT-LIBRARY.md, DEVELOPMENT-TRACKER.md, meganav.md)
 
 ## Theme Deployment
 The theme includes a production bundle command that creates a clean, distributable package:

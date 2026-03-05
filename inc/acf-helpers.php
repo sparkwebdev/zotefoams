@@ -58,7 +58,10 @@ function zotefoams_get_field_safe($field_name, $post_id = false, $default = '', 
         
         case 'image':
             return (is_array($value) && isset($value['url'])) ? $value : $default;
-        
+
+        case 'html':
+            return is_string($value) ? wp_kses_post($value) : $default;
+
         default:
             return $value;
     }
@@ -74,6 +77,11 @@ function zotefoams_get_field_safe($field_name, $post_id = false, $default = '', 
  */
 function zotefoams_get_sub_field_safe($field_name, $default = '', $type = 'string')
 {
+    // Preview mode: return dummy data if available
+    if (isset($GLOBALS['zotefoams_preview_fields'][$field_name])) {
+        return $GLOBALS['zotefoams_preview_fields'][$field_name];
+    }
+
     if (!function_exists('get_sub_field')) {
         return $default;
     }
@@ -123,7 +131,10 @@ function zotefoams_validate_field_value($value, $default, $type)
         
         case 'image':
             return (is_array($value) && isset($value['url'])) ? $value : $default;
-        
+
+        case 'html':
+            return is_string($value) ? wp_kses_post($value) : $default;
+
         default:
             return $value;
     }

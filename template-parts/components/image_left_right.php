@@ -2,7 +2,7 @@
 $position  = zotefoams_get_sub_field_safe('image_left_right_position', false, 'boolean');
 $image     = zotefoams_get_sub_field_safe('image_left_right_image', [], 'array');
 $heading   = zotefoams_get_sub_field_safe('image_left_right_heading', '', 'string');
-$text      = get_sub_field('image_left_right_text');
+$text      = zotefoams_get_sub_field_safe('image_left_right_text', '', 'html');
 $icon_list = zotefoams_get_sub_field_safe('image_left_right_icon_list', [], 'array');
 
 $image_url = Zotefoams_Image_Helper::get_image_url($image, 'large', 'image-left-right');

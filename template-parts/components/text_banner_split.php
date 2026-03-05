@@ -2,7 +2,7 @@
 // Get field data using safe helper functions
 $image = zotefoams_get_sub_field_safe('text_banner_split_image', [], 'image');
 $title = zotefoams_get_sub_field_safe('text_banner_split_title', '', 'string');
-$text  = get_sub_field('text_banner_split_text'); // Keep HTML intact
+$text  = zotefoams_get_sub_field_safe('text_banner_split_text', '', 'html');
 $link  = zotefoams_get_sub_field_safe('text_banner_split_link', [], 'url');
 
 $image_url = Zotefoams_Image_Helper::get_image_url($image, 'large', 'text-banner-split');

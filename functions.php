@@ -75,6 +75,9 @@ require get_template_directory() . '/inc/admin-editor.php';
 // Navigation walker
 require get_template_directory() . '/inc/mega-menu-walker.php';
 
+// Component library (admin-only preview page)
+require get_template_directory() . '/inc/component-library.php';
+
 // Helper classes
 require get_template_directory() . '/inc/helpers/class-utility-functions.php';
 require get_template_directory() . '/inc/helpers/class-theme-helper.php';

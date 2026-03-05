@@ -3,7 +3,7 @@
 $image      = zotefoams_get_sub_field_safe('split_video_two_image', [], 'image');
 $video_url  = zotefoams_get_sub_field_safe('split_video_two_video_url', '', 'string');
 $title      = zotefoams_get_sub_field_safe('split_video_two_title', '', 'string');
-$text       = get_sub_field('split_video_two_text'); // Keep HTML intact
+$text       = zotefoams_get_sub_field_safe('split_video_two_text', '', 'html');
 
 $image_url = Zotefoams_Image_Helper::get_image_url($image, 'large', 'split-video');
 

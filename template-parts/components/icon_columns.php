@@ -1,7 +1,7 @@
 <?php
 // Get field data using safe helper functions
-$overline = get_sub_field('icon_columns_intro_overline'); // Keep HTML intact
-$intro    = get_sub_field('icon_columns_intro'); // Keep HTML intact
+$overline = zotefoams_get_sub_field_safe('icon_columns_intro_overline', '', 'html');
+$intro    = zotefoams_get_sub_field_safe('icon_columns_intro', '', 'html');
 $columns  = zotefoams_get_sub_field_safe('icon_columns_columns', [], 'array');
 $isVariant = zotefoams_get_sub_field_safe('icon_columns_variant', false, 'boolean');
 

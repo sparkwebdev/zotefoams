@@ -11,41 +11,45 @@ $pick_count        = zotefoams_get_sub_field_safe('document_list_pick_count', 0,
 $documents_array = [];
 
 // Helper: Category info with fallback icon
-function get_category_data($category_id, $fallback_title = 'Uncategorized')
-{
-    $name = $fallback_title;
-    $image_url = get_template_directory_uri() . '/images/icon-01.svg';
+if (!function_exists('get_category_data')) {
+    function get_category_data($category_id, $fallback_title = 'Uncategorized')
+    {
+        $name = $fallback_title;
+        $image_url = get_template_directory_uri() . '/images/icon-01.svg';
 
-    if ($category_id) {
-        $term = get_term($category_id);
-        if ($term && !is_wp_error($term)) {
-            $name = $term->name;
+        if ($category_id) {
+            $term = get_term($category_id);
+            if ($term && !is_wp_error($term)) {
+                $name = $term->name;
+            }
+
+            $image_id = get_field('category_image', 'category_' . $category_id);
+            if ($image_id) {
+                $image_url = Zotefoams_Image_Helper::get_image_url($image_id, 'thumbnail', 'thumbnail');
+            }
         }
 
-        $image_id = get_field('category_image', 'category_' . $category_id);
-        if ($image_id) {
-            $image_url = Zotefoams_Image_Helper::get_image_url($image_id, 'thumbnail', 'thumbnail');
-        }
+        return [
+            'name'  => $name,
+            'image' => $image_url,
+        ];
     }
-
-    return [
-        'name'  => $name,
-        'image' => $image_url,
-    ];
 }
 
 // Helper: Create document object
-function create_document_entry($file, $category_data, $category_id, $all_brands = false, $brands = [])
-{
-    return (object) [
-        'file' => $file,
-        'category_label' => $category_data['name'],
-        'category_id' => $category_id,
-        'category_image' => $category_data['image'],
-        'all_brands' => $all_brands,
-        'associated_brands' => $brands,
-        'associated_brands_label' => array_map('get_the_title', $brands),
-    ];
+if (!function_exists('create_document_entry')) {
+    function create_document_entry($file, $category_data, $category_id, $all_brands = false, $brands = [])
+    {
+        return (object) [
+            'file' => $file,
+            'category_label' => $category_data['name'],
+            'category_id' => $category_id,
+            'category_image' => $category_data['image'],
+            'all_brands' => $all_brands,
+            'associated_brands' => $brands,
+            'associated_brands_label' => array_map('get_the_title', $brands),
+        ];
+    }
 }
 
 // Latest behaviour

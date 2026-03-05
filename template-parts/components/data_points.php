@@ -4,12 +4,14 @@ $title = zotefoams_get_sub_field_safe('data_points_title', '', 'string');
 $items = zotefoams_get_sub_field_safe('data_points_items', [], 'array');
 
 // Function to determine the number of decimal places
-function getDecimalPlaces($number)
-{
-    if (strpos((string)$number, '.') !== false) {
-        return strlen(substr(strrchr((string)$number, '.'), 1));
+if (!function_exists('getDecimalPlaces')) {
+    function getDecimalPlaces($number)
+    {
+        if (strpos((string)$number, '.') !== false) {
+            return strlen(substr(strrchr((string)$number, '.'), 1));
+        }
+        return 0;
     }
-    return 0;
 }
 
 // Get theme-aware wrapper classes

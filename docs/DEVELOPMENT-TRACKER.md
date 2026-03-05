@@ -22,7 +22,7 @@
 - [ ] **Hardcoded parent ID in dual_carousel.php** - Line 14 has hardcoded parent ID 11 for arrow color - should use page title/slug lookup instead
 - [ ] **Remove .section-list functionality** - Not used, can be removed from codebase
 - [ ] **Knowledge Hub video support** - Implement video modal for YouTube links (code stashed as 'knowledge-hub-videos')
-- [ ] **Components Overview page** - Create overview page for testing all components
+- [x] **Components Overview page** - Component Library at `/component-library` with dummy data preview, stress testing, and variant support
 - [ ] **ACF fields reorganization** - Tidy field layouts, add conditional logic
 - [ ] **Contact Form Captcha** - Add captcha protection to contact form
 - [ ] **Semantic HTML containers** - Change component wrapper `<div>` to `<section>` elements

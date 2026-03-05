@@ -3,8 +3,8 @@
 $image       = zotefoams_get_sub_field_safe('split_video_one_image', [], 'image');
 $video_url   = zotefoams_get_sub_field_safe('split_video_one_video_url', '', 'string');
 $title       = zotefoams_get_sub_field_safe('split_video_one_title', '', 'string');
-$text        = get_sub_field('split_video_one_text'); // Keep HTML intact
-$extra_text  = get_sub_field('split_video_one_extra_text'); // Keep HTML intact
+$text        = zotefoams_get_sub_field_safe('split_video_one_text', '', 'html');
+$extra_text  = zotefoams_get_sub_field_safe('split_video_one_extra_text', '', 'html');
 $link        = zotefoams_get_sub_field_safe('split_video_one_link', [], 'url');
 $variant     = zotefoams_get_sub_field_safe('split_video_one_variant', false, 'boolean');
 
