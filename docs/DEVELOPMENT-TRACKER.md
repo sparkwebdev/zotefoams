@@ -32,6 +32,14 @@
 - [ ] **Industries page title** - Update page picker to handle Markets/Industries title change
 - [ ] **Video Knowledge Hub** - Update to accept video files instead of just documents
 - [ ] **Filter dropdown refactor** - Add click-outside to close, hide when single category, improve UX
+- [ ] **Split Carousel shared state bug** - Left/right navigation controls all instances simultaneously instead of scoping to the individual carousel
+- [ ] **Multi Item Carousel shared state bug** - Same issue as Split Carousel; navigation controls affect all instances rather than scoping to individual carousel
+- [ ] **Tabbed Split shared state bug** - Clicking tabs on one instance changes all other instances; not scoped to individual component
+- [ ] **Step Slider overline positioning** - Overline title (`step_slider_slide_overline`) renders outside the dark slider area when JS doesn't fully initialise (e.g. component library); on live site it positions correctly within the component
+- [ ] **Calendar Carousel shared state bug** - Same issue; navigation controls affect all instances rather than scoping to individual carousel
+- [ ] **Missing paragraph spacing in components** - Multiple paragraphs in component content areas render without vertical spacing between them (visible across several components)
+- [x] **data_points.php function redeclaration** - `getDecimalPlaces()` declared at file scope causes fatal error when template is included multiple times. Fixed with `function_exists()` check
+- [x] **document_list.php function redeclaration** - `get_category_data()` and `create_document_entry()` declared at file scope cause fatal error when template is included multiple times. Fixed with `function_exists()` checks
 
 ## Pending Optimizations
 
