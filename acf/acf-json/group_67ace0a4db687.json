@@ -1051,6 +1051,27 @@
                                     "parent_repeater": "field_67af01234abcdef1"
                                 }
                             ]
+                        },
+                        {
+                            "key": "field_67af01234abcdef8",
+                            "label": "Visual Variant",
+                            "name": "dual_carousel_variant",
+                            "aria-label": "",
+                            "type": "true_false",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "message": "Apply component variant - light grey background with contained images (no cropping)",
+                            "default_value": 0,
+                            "allow_in_bindings": 0,
+                            "ui_on_text": "",
+                            "ui_off_text": "",
+                            "ui": 1
                         }
                     ],
                     "min": "",
@@ -5229,5 +5250,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1761939866
+    "modified": 1762177600
 }
