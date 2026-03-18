@@ -28,6 +28,7 @@
     "@types/node": "^22.13.13",
     "@wordpress/eslint-plugin": "^22.20.0",
     "autoprefixer": "^10.4.21",
+    "baseline-browser-mapping": "^2.10.0",
     "browser-sync": "^3.0.4",
     "concurrently": "^9.1.2",
     "cssnano": "^7.1.0",

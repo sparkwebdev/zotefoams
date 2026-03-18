@@ -890,11 +890,12 @@
 			const progress = Math.min( ( timestamp - startTimestamp ) / duration, 1 );
 			const value = ( progress * ( end - start ) + start );
 
-			// Format value with the correct decimals and remove trailing zeros
+			// Format value with the correct decimals
 			let formattedValue = value.toFixed( decimals );
-			if ( decimals > 0 && ! suffix.includes( '%' ) ) {
-				formattedValue = formattedValue.replace( /\.?0+$/, '' );
-			}
+			// Trailing zero removal disabled to preserve decimal formatting (e.g. 38.00p)
+			// if ( decimals > 0 && ! suffix.includes( '%' ) ) {
+			// 	formattedValue = formattedValue.replace( /\.?0+$/, '' );
+			// }
 
 			// Apply the formatted value
 			obj.innerHTML = ( prefix || '' ) + formattedValue + ( suffix || '' );
