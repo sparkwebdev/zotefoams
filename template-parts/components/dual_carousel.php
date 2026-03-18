@@ -1,21 +1,18 @@
 <?php
 // Get field data using safe helper functions
 $slides = zotefoams_get_sub_field_safe('dual_carousel_slides', [], 'array');
-$variant = zotefoams_get_sub_field_safe('dual_carousel_variant', false, 'bool');
 
-if ($variant) {
-    // Variant ON: light theme, contained images
-    $theme_style = 'light-grey-bg theme-light';
-    $theme_button_style = 'black';
-    $arrow_color = 'black';
-    $object_fit = 'contain';
-} else {
-    // Default: black theme, full bleed images
-    $theme_style = 'black-bg white-text theme-dark';
-    $theme_button_style = 'white';
-    $arrow_color = 'white';
-    $object_fit = 'cover';
-}
+$markets_page_id = zotefoams_get_page_id_by_title('Markets') ?: zotefoams_get_page_id_by_title('Industries');
+$is_market_pages = $markets_page_id && (get_the_ID() == $markets_page_id || $post->post_parent == $markets_page_id);
+
+$theme_style = $is_market_pages ? 'light-grey-bg theme-light' : 'black-bg white-text theme-dark';
+$theme_button_style = $is_market_pages ? 'black' : 'white';
+
+// Determine arrow color based on page context
+$arrow_color = 'white'; // Default
+$parent_id = wp_get_post_parent_id(get_the_ID());
+$use_black_arrows = ($parent_id == 11); // Hardcoded logic
+$arrow_color = $use_black_arrows ? 'black' : 'white';
 
 // Generate classes to match original structure exactly
 $wrapper_classes = 'swiper-dual-carousel text-center ' . $theme_style;
@@ -84,7 +81,7 @@ $wrapper_classes = 'swiper-dual-carousel text-center ' . $theme_style;
                             <img
                                 src="<?php echo esc_url($bg_image_url); ?>"
                                 alt="<?php echo esc_attr($bg_alt); ?>"
-                                <?php if ($object_fit) echo 'style="object-fit: ' . esc_attr($object_fit) . ' !important;"'; ?> />
+                                <?php if ($use_black_arrows) echo 'style="object-fit: contain !important;"'; ?> />
                         </div>
                     </div>
                 <?php endforeach; ?>
