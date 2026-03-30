@@ -51,6 +51,7 @@ function zotefoams_setup()
     add_theme_support('post-thumbnails');
     add_image_size('thumbnail-square', 350, 350, true); // Custom image size: cropped
     add_image_size('thumbnail-product', 690, 460, true); // Custom image size: cropped
+    add_image_size('thumbnail-landscape', 960, 540, true); // 16:9 landscape
     add_image_size('small', 700, 9999, false); // Custom image size: not cropped
 
     // This theme uses wp_nav_menu() in one location.

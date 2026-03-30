@@ -69,7 +69,9 @@ $news_centre_ID  = zotefoams_get_page_for_posts_id();
       foreach ($news_items as $post) :
         setup_postdata($post);
 
-        $image_url  = get_the_post_thumbnail_url($post, 'large') ?: get_template_directory_uri() . '/images/placeholder.png';
+        $display_image_id = Zotefoams_Image_Helper::get_post_display_image_id(get_the_ID());
+        $image_url  = $display_image_id ? wp_get_attachment_image_url($display_image_id, 'thumbnail-landscape') : false;
+        $image_url  = $image_url ?: get_template_directory_uri() . '/images/placeholder.png';
         $categories = get_the_category();
         $category   = ! empty($categories) ? esc_html($categories[0]->name) : '';
       ?>

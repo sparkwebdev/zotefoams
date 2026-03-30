@@ -40,7 +40,8 @@ $wrapper_classes = 'news-feed cont-m padding-t-b-100 theme-none';
                     $start_date = '';
                     $event_name = '';
                 } else {
-                    $image      = get_the_post_thumbnail_url($news_item->ID, 'medium');
+                    $display_image_id = Zotefoams_Image_Helper::get_post_display_image_id($news_item->ID);
+                    $image      = $display_image_id ? wp_get_attachment_image_url($display_image_id, 'thumbnail-landscape') : null;
                     $categories = get_the_category($news_item->ID);
                     $category   = !empty($categories) ? $categories[0]->name : '';
                     $item_title = get_the_title($news_item->ID);
@@ -53,7 +54,7 @@ $wrapper_classes = 'news-feed cont-m padding-t-b-100 theme-none';
                 $display_title = $event_name ?: $item_title;
                 $heading_class = ($start_date && $behaviour !== 'manual') ? 'fs-400 fw-semibold' : 'fs-400 fw-semibold margin-b-80';
 
-                $image_url = $image ? (is_array($image) ? $image['sizes']['medium'] : $image) : null;
+                $image_url = $image ? (is_array($image) ? ($image['sizes']['thumbnail-landscape'] ?? $image['sizes']['medium'] ?? $image['url']) : $image) : null;
             ?>
                 <div class="feed-item"
                     <?php if ($link && !empty($link['url'])) : ?>

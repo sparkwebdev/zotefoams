@@ -4,7 +4,7 @@ Theme URI: http://underscores.me/
 Author: David Park
 Author URI: http://underscores.me/
 Description: Description
-Version: 3.3.11
+Version: 3.3.12
 Tested up to: 5.4
 Requires PHP: 5.6
 License: GNU General Public License v2 or later
@@ -3608,7 +3608,7 @@ a.read-more.hl.arrow:focus::after {
 }
 
 .feed-image {
-  height: 260px;
+  aspect-ratio: 16/9;
 }
 
 .feed-item a {
@@ -6586,4 +6586,5 @@ html:has(.zf-history) {
     left: 5%;
   }
 }
+
 /*# sourceMappingURL=style.css.map */

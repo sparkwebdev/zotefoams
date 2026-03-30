@@ -21,6 +21,7 @@ class Zotefoams_Image_Helper
     private static $fallback_images = [
         'thumbnail'        => '/images/placeholder-thumbnail.png',
         'thumbnail-square' => '/images/placeholder-thumbnail-square.png',
+        'thumbnail-landscape' => '/images/placeholder.png',
         'large'           => '/images/placeholder.png',
         'banner'          => '/images/placeholder.png',
     ];
@@ -104,6 +105,29 @@ class Zotefoams_Image_Helper
     {
         $fallback = self::$fallback_images[$context] ?? self::$fallback_images['large'];
         return get_template_directory_uri() . $fallback;
+    }
+
+    /**
+     * Get the display image ID for a post, preferring the landscape featured image.
+     *
+     * Checks for an ACF 'landscape_featured_image' field first,
+     * falling back to the standard post thumbnail.
+     *
+     * @param int|null $post_id Post ID (defaults to current post)
+     * @return int|false Image attachment ID or false if none found
+     */
+    public static function get_post_display_image_id($post_id = null)
+    {
+        $post_id = $post_id ?: get_the_ID();
+
+        if (function_exists('get_field')) {
+            $landscape = get_field('landscape_featured_image', $post_id);
+            if ($landscape) {
+                return $landscape;
+            }
+        }
+
+        return get_post_thumbnail_id($post_id);
     }
 
     /**
