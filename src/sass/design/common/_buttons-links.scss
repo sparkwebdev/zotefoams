@@ -32,6 +32,16 @@
   background: #fff;
 }
 
+.btn.black {
+  color: #fff;
+  background: #000;
+}
+
+.btn.black:hover,
+.btn.black:focus {
+  background: #333;
+}
+
 .btn.outline.black {
   color: #000;
   border: 1px solid #000;

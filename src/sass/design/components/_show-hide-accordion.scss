@@ -2,7 +2,7 @@
  *  --------------------------------------------- */
 
 .accordion-items {
-  border-top: 1px solid #ddd;
+  border-top: 1px solid var(--tone-light);
 }
 
 .accordion-header {
@@ -35,11 +35,11 @@
 }
 
 .accordion-item {
-  border-bottom: 1px solid #ddd;
+  border-bottom: 1px solid var(--tone-light);
 }
 
-.accordion-item:hover {
-  border-bottom: 1px solid #333;
+.accordion-item:hover:not(.accordion--compact .accordion-item) {
+  border-bottom: 1px solid var(--color-on-surface);
 }
 
 .accordion-content {
@@ -65,4 +65,48 @@
 
 .open .toggle-icon {
   transform: rotate(180deg);
+}
+
+
+/* Compact variant
+ * --------------------------------------------- */
+.accordion--compact {
+
+  .accordion-header {
+    color: var(--color-text);
+    margin: 6px 0;
+
+    &:hover,
+    &.open {
+      color: #000;
+      font-weight: 700;
+    }
+  }
+
+  .accordion-content {
+    padding-bottom: 24px;
+  }
+
+  .accordion-content p,
+  .accordion-content ul,
+  .accordion-content ol {
+    padding-left: 0;
+  }
+
+  .toggle-icon {
+    font-size: 0;
+    display: inline-block;
+    flex-shrink: 0;
+    width: 8px;
+    height: 8px;
+    border-right: 1px solid currentColor;
+    border-bottom: 1px solid currentColor;
+    transform: rotate(-45deg);
+    transition: transform 0.3s ease;
+    margin-left: 12px;
+  }
+
+  .accordion-header.open .toggle-icon {
+    transform: rotate(45deg);
+  }
 }

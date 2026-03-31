@@ -5189,6 +5189,166 @@
                     ],
                     "min": "",
                     "max": ""
+                },
+                "layout_67e8cf40a1b2c": {
+                    "key": "layout_67e8cf40a1b2c",
+                    "name": "split_accordion_image",
+                    "label": "Split Accordion & Image",
+                    "display": "block",
+                    "sub_fields": [
+                        {
+                            "key": "field_67e8cf40a1b2d",
+                            "label": "Title",
+                            "name": "split_accordion_image_title",
+                            "aria-label": "",
+                            "type": "text",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "default_value": "",
+                            "maxlength": "",
+                            "allow_in_bindings": 0,
+                            "placeholder": "",
+                            "prepend": "",
+                            "append": ""
+                        },
+                        {
+                            "key": "field_67e8cf40a1b2e",
+                            "label": "Image",
+                            "name": "split_accordion_image_image",
+                            "aria-label": "",
+                            "type": "image",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "return_format": "array",
+                            "library": "all",
+                            "min_width": "",
+                            "min_height": "",
+                            "min_size": "",
+                            "max_width": "",
+                            "max_height": "",
+                            "max_size": "",
+                            "mime_types": "",
+                            "allow_in_bindings": 0,
+                            "preview_size": "medium"
+                        },
+                        {
+                            "key": "field_67e8cf40a1b2f",
+                            "label": "Items",
+                            "name": "split_accordion_image_items",
+                            "aria-label": "",
+                            "type": "repeater",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "min": 1,
+                            "layout": "block",
+                            "button_label": "Add Item",
+                            "max": 0,
+                            "rows_per_page": 20,
+                            "collapsed": "",
+                            "sub_fields": [
+                                {
+                                    "key": "field_67e8cf40a1b30",
+                                    "label": "Item Title",
+                                    "name": "split_accordion_image_item_title",
+                                    "aria-label": "",
+                                    "type": "text",
+                                    "instructions": "",
+                                    "required": 0,
+                                    "conditional_logic": 0,
+                                    "wrapper": {
+                                        "width": "",
+                                        "class": "",
+                                        "id": ""
+                                    },
+                                    "default_value": "",
+                                    "maxlength": "",
+                                    "placeholder": "",
+                                    "prepend": "",
+                                    "append": "",
+                                    "parent_repeater": "field_67e8cf40a1b2f"
+                                },
+                                {
+                                    "key": "field_67e8cf40a1b31",
+                                    "label": "Item Content",
+                                    "name": "split_accordion_image_item_content",
+                                    "aria-label": "",
+                                    "type": "wysiwyg",
+                                    "instructions": "",
+                                    "required": 0,
+                                    "conditional_logic": 0,
+                                    "wrapper": {
+                                        "width": "",
+                                        "class": "",
+                                        "id": ""
+                                    },
+                                    "default_value": "",
+                                    "tabs": "visual",
+                                    "toolbar": "basic",
+                                    "media_upload": 0,
+                                    "delay": 0,
+                                    "parent_repeater": "field_67e8cf40a1b2f"
+                                },
+                                {
+                                    "key": "field_67e8cf40a1b32",
+                                    "label": "Item Link",
+                                    "name": "split_accordion_image_item_link",
+                                    "aria-label": "",
+                                    "type": "link",
+                                    "instructions": "",
+                                    "required": 0,
+                                    "conditional_logic": 0,
+                                    "wrapper": {
+                                        "width": "",
+                                        "class": "",
+                                        "id": ""
+                                    },
+                                    "return_format": "array",
+                                    "parent_repeater": "field_67e8cf40a1b2f"
+                                }
+                            ]
+                        },
+                        {
+                            "key": "field_67e8cf40a1b33",
+                            "label": "Visual Variant",
+                            "name": "split_accordion_image_variant",
+                            "aria-label": "",
+                            "type": "true_false",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "message": "Apply component variant - black background with white text",
+                            "default_value": 0,
+                            "ui": 1,
+                            "ui_on_text": "",
+                            "ui_off_text": "",
+                            "allow_in_bindings": 0
+                        }
+                    ],
+                    "min": "",
+                    "max": ""
                 }
             },
             "min": "",
@@ -5229,5 +5389,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1761939866
+    "modified": 1774915200
 }

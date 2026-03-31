@@ -1,10 +1,11 @@
+@charset "UTF-8";
 /*!
 Theme Name: Zotefoams
 Theme URI: http://underscores.me/
 Author: David Park
 Author URI: http://underscores.me/
 Description: Description
-Version: 3.3.14
+Version: 3.3.15
 Tested up to: 5.4
 Requires PHP: 7.4
 License: GNU General Public License v2 or later
@@ -1451,6 +1452,16 @@ textarea {
   color: #000;
   border: 1px solid #fff;
   background: #fff;
+}
+
+.btn.black {
+  color: #fff;
+  background: #000;
+}
+
+.btn.black:hover,
+.btn.black:focus {
+  background: #333;
 }
 
 .btn.outline.black {
@@ -3507,6 +3518,63 @@ a.read-more.hl.arrow:focus::after {
   }
 }
 
+/* Split Accordion & Image
+ * --------------------------------------------- */
+.split-accordion-image__image {
+  min-height: max(480px, 65vh);
+}
+.split-accordion-image__content-inner {
+  width: 100%;
+}
+@media screen and (max-width: 63.99rem) {
+  .split-accordion-image {
+    padding-top: 0;
+  }
+  .split-accordion-image__image {
+    min-height: min(480px, 65vh);
+  }
+  .split-accordion-image__content {
+    width: 90%;
+    margin: 0 auto;
+  }
+}
+@media screen and (min-width: 64rem) {
+  .split-accordion-image {
+    display: flex;
+  }
+  .split-accordion-image > * {
+    width: 50%;
+  }
+  .split-accordion-image__image {
+    order: 2;
+  }
+  .split-accordion-image__content {
+    order: 1;
+    display: flex;
+    align-items: center;
+    align-self: stretch;
+    max-width: calc(700px + 5%);
+    margin-left: auto;
+    padding-left: 5%;
+    padding-right: 5%;
+  }
+}
+
+/* Variant — black background, white text
+ * --------------------------------------------- */
+.split-accordion-image--variant .accordion-items {
+  border-top-color: var(--color-text);
+}
+.split-accordion-image--variant .accordion-item {
+  border-bottom-color: var(--color-text);
+}
+.split-accordion-image--variant .accordion--compact .accordion-header {
+  color: var(--color-text-light);
+}
+.split-accordion-image--variant .accordion--compact .accordion-header:hover, .split-accordion-image--variant .accordion--compact .accordion-header.open {
+  color: #fff;
+}
+
 /* Split Video Two
  *  --------------------------------------------- */
 .split-video-two > :first-child {
@@ -3728,7 +3796,7 @@ a.read-more.hl.arrow:focus::after {
 /* 06 - Show Hide Accordion
  *  --------------------------------------------- */
 .accordion-items {
-  border-top: 1px solid #ddd;
+  border-top: 1px solid var(--tone-light);
 }
 
 .accordion-header {
@@ -3758,11 +3826,11 @@ a.read-more.hl.arrow:focus::after {
   }
 }
 .accordion-item {
-  border-bottom: 1px solid #ddd;
+  border-bottom: 1px solid var(--tone-light);
 }
 
-.accordion-item:hover {
-  border-bottom: 1px solid #333;
+.accordion-item:hover:not(.accordion--compact .accordion-item) {
+  border-bottom: 1px solid var(--color-on-surface);
 }
 
 .accordion-content {
@@ -3788,6 +3856,40 @@ a.read-more.hl.arrow:focus::after {
 
 .open .toggle-icon {
   transform: rotate(180deg);
+}
+
+/* Compact variant
+ * --------------------------------------------- */
+.accordion--compact .accordion-header {
+  color: var(--color-text);
+  margin: 6px 0;
+}
+.accordion--compact .accordion-header:hover, .accordion--compact .accordion-header.open {
+  color: #000;
+  font-weight: 700;
+}
+.accordion--compact .accordion-content {
+  padding-bottom: 24px;
+}
+.accordion--compact .accordion-content p,
+.accordion--compact .accordion-content ul,
+.accordion--compact .accordion-content ol {
+  padding-left: 0;
+}
+.accordion--compact .toggle-icon {
+  font-size: 0;
+  display: inline-block;
+  flex-shrink: 0;
+  width: 8px;
+  height: 8px;
+  border-right: 1px solid currentColor;
+  border-bottom: 1px solid currentColor;
+  transform: rotate(-45deg);
+  transition: transform 0.3s ease;
+  margin-left: 12px;
+}
+.accordion--compact .accordion-header.open .toggle-icon {
+  transform: rotate(45deg);
 }
 
 /* Box columns
