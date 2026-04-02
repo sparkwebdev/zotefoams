@@ -182,3 +182,14 @@ function zotefoams_enqueue_interactive_image_admin_assets()
     }
 }
 add_action('admin_enqueue_scripts', 'zotefoams_enqueue_interactive_image_admin_assets');
+
+/**
+ * Sanitize ACF analytics fields on save.
+ */
+add_filter('acf/update_value/name=google_analytics_measurement_id', function ($value) {
+    return sanitize_text_field($value);
+});
+
+add_filter('acf/update_value/name=linkedin_partner_id', function ($value) {
+    return sanitize_text_field($value);
+});

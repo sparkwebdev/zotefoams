@@ -36,11 +36,11 @@ require get_template_directory() . '/inc/blocks.php';
 // Search functionality and customizations
 require get_template_directory() . '/inc/search.php';
 
-// Advanced Custom Fields configuration
-require get_template_directory() . '/inc/acf-config.php';
-
-// ACF helper functions (must load early for components)
-require get_template_directory() . '/inc/acf-helpers.php';
+// Advanced Custom Fields configuration and helpers (only if ACF is active)
+if (class_exists('ACF')) {
+    require get_template_directory() . '/inc/acf-config.php';
+    require get_template_directory() . '/inc/acf-helpers.php';
+}
 
 // Debug system for better developer experience
 require get_template_directory() . '/inc/debug.php';
@@ -65,8 +65,10 @@ require get_template_directory() . '/inc/integrations.php';
 require get_template_directory() . '/inc/template-functions.php';
 require get_template_directory() . '/inc/template-tags.php';
 
-// ACF integration and extensions
-require get_template_directory() . '/inc/acf.php';
+// ACF integration and extensions (only if ACF is active)
+if (class_exists('ACF')) {
+    require get_template_directory() . '/inc/acf.php';
+}
 
 // Admin customizations
 require get_template_directory() . '/inc/admin.php';
