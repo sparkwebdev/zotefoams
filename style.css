@@ -5,7 +5,7 @@ Theme URI: http://underscores.me/
 Author: David Park
 Author URI: http://underscores.me/
 Description: Description
-Version: 3.3.16
+Version: 3.3.18
 Tested up to: 5.4
 Requires PHP: 7.4
 License: GNU General Public License v2 or later
@@ -3521,7 +3521,16 @@ a.read-more.hl.arrow:focus::after {
 /* Split Accordion & Image
  * --------------------------------------------- */
 .split-accordion-image__image {
+  position: relative;
   min-height: max(480px, 65vh);
+}
+.split-accordion-image__image-layer {
+  position: absolute;
+  inset: 0;
+  transition: opacity 0.3s ease;
+}
+.split-accordion-image__image-layer--b {
+  opacity: 0;
 }
 .split-accordion-image__content-inner {
   width: 100%;

@@ -1,10 +1,10 @@
 <?php
 $title   = zotefoams_get_sub_field_safe('split_accordion_image_title', '', 'string');
-$image   = zotefoams_get_sub_field_safe('split_accordion_image_image', [], 'image');
 $items   = zotefoams_get_sub_field_safe('split_accordion_image_items', [], 'array');
 $variant = zotefoams_get_sub_field_safe('split_accordion_image_variant', false, 'boolean');
 
-$image_url = Zotefoams_Image_Helper::get_image_url($image, 'large', 'split-accordion-image');
+$first_item_image     = !empty($items) && !empty($items[0]['split_accordion_image_item_image']) ? $items[0]['split_accordion_image_item_image'] : [];
+$default_image_url    = Zotefoams_Image_Helper::get_image_url($first_item_image, 'large', 'split-accordion-image', false);
 
 $wrapper_classes = $variant
     ? 'split-accordion-image split-accordion-image--variant black-bg white-text padding-t-b-70 theme-dark'
@@ -13,32 +13,36 @@ $wrapper_classes = $variant
 
 <div class="<?php echo esc_attr($wrapper_classes); ?>">
 
-    <?php if ($image_url): ?>
-        <div class="split-accordion-image__image image-cover" style="background-image:url('<?php echo esc_url($image_url); ?>');"></div>
+    <?php if ($default_image_url): ?>
+        <div class="split-accordion-image__image" data-default-image="<?php echo esc_url($default_image_url); ?>" data-current-image="<?php echo esc_url($default_image_url); ?>">
+            <div class="split-accordion-image__image-layer split-accordion-image__image-layer--a image-cover" style="background-image:url('<?php echo esc_url($default_image_url); ?>');"></div>
+            <div class="split-accordion-image__image-layer split-accordion-image__image-layer--b image-cover"></div>
+        </div>
     <?php endif; ?>
 
-    <div class="split-accordion-image__content padding-t-b-70">
-        <div class="split-accordion-image__content-inner">
+    <div class="split-accordion-image__content<?php echo $default_image_url ? '' : ' cont-m'; ?> padding-t-b-70">
+        <div class="split-accordion-image__content-inner accordion">
 
             <?php if ($title): ?>
                 <h2 class="split-accordion-image__title fs-600 fw-semibold margin-b-40"><?php echo esc_html($title); ?></h2>
             <?php endif; ?>
 
             <?php if ($items): ?>
-                <div class="accordion accordion--compact">
+                <div class="accordion--compact">
                     <div class="accordion-items">
                         <?php foreach ($items as $item):
-                            $item_title   = $item['split_accordion_image_item_title'] ?? '';
-                            $item_content = $item['split_accordion_image_item_content'] ?? '';
-                            $item_link    = $item['split_accordion_image_item_link'] ?? [];
+                            $item_title      = $item['split_accordion_image_item_title'] ?? '';
+                            $item_content    = $item['split_accordion_image_item_content'] ?? '';
+                            $item_link       = $item['split_accordion_image_item_link'] ?? [];
+                            $item_image      = $item['split_accordion_image_item_image'] ?? [];
+                            $item_image_url  = !empty($item_image) ? Zotefoams_Image_Helper::get_image_url($item_image, 'large', 'split-accordion-image', false) : '';
                         ?>
+                            <?php if ($item_title): ?>
                             <div class="accordion-item">
-                                <?php if ($item_title): ?>
-                                    <button class="accordion-header fs-200 fw-regular">
-                                        <?php echo esc_html($item_title); ?>
-                                        <span class="toggle-icon" aria-hidden="true">+</span>
-                                    </button>
-                                <?php endif; ?>
+                                <button class="accordion-header fs-200 fw-regular"<?php if ($item_image_url): ?> data-image="<?php echo esc_url($item_image_url); ?>"<?php endif; ?>>
+                                    <?php echo esc_html($item_title); ?>
+                                    <span class="toggle-icon" aria-hidden="true">+</span>
+                                </button>
 
                                 <div class="accordion-content<?php echo $variant ? ' white-text' : ' grey-text'; ?>">
                                     <?php if ($item_content): ?>
@@ -55,6 +59,7 @@ $wrapper_classes = $variant
                                     <?php endif; ?>
                                 </div>
                             </div>
+                            <?php endif; ?>
                         <?php endforeach; ?>
                     </div>
                 </div>

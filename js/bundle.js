@@ -1331,6 +1331,7 @@
 			header.addEventListener( 'click', function() {
 				const content = this.nextElementSibling; // The next sibling is the content
 				const icon = this.querySelector( '.toggle-icon' ); // Get the plus/minus icon
+				const isOpening = content.style.display !== 'block';
 
 				// Close all other accordion sections
 				headers.forEach( ( otherHeader ) => {
@@ -1359,14 +1360,46 @@
 					icon.textContent = '-'; // Change the icon to minus
 					this.classList.add( 'open' );
 
-					// Scroll the .accordion to the top of the page
-					const accordion = this.closest( '.accordion' ); // Get the .accordion container
+					// Scroll the .accordion container into view
+					const accordion = this.closest( '.accordion' );
 					accordion.scrollIntoView( {
 						behavior: 'smooth',
-						block: 'start', // Scroll so the .accordion is at the top of the page
+						block: 'start',
 					} );
 				}
+
+				// Crossfade image for split-accordion-image component
+				const splitAccordionImage = this.closest( '.split-accordion-image' );
+				if ( splitAccordionImage ) {
+					const imageEl = splitAccordionImage.querySelector( '.split-accordion-image__image' );
+					if ( imageEl ) {
+						const newUrl = isOpening
+							? this.dataset.image || ''
+							: imageEl.dataset.defaultImage || '';
+						if ( ( imageEl.dataset.currentImage || '' ) === newUrl ) return;
+						imageEl.dataset.currentImage = newUrl;
+
+						const activeLayer   = imageEl.dataset.activeLayer === 'b'
+							? imageEl.querySelector( '.split-accordion-image__image-layer--b' )
+							: imageEl.querySelector( '.split-accordion-image__image-layer--a' );
+						const inactiveLayer = imageEl.dataset.activeLayer === 'b'
+							? imageEl.querySelector( '.split-accordion-image__image-layer--a' )
+							: imageEl.querySelector( '.split-accordion-image__image-layer--b' );
+
+						inactiveLayer.style.backgroundImage = newUrl ? `url('${ newUrl }')` : '';
+						inactiveLayer.style.opacity = '1';
+						activeLayer.style.opacity   = '0';
+
+						imageEl.dataset.activeLayer = imageEl.dataset.activeLayer === 'b' ? 'a' : 'b';
+					}
+				}
 			} );
+		} );
+
+		// Preload split-accordion-image item images
+		document.querySelectorAll( '.split-accordion-image .accordion-header[data-image]' ).forEach( ( btn ) => {
+			const img = new Image();
+			img.src = btn.dataset.image;
 		} );
 
 		const hash = window.location.hash;

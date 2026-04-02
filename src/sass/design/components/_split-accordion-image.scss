@@ -4,7 +4,18 @@
 
 .split-accordion-image {
   &__image {
+    position: relative;
     min-height: max(480px, 65vh);
+  }
+
+  &__image-layer {
+    position: absolute;
+    inset: 0;
+    transition: opacity 0.3s ease;
+
+    &--b {
+      opacity: 0;
+    }
   }
 
   &__content-inner {
