@@ -12,6 +12,9 @@ function initAccordion() {
 	headers.forEach( ( header ) => {
 		header.addEventListener( 'click', function() {
 			const content = this.nextElementSibling; // The next sibling is the content
+			if ( ! content ) {
+				return;
+			}
 			const icon = this.querySelector( '.toggle-icon' ); // Get the plus/minus icon
 			const isOpening = content.style.display !== 'block';
 
@@ -20,10 +23,14 @@ function initAccordion() {
 				if ( otherHeader !== this ) {
 					const otherContent = otherHeader.nextElementSibling;
 					const otherIcon = otherHeader.querySelector( '.toggle-icon' );
-					otherContent.style.display = 'none';
-					otherContent.style.opacity = '0';
-					otherContent.style.maxHeight = '0';
-					otherIcon.textContent = '+'; // Reset icon to plus
+					if ( otherContent ) {
+						otherContent.style.display = 'none';
+						otherContent.style.opacity = '0';
+						otherContent.style.maxHeight = '0';
+					}
+					if ( otherIcon ) {
+						otherIcon.textContent = '+'; // Reset icon to plus
+					}
 					otherHeader.classList.remove( 'open' ); // Remove 'open' class
 				}
 			} );
@@ -61,7 +68,7 @@ function initAccordion() {
 					if ( ( imageEl.dataset.currentImage || '' ) === newUrl ) return;
 					imageEl.dataset.currentImage = newUrl;
 
-					const activeLayer   = imageEl.dataset.activeLayer === 'b'
+					const activeLayer = imageEl.dataset.activeLayer === 'b'
 						? imageEl.querySelector( '.split-accordion-image__image-layer--b' )
 						: imageEl.querySelector( '.split-accordion-image__image-layer--a' );
 					const inactiveLayer = imageEl.dataset.activeLayer === 'b'
@@ -70,7 +77,7 @@ function initAccordion() {
 
 					inactiveLayer.style.backgroundImage = newUrl ? `url('${ newUrl }')` : '';
 					inactiveLayer.style.opacity = '1';
-					activeLayer.style.opacity   = '0';
+					activeLayer.style.opacity = '0';
 
 					imageEl.dataset.activeLayer = imageEl.dataset.activeLayer === 'b' ? 'a' : 'b';
 				}

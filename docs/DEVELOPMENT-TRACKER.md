@@ -13,8 +13,11 @@
 - [ ] **Reduced motion support** - Disable CSS transitions when user has `prefers-reduced-motion: reduce` media query set for accessibility compliance
 - [ ] **Panel Switcher** - Look to improve aria attributes; Ttry to sync active tab across mobile/desktop
 - [ ] **Mega Nav** - Visually label external link items
+- [ ] **Accordion aria-expanded** - All accordion `<button>` elements lack `aria-expanded`; screen readers cannot determine whether a section is open or closed. Fix: set `aria-expanded="false"` in PHP on each `.accordion-header` and toggle it in `accordion.js` alongside the existing `open` class
 
 ### Other issues
+
+- [ ] **Button icon inconsistency** - `specs_accordion` default CTA uses an inline SVG chevron; other buttons use CSS `::after` with background SVG image files. Consider standardising — inline SVG is arguably the better approach (uses `currentColor`, no extra file, scales cleanly) so the fix may be to migrate existing `::after` icon buttons to inline SVG rather than the other way around
 
 - [ ] **Git publish to sites pipeline** - Auto deploy on PR
 - [ ] **Image Banner autoplay pause** - Hovering on Next button should pause slide autoplay
