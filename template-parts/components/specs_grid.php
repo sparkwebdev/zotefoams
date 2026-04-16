@@ -2,7 +2,7 @@
 $title   = zotefoams_get_sub_field_safe('specs_grid_title', '', 'string');
 $items   = zotefoams_get_sub_field_safe('specs_grid_items', [], 'array');
 $download_file = zotefoams_get_sub_field_safe('specs_grid_download_link', [], 'array');
-$variant = zotefoams_get_sub_field_safe('specs_grid_variant', false, 'boolean');
+$variant = zotefoams_get_sub_field_safe('specs_grid_variant', false, 'bool');
 
 $wrapper_classes = $variant
     ? 'specs-grid specs-grid--variant black-bg white-text theme-dark'

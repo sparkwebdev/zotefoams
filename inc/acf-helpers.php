@@ -28,8 +28,8 @@ function zotefoams_get_field_safe($field_name, $post_id = false, $default = '', 
 
     $value = get_field($field_name, $post_id);
 
-    // Return default if field is empty or null
-    if (empty($value) && $value !== '0' && $value !== 0) {
+    // Return default if field is empty or null (but not legitimate falsy values: 0, '0', false)
+    if (empty($value) && $value !== '0' && $value !== 0 && $value !== false) {
         return $default;
     }
 
@@ -80,8 +80,8 @@ function zotefoams_get_sub_field_safe($field_name, $default = '', $type = 'strin
 
     $value = get_sub_field($field_name);
 
-    // Return default if field is empty or null
-    if (empty($value) && $value !== '0' && $value !== 0) {
+    // Return default if field is empty or null (but not legitimate falsy values: 0, '0', false)
+    if (empty($value) && $value !== '0' && $value !== 0 && $value !== false) {
         return $default;
     }
 

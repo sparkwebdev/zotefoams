@@ -1,5 +1,5 @@
 <?php
-$position  = zotefoams_get_sub_field_safe('image_left_right_position', false, 'boolean');
+$position  = zotefoams_get_sub_field_safe('image_left_right_position', false, 'bool');
 $image     = zotefoams_get_sub_field_safe('image_left_right_image', [], 'array');
 $heading   = zotefoams_get_sub_field_safe('image_left_right_heading', '', 'string');
 $text      = get_sub_field('image_left_right_text');

@@ -1,7 +1,7 @@
 <?php
 $title   = zotefoams_get_sub_field_safe('split_accordion_image_title', '', 'string');
 $items   = zotefoams_get_sub_field_safe('split_accordion_image_items', [], 'array');
-$variant = zotefoams_get_sub_field_safe('split_accordion_image_variant', false, 'boolean');
+$variant = zotefoams_get_sub_field_safe('split_accordion_image_variant', false, 'bool');
 
 $first_item_image     = !empty($items) && !empty($items[0]['split_accordion_image_item_image']) ? $items[0]['split_accordion_image_item_image'] : [];
 $default_image_url    = Zotefoams_Image_Helper::get_image_url($first_item_image, 'large', 'split-accordion-image', false);

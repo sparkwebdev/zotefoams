@@ -6,7 +6,7 @@ $title       = zotefoams_get_sub_field_safe('split_video_one_title', '', 'string
 $text        = get_sub_field('split_video_one_text'); // Keep HTML intact
 $extra_text  = get_sub_field('split_video_one_extra_text'); // Keep HTML intact
 $link        = zotefoams_get_sub_field_safe('split_video_one_link', [], 'url');
-$variant     = zotefoams_get_sub_field_safe('split_video_one_variant', false, 'boolean');
+$variant     = zotefoams_get_sub_field_safe('split_video_one_variant', false, 'bool');
 
 $image_url = Zotefoams_Image_Helper::get_image_url($image, 'large', 'split-video');
 $wrapperClass = $variant ? 'split-video-one split-video-one--variant' : 'split-video-one';
