@@ -1,0 +1,53 @@
+/* Specs Grid
+ * --------------------------------------------- */
+@use "../../abstracts/abstracts" as *;
+
+.specs-grid {
+
+  > .cont-m {
+    border-top: var(--border-separator);
+  }
+
+  &__items {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 50px;
+    list-style: none;
+    padding: 0;
+  }
+
+  &__item {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  @media screen and (max-width: $bp-upto-lg) {
+    &__items {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+
+  @media screen and (max-width: $bp-upto-md) {
+    &__items {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+}
+
+/* Variant — black background, white text
+ * --------------------------------------------- */
+.specs-grid--variant {
+  > .cont-m {
+    --border-separator: none;
+  }
+  .grey-text {
+    color: var(--color-text-light);
+  }
+  a {
+    color: #9DC2FC; // TO DO: refactor into custom property to be applied across black bg variants
+    &::after {
+      filter: brightness(1.55);
+    }
+  }
+}

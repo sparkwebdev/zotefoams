@@ -5350,6 +5350,147 @@
                     ],
                     "min": "",
                     "max": ""
+                },
+                "layout_6840f0a1b2c3d": {
+                    "key": "layout_6840f0a1b2c3d",
+                    "name": "specs_grid",
+                    "label": "Specs Grid",
+                    "display": "block",
+                    "sub_fields": [
+                        {
+                            "key": "field_6840f0a1b2c3e",
+                            "label": "Title",
+                            "name": "specs_grid_title",
+                            "aria-label": "",
+                            "type": "text",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "default_value": "",
+                            "maxlength": "",
+                            "allow_in_bindings": 0,
+                            "placeholder": "",
+                            "prepend": "",
+                            "append": ""
+                        },
+                        {
+                            "key": "field_6840f0a1b2c3f",
+                            "label": "Specs",
+                            "name": "specs_grid_items",
+                            "aria-label": "",
+                            "type": "repeater",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "layout": "table",
+                            "pagination": 0,
+                            "min": 0,
+                            "max": 0,
+                            "collapsed": "",
+                            "button_label": "Add Spec",
+                            "rows_per_page": 20,
+                            "sub_fields": [
+                                {
+                                    "key": "field_6840f0a1b2c40",
+                                    "label": "Name",
+                                    "name": "specs_grid_item_name",
+                                    "aria-label": "",
+                                    "type": "text",
+                                    "instructions": "",
+                                    "required": 0,
+                                    "conditional_logic": 0,
+                                    "wrapper": {
+                                        "width": "50",
+                                        "class": "",
+                                        "id": ""
+                                    },
+                                    "default_value": "",
+                                    "maxlength": "",
+                                    "allow_in_bindings": 0,
+                                    "placeholder": "e.g. Density",
+                                    "prepend": "",
+                                    "append": "",
+                                    "parent_repeater": "field_6840f0a1b2c3f"
+                                },
+                                {
+                                    "key": "field_6840f0a1b2c41",
+                                    "label": "Value",
+                                    "name": "specs_grid_item_value",
+                                    "aria-label": "",
+                                    "type": "text",
+                                    "instructions": "",
+                                    "required": 0,
+                                    "conditional_logic": 0,
+                                    "wrapper": {
+                                        "width": "50",
+                                        "class": "",
+                                        "id": ""
+                                    },
+                                    "default_value": "",
+                                    "maxlength": "",
+                                    "allow_in_bindings": 0,
+                                    "placeholder": "e.g. 18 kg/m\u00b3",
+                                    "prepend": "",
+                                    "append": "",
+                                    "parent_repeater": "field_6840f0a1b2c3f"
+                                }
+                            ]
+                        },
+                        {
+                            "key": "field_6840f0a1b2c42",
+                            "label": "Download File",
+                            "name": "specs_grid_download_link",
+                            "aria-label": "",
+                            "type": "file",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "return_format": "array",
+                            "library": "all",
+                            "min_size": "",
+                            "max_size": "",
+                            "mime_types": "",
+                            "allow_in_bindings": 0
+                        },
+                        {
+                            "key": "field_6840f0a1b2c43",
+                            "label": "Visual Variant",
+                            "name": "specs_grid_variant",
+                            "aria-label": "",
+                            "type": "true_false",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "message": "Apply dark variant — black background, white text",
+                            "default_value": 0,
+                            "ui": 1,
+                            "ui_on_text": "",
+                            "ui_off_text": "",
+                            "allow_in_bindings": 0
+                        }
+                    ],
+                    "min": "",
+                    "max": ""
                 }
             },
             "min": "",
@@ -5390,5 +5531,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1774929600
+    "modified": 1776330788
 }
