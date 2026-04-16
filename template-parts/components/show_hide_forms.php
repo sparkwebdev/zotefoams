@@ -14,7 +14,7 @@ if (isset($globalForms) && $globalForms) {
 $wrapper_classes = 'show-hide-forms accordion cont-m padding-t-b-100 theme-none';
 ?>
 
-<div class="<?php echo $wrapper_classes; ?>">
+<div class="<?php echo $wrapper_classes; ?>"<?php if ( isset( $globalForms ) && $globalForms ) : ?> id="contact-forms"<?php endif; ?>>
 
 	<div>
 		<?php if ($title) : ?>
@@ -28,12 +28,13 @@ $wrapper_classes = 'show-hide-forms accordion cont-m padding-t-b-100 theme-none'
 
 	<?php if ($items) : ?>
 		<div class="accordion-items">
-			<?php foreach ($items as $item) :
+			<?php $index = 0; foreach ($items as $item) :
+				$index++;
 				$form_id = isset($item['show_hide_forms_form']) ? (int) $item['show_hide_forms_form'] : 0;
 				$form_title = $form_id ? get_the_title($form_id) : '';
 			?>
 				<?php if ($form_id && $form_title) : ?>
-					<div class="accordion-item">
+					<div class="accordion-item"<?php if ( isset( $globalForms ) && $globalForms ) : ?> id="contact-forms-item-<?php echo $index; ?>"<?php endif; ?>>
 						<button class="accordion-header fs-400 fw-semibold">
 							<?php echo esc_html($form_title); ?>
 							<span class="toggle-icon">+</span>

@@ -1,4 +1,10 @@
 table {
   margin: 0 0 1.5em;
   width: 100%;
+  border-collapse: collapse;
+}
+
+th,
+td {
+  text-align: left;
 }

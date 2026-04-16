@@ -84,6 +84,19 @@
   background-image: url(images/icon-right-arrow-blue.svg);
 }
 
+.btn--chevron-down::after {
+  content: "";
+  display: inline-block;
+  background-image: url(images/icon-right-arrow-white.svg);
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
+  width: 10px;
+  height: 10px;
+  transform: rotate(90deg);
+  margin-left: 8px;
+}
+
 @media screen and (max-width: 480px) {
   .btn {
     padding: 10px 15px 12px;

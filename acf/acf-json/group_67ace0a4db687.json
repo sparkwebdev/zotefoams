@@ -728,8 +728,8 @@
                                     "default_value": "",
                                     "allow_in_bindings": 0,
                                     "tabs": "visual",
-                                    "media_upload": 0,
                                     "toolbar": "basic",
+                                    "media_upload": 0,
                                     "delay": 0,
                                     "parent_repeater": "field_67af90123uvwxy3"
                                 }
@@ -868,10 +868,12 @@
                                     "choices": {
                                         "": "Select a form...",
                                         "790": "Contact us",
+                                        "3723": "K-SHOW Competition Entry",
                                         "2048": "Newsletter Signup",
                                         "3036": "Register for updates",
                                         "787": "Request a Quote",
-                                        "782": "Request a Sample"
+                                        "782": "Request a Sample",
+                                        "4333": "Zotefoams Approved Partners Interest Form"
                                     },
                                     "default_value": false,
                                     "return_format": "value",
@@ -3544,7 +3546,7 @@
                         },
                         {
                             "key": "field_67af90123stuvw4",
-                            "label": "Content Selection (Posts\/Pages)",
+                            "label": "Content Selection (Posts/Pages)",
                             "name": "cta_picker_content_ids",
                             "aria-label": "",
                             "type": "post_object",
@@ -4522,7 +4524,7 @@
                                     "max": 100,
                                     "allow_in_bindings": 0,
                                     "placeholder": "",
-                                    "step": 0.10000000000000001,
+                                    "step": 0.1,
                                     "prepend": "",
                                     "append": "%",
                                     "parent_repeater": "field_interactive_image_points"
@@ -4546,7 +4548,7 @@
                                     "max": 100,
                                     "allow_in_bindings": 0,
                                     "placeholder": "",
-                                    "step": 0.10000000000000001,
+                                    "step": 0.1,
                                     "prepend": "",
                                     "append": "%",
                                     "parent_repeater": "field_interactive_image_points"
@@ -4702,7 +4704,7 @@
                 "layout_67df12345imglr": {
                     "key": "layout_67df12345imglr",
                     "name": "image_left_right",
-                    "label": "Image Left\/Right",
+                    "label": "Image Left/Right",
                     "display": "block",
                     "sub_fields": [
                         {
@@ -5481,7 +5483,439 @@
                                 "class": "",
                                 "id": ""
                             },
-                            "message": "Apply dark variant — black background, white text",
+                            "message": "Apply dark variant \u2014 black background, white text",
+                            "default_value": 0,
+                            "ui": 1,
+                            "ui_on_text": "",
+                            "ui_off_text": "",
+                            "allow_in_bindings": 0
+                        }
+                    ],
+                    "min": "",
+                    "max": ""
+                },
+                "layout_68420000b0001": {
+                    "key": "layout_68420000b0001",
+                    "name": "specs_accordion",
+                    "label": "Specs Accordion",
+                    "display": "block",
+                    "sub_fields": [
+                        {
+                            "key": "field_68420000b0002",
+                            "label": "Title",
+                            "name": "specs_accordion_title",
+                            "aria-label": "",
+                            "type": "text",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "default_value": "",
+                            "maxlength": "",
+                            "allow_in_bindings": 0,
+                            "placeholder": "",
+                            "prepend": "",
+                            "append": ""
+                        },
+                        {
+                            "key": "field_68420000b0003",
+                            "label": "Items",
+                            "name": "specs_accordion_items",
+                            "aria-label": "",
+                            "type": "repeater",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "layout": "block",
+                            "pagination": 0,
+                            "min": 0,
+                            "max": 0,
+                            "collapsed": "",
+                            "button_label": "Add Item",
+                            "rows_per_page": 20,
+                            "sub_fields": [
+                                {
+                                    "key": "field_68420000b0004",
+                                    "label": "Item Title",
+                                    "name": "specs_accordion_item_title",
+                                    "aria-label": "",
+                                    "type": "text",
+                                    "instructions": "",
+                                    "required": 0,
+                                    "conditional_logic": 0,
+                                    "wrapper": {
+                                        "width": "",
+                                        "class": "",
+                                        "id": ""
+                                    },
+                                    "default_value": "",
+                                    "maxlength": "",
+                                    "allow_in_bindings": 0,
+                                    "placeholder": "e.g. Mechanical Properties",
+                                    "prepend": "",
+                                    "append": "",
+                                    "parent_repeater": "field_68420000b0003"
+                                },
+                                {
+                                    "key": "field_68420000b0005",
+                                    "label": "Column 1",
+                                    "name": "specs_accordion_col1_header",
+                                    "aria-label": "",
+                                    "type": "text",
+                                    "instructions": "",
+                                    "required": 0,
+                                    "conditional_logic": 0,
+                                    "wrapper": {
+                                        "width": "16.66",
+                                        "class": "",
+                                        "id": ""
+                                    },
+                                    "default_value": "Property",
+                                    "maxlength": "",
+                                    "allow_in_bindings": 0,
+                                    "placeholder": "",
+                                    "prepend": "",
+                                    "append": "",
+                                    "parent_repeater": "field_68420000b0003"
+                                },
+                                {
+                                    "key": "field_68420000b0006",
+                                    "label": "Column 2",
+                                    "name": "specs_accordion_col2_header",
+                                    "aria-label": "",
+                                    "type": "text",
+                                    "instructions": "",
+                                    "required": 0,
+                                    "conditional_logic": 0,
+                                    "wrapper": {
+                                        "width": "16.66",
+                                        "class": "",
+                                        "id": ""
+                                    },
+                                    "default_value": "Value",
+                                    "maxlength": "",
+                                    "allow_in_bindings": 0,
+                                    "placeholder": "",
+                                    "prepend": "",
+                                    "append": "",
+                                    "parent_repeater": "field_68420000b0003"
+                                },
+                                {
+                                    "key": "field_68420000b0007",
+                                    "label": "Column 3",
+                                    "name": "specs_accordion_col3_header",
+                                    "aria-label": "",
+                                    "type": "text",
+                                    "instructions": "",
+                                    "required": 0,
+                                    "conditional_logic": 0,
+                                    "wrapper": {
+                                        "width": "16.66",
+                                        "class": "",
+                                        "id": ""
+                                    },
+                                    "default_value": "Unit",
+                                    "maxlength": "",
+                                    "allow_in_bindings": 0,
+                                    "placeholder": "",
+                                    "prepend": "",
+                                    "append": "",
+                                    "parent_repeater": "field_68420000b0003"
+                                },
+                                {
+                                    "key": "field_68420000b0008",
+                                    "label": "Column 4",
+                                    "name": "specs_accordion_col4_header",
+                                    "aria-label": "",
+                                    "type": "text",
+                                    "instructions": "",
+                                    "required": 0,
+                                    "conditional_logic": 0,
+                                    "wrapper": {
+                                        "width": "16.66",
+                                        "class": "",
+                                        "id": ""
+                                    },
+                                    "default_value": "Test Method",
+                                    "maxlength": "",
+                                    "allow_in_bindings": 0,
+                                    "placeholder": "",
+                                    "prepend": "",
+                                    "append": "",
+                                    "parent_repeater": "field_68420000b0003"
+                                },
+                                {
+                                    "key": "field_68420000b0011",
+                                    "label": "Column 5",
+                                    "name": "specs_accordion_col5_header",
+                                    "aria-label": "",
+                                    "type": "text",
+                                    "instructions": "",
+                                    "required": 0,
+                                    "conditional_logic": 0,
+                                    "wrapper": {
+                                        "width": "16.66",
+                                        "class": "",
+                                        "id": ""
+                                    },
+                                    "default_value": "",
+                                    "maxlength": "",
+                                    "allow_in_bindings": 0,
+                                    "placeholder": "",
+                                    "prepend": "",
+                                    "append": "",
+                                    "parent_repeater": "field_68420000b0003"
+                                },
+                                {
+                                    "key": "field_68420000b0012",
+                                    "label": "Column 6",
+                                    "name": "specs_accordion_col6_header",
+                                    "aria-label": "",
+                                    "type": "text",
+                                    "instructions": "",
+                                    "required": 0,
+                                    "conditional_logic": 0,
+                                    "wrapper": {
+                                        "width": "16.66",
+                                        "class": "",
+                                        "id": ""
+                                    },
+                                    "default_value": "",
+                                    "maxlength": "",
+                                    "allow_in_bindings": 0,
+                                    "placeholder": "",
+                                    "prepend": "",
+                                    "append": "",
+                                    "parent_repeater": "field_68420000b0003"
+                                },
+                                {
+                                    "key": "field_68420000b0009",
+                                    "label": "Rows",
+                                    "name": "specs_accordion_item_rows",
+                                    "aria-label": "",
+                                    "type": "repeater",
+                                    "instructions": "",
+                                    "required": 0,
+                                    "conditional_logic": 0,
+                                    "wrapper": {
+                                        "width": "",
+                                        "class": "",
+                                        "id": ""
+                                    },
+                                    "layout": "table",
+                                    "pagination": 0,
+                                    "min": 0,
+                                    "max": 0,
+                                    "collapsed": "",
+                                    "button_label": "Add Row",
+                                    "rows_per_page": 20,
+                                    "sub_fields": [
+                                        {
+                                            "key": "field_68420000b000a",
+                                            "label": "Column 1",
+                                            "name": "specs_accordion_row_col1",
+                                            "aria-label": "",
+                                            "type": "text",
+                                            "instructions": "",
+                                            "required": 0,
+                                            "conditional_logic": 0,
+                                            "wrapper": {
+                                                "width": "17",
+                                                "class": "",
+                                                "id": ""
+                                            },
+                                            "default_value": "",
+                                            "maxlength": "",
+                                            "allow_in_bindings": 0,
+                                            "placeholder": "",
+                                            "prepend": "",
+                                            "append": "",
+                                            "parent_repeater": "field_68420000b0009"
+                                        },
+                                        {
+                                            "key": "field_68420000b000b",
+                                            "label": "Column 2",
+                                            "name": "specs_accordion_row_col2",
+                                            "aria-label": "",
+                                            "type": "text",
+                                            "instructions": "",
+                                            "required": 0,
+                                            "conditional_logic": 0,
+                                            "wrapper": {
+                                                "width": "17",
+                                                "class": "",
+                                                "id": ""
+                                            },
+                                            "default_value": "",
+                                            "maxlength": "",
+                                            "allow_in_bindings": 0,
+                                            "placeholder": "",
+                                            "prepend": "",
+                                            "append": "",
+                                            "parent_repeater": "field_68420000b0009"
+                                        },
+                                        {
+                                            "key": "field_68420000b000c",
+                                            "label": "Column 3",
+                                            "name": "specs_accordion_row_col3",
+                                            "aria-label": "",
+                                            "type": "text",
+                                            "instructions": "",
+                                            "required": 0,
+                                            "conditional_logic": 0,
+                                            "wrapper": {
+                                                "width": "17",
+                                                "class": "",
+                                                "id": ""
+                                            },
+                                            "default_value": "",
+                                            "maxlength": "",
+                                            "allow_in_bindings": 0,
+                                            "placeholder": "",
+                                            "prepend": "",
+                                            "append": "",
+                                            "parent_repeater": "field_68420000b0009"
+                                        },
+                                        {
+                                            "key": "field_68420000b000d",
+                                            "label": "Column 4",
+                                            "name": "specs_accordion_row_col4",
+                                            "aria-label": "",
+                                            "type": "text",
+                                            "instructions": "",
+                                            "required": 0,
+                                            "conditional_logic": 0,
+                                            "wrapper": {
+                                                "width": "17",
+                                                "class": "",
+                                                "id": ""
+                                            },
+                                            "default_value": "",
+                                            "maxlength": "",
+                                            "allow_in_bindings": 0,
+                                            "placeholder": "",
+                                            "prepend": "",
+                                            "append": "",
+                                            "parent_repeater": "field_68420000b0009"
+                                        },
+                                        {
+                                            "key": "field_68420000b0013",
+                                            "label": "Column 5",
+                                            "name": "specs_accordion_row_col5",
+                                            "aria-label": "",
+                                            "type": "text",
+                                            "instructions": "",
+                                            "required": 0,
+                                            "conditional_logic": 0,
+                                            "wrapper": {
+                                                "width": "17",
+                                                "class": "",
+                                                "id": ""
+                                            },
+                                            "default_value": "",
+                                            "maxlength": "",
+                                            "allow_in_bindings": 0,
+                                            "placeholder": "",
+                                            "prepend": "",
+                                            "append": "",
+                                            "parent_repeater": "field_68420000b0009"
+                                        },
+                                        {
+                                            "key": "field_68420000b0014",
+                                            "label": "Column 6",
+                                            "name": "specs_accordion_row_col6",
+                                            "aria-label": "",
+                                            "type": "text",
+                                            "instructions": "",
+                                            "required": 0,
+                                            "conditional_logic": 0,
+                                            "wrapper": {
+                                                "width": "17",
+                                                "class": "",
+                                                "id": ""
+                                            },
+                                            "default_value": "",
+                                            "maxlength": "",
+                                            "allow_in_bindings": 0,
+                                            "placeholder": "",
+                                            "prepend": "",
+                                            "append": "",
+                                            "parent_repeater": "field_68420000b0009"
+                                        }
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            "key": "field_68420000b0010",
+                            "label": "'Request a Quote' CTA",
+                            "name": "specs_accordion_use_default_cta",
+                            "aria-label": "",
+                            "type": "true_false",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "message": "Turn off to add custom CTA",
+                            "default_value": 1,
+                            "ui": 1,
+                            "ui_on_text": "",
+                            "ui_off_text": "",
+                            "allow_in_bindings": 0
+                        },
+                        {
+                            "key": "field_68420000b000e",
+                            "label": "Custom CTA",
+                            "name": "specs_accordion_cta",
+                            "aria-label": "",
+                            "type": "link",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": [
+                                [
+                                    {
+                                        "field": "field_68420000b0010",
+                                        "operator": "==",
+                                        "value": "0"
+                                    }
+                                ]
+                            ],
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "return_format": "array",
+                            "allow_in_bindings": 0
+                        },
+                        {
+                            "key": "field_68420000b000f",
+                            "label": "Dark Variant",
+                            "name": "specs_accordion_variant",
+                            "aria-label": "",
+                            "type": "true_false",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "message": "Apply dark variant \u2014 black background, white text",
                             "default_value": 0,
                             "ui": 1,
                             "ui_on_text": "",
@@ -5531,5 +5965,8 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1776330788
+    "display_title": "",
+    "allow_ai_access": false,
+    "ai_description": "",
+    "modified": 1800001300
 }

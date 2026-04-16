@@ -1,0 +1,75 @@
+/* Data Table
+ * Generic utility class for bordered data tables
+ * --------------------------------------------- */
+@use "../../abstracts/abstracts" as *;
+
+.data-table {
+  --table-color: var(--tone-light);
+  th,
+  td {
+    padding: 15px;
+    border: var(--border-separator);
+    border-color: var(--table-color);
+  }
+
+  thead th {
+    background-color: var(--table-color);
+  }
+
+  .theme-dark & {
+    --table-color: var(--tone-dark);
+  }
+}
+
+/* Mobile reflow — stack rows vertically with data-label ::before headers
+ * --------------------------------------------- */
+.data-table--collapsible {
+
+  @media screen and (max-width: $bp-upto-md) {
+
+    thead {
+      display: none;
+    }
+
+    tbody tr {
+      display: block;
+    }
+
+    tbody td,
+    tbody th {
+      display: grid;
+      grid-template-columns: 40% 1fr;
+      gap: 0 15px;
+      border: none;
+      padding: 5px 0;
+
+      &::before {
+        content: attr(data-label);
+        text-transform: uppercase;
+        font-size: 14px;
+        background-color: var(--table-color);
+        font-weight: 700;
+        padding: 5px 15px;
+        margin: -5px 0;
+        align-self: stretch;
+        display: flex;
+      }
+
+      &:first-child {
+        padding-top: 15px;
+        &::before {
+        padding-top: 15px;
+          margin-top: -15px;
+        }
+      }
+
+      &:last-child {
+        border-bottom: 1px solid var(--table-color);
+        padding-bottom: 15px;
+        &::before {
+          margin-bottom: -15px;
+        }
+      }
+    }
+  }
+}

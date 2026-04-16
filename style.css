@@ -5,7 +5,7 @@ Theme URI: http://underscores.me/
 Author: David Park
 Author URI: http://underscores.me/
 Description: Description
-Version: 3.3.21
+Version: 3.3.23
 Tested up to: 5.4
 Requires PHP: 7.4
 License: GNU General Public License v2 or later
@@ -496,6 +496,12 @@ figure {
 table {
   margin: 0 0 1.5em;
   width: 100%;
+  border-collapse: collapse;
+}
+
+th,
+td {
+  text-align: left;
 }
 
 /* Links
@@ -1401,6 +1407,7 @@ textarea {
 :root {
   --tone-off-white: #f8f8f8;
   --tone-light: #d1d1d1;
+  --tone-dark: #4A4949;
   --color-text: #707070;
   --color-text-light: #b5b5b5;
   --color-surface: #fff;
@@ -1506,6 +1513,19 @@ textarea {
   background-image: url(images/icon-right-arrow-blue.svg);
 }
 
+.btn--chevron-down::after {
+  content: "";
+  display: inline-block;
+  background-image: url(images/icon-right-arrow-white.svg);
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
+  width: 10px;
+  height: 10px;
+  transform: rotate(90deg);
+  margin-left: 8px;
+}
+
 @media screen and (max-width: 480px) {
   .btn {
     padding: 10px 15px 12px;
@@ -1553,6 +1573,74 @@ input[type=submit].btn {
   padding: 13px 20px 15px;
   cursor: pointer;
   outline: none;
+}
+
+/* Data Table
+ * Generic utility class for bordered data tables
+ * --------------------------------------------- */
+.data-table {
+  --table-color: var(--tone-light);
+}
+.data-table th,
+.data-table td {
+  padding: 15px;
+  border: var(--border-separator);
+  border-color: var(--table-color);
+}
+.data-table thead th {
+  background-color: var(--table-color);
+}
+.theme-dark .data-table {
+  --table-color: var(--tone-dark);
+}
+
+/* Mobile reflow — stack rows vertically with data-label ::before headers
+ * --------------------------------------------- */
+@media screen and (max-width: 47.99rem) {
+  .data-table--collapsible thead {
+    display: none;
+  }
+  .data-table--collapsible tbody tr {
+    display: block;
+  }
+  .data-table--collapsible tbody td,
+  .data-table--collapsible tbody th {
+    display: grid;
+    grid-template-columns: 40% 1fr;
+    gap: 0 15px;
+    border: none;
+    padding: 5px 0;
+  }
+  .data-table--collapsible tbody td::before,
+  .data-table--collapsible tbody th::before {
+    content: attr(data-label);
+    text-transform: uppercase;
+    font-size: 14px;
+    background-color: var(--table-color);
+    font-weight: 700;
+    padding: 5px 15px;
+    margin: -5px 0;
+    align-self: stretch;
+    display: flex;
+  }
+  .data-table--collapsible tbody td:first-child,
+  .data-table--collapsible tbody th:first-child {
+    padding-top: 15px;
+  }
+  .data-table--collapsible tbody td:first-child::before,
+  .data-table--collapsible tbody th:first-child::before {
+    padding-top: 15px;
+    margin-top: -15px;
+  }
+  .data-table--collapsible tbody td:last-child,
+  .data-table--collapsible tbody th:last-child {
+    border-bottom: 1px solid var(--table-color);
+    padding-bottom: 15px;
+  }
+  .data-table--collapsible tbody td:last-child::before,
+  .data-table--collapsible tbody th:last-child::before {
+    margin-bottom: -15px;
+  }
 }
 
 .video-container {
@@ -3899,6 +3987,15 @@ a.read-more.hl.arrow:focus::after {
 }
 .accordion--compact .accordion-header.open .toggle-icon {
   transform: rotate(45deg);
+}
+
+/* On dark theme
+ * --------------------------------------------- */
+.theme-dark .accordion-items .accordion-header {
+  color: inherit;
+}
+.theme-dark .accordion-items .accordion-item:hover {
+  border-bottom-color: inherit;
 }
 
 /* Box columns
@@ -6740,4 +6837,3 @@ html:has(.zf-history) {
     left: 5%;
   }
 }
-/*# sourceMappingURL=style.css.map */

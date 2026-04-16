@@ -110,3 +110,17 @@
     transform: rotate(45deg);
   }
 }
+
+
+/* On dark theme
+ * --------------------------------------------- */
+.accordion-items {
+  .theme-dark & {
+    .accordion-header {
+      color: inherit;
+    }
+    .accordion-item:hover {
+        border-bottom-color: inherit;
+    }
+  }
+}
