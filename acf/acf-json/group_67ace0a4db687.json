@@ -5925,6 +5925,196 @@
                     ],
                     "min": "",
                     "max": ""
+                },
+                "layout_68430000c0001": {
+                    "key": "layout_68430000c0001",
+                    "name": "material_swatches",
+                    "label": "Material Swatches",
+                    "display": "block",
+                    "sub_fields": [
+                        {
+                            "key": "field_68430000c0002",
+                            "label": "Title",
+                            "name": "material_swatches_title",
+                            "aria-label": "",
+                            "type": "text",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": false,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "default_value": "",
+                            "allow_in_bindings": 0
+                        },
+                        {
+                            "key": "field_68430000c0003",
+                            "label": "Items",
+                            "name": "material_swatches_items",
+                            "aria-label": "",
+                            "type": "repeater",
+                            "instructions": "",
+                            "required": false,
+                            "conditional_logic": false,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "layout": "block",
+                            "min": 0,
+                            "max": 0,
+                            "button_label": "Add Item",
+                            "rows_per_page": 20,
+                            "collapsed": "",
+                            "sub_fields": [
+                                {
+                                    "key": "field_68430000c0004",
+                                    "label": "Title",
+                                    "name": "material_swatches_item_title",
+                                    "aria-label": "",
+                                    "type": "text",
+                                    "instructions": "",
+                                    "required": 0,
+                                    "conditional_logic": false,
+                                    "wrapper": {
+                                        "width": "34",
+                                        "class": "",
+                                        "id": ""
+                                    },
+                                    "default_value": "",
+                                    "maxlength": "",
+                                    "placeholder": "",
+                                    "prepend": "",
+                                    "append": "",
+                                    "parent_repeater": "field_68430000c0003",
+                                    "allow_in_bindings": 0
+                                },
+                                {
+                                    "key": "field_68430000c0005",
+                                    "label": "Colour",
+                                    "name": "material_swatches_item_colour",
+                                    "aria-label": "",
+                                    "type": "color_picker",
+                                    "instructions": "",
+                                    "required": 0,
+                                    "conditional_logic": false,
+                                    "wrapper": {
+                                        "width": "33",
+                                        "class": "",
+                                        "id": ""
+                                    },
+                                    "enable_opacity": 0,
+                                    "default_value": "",
+                                    "custom_palette_source": "",
+                                    "palette_colors": "",
+                                    "show_color_wheel": true,
+                                    "return_format": "string",
+                                    "parent_repeater": "field_68430000c0003",
+                                    "allow_in_bindings": 0
+                                },
+                                {
+                                    "key": "field_68430000c0006",
+                                    "label": "Image",
+                                    "name": "material_swatches_item_image",
+                                    "aria-label": "",
+                                    "type": "image",
+                                    "instructions": "",
+                                    "required": 0,
+                                    "conditional_logic": 0,
+                                    "wrapper": {
+                                        "width": "33",
+                                        "class": "",
+                                        "id": ""
+                                    },
+                                    "return_format": "array",
+                                    "library": "all",
+                                    "min_width": "",
+                                    "min_height": "",
+                                    "min_size": "",
+                                    "max_width": "",
+                                    "max_height": "",
+                                    "max_size": "",
+                                    "mime_types": "",
+                                    "allow_in_bindings": 0,
+                                    "preview_size": "thumbnail-square",
+                                    "parent_repeater": "field_68430000c0003"
+                                }
+                            ],
+                            "allow_in_bindings": 0
+                        },
+                        {
+                            "key": "field_68430000c0007",
+                            "label": "Small Text",
+                            "name": "material_swatches_small_text",
+                            "aria-label": "",
+                            "type": "text",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": false,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "default_value": "",
+                            "maxlength": "",
+                            "placeholder": "",
+                            "prepend": "",
+                            "append": "",
+                            "allow_in_bindings": 0
+                        },
+                        {
+                            "key": "field_68430000c0008",
+                            "label": "'Request A Sample' CTA",
+                            "name": "material_swatches_use_default_cta",
+                            "aria-label": "",
+                            "type": "true_false",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": false,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "message": "Turn off to add custom CTA",
+                            "default_value": 1,
+                            "ui": 1,
+                            "ui_on_text": "",
+                            "ui_off_text": "",
+                            "allow_in_bindings": 0
+                        },
+                        {
+                            "key": "field_68430000c0009",
+                            "label": "Custom CTA",
+                            "name": "material_swatches_cta",
+                            "aria-label": "",
+                            "type": "link",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": [
+                                [
+                                    {
+                                        "field": "field_68430000c0008",
+                                        "operator": "==",
+                                        "value": "0"
+                                    }
+                                ]
+                            ],
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "return_format": "array",
+                            "allow_in_bindings": 0
+                        }
+                    ],
+                    "min": "",
+                    "max": ""
                 }
             },
             "min": "",
@@ -5968,5 +6158,5 @@
     "display_title": "",
     "allow_ai_access": false,
     "ai_description": "",
-    "modified": 1800001300
+    "modified": 1800002500
 }

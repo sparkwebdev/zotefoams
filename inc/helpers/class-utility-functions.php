@@ -326,3 +326,43 @@ function zotefoams_render_content_block($content, $args = [])
 
     return sprintf('<%s%s>%s</%s>', $tag, $class_attr, wp_kses_post($content), $tag);
 }
+
+/**
+ * Given a hex colour, return 'dark' or 'light' to indicate which text colour
+ * provides sufficient contrast — based on WCAG relative luminance.
+ *
+ * @param string      $hex       e.g. '#FF6600' or 'FF6600'
+ * @param string|null $threshold 'strict' = 0.179 (WCAG AA midpoint)
+ *                               null     = 0.35  (balanced default)
+ *                               'loose'  = 0.5   (prefer dark text on most colours)
+ * @return string 'dark'|'light'
+ */
+function zotefoams_hex_text_color(string $hex, ?string $threshold = null): string
+{
+    $hex = ltrim($hex, '#');
+    if (strlen($hex) === 3) {
+        $hex = $hex[0] . $hex[0] . $hex[1] . $hex[1] . $hex[2] . $hex[2];
+    }
+    if (strlen($hex) !== 6) {
+        return 'light';
+    }
+
+    [$r, $g, $b] = array_map('hexdec', str_split($hex, 2));
+
+    // Convert sRGB to linear then compute relative luminance (WCAG 2.x)
+    $linearize = fn($c) => ($c /= 255) <= 0.03928
+        ? $c / 12.92
+        : (($c + 0.055) / 1.055) ** 2.4;
+
+    $L = 0.2126 * $linearize($r)
+       + 0.7152 * $linearize($g)
+       + 0.0722 * $linearize($b);
+
+    $cutoff = match ($threshold) {
+        'strict' => 0.179,
+        'loose'  => 0.5,
+        default  => 0.35,
+    };
+
+    return $L > $cutoff ? 'dark' : 'light';
+}

@@ -5,7 +5,7 @@ Theme URI: http://underscores.me/
 Author: David Park
 Author URI: http://underscores.me/
 Description: Description
-Version: 3.3.23
+Version: 3.3.24
 Tested up to: 5.4
 Requires PHP: 7.4
 License: GNU General Public License v2 or later
@@ -5532,6 +5532,74 @@ a.read-more.hl.arrow:focus::after {
 }
 .specs-grid--variant a::after {
   filter: brightness(1.55);
+}
+
+/* Material Swatches
+ * --------------------------------------------- */
+.material-swatches {
+  --base-swatch-size: 227px;
+}
+.material-swatches__items {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(var(--base-swatch-size), 1fr));
+}
+.material-swatches__item {
+  aspect-ratio: 1;
+  position: relative;
+  overflow: visible;
+  z-index: 0;
+  transition: z-index 0s 0.1s;
+}
+.material-swatches__item:hover {
+  z-index: 1;
+  transition: z-index 0s;
+}
+.material-swatches__item::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: inherit;
+  transform: scale(1);
+  transition: transform 0.1s ease;
+  z-index: 0;
+}
+.material-swatches__item:hover::before {
+  transform: scale(1.09);
+  transition: transform 0.3s ease 0.1s;
+}
+.material-swatches__item-title {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  z-index: 3;
+  text-shadow: none;
+  transition: color 0.1s ease, text-shadow 0.1s ease;
+}
+.material-swatches__item:hover .material-swatches__item-title {
+  color: #fff;
+  text-shadow: 0 1px 5px rgba(0, 0, 0, 0.5);
+  transition: color 0.3s ease 0.1s, text-shadow 0.3s ease 0.1s;
+}
+.material-swatches__item-image {
+  position: absolute;
+  width: 110%;
+  height: 110%;
+  max-width: 110%;
+  inset: -5%;
+  -o-object-fit: cover;
+     object-fit: cover;
+  display: block;
+  z-index: 2;
+  opacity: 0;
+  clip-path: inset(4.55%);
+  transition: clip-path 0.1s ease, opacity 0.1s ease;
+  pointer-events: none;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+}
+.material-swatches__item:hover .material-swatches__item-image {
+  opacity: 1;
+  clip-path: inset(0%);
+  transition: clip-path 0.3s ease 0.1s, opacity 0.3s ease 0.2s;
 }
 
 /* Data map

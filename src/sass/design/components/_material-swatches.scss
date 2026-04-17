@@ -1,0 +1,79 @@
+/* Material Swatches
+ * --------------------------------------------- */
+@use "../../abstracts/abstracts" as *;
+
+.material-swatches {
+
+  --base-swatch-size: 227px;
+
+  &__items {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(var(--base-swatch-size), 1fr));
+  }
+
+  &__item {
+    aspect-ratio: 1;
+    position: relative;
+    overflow: visible;
+    z-index: 0;
+    transition: z-index 0s 0.1s; // hover-out: hold z-index until scale-down finishes
+    padding: 20px;
+
+    &:hover {
+      z-index: 1;
+      transition: z-index 0s; // hover-in: elevate immediately
+    }
+
+    &::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: inherit;
+      transform: scale(1);
+      transition: transform 0.1s ease; // hover-out: faster
+      z-index: 0;
+    }
+
+    &:hover::before {
+      transform: scale(1.09);
+      transition: transform 0.3s ease 0.1s; // hover-in: delayed start
+    }
+  }
+
+  &__item-title {
+    position: relative;
+    z-index: 3;
+    text-shadow: none;
+    transition: color 0.1s ease, text-shadow 0.1s ease; // hover-out: faster
+  }
+
+  &__item:hover &__item-title {
+    color: #fff;
+    text-shadow: 0 1px 5px rgba(0, 0, 0, 0.5);
+    transition: color 0.3s ease 0.1s, text-shadow 0.3s ease 0.1s; // hover-in: delayed start
+  }
+
+  &__item-image {
+    position: absolute;
+    width: 110%;
+    height: 110%;
+    max-width: 110%;
+    inset: -5%;
+    object-fit: cover;
+    display: block;
+    z-index: 2;
+    opacity: 0;
+    // Clip to the container bounds (5/110 = 4.545% of the image = 5% of the container)
+    // On hover, clip-path expands to 0% matching the pseudo's scale(1.1) reveal
+    clip-path: inset(4.55%);
+    transition: clip-path 0.1s ease, opacity 0.1s ease; // hover-out: faster, no delay
+    pointer-events: none;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+  }
+
+  &__item:hover &__item-image {
+    opacity: 1;
+    clip-path: inset(0%);
+    transition: clip-path 0.3s ease 0.1s, opacity 0.3s ease 0.2s; // hover-in: delayed start, opacity follows clip
+  }
+}
