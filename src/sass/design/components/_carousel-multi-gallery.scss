@@ -25,6 +25,15 @@
     height: auto;
   }
 
+  &__content {
+    transition: opacity 0.3s ease;
+  }
+
+  .swiper-slide:not(.swiper-slide-active) &__content {
+    opacity: 0.35;
+    pointer-events: none;
+  }
+
   &__image {
     flex: 0 0 60%;
     max-width: 60%;

@@ -5,7 +5,7 @@ Theme URI: http://underscores.me/
 Author: David Park
 Author URI: http://underscores.me/
 Description: Description
-Version: 3.4.1
+Version: 3.4.2
 Tested up to: 6.9.4
 Requires PHP: 7.4
 License: GNU General Public License v2 or later
@@ -6647,6 +6647,12 @@ html:has(.zf-history) {
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
+  transition: opacity 0.3s ease;
+}
+
+.multi-item-carousel .swiper-slide:not(.swiper-slide-active):not(.swiper-slide-active ~ .swiper-slide) {
+  opacity: 0.35;
+  pointer-events: none;
 }
 
 .multi-item-carousel-container .swiper-button-disabled {
@@ -6755,6 +6761,15 @@ html:has(.zf-history) {
   display: flex;
   align-items: stretch;
   height: auto;
+}
+
+.multi-item-gallery-carousel__content {
+  transition: opacity 0.3s ease;
+}
+
+.swiper-slide:not(.swiper-slide-active) .multi-item-gallery-carousel__content {
+  opacity: 0.35;
+  pointer-events: none;
 }
 
 .multi-item-gallery-carousel__image {
