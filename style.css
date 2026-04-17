@@ -5,7 +5,7 @@ Theme URI: http://underscores.me/
 Author: David Park
 Author URI: http://underscores.me/
 Description: Description
-Version: 3.3.25
+Version: 3.3.26
 Tested up to: 6.9.4
 Requires PHP: 7.4
 License: GNU General Public License v2 or later
@@ -6713,6 +6713,115 @@ html:has(.zf-history) {
   text-align: center;
 }
 
+/* Gallery Item Carousel
+ * --------------------------------------------- */
+.multi-item-gallery-carousel-container {
+  overflow: hidden !important;
+}
+
+.multi-item-gallery-carousel-container .title-strip {
+  width: 100%;
+}
+
+.multi-item-gallery-carousel-container .carousel-navigation {
+  margin-left: auto;
+}
+
+.multi-item-gallery-carousel.swiper {
+  overflow: visible !important;
+}
+
+.multi-item-gallery-carousel .swiper-slide {
+  display: flex;
+  align-items: stretch;
+  height: auto;
+}
+
+.multi-item-gallery-carousel__image {
+  flex: 0 0 60%;
+  max-width: 60%;
+  overflow: hidden;
+  aspect-ratio: 3/2;
+}
+
+.multi-item-gallery-carousel__image img {
+  width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+  display: block;
+}
+
+.multi-item-gallery-carousel__content {
+  flex: 1;
+  padding: 40px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.multi-item-gallery-carousel__pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+}
+
+.multi-item-gallery-carousel__pill {
+  padding: 0.5em 1em;
+  border-radius: 999px;
+  border: none;
+  box-shadow: none;
+  cursor: pointer;
+  transition: background 0.2s ease, color 0.2s ease;
+  background: #fff;
+}
+
+.multi-item-gallery-carousel__pill.active {
+  background: var(--color-link);
+  color: #fff;
+}
+
+.multi-item-gallery-carousel__pill:not(.active):hover {
+  outline: solid 1px var(--tone-light);
+}
+
+.multi-item-gallery-carousel__text {
+  flex-grow: 1;
+}
+
+.multi-item-gallery-carousel .multi-gallery-swiper-scrollbar {
+  height: 5px;
+  margin-top: 30px;
+  background: rgba(0, 0, 0, 0.15);
+}
+
+.multi-item-gallery-carousel .swiper-scrollbar-drag {
+  background: #707070;
+  height: 5px;
+}
+
+.carousel-navigation-inner .multi-gallery-swiper-button-prev {
+  margin-right: 5px;
+}
+
+.carousel-navigation-inner .multi-gallery-swiper-button-next {
+  margin-left: 5px;
+}
+
+@media screen and (max-width: 63.99rem) {
+  .multi-item-gallery-carousel-container .carousel-navigation {
+    margin-left: 0;
+  }
+  .multi-item-gallery-carousel .swiper-slide {
+    flex-direction: column;
+  }
+  .multi-item-gallery-carousel__image {
+    flex: none;
+    max-width: 100%;
+    width: 100%;
+    aspect-ratio: 4/3;
+  }
+}
 /* Dual carousel
  *	--------------------------------------------- */
 @media screen and (min-width: 48em) {

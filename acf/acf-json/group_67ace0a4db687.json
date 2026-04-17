@@ -6123,6 +6123,119 @@
                     ],
                     "min": "",
                     "max": ""
+                },
+                "layout_68440000d0001": {
+                    "key": "layout_68440000d0001",
+                    "name": "multi_item_gallery_carousel",
+                    "label": "Multi Item Gallery Carousel",
+                    "display": "block",
+                    "sub_fields": [
+                        {
+                            "key": "field_68440000d0001",
+                            "label": "Title",
+                            "name": "multi_item_gallery_carousel_title",
+                            "type": "text",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "default_value": "",
+                            "allow_in_bindings": 0
+                        },
+                        {
+                            "key": "field_68440000d0002",
+                            "label": "Slides",
+                            "name": "multi_item_gallery_carousel_slides",
+                            "type": "repeater",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "layout": "block",
+                            "button_label": "Add Slide",
+                            "min": 0,
+                            "max": 0,
+                            "sub_fields": [
+                                {
+                                    "key": "field_68440000d0003",
+                                    "label": "Title",
+                                    "name": "multi_item_gallery_carousel_slide_title",
+                                    "type": "text",
+                                    "required": 0,
+                                    "conditional_logic": 0,
+                                    "wrapper": {
+                                        "width": "",
+                                        "class": "",
+                                        "id": ""
+                                    },
+                                    "default_value": "",
+                                    "allow_in_bindings": 0,
+                                    "parent_repeater": "field_68440000d0002"
+                                },
+                                {
+                                    "key": "field_68440000d0004",
+                                    "label": "Text",
+                                    "name": "multi_item_gallery_carousel_slide_text",
+                                    "type": "wysiwyg",
+                                    "required": 0,
+                                    "conditional_logic": 0,
+                                    "wrapper": {
+                                        "width": "",
+                                        "class": "",
+                                        "id": ""
+                                    },
+                                    "default_value": "",
+                                    "toolbar": "basic",
+                                    "media_upload": 0,
+                                    "tabs": "all",
+                                    "delay": 0,
+                                    "allow_in_bindings": 0,
+                                    "parent_repeater": "field_68440000d0002"
+                                },
+                                {
+                                    "key": "field_68440000d0005",
+                                    "label": "Image",
+                                    "name": "multi_item_gallery_carousel_slide_image",
+                                    "type": "gallery",
+                                    "required": 0,
+                                    "conditional_logic": 0,
+                                    "wrapper": {
+                                        "width": "",
+                                        "class": "",
+                                        "id": ""
+                                    },
+                                    "return_format": "array",
+                                    "library": "all",
+                                    "allow_in_bindings": 0,
+                                    "parent_repeater": "field_68440000d0002"
+                                },
+                                {
+                                    "key": "field_68440000d0006",
+                                    "label": "Button",
+                                    "name": "multi_item_gallery_carousel_slide_button",
+                                    "type": "link",
+                                    "required": 0,
+                                    "conditional_logic": 0,
+                                    "wrapper": {
+                                        "width": "",
+                                        "class": "",
+                                        "id": ""
+                                    },
+                                    "return_format": "array",
+                                    "allow_in_bindings": 0,
+                                    "parent_repeater": "field_68440000d0002"
+                                }
+                            ]
+                        }
+                    ],
+                    "min": "",
+                    "max": ""
                 }
             },
             "min": "",
@@ -6166,5 +6279,5 @@
     "display_title": "",
     "allow_ai_access": false,
     "ai_description": "",
-    "modified": 1800002600
+    "modified": 1776417658
 }

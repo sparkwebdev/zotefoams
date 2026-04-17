@@ -619,6 +619,48 @@
 			} );
 		} );
 
+		// Multi Item Gallery Carousel
+		const galleryItemCarousels = document.querySelectorAll( '.multi-item-gallery-carousel' );
+		galleryItemCarousels.forEach( ( carousel ) => {
+			const container = carousel.closest( '.multi-item-gallery-carousel-container' );
+			new Swiper( carousel, {
+				loop: false,
+				slidesPerView: 1,
+				spaceBetween: 20,
+				navigation: {
+					nextEl: container?.querySelector( '.multi-gallery-swiper-button-next' ),
+					prevEl: container?.querySelector( '.multi-gallery-swiper-button-prev' ),
+				},
+				scrollbar: {
+					el: carousel.querySelector( '.multi-gallery-swiper-scrollbar' ),
+					hide: false,
+					draggable: false,
+				},
+			} );
+		} );
+
+		// Multi Item Gallery Carousel — pill image switcher
+		document.querySelectorAll( '.multi-item-gallery-carousel__pills' ).forEach( ( pillGroup ) => {
+			pillGroup.addEventListener( 'click', ( e ) => {
+				const pill = e.target.closest( '.multi-item-gallery-carousel__pill' );
+				if ( ! pill ) return;
+
+				pillGroup.querySelectorAll( '.multi-item-gallery-carousel__pill' ).forEach( ( p ) => {
+					p.classList.remove( 'active' );
+					p.setAttribute( 'aria-pressed', 'false' );
+				} );
+				pill.classList.add( 'active' );
+				pill.setAttribute( 'aria-pressed', 'true' );
+
+				const slide = pill.closest( '.swiper-slide' );
+				const img = slide?.querySelector( '.multi-item-gallery-carousel__slide-image' );
+				if ( img ) {
+					img.src = pill.dataset.imageUrl;
+					img.alt = pill.dataset.imageAlt;
+				}
+			} );
+		} );
+
 		// Split Carousel
 		const splitCarousels = document.querySelectorAll( '.swiper-split' );
 		splitCarousels.forEach( ( carousel ) => {
