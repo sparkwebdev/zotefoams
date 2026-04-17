@@ -132,9 +132,6 @@ function initCarousels() {
 				slideChangeTransitionStart() {
 					animateTextSlide( this );
 				},
-				slideChangeTransitionEnd() {
-					// Animation now happens on start, not end
-				},
 				init() {
 					// Animate elements in the initial slide immediately
 					const activeSlide = this.slides[ this.activeIndex ];
@@ -169,7 +166,6 @@ function initCarousels() {
 	// Multi Item Carousel
 	const multiCarousels = document.querySelectorAll( '.multi-item-carousel' );
 	multiCarousels.forEach( ( carousel ) => {
-		const totalSlides = carousel.querySelectorAll( '.swiper-slide' ).length;
 		new Swiper( carousel, {
 			loop: false,
 			slidesPerView: 2,
@@ -188,10 +184,10 @@ function initCarousels() {
 					slidesPerView: 1,
 				},
 				640: {
-					slidesPerView: Math.max( 2, Math.min( 2, totalSlides ) ),
+					slidesPerView: 2,
 				},
 				1024: {
-					slidesPerView: Math.max( 2, Math.min( 2, totalSlides ) ),
+					slidesPerView: 2,
 				},
 			},
 		} );
