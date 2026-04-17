@@ -526,53 +526,51 @@
 					disableOnInteraction: false,
 				},
 				navigation: {
-					nextEl: '.swiper-button-next-image',
-					prevEl: '.swiper-button-prev-image',
+					nextEl: carousel.querySelector( '.swiper-button-next-image' ),
+					prevEl: carousel.querySelector( '.swiper-button-prev-image' ),
 				},
 				pagination: {
-					el: '.swiper-pagination',
+					el: carousel.querySelector( '.swiper-pagination' ),
 					clickable: true,
 				},
 				// Changed from 'fade' to default 'slide' effect
 				speed: 600,
 				on: {
+					init() {
+						// Cache animated elements per slide once on init
+						this._animatedEls = this.slides.map( ( slide ) =>
+							Array.from( slide.querySelectorAll( '.animate__animated:not(.value)' ) )
+						);
+
+						// Animate elements in the initial slide
+						setTimeout( () => {
+							const els = this._animatedEls[ this.activeIndex ] || [];
+							els.forEach( ( el, index ) => {
+								setTimeout( () => {
+									el.style.opacity = '1';
+									el.classList.add( 'animate__fadeInDown' );
+								}, index * SLIDE_ANIMATION_STAGGER_MS );
+							} );
+						}, SLIDE_INIT_DELAY_MS );
+					},
 					slideChangeTransitionStart() {
-						// Hide animated elements only in THIS carousel's slides
-						this.slides.forEach( ( slide ) => {
-							const animatedElements = slide.querySelectorAll( '.animate__animated:not(.value)' );
-							animatedElements.forEach( ( el ) => {
+						// Hide animated elements in all slides using cached references
+						this._animatedEls?.forEach( ( els ) => {
+							els.forEach( ( el ) => {
 								el.style.opacity = '0';
 								el.classList.remove( 'animate__fadeInUp', 'animate__fadeInDown', 'animate__fadeInLeft', 'animate__fadeInRight' );
 							} );
 						} );
 					},
 					slideChangeTransitionEnd() {
-						// Animate elements in the active slide
-						const activeSlide = this.slides[ this.activeIndex ];
-						if ( activeSlide ) {
-							const animatedElements = activeSlide.querySelectorAll( '.animate__animated:not(.value)' );
-							animatedElements.forEach( ( el, index ) => {
-								setTimeout( () => {
-									el.style.opacity = '1';
-									el.classList.add( 'animate__fadeInDown' );
-								}, index * SLIDE_ANIMATION_STAGGER_MS );
-							} );
-						}
-					},
-					init() {
-						// Animate elements in the initial slide
-						setTimeout( () => {
-							const activeSlide = this.slides[ this.activeIndex ];
-							if ( activeSlide ) {
-								const animatedElements = activeSlide.querySelectorAll( '.animate__animated:not(.value)' );
-								animatedElements.forEach( ( el, index ) => {
-									setTimeout( () => {
-										el.style.opacity = '1';
-										el.classList.add( 'animate__fadeInDown' );
-									}, index * SLIDE_ANIMATION_STAGGER_MS );
-								} );
-							}
-						}, SLIDE_INIT_DELAY_MS );
+						// Animate elements in the active slide using cached references
+						const els = this._animatedEls?.[ this.activeIndex ] || [];
+						els.forEach( ( el, index ) => {
+							setTimeout( () => {
+								el.style.opacity = '1';
+								el.classList.add( 'animate__fadeInDown' );
+							}, index * SLIDE_ANIMATION_STAGGER_MS );
+						} );
 					},
 				},
 			} );
@@ -635,9 +633,6 @@
 					slideChangeTransitionStart() {
 						animateTextSlide( this );
 					},
-					slideChangeTransitionEnd() {
-						// Animation now happens on start, not end
-					},
 					init() {
 						// Animate elements in the initial slide immediately
 						const activeSlide = this.slides[ this.activeIndex ];
@@ -672,17 +667,17 @@
 		// Multi Item Carousel
 		const multiCarousels = document.querySelectorAll( '.multi-item-carousel' );
 		multiCarousels.forEach( ( carousel ) => {
-			const totalSlides = carousel.querySelectorAll( '.swiper-slide' ).length;
+			const container = carousel.closest( '.multi-item-carousel-container' );
 			new Swiper( carousel, {
 				loop: false,
 				slidesPerView: 2,
 				spaceBetween: 20,
 				navigation: {
-					nextEl: '.multi-swiper-button-next',
-					prevEl: '.multi-swiper-button-prev',
+					nextEl: container?.querySelector( '.multi-swiper-button-next' ),
+					prevEl: container?.querySelector( '.multi-swiper-button-prev' ),
 				},
 				scrollbar: {
-					el: '.multi-swiper-scrollbar',
+					el: carousel.querySelector( '.multi-swiper-scrollbar' ),
 					hide: false,
 					draggable: false,
 				},
@@ -691,10 +686,10 @@
 						slidesPerView: 1,
 					},
 					640: {
-						slidesPerView: Math.max( 2, Math.min( 2, totalSlides ) ),
+						slidesPerView: 2,
 					},
 					1024: {
-						slidesPerView: Math.max( 2, Math.min( 2, totalSlides ) ),
+						slidesPerView: 2,
 					},
 				},
 			} );
@@ -798,15 +793,16 @@
 		// Split Carousel
 		const splitCarousels = document.querySelectorAll( '.swiper-split' );
 		splitCarousels.forEach( ( carousel ) => {
+			const container = carousel.closest( '.split-carousel' );
 			new Swiper( carousel, {
 				speed: 800,
 				loop: true,
 				navigation: {
-					nextEl: '.split-swiper-button-next',
-					prevEl: '.split-swiper-button-prev',
+					nextEl: container?.querySelector( '.split-swiper-button-next' ),
+					prevEl: container?.querySelector( '.split-swiper-button-prev' ),
 				},
 				pagination: {
-					el: '.split-swiper-pagination',
+					el: container?.querySelector( '.split-swiper-pagination' ),
 					clickable: true,
 				},
 			} );
@@ -815,12 +811,13 @@
 		// Calendar Carousel
 		const calendarCarousels = document.querySelectorAll( '.calendar-carousel' );
 		calendarCarousels.forEach( ( carousel ) => {
+			const container = carousel.closest( '.calendar-carousel-wrapper' )?.parentElement;
 			new Swiper( carousel, {
 				slidesPerView: 1,
 				spaceBetween: 20,
 				navigation: {
-					nextEl: '.calendar-swiper-button-next',
-					prevEl: '.calendar-swiper-button-prev',
+					nextEl: container?.querySelector( '.calendar-swiper-button-next' ),
+					prevEl: container?.querySelector( '.calendar-swiper-button-prev' ),
 				},
 				breakpoints: {
 					768: {
@@ -860,17 +857,24 @@
 	 */
 
 	function initTabbedSplit() {
-		const tabs = ZotefoamsDOMUtils.selectAll( '.tab' );
-		const tabContents = ZotefoamsDOMUtils.selectAll( '.tab-content' );
+		document.querySelectorAll( '.tabs-container' ).forEach( ( tabsContainer ) => {
+			const contentContainer = tabsContainer.nextElementSibling;
+			if ( ! contentContainer?.classList.contains( 'content-container' ) ) {return;}
 
-		ZotefoamsEventUtils.onAll( tabs, 'click', function() {
-			// Remove active class from all tabs and contents
-			ZotefoamsClassUtils.removeAll( tabs, 'active' );
-			ZotefoamsClassUtils.removeAll( tabContents, 'active' );
+			const tabs = tabsContainer.querySelectorAll( '.tab' );
+			const tabContents = contentContainer.querySelectorAll( '.tab-content' );
 
-			// Add active class to clicked tab and corresponding content
-			ZotefoamsClassUtils.add( this, 'active' );
-			ZotefoamsClassUtils.add( ZotefoamsDOMUtils.select( `#${ this.dataset.tab }` ), 'active' );
+			tabs.forEach( ( tab ) => {
+				tab.addEventListener( 'click', function() {
+					// Scope active state to this instance only
+					tabs.forEach( ( t ) => t.classList.remove( 'active' ) );
+					tabContents.forEach( ( tc ) => tc.classList.remove( 'active' ) );
+
+					this.classList.add( 'active' );
+					const target = contentContainer.querySelector( `#${ this.dataset.tab }` );
+					if ( target ) {target.classList.add( 'active' );}
+				} );
+			} );
 		} );
 	}
 

@@ -2,20 +2,27 @@
  * Tabbed Split Component
  * Handles tab switching functionality with content panels
  */
-import { ZotefoamsDOMUtils, ZotefoamsEventUtils, ZotefoamsClassUtils, ZotefoamsReadyUtils } from '../utils/dom-utilities.js';
+import { ZotefoamsReadyUtils } from '../utils/dom-utilities.js';
 
 function initTabbedSplit() {
-	const tabs = ZotefoamsDOMUtils.selectAll( '.tab' );
-	const tabContents = ZotefoamsDOMUtils.selectAll( '.tab-content' );
+	document.querySelectorAll( '.tabs-container' ).forEach( ( tabsContainer ) => {
+		const contentContainer = tabsContainer.nextElementSibling;
+		if ( ! contentContainer?.classList.contains( 'content-container' ) ) {return;}
 
-	ZotefoamsEventUtils.onAll( tabs, 'click', function() {
-		// Remove active class from all tabs and contents
-		ZotefoamsClassUtils.removeAll( tabs, 'active' );
-		ZotefoamsClassUtils.removeAll( tabContents, 'active' );
+		const tabs = tabsContainer.querySelectorAll( '.tab' );
+		const tabContents = contentContainer.querySelectorAll( '.tab-content' );
 
-		// Add active class to clicked tab and corresponding content
-		ZotefoamsClassUtils.add( this, 'active' );
-		ZotefoamsClassUtils.add( ZotefoamsDOMUtils.select( `#${ this.dataset.tab }` ), 'active' );
+		tabs.forEach( ( tab ) => {
+			tab.addEventListener( 'click', function() {
+				// Scope active state to this instance only
+				tabs.forEach( ( t ) => t.classList.remove( 'active' ) );
+				tabContents.forEach( ( tc ) => tc.classList.remove( 'active' ) );
+
+				this.classList.add( 'active' );
+				const target = contentContainer.querySelector( `#${ this.dataset.tab }` );
+				if ( target ) {target.classList.add( 'active' );}
+			} );
+		} );
 	} );
 }
 
