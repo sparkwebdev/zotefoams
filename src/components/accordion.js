@@ -28,7 +28,7 @@ function initAccordion() {
 						ZotefoamsAccessibilityUtils.setAriaHidden( otherContent, true );
 					}
 					ZotefoamsAccessibilityUtils.setAriaExpanded( otherHeader, false );
-					if ( otherIcon ) otherIcon.textContent = '+';
+					if ( otherIcon ) {otherIcon.textContent = '+';}
 					otherHeader.classList.remove( 'open' );
 				}
 			} );
@@ -38,13 +38,13 @@ function initAccordion() {
 				content.classList.remove( 'is-open' );
 				ZotefoamsAccessibilityUtils.setAriaHidden( content, true );
 				ZotefoamsAccessibilityUtils.setAriaExpanded( this, false );
-				if ( icon ) icon.textContent = '+';
+				if ( icon ) {icon.textContent = '+';}
 				this.classList.remove( 'open' );
 			} else {
 				content.classList.add( 'is-open' );
 				ZotefoamsAccessibilityUtils.setAriaHidden( content, false );
 				ZotefoamsAccessibilityUtils.setAriaExpanded( this, true );
-				if ( icon ) icon.textContent = '-';
+				if ( icon ) {icon.textContent = '-';}
 				this.classList.add( 'open' );
 
 				// Scroll the .accordion container into view
@@ -73,7 +73,7 @@ function initAccordion() {
 						? imageEl.querySelector( '.split-accordion-image__image-layer--a' )
 						: imageEl.querySelector( '.split-accordion-image__image-layer--b' );
 
-					if ( ! inactiveLayer || ! activeLayer ) return;
+					if ( ! inactiveLayer || ! activeLayer ) {return;}
 					inactiveLayer.style.backgroundImage = newUrl ? `url('${ newUrl }')` : '';
 					inactiveLayer.style.opacity = '1';
 					activeLayer.style.opacity = '0';
@@ -104,7 +104,9 @@ function openAccordionFromHash() {
 	if ( targetItem && targetItem.classList.contains( 'accordion-item' ) ) {
 		const header = targetItem.querySelector( '.accordion-header' );
 		if ( header ) {
-			header.click();
+			if ( header.getAttribute( 'aria-expanded' ) !== 'true' ) {
+				header.click();
+			}
 			targetItem.scrollIntoView( { behavior: 'smooth', block: 'start' } );
 
 			// Remove hash from URL without refreshing the page

@@ -720,7 +720,15 @@
 			} );
 		} );
 
-		// Multi Item Gallery Carousel — pill image switcher
+		// Multi Item Gallery Carousel — preload non-default pill images
+		document.querySelectorAll( '.multi-item-gallery-carousel__pill:not(.active)' ).forEach( ( pill ) => {
+			if ( pill.dataset.imageUrl ) {
+				const preload = new Image();
+				preload.src = pill.dataset.imageUrl;
+			}
+		} );
+
+		// Multi Item Gallery Carousel — pill image switcher with crossfade
 		document.querySelectorAll( '.multi-item-gallery-carousel__pills' ).forEach( ( pillGroup ) => {
 			pillGroup.addEventListener( 'click', ( e ) => {
 				const pill = e.target.closest( '.multi-item-gallery-carousel__pill' );
@@ -735,10 +743,55 @@
 
 				const slide = pill.closest( '.swiper-slide' );
 				const img = slide?.querySelector( '.multi-item-gallery-carousel__slide-image' );
-				if ( img ) {
-					img.src = pill.dataset.imageUrl;
-					img.alt = pill.dataset.imageAlt;
-				}
+				if ( ! img ) {return;}
+
+				const newUrl = pill.dataset.imageUrl;
+				const newAlt = pill.dataset.imageAlt;
+
+				// Crossfade: overlay new image fades in over the current one
+				const container = img.parentElement;
+				const overlay = new Image();
+				overlay.src = newUrl;
+				overlay.alt = newAlt;
+				overlay.className = 'multi-item-gallery-carousel__slide-image';
+				Object.assign( overlay.style, {
+					position: 'absolute',
+					inset: '0',
+					opacity: '0',
+					transition: 'opacity 0.25s ease',
+				} );
+				container.appendChild( overlay );
+
+				// Double rAF ensures opacity:0 is painted before transition starts
+				requestAnimationFrame( () => {
+					requestAnimationFrame( () => { overlay.style.opacity = '1'; } );
+				} );
+
+				overlay.addEventListener( 'transitionend', function onFadeIn( e ) {
+					if ( e.propertyName !== 'opacity' ) {return;}
+					overlay.removeEventListener( 'transitionend', onFadeIn );
+
+					// Swap base while overlay is fully opaque — no pop
+					img.src = newUrl;
+					img.alt = newAlt;
+
+					// Fade overlay out (both layers identical at this point — seamless)
+					overlay.style.opacity = '0';
+					overlay.addEventListener( 'transitionend', function onFadeOut( f ) {
+						if ( f.propertyName !== 'opacity' ) {return;}
+						overlay.removeEventListener( 'transitionend', onFadeOut );
+						overlay.remove();
+					} );
+				} );
+
+				// Fallback: covers both transitions (2 × 250ms) with margin
+				setTimeout( () => {
+					if ( overlay.parentNode ) {
+						img.src = newUrl;
+						img.alt = newAlt;
+						overlay.remove();
+					}
+				}, 600 );
 			} );
 		} );
 
@@ -1496,7 +1549,7 @@
 							ZotefoamsAccessibilityUtils.setAriaHidden( otherContent, true );
 						}
 						ZotefoamsAccessibilityUtils.setAriaExpanded( otherHeader, false );
-						if ( otherIcon ) otherIcon.textContent = '+';
+						if ( otherIcon ) {otherIcon.textContent = '+';}
 						otherHeader.classList.remove( 'open' );
 					}
 				} );
@@ -1506,13 +1559,13 @@
 					content.classList.remove( 'is-open' );
 					ZotefoamsAccessibilityUtils.setAriaHidden( content, true );
 					ZotefoamsAccessibilityUtils.setAriaExpanded( this, false );
-					if ( icon ) icon.textContent = '+';
+					if ( icon ) {icon.textContent = '+';}
 					this.classList.remove( 'open' );
 				} else {
 					content.classList.add( 'is-open' );
 					ZotefoamsAccessibilityUtils.setAriaHidden( content, false );
 					ZotefoamsAccessibilityUtils.setAriaExpanded( this, true );
-					if ( icon ) icon.textContent = '-';
+					if ( icon ) {icon.textContent = '-';}
 					this.classList.add( 'open' );
 
 					// Scroll the .accordion container into view
@@ -1541,7 +1594,7 @@
 							? imageEl.querySelector( '.split-accordion-image__image-layer--a' )
 							: imageEl.querySelector( '.split-accordion-image__image-layer--b' );
 
-						if ( ! inactiveLayer || ! activeLayer ) return;
+						if ( ! inactiveLayer || ! activeLayer ) {return;}
 						inactiveLayer.style.backgroundImage = newUrl ? `url('${ newUrl }')` : '';
 						inactiveLayer.style.opacity = '1';
 						activeLayer.style.opacity = '0';
@@ -1572,7 +1625,9 @@
 		if ( targetItem && targetItem.classList.contains( 'accordion-item' ) ) {
 			const header = targetItem.querySelector( '.accordion-header' );
 			if ( header ) {
-				header.click();
+				if ( header.getAttribute( 'aria-expanded' ) !== 'true' ) {
+					header.click();
+				}
 				targetItem.scrollIntoView( { behavior: 'smooth', block: 'start' } );
 
 				// Remove hash from URL without refreshing the page

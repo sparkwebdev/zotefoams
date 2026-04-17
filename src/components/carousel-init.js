@@ -217,7 +217,15 @@ function initCarousels() {
 		} );
 	} );
 
-	// Multi Item Gallery Carousel — pill image switcher
+	// Multi Item Gallery Carousel — preload non-default pill images
+	document.querySelectorAll( '.multi-item-gallery-carousel__pill:not(.active)' ).forEach( ( pill ) => {
+		if ( pill.dataset.imageUrl ) {
+			const preload = new Image();
+			preload.src = pill.dataset.imageUrl;
+		}
+	} );
+
+	// Multi Item Gallery Carousel — pill image switcher with crossfade
 	document.querySelectorAll( '.multi-item-gallery-carousel__pills' ).forEach( ( pillGroup ) => {
 		pillGroup.addEventListener( 'click', ( e ) => {
 			const pill = e.target.closest( '.multi-item-gallery-carousel__pill' );
@@ -232,10 +240,55 @@ function initCarousels() {
 
 			const slide = pill.closest( '.swiper-slide' );
 			const img = slide?.querySelector( '.multi-item-gallery-carousel__slide-image' );
-			if ( img ) {
-				img.src = pill.dataset.imageUrl;
-				img.alt = pill.dataset.imageAlt;
-			}
+			if ( ! img ) {return;}
+
+			const newUrl = pill.dataset.imageUrl;
+			const newAlt = pill.dataset.imageAlt;
+
+			// Crossfade: overlay new image fades in over the current one
+			const container = img.parentElement;
+			const overlay = new Image();
+			overlay.src = newUrl;
+			overlay.alt = newAlt;
+			overlay.className = 'multi-item-gallery-carousel__slide-image';
+			Object.assign( overlay.style, {
+				position: 'absolute',
+				inset: '0',
+				opacity: '0',
+				transition: 'opacity 0.25s ease',
+			} );
+			container.appendChild( overlay );
+
+			// Double rAF ensures opacity:0 is painted before transition starts
+			requestAnimationFrame( () => {
+				requestAnimationFrame( () => { overlay.style.opacity = '1'; } );
+			} );
+
+			overlay.addEventListener( 'transitionend', function onFadeIn( e ) {
+				if ( e.propertyName !== 'opacity' ) {return;}
+				overlay.removeEventListener( 'transitionend', onFadeIn );
+
+				// Swap base while overlay is fully opaque — no pop
+				img.src = newUrl;
+				img.alt = newAlt;
+
+				// Fade overlay out (both layers identical at this point — seamless)
+				overlay.style.opacity = '0';
+				overlay.addEventListener( 'transitionend', function onFadeOut( f ) {
+					if ( f.propertyName !== 'opacity' ) {return;}
+					overlay.removeEventListener( 'transitionend', onFadeOut );
+					overlay.remove();
+				} );
+			} );
+
+			// Fallback: covers both transitions (2 × 250ms) with margin
+			setTimeout( () => {
+				if ( overlay.parentNode ) {
+					img.src = newUrl;
+					img.alt = newAlt;
+					overlay.remove();
+				}
+			}, 600 );
 		} );
 	} );
 

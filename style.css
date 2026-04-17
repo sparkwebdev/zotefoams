@@ -5,7 +5,7 @@ Theme URI: http://underscores.me/
 Author: David Park
 Author URI: http://underscores.me/
 Description: Description
-Version: 3.4.0
+Version: 3.4.1
 Tested up to: 6.9.4
 Requires PHP: 7.4
 License: GNU General Public License v2 or later
@@ -957,6 +957,10 @@ textarea {
 
 .grey-text {
   color: #707070;
+}
+
+.light-grey-text {
+  color: #b5b5b5;
 }
 
 .light-grey-bg {
@@ -6758,6 +6762,7 @@ html:has(.zf-history) {
   max-width: 60%;
   overflow: hidden;
   aspect-ratio: 3/2;
+  position: relative;
 }
 
 .multi-item-gallery-carousel__image img {
@@ -7030,4 +7035,5 @@ html:has(.zf-history) {
     left: 5%;
   }
 }
+
 /*# sourceMappingURL=style.css.map */

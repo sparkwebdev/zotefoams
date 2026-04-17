@@ -20,7 +20,7 @@ $wrapper_classes = 'text-banner-split theme-dark';
     <div class="black-bg white-text padding-100">
         <div class="text-banner-split__text">
             <?php if ($title) : ?>
-                <p class="fs-200 fw-regular margin-b-30"><?php echo esc_html($title); ?></p>
+                <p class="fs-200 fw-regular margin-b-30 light-grey-text"><?php echo esc_html($title); ?></p>
             <?php endif; ?>
 
             <?php if (is_page('Investors') || is_page('Share Price')) : ?>
