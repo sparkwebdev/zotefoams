@@ -62,7 +62,7 @@ function initUtilitySearch() {
 		window.scrollTo( window.scrollX, window.scrollY );
 	} );
 
-	input?.addEventListener( 'keydown', ( e ) => {
+	input?.addEventListener( 'keydown', () => {
 		// Store current scroll position
 		const currentScrollY = window.scrollY;
 		setTimeout( () => {

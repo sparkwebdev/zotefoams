@@ -38,9 +38,12 @@ export const handleMegaMenuKeyboard = ( e, megaMenu, triggerLink ) => {
 			// Focus next/previous top-level link
 			const topLinks = Array.from( document.querySelectorAll( "[data-js-nav='menu'] > li > a" ) );
 			const index = topLinks.indexOf( triggerLink );
-			const targetLink = e.shiftKey
-				? ( index > 0 ? topLinks[ index - 1 ] : triggerLink )
-				: ( index < topLinks.length - 1 ? topLinks[ index + 1 ] : triggerLink );
+			let targetLink;
+			if ( e.shiftKey ) {
+				targetLink = index > 0 ? topLinks[ index - 1 ] : triggerLink;
+			} else {
+				targetLink = index < topLinks.length - 1 ? topLinks[ index + 1 ] : triggerLink;
+			}
 			targetLink.focus();
 		}
 	}

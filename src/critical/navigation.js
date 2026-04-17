@@ -20,8 +20,6 @@ import { ZotefoamsDeviceUtils } from '../utils/dom-utilities.js';
 			ZotefoamsDeviceUtils.initTouchSupport();
 		}
 
-		console.log( '[Navigation v1.0.1] Script loaded' );
-
 		function initNavigation() {
 			const siteNav = document.querySelector( "[data-js-nav='main']" );
 			if ( ! siteNav || siteNav.hasAttribute( 'data-critical-nav-initialized' ) ) {
@@ -45,10 +43,6 @@ import { ZotefoamsDeviceUtils } from '../utils/dom-utilities.js';
 			const HOVER_DELAY_MS = 200;
 
 			// Prevent accidental hover activation on page load (when mouse is already over nav)
-			let allowHover = false;
-			window.addEventListener( 'mousemove', () => {
-				allowHover = true;
-			}, { once: true } );
 
 			// Single timer for hide delays
 			let hideTimer = null;
@@ -66,10 +60,10 @@ import { ZotefoamsDeviceUtils } from '../utils/dom-utilities.js';
 				}
 
 				document.querySelectorAll( ".mega-menu[aria-hidden='false']" )
-					.forEach( ( menu ) => {
-						menu.setAttribute( 'aria-hidden', 'true' );
+					.forEach( ( openMenu ) => {
+						openMenu.setAttribute( 'aria-hidden', 'true' );
 
-						const menuId = menu.getAttribute( 'id' );
+						const menuId = openMenu.getAttribute( 'id' );
 						const triggerLink = document.querySelector( `[aria-controls="${ menuId }"]` );
 						if ( triggerLink ) {
 							setAriaExpanded( triggerLink, false );
@@ -384,6 +378,7 @@ import { ZotefoamsDeviceUtils } from '../utils/dom-utilities.js';
 			initNavigation();
 		}
 	} catch ( error ) {
+		// eslint-disable-next-line no-console
 		console.error( '[Navigation] Error:', error );
 	}
 } )();

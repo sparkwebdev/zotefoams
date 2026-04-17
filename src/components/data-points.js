@@ -2,7 +2,7 @@
  * Data Points Component
  * Animated counter values with intersection observer
  */
-import { ZotefoamsDOMUtils, ZotefoamsClassUtils, ZotefoamsReadyUtils } from '../utils/dom-utilities.js';
+import { ZotefoamsDOMUtils, ZotefoamsReadyUtils } from '../utils/dom-utilities.js';
 
 function animateValue( obj, start, end, duration, prefix, suffix, decimals ) {
 	let startTimestamp = null;
@@ -14,7 +14,7 @@ function animateValue( obj, start, end, duration, prefix, suffix, decimals ) {
 		const value = ( progress * ( end - start ) + start );
 
 		// Format value with the correct decimals
-		let formattedValue = value.toFixed( decimals );
+		const formattedValue = value.toFixed( decimals );
 		// Trailing zero removal disabled to preserve decimal formatting (e.g. 38.00p)
 		// if ( decimals > 0 && ! suffix.includes( '%' ) ) {
 		// 	formattedValue = formattedValue.replace( /\.?0+$/, '' );

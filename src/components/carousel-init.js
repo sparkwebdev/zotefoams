@@ -8,7 +8,7 @@ function initCarousels() {
 	// Image Banner Carousel (b1-Image-banner)
 	const imageBannerCarousels = document.querySelectorAll( '.swiper-image' );
 	imageBannerCarousels.forEach( ( carousel ) => {
-		const swiper = new Swiper( carousel, {
+		new Swiper( carousel, {
 			loop: true,
 			autoplay: {
 				delay: 5000,
@@ -213,7 +213,7 @@ function initCarousels() {
 	document.querySelectorAll( '.multi-item-gallery-carousel__pills' ).forEach( ( pillGroup ) => {
 		pillGroup.addEventListener( 'click', ( e ) => {
 			const pill = e.target.closest( '.multi-item-gallery-carousel__pill' );
-			if ( ! pill ) return;
+			if ( ! pill ) {return;}
 
 			pillGroup.querySelectorAll( '.multi-item-gallery-carousel__pill' ).forEach( ( p ) => {
 				p.classList.remove( 'active' );

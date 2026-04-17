@@ -19,6 +19,7 @@ function initVideoModal() {
 			const videoId = new URLSearchParams( parsedUrl.search ).get( 'v' );
 			return videoId;
 		} catch ( e ) {
+			// eslint-disable-next-line no-console
 			console.error( 'Invalid YouTube URL:', url );
 			return null;
 		}

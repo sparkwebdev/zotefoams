@@ -81,7 +81,7 @@ function initDesktopTabsAccessibility( wrapper ) {
 	} );
 }
 
-function initMobileAccordion( wrapper, wrapperIndex ) {
+function initMobileAccordion( wrapper ) {
 	const headers = wrapper.querySelectorAll( '[data-accordion-header]' );
 
 	if ( ! headers.length ) {

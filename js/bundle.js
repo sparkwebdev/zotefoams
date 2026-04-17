@@ -341,6 +341,7 @@
 					try {
 						callback();
 					} catch ( error ) {
+						// eslint-disable-next-line no-console
 						console.error( 'Ready callback error:', error );
 					}
 				} );
@@ -643,7 +644,7 @@
 		document.querySelectorAll( '.multi-item-gallery-carousel__pills' ).forEach( ( pillGroup ) => {
 			pillGroup.addEventListener( 'click', ( e ) => {
 				const pill = e.target.closest( '.multi-item-gallery-carousel__pill' );
-				if ( ! pill ) return;
+				if ( ! pill ) {return;}
 
 				pillGroup.querySelectorAll( '.multi-item-gallery-carousel__pill' ).forEach( ( p ) => {
 					p.classList.remove( 'active' );
@@ -933,7 +934,7 @@
 			const value = ( progress * ( end - start ) + start );
 
 			// Format value with the correct decimals
-			let formattedValue = value.toFixed( decimals );
+			const formattedValue = value.toFixed( decimals );
 			// Trailing zero removal disabled to preserve decimal formatting (e.g. 38.00p)
 			// if ( decimals > 0 && ! suffix.includes( '%' ) ) {
 			// 	formattedValue = formattedValue.replace( /\.?0+$/, '' );
@@ -1297,6 +1298,7 @@
 				const videoId = new URLSearchParams( parsedUrl.search ).get( 'v' );
 				return videoId;
 			} catch ( e ) {
+				// eslint-disable-next-line no-console
 				console.error( 'Invalid YouTube URL:', url );
 				return null;
 			}
@@ -1425,7 +1427,7 @@
 						const newUrl = isOpening
 							? this.dataset.image || ''
 							: imageEl.dataset.defaultImage || '';
-						if ( ( imageEl.dataset.currentImage || '' ) === newUrl ) return;
+						if ( ( imageEl.dataset.currentImage || '' ) === newUrl ) {return;}
 						imageEl.dataset.currentImage = newUrl;
 
 						const activeLayer = imageEl.dataset.activeLayer === 'b'
@@ -1559,7 +1561,7 @@
 		} );
 	}
 
-	function initMobileAccordion( wrapper, wrapperIndex ) {
+	function initMobileAccordion( wrapper ) {
 		const headers = wrapper.querySelectorAll( '[data-accordion-header]' );
 
 		if ( ! headers.length ) {
@@ -1665,7 +1667,7 @@
 			window.scrollTo( window.scrollX, window.scrollY );
 		} );
 
-		input?.addEventListener( 'keydown', ( e ) => {
+		input?.addEventListener( 'keydown', () => {
 			// Store current scroll position
 			const currentScrollY = window.scrollY;
 			setTimeout( () => {
@@ -1935,7 +1937,6 @@
 						const windowHeight = window.innerHeight;
 						const elementTop = rect.top;
 						const elementBottom = rect.bottom;
-						rect.height;
 
 						// Element is in viewport
 						if ( elementTop < windowHeight && elementBottom > 0 ) {

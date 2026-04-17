@@ -65,7 +65,7 @@ function initAccordion() {
 					const newUrl = isOpening
 						? this.dataset.image || ''
 						: imageEl.dataset.defaultImage || '';
-					if ( ( imageEl.dataset.currentImage || '' ) === newUrl ) return;
+					if ( ( imageEl.dataset.currentImage || '' ) === newUrl ) {return;}
 					imageEl.dataset.currentImage = newUrl;
 
 					const activeLayer = imageEl.dataset.activeLayer === 'b'

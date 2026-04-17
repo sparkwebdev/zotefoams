@@ -494,6 +494,7 @@ export const ZotefoamsReadyUtils = {
 				try {
 					callback();
 				} catch ( error ) {
+					// eslint-disable-next-line no-console
 					console.error( 'Ready callback error:', error );
 				}
 			} );

@@ -172,7 +172,6 @@ function initOurHistory() {
 					const windowHeight = window.innerHeight;
 					const elementTop = rect.top;
 					const elementBottom = rect.bottom;
-					const elementHeight = rect.height;
 
 					// Element is in viewport
 					if ( elementTop < windowHeight && elementBottom > 0 ) {
