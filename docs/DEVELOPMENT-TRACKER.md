@@ -38,7 +38,9 @@
 - [ ] **Video Knowledge Hub** - Update to accept video files instead of just documents
 - [ ] **Filter dropdown refactor** - Add click-outside to close, hide when single category, improve UX
 - [ ] **Split Carousel shared state bug** - Left/right navigation controls all instances simultaneously instead of scoping to the individual carousel
-- [ ] **Multi Item Carousel shared state bug** - Same issue as Split Carousel; navigation controls affect all instances rather than scoping to individual carousel
+- [ ] **Multi Item Carousel shared state bug** - Same issue as Split Carousel; navigation controls affect all instances rather than scoping to individual carousel. Fix pattern: `closest()` to the container, then `querySelector()` to get scoped DOM elements — pass elements directly to Swiper `nextEl`/`prevEl`/`el` instead of CSS strings. Already applied to Multi Item Gallery Carousel.
+- [ ] **Multi Item Carousel `totalSlides` dead code** — `Math.max(2, Math.min(2, totalSlides))` always evaluates to `2`; the variable and math serve no purpose. Simplify breakpoints to `slidesPerView: 2` directly
+- [ ] **Dual Carousel empty `slideChangeTransitionEnd` callback** — Handler body is a comment only (`// Animation now happens on start, not end`). Dead code; remove the callback entirely
 - [ ] **Tabbed Split shared state bug** - Clicking tabs on one instance changes all other instances; not scoped to individual component
 - [ ] **Step Slider overline positioning** - Overline title (`step_slider_slide_overline`) renders outside the dark slider area when JS doesn't fully initialise (e.g. component library); on live site it positions correctly within the component
 - [ ] **Calendar Carousel shared state bug** - Same issue; navigation controls affect all instances rather than scoping to individual carousel
