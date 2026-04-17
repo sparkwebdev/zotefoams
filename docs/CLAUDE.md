@@ -87,7 +87,7 @@ ES module system in `src/`:
 - BrowserSync for live reload during development
 - Playwright for visual regression testing
 - PHPCS with WordPress coding standards
-- Debug system available via `?zf_debug=1` URL parameter (admin only)
+- Debug system activates when `WP_DEBUG` is `true` in `wp-config.php`
 
 ### Modular Functions Structure
 The theme follows modern WordPress practices with a modular functions.php structure:

@@ -36,11 +36,8 @@ class Zotefoams_Debug
     public static function is_enabled()
     {
         if (self::$debug_enabled === null) {
-            // Enable debug mode if WP_DEBUG is on OR if debug query parameter is set
-            self::$debug_enabled = (
-                (defined('WP_DEBUG') && WP_DEBUG) ||
-                (isset($_GET['zf_debug']) && current_user_can('administrator'))
-            );
+            // Enable debug mode only when WP_DEBUG is on
+            self::$debug_enabled = (defined('WP_DEBUG') && WP_DEBUG);
         }
         
         return self::$debug_enabled;
