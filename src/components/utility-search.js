@@ -5,6 +5,9 @@
 import { ZotefoamsReadyUtils } from '../utils/dom-utilities.js';
 import { updateHeaderHeight } from '../utils/site-utilities.js';
 
+const FOCUS_DELAY_MS = 100;
+const SCROLL_RESTORE_DELAY_MS = 0;
+
 function initUtilitySearch() {
 	const menu = document.querySelector( '#menu-utility' );
 	const searchItem = menu?.querySelector( 'a[href="/search"]' );
@@ -52,7 +55,7 @@ function initUtilitySearch() {
 		if ( focusInput && input ) {
 			setTimeout( () => {
 				input.focus();
-			}, 100 );
+			}, FOCUS_DELAY_MS );
 		}
 	};
 
@@ -67,7 +70,7 @@ function initUtilitySearch() {
 		const currentScrollY = window.scrollY;
 		setTimeout( () => {
 			window.scrollTo( window.scrollX, currentScrollY );
-		}, 0 );
+		}, SCROLL_RESTORE_DELAY_MS );
 	} );
 
 	const closeSearch = () => {

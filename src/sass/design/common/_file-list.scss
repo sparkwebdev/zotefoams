@@ -30,6 +30,19 @@
   display: none;
 }
 
+.section-list__item.filtered {
+  display: none;
+}
+
+.is-filtering {
+  opacity: 0;
+}
+
+[data-component="file-list"] tbody,
+[data-component="section-list"] .articles--grid-alt {
+  transition: opacity 0.5s;
+}
+
 .file-list__item:hover,
 .file-list__item:has(a:focus) {
   background-color: var(--color-brand-contrast);

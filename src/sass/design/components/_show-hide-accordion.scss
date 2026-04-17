@@ -44,6 +44,10 @@
 
 .accordion-content {
   display: none;
+
+  &.is-open {
+    display: block;
+  }
 }
 
 .accordion-content p,

@@ -13,7 +13,7 @@ add_post_type_support('page', 'excerpt');
  * 
  * @return void
  */
-function change_post_menu_label()
+function zotefoams_change_post_menu_label()
 {
     global $menu;
     global $submenu;
@@ -24,7 +24,7 @@ function change_post_menu_label()
     $submenu['edit.php'][16][0] = 'Tags';
     echo '';
 }
-add_action('admin_menu', 'change_post_menu_label');
+add_action('admin_menu', 'zotefoams_change_post_menu_label');
 
 /**
  * Change post object labels to "News Centre"
@@ -35,7 +35,7 @@ add_action('admin_menu', 'change_post_menu_label');
  * 
  * @return void
  */
-function change_post_object_label()
+function zotefoams_change_post_object_label()
 {
     global $wp_post_types;
     $labels = &$wp_post_types['post']->labels;
@@ -50,7 +50,7 @@ function change_post_object_label()
     $labels->not_found = 'No News Centre item found';
     $labels->not_found_in_trash = 'No News Centre items found in Trash';
 }
-add_action('init', 'change_post_object_label');
+add_action('init', 'zotefoams_change_post_object_label');
 
 /**
  * Disable Gutenberg for all post types except 'post'.
@@ -100,7 +100,7 @@ function remove_classic_editor_support()
 }
 add_action('current_screen', 'remove_classic_editor_support');
 
-function zoatfoams_allowed_block_types($allowed_blocks, $editor_context)
+function zotefoams_allowed_block_types($allowed_blocks, $editor_context)
 {
     // Available options below:
     // 'core/legacy-widget',
@@ -236,7 +236,7 @@ function zoatfoams_allowed_block_types($allowed_blocks, $editor_context)
 
     return $allowed_blocks;
 }
-add_filter('allowed_block_types_all', 'zoatfoams_allowed_block_types', 10, 2);
+add_filter('allowed_block_types_all', 'zotefoams_allowed_block_types', 10, 2);
 
 
 /**

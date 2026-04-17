@@ -2,7 +2,9 @@
  * Section List Component
  * Gallery section filtering functionality
  */
-import { ZotefoamsReadyUtils } from '../utils/dom-utilities.js';
+import { ZotefoamsReadyUtils, ZotefoamsAccessibilityUtils } from '../utils/dom-utilities.js';
+
+const FILTER_FADE_DURATION_MS = 200;
 
 function initSectionList() {
 	const sectionListElements = document.querySelectorAll( '[data-component="section-list"]' );
@@ -17,6 +19,8 @@ function initSectionList() {
 			const toggleDropdown = ( show ) => {
 				filterOptions.classList.toggle( 'hidden', ! show );
 				filterButton.classList.toggle( 'open', show );
+				ZotefoamsAccessibilityUtils.setAriaExpanded( filterButton, show );
+				ZotefoamsAccessibilityUtils.setAriaHidden( filterOptions, ! show );
 			};
 
 			const updateShowAllVisibility = () => {
@@ -34,26 +38,26 @@ function initSectionList() {
 				} // Exit if no container found.
 
 				// Fade out the container.
-				sectionContainer.style.transition = 'opacity 0.5s';
-				sectionContainer.style.opacity = 0;
+				sectionContainer.classList.add( 'is-filtering' );
 
 				setTimeout( () => {
 					// Get the selected labels from the checkboxes.
 					const selectedLabels = checkboxes.filter( ( cb ) => cb.checked ).map( ( cb ) => cb.value );
 
-					// Update each section item's display based on the selected labels.
+					// Update each section item's visibility based on the selected labels.
 					sectionItems.forEach( ( item ) => {
-						item.style.display = selectedLabels.length === 0 || selectedLabels.includes( item.dataset.galleryLabel ) ? 'block' : 'none';
+						const isVisible = selectedLabels.length === 0 || selectedLabels.includes( item.dataset.galleryLabel );
+						item.classList.toggle( 'filtered', ! isVisible );
 					} );
 					updateShowAllVisibility();
 
 					// Fade the container back in.
-					sectionContainer.style.opacity = 1;
-				}, 200 ); // Wait 0.5 seconds to match the fade-out transition.
+					sectionContainer.classList.remove( 'is-filtering' );
+				}, FILTER_FADE_DURATION_MS );
 			};
 
 			const resetFilters = () => {
-				sectionItems.forEach( ( item ) => ( item.style.display = 'block' ) );
+				sectionItems.forEach( ( item ) => item.classList.remove( 'filtered' ) );
 				checkboxes.forEach( ( cb ) => ( cb.checked = false ) );
 				toggleDropdown( false );
 				updateShowAllVisibility();
@@ -71,14 +75,25 @@ function initSectionList() {
 				showAllButton.addEventListener( 'click', resetFilters );
 			}
 
-			const dropdown = article.querySelector( '.file-list__dropdown' );
-			document.addEventListener( 'click', ( e ) => {
-				if ( ! dropdown.contains( e.target ) ) {
-					toggleDropdown( false );
+			updateShowAllVisibility();
+		} );
+
+		document.addEventListener( 'click', ( e ) => {
+			sectionListElements.forEach( ( article ) => {
+				const dropdown = article.querySelector( '.file-list__dropdown' );
+				const filterOptions = article.querySelector( '#filter-options' );
+				const filterButton = article.querySelector( '#filter-toggle' );
+				if ( dropdown && ! dropdown.contains( e.target ) ) {
+					if ( filterOptions ) {
+						filterOptions.classList.add( 'hidden' );
+						ZotefoamsAccessibilityUtils.setAriaHidden( filterOptions, true );
+					}
+					if ( filterButton ) {
+						filterButton.classList.remove( 'open' );
+						ZotefoamsAccessibilityUtils.setAriaExpanded( filterButton, false );
+					}
 				}
 			} );
-
-			updateShowAllVisibility();
 		} );
 	}
 }

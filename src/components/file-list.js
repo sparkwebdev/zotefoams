@@ -2,7 +2,10 @@
  * File List Component
  * Enhanced file filtering with multiple filters, comma-separated values and keyboard support
  */
-import { ZotefoamsReadyUtils } from '../utils/dom-utilities.js';
+import { ZotefoamsReadyUtils, ZotefoamsAccessibilityUtils } from '../utils/dom-utilities.js';
+
+const FILTER_FADE_DURATION_MS = 200;
+const KEYBOARD_NAV_DELAY_MS = 0;
 
 function initFileList() {
 	const fileListElements = document.querySelectorAll( '[data-component="file-list"]' );
@@ -19,6 +22,8 @@ function initFileList() {
 			const toggleDropdown = ( show ) => {
 				filterOptions.classList.toggle( 'hidden', ! show );
 				filterButton.classList.toggle( 'open', show );
+				ZotefoamsAccessibilityUtils.setAriaExpanded( filterButton, show );
+				ZotefoamsAccessibilityUtils.setAriaHidden( filterOptions, ! show );
 			};
 
 			// Keyboard support for the filter dropdown.
@@ -53,7 +58,7 @@ function initFileList() {
 						if ( ! filterOptions.contains( document.activeElement ) ) {
 							toggleDropdown( false );
 						}
-					}, 0 );
+					}, KEYBOARD_NAV_DELAY_MS );
 				}
 			} );
 
@@ -78,8 +83,7 @@ function initFileList() {
 				const tbody = container.querySelector( 'tbody' );
 
 				// Fade out the tbody.
-				tbody.style.transition = 'opacity 0.5s';
-				tbody.style.opacity = 0;
+				tbody.classList.add( 'is-filtering' );
 
 				setTimeout( () => {
 					// Update the display of each file item based on the active filters.
@@ -98,17 +102,13 @@ function initFileList() {
 								break;
 							}
 						}
-						if ( show ) {
-							item.classList.remove( 'filtered' );
-						} else {
-							item.classList.add( 'filtered' );
-						}
+						item.classList.toggle( 'filtered', ! show );
 					} );
 					updateShowAllVisibility();
 
 					// Fade the tbody back in.
-					tbody.style.opacity = 1;
-				}, 200 ); // Wait 0.2 seconds for the fade-out transition.
+					tbody.classList.remove( 'is-filtering' );
+				}, FILTER_FADE_DURATION_MS );
 			};
 
 			// Update the URL query parameters with comma-separated filter values.
@@ -179,13 +179,24 @@ function initFileList() {
 
 			showAllButton.addEventListener( 'click', resetFilters );
 
-			document.addEventListener( 'click', ( e ) => {
+			initializeFiltersFromURL();
+		} );
+
+		document.addEventListener( 'click', ( e ) => {
+			fileListElements.forEach( ( container ) => {
 				if ( ! container.contains( e.target ) ) {
-					toggleDropdown( false );
+					const filterOptions = container.querySelector( '#filter-options' );
+					const filterButton = container.querySelector( '#filter-toggle' );
+					if ( filterOptions ) {
+						filterOptions.classList.add( 'hidden' );
+						ZotefoamsAccessibilityUtils.setAriaHidden( filterOptions, true );
+					}
+					if ( filterButton ) {
+						filterButton.classList.remove( 'open' );
+						ZotefoamsAccessibilityUtils.setAriaExpanded( filterButton, false );
+					}
 				}
 			} );
-
-			initializeFiltersFromURL();
 		} );
 	}
 }

@@ -20,6 +20,7 @@ import { ZotefoamsDeviceUtils } from '../utils/dom-utilities.js';
 			ZotefoamsDeviceUtils.initTouchSupport();
 		}
 
+
 		function initNavigation() {
 			const siteNav = document.querySelector( "[data-js-nav='main']" );
 			if ( ! siteNav || siteNav.hasAttribute( 'data-critical-nav-initialized' ) ) {

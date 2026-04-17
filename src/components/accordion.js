@@ -2,7 +2,7 @@
  * Accordion Component
  * Collapsible content sections with smooth animations and URL hash support
  */
-import { ZotefoamsReadyUtils } from '../utils/dom-utilities.js';
+import { ZotefoamsReadyUtils, ZotefoamsAccessibilityUtils } from '../utils/dom-utilities.js';
 
 function initAccordion() {
 	// Accordion
@@ -16,7 +16,7 @@ function initAccordion() {
 				return;
 			}
 			const icon = this.querySelector( '.toggle-icon' ); // Get the plus/minus icon
-			const isOpening = content.style.display !== 'block';
+			const isOpening = ! content.classList.contains( 'is-open' );
 
 			// Close all other accordion sections
 			headers.forEach( ( otherHeader ) => {
@@ -24,34 +24,32 @@ function initAccordion() {
 					const otherContent = otherHeader.nextElementSibling;
 					const otherIcon = otherHeader.querySelector( '.toggle-icon' );
 					if ( otherContent ) {
-						otherContent.style.display = 'none';
-						otherContent.style.opacity = '0';
-						otherContent.style.maxHeight = '0';
+						otherContent.classList.remove( 'is-open' );
+						ZotefoamsAccessibilityUtils.setAriaHidden( otherContent, true );
 					}
-					if ( otherIcon ) {
-						otherIcon.textContent = '+'; // Reset icon to plus
-					}
-					otherHeader.classList.remove( 'open' ); // Remove 'open' class
+					ZotefoamsAccessibilityUtils.setAriaExpanded( otherHeader, false );
+					if ( otherIcon ) otherIcon.textContent = '+';
+					otherHeader.classList.remove( 'open' );
 				}
 			} );
 
 			// Toggle the display of the clicked content and icon
-			if ( content.style.display === 'block' ) {
-				content.style.display = 'none';
-				content.style.opacity = '0';
-				content.style.maxHeight = '0';
-				icon.textContent = '+'; // Change the icon to plus
+			if ( content.classList.contains( 'is-open' ) ) {
+				content.classList.remove( 'is-open' );
+				ZotefoamsAccessibilityUtils.setAriaHidden( content, true );
+				ZotefoamsAccessibilityUtils.setAriaExpanded( this, false );
+				if ( icon ) icon.textContent = '+';
 				this.classList.remove( 'open' );
 			} else {
-				content.style.display = 'block';
-				content.style.opacity = '1';
-				content.style.maxHeight = '1000px'; // Set a maximum height for the transition
-				icon.textContent = '-'; // Change the icon to minus
+				content.classList.add( 'is-open' );
+				ZotefoamsAccessibilityUtils.setAriaHidden( content, false );
+				ZotefoamsAccessibilityUtils.setAriaExpanded( this, true );
+				if ( icon ) icon.textContent = '-';
 				this.classList.add( 'open' );
 
 				// Scroll the .accordion container into view
 				const accordion = this.closest( '.accordion' );
-				accordion.scrollIntoView( {
+				accordion?.scrollIntoView( {
 					behavior: 'smooth',
 					block: 'start',
 				} );
@@ -75,6 +73,7 @@ function initAccordion() {
 						? imageEl.querySelector( '.split-accordion-image__image-layer--a' )
 						: imageEl.querySelector( '.split-accordion-image__image-layer--b' );
 
+					if ( ! inactiveLayer || ! activeLayer ) return;
 					inactiveLayer.style.backgroundImage = newUrl ? `url('${ newUrl }')` : '';
 					inactiveLayer.style.opacity = '1';
 					activeLayer.style.opacity = '0';

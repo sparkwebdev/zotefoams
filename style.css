@@ -5,7 +5,7 @@ Theme URI: http://underscores.me/
 Author: David Park
 Author URI: http://underscores.me/
 Description: Description
-Version: 3.3.27
+Version: 3.4.0
 Tested up to: 6.9.4
 Requires PHP: 7.4
 License: GNU General Public License v2 or later
@@ -2674,6 +2674,19 @@ footer div.wpforms-container.wpforms-container-full:not(:empty) {
   display: none;
 }
 
+.section-list__item.filtered {
+  display: none;
+}
+
+.is-filtering {
+  opacity: 0;
+}
+
+[data-component=file-list] tbody,
+[data-component=section-list] .articles--grid-alt {
+  transition: opacity 0.5s;
+}
+
 .file-list__item:hover,
 .file-list__item:has(a:focus) {
   background-color: var(--color-brand-contrast);
@@ -3932,6 +3945,9 @@ a.read-more.hl.arrow:focus::after {
 
 .accordion-content {
   display: none;
+}
+.accordion-content.is-open {
+  display: block;
 }
 
 .accordion-content p,
@@ -7014,5 +7030,4 @@ html:has(.zf-history) {
     left: 5%;
   }
 }
-
 /*# sourceMappingURL=style.css.map */

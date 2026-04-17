@@ -64,14 +64,6 @@ function initOurHistory() {
 					popup.setAttribute( 'aria-hidden', popup.classList.contains( 'is-visible' ) ? 'false' : 'true' );
 				} );
 
-				// Hide popup when clicking outside
-				document.addEventListener( 'click', ( e ) => {
-					if ( ! marker.contains( e.target ) && popup.classList.contains( 'is-visible' ) ) {
-						popup.classList.remove( 'is-visible' );
-						popup.setAttribute( 'aria-hidden', 'true' );
-					}
-				} );
-
 				// Keyboard support
 				marker.addEventListener( 'keydown', ( e ) => {
 					if ( e.key === 'Escape' && popup.classList.contains( 'is-visible' ) ) {
@@ -82,11 +74,43 @@ function initOurHistory() {
 				} );
 			}
 		} );
+
+		// Single handler to close all popups when clicking outside
+		document.addEventListener( 'click', ( e ) => {
+			popupMarkers.forEach( ( marker ) => {
+				const popup = marker.querySelector( '.zf-history__popup' );
+				if ( popup && ! marker.contains( e.target ) && popup.classList.contains( 'is-visible' ) ) {
+					popup.classList.remove( 'is-visible' );
+					popup.setAttribute( 'aria-hidden', 'true' );
+				}
+			} );
+		} );
 	}
 
 	if ( ! fadeElements.length || ! scrollTargets.length ) {
 		return;
 	}
+
+	// Cache timeline section references once to avoid repeated getElementById in scroll handler
+	const timelineSectionMap = new Map();
+	if ( timelineLinks.length ) {
+		timelineLinks.forEach( ( link ) => {
+			const targetId = link.getAttribute( 'href' ).substring( 1 );
+			const targetSection = document.getElementById( targetId );
+			if ( targetSection ) {
+				timelineSectionMap.set( link, targetSection );
+			}
+		} );
+	}
+
+	// Cache fade-in children once to avoid repeated querySelector in scroll handler
+	const fadeInMap = new Map();
+	scrollTargets.forEach( ( target ) => {
+		const fadeIn = target.querySelector( '.fade-in' );
+		if ( fadeIn ) {
+			fadeInMap.set( target, fadeIn );
+		}
+	} );
 
 	// Create Intersection Observer for visibility detection
 	const observerOptions = {
@@ -97,7 +121,7 @@ function initOurHistory() {
 
 	const observer = new IntersectionObserver( ( entries ) => {
 		entries.forEach( ( entry ) => {
-			const fadeIn = entry.target.querySelector( '.fade-in' );
+			const fadeIn = fadeInMap.get( entry.target );
 			if ( ! fadeIn ) {
 				return;
 			}
@@ -109,6 +133,11 @@ function initOurHistory() {
 				// Calculate scroll progress for smooth fade
 				const scrollProgress = Math.min( 1, Math.max( 0, entry.intersectionRatio ) );
 				entry.target.style.setProperty( '--scroll-progress2', scrollProgress );
+
+				// Stop observing once fully visible
+				if ( entry.intersectionRatio >= 1 ) {
+					observer.unobserve( entry.target );
+				}
 			}
 		} );
 	}, observerOptions );
@@ -132,22 +161,16 @@ function initOurHistory() {
 				}
 
 				// Update timeline navigation active state
-				if ( timelineLinks.length ) {
+				if ( timelineSectionMap.size ) {
 					const scrollPosition = window.pageYOffset + window.innerHeight / 2;
 					let activeSection = null;
 
-					// Find which section we're in
-					timelineLinks.forEach( ( link ) => {
-						const targetId = link.getAttribute( 'href' ).substring( 1 );
-						const targetSection = document.getElementById( targetId );
-
-						if ( targetSection ) {
-							const sectionTop = targetSection.offsetTop;
-							const sectionBottom = sectionTop + targetSection.offsetHeight;
-
-							if ( scrollPosition >= sectionTop && scrollPosition < sectionBottom ) {
-								activeSection = link;
-							}
+					// Find which section we're in using cached references
+					timelineSectionMap.forEach( ( targetSection, link ) => {
+						const sectionTop = targetSection.offsetTop;
+						const sectionBottom = sectionTop + targetSection.offsetHeight;
+						if ( scrollPosition >= sectionTop && scrollPosition < sectionBottom ) {
+							activeSection = link;
 						}
 					} );
 
@@ -163,7 +186,7 @@ function initOurHistory() {
 
 				scrollTargets.forEach( ( target ) => {
 					const rect = target.getBoundingClientRect();
-					const fadeIn = target.querySelector( '.fade-in' );
+					const fadeIn = fadeInMap.get( target );
 					if ( ! fadeIn ) {
 						return;
 					}

@@ -17,6 +17,19 @@
 
 ### Other issues
 
+- [ ] **[high] Analytics — consolidate, enqueue properly, add consent gating** — see notes below
+- [ ] **[high] Mailchimp script loading — replace raw `<script>` output with `wp_enqueue_script()`** — see notes below
+- [ ] **[med] Repeated DOM queries — `carousel-init.js`** — `querySelectorAll('.animate__animated')` runs inside `slideChangeTransitionStart` on every slide change; cache references on init instead. (`our-history.js` already resolved.)
+- [ ] **[med] Accessibility gaps — `file-list.js` / `section-list.js`** — visibility toggles have no ARIA updates; screen readers unaware of state changes. Also: `accordion.js` opens content but does not move focus to the revealed panel.
+- [ ] **[med] Multiple global click handlers** — `file-list.js` and `section-list.js` attach `document.addEventListener('click', ...)` inside a `forEach` loop, creating one handler per instance. `our-history.js` does the same per popup marker. Move listeners outside loops and identify the target container from the event.
+- [ ] **[med] Inline style manipulation** — 46+ `.style.*` assignments across `accordion.js`, `file-list.js`, `section-list.js`, `carousel-init.js`. `ZotefoamsAnimationUtils` already exists for this — swap inline style manipulation for class toggles and utility calls. Fixing this resolves most of the ARIA/accessibility gaps (M6) as a byproduct.
+- [ ] **[med] Event listener lifecycle** — zero `removeEventListener` calls anywhere. `our-history.js` scroll listener never cleans up; `video-modal.js` keydown listener missing `{ once: true }` — attaches multiple times if modal reinitialises; `file-list.js`/`section-list.js` accumulate click listeners per instance.
+- [ ] **[med] Inconsistent utility layer** — `ZotefoamsAnimationUtils`, `ZotefoamsClassUtils`, `ZotefoamsAccessibilityUtils` exist in `dom-utilities.js` but `file-list.js`, `section-list.js`, and `carousel-init.js` still do raw DOM manipulation. Largely the same sweep as inline style fix above.
+- [ ] **[low] CSS/JS coupling — adopt `data-js` hook convention**
+- [ ] **[low] Reusable component patterns** — Popup open/close logic duplicated across `our-history.js`, `video-modal.js`, `interactive-image.js`; dropdown toggle near-identical in `file-list.js` and `section-list.js`. A small `popup.js`/`dropdown.js` utility in `src/utils/` would cover both. `ZotefoamsAnimationUtils` already handles visibility — gap is the ARIA + focus management layer on top.
+- [ ] **[low] Consistent hook usage** — `template-functions.php:207` `insert_video_overlay` outputs raw HTML via `wp_footer`; review whether this should use a proper template include. Analytics and Mailchimp raw `<script>` outputs tracked separately in issues.md (H1/H-todo).
+- [ ] **[low] Versioning strategy — use `filemtime` in dev** — `_S_VERSION` used for all assets; cache bust requires a version bump. Use `filemtime(get_template_directory() . '/js/bundle.js')` when `WP_DEBUG` is true for automatic cache busting during development.
+
 - [ ] **Remove unused WordPress image sizes** — `1536x1536` and `2048x2048` are generated automatically by WordPress 5.3+ but are not used anywhere in the theme. Add `remove_image_size('1536x1536')` and `remove_image_size('2048x2048')` to `inc/theme-setup.php` to stop WP generating two extra copies of every uploaded image.
 
 - [ ] **Button icon inconsistency** - `specs_accordion` default CTA uses an inline SVG chevron; other buttons use CSS `::after` with background SVG image files. Consider standardising — inline SVG is arguably the better approach (uses `currentColor`, no extra file, scales cleanly) so the fix may be to migrate existing `::after` icon buttons to inline SVG rather than the other way around
@@ -59,3 +72,27 @@
 - [ ] **Component Unit Testing** - Implement PHPUnit testing framework for complex components
 - [ ] **REST API Migration** - Consider for dynamic content loading to improve perceived performance
 - [ ] **Nonce Verification** - Implement for any future AJAX handlers (none currently identified)
+
+---
+
+## High Priority Notes
+
+### Analytics — Consolidate, Enqueue Properly & Add Consent Gating
+
+GA and LinkedIn scripts are hardcoded in `inc/analytics.php`. ACF fields (`google_analytics_measurement_id`, `linkedin_partner_id`) exist and sanitize filters are now in place (`acf-config.php`) but the fields are not yet driving the script output — hardcoded values still used.
+
+- Remove hardcoded scripts; use ACF options as single source of truth
+- Load via `wp_enqueue_script()` + `wp_add_inline_script()`, only if IDs are set
+- Integrate a consent tool (e.g. CookieYes, Complianz) and gate script loading on opt-in
+- Resolves legal risk (GDPR / UK compliance) and gives admin full control
+
+Completing this also resolves the **[low] Consistent hook usage** tracker item as a byproduct.
+
+### Mailchimp Script Loading
+
+Mailchimp scripts injected via `wp_footer` with raw `<script>` tags; relies on jQuery being available implicitly.
+
+- Replace with `wp_enqueue_script()` and declare `['jquery']` as a dependency
+- Move inline config to `wp_add_inline_script()`
+- Use full `https://` URL (no protocol-relative URLs)
+- Optionally only load on pages where the form exists

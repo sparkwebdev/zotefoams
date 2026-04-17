@@ -316,6 +316,78 @@
 	};
 
 	/**
+	 * Accessibility Utilities - Keyboard navigation and ARIA support
+	 */
+	const ZotefoamsAccessibilityUtils = {
+		/**
+		 * Get all focusable elements within a container
+		 * @param {HTMLElement} container - Container element to search within
+		 * @return {Array<HTMLElement>} Array of focusable elements
+		 */
+		getFocusableElements( container ) {
+			if ( ! container ) {
+				return [];
+			}
+			return Array.from(
+				container.querySelectorAll(
+					'a, button, input, textarea, select, [tabindex]:not([tabindex="-1"])'
+				)
+			);
+		},
+
+		/**
+		 * Set aria-expanded attribute
+		 * @param {HTMLElement} element  - Element to update
+		 * @param {boolean}     expanded - Expanded state
+		 */
+		setAriaExpanded( element, expanded ) {
+			if ( element ) {
+				element.setAttribute( 'aria-expanded', expanded.toString() );
+			}
+		},
+
+		/**
+		 * Set multiple ARIA attributes at once
+		 * @param {HTMLElement} element    - Element to update
+		 * @param {Object}      attributes - Object with ARIA attribute names and values
+		 */
+		setAriaAttributes( element, attributes ) {
+			if ( ! element ) {
+				return;
+			}
+			Object.entries( attributes ).forEach( ( [ key, value ] ) => {
+				element.setAttribute( key, value.toString() );
+			} );
+		},
+
+		/**
+		 * Toggle aria-hidden state
+		 * @param {HTMLElement} element - Element to update
+		 * @param {boolean}     hidden  - Hidden state
+		 */
+		setAriaHidden( element, hidden ) {
+			if ( element ) {
+				element.setAttribute( 'aria-hidden', hidden.toString() );
+			}
+		},
+
+		/**
+		 * Focus element with optional trap
+		 * @param {HTMLElement} element     - Element to focus
+		 * @param {boolean}     setTabindex - Whether to set tabindex="-1" for non-focusable elements
+		 */
+		focus( element, setTabindex = false ) {
+			if ( ! element ) {
+				return;
+			}
+			if ( setTabindex && ! element.hasAttribute( 'tabindex' ) ) {
+				element.setAttribute( 'tabindex', '-1' );
+			}
+			element.focus();
+		},
+	};
+
+	/**
 	 * Ready State Utilities - Centralized DOMContentLoaded patterns
 	 */
 	const ZotefoamsReadyUtils = {
@@ -435,7 +507,15 @@
 	 * Initializes all Swiper carousels on the page
 	 */
 
+	const SLIDE_ANIMATION_STAGGER_MS = 200;
+	const SLIDE_INIT_DELAY_MS = 300;
+	const SLIDE_INIT_FIRST_STAGGER_MS = 100;
+
 	function initCarousels() {
+		if ( typeof Swiper === 'undefined' ) {
+			return;
+		}
+
 		// Image Banner Carousel (b1-Image-banner)
 		const imageBannerCarousels = document.querySelectorAll( '.swiper-image' );
 		imageBannerCarousels.forEach( ( carousel ) => {
@@ -475,7 +555,7 @@
 								setTimeout( () => {
 									el.style.opacity = '1';
 									el.classList.add( 'animate__fadeInDown' );
-								}, index * 200 ); // Stagger animations
+								}, index * SLIDE_ANIMATION_STAGGER_MS );
 							} );
 						}
 					},
@@ -489,10 +569,10 @@
 									setTimeout( () => {
 										el.style.opacity = '1';
 										el.classList.add( 'animate__fadeInDown' );
-									}, index * 200 );
+									}, index * SLIDE_ANIMATION_STAGGER_MS );
 								} );
 							}
-						}, 300 ); // Small delay for initialization
+						}, SLIDE_INIT_DELAY_MS );
 					},
 				},
 			} );
@@ -535,7 +615,7 @@
 						setTimeout( () => {
 							el.style.opacity = '1';
 							el.classList.add( 'animate__fadeInDown' );
-						}, index * 200 ); // Stagger animations
+						}, index * SLIDE_ANIMATION_STAGGER_MS );
 					} );
 				}
 			};
@@ -567,7 +647,7 @@
 								setTimeout( () => {
 									el.style.opacity = '1';
 									el.classList.add( 'animate__fadeInDown' );
-								}, 100 + ( index * 200 ) ); // Small initial delay then stagger
+								}, SLIDE_INIT_FIRST_STAGGER_MS + ( index * SLIDE_ANIMATION_STAGGER_MS ) );
 							} );
 						}
 					},
@@ -1002,6 +1082,9 @@
 	 * Enhanced file filtering with multiple filters, comma-separated values and keyboard support
 	 */
 
+	const FILTER_FADE_DURATION_MS$1 = 200;
+	const KEYBOARD_NAV_DELAY_MS = 0;
+
 	function initFileList() {
 		const fileListElements = document.querySelectorAll( '[data-component="file-list"]' );
 
@@ -1017,6 +1100,8 @@
 				const toggleDropdown = ( show ) => {
 					filterOptions.classList.toggle( 'hidden', ! show );
 					filterButton.classList.toggle( 'open', show );
+					ZotefoamsAccessibilityUtils.setAriaExpanded( filterButton, show );
+					ZotefoamsAccessibilityUtils.setAriaHidden( filterOptions, ! show );
 				};
 
 				// Keyboard support for the filter dropdown.
@@ -1051,7 +1136,7 @@
 							if ( ! filterOptions.contains( document.activeElement ) ) {
 								toggleDropdown( false );
 							}
-						}, 0 );
+						}, KEYBOARD_NAV_DELAY_MS );
 					}
 				} );
 
@@ -1076,8 +1161,7 @@
 					const tbody = container.querySelector( 'tbody' );
 
 					// Fade out the tbody.
-					tbody.style.transition = 'opacity 0.5s';
-					tbody.style.opacity = 0;
+					tbody.classList.add( 'is-filtering' );
 
 					setTimeout( () => {
 						// Update the display of each file item based on the active filters.
@@ -1096,17 +1180,13 @@
 									break;
 								}
 							}
-							if ( show ) {
-								item.classList.remove( 'filtered' );
-							} else {
-								item.classList.add( 'filtered' );
-							}
+							item.classList.toggle( 'filtered', ! show );
 						} );
 						updateShowAllVisibility();
 
 						// Fade the tbody back in.
-						tbody.style.opacity = 1;
-					}, 200 ); // Wait 0.2 seconds for the fade-out transition.
+						tbody.classList.remove( 'is-filtering' );
+					}, FILTER_FADE_DURATION_MS$1 );
 				};
 
 				// Update the URL query parameters with comma-separated filter values.
@@ -1177,13 +1257,24 @@
 
 				showAllButton.addEventListener( 'click', resetFilters );
 
-				document.addEventListener( 'click', ( e ) => {
+				initializeFiltersFromURL();
+			} );
+
+			document.addEventListener( 'click', ( e ) => {
+				fileListElements.forEach( ( container ) => {
 					if ( ! container.contains( e.target ) ) {
-						toggleDropdown( false );
+						const filterOptions = container.querySelector( '#filter-options' );
+						const filterButton = container.querySelector( '#filter-toggle' );
+						if ( filterOptions ) {
+							filterOptions.classList.add( 'hidden' );
+							ZotefoamsAccessibilityUtils.setAriaHidden( filterOptions, true );
+						}
+						if ( filterButton ) {
+							filterButton.classList.remove( 'open' );
+							ZotefoamsAccessibilityUtils.setAriaExpanded( filterButton, false );
+						}
 					}
 				} );
-
-				initializeFiltersFromURL();
 			} );
 		}
 	}
@@ -1195,6 +1286,8 @@
 	 * Section List Component
 	 * Gallery section filtering functionality
 	 */
+
+	const FILTER_FADE_DURATION_MS = 200;
 
 	function initSectionList() {
 		const sectionListElements = document.querySelectorAll( '[data-component="section-list"]' );
@@ -1209,6 +1302,8 @@
 				const toggleDropdown = ( show ) => {
 					filterOptions.classList.toggle( 'hidden', ! show );
 					filterButton.classList.toggle( 'open', show );
+					ZotefoamsAccessibilityUtils.setAriaExpanded( filterButton, show );
+					ZotefoamsAccessibilityUtils.setAriaHidden( filterOptions, ! show );
 				};
 
 				const updateShowAllVisibility = () => {
@@ -1226,26 +1321,26 @@
 					} // Exit if no container found.
 
 					// Fade out the container.
-					sectionContainer.style.transition = 'opacity 0.5s';
-					sectionContainer.style.opacity = 0;
+					sectionContainer.classList.add( 'is-filtering' );
 
 					setTimeout( () => {
 						// Get the selected labels from the checkboxes.
 						const selectedLabels = checkboxes.filter( ( cb ) => cb.checked ).map( ( cb ) => cb.value );
 
-						// Update each section item's display based on the selected labels.
+						// Update each section item's visibility based on the selected labels.
 						sectionItems.forEach( ( item ) => {
-							item.style.display = selectedLabels.length === 0 || selectedLabels.includes( item.dataset.galleryLabel ) ? 'block' : 'none';
+							const isVisible = selectedLabels.length === 0 || selectedLabels.includes( item.dataset.galleryLabel );
+							item.classList.toggle( 'filtered', ! isVisible );
 						} );
 						updateShowAllVisibility();
 
 						// Fade the container back in.
-						sectionContainer.style.opacity = 1;
-					}, 200 ); // Wait 0.5 seconds to match the fade-out transition.
+						sectionContainer.classList.remove( 'is-filtering' );
+					}, FILTER_FADE_DURATION_MS );
 				};
 
 				const resetFilters = () => {
-					sectionItems.forEach( ( item ) => ( item.style.display = 'block' ) );
+					sectionItems.forEach( ( item ) => item.classList.remove( 'filtered' ) );
 					checkboxes.forEach( ( cb ) => ( cb.checked = false ) );
 					toggleDropdown( false );
 					updateShowAllVisibility();
@@ -1263,14 +1358,25 @@
 					showAllButton.addEventListener( 'click', resetFilters );
 				}
 
-				const dropdown = article.querySelector( '.file-list__dropdown' );
-				document.addEventListener( 'click', ( e ) => {
-					if ( ! dropdown.contains( e.target ) ) {
-						toggleDropdown( false );
+				updateShowAllVisibility();
+			} );
+
+			document.addEventListener( 'click', ( e ) => {
+				sectionListElements.forEach( ( article ) => {
+					const dropdown = article.querySelector( '.file-list__dropdown' );
+					const filterOptions = article.querySelector( '#filter-options' );
+					const filterButton = article.querySelector( '#filter-toggle' );
+					if ( dropdown && ! dropdown.contains( e.target ) ) {
+						if ( filterOptions ) {
+							filterOptions.classList.add( 'hidden' );
+							ZotefoamsAccessibilityUtils.setAriaHidden( filterOptions, true );
+						}
+						if ( filterButton ) {
+							filterButton.classList.remove( 'open' );
+							ZotefoamsAccessibilityUtils.setAriaExpanded( filterButton, false );
+						}
 					}
 				} );
-
-				updateShowAllVisibility();
 			} );
 		}
 	}
@@ -1378,7 +1484,7 @@
 					return;
 				}
 				const icon = this.querySelector( '.toggle-icon' ); // Get the plus/minus icon
-				const isOpening = content.style.display !== 'block';
+				const isOpening = ! content.classList.contains( 'is-open' );
 
 				// Close all other accordion sections
 				headers.forEach( ( otherHeader ) => {
@@ -1386,34 +1492,32 @@
 						const otherContent = otherHeader.nextElementSibling;
 						const otherIcon = otherHeader.querySelector( '.toggle-icon' );
 						if ( otherContent ) {
-							otherContent.style.display = 'none';
-							otherContent.style.opacity = '0';
-							otherContent.style.maxHeight = '0';
+							otherContent.classList.remove( 'is-open' );
+							ZotefoamsAccessibilityUtils.setAriaHidden( otherContent, true );
 						}
-						if ( otherIcon ) {
-							otherIcon.textContent = '+'; // Reset icon to plus
-						}
-						otherHeader.classList.remove( 'open' ); // Remove 'open' class
+						ZotefoamsAccessibilityUtils.setAriaExpanded( otherHeader, false );
+						if ( otherIcon ) otherIcon.textContent = '+';
+						otherHeader.classList.remove( 'open' );
 					}
 				} );
 
 				// Toggle the display of the clicked content and icon
-				if ( content.style.display === 'block' ) {
-					content.style.display = 'none';
-					content.style.opacity = '0';
-					content.style.maxHeight = '0';
-					icon.textContent = '+'; // Change the icon to plus
+				if ( content.classList.contains( 'is-open' ) ) {
+					content.classList.remove( 'is-open' );
+					ZotefoamsAccessibilityUtils.setAriaHidden( content, true );
+					ZotefoamsAccessibilityUtils.setAriaExpanded( this, false );
+					if ( icon ) icon.textContent = '+';
 					this.classList.remove( 'open' );
 				} else {
-					content.style.display = 'block';
-					content.style.opacity = '1';
-					content.style.maxHeight = '1000px'; // Set a maximum height for the transition
-					icon.textContent = '-'; // Change the icon to minus
+					content.classList.add( 'is-open' );
+					ZotefoamsAccessibilityUtils.setAriaHidden( content, false );
+					ZotefoamsAccessibilityUtils.setAriaExpanded( this, true );
+					if ( icon ) icon.textContent = '-';
 					this.classList.add( 'open' );
 
 					// Scroll the .accordion container into view
 					const accordion = this.closest( '.accordion' );
-					accordion.scrollIntoView( {
+					accordion?.scrollIntoView( {
 						behavior: 'smooth',
 						block: 'start',
 					} );
@@ -1437,6 +1541,7 @@
 							? imageEl.querySelector( '.split-accordion-image__image-layer--a' )
 							: imageEl.querySelector( '.split-accordion-image__image-layer--b' );
 
+						if ( ! inactiveLayer || ! activeLayer ) return;
 						inactiveLayer.style.backgroundImage = newUrl ? `url('${ newUrl }')` : '';
 						inactiveLayer.style.opacity = '1';
 						activeLayer.style.opacity = '0';
@@ -1610,6 +1715,9 @@
 	 * Enhanced search functionality in the utility menu with accessibility
 	 */
 
+	const FOCUS_DELAY_MS = 100;
+	const SCROLL_RESTORE_DELAY_MS = 0;
+
 	function initUtilitySearch() {
 		const menu = document.querySelector( '#menu-utility' );
 		const searchItem = menu?.querySelector( 'a[href="/search"]' );
@@ -1657,7 +1765,7 @@
 			if ( focusInput && input ) {
 				setTimeout( () => {
 					input.focus();
-				}, 100 );
+				}, FOCUS_DELAY_MS );
 			}
 		};
 
@@ -1672,7 +1780,7 @@
 			const currentScrollY = window.scrollY;
 			setTimeout( () => {
 				window.scrollTo( window.scrollX, currentScrollY );
-			}, 0 );
+			}, SCROLL_RESTORE_DELAY_MS );
 		} );
 
 		const closeSearch = () => {
@@ -1829,14 +1937,6 @@
 						popup.setAttribute( 'aria-hidden', popup.classList.contains( 'is-visible' ) ? 'false' : 'true' );
 					} );
 
-					// Hide popup when clicking outside
-					document.addEventListener( 'click', ( e ) => {
-						if ( ! marker.contains( e.target ) && popup.classList.contains( 'is-visible' ) ) {
-							popup.classList.remove( 'is-visible' );
-							popup.setAttribute( 'aria-hidden', 'true' );
-						}
-					} );
-
 					// Keyboard support
 					marker.addEventListener( 'keydown', ( e ) => {
 						if ( e.key === 'Escape' && popup.classList.contains( 'is-visible' ) ) {
@@ -1847,11 +1947,43 @@
 					} );
 				}
 			} );
+
+			// Single handler to close all popups when clicking outside
+			document.addEventListener( 'click', ( e ) => {
+				popupMarkers.forEach( ( marker ) => {
+					const popup = marker.querySelector( '.zf-history__popup' );
+					if ( popup && ! marker.contains( e.target ) && popup.classList.contains( 'is-visible' ) ) {
+						popup.classList.remove( 'is-visible' );
+						popup.setAttribute( 'aria-hidden', 'true' );
+					}
+				} );
+			} );
 		}
 
 		if ( ! fadeElements.length || ! scrollTargets.length ) {
 			return;
 		}
+
+		// Cache timeline section references once to avoid repeated getElementById in scroll handler
+		const timelineSectionMap = new Map();
+		if ( timelineLinks.length ) {
+			timelineLinks.forEach( ( link ) => {
+				const targetId = link.getAttribute( 'href' ).substring( 1 );
+				const targetSection = document.getElementById( targetId );
+				if ( targetSection ) {
+					timelineSectionMap.set( link, targetSection );
+				}
+			} );
+		}
+
+		// Cache fade-in children once to avoid repeated querySelector in scroll handler
+		const fadeInMap = new Map();
+		scrollTargets.forEach( ( target ) => {
+			const fadeIn = target.querySelector( '.fade-in' );
+			if ( fadeIn ) {
+				fadeInMap.set( target, fadeIn );
+			}
+		} );
 
 		// Create Intersection Observer for visibility detection
 		const observerOptions = {
@@ -1862,7 +1994,7 @@
 
 		const observer = new IntersectionObserver( ( entries ) => {
 			entries.forEach( ( entry ) => {
-				const fadeIn = entry.target.querySelector( '.fade-in' );
+				const fadeIn = fadeInMap.get( entry.target );
 				if ( ! fadeIn ) {
 					return;
 				}
@@ -1874,6 +2006,11 @@
 					// Calculate scroll progress for smooth fade
 					const scrollProgress = Math.min( 1, Math.max( 0, entry.intersectionRatio ) );
 					entry.target.style.setProperty( '--scroll-progress2', scrollProgress );
+
+					// Stop observing once fully visible
+					if ( entry.intersectionRatio >= 1 ) {
+						observer.unobserve( entry.target );
+					}
 				}
 			} );
 		}, observerOptions );
@@ -1897,22 +2034,16 @@
 					}
 
 					// Update timeline navigation active state
-					if ( timelineLinks.length ) {
+					if ( timelineSectionMap.size ) {
 						const scrollPosition = window.pageYOffset + window.innerHeight / 2;
 						let activeSection = null;
 
-						// Find which section we're in
-						timelineLinks.forEach( ( link ) => {
-							const targetId = link.getAttribute( 'href' ).substring( 1 );
-							const targetSection = document.getElementById( targetId );
-
-							if ( targetSection ) {
-								const sectionTop = targetSection.offsetTop;
-								const sectionBottom = sectionTop + targetSection.offsetHeight;
-
-								if ( scrollPosition >= sectionTop && scrollPosition < sectionBottom ) {
-									activeSection = link;
-								}
+						// Find which section we're in using cached references
+						timelineSectionMap.forEach( ( targetSection, link ) => {
+							const sectionTop = targetSection.offsetTop;
+							const sectionBottom = sectionTop + targetSection.offsetHeight;
+							if ( scrollPosition >= sectionTop && scrollPosition < sectionBottom ) {
+								activeSection = link;
 							}
 						} );
 
@@ -1928,7 +2059,7 @@
 
 					scrollTargets.forEach( ( target ) => {
 						const rect = target.getBoundingClientRect();
-						const fadeIn = target.querySelector( '.fade-in' );
+						const fadeIn = fadeInMap.get( target );
 						if ( ! fadeIn ) {
 							return;
 						}

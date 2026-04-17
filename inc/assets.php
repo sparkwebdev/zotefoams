@@ -25,8 +25,12 @@ function zotefoams_enqueue_assets()
     wp_enqueue_style('swiper-css', 'https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css');
     wp_enqueue_script('swiper-js', 'https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js', array(), null, true);
 
+    $bundle_version = ( defined( 'WP_DEBUG' ) && WP_DEBUG )
+        ? filemtime( get_template_directory() . '/js/bundle.js' )
+        : _S_VERSION;
+
     wp_enqueue_script('jquery');
-    wp_enqueue_script('zotefoams-bundle', get_template_directory_uri() . '/js/bundle.js', array(), _S_VERSION, true);
+    wp_enqueue_script('zotefoams-bundle', get_template_directory_uri() . '/js/bundle.js', array(), $bundle_version, true);
 
     // Enqueue comment reply script on single posts/pages with comments open
     if (is_singular() && comments_open() && get_option('thread_comments')) {
@@ -84,7 +88,7 @@ add_action('wp_footer', 'zotefoams_inline_critical_js', 1);
  * @param string $media The media attribute.
  * @return string Modified HTML with preload attribute.
  */
-function add_preload_to_google_fonts($html, $handle, $href, $media)
+function zotefoams_add_preload_to_google_fonts($html, $handle, $href, $media)
 {
     if ('google-fonts' === $handle) {
         $html  = '<link rel="preload" as="style" href="' . esc_url($href) . '" />';
@@ -92,4 +96,4 @@ function add_preload_to_google_fonts($html, $handle, $href, $media)
     }
     return $html;
 }
-add_filter('style_loader_tag', 'add_preload_to_google_fonts', 10, 4);
+add_filter('style_loader_tag', 'zotefoams_add_preload_to_google_fonts', 10, 4);

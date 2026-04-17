@@ -4,7 +4,15 @@
  */
 import { ZotefoamsReadyUtils } from '../utils/dom-utilities.js';
 
+const SLIDE_ANIMATION_STAGGER_MS = 200;
+const SLIDE_INIT_DELAY_MS = 300;
+const SLIDE_INIT_FIRST_STAGGER_MS = 100;
+
 function initCarousels() {
+	if ( typeof Swiper === 'undefined' ) {
+		return;
+	}
+
 	// Image Banner Carousel (b1-Image-banner)
 	const imageBannerCarousels = document.querySelectorAll( '.swiper-image' );
 	imageBannerCarousels.forEach( ( carousel ) => {
@@ -44,7 +52,7 @@ function initCarousels() {
 							setTimeout( () => {
 								el.style.opacity = '1';
 								el.classList.add( 'animate__fadeInDown' );
-							}, index * 200 ); // Stagger animations
+							}, index * SLIDE_ANIMATION_STAGGER_MS );
 						} );
 					}
 				},
@@ -58,10 +66,10 @@ function initCarousels() {
 								setTimeout( () => {
 									el.style.opacity = '1';
 									el.classList.add( 'animate__fadeInDown' );
-								}, index * 200 );
+								}, index * SLIDE_ANIMATION_STAGGER_MS );
 							} );
 						}
-					}, 300 ); // Small delay for initialization
+					}, SLIDE_INIT_DELAY_MS );
 				},
 			},
 		} );
@@ -104,7 +112,7 @@ function initCarousels() {
 					setTimeout( () => {
 						el.style.opacity = '1';
 						el.classList.add( 'animate__fadeInDown' );
-					}, index * 200 ); // Stagger animations
+					}, index * SLIDE_ANIMATION_STAGGER_MS );
 				} );
 			}
 		};
@@ -136,7 +144,7 @@ function initCarousels() {
 							setTimeout( () => {
 								el.style.opacity = '1';
 								el.classList.add( 'animate__fadeInDown' );
-							}, 100 + ( index * 200 ) ); // Small initial delay then stagger
+							}, SLIDE_INIT_FIRST_STAGGER_MS + ( index * SLIDE_ANIMATION_STAGGER_MS ) );
 						} );
 					}
 				},
