@@ -5,15 +5,15 @@ $download_file = zotefoams_get_sub_field_safe('specs_grid_download_link', [], 'a
 $variant = zotefoams_get_sub_field_safe('specs_grid_variant', false, 'bool');
 
 $wrapper_classes = $variant
-    ? 'specs-grid specs-grid--variant black-bg white-text theme-dark'
-    : 'specs-grid white-bg theme-light';
+    ? 'specs-grid black-bg white-text theme-dark'
+    : 'specs-grid white-bg theme-none';
 ?>
 
 <div class="<?php echo esc_attr($wrapper_classes); ?>">
     <div class="cont-m padding-t-b-70">
 
         <?php if ($title) : ?>
-            <h2 class="specs-grid__title fs-500 fw-semibold margin-b-40"><?php echo esc_html($title); ?></h2>
+            <h2 class="fs-500 fw-semibold margin-b-40"><?php echo esc_html($title); ?></h2>
         <?php endif; ?>
 
         <?php if ($items) : ?>
@@ -24,16 +24,16 @@ $wrapper_classes = $variant
                     if (!$name && !$value) continue;
                 ?>
                     <li class="specs-grid__item">
-                        <span class="specs-grid__name fs-200 grey-text"><?php echo esc_html($name); ?></span>
+                        <span class="fs-200 grey-text"><?php echo esc_html($name); ?></span>
                         <span class="screen-reader-text">: </span>
-                        <span class="specs-grid__value fw-bold fs-400"><?php echo esc_html($value); ?></span>
+                        <span class="fw-bold fs-400"><?php echo esc_html($value); ?></span>
                     </li>
                 <?php endforeach; ?>
             </ul>
         <?php endif; ?>
 
         <?php if (!empty($download_file['url'])) : ?>
-            <div class="specs-grid__footer margin-t-40">
+            <div class="margin-t-40">
                 <a href="<?php echo esc_url($download_file['url']); ?>"
                    class="hl download"
                    target="_blank"

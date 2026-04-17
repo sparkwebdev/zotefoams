@@ -33,21 +33,22 @@
       grid-template-columns: repeat(2, 1fr);
     }
   }
-}
-
-/* Variant — black background, white text
- * --------------------------------------------- */
-.specs-grid--variant {
-  > .cont-m {
-    --border-separator: none;
-  }
-  .grey-text {
-    color: var(--color-text-light);
-  }
-  a {
-    color: #9DC2FC; // TO DO: refactor into custom property to be applied across black bg variants
-    &::after {
-      filter: brightness(1.55);
+  
+  /* Variant — black background, white text
+  * --------------------------------------------- */
+  &.theme-dark {
+    > .cont-m {
+      --border-separator: none;
+    }
+    .grey-text {
+      color: var(--color-text-light);
+    }
+    a {
+      color: #9DC2FC; // TO DO: refactor into custom property to be applied across black bg variants
+      &::after {
+        filter: brightness(1.55);
+      }
     }
   }
 }
+

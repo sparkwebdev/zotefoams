@@ -5259,7 +5259,8 @@
                                     "placeholder": "",
                                     "prepend": "",
                                     "append": "",
-                                    "parent_repeater": "field_67e8cf40a1b2f"
+                                    "parent_repeater": "field_67e8cf40a1b2f",
+                                    "allow_in_bindings": 0
                                 },
                                 {
                                     "key": "field_67e8cf40a1b31",
@@ -5280,7 +5281,8 @@
                                     "toolbar": "basic",
                                     "media_upload": 0,
                                     "delay": 0,
-                                    "parent_repeater": "field_67e8cf40a1b2f"
+                                    "parent_repeater": "field_67e8cf40a1b2f",
+                                    "allow_in_bindings": 0
                                 },
                                 {
                                     "key": "field_67e8cf40a1b34",
@@ -5324,9 +5326,11 @@
                                         "id": ""
                                     },
                                     "return_format": "array",
-                                    "parent_repeater": "field_67e8cf40a1b2f"
+                                    "parent_repeater": "field_67e8cf40a1b2f",
+                                    "allow_in_bindings": 0
                                 }
-                            ]
+                            ],
+                            "allow_in_bindings": 0
                         },
                         {
                             "key": "field_67e8cf40a1b33",
@@ -5446,7 +5450,8 @@
                                     "append": "",
                                     "parent_repeater": "field_6840f0a1b2c3f"
                                 }
-                            ]
+                            ],
+                            "allow_in_bindings": 0
                         },
                         {
                             "key": "field_6840f0a1b2c42",
@@ -5851,9 +5856,12 @@
                                             "append": "",
                                             "parent_repeater": "field_68420000b0009"
                                         }
-                                    ]
+                                    ],
+                                    "parent_repeater": "field_68420000b0003",
+                                    "allow_in_bindings": 0
                                 }
-                            ]
+                            ],
+                            "allow_in_bindings": 0
                         },
                         {
                             "key": "field_68420000b0010",
@@ -6158,5 +6166,5 @@
     "display_title": "",
     "allow_ai_access": false,
     "ai_description": "",
-    "modified": 1800002500
+    "modified": 1800002600
 }

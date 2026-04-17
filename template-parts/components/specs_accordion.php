@@ -5,16 +5,20 @@ $use_default_cta  = zotefoams_get_sub_field_safe('specs_accordion_use_default_ct
 $cta              = zotefoams_get_sub_field_safe('specs_accordion_cta', [], 'url');
 $variant          = zotefoams_get_sub_field_safe('specs_accordion_variant', false, 'bool');
 
-$wrapper_classes = $variant
-    ? 'specs-accordion specs-accordion--variant accordion black-bg white-text padding-t-b-100 theme-dark'
-    : 'specs-accordion accordion white-bg padding-t-b-100 theme-light';
+$theme_classes = $variant
+    ? ' black-bg white-text theme-dark'
+    : ' white-bg theme-none';
 ?>
 
-<div class="<?php echo esc_attr($wrapper_classes); ?>">
+<div class="accordion padding-t-b-100<?php echo esc_attr($theme_classes); ?>">
     <div class="cont-m">
 
         <?php if ($title) : ?>
-            <h2 class="specs-accordion__title fs-500 fw-semibold margin-b-40"><?php echo esc_html($title); ?></h2>
+        <div class="text-block">
+            <div class="text-block__inner">
+                <h2 class="fs-500 fw-semibold margin-b-40"><?php echo esc_html($title); ?></h2>
+            </div>
+        </div>
         <?php endif; ?>
 
         <?php if ($items) : ?>
@@ -94,13 +98,13 @@ $wrapper_classes = $variant
         <?php endif; ?>
 
         <?php if ($use_default_cta) : ?>
-            <div class="specs-accordion__cta margin-t-40">
+            <div class="margin-t-40">
                 <a href="#contact-forms-item-2" class="btn blue btn--chevron-down">
                     Request a Quote
                 </a>
             </div>
         <?php elseif (!empty($cta['url'])) : ?>
-            <div class="specs-accordion__cta margin-t-40">
+            <div class="margin-t-40">
                 <?php echo Zotefoams_Button_Helper::render($cta, ['style' => 'primary']); ?>
             </div>
         <?php endif; ?>

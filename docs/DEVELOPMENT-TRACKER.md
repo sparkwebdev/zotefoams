@@ -17,6 +17,8 @@
 
 ### Other issues
 
+- [ ] **Remove unused WordPress image sizes** — `1536x1536` and `2048x2048` are generated automatically by WordPress 5.3+ but are not used anywhere in the theme. Add `remove_image_size('1536x1536')` and `remove_image_size('2048x2048')` to `inc/theme-setup.php` to stop WP generating two extra copies of every uploaded image.
+
 - [ ] **Button icon inconsistency** - `specs_accordion` default CTA uses an inline SVG chevron; other buttons use CSS `::after` with background SVG image files. Consider standardising — inline SVG is arguably the better approach (uses `currentColor`, no extra file, scales cleanly) so the fix may be to migrate existing `::after` icon buttons to inline SVG rather than the other way around
 
 - [ ] **Git publish to sites pipeline** - Auto deploy on PR

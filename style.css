@@ -5,8 +5,8 @@ Theme URI: http://underscores.me/
 Author: David Park
 Author URI: http://underscores.me/
 Description: Description
-Version: 3.3.24
-Tested up to: 5.4
+Version: 3.3.25
+Tested up to: 6.9.4
 Requires PHP: 7.4
 License: GNU General Public License v2 or later
 License URI: LICENSE
@@ -5493,6 +5493,10 @@ a.read-more.hl.arrow:focus::after {
 }
 /* Specs Grid
  * --------------------------------------------- */
+.specs-grid {
+  /* Variant — black background, white text
+  * --------------------------------------------- */
+}
 .specs-grid > .cont-m {
   border-top: var(--border-separator);
 }
@@ -5518,19 +5522,16 @@ a.read-more.hl.arrow:focus::after {
     grid-template-columns: repeat(2, 1fr);
   }
 }
-
-/* Variant — black background, white text
- * --------------------------------------------- */
-.specs-grid--variant > .cont-m {
+.specs-grid.theme-dark > .cont-m {
   --border-separator: none;
 }
-.specs-grid--variant .grey-text {
+.specs-grid.theme-dark .grey-text {
   color: var(--color-text-light);
 }
-.specs-grid--variant a {
+.specs-grid.theme-dark a {
   color: #9DC2FC;
 }
-.specs-grid--variant a::after {
+.specs-grid.theme-dark a::after {
   filter: brightness(1.55);
 }
 
@@ -5549,6 +5550,7 @@ a.read-more.hl.arrow:focus::after {
   overflow: visible;
   z-index: 0;
   transition: z-index 0s 0.1s;
+  padding: 20px;
 }
 .material-swatches__item:hover {
   z-index: 1;
@@ -5568,9 +5570,7 @@ a.read-more.hl.arrow:focus::after {
   transition: transform 0.3s ease 0.1s;
 }
 .material-swatches__item-title {
-  position: absolute;
-  top: 20px;
-  left: 20px;
+  position: relative;
   z-index: 3;
   text-shadow: none;
   transition: color 0.1s ease, text-shadow 0.1s ease;
@@ -6905,3 +6905,4 @@ html:has(.zf-history) {
     left: 5%;
   }
 }
+/*# sourceMappingURL=style.css.map */
