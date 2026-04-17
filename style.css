@@ -1407,7 +1407,7 @@ textarea {
 :root {
   --tone-off-white: #f8f8f8;
   --tone-light: #d1d1d1;
-  --tone-dark: #4A4949;
+  --tone-dark: #4a4949;
   --color-text: #707070;
   --color-text-light: #b5b5b5;
   --color-surface: #fff;
@@ -5529,7 +5529,7 @@ a.read-more.hl.arrow:focus::after {
   color: var(--color-text-light);
 }
 .specs-grid.theme-dark a {
-  color: #9DC2FC;
+  color: #9dc2fc;
 }
 .specs-grid.theme-dark a::after {
   filter: brightness(1.55);
@@ -7014,4 +7014,5 @@ html:has(.zf-history) {
     left: 5%;
   }
 }
+
 /*# sourceMappingURL=style.css.map */

@@ -3,7 +3,6 @@
 @use "../../abstracts/abstracts" as *;
 
 .specs-grid {
-
   > .cont-m {
     border-top: var(--border-separator);
   }
@@ -33,22 +32,23 @@
       grid-template-columns: repeat(2, 1fr);
     }
   }
-  
+
   /* Variant — black background, white text
   * --------------------------------------------- */
   &.theme-dark {
     > .cont-m {
       --border-separator: none;
     }
+
     .grey-text {
       color: var(--color-text-light);
     }
+
     a {
-      color: #9DC2FC; // TO DO: refactor into custom property to be applied across black bg variants
+      color: #9dc2fc; // TO DO: refactor into custom property to be applied across black bg variants
       &::after {
         filter: brightness(1.55);
       }
     }
   }
 }
-

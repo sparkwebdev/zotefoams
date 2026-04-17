@@ -36,7 +36,6 @@
   }
 
   @media screen and (min-width: $bp-lg) {
-
     display: flex;
 
     > * {
@@ -59,14 +58,12 @@
       padding-right: 5%;
     }
   }
-
 }
 
 /* Variant — black background, white text
  * --------------------------------------------- */
 
 .split-accordion-image--variant {
-
   .accordion-items {
     border-top-color: var(--color-text);
   }
@@ -83,5 +80,4 @@
       color: #fff;
     }
   }
-
 }

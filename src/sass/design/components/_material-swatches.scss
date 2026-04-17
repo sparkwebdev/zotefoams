@@ -3,7 +3,6 @@
 @use "../../abstracts/abstracts" as *;
 
 .material-swatches {
-
   --base-swatch-size: 227px;
 
   &__items {
@@ -25,7 +24,7 @@
     }
 
     &::before {
-      content: '';
+      content: "";
       position: absolute;
       inset: 0;
       background: inherit;
@@ -44,13 +43,17 @@
     position: relative;
     z-index: 3;
     text-shadow: none;
-    transition: color 0.1s ease, text-shadow 0.1s ease; // hover-out: faster
+    transition:
+      color 0.1s ease,
+      text-shadow 0.1s ease; // hover-out: faster
   }
 
   &__item:hover &__item-title {
     color: #fff;
     text-shadow: 0 1px 5px rgba(0, 0, 0, 0.5);
-    transition: color 0.3s ease 0.1s, text-shadow 0.3s ease 0.1s; // hover-in: delayed start
+    transition:
+      color 0.3s ease 0.1s,
+      text-shadow 0.3s ease 0.1s; // hover-in: delayed start
   }
 
   &__item-image {
@@ -66,7 +69,9 @@
     // Clip to the container bounds (5/110 = 4.545% of the image = 5% of the container)
     // On hover, clip-path expands to 0% matching the pseudo's scale(1.1) reveal
     clip-path: inset(4.55%);
-    transition: clip-path 0.1s ease, opacity 0.1s ease; // hover-out: faster, no delay
+    transition:
+      clip-path 0.1s ease,
+      opacity 0.1s ease; // hover-out: faster, no delay
     pointer-events: none;
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
   }
@@ -74,6 +79,8 @@
   &__item:hover &__item-image {
     opacity: 1;
     clip-path: inset(0%);
-    transition: clip-path 0.3s ease 0.1s, opacity 0.3s ease 0.2s; // hover-in: delayed start, opacity follows clip
+    transition:
+      clip-path 0.3s ease 0.1s,
+      opacity 0.3s ease 0.2s; // hover-in: delayed start, opacity follows clip
   }
 }

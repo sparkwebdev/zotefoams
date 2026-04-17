@@ -5,6 +5,7 @@
 
 .data-table {
   --table-color: var(--tone-light);
+
   th,
   td {
     padding: 15px;
@@ -24,9 +25,7 @@
 /* Mobile reflow — stack rows vertically with data-label ::before headers
  * --------------------------------------------- */
 .data-table--collapsible {
-
   @media screen and (max-width: $bp-upto-md) {
-
     thead {
       display: none;
     }
@@ -57,8 +56,9 @@
 
       &:first-child {
         padding-top: 15px;
+
         &::before {
-        padding-top: 15px;
+          padding-top: 15px;
           margin-top: -15px;
         }
       }
@@ -66,6 +66,7 @@
       &:last-child {
         border-bottom: 1px solid var(--table-color);
         padding-bottom: 15px;
+
         &::before {
           margin-bottom: -15px;
         }

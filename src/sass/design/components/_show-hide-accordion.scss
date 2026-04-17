@@ -67,11 +67,9 @@
   transform: rotate(180deg);
 }
 
-
 /* Compact variant
  * --------------------------------------------- */
 .accordion--compact {
-
   .accordion-header {
     color: var(--color-text);
     margin: 6px 0;
@@ -111,7 +109,6 @@
   }
 }
 
-
 /* On dark theme
  * --------------------------------------------- */
 .accordion-items {
@@ -119,8 +116,9 @@
     .accordion-header {
       color: inherit;
     }
+
     .accordion-item:hover {
-        border-bottom-color: inherit;
+      border-bottom-color: inherit;
     }
   }
 }
