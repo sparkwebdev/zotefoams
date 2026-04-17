@@ -54,6 +54,10 @@ function zotefoams_setup()
     add_image_size('thumbnail-landscape', 960, 540, true); // 16:9 landscape
     add_image_size('small', 700, 9999, false); // Custom image size: not cropped
 
+    // Prevent WP 5.3+ from auto-generating large sizes unused by this theme
+    remove_image_size( '1536x1536' );
+    remove_image_size( '2048x2048' );
+
     // This theme uses wp_nav_menu() in one location.
     register_nav_menus(
         array(
