@@ -5,12 +5,12 @@
 import { ZotefoamsReadyUtils } from '../utils/dom-utilities.js';
 
 function initTabbedSplit() {
-	document.querySelectorAll( '.tabs-container' ).forEach( ( tabsContainer ) => {
+	document.querySelectorAll( '[data-js="tabs-container"]' ).forEach( ( tabsContainer ) => {
 		const contentContainer = tabsContainer.nextElementSibling;
-		if ( ! contentContainer?.classList.contains( 'content-container' ) ) {return;}
+		if ( ! contentContainer?.matches( '[data-js="content-container"]' ) ) {return;}
 
-		const tabs = tabsContainer.querySelectorAll( '.tab' );
-		const tabContents = contentContainer.querySelectorAll( '.tab-content' );
+		const tabs = tabsContainer.querySelectorAll( '[data-js="tab"]' );
+		const tabContents = contentContainer.querySelectorAll( '[data-js="tab-content"]' );
 
 		tabs.forEach( ( tab ) => {
 			tab.addEventListener( 'click', function() {

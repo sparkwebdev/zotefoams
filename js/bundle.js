@@ -857,12 +857,12 @@
 	 */
 
 	function initTabbedSplit() {
-		document.querySelectorAll( '.tabs-container' ).forEach( ( tabsContainer ) => {
+		document.querySelectorAll( '[data-js="tabs-container"]' ).forEach( ( tabsContainer ) => {
 			const contentContainer = tabsContainer.nextElementSibling;
-			if ( ! contentContainer?.classList.contains( 'content-container' ) ) {return;}
+			if ( ! contentContainer?.matches( '[data-js="content-container"]' ) ) {return;}
 
-			const tabs = tabsContainer.querySelectorAll( '.tab' );
-			const tabContents = contentContainer.querySelectorAll( '.tab-content' );
+			const tabs = tabsContainer.querySelectorAll( '[data-js="tab"]' );
+			const tabContents = contentContainer.querySelectorAll( '[data-js="tab-content"]' );
 
 			tabs.forEach( ( tab ) => {
 				tab.addEventListener( 'click', function() {
@@ -1147,10 +1147,10 @@
 
 		if ( fileListElements.length > 0 ) {
 			fileListElements.forEach( function( container ) {
-				const filterButton = container.querySelector( '#filter-toggle' );
-				const filterOptions = container.querySelector( '#filter-options' );
-				const checkboxes = Array.from( container.querySelectorAll( '.filter-options__checkbox' ) );
-				const showAllButton = container.querySelector( '#file-list-show-all' );
+				const filterButton = container.querySelector( '[data-js="filter-toggle"]' );
+				const filterOptions = container.querySelector( '[data-js="filter-options"]' );
+				const checkboxes = Array.from( container.querySelectorAll( '[data-js="filter-checkbox"]' ) );
+				const showAllButton = container.querySelector( '[data-js="file-list-show-all"]' );
 				const fileItems = Array.from( container.querySelectorAll( '.file-list__item' ) );
 
 				// Toggle the dropdown menu.
@@ -1319,8 +1319,8 @@
 
 			document.addEventListener( 'click', ( e ) => {
 				fileListElements.forEach( ( container ) => {
-					const filterOptions = container.querySelector( '#filter-options' );
-					const filterButton = container.querySelector( '#filter-toggle' );
+					const filterOptions = container.querySelector( '[data-js="filter-options"]' );
+					const filterButton = container.querySelector( '[data-js="filter-toggle"]' );
 					const clickedInsideDropdown = filterButton?.contains( e.target ) || filterOptions?.contains( e.target );
 					if ( ! clickedInsideDropdown ) {
 						if ( filterOptions ) {
@@ -1352,10 +1352,10 @@
 
 		if ( sectionListElements.length > 0 ) {
 			sectionListElements.forEach( function( article ) {
-				const filterButton = article.querySelector( '#filter-toggle' );
-				const filterOptions = article.querySelector( '#filter-options' );
-				const checkboxes = [ ...article.querySelectorAll( '.filter-options__checkbox' ) ];
-				const showAllButton = article.querySelector( '#section-list-show-all' );
+				const filterButton = article.querySelector( '[data-js="filter-toggle"]' );
+				const filterOptions = article.querySelector( '[data-js="filter-options"]' );
+				const checkboxes = [ ...article.querySelectorAll( '[data-js="filter-checkbox"]' ) ];
+				const showAllButton = article.querySelector( '[data-js="section-list-show-all"]' );
 				const sectionItems = [ ...article.querySelectorAll( '.section-list__item' ) ];
 				const toggleDropdown = ( show ) => {
 					filterOptions.classList.toggle( 'hidden', ! show );
@@ -1421,9 +1421,9 @@
 
 			document.addEventListener( 'click', ( e ) => {
 				sectionListElements.forEach( ( article ) => {
-					const dropdown = article.querySelector( '.file-list__dropdown' );
-					const filterOptions = article.querySelector( '#filter-options' );
-					const filterButton = article.querySelector( '#filter-toggle' );
+					const dropdown = article.querySelector( '[data-js="filter-dropdown"]' );
+					const filterOptions = article.querySelector( '[data-js="filter-options"]' );
+					const filterButton = article.querySelector( '[data-js="filter-toggle"]' );
 					if ( dropdown && ! dropdown.contains( e.target ) ) {
 						if ( filterOptions ) {
 							filterOptions.classList.add( 'hidden' );
@@ -1532,7 +1532,7 @@
 
 	function initAccordion() {
 		// Accordion
-		const headers = document.querySelectorAll( '.accordion-header' );
+		const headers = document.querySelectorAll( '[data-js="accordion-header"]' );
 
 		// Add click event listener to each header
 		headers.forEach( ( header ) => {
@@ -1541,14 +1541,14 @@
 				if ( ! content ) {
 					return;
 				}
-				const icon = this.querySelector( '.toggle-icon' ); // Get the plus/minus icon
+				const icon = this.querySelector( '[data-js="toggle-icon"]' ); // Get the plus/minus icon
 				const isOpening = ! content.classList.contains( 'is-open' );
 
 				// Close all other accordion sections
 				headers.forEach( ( otherHeader ) => {
 					if ( otherHeader !== this ) {
 						const otherContent = otherHeader.nextElementSibling;
-						const otherIcon = otherHeader.querySelector( '.toggle-icon' );
+						const otherIcon = otherHeader.querySelector( '[data-js="toggle-icon"]' );
 						if ( otherContent ) {
 							otherContent.classList.remove( 'is-open' );
 							ZotefoamsAccessibilityUtils.setAriaHidden( otherContent, true );
@@ -1611,7 +1611,7 @@
 		} );
 
 		// Preload split-accordion-image item images
-		document.querySelectorAll( '.split-accordion-image .accordion-header[data-image]' ).forEach( ( btn ) => {
+		document.querySelectorAll( '.split-accordion-image [data-js="accordion-header"][data-image]' ).forEach( ( btn ) => {
 			const img = new Image();
 			img.src = btn.dataset.image;
 		} );
@@ -1628,7 +1628,7 @@
 
 		const targetItem = document.querySelector( hash );
 		if ( targetItem && targetItem.classList.contains( 'accordion-item' ) ) {
-			const header = targetItem.querySelector( '.accordion-header' );
+			const header = targetItem.querySelector( '[data-js="accordion-header"]' );
 			if ( header ) {
 				if ( header.getAttribute( 'aria-expanded' ) !== 'true' ) {
 					header.click();
@@ -1674,7 +1674,7 @@
 	}
 
 	function initDesktopTabsAccessibility( wrapper ) {
-		const radioButtons = wrapper.querySelectorAll( '.panel-switcher__radio' );
+		const radioButtons = wrapper.querySelectorAll( '[data-js="panel-radio"]' );
 
 		if ( ! radioButtons.length ) {
 			return;

@@ -38,6 +38,7 @@ $arrow_svg = get_template_directory_uri() . '/images/tab-arrow-right.svg';
                     name="<?php echo esc_attr($component_id); ?>"
                     id="<?php echo esc_attr($component_id . '-' . $index); ?>"
                     class="panel-switcher__radio"
+                    data-js="panel-radio"
                     role="tab"
                     aria-controls="<?php echo esc_attr($component_id . '-content-' . $index); ?>"
                     aria-selected="<?php echo ($index === 0) ? 'true' : 'false'; ?>"

@@ -9,7 +9,7 @@ $wrapper_classes = 'cont-xs tabs-container padding-t-b-100 theme-none';
 $content_wrapper_classes = 'content-container light-grey-bg';
 ?>
 
-<div class="<?php echo $wrapper_classes; ?>">
+<div class="<?php echo $wrapper_classes; ?>" data-js="tabs-container">
     <?php if ($tab_overline || $tab_text) : ?>
         <div class="tabs-intro text-center margin-b-30">
             <?php if ($tab_overline) : ?>
@@ -28,7 +28,7 @@ $content_wrapper_classes = 'content-container light-grey-bg';
                 $icon      = $tab['tabbed_split_tab_icon'];
                 $is_active = $index === 0 ? 'active' : '';
             ?>
-                <div class="tab <?php echo esc_attr($is_active); ?>" data-tab="<?php echo esc_attr($tab_id); ?>">
+                <div class="tab <?php echo esc_attr($is_active); ?>" data-tab="<?php echo esc_attr($tab_id); ?>" data-js="tab">
                     <?php if ($icon) : ?>
                         <?php echo Zotefoams_Image_Helper::render_image($icon, [
                             'alt' => $tab['tabbed_split_tab_title'],
@@ -42,7 +42,7 @@ $content_wrapper_classes = 'content-container light-grey-bg';
     <?php endif; ?>
 </div>
 
-<div class="<?php echo $content_wrapper_classes; ?>">
+<div class="<?php echo $content_wrapper_classes; ?>" data-js="content-container">
     <?php if ($tabs) : ?>
         <?php foreach ($tabs as $index => $tab) :
             $tab_id     = sanitize_title($tab['tabbed_split_tab_title']);
@@ -53,7 +53,7 @@ $content_wrapper_classes = 'content-container light-grey-bg';
             $image_url  = Zotefoams_Image_Helper::get_image_url($image, 'large', 'tabbed-split');
             $is_active  = $index === 0 ? 'active' : '';
         ?>
-            <div class="tab-content <?php echo esc_attr($is_active); ?>" id="<?php echo esc_attr($tab_id); ?>">
+            <div class="tab-content <?php echo esc_attr($is_active); ?>" id="<?php echo esc_attr($tab_id); ?>" data-js="tab-content">
                 <div class="tab-content__inner">
                     <div>
                         <div class="all-content padding-t-b-100">

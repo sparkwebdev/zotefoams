@@ -24,9 +24,9 @@ $wrapper_classes = 'accordion cont-m padding-t-b-100 theme-none';
         ?>
                 <div class="accordion-item" id="<?php echo esc_attr($item_id); ?>">
                     <?php if ($question) : ?>
-                        <button class="accordion-header fs-400 fw-semibold">
+                        <button class="accordion-header fs-400 fw-semibold" data-js="accordion-header">
                             <?php echo esc_html($question); ?>
-                            <span class="toggle-icon">+</span>
+                            <span class="toggle-icon" data-js="toggle-icon">+</span>
                         </button>
                     <?php endif; ?>
 

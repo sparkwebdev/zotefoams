@@ -11,10 +11,10 @@ function initSectionList() {
 
 	if ( sectionListElements.length > 0 ) {
 		sectionListElements.forEach( function( article ) {
-			const filterButton = article.querySelector( '#filter-toggle' );
-			const filterOptions = article.querySelector( '#filter-options' );
-			const checkboxes = [ ...article.querySelectorAll( '.filter-options__checkbox' ) ];
-			const showAllButton = article.querySelector( '#section-list-show-all' );
+			const filterButton = article.querySelector( '[data-js="filter-toggle"]' );
+			const filterOptions = article.querySelector( '[data-js="filter-options"]' );
+			const checkboxes = [ ...article.querySelectorAll( '[data-js="filter-checkbox"]' ) ];
+			const showAllButton = article.querySelector( '[data-js="section-list-show-all"]' );
 			const sectionItems = [ ...article.querySelectorAll( '.section-list__item' ) ];
 			const toggleDropdown = ( show ) => {
 				filterOptions.classList.toggle( 'hidden', ! show );
@@ -80,9 +80,9 @@ function initSectionList() {
 
 		document.addEventListener( 'click', ( e ) => {
 			sectionListElements.forEach( ( article ) => {
-				const dropdown = article.querySelector( '.file-list__dropdown' );
-				const filterOptions = article.querySelector( '#filter-options' );
-				const filterButton = article.querySelector( '#filter-toggle' );
+				const dropdown = article.querySelector( '[data-js="filter-dropdown"]' );
+				const filterOptions = article.querySelector( '[data-js="filter-options"]' );
+				const filterButton = article.querySelector( '[data-js="filter-toggle"]' );
 				if ( dropdown && ! dropdown.contains( e.target ) ) {
 					if ( filterOptions ) {
 						filterOptions.classList.add( 'hidden' );

@@ -35,9 +35,9 @@ $wrapper_classes = 'show-hide-forms accordion cont-m padding-t-b-100 theme-none'
 			?>
 				<?php if ($form_id && $form_title) : ?>
 					<div class="accordion-item"<?php if ( isset( $globalForms ) && $globalForms ) : ?> id="contact-forms-item-<?php echo $index; ?>"<?php endif; ?>>
-						<button class="accordion-header fs-400 fw-semibold">
+						<button class="accordion-header fs-400 fw-semibold" data-js="accordion-header">
 							<?php echo esc_html($form_title); ?>
-							<span class="toggle-icon">+</span>
+							<span class="toggle-icon" data-js="toggle-icon">+</span>
 						</button>
 						<div class="accordion-content">
 							<?php echo do_shortcode('[wpforms id="' . esc_attr($form_id) . '" title="false"]'); ?>

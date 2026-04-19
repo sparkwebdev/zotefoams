@@ -141,10 +141,10 @@ if ($documents_list) {
         <div data-component="file-list">
             <?php if (($show_categories_filter && count($categories) > 1) || ($show_brands_filter && count($brands) > 1)) : ?>
                 <div class="file-list__dropdown">
-                    <button id="filter-toggle" class="file-list__dropdown-button hl arrow">
+                    <button id="filter-toggle" data-js="filter-toggle" class="file-list__dropdown-button hl arrow">
                         Filter
                     </button>
-                    <div id="filter-options" class="filter-toggle__options hidden">
+                    <div id="filter-options" data-js="filter-options" class="filter-toggle__options hidden">
                         <?php if (! empty($categories)) : ?>
                             <div class="filter-group" data-filter-group="category" <?php echo $show_categories_filter ? '' : 'style="display:none;"'; ?>>
                                 <?php if ($has_multiple_filters) : ?>
@@ -156,6 +156,7 @@ if ($documents_list) {
                                             type="checkbox"
                                             value="<?php echo esc_attr($id); ?>"
                                             data-filter="category"
+                                            data-js="filter-checkbox"
                                             class="filter-options__checkbox">
                                         <?php echo esc_html($label); ?>
                                     </label>
@@ -173,6 +174,7 @@ if ($documents_list) {
                                             type="checkbox"
                                             value="<?php echo esc_attr($id); ?>"
                                             data-filter="brand"
+                                            data-js="filter-checkbox"
                                             class="filter-options__checkbox">
                                         <?php echo esc_html($label); ?>
                                     </label>
@@ -181,7 +183,7 @@ if ($documents_list) {
                         <?php endif; ?>
                     </div>
                 </div>
-                <button id="file-list-show-all" class="file-list__show-all hidden">Reset Filters</button>
+                <button id="file-list-show-all" data-js="file-list-show-all" class="file-list__show-all hidden">Reset Filters</button>
             <?php endif; ?>
             <div class="file-list">
                 <table>

@@ -14,20 +14,20 @@ $child_pages = get_pages(array(
 <nav class="cont-m padding-t-b-100 theme-none">
     <div data-component="section-list">
         <?php if (!empty($brands) && count($brands) > 1) : ?>
-            <div class="file-list__dropdown">
-                <button id="filter-toggle" class="file-list__dropdown-button hl arrow">
+            <div class="file-list__dropdown" data-js="filter-dropdown">
+                <button id="filter-toggle" data-js="filter-toggle" class="file-list__dropdown-button hl arrow">
                     Filter
                 </button>
-                <div id="filter-options" class="filter-toggle__options hidden">
+                <div id="filter-options" data-js="filter-options" class="filter-toggle__options hidden">
                     <?php foreach ($brands as $brand_filter) : ?>
                         <label class="filter-toggle__label">
-                            <input type="checkbox" value="<?php echo esc_attr($brand_filter); ?>" class="filter-options__checkbox">
+                            <input type="checkbox" value="<?php echo esc_attr($brand_filter); ?>" data-js="filter-checkbox" class="filter-options__checkbox">
                             <?php echo esc_html($brand_filter); ?>
                         </label>
                     <?php endforeach; ?>
                 </div>
             </div>
-            <button id="section-list-show-all" class="file-list__show-all hidden">Reset Filters</button>
+            <button id="section-list-show-all" data-js="section-list-show-all" class="file-list__show-all hidden">Reset Filters</button>
         <?php endif; ?>
 
         <div class="section-list">

@@ -6,7 +6,7 @@ import { ZotefoamsReadyUtils, ZotefoamsAccessibilityUtils } from '../utils/dom-u
 
 function initAccordion() {
 	// Accordion
-	const headers = document.querySelectorAll( '.accordion-header' );
+	const headers = document.querySelectorAll( '[data-js="accordion-header"]' );
 
 	// Add click event listener to each header
 	headers.forEach( ( header ) => {
@@ -15,14 +15,14 @@ function initAccordion() {
 			if ( ! content ) {
 				return;
 			}
-			const icon = this.querySelector( '.toggle-icon' ); // Get the plus/minus icon
+			const icon = this.querySelector( '[data-js="toggle-icon"]' ); // Get the plus/minus icon
 			const isOpening = ! content.classList.contains( 'is-open' );
 
 			// Close all other accordion sections
 			headers.forEach( ( otherHeader ) => {
 				if ( otherHeader !== this ) {
 					const otherContent = otherHeader.nextElementSibling;
-					const otherIcon = otherHeader.querySelector( '.toggle-icon' );
+					const otherIcon = otherHeader.querySelector( '[data-js="toggle-icon"]' );
 					if ( otherContent ) {
 						otherContent.classList.remove( 'is-open' );
 						ZotefoamsAccessibilityUtils.setAriaHidden( otherContent, true );
@@ -85,7 +85,7 @@ function initAccordion() {
 	} );
 
 	// Preload split-accordion-image item images
-	document.querySelectorAll( '.split-accordion-image .accordion-header[data-image]' ).forEach( ( btn ) => {
+	document.querySelectorAll( '.split-accordion-image [data-js="accordion-header"][data-image]' ).forEach( ( btn ) => {
 		const img = new Image();
 		img.src = btn.dataset.image;
 	} );
@@ -102,7 +102,7 @@ function openAccordionFromHash() {
 
 	const targetItem = document.querySelector( hash );
 	if ( targetItem && targetItem.classList.contains( 'accordion-item' ) ) {
-		const header = targetItem.querySelector( '.accordion-header' );
+		const header = targetItem.querySelector( '[data-js="accordion-header"]' );
 		if ( header ) {
 			if ( header.getAttribute( 'aria-expanded' ) !== 'true' ) {
 				header.click();

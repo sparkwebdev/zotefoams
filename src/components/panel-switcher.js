@@ -29,7 +29,7 @@ function initPanelSwitcher() {
 }
 
 function initDesktopTabsAccessibility( wrapper ) {
-	const radioButtons = wrapper.querySelectorAll( '.panel-switcher__radio' );
+	const radioButtons = wrapper.querySelectorAll( '[data-js="panel-radio"]' );
 
 	if ( ! radioButtons.length ) {
 		return;

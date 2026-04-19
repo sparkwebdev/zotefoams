@@ -39,9 +39,9 @@ $wrapper_classes = $variant
                         ?>
                             <?php if ($item_title): ?>
                             <div class="accordion-item">
-                                <button class="accordion-header fs-200 fw-regular"<?php if ($item_image_url): ?> data-image="<?php echo esc_url($item_image_url); ?>"<?php endif; ?>>
+                                <button class="accordion-header fs-200 fw-regular" data-js="accordion-header"<?php if ($item_image_url): ?> data-image="<?php echo esc_url($item_image_url); ?>"<?php endif; ?>>
                                     <?php echo esc_html($item_title); ?>
-                                    <span class="toggle-icon" aria-hidden="true">+</span>
+                                    <span class="toggle-icon" aria-hidden="true" data-js="toggle-icon">+</span>
                                 </button>
 
                                 <div class="accordion-content<?php echo $variant ? ' white-text' : ' grey-text'; ?>">

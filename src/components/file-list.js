@@ -12,10 +12,10 @@ function initFileList() {
 
 	if ( fileListElements.length > 0 ) {
 		fileListElements.forEach( function( container ) {
-			const filterButton = container.querySelector( '#filter-toggle' );
-			const filterOptions = container.querySelector( '#filter-options' );
-			const checkboxes = Array.from( container.querySelectorAll( '.filter-options__checkbox' ) );
-			const showAllButton = container.querySelector( '#file-list-show-all' );
+			const filterButton = container.querySelector( '[data-js="filter-toggle"]' );
+			const filterOptions = container.querySelector( '[data-js="filter-options"]' );
+			const checkboxes = Array.from( container.querySelectorAll( '[data-js="filter-checkbox"]' ) );
+			const showAllButton = container.querySelector( '[data-js="file-list-show-all"]' );
 			const fileItems = Array.from( container.querySelectorAll( '.file-list__item' ) );
 
 			// Toggle the dropdown menu.
@@ -184,8 +184,8 @@ function initFileList() {
 
 		document.addEventListener( 'click', ( e ) => {
 			fileListElements.forEach( ( container ) => {
-				const filterOptions = container.querySelector( '#filter-options' );
-				const filterButton = container.querySelector( '#filter-toggle' );
+				const filterOptions = container.querySelector( '[data-js="filter-options"]' );
+				const filterButton = container.querySelector( '[data-js="filter-toggle"]' );
 				const clickedInsideDropdown = filterButton?.contains( e.target ) || filterOptions?.contains( e.target );
 				if ( ! clickedInsideDropdown ) {
 					if ( filterOptions ) {
