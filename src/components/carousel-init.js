@@ -44,7 +44,7 @@ function initCarousels() {
 						const els = this._animatedEls[ this.activeIndex ] || [];
 						els.forEach( ( el, index ) => {
 							setTimeout( () => {
-								el.style.opacity = '1';
+								el.classList.remove( 'is-anim-hidden' );
 								el.classList.add( 'animate__fadeInDown' );
 							}, index * SLIDE_ANIMATION_STAGGER_MS );
 						} );
@@ -54,7 +54,7 @@ function initCarousels() {
 					// Hide animated elements in all slides using cached references
 					this._animatedEls?.forEach( ( els ) => {
 						els.forEach( ( el ) => {
-							el.style.opacity = '0';
+							el.classList.add( 'is-anim-hidden' );
 							el.classList.remove( 'animate__fadeInUp', 'animate__fadeInDown', 'animate__fadeInLeft', 'animate__fadeInRight' );
 						} );
 					} );
@@ -64,7 +64,7 @@ function initCarousels() {
 					const els = this._animatedEls?.[ this.activeIndex ] || [];
 					els.forEach( ( el, index ) => {
 						setTimeout( () => {
-							el.style.opacity = '1';
+							el.classList.remove( 'is-anim-hidden' );
 							el.classList.add( 'animate__fadeInDown' );
 						}, index * SLIDE_ANIMATION_STAGGER_MS );
 					} );
@@ -86,7 +86,7 @@ function initCarousels() {
 		// Hide all animated elements initially
 		const allAnimatedElements = textCarousel.querySelectorAll( '.animate__animated:not(.value)' );
 		allAnimatedElements.forEach( ( el ) => {
-			el.style.opacity = '0';
+			el.classList.add( 'is-anim-hidden' );
 		} );
 
 		// Shared animation function for text carousel slides
@@ -96,7 +96,7 @@ function initCarousels() {
 				if ( slideIndex !== swiper.activeIndex ) {
 					const animatedElements = slide.querySelectorAll( '.animate__animated:not(.value)' );
 					animatedElements.forEach( ( el ) => {
-						el.style.opacity = '0';
+						el.classList.add( 'is-anim-hidden' );
 						el.classList.remove( 'animate__fadeInUp', 'animate__fadeInDown', 'animate__fadeInLeft', 'animate__fadeInRight' );
 					} );
 				}
@@ -108,7 +108,7 @@ function initCarousels() {
 				const animatedElements = activeSlide.querySelectorAll( '.animate__animated:not(.value)' );
 				animatedElements.forEach( ( el, index ) => {
 					setTimeout( () => {
-						el.style.opacity = '1';
+						el.classList.remove( 'is-anim-hidden' );
 						el.classList.add( 'animate__fadeInDown' );
 					}, index * SLIDE_ANIMATION_STAGGER_MS );
 				} );
@@ -137,7 +137,7 @@ function initCarousels() {
 						const animatedElements = activeSlide.querySelectorAll( '.animate__animated:not(.value)' );
 						animatedElements.forEach( ( el, index ) => {
 							setTimeout( () => {
-								el.style.opacity = '1';
+								el.classList.remove( 'is-anim-hidden' );
 								el.classList.add( 'animate__fadeInDown' );
 							}, SLIDE_INIT_FIRST_STAGGER_MS + ( index * SLIDE_ANIMATION_STAGGER_MS ) );
 						} );

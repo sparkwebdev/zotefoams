@@ -547,7 +547,7 @@
 							const els = this._animatedEls[ this.activeIndex ] || [];
 							els.forEach( ( el, index ) => {
 								setTimeout( () => {
-									el.style.opacity = '1';
+									el.classList.remove( 'is-anim-hidden' );
 									el.classList.add( 'animate__fadeInDown' );
 								}, index * SLIDE_ANIMATION_STAGGER_MS );
 							} );
@@ -557,7 +557,7 @@
 						// Hide animated elements in all slides using cached references
 						this._animatedEls?.forEach( ( els ) => {
 							els.forEach( ( el ) => {
-								el.style.opacity = '0';
+								el.classList.add( 'is-anim-hidden' );
 								el.classList.remove( 'animate__fadeInUp', 'animate__fadeInDown', 'animate__fadeInLeft', 'animate__fadeInRight' );
 							} );
 						} );
@@ -567,7 +567,7 @@
 						const els = this._animatedEls?.[ this.activeIndex ] || [];
 						els.forEach( ( el, index ) => {
 							setTimeout( () => {
-								el.style.opacity = '1';
+								el.classList.remove( 'is-anim-hidden' );
 								el.classList.add( 'animate__fadeInDown' );
 							}, index * SLIDE_ANIMATION_STAGGER_MS );
 						} );
@@ -589,7 +589,7 @@
 			// Hide all animated elements initially
 			const allAnimatedElements = textCarousel.querySelectorAll( '.animate__animated:not(.value)' );
 			allAnimatedElements.forEach( ( el ) => {
-				el.style.opacity = '0';
+				el.classList.add( 'is-anim-hidden' );
 			} );
 
 			// Shared animation function for text carousel slides
@@ -599,7 +599,7 @@
 					if ( slideIndex !== swiper.activeIndex ) {
 						const animatedElements = slide.querySelectorAll( '.animate__animated:not(.value)' );
 						animatedElements.forEach( ( el ) => {
-							el.style.opacity = '0';
+							el.classList.add( 'is-anim-hidden' );
 							el.classList.remove( 'animate__fadeInUp', 'animate__fadeInDown', 'animate__fadeInLeft', 'animate__fadeInRight' );
 						} );
 					}
@@ -611,7 +611,7 @@
 					const animatedElements = activeSlide.querySelectorAll( '.animate__animated:not(.value)' );
 					animatedElements.forEach( ( el, index ) => {
 						setTimeout( () => {
-							el.style.opacity = '1';
+							el.classList.remove( 'is-anim-hidden' );
 							el.classList.add( 'animate__fadeInDown' );
 						}, index * SLIDE_ANIMATION_STAGGER_MS );
 					} );
@@ -640,7 +640,7 @@
 							const animatedElements = activeSlide.querySelectorAll( '.animate__animated:not(.value)' );
 							animatedElements.forEach( ( el, index ) => {
 								setTimeout( () => {
-									el.style.opacity = '1';
+									el.classList.remove( 'is-anim-hidden' );
 									el.classList.add( 'animate__fadeInDown' );
 								}, SLIDE_INIT_FIRST_STAGGER_MS + ( index * SLIDE_ANIMATION_STAGGER_MS ) );
 							} );
@@ -1153,50 +1153,6 @@
 				const showAllButton = container.querySelector( '[data-js="file-list-show-all"]' );
 				const fileItems = Array.from( container.querySelectorAll( '.file-list__item' ) );
 
-				// Toggle the dropdown menu.
-				const toggleDropdown = ( show ) => {
-					filterOptions.classList.toggle( 'hidden', ! show );
-					filterButton.classList.toggle( 'open', show );
-					ZotefoamsAccessibilityUtils.setAriaExpanded( filterButton, show );
-					ZotefoamsAccessibilityUtils.setAriaHidden( filterOptions, ! show );
-				};
-
-				// Keyboard support for the filter dropdown.
-				filterOptions.addEventListener( 'keydown', function( e ) {
-					const KEY_UP = 38,
-						KEY_DOWN = 40,
-						KEY_ESCAPE = 27,
-						KEY_TAB = 9;
-					if ( e.keyCode === KEY_DOWN ) {
-						e.preventDefault();
-						const currentIndex = checkboxes.findIndex( ( cb ) => cb === document.activeElement );
-						if ( currentIndex === -1 || currentIndex === checkboxes.length - 1 ) {
-							checkboxes[ 0 ].focus();
-						} else {
-							checkboxes[ currentIndex + 1 ].focus();
-						}
-					} else if ( e.keyCode === KEY_UP ) {
-						e.preventDefault();
-						const currentIndex = checkboxes.findIndex( ( cb ) => cb === document.activeElement );
-						if ( currentIndex <= 0 ) {
-							checkboxes[ checkboxes.length - 1 ].focus();
-						} else {
-							checkboxes[ currentIndex - 1 ].focus();
-						}
-					} else if ( e.keyCode === KEY_ESCAPE ) {
-						e.preventDefault();
-						toggleDropdown( false );
-						filterButton.focus();
-					} else if ( e.keyCode === KEY_TAB ) {
-						// Allow Tab to move focus, then close the dropdown if focus moves outside.
-						setTimeout( () => {
-							if ( ! filterOptions.contains( document.activeElement ) ) {
-								toggleDropdown( false );
-							}
-						}, KEYBOARD_NAV_DELAY_MS );
-					}
-				} );
-
 				// Gather active filters by filter type.
 				const getActiveFilters = () => {
 					const activeFilters = {};
@@ -1210,6 +1166,15 @@
 						}
 					} );
 					return activeFilters;
+				};
+
+				const updateShowAllVisibility = () => {
+					const totalSelected = checkboxes.filter( ( cb ) => cb.checked ).length;
+					if ( showAllButton ) {
+						showAllButton.classList.toggle( 'hidden', totalSelected === 0 );
+					}
+					// Toggle the "filtered" class on the container (.file-list element)
+					container.classList.toggle( 'filtered', totalSelected > 0 );
 				};
 
 				// Filter file items: each item's data attribute may contain multiple values.
@@ -1277,23 +1242,71 @@
 					filterFiles();
 				};
 
-				const updateShowAllVisibility = () => {
-					const totalSelected = checkboxes.filter( ( cb ) => cb.checked ).length;
-					if ( showAllButton ) {
-						showAllButton.classList.toggle( 'hidden', totalSelected === 0 );
-					}
-					// Toggle the "filtered" class on the container (.file-list element)
-					container.classList.toggle( 'filtered', totalSelected > 0 );
-				};
+				// Filter dropdown — only set up if present in the DOM.
+				if ( filterButton && filterOptions ) {
+					// Close dropdown when user clicks outside it.
+					const onOutsideClick = ( e ) => {
+						if ( ! filterButton.contains( e.target ) && ! filterOptions.contains( e.target ) ) {
+							toggleDropdown( false );
+						}
+					};
 
-				const resetFilters = () => {
-					checkboxes.forEach( ( cb ) => ( cb.checked = false ) );
-					toggleDropdown( false );
-					updateURL();
-					filterFiles();
-				};
+					// Toggle the dropdown menu.
+					const toggleDropdown = ( show ) => {
+						filterOptions.classList.toggle( 'hidden', ! show );
+						filterButton.classList.toggle( 'open', show );
+						ZotefoamsAccessibilityUtils.setAriaExpanded( filterButton, show );
+						ZotefoamsAccessibilityUtils.setAriaHidden( filterOptions, ! show );
+						if ( show ) {
+							document.addEventListener( 'click', onOutsideClick );
+						} else {
+							document.removeEventListener( 'click', onOutsideClick );
+						}
+					};
 
-				if ( filterButton ) {
+					const resetFilters = () => {
+						checkboxes.forEach( ( cb ) => ( cb.checked = false ) );
+						toggleDropdown( false );
+						updateURL();
+						filterFiles();
+					};
+
+					// Keyboard support for the filter dropdown.
+					filterOptions.addEventListener( 'keydown', function( e ) {
+						const KEY_UP = 38,
+							KEY_DOWN = 40,
+							KEY_ESCAPE = 27,
+							KEY_TAB = 9;
+						if ( e.keyCode === KEY_DOWN ) {
+							e.preventDefault();
+							const currentIndex = checkboxes.findIndex( ( cb ) => cb === document.activeElement );
+							if ( currentIndex === -1 || currentIndex === checkboxes.length - 1 ) {
+								checkboxes[ 0 ].focus();
+							} else {
+								checkboxes[ currentIndex + 1 ].focus();
+							}
+						} else if ( e.keyCode === KEY_UP ) {
+							e.preventDefault();
+							const currentIndex = checkboxes.findIndex( ( cb ) => cb === document.activeElement );
+							if ( currentIndex <= 0 ) {
+								checkboxes[ checkboxes.length - 1 ].focus();
+							} else {
+								checkboxes[ currentIndex - 1 ].focus();
+							}
+						} else if ( e.keyCode === KEY_ESCAPE ) {
+							e.preventDefault();
+							toggleDropdown( false );
+							filterButton.focus();
+						} else if ( e.keyCode === KEY_TAB ) {
+							// Allow Tab to move focus, then close the dropdown if focus moves outside.
+							setTimeout( () => {
+								if ( ! filterOptions.contains( document.activeElement ) ) {
+									toggleDropdown( false );
+								}
+							}, KEYBOARD_NAV_DELAY_MS );
+						}
+					} );
+
 					filterButton.addEventListener( 'click', ( e ) => {
 						e.stopPropagation();
 						const open = filterOptions.classList.contains( 'hidden' );
@@ -1303,36 +1316,20 @@
 							checkboxes[ 0 ].focus();
 						}
 					} );
-				}
 
-				checkboxes.forEach( ( cb ) => {
-					cb.addEventListener( 'change', () => {
-						updateURL();
-						filterFiles();
+					checkboxes.forEach( ( cb ) => {
+						cb.addEventListener( 'change', () => {
+							updateURL();
+							filterFiles();
+						} );
 					} );
-				} );
 
-				showAllButton.addEventListener( 'click', resetFilters );
-
-				initializeFiltersFromURL();
-			} );
-
-			document.addEventListener( 'click', ( e ) => {
-				fileListElements.forEach( ( container ) => {
-					const filterOptions = container.querySelector( '[data-js="filter-options"]' );
-					const filterButton = container.querySelector( '[data-js="filter-toggle"]' );
-					const clickedInsideDropdown = filterButton?.contains( e.target ) || filterOptions?.contains( e.target );
-					if ( ! clickedInsideDropdown ) {
-						if ( filterOptions ) {
-							filterOptions.classList.add( 'hidden' );
-							ZotefoamsAccessibilityUtils.setAriaHidden( filterOptions, true );
-						}
-						if ( filterButton ) {
-							filterButton.classList.remove( 'open' );
-							ZotefoamsAccessibilityUtils.setAriaExpanded( filterButton, false );
-						}
+					if ( showAllButton ) {
+						showAllButton.addEventListener( 'click', resetFilters );
 					}
-				} );
+
+					initializeFiltersFromURL();
+				}
 			} );
 		}
 	}
@@ -1357,11 +1354,24 @@
 				const checkboxes = [ ...article.querySelectorAll( '[data-js="filter-checkbox"]' ) ];
 				const showAllButton = article.querySelector( '[data-js="section-list-show-all"]' );
 				const sectionItems = [ ...article.querySelectorAll( '.section-list__item' ) ];
+				// Close dropdown when user clicks outside it.
+				const dropdown = article.querySelector( '[data-js="filter-dropdown"]' );
+				const onOutsideClick = ( e ) => {
+					if ( dropdown && ! dropdown.contains( e.target ) ) {
+						toggleDropdown( false );
+					}
+				};
+
 				const toggleDropdown = ( show ) => {
 					filterOptions.classList.toggle( 'hidden', ! show );
 					filterButton.classList.toggle( 'open', show );
 					ZotefoamsAccessibilityUtils.setAriaExpanded( filterButton, show );
 					ZotefoamsAccessibilityUtils.setAriaHidden( filterOptions, ! show );
+					if ( show ) {
+						document.addEventListener( 'click', onOutsideClick );
+					} else {
+						document.removeEventListener( 'click', onOutsideClick );
+					}
 				};
 
 				const updateShowAllVisibility = () => {
@@ -1419,23 +1429,6 @@
 				updateShowAllVisibility();
 			} );
 
-			document.addEventListener( 'click', ( e ) => {
-				sectionListElements.forEach( ( article ) => {
-					const dropdown = article.querySelector( '[data-js="filter-dropdown"]' );
-					const filterOptions = article.querySelector( '[data-js="filter-options"]' );
-					const filterButton = article.querySelector( '[data-js="filter-toggle"]' );
-					if ( dropdown && ! dropdown.contains( e.target ) ) {
-						if ( filterOptions ) {
-							filterOptions.classList.add( 'hidden' );
-							ZotefoamsAccessibilityUtils.setAriaHidden( filterOptions, true );
-						}
-						if ( filterButton ) {
-							filterButton.classList.remove( 'open' );
-							ZotefoamsAccessibilityUtils.setAriaExpanded( filterButton, false );
-						}
-					}
-				} );
-			} );
 		}
 	}
 
@@ -1601,8 +1594,8 @@
 
 						if ( ! inactiveLayer || ! activeLayer ) {return;}
 						inactiveLayer.style.backgroundImage = newUrl ? `url('${ newUrl }')` : '';
-						inactiveLayer.style.opacity = '1';
-						activeLayer.style.opacity = '0';
+						inactiveLayer.classList.add( 'is-active' );
+						activeLayer.classList.remove( 'is-active' );
 
 						imageEl.dataset.activeLayer = imageEl.dataset.activeLayer === 'b' ? 'a' : 'b';
 					}

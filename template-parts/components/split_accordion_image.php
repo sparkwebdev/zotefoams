@@ -15,7 +15,7 @@ $wrapper_classes = $variant
 
     <?php if ($default_image_url): ?>
         <div class="split-accordion-image__image" data-default-image="<?php echo esc_url($default_image_url); ?>" data-current-image="<?php echo esc_url($default_image_url); ?>">
-            <div class="split-accordion-image__image-layer split-accordion-image__image-layer--a image-cover" style="background-image:url('<?php echo esc_url($default_image_url); ?>');"></div>
+            <div class="split-accordion-image__image-layer split-accordion-image__image-layer--a image-cover is-active" style="background-image:url('<?php echo esc_url($default_image_url); ?>');"></div>
             <div class="split-accordion-image__image-layer split-accordion-image__image-layer--b image-cover"></div>
         </div>
     <?php endif; ?>
@@ -39,7 +39,7 @@ $wrapper_classes = $variant
                         ?>
                             <?php if ($item_title): ?>
                             <div class="accordion-item">
-                                <button class="accordion-header fs-200 fw-regular" data-js="accordion-header"<?php if ($item_image_url): ?> data-image="<?php echo esc_url($item_image_url); ?>"<?php endif; ?>>
+                                <button class="accordion-header fs-200 fw-regular" data-js="accordion-header" aria-expanded="false"<?php if ($item_image_url): ?> data-image="<?php echo esc_url($item_image_url); ?>"<?php endif; ?>>
                                     <?php echo esc_html($item_title); ?>
                                     <span class="toggle-icon" aria-hidden="true" data-js="toggle-icon">+</span>
                                 </button>

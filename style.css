@@ -1408,6 +1408,12 @@ textarea {
     padding: 40px 20px;
   }
 }
+/* JS animation state — hides elements before JavaScript animates them in.
+ * !important overrides Animate.css animation-fill-mode: both so resets work correctly. */
+.is-anim-hidden {
+  opacity: 0 !important;
+}
+
 :root {
   --tone-off-white: #f8f8f8;
   --tone-light: #d1d1d1;
@@ -3632,10 +3638,11 @@ a.read-more.hl.arrow:focus::after {
 .split-accordion-image__image-layer {
   position: absolute;
   inset: 0;
+  opacity: 0;
   transition: opacity 0.3s ease;
 }
-.split-accordion-image__image-layer--b {
-  opacity: 0;
+.split-accordion-image__image-layer.is-active {
+  opacity: 1;
 }
 .split-accordion-image__content-inner {
   width: 100%;
@@ -7050,5 +7057,4 @@ html:has(.zf-history) {
     left: 5%;
   }
 }
-
 /*# sourceMappingURL=style.css.map */

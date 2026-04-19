@@ -75,8 +75,8 @@ function initAccordion() {
 
 					if ( ! inactiveLayer || ! activeLayer ) {return;}
 					inactiveLayer.style.backgroundImage = newUrl ? `url('${ newUrl }')` : '';
-					inactiveLayer.style.opacity = '1';
-					activeLayer.style.opacity = '0';
+					inactiveLayer.classList.add( 'is-active' );
+					activeLayer.classList.remove( 'is-active' );
 
 					imageEl.dataset.activeLayer = imageEl.dataset.activeLayer === 'b' ? 'a' : 'b';
 				}

@@ -16,11 +16,24 @@ function initSectionList() {
 			const checkboxes = [ ...article.querySelectorAll( '[data-js="filter-checkbox"]' ) ];
 			const showAllButton = article.querySelector( '[data-js="section-list-show-all"]' );
 			const sectionItems = [ ...article.querySelectorAll( '.section-list__item' ) ];
+			// Close dropdown when user clicks outside it.
+			const dropdown = article.querySelector( '[data-js="filter-dropdown"]' );
+			const onOutsideClick = ( e ) => {
+				if ( dropdown && ! dropdown.contains( e.target ) ) {
+					toggleDropdown( false );
+				}
+			};
+
 			const toggleDropdown = ( show ) => {
 				filterOptions.classList.toggle( 'hidden', ! show );
 				filterButton.classList.toggle( 'open', show );
 				ZotefoamsAccessibilityUtils.setAriaExpanded( filterButton, show );
 				ZotefoamsAccessibilityUtils.setAriaHidden( filterOptions, ! show );
+				if ( show ) {
+					document.addEventListener( 'click', onOutsideClick );
+				} else {
+					document.removeEventListener( 'click', onOutsideClick );
+				}
 			};
 
 			const updateShowAllVisibility = () => {
@@ -78,23 +91,6 @@ function initSectionList() {
 			updateShowAllVisibility();
 		} );
 
-		document.addEventListener( 'click', ( e ) => {
-			sectionListElements.forEach( ( article ) => {
-				const dropdown = article.querySelector( '[data-js="filter-dropdown"]' );
-				const filterOptions = article.querySelector( '[data-js="filter-options"]' );
-				const filterButton = article.querySelector( '[data-js="filter-toggle"]' );
-				if ( dropdown && ! dropdown.contains( e.target ) ) {
-					if ( filterOptions ) {
-						filterOptions.classList.add( 'hidden' );
-						ZotefoamsAccessibilityUtils.setAriaHidden( filterOptions, true );
-					}
-					if ( filterButton ) {
-						filterButton.classList.remove( 'open' );
-						ZotefoamsAccessibilityUtils.setAriaExpanded( filterButton, false );
-					}
-				}
-			} );
-		} );
 	}
 }
 

@@ -703,3 +703,10 @@
     padding: 40px 20px;
   }
 }
+
+/* JS animation state — hides elements before JavaScript animates them in.
+ * !important overrides Animate.css animation-fill-mode: both so resets work correctly. */
+
+.is-anim-hidden {
+  opacity: 0 !important; // stylelint-disable-line declaration-no-important
+}

@@ -46,7 +46,7 @@ $theme_classes = $variant
                     $has_headers = (bool) array_filter($columns, fn($c) => $c['header'] !== '');
                 ?>
                     <div class="accordion-item">
-                        <button class="accordion-header fs-400 fw-semibold" data-js="accordion-header">
+                        <button class="accordion-header fs-400 fw-semibold" data-js="accordion-header" aria-expanded="false">
                             <?php echo esc_html($section_title); ?>
                             <span class="toggle-icon" aria-hidden="true" data-js="toggle-icon">+</span>
                         </button>
