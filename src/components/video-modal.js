@@ -6,9 +6,15 @@ import { ZotefoamsReadyUtils } from '../utils/dom-utilities.js';
 
 function initVideoModal() {
 	const overlay = document.querySelector( '[data-modal="video"]' );
+	const triggers = document.querySelectorAll( '[data-modal-trigger="video"]' );
+
+	// No modal on this page — skip registering any global listeners.
+	if ( ! overlay || ! triggers.length ) {
+		return;
+	}
+
 	const iframe = document.querySelector( '[data-video-iframe]' );
 	const closeBtn = document.querySelector( '[data-video-close]' );
-	const triggers = document.querySelectorAll( '[data-modal-trigger="video"]' );
 	const mainPage = document.getElementById( 'page' );
 
 	let lastFocusedElement = null;
