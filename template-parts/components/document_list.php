@@ -11,6 +11,7 @@ $pick_count        = zotefoams_get_sub_field_safe('document_list_pick_count', 0,
 $documents_array = [];
 
 // Helper: Category info with fallback icon
+if ( ! function_exists( 'get_category_data' ) ) :
 function get_category_data($category_id, $fallback_title = 'Uncategorized')
 {
     $name = $fallback_title;
@@ -33,8 +34,10 @@ function get_category_data($category_id, $fallback_title = 'Uncategorized')
         'image' => $image_url,
     ];
 }
+endif;
 
 // Helper: Create document object
+if ( ! function_exists( 'create_document_entry' ) ) :
 function create_document_entry($file, $category_data, $category_id, $all_brands = false, $brands = [])
 {
     return (object) [
@@ -47,6 +50,7 @@ function create_document_entry($file, $category_data, $category_id, $all_brands 
         'associated_brands_label' => array_map('get_the_title', $brands),
     ];
 }
+endif;
 
 // Latest behaviour
 if ($behaviour === 'latest') {
