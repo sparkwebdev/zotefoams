@@ -10,12 +10,21 @@ function initClickableUrls() {
 	document.querySelectorAll( '[data-clickable-url]' ).forEach( function( article ) {
 		const url = article.getAttribute( 'data-clickable-url' );
 		if ( url ) {
-			const matchingChild = article.querySelector( '[href="' + url + '"]' );
-			if ( matchingChild ) {
-				article.addEventListener( 'click', function() {
-					matchingChild.click();
-				} );
-			}
+			const childLink = article.querySelector( 'a[href]' );
+			const opensNewTab = childLink && childLink.target === '_blank';
+
+			article.addEventListener( 'click', function( e ) {
+				// Let native link clicks pass through unmodified
+				if ( e.target.closest( 'a' ) ) {
+					return;
+				}
+				// Honour modifier keys, or respect target="_blank" on the child link
+				if ( e.metaKey || e.ctrlKey || e.shiftKey || opensNewTab ) {
+					window.open( url, '_blank', 'noopener' );
+				} else {
+					window.location.href = url;
+				}
+			} );
 		}
 	} );
 }
