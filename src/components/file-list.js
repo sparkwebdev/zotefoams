@@ -184,9 +184,10 @@ function initFileList() {
 
 		document.addEventListener( 'click', ( e ) => {
 			fileListElements.forEach( ( container ) => {
-				if ( ! container.contains( e.target ) ) {
-					const filterOptions = container.querySelector( '#filter-options' );
-					const filterButton = container.querySelector( '#filter-toggle' );
+				const filterOptions = container.querySelector( '#filter-options' );
+				const filterButton = container.querySelector( '#filter-toggle' );
+				const clickedInsideDropdown = filterButton?.contains( e.target ) || filterOptions?.contains( e.target );
+				if ( ! clickedInsideDropdown ) {
 					if ( filterOptions ) {
 						filterOptions.classList.add( 'hidden' );
 						ZotefoamsAccessibilityUtils.setAriaHidden( filterOptions, true );
