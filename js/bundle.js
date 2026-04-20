@@ -461,6 +461,7 @@
 	// Dynamic iframe height adjustment
 	function initIframeHeightAdjustment() {
 		window.addEventListener( 'message', function( event ) {
+			if ( event.origin !== window.location.origin ) { return; }
 			const frames = document.getElementsByTagName( 'iframe' );
 			for ( let i = 0; i < frames.length; i++ ) {
 				if ( frames[ i ].contentWindow === event.source ) {
@@ -1115,6 +1116,8 @@
 	}
 
 	function initDataPoints() {
+		if ( ! ( 'IntersectionObserver' in window ) ) { return; }
+
 		const observer = new IntersectionObserver( ( entries ) => {
 			entries.forEach( ( entry ) => {
 				if ( entry.isIntersecting ) {
@@ -2071,6 +2074,8 @@
 		} );
 
 		// Create Intersection Observer for visibility detection
+		if ( ! ( 'IntersectionObserver' in window ) ) { return; }
+
 		const observerOptions = {
 			root: null,
 			rootMargin: '0px',

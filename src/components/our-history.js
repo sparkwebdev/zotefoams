@@ -113,6 +113,8 @@ function initOurHistory() {
 	} );
 
 	// Create Intersection Observer for visibility detection
+	if ( ! ( 'IntersectionObserver' in window ) ) { return; }
+
 	const observerOptions = {
 		root: null,
 		rootMargin: '0px',

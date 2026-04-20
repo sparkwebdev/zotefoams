@@ -31,6 +31,8 @@ function animateValue( obj, start, end, duration, prefix, suffix, decimals ) {
 }
 
 function initDataPoints() {
+	if ( ! ( 'IntersectionObserver' in window ) ) { return; }
+
 	const observer = new IntersectionObserver( ( entries ) => {
 		entries.forEach( ( entry ) => {
 			if ( entry.isIntersecting ) {

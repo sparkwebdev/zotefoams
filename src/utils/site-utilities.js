@@ -39,6 +39,7 @@ function initOverlayFadeIn() {
 // Dynamic iframe height adjustment
 function initIframeHeightAdjustment() {
 	window.addEventListener( 'message', function( event ) {
+		if ( event.origin !== window.location.origin ) { return; }
 		const frames = document.getElementsByTagName( 'iframe' );
 		for ( let i = 0; i < frames.length; i++ ) {
 			if ( frames[ i ].contentWindow === event.source ) {
