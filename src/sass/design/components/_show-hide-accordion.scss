@@ -117,12 +117,18 @@
  * --------------------------------------------- */
 .accordion-items {
   .theme-dark & {
+    border-color: var(--tone-dark);
+
     .accordion-header {
       color: inherit;
     }
 
+    .accordion-item {
+      border-bottom-color: var(--tone-dark);
+    }
+
     .accordion-item:hover {
-      border-bottom-color: inherit;
+      border-bottom-color: var(--color-text);
     }
   }
 }

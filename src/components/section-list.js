@@ -90,7 +90,6 @@ function initSectionList() {
 
 			updateShowAllVisibility();
 		} );
-
 	}
 }
 

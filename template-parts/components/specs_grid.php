@@ -5,7 +5,7 @@ $download_file = zotefoams_get_sub_field_safe('specs_grid_download_link', [], 'a
 $variant = zotefoams_get_sub_field_safe('specs_grid_variant', false, 'bool');
 
 $wrapper_classes = $variant
-    ? 'specs-grid black-bg white-text theme-dark'
+    ? 'specs-grid dark-grey-bg white-text theme-dark'
     : 'specs-grid white-bg theme-none';
 ?>
 

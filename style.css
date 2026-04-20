@@ -5,7 +5,7 @@ Theme URI: http://underscores.me/
 Author: David Park
 Author URI: http://underscores.me/
 Description: Description
-Version: 3.4.2
+Version: 3.5.0
 Tested up to: 6.9.4
 Requires PHP: 7.4
 License: GNU General Public License v2 or later
@@ -936,51 +936,59 @@ textarea {
 /* Colours
  *  --------------------------------------------- */
 .white-text {
-  color: #fff;
+  color: var(--color-surface);
 }
 
 .white-bg {
-  background-color: #fff;
+  background-color: var(--color-surface);
 }
 
 .black-text {
-  color: #000;
+  color: var(--color-on-surface);
 }
 
 .black-bg {
-  background-color: #000;
+  background-color: var(--color-on-surface);
 }
 
-.text-center {
-  text-align: center;
+.dark-grey-text {
+  color: var(--tone-darker);
+}
+
+.dark-grey-bg {
+  background-color: var(--tone-darker);
 }
 
 .grey-text {
-  color: #707070;
+  color: var(--color-text);
 }
 
 .light-grey-text {
-  color: #b5b5b5;
+  color: var(--color-text-light);
 }
 
 .light-grey-bg {
-  background-color: #f8f8f8;
+  background-color: var(--tone-off-white);
 }
 
 .blue-text {
-  color: #3b82f6;
+  color: var(--color-link);
 }
 
 .blue-bg {
-  background-color: #3b82f6;
+  background-color: var(--color-link);
 }
 
 .tint-bg {
-  background-color: #ebf8ff;
+  background-color: var(--tone-tint);
 }
 
 /* Generic styling classes
  *  --------------------------------------------- */
+.text-center {
+  text-align: center;
+}
+
 .image-cover {
   background-size: cover;
   background-position: center center;
@@ -1415,13 +1423,15 @@ textarea {
 }
 
 :root {
+  --color-surface: #fff;
   --tone-off-white: #f8f8f8;
+  --tone-tint: #ebf8ff;
   --tone-light: #d1d1d1;
+  --color-on-surface: #000;
+  --tone-darker: #202021;
   --tone-dark: #4a4949;
   --color-text: #707070;
   --color-text-light: #b5b5b5;
-  --color-surface: #fff;
-  --color-on-surface: #000;
   --color-link: #3b82f6;
   --color-link-hover: #007ec5;
   --color-brand-contrast: #bfea78;
@@ -4018,11 +4028,17 @@ a.read-more.hl.arrow:focus::after {
 
 /* On dark theme
  * --------------------------------------------- */
+.theme-dark .accordion-items {
+  border-color: var(--tone-dark);
+}
 .theme-dark .accordion-items .accordion-header {
   color: inherit;
 }
+.theme-dark .accordion-items .accordion-item {
+  border-bottom-color: var(--tone-dark);
+}
 .theme-dark .accordion-items .accordion-item:hover {
-  border-bottom-color: inherit;
+  border-bottom-color: var(--color-text);
 }
 
 /* Box columns
@@ -7058,4 +7074,5 @@ html:has(.zf-history) {
     left: 5%;
   }
 }
+
 /*# sourceMappingURL=style.css.map */

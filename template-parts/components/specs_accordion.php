@@ -6,7 +6,7 @@ $cta              = zotefoams_get_sub_field_safe('specs_accordion_cta', [], 'url
 $variant          = zotefoams_get_sub_field_safe('specs_accordion_variant', false, 'bool');
 
 $theme_classes = $variant
-    ? ' black-bg white-text theme-dark'
+    ? ' dark-grey-bg white-text theme-dark'
     : ' white-bg theme-none';
 ?>
 
