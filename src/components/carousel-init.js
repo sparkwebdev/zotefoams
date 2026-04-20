@@ -71,6 +71,24 @@ function initCarousels() {
 				},
 			},
 		} );
+
+		// Fix: when the page loads in a background tab, the browser throttles
+		// setTimeout/rAF so the init delay fires before the tab is active and
+		// is-anim-hidden is never removed. Force-reveal on first visibility.
+		document.addEventListener( 'visibilitychange', function onVisible() {
+			if ( document.visibilityState !== 'visible' ) { return; }
+			document.removeEventListener( 'visibilitychange', onVisible );
+			const els = swiper._animatedEls?.[ swiper.activeIndex ] || [];
+			const stillHidden = els.some( ( el ) => el.classList.contains( 'is-anim-hidden' ) );
+			if ( stillHidden ) {
+				els.forEach( ( el, index ) => {
+					setTimeout( () => {
+						el.classList.remove( 'is-anim-hidden' );
+						el.classList.add( 'animate__fadeInDown' );
+					}, index * SLIDE_ANIMATION_STAGGER_MS );
+				} );
+			}
+		} );
 	} );
 
 	// Dual Carousel
