@@ -39,16 +39,16 @@ $child_pages = get_pages(array(
                         foreach ($child_pages as $child) :
                             $child_title = $child->post_title;
                             $brand_id = zotefoams_get_page_id_by_title($brand);
-                            $child_url = esc_url(get_the_permalink($child->ID)) . '?brand=' . $brand_id;
+                            $child_url = esc_url(add_query_arg('brand', intval($brand_id), get_the_permalink($child->ID)));
                     ?>
-                            <article id="post-<?php echo esc_attr($child->ID); ?>" <?php post_class('section-list__item', $child->ID); ?> data-brand="<?php echo esc_attr($brand); ?>" data-gallery-label="<?php echo esc_attr($brand); ?>" data-clickable-url="<?php echo $child_url; ?>">
+                            <article id="post-<?php echo esc_attr($child->ID); ?>" <?php post_class('section-list__item', $child->ID); ?> data-brand="<?php echo esc_attr($brand); ?>" data-gallery-label="<?php echo esc_attr($brand); ?>" data-clickable-url="<?php echo esc_attr($child_url); ?>">
                                 <div class="articles__content padding-30">
                                     <div class="tags margin-b-20">
                                         <span class="tag"><?php echo esc_html($brand); ?></span>
                                     </div>
                                     <h3 class="fs-400 fw-semibold margin-b-20"><?php echo esc_html($child_title); ?></h3>
                                     <p class="articles__cta">
-                                        <a href="<?php echo $child_url; ?>" class="hl arrow read-more">View Information Sheets</a>
+                                        <a href="<?php echo esc_url($child_url); ?>" class="hl arrow read-more">View Information Sheets</a>
                                     </p>
                                 </div>
                             </article>
@@ -63,11 +63,11 @@ $child_pages = get_pages(array(
                         $child_title = $child->post_title;
                         $child_url = esc_url(get_the_permalink($child->ID));
                     ?>
-                        <article id="post-<?php echo esc_attr($child->ID); ?>" <?php post_class('section-list__item', $child->ID); ?> data-clickable-url="<?php echo $child_url; ?>">
+                        <article id="post-<?php echo esc_attr($child->ID); ?>" <?php post_class('section-list__item', $child->ID); ?> data-clickable-url="<?php echo esc_attr($child_url); ?>">
                             <div class="articles__content padding-30">
                                 <h3 class="fs-400 fw-semibold margin-b-20"><?php echo esc_html($child_title); ?></h3>
                                 <p class="articles__cta">
-                                    <a href="<?php echo $child_url; ?>" class="hl arrow read-more">View Information Sheets</a>
+                                    <a href="<?php echo esc_url($child_url); ?>" class="hl arrow read-more">View Information Sheets</a>
                                 </p>
                             </div>
                         </article>
