@@ -22,5 +22,6 @@ import './components/accordion.js';
 import './components/panel-switcher.js';
 import './components/utility-search.js';
 import './components/our-history.js';
+import './components/financial-documents-picker.js';
 
 // Theme initialization

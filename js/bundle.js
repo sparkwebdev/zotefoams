@@ -460,8 +460,15 @@
 
 	// Dynamic iframe height adjustment
 	function initIframeHeightAdjustment() {
+		const allowedOrigins = [
+			window.location.origin,
+			'https://polaris.brighterir.com',
+			'https://sirius.brighterir.com',
+		];
+
 		window.addEventListener( 'message', function( event ) {
-			if ( event.origin !== window.location.origin ) { return; }
+			if ( ! allowedOrigins.includes( event.origin ) ) { return; }
+			if ( typeof event.data !== 'number' ) { return; }
 			const frames = document.getElementsByTagName( 'iframe' );
 			for ( let i = 0; i < frames.length; i++ ) {
 				if ( frames[ i ].contentWindow === event.source ) {
@@ -2197,6 +2204,29 @@
 
 	// Initialize on DOM ready
 	ZotefoamsReadyUtils.ready( initOurHistory );
+
+	function initFinancialDocumentsPickers() {
+		document.querySelectorAll( '[data-js="financial-docs-picker"]' ).forEach( ( picker ) => {
+			const yearSelect = picker.querySelector( '.yearSelect' );
+			const documentLists = picker.querySelectorAll( '.document-year' );
+
+			if ( ! yearSelect ) { return; }
+
+			function updateDocumentList( year ) {
+				documentLists.forEach( ( list ) => {
+					list.style.display = list.getAttribute( 'data-year' ) === year ? 'block' : 'none';
+				} );
+			}
+
+			yearSelect.addEventListener( 'change', function() {
+				updateDocumentList( this.value );
+			} );
+
+			updateDocumentList( yearSelect.value );
+		} );
+	}
+
+	ZotefoamsReadyUtils.ready( initFinancialDocumentsPickers );
 
 })();
 //# sourceMappingURL=bundle.js.map
