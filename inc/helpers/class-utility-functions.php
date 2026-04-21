@@ -358,11 +358,13 @@ function zotefoams_hex_text_color(string $hex, ?string $threshold = null): strin
        + 0.7152 * $linearize($g)
        + 0.0722 * $linearize($b);
 
-    $cutoff = match ($threshold) {
-        'strict' => 0.179,
-        'loose'  => 0.5,
-        default  => 0.35,
-    };
+    if ( 'strict' === $threshold ) {
+        $cutoff = 0.179;
+    } elseif ( 'loose' === $threshold ) {
+        $cutoff = 0.5;
+    } else {
+        $cutoff = 0.35;
+    }
 
     return $L > $cutoff ? 'dark' : 'light';
 }

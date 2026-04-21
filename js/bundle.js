@@ -797,8 +797,8 @@
 					requestAnimationFrame( () => { overlay.style.opacity = '1'; } );
 				} );
 
-				overlay.addEventListener( 'transitionend', function onFadeIn( e ) {
-					if ( e.propertyName !== 'opacity' ) {return;}
+				overlay.addEventListener( 'transitionend', function onFadeIn( transitionEvent ) {
+					if ( transitionEvent.propertyName !== 'opacity' ) {return;}
 					overlay.removeEventListener( 'transitionend', onFadeIn );
 
 					// Swap base while overlay is fully opaque — no pop
