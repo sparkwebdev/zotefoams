@@ -19,6 +19,9 @@
 - [ ] **Add `:focus-visible` styles** — improves keyboard navigation accessibility without showing focus rings on mouse click.
 
 ### Other issues
+- [ ] **[high] iOS — image banner text animations skip fade** — on iPhone, `animate__fadeInDown` animations appear in stages with no fade/movement. Stagger works (setTimeout), but the CSS animation is not playing. Likely iOS Safari not painting the `opacity:0` state (from `.is-anim-hidden`) before the animation class lands. Attempted: double rAF + forced reflow (`getBoundingClientRect`) — neither resolved it. Needs deeper iOS Safari investigation.
+- [ ] **[high] iOS — search input causes page to scroll up on keypress** — when scrolled down the page, opening the utility search and typing causes the page to scroll up with each keypress. iOS Safari scrolls to keep the focused input in view. Attempted: `keydown`+`setTimeout` restore, `scroll` event intercept — neither reliable. Likely needs a CSS approach (`position: fixed` on body while input is focused) or a scroll-lock library.
+- [ ] **[high] iOS — accordion scroll on open** — opening an accordion item on iOS causes the page to scroll unexpectedly.
 - [ ] **Git publish to sites pipeline** - Auto deploy on PR
 - [ ] **[high] Analytics — consolidate, enqueue properly, add consent gating** — see notes below
 - [ ] **[high] Mailchimp script loading — replace raw `<script>` output with `wp_enqueue_script()`** — see notes below
@@ -32,6 +35,11 @@
 - [ ] **Our History — tooltip single-open enforcement** — user can click to open a tooltip, then hover to open a second; only one should be open at a time. Fix: close all other visible popups before opening a new one.
 - [ ] **[low] Our Locations Map — overlapping points** — map pins overlap in dense areas; consider clustering or offset logic.
 - [ ] Check all carousels allow for multiple on a page
+- [ ] Ocassional intermittent scrollbars on bir_widgets (investors/regulatory-news/)
+- [ ] **Linguise translation not working (staging)** — translation not functioning on staging; suspected billing/API key issue. Unresolved — check Linguise account.
+- [ ] **Bold headline styling discrepancy (staging)** — headline bold styling differs between `/news-centre/events/` and `/news-centre/blog/`. Needs CSS investigation.
+- [ ] **Language flag/picker alignment (staging)** — language picker flag alignment is off; possibly related to wider popup introduced post-Linguise update.
+- [ ] **[low] BackWPup `session_start()` notice** — PHP Notice: `session_start(): Ignoring session_start() because a session is already active` (`backwpup/src/Infrastructure/Restore/commons.php:395`) on every page load. BackWPup plugin bug — not harmful, no user-facing impact.
 
 ## Pending Optimizations
 

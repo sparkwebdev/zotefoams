@@ -76,7 +76,7 @@ npm run build
 npm run build:sass
 ```
 **What it does:**
-1. Compiles `src/sass/style.scss` to `style.css` (expanded format, no source map)
+1. Compiles `src/sass/style.scss` to `style.css` (expanded format, with source map)
 2. Runs PostCSS to add vendor prefixes
 
 **When to use:** When you only changed SASS files and don't need JS rebuild
@@ -87,8 +87,8 @@ npm run build:sass
 npm run lint
 ```
 **What it does:**
-1. Runs ESLint on all JavaScript files (`src/**/*.js`) with auto-fix
-2. Runs Stylelint on all SASS files with auto-fix
+1. Runs ESLint on `src/**/*.js` with auto-fix
+2. Runs Stylelint on `src/sass/**/*.scss` with auto-fix
 3. Runs Prettier to format SASS files
 
 **When to use:** Before committing code changes, fixing style and quality issues
@@ -104,9 +104,11 @@ npm run lint
 npm run bundle
 ```
 **What it does:**
-1. Creates a production-ready theme package at `../zotefoams.zip`
-2. Excludes all development files and dependencies
-3. Includes only essential theme files for distribution
+1. Runs `npm run lint` (ESLint + Stylelint + Prettier) — must pass before bundling proceeds
+2. Runs production Rollup and SASS builds
+3. Creates a production-ready theme package at `../zotefoams.zip`
+4. Excludes all development files and dependencies
+5. Runs `npm run build` again at the end to restore source maps locally
 
 **When to use:** Creating deployable theme packages for production sites
 
@@ -148,10 +150,10 @@ npm run bundle
 ```json
 {
   "build": "rollup -c && npm run build:sass",
-  "build:sass": "sass src/sass/style.scss:style.css --style=expanded --no-source-map && postcss style.css -o style.css",
-  "watch:sass": "sass src/sass/style.scss:style.css --watch --style=expanded --no-source-map",
+  "build:sass": "sass src/sass/style.scss:style.css --style=expanded --source-map && postcss style.css -o style.css",
+  "watch:sass": "sass src/sass/style.scss:style.css --watch --style=expanded --source-map",
   "watch:postcss": "postcss style.css -o style.css --watch",
-  "lint": "stylelint 'src/sass/**/*.scss' --fix && prettier --write 'src/sass/**/*.scss'",
+  "lint": "eslint 'src/**/*.js' --fix && stylelint 'src/sass/**/*.scss' --fix && prettier --write 'src/sass/**/*.scss'",
   "start": "concurrently \"rollup -c --watch\" \"npm run watch:sass\" \"npm run watch:postcss\" \"browser-sync start --proxy 'https://zotefoams-phase-2.local/' --port 3001 --https --files 'style.css' --files 'js/bundle.js' --files '**/*.php' --ignore 'node_modules'\""
 }
 ```
@@ -191,13 +193,13 @@ src/
 
 ```
 js/
-├── critical.js         # Critical JS bundle (~13KB minified)
-├── critical.js.map     # Source map for critical.js (dev only)
-├── bundle.js           # Main JS bundle (~13.5KB minified)
-└── bundle.js.map       # Source map for bundle.js (dev only)
+├── critical.js         # Critical JS bundle (~20KB minified)
+├── critical.js.map     # Source map for critical.js
+├── bundle.js           # Main JS bundle (~68KB minified)
+└── bundle.js.map       # Source map for bundle.js
 
-style.css               # Compiled CSS (~150KB)
-style.css.map           # Source map (dev only, if enabled)
+style.css               # Compiled CSS (~145KB)
+style.css.map           # Source map
 ```
 
 ## Development Workflow
@@ -280,9 +282,9 @@ Uses Playwright for visual regression tests. See `tests/vrc/` for configuration.
 
 ### Bundle Sizes
 
-- `critical.js`: ~13KB minified
-- `bundle.js`: ~13.5KB minified
-- `style.css`: ~150KB (unminified, autoprefixed)
+- `critical.js`: ~20KB minified
+- `bundle.js`: ~68KB minified
+- `style.css`: ~145KB (unminified, autoprefixed)
 
 ## Future Considerations
 
@@ -311,6 +313,6 @@ If you want to reduce complexity:
 
 ---
 
-**Last Updated:** October 30, 2025
+**Last Updated:** April 21, 2026
 **Build System Version:** Split architecture (since Oct 2025)
 **Previous Version:** Unified Rollup build (July-Oct 2025)

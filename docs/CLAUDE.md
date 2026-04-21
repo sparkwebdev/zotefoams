@@ -26,7 +26,7 @@ This is the Zotefoams WordPress theme built on the Underscores (_s) starter them
 ## Architecture
 
 ### Component System
-The theme uses a modular component architecture with 31 reusable components in `template-parts/components/`:
+The theme uses a modular component architecture with 40 reusable components in `template-parts/components/`:
 - Carousels (dual, multi-item, split, calendar)
 - Content blocks (text blocks, split layouts, highlight panels)
 - Data components (maps, points, document lists)
@@ -56,7 +56,7 @@ Extensive ACF field groups and custom post types configured in `acf/acf-json/`. 
 **Build Pipeline:** Split architecture - Rollup for JS, Dart SASS + PostCSS for CSS
 - `npm run start` - Development with BrowserSync and watch mode (4 concurrent processes)
 - `npm run build` - Production build (JS + CSS compilation)
-- JavaScript bundled to `js/critical.js` (head, ~13KB) + `js/bundle.js` (footer, ~13.5KB)
+- JavaScript bundled to `js/critical.js` (head, ~20KB) + `js/bundle.js` (footer, ~68KB)
 - CSS compiled from SASS to `style.css` with PostCSS optimizations
 
 **📖 See BUILD.md for detailed build system documentation, rationale, and troubleshooting**
@@ -104,7 +104,7 @@ The theme follows modern WordPress practices with a modular functions.php struct
 
 ## Key File Locations
 - Theme functions: `functions.php` and `inc/` directory (modularized)
-- Component templates: `template-parts/components/` (31 components)
+- Component templates: `template-parts/components/` (40 components)
 - Custom blocks: `blocks/`
 - SASS source: `src/sass/` (moved from `sass/`)
 - JavaScript source: `src/` (ES modules)
