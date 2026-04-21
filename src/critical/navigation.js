@@ -42,8 +42,6 @@ import { ZotefoamsDeviceUtils } from '../utils/dom-utilities.js';
 			const megaNavMode = isTouchDevice ? 'click' : 'hover';
 			const HOVER_DELAY_MS = 200;
 
-			// Prevent accidental hover activation on page load (when mouse is already over nav)
-
 			// Single timer for hide delays
 			let hideTimer = null;
 
