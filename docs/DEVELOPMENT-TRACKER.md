@@ -16,6 +16,7 @@
 - [ ] **Mega Nav** - Visually label external link items
 - [ ] **Video modal focus trap** — focus lands on close button on open (correct) and returns to trigger on close (correct), but no focus trap exists. Tab from close button escapes the modal. YouTube iframe is cross-origin so focus cannot be moved into player controls programmatically — solution is a focus trap that cycles between close button and iframe only, with the iframe itself requiring a click to activate YouTube keyboard controls.
 - [ ] **Semantic HTML containers** - Change component wrapper `<div>` to `<section>` elements
+- [ ] **Add `:focus-visible` styles** — improves keyboard navigation accessibility without showing focus rings on mouse click.
 
 ### Other issues
 - [ ] **Git publish to sites pipeline** - Auto deploy on PR
@@ -30,6 +31,7 @@
 - [ ] **Button icon inconsistency** - `specs_accordion` default CTA uses an inline SVG chevron; other buttons use CSS `::after` with background SVG image files. Consider standardising — inline SVG is arguably the better approach (uses `currentColor`, no extra file, scales cleanly) so the fix may be to migrate existing `::after` icon buttons to inline SVG rather than the other way around
 - [ ] **Our History — tooltip single-open enforcement** — user can click to open a tooltip, then hover to open a second; only one should be open at a time. Fix: close all other visible popups before opening a new one.
 - [ ] **[low] Our Locations Map — overlapping points** — map pins overlap in dense areas; consider clustering or offset logic.
+- [ ] Check all carousels allow for multiple on a page
 
 ## Pending Optimizations
 

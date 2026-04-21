@@ -73,6 +73,7 @@ if (class_exists('ACF')) {
 // Admin customizations
 require get_template_directory() . '/inc/admin.php';
 require get_template_directory() . '/inc/admin-editor.php';
+require get_template_directory() . '/inc/admin-component-report.php';
 
 // Navigation walker
 require get_template_directory() . '/inc/mega-menu-walker.php';
