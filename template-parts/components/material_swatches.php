@@ -22,21 +22,19 @@ $cta             = zotefoams_get_sub_field_safe('material_swatches_cta', [], 'ur
                 <?php foreach ($items as $item) :
                     $item_title  = $item['material_swatches_item_title'] ?? '';
                     $colour      = $item['material_swatches_item_colour'] ?? '';
-                    $image       = $item['material_swatches_item_image'] ?? [];
+                    $image       = is_array($item['material_swatches_item_image'] ?? null) ? $item['material_swatches_item_image'] : [];
                     $white_text  = !$colour || zotefoams_hex_text_color($colour, 'loose') === 'light';
                 ?>
                     <div class="material-swatches__item" style="<?php echo $colour ? 'background-color:' . esc_attr($colour) . ';' : ''; ?>">
                         <?php if ($item_title) : ?>
                             <span class="material-swatches__item-title fw-semibold<?php echo $white_text ? ' white-text' : ''; ?>"><?php echo esc_html($item_title); ?></span>
                         <?php endif; ?>
-                        <?php if (!empty($image['ID'])) :
-                            $image_src = wp_get_attachment_image_src($image['ID'], 'thumbnail-square');
-                            $image_url = $image_src ? $image_src[0] : ($image['url'] ?? '');
-                        ?>
+                        <?php $image_url = Zotefoams_Image_Helper::get_image_url($image, 'thumbnail-square', 'material-swatches', false);
+                        if ($image_url) : ?>
                             <img
                                 class="material-swatches__item-image"
                                 src="<?php echo esc_url($image_url); ?>"
-                                alt="<?php echo esc_attr($image['alt'] ?? $item_title); ?>"
+                                alt="<?php echo $item_title ? '' : esc_attr($image['alt'] ?? ''); ?>"
                             >
                         <?php endif; ?>
                     </div>

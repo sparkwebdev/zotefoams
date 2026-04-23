@@ -15,27 +15,31 @@
     position: relative;
     overflow: visible;
     z-index: 0;
-    transition: z-index 0s 0.1s; // hover-out: hold z-index until scale-down finishes
     padding: 20px;
 
-    &:hover {
-      z-index: 1;
-      transition: z-index 0s; // hover-in: elevate immediately
-    }
+    // Hover effects only activate when an image is present
+    &:has(.material-swatches__item-image) {
+      transition: z-index 0s 0.1s; // hover-out: hold z-index until scale-down finishes
 
-    &::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background: inherit;
-      transform: scale(1);
-      transition: transform 0.1s ease; // hover-out: faster
-      z-index: 0;
-    }
+      &:hover {
+        z-index: 1;
+        transition: z-index 0s; // hover-in: elevate immediately
+      }
 
-    &:hover::before {
-      transform: scale(1.09);
-      transition: transform 0.3s ease 0.1s; // hover-in: delayed start
+      &::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: inherit;
+        transform: scale(1);
+        transition: transform 0.1s ease; // hover-out: faster
+        z-index: 0;
+      }
+
+      &:hover::before {
+        transform: scale(1.09);
+        transition: transform 0.3s ease 0.1s; // hover-in: delayed start
+      }
     }
   }
 
@@ -48,7 +52,7 @@
       text-shadow 0.1s ease; // hover-out: faster
   }
 
-  &__item:hover &__item-title {
+  &__item:has(.material-swatches__item-image):hover &__item-title {
     color: #fff;
     text-shadow: 0 1px 5px rgba(0, 0, 0, 0.5);
     transition:
@@ -76,7 +80,7 @@
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
   }
 
-  &__item:hover &__item-image {
+  &__item:has(.material-swatches__item-image):hover &__item-image {
     opacity: 1;
     clip-path: inset(0%);
     transition:

@@ -28,42 +28,51 @@ $slides = zotefoams_get_sub_field_safe('multi_item_gallery_carousel_slides', [],
                     <?php foreach ($slides as $slide) :
                         $slide_title = $slide['multi_item_gallery_carousel_slide_title'] ?? '';
                         $text        = $slide['multi_item_gallery_carousel_slide_text'] ?? '';
-                        $images      = $slide['multi_item_gallery_carousel_slide_image'] ?? [];
+                        $items       = $slide['multi_item_gallery_carousel_slide_images'] ?? [];
                         $button      = $slide['multi_item_gallery_carousel_slide_button'] ?? [];
 
-                        // First image is shown by default
-                        $first_image     = !empty($images[0]) ? $images[0] : [];
+                        $items           = is_array($items) ? $items : [];
+                        $first_item      = !empty($items[0]) ? $items[0] : [];
+                        $first_colour    = $first_item['multi_item_gallery_carousel_item_colour'] ?? '';
+                        $first_image     = is_array($first_item['multi_item_gallery_carousel_item_image'] ?? null) ? $first_item['multi_item_gallery_carousel_item_image'] : [];
                         $first_image_url = Zotefoams_Image_Helper::get_image_url($first_image, 'large', 'large', false);
-                        $first_image_alt = $first_image['alt'] ?? $slide_title;
+                        $first_image_alt = $first_image['alt'] ?? ($first_item['multi_item_gallery_carousel_item_title'] ?? $slide_title);
 
-                        if (!$slide_title && !$text && !$first_image_url && empty($button)) continue;
+                        if (!$slide_title && !$text && empty($items) && empty($button)) continue;
                     ?>
                         <div class="swiper-slide">
-                            <?php if ($first_image_url) : ?>
-                                <div class="multi-item-gallery-carousel__image">
-                                    <img class="multi-item-gallery-carousel__slide-image"
-                                         src="<?php echo esc_url($first_image_url); ?>"
-                                         alt="<?php echo esc_attr($first_image_alt); ?>">
+                            <?php if (!empty($items) && ($first_image_url || $first_colour || count($items) > 1)) :
+                                $image_style = $first_colour ? ' style="background-color:' . esc_attr($first_colour) . ';"' : '';
+                            ?>
+                                <div class="multi-item-gallery-carousel__image"<?php echo $image_style; ?>>
+                                    <?php if ($first_image_url) : ?>
+                                        <img class="multi-item-gallery-carousel__slide-image"
+                                             src="<?php echo esc_url($first_image_url); ?>"
+                                             alt="<?php echo esc_attr($first_image_alt); ?>">
+                                    <?php endif; ?>
                                 </div>
                             <?php endif; ?>
                             <div class="multi-item-gallery-carousel__content light-grey-bg theme-light">
 
-                                <?php if (count($images) > 1) : ?>
+                                <?php if (!empty($items)) : ?>
                                     <div class="multi-item-gallery-carousel__pills">
-                                        <?php foreach ($images as $i => $img) :
-                                            $label = !empty($img['caption'])
-                                                ? $img['caption']
-                                                : (!empty($img['title'])
-                                                    ? $img['title']
-                                                    : ucfirst((new NumberFormatter('en', NumberFormatter::SPELLOUT))->format($i + 1)));
+                                        <?php foreach ($items as $i => $item) :
+                                            $label   = $item['multi_item_gallery_carousel_item_title'] ?? '';
+                                            $colour  = $item['multi_item_gallery_carousel_item_colour'] ?? '';
+                                            $img     = $item['multi_item_gallery_carousel_item_image'] ?? [];
                                             $img_url = Zotefoams_Image_Helper::get_image_url($img, 'large', 'large', false);
                                             $img_alt = $img['alt'] ?? $label;
+                                            if (!$label) {
+                                                $label = ucfirst((new NumberFormatter('en', NumberFormatter::SPELLOUT))->format($i + 1));
+                                            }
                                         ?>
                                             <button
                                                 class="multi-item-gallery-carousel__pill<?php echo $i === 0 ? ' active' : ''; ?> fs-100"
                                                 aria-pressed="<?php echo $i === 0 ? 'true' : 'false'; ?>"
-                                                data-image-url="<?php echo esc_url($img_url); ?>"
-                                                data-image-alt="<?php echo esc_attr($img_alt); ?>"
+                                                <?php if ($img_url) : ?>data-image-url="<?php echo esc_url($img_url); ?>" data-image-alt="<?php echo esc_attr($img_alt); ?>"<?php endif; ?>
+                                                <?php if ($colour) :
+                                                    $pill_text = zotefoams_hex_text_color($colour) === 'dark' ? '#000' : '#fff';
+                                                ?>data-colour="<?php echo esc_attr($colour); ?>" style="--pill-bg:<?php echo esc_attr($colour); ?>;--pill-text:<?php echo $pill_text; ?>;"<?php endif; ?>
                                             ><?php echo esc_html($label); ?></button>
                                         <?php endforeach; ?>
                                     </div>

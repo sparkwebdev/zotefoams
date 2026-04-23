@@ -772,14 +772,50 @@
 				pill.setAttribute( 'aria-pressed', 'true' );
 
 				const slide = pill.closest( '.swiper-slide' );
-				const img = slide?.querySelector( '.multi-item-gallery-carousel__slide-image' );
-				if ( ! img ) {return;}
+				const imageContainer = slide?.querySelector( '.multi-item-gallery-carousel__image' );
+				const img = imageContainer?.querySelector( '.multi-item-gallery-carousel__slide-image' );
+
+				if ( imageContainer ) {
+					imageContainer.style.backgroundColor = pill.dataset.colour || '';
+				}
 
 				const newUrl = pill.dataset.imageUrl;
 				const newAlt = pill.dataset.imageAlt;
 
+				// No image for this pill — fade out whatever is currently showing
+				if ( ! newUrl ) {
+					if ( img ) {
+						img.style.transition = 'opacity 0.25s ease';
+						img.style.opacity = '0';
+					}
+					return;
+				}
+
+				// Switching to an image — no base img yet, create one and fade in directly
+				if ( ! img ) {
+					const newImg = new Image();
+					newImg.src = newUrl;
+					newImg.alt = newAlt;
+					newImg.className = 'multi-item-gallery-carousel__slide-image';
+					Object.assign( newImg.style, { opacity: '0', transition: 'opacity 0.25s ease' } );
+					imageContainer.appendChild( newImg );
+					requestAnimationFrame( () => {
+						requestAnimationFrame( () => { newImg.style.opacity = '1'; } );
+					} );
+					newImg.addEventListener( 'transitionend', function onFadeIn( e ) {
+						if ( e.propertyName !== 'opacity' ) {return;}
+						newImg.removeEventListener( 'transitionend', onFadeIn );
+						newImg.style.opacity = '';
+						newImg.style.transition = '';
+					} );
+					return;
+				}
+
+				// Base img exists — ensure it is visible before crossfade
+				img.style.transition = '';
+				img.style.opacity = '1';
+
 				// Crossfade: overlay new image fades in over the current one
-				const container = img.parentElement;
 				const overlay = new Image();
 				overlay.src = newUrl;
 				overlay.alt = newAlt;
@@ -790,7 +826,7 @@
 					opacity: '0',
 					transition: 'opacity 0.25s ease',
 				} );
-				container.appendChild( overlay );
+				imageContainer.appendChild( overlay );
 
 				// Double rAF ensures opacity:0 is painted before transition starts
 				requestAnimationFrame( () => {

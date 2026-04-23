@@ -6199,10 +6199,10 @@
                                     "parent_repeater": "field_68440000d0002"
                                 },
                                 {
-                                    "key": "field_68440000d0005",
-                                    "label": "Image",
-                                    "name": "multi_item_gallery_carousel_slide_image",
-                                    "type": "gallery",
+                                    "key": "field_68440000d0007",
+                                    "label": "Images",
+                                    "name": "multi_item_gallery_carousel_slide_images",
+                                    "type": "repeater",
                                     "required": 0,
                                     "conditional_logic": 0,
                                     "wrapper": {
@@ -6210,8 +6210,63 @@
                                         "class": "",
                                         "id": ""
                                     },
-                                    "return_format": "array",
-                                    "library": "all",
+                                    "layout": "table",
+                                    "button_label": "Add Image",
+                                    "min": 0,
+                                    "max": 0,
+                                    "sub_fields": [
+                                        {
+                                            "key": "field_68440000d0008",
+                                            "label": "Title",
+                                            "name": "multi_item_gallery_carousel_item_title",
+                                            "type": "text",
+                                            "required": 0,
+                                            "conditional_logic": 0,
+                                            "wrapper": {
+                                                "width": "40",
+                                                "class": "",
+                                                "id": ""
+                                            },
+                                            "default_value": "",
+                                            "allow_in_bindings": 0,
+                                            "parent_repeater": "field_68440000d0007"
+                                        },
+                                        {
+                                            "key": "field_68440000d0009",
+                                            "label": "Colour",
+                                            "name": "multi_item_gallery_carousel_item_colour",
+                                            "type": "color_picker",
+                                            "required": 0,
+                                            "conditional_logic": 0,
+                                            "wrapper": {
+                                                "width": "20",
+                                                "class": "",
+                                                "id": ""
+                                            },
+                                            "default_value": "",
+                                            "enable_opacity": 0,
+                                            "return_format": "string",
+                                            "allow_in_bindings": 0,
+                                            "parent_repeater": "field_68440000d0007"
+                                        },
+                                        {
+                                            "key": "field_68440000d000a",
+                                            "label": "Image",
+                                            "name": "multi_item_gallery_carousel_item_image",
+                                            "type": "image",
+                                            "required": 0,
+                                            "conditional_logic": 0,
+                                            "wrapper": {
+                                                "width": "40",
+                                                "class": "",
+                                                "id": ""
+                                            },
+                                            "return_format": "array",
+                                            "library": "all",
+                                            "allow_in_bindings": 0,
+                                            "parent_repeater": "field_68440000d0007"
+                                        }
+                                    ],
                                     "allow_in_bindings": 0,
                                     "parent_repeater": "field_68440000d0002"
                                 },
@@ -6279,5 +6334,5 @@
     "display_title": "",
     "allow_ai_access": false,
     "ai_description": "",
-    "modified": 1776417658
+    "modified": 1776934167
 }
