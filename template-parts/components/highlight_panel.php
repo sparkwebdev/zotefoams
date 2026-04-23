@@ -1,10 +1,10 @@
 <?php
 // Get field data using safe helper functions
 $image_id = zotefoams_get_sub_field_safe('highlight_panel_background_image', 0, 'int');
-$lead_text = get_sub_field('highlight_panel_lead_text'); // Keep HTML intact
+$lead_text = zotefoams_get_sub_field_safe('highlight_panel_lead_text', '', 'html');
 $sub_image_id = zotefoams_get_sub_field_safe('highlight_panel_sub_image', 0, 'int');
 $sub_title = zotefoams_get_sub_field_safe('highlight_panel_sub_title', '', 'string');
-$sub_title_secondary = get_sub_field('highlight_panel_sub_title_secondary'); // May contain HTML
+$sub_title_secondary = zotefoams_get_sub_field_safe('highlight_panel_sub_title_secondary', '', 'html');
 
 // Use Image Helper for background image
 $image_url = Zotefoams_Image_Helper::get_image_url($image_id, 'large', 'banner');

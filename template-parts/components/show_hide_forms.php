@@ -5,9 +5,9 @@ if (isset($globalForms) && $globalForms) {
 	$intro = get_field('show_hide_forms_intro', 'option'); // Options field
 	$items = get_field('show_hide_forms_items', 'option'); // Options field
 } else {
-	$title = get_sub_field('show_hide_forms_title');
-	$intro = get_sub_field('show_hide_forms_intro');
-	$items = get_sub_field('show_hide_forms_items');
+	$title = zotefoams_get_sub_field_safe('show_hide_forms_title', '', 'string');
+	$intro = zotefoams_get_sub_field_safe('show_hide_forms_intro', '', 'html');
+	$items = zotefoams_get_sub_field_safe('show_hide_forms_items', [], 'array');
 }
 
 // Generate classes to match original structure exactly

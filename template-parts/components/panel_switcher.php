@@ -1,6 +1,6 @@
 <?php
-$overline = get_sub_field('panel_switcher_overline');
-$intro    = get_sub_field('panel_switcher_intro');
+$overline = zotefoams_get_sub_field_safe('panel_switcher_overline', '', 'html');
+$intro    = zotefoams_get_sub_field_safe('panel_switcher_intro', '', 'html');
 $panels   = zotefoams_get_sub_field_safe('panel_switcher_panels', [], 'array');
 
 $wrapper_classes = Zotefoams_Theme_Helper::get_wrapper_classes([
