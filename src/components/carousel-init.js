@@ -7,6 +7,7 @@ import { ZotefoamsReadyUtils } from '../utils/dom-utilities.js';
 const SLIDE_ANIMATION_STAGGER_MS = 200;
 const SLIDE_INIT_DELAY_MS = 300;
 const SLIDE_INIT_FIRST_STAGGER_MS = 100;
+const AUTOPLAY_DELAY_MS = 5000;
 
 function initCarousels() {
 	if ( typeof Swiper === 'undefined' ) {
@@ -16,78 +17,107 @@ function initCarousels() {
 	// Image Banner Carousel (b1-Image-banner)
 	const imageBannerCarousels = document.querySelectorAll( '.swiper-image' );
 	imageBannerCarousels.forEach( ( carousel ) => {
+		const ringDuration = `${ AUTOPLAY_DELAY_MS / 1000 }s linear`;
+		const circleEl = carousel.querySelector( '.circle-progress-image' );
+		const nextBtn = carousel.querySelector( '.swiper-button-next-image' );
+		const nextLabel = nextBtn?.querySelector( 'span' );
+
+		const resetCircle = () => {
+			if ( ! circleEl ) { return; }
+			circleEl.style.transition = 'none';
+			circleEl.style.strokeDashoffset = '144.513';
+			requestAnimationFrame( () => requestAnimationFrame( () => {
+				circleEl.style.transition = `stroke-dashoffset ${ ringDuration }`;
+				circleEl.style.strokeDashoffset = '0';
+			} ) );
+		};
+
+		const pauseCircle = () => {
+			if ( ! circleEl ) { return; }
+			const current = getComputedStyle( circleEl ).strokeDashoffset;
+			circleEl.style.transition = 'none';
+			circleEl.style.strokeDashoffset = current;
+		};
+
+		const resumeCircle = () => {
+			if ( ! circleEl ) { return; }
+			requestAnimationFrame( () => {
+				circleEl.style.transition = `stroke-dashoffset ${ ringDuration }`;
+				circleEl.style.strokeDashoffset = '0';
+			} );
+		};
+
+		const updateNextLabel = ( swiper ) => {
+			if ( ! nextLabel ) { return; }
+			const nextSlide = swiper.slides[ swiper.activeIndex + 1 ];
+			const heading = nextSlide?.querySelector( 'h1, h2, h3' );
+			nextLabel.textContent = heading ? heading.textContent.trim() : '';
+		};
+
 		const swiper = new Swiper( carousel, {
 			loop: true,
 			autoplay: {
-				delay: 5000,
+				delay: AUTOPLAY_DELAY_MS,
 				disableOnInteraction: false,
 			},
 			navigation: {
-				nextEl: carousel.querySelector( '.swiper-button-next-image' ),
+				nextEl: nextBtn,
 				prevEl: carousel.querySelector( '.swiper-button-prev-image' ),
 			},
 			pagination: {
 				el: carousel.querySelector( '.swiper-pagination' ),
 				clickable: true,
 			},
-			// Changed from 'fade' to default 'slide' effect
 			speed: 600,
 			on: {
 				init() {
-					// Cache animated elements per slide once on init
-					this._animatedEls = this.slides.map( ( slide ) =>
-						Array.from( slide.querySelectorAll( '.animate__animated:not(.value)' ) )
-					);
-
-					// Animate elements in the initial slide
 					setTimeout( () => {
-						const els = this._animatedEls[ this.activeIndex ] || [];
-						els.forEach( ( el, index ) => {
-							setTimeout( () => {
-								el.classList.remove( 'is-anim-hidden' );
-								el.classList.add( 'animate__fadeInDown' );
-							}, index * SLIDE_ANIMATION_STAGGER_MS );
-						} );
+						const activeSlide = this.slides[ this.activeIndex ];
+						if ( ! activeSlide ) { return; }
+						Array.from( activeSlide.querySelectorAll( '.animate__animated:not(.value)' ) )
+							.forEach( ( el, index ) => {
+								setTimeout( () => {
+									el.classList.remove( 'is-anim-hidden' );
+									el.classList.add( 'animate__fadeInDown' );
+								}, index * SLIDE_ANIMATION_STAGGER_MS );
+							} );
+						resetCircle();
+						updateNextLabel( this );
 					}, SLIDE_INIT_DELAY_MS );
 				},
 				slideChangeTransitionStart() {
-					// Hide animated elements in all slides using cached references
-					this._animatedEls?.forEach( ( els ) => {
-						els.forEach( ( el ) => {
+					this.slides.forEach( ( slide ) => {
+						slide.querySelectorAll( '.animate__animated:not(.value)' ).forEach( ( el ) => {
 							el.classList.add( 'is-anim-hidden' );
 							el.classList.remove( 'animate__fadeInUp', 'animate__fadeInDown', 'animate__fadeInLeft', 'animate__fadeInRight' );
 						} );
 					} );
 				},
 				slideChangeTransitionEnd() {
-					// Animate elements in the active slide using cached references
-					const els = this._animatedEls?.[ this.activeIndex ] || [];
-					els.forEach( ( el, index ) => {
-						setTimeout( () => {
-							el.classList.remove( 'is-anim-hidden' );
-							el.classList.add( 'animate__fadeInDown' );
-						}, index * SLIDE_ANIMATION_STAGGER_MS );
-					} );
+					setTimeout( () => {
+						const activeSlide = this.slides[ this.activeIndex ];
+						if ( ! activeSlide ) { return; }
+						Array.from( activeSlide.querySelectorAll( '.animate__animated:not(.value)' ) )
+							.forEach( ( el, index ) => {
+								setTimeout( () => {
+									el.classList.remove( 'is-anim-hidden' );
+									el.classList.add( 'animate__fadeInDown' );
+								}, index * SLIDE_ANIMATION_STAGGER_MS );
+							} );
+						resetCircle();
+						updateNextLabel( this );
+					}, 50 );
 				},
 			},
 		} );
 
-		// Fix: when the page loads in a background tab, the browser throttles
-		// setTimeout/rAF so the init delay fires before the tab is active and
-		// is-anim-hidden is never removed. Force-reveal on first visibility.
-		document.addEventListener( 'visibilitychange', function onVisible() {
-			if ( document.visibilityState !== 'visible' ) { return; }
-			document.removeEventListener( 'visibilitychange', onVisible );
-			const els = swiper._animatedEls?.[ swiper.activeIndex ] || [];
-			const stillHidden = els.some( ( el ) => el.classList.contains( 'is-anim-hidden' ) );
-			if ( stillHidden ) {
-				els.forEach( ( el, index ) => {
-					setTimeout( () => {
-						el.classList.remove( 'is-anim-hidden' );
-						el.classList.add( 'animate__fadeInDown' );
-					}, index * SLIDE_ANIMATION_STAGGER_MS );
-				} );
-			}
+		nextBtn?.addEventListener( 'mouseenter', () => {
+			swiper.autoplay.stop();
+			pauseCircle();
+		} );
+		nextBtn?.addEventListener( 'mouseleave', () => {
+			swiper.autoplay.start();
+			resumeCircle();
 		} );
 	} );
 

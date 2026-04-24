@@ -87,8 +87,8 @@ if (have_rows('page_header_image')): ?>
 
 		<?php if (count(get_field('page_header_image')) > 1): ?>
 			<button type="button" class="swiper-button-next swiper-button-next-image white-text carousel-btn-reset" aria-label="Next slide" tabindex="0">
-				<p class="fw-regular fs-100 uppercase margin-r-15">
-					NEXT: <span class="fw-bold"></span>
+				<p class="fw-regular fs-100 uppercase margin-r-10">
+					NEXT: <span class="fw-bold screen-reader-text"></span>
 				</p>
 				<div class="circle-container">
 					<svg class="circle-svg" viewBox="0 0 50 50" xmlns="http://www.w3.org/2000/svg">

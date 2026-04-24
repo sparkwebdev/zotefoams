@@ -29,7 +29,6 @@
 - [ ] **Hardcoded parent ID in dual_carousel.php** - Line 14 has hardcoded parent ID 11 for arrow color - should use page title/slug lookup instead
 - [ ] **Video Knowledge Hub** - Update to accept video files instead of just documents
 - [ ] **Missing paragraph spacing in components** - Multiple paragraphs in component content areas render without vertical spacing between them (visible across several components)
-- [ ] **Image Banner autoplay pause** - Hovering on Next button should pause slide autoplay and stop the progress ring animation
 - [ ] **Remove .section-list functionality** - Not used, can be removed from codebase
 - [ ] **Button icon inconsistency** - `specs_accordion` default CTA uses an inline SVG chevron; other buttons use CSS `::after` with background SVG image files. Consider standardising — inline SVG is arguably the better approach (uses `currentColor`, no extra file, scales cleanly) so the fix may be to migrate existing `::after` icon buttons to inline SVG rather than the other way around
 - [ ] **Our History — tooltip single-open enforcement** — user can click to open a tooltip, then hover to open a second; only one should be open at a time. Fix: close all other visible popups before opening a new one.
