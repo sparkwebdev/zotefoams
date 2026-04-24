@@ -15,18 +15,31 @@
 //
 // =============================================================================
 
+import autoprefixer from 'autoprefixer';
+import cssnano from 'cssnano';
+
 const isProduction = process.env.NODE_ENV === 'production';
 
+const ensureTrailingNewline = {
+	postcssPlugin: 'ensure-trailing-newline',
+	OnceExit( root ) {
+		if ( ! root.raws.after?.endsWith( '\n' ) ) {
+			root.raws.after = ( root.raws.after || '' ) + '\n';
+		}
+	},
+};
+
 export default {
-	plugins: {
-		autoprefixer: {
+	plugins: [
+		autoprefixer( {
 			overrideBrowserslist: [
-				'last 2 versions',  // Last 2 versions of all browsers
-				'> 1%',             // Browsers with >1% market share
-				'not dead',         // Exclude browsers without updates for 24 months
-				'not ie 11'         // Exclude IE11 (no longer supported)
-			]
-		},
-		...(isProduction && { cssnano: {} })
-	}
+				'last 2 versions',
+				'> 1%',
+				'not dead',
+				'not ie 11',
+			],
+		} ),
+		...( isProduction ? [ cssnano() ] : [] ),
+		ensureTrailingNewline,
+	],
 };
