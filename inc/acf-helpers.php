@@ -74,6 +74,11 @@ function zotefoams_get_field_safe($field_name, $post_id = false, $default = '', 
  */
 function zotefoams_get_sub_field_safe($field_name, $default = '', $type = 'string')
 {
+    // Component library preview mode — return dummy data if available.
+    if (isset($GLOBALS['zotefoams_preview_fields'][$field_name])) {
+        return $GLOBALS['zotefoams_preview_fields'][$field_name];
+    }
+
     if (!function_exists('get_sub_field')) {
         return $default;
     }
