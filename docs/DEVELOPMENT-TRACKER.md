@@ -2,29 +2,16 @@
 
 ## Pending Issues (To Fix)
 
-### a11y issues
-
-- [ ] **[med] Accessibility gaps — `file-list.js` / `section-list.js`** — visibility toggles have no ARIA updates; screen readers unaware of state changes. Also: `accordion.js` opens content but does not move focus to the revealed panel.
-- [ ] **Knowledge Hub menu drobdown keyboard controls** - Enter should link Knowledge Hub
-- [ ] **Split Carousel keyboard controls** - Keyboard navigation could be improved for better accessibility
-- [ ] **Step Slider keyboard interaction** - Keyboard navigation could be improved for better accessibility
-- [ ] **Screen reader ARIA labels** - Test and improve ARIA labels for carousel announcements, button labels, form fields, and dynamic content updates
-- [ ] **Utility menu ARIA roles** - Add `role="menuitem"` to top links and `role="menu"` to sub-`ul`s for enhanced screen reader clarity
-- [ ] **ARIA live region feedback** - Add hidden `<div aria-live="polite">` that announces menu state changes (open/close) to screen reader users
-- [ ] **Reduced motion support** - Disable CSS transitions when user has `prefers-reduced-motion: reduce` media query set for accessibility compliance
-- [ ] **Panel Switcher** - Look to improve aria attributes; Ttry to sync active tab across mobile/desktop
-- [ ] **Mega Nav** - Visually label external link items
-- [ ] **Video modal focus trap** — focus lands on close button on open (correct) and returns to trigger on close (correct), but no focus trap exists. Tab from close button escapes the modal. YouTube iframe is cross-origin so focus cannot be moved into player controls programmatically — solution is a focus trap that cycles between close button and iframe only, with the iframe itself requiring a click to activate YouTube keyboard controls.
-- [ ] **Semantic HTML containers** - Change component wrapper `<div>` to `<section>` elements
-- [ ] **Add `:focus-visible` styles** — improves keyboard navigation accessibility without showing focus rings on mouse click.
-
-### Other issues
-- [ ] **[high] iOS — image banner text animations skip fade** — on iPhone, `animate__fadeInDown` animations appear in stages with no fade/movement. Stagger works (setTimeout), but the CSS animation is not playing. Likely iOS Safari not painting the `opacity:0` state (from `.is-anim-hidden`) before the animation class lands. Attempted: double rAF + forced reflow (`getBoundingClientRect`) — neither resolved it. Needs deeper iOS Safari investigation.
 - [ ] **[high] iOS — search input causes page to scroll up on keypress** — when scrolled down the page, opening the utility search and typing causes the page to scroll up with each keypress. iOS Safari scrolls to keep the focused input in view. Attempted: `keydown`+`setTimeout` restore, `scroll` event intercept — neither reliable. Likely needs a CSS approach (`position: fixed` on body while input is focused) or a scroll-lock library.
 - [ ] **[high] iOS — accordion scroll on open** — opening an accordion item on iOS causes the page to scroll unexpectedly.
 - [ ] **Git publish to sites pipeline** - Auto deploy on PR
 - [ ] **[high] Analytics — consolidate, enqueue properly, add consent gating** — see notes below
 - [ ] **[high] Mailchimp script loading — replace raw `<script>` output with `wp_enqueue_script()`** — see notes below
+- [x] **Video modal focus trap** — `<dialog>`-based refactor in stash `a11y-fix-4-video-modal-dialog`. Needs revisiting — focus escapes browser on close.
+- [x] **Screen reader ARIA labels** — Carousel live region in stash `a11y-fix-8-carousel-live-region`.
+- [x] **Reduced motion support** — Global catch-all in stash `a11y-fix-10-reduced-motion`. Note: opt-in approach (animate under `no-preference`) is architecturally cleaner but requires larger refactor.
+- [ ] **Panel Switcher desktop→mobile sync** — When a desktop tab is selected then viewport narrows to mobile, accordion doesn't reflect the active panel. Needs resize/breakpoint handler to align accordion `aria-expanded` with checked radio.
+- [ ] **Section List unused remove?** — Audit and remove section-list.js filter logic — the filter UI is never rendered by the current template; check for other orphaned JS while there.
 - [ ] **Industries page title** - Update page picker to handle Markets/Industries title change
 - [ ] **Hardcoded parent ID in dual_carousel.php** - Line 14 has hardcoded parent ID 11 for arrow color - should use page title/slug lookup instead
 - [ ] **Video Knowledge Hub** - Update to accept video files instead of just documents
@@ -39,6 +26,8 @@
 - [ ] **Bold headline styling discrepancy (staging)** — headline bold styling differs between `/news-centre/events/` and `/news-centre/blog/`. Needs CSS investigation.
 - [ ] **Language flag/picker alignment (staging)** — language picker flag alignment is off; possibly related to wider popup introduced post-Linguise update.
 - [ ] **[low] BackWPup `session_start()` notice** — PHP Notice: `session_start(): Ignoring session_start() because a session is already active` (`backwpup/src/Infrastructure/Restore/commons.php:395`) on every page load. BackWPup plugin bug — not harmful, no user-facing impact.
+- [ ] **[low] Semantic HTML containers** - Change component wrapper `<div>` to `<section>` elements
+- [ ] **[low] Add `:focus-visible` styles** — improves keyboard navigation accessibility without showing focus rings on mouse click.
 
 ## Pending Optimizations
 
