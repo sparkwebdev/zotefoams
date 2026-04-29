@@ -30,13 +30,12 @@
 }
 
 .swiper-image .swiper-inner p {
-  max-width: 32em;
+  max-width: 26em;
   text-wrap: balance;
 }
 
 @media screen and (max-width: 1200px) {
   .swiper-image .swiper-inner p {
-    max-width: calc(100% - 4em);
     margin-bottom: 10px;
   }
 }
@@ -138,22 +137,6 @@
   stroke-width: 2;
   stroke-dasharray: 144.513;
   stroke-dashoffset: 144.513;
-  transition: stroke-dashoffset 5s linear;
-}
-
-// Animation triggers when swiper has active slide
-.swiper-image.swiper-initialized .circle-progress-image {
-  animation: fillCircle 5s linear infinite;
-}
-
-@keyframes fillCircle {
-  0% {
-    stroke-dashoffset: 144.513;
-  }
-
-  100% {
-    stroke-dashoffset: 0;
-  }
 }
 
 @media screen and (max-width: 480px) {

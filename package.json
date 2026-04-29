@@ -59,7 +59,7 @@
     "map": false
   },
   "scripts": {
-    "build": "rollup -c && npm run build:sass",
+    "build": "npm run lint && rollup -c && npm run build:sass",
     "build:sass": "sass src/sass/style.scss:style.css --style=expanded --source-map && postcss style.css -o style.css",
     "watch:sass": "sass src/sass/style.scss:style.css --watch --style=expanded --source-map",
     "watch:postcss": "postcss style.css -o style.css --watch",
