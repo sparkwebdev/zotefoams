@@ -1,9 +1,10 @@
 <?php
+global $post;
 // Get field data using safe helper functions
 $slides = zotefoams_get_sub_field_safe('dual_carousel_slides', [], 'array');
 
 $markets_page_id = zotefoams_get_page_id_by_title('Markets') ?: zotefoams_get_page_id_by_title('Industries');
-$is_market_pages = $markets_page_id && (get_the_ID() == $markets_page_id || $post->post_parent == $markets_page_id);
+$is_market_pages = $markets_page_id && (get_the_ID() == $markets_page_id || (isset($post->post_parent) && $post->post_parent == $markets_page_id));
 
 $theme_style = $is_market_pages ? 'light-grey-bg theme-light' : 'black-bg white-text theme-dark';
 $theme_button_style = $is_market_pages ? 'black' : 'white';
