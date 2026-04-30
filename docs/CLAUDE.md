@@ -34,7 +34,7 @@ The theme uses a modular component architecture with 40 reusable components in `
 - Specialized widgets (financial documents, news feeds, sustainability goals)
 
 **All components utilize:**
-- Safe helper functions (`zotefoams_get_sub_field_safe()`) for ACF field validation and type checking
+- Safe helper functions (`zotefoams_get_sub_field_safe()`) for ACF field validation and type checking — note: this function contains a `$GLOBALS['zotefoams_preview_fields']` intercept used by the `zotefoams-component-library` plugin for component preview rendering
 - Consistent CSS class patterns for maintainability
 - Helper classes for common functionality:
   - `Zotefoams_Image_Helper` - Image handling with fallbacks
@@ -82,6 +82,17 @@ ES module system in `src/`:
 - Output: `js/bundle.js` with source maps for debugging
 - **ESLint configured** with WordPress coding standards (`.eslintrc`) for code quality
 
+### Navigation
+
+Four parts:
+
+1. **`inc/mega-menu-walker.php`** — `Mega_Menu_Walker` extends `Walker_Nav_Menu`. Outputs individual mega menu elements (no wrapper container). Links mega menus to triggers via `aria-controls`.
+2. **`src/critical/navigation.js`** — Main controller. Dual mode: hover (200ms delay) on desktop, click on touch devices. ARIA-driven state — single source of truth.
+3. **`src/critical/navigation-keyboard.js`** — Keyboard handlers: Enter, Space, ArrowDown, Escape, Tab. Focus management for screen readers.
+4. **`src/sass/design/common/header/`** — Modular SASS: `_nav.scss`, `_mega-menu.scss`, `_utility-menu.scss`, `_show-hide.scss`, `_mobile-nav.scss`.
+
+Key behaviours: ARIA attributes are the single source of truth (no class-based state); 200ms hover delay via single `hideTimer`; touch devices navigate on mobile / toggle on desktop (detected via `offsetParent !== null`); device mode set once at page load via `touch-device` class from `dom-utilities.js`.
+
 ### Development Environment
 - Uses Local by Flywheel (proxy: `https://zotefoams-phase-2.local/`)
 - BrowserSync for live reload during development
@@ -110,7 +121,7 @@ The theme follows modern WordPress practices with a modular functions.php struct
 - JavaScript source: `src/` (ES modules)
 - Compiled assets: `style.css`, `js/bundle.js`
 - ACF configuration: `acf/acf-json/`
-- Documentation: `docs/` (BUILD.md, CLAUDE.md, DEVELOPMENT-TRACKER.md, meganav.md)
+- Documentation: `docs/` (AGENTS.md, BUILD.md, CLAUDE.md, DEVELOPMENT-TRACKER.md)
 
 ## Theme Deployment
 The theme includes a production bundle command that creates a clean, distributable package:
