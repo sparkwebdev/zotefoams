@@ -1,7 +1,6 @@
 <?php
 // Get field data using safe helper functions
-$overline_title = zotefoams_get_sub_field_safe('step_slider_overline_title', '', 'string');
-$slides         = zotefoams_get_sub_field_safe('step_slider_slides', [], 'array');
+$slides = zotefoams_get_sub_field_safe('step_slider_slides', [], 'array');
 
 // Generate classes to match original structure exactly
 $wrapper_classes = 'step-slider theme-dark';
@@ -9,10 +8,6 @@ $wrapper_classes = 'step-slider theme-dark';
 
 <?php if ($slides) : ?>
 <div class="<?php echo $wrapper_classes; ?>">
-	<?php if ($overline_title) : ?>
-		<h2 class="step_slider_slide_overline fs-200 fw-regular"><?php echo esc_html($overline_title); ?></h2>
-	<?php endif; ?>
-
 		<?php foreach ($slides as $slide) :
 			$image = $slide['step_slider_slide_image'];
 			$overline = $slide['step_slider_slide_overline'];
