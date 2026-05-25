@@ -38,10 +38,11 @@ endif;
 
 // Helper: Create document object
 if ( ! function_exists( 'create_document_entry' ) ) :
-function create_document_entry($file, $category_data, $category_id, $all_brands = false, $brands = [])
+function create_document_entry($file, $category_data, $category_id, $all_brands = false, $brands = [], $type = 'file')
 {
     return (object) [
         'file' => $file,
+        'type' => $type,
         'category_label' => $category_data['name'],
         'category_id' => $category_id,
         'category_image' => $category_data['image'],
@@ -125,18 +126,35 @@ elseif ($behaviour === 'pick' && !empty($pick_documents)) {
 // Manual behaviour
 elseif ($behaviour === 'manual' && !empty($manual_documents)) {
     foreach ($manual_documents as $doc) {
-        $cat_id = $doc['document_list_category'] ?? '';
-        $cat_data = get_category_data($cat_id, '');
+        $icon  = $doc['document_list_icon'] ?? null;
+        $cat_data = [
+            'name'  => $doc['document_list_category'] ?? '',
+            'image' => !empty($icon['url']) ? $icon['url'] : '',
+        ];
+        $url = $doc['document_list_link']['url'] ?? '';
+        $file_check = wp_check_filetype($url);
+        $type = !empty($file_check['ext']) ? 'file' : 'link';
         $documents_array[] = create_document_entry(
             [
-                'url' => $doc['document_list_link']['url'] ?? '',
+                'url' => $url,
                 'title' => $doc['document_list_doc_title'] ?? '',
                 'filename' => $doc['document_list_doc_title'] ?? '',
             ],
             $cat_data,
-            $cat_id
+            '',
+            false,
+            [],
+            $type
         );
     }
+}
+
+if ($behaviour === 'manual') {
+    $has_any_icon     = !empty(array_filter(array_column((array) $documents_array, 'category_image')));
+    $has_any_category = !empty(array_filter(array_column((array) $documents_array, 'category_label')));
+} else {
+    $has_any_icon     = true;
+    $has_any_category = true;
 }
 
 // Generate classes to match original structure exactly
@@ -147,7 +165,7 @@ $wrapper_classes = 'doc-list-outer cont-m padding-t-b-100 theme-none';
     <?php echo zotefoams_render_title_strip($title, $button); ?>
 
     <?php if (!empty($documents_array)): ?>
-        <div class="file-list">
+        <div class="file-list<?php echo $behaviour === 'manual' ? ' file-list--manual' : ''; ?>">
             <table>
                 <thead class="screen-reader-text">
                     <tr>
@@ -165,14 +183,20 @@ $wrapper_classes = 'doc-list-outer cont-m padding-t-b-100 theme-none';
                         <tr class="file-list__item"
                             data-category="<?php echo esc_attr($document->category_id); ?>"
                             data-clickable-url="<?php echo esc_url($file['url']); ?>">
+                            <?php if ($has_any_icon): ?>
                             <td class="file-list__item-icon">
+                                <?php if (!empty($document->category_image)): ?>
                                 <img src="<?php echo esc_url($document->category_image); ?>" alt="<?php echo esc_attr($document->category_label); ?>" class="icon">
+                                <?php endif; ?>
                             </td>
+                            <?php endif; ?>
+                            <?php if ($has_any_category): ?>
                             <td class="file-list__item-group"><?php echo esc_html($document->category_label); ?></td>
+                            <?php endif; ?>
                             <td class="file-list__item-title"><?php echo esc_html($title); ?></td>
                             <td class="file-list__item-action">
-                                <a href="<?php echo esc_url($file['url']); ?>" class="hl download" target="_blank" aria-label="View <?php echo esc_attr($title); ?>">
-                                    View
+                                <a href="<?php echo esc_url($file['url']); ?>" class="hl <?php echo $document->type === 'link' ? 'arrow' : 'download'; ?>" target="_blank" aria-label="View <?php echo esc_attr($title); ?>">
+                                    <?php echo $document->type === 'link' ? '' : 'View'; ?>
                                 </a>
                             </td>
                         </tr>

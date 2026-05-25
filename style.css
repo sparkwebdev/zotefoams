@@ -5,7 +5,7 @@ Theme URI: http://underscores.me/
 Author: David Park
 Author URI: http://underscores.me/
 Description: Description
-Version: 3.5.12
+Version: 3.5.12b
 Tested up to: 6.9.4
 Requires PHP: 7.4
 License: GNU General Public License v2 or later
@@ -2711,6 +2711,21 @@ footer div.wpforms-container.wpforms-container-full:not(:empty) {
   background-color: var(--color-brand-contrast);
 }
 
+.file-list__item:hover a.hl,
+.file-list__item:has(a:focus) a.hl {
+  color: #000;
+}
+
+.file-list__item:hover a.hl.download::after,
+.file-list__item:has(a:focus) a.hl.download::after {
+  background-image: url(images/icon-download-black.svg);
+}
+
+.file-list__item:hover a.hl.arrow::after,
+.file-list__item:has(a:focus) a.hl.arrow::after {
+  background-image: url(images/icon-right-arrow-black.svg);
+}
+
 .file-list__item-icon img {
   max-width: none;
 }
@@ -2900,11 +2915,6 @@ footer div.wpforms-container.wpforms-container-full:not(:empty) {
     width: 100%;
     display: block;
   }
-  .file-list tr,
-  .file-list th,
-  .file-list td {
-    /* padding: 5px 20px; */
-  }
   .file-list tr {
     border-left: var(--border-separator);
     border-right: var(--border-separator);
@@ -2924,6 +2934,33 @@ footer div.wpforms-container.wpforms-container-full:not(:empty) {
     padding-right: 15px;
   }
 }
+/* Manual behaviour */
+.file-list--manual .file-list__item {
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+
+.file-list--manual .file-list__item-icon {
+  flex: 0 0 62px;
+}
+
+.file-list--manual .file-list__item-group {
+  flex: 0 0 150px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.file-list--manual .file-list__item-title {
+  flex: 1;
+  width: auto;
+}
+
+@media (max-width: 767px) {
+  .file-list--manual .file-list__item {
+    display: block;
+  }
+}
 /* Text Banner
  * --------------------------------------------- */
 .text-banner .uppercase {
@@ -2932,6 +2969,49 @@ footer div.wpforms-container.wpforms-container-full:not(:empty) {
 }
 .text-banner:not(:has(+ .text-banner-split)) {
   border-bottom: 1px solid #d1d1d1;
+}
+
+/* Breadcrumb
+ * --------------------------------------------- */
+.breadcrumb__list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0;
+  font-size: 14px;
+}
+.breadcrumb__item {
+  display: flex;
+  align-items: center;
+}
+.breadcrumb__item::after {
+  content: "";
+  background-image: url(images/icon-right-arrow-blue.svg);
+  background-repeat: no-repeat;
+  background-size: 120%;
+  background-position: center;
+  width: 5px;
+  height: 8px;
+  display: inline-flex;
+  margin: 0 10px;
+  opacity: 0.5;
+}
+.breadcrumb__item:last-child::after {
+  display: none;
+}
+.breadcrumb__item a {
+  color: var(--color-link);
+  text-decoration: none;
+}
+.breadcrumb__item a:hover {
+  text-decoration: underline;
+}
+.breadcrumb__item--current {
+  color: var(--color-on-surface);
+  opacity: 0.6;
 }
 
 /* Mailchimp */

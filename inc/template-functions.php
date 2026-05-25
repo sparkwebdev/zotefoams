@@ -38,6 +38,39 @@ add_action('wp_head', 'zotefoams_pingback_header');
 
 
 /**
+ * Output breadcrumb trail for the current page.
+ */
+function zotefoams_breadcrumbs()
+{
+    if (function_exists('get_field') && get_field('page_hide_breadcrumbs')) {
+        return;
+    }
+
+    $crumbs = [];
+
+    $crumbs[] = '<li class="breadcrumb__item"><a href="' . esc_url(home_url('/')) . '">' . esc_html__('Home', 'zotefoams') . '</a></li>';
+
+    if (is_page()) {
+        $ancestors = array_reverse(get_post_ancestors(get_the_ID()));
+        foreach ($ancestors as $ancestor_id) {
+            $crumbs[] = '<li class="breadcrumb__item"><a href="' . esc_url(get_permalink($ancestor_id)) . '">' . esc_html(get_the_title($ancestor_id)) . '</a></li>';
+        }
+        $crumbs[] = '<li class="breadcrumb__item breadcrumb__item--current" aria-current="page">' . esc_html(get_the_title()) . '</li>';
+    }
+
+    if (count($crumbs) <= 1) {
+        return;
+    }
+
+    echo '<nav class="breadcrumb" aria-label="' . esc_attr__('Breadcrumb', 'zotefoams') . '">';
+    echo '<ol class="breadcrumb__list">';
+    echo implode('', $crumbs);
+    echo '</ol>';
+    echo '</nav>';
+}
+
+
+/**
  * Map category names to appropriate call-to-action labels
  * 
  * Returns context-appropriate button text based on post category.
