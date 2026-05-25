@@ -1,0 +1,51 @@
+/* Breadcrumb
+ * --------------------------------------------- */
+
+.breadcrumb {
+  &__list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0;
+    font-size: 14px;
+  }
+
+  &__item {
+    display: flex;
+    align-items: center;
+
+    &::after {
+      content: "";
+      background-image: url(images/icon-right-arrow-blue.svg);
+      background-repeat: no-repeat;
+      background-size: 120%;
+      background-position: center;
+      width: 5px;
+      height: 8px;
+      display: inline-flex;
+      margin: 0 10px;
+      opacity: 0.5;
+    }
+
+    &:last-child::after {
+      display: none;
+    }
+
+    a {
+      color: var(--color-link);
+      text-decoration: none;
+
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+
+    &--current {
+      color: var(--color-on-surface);
+      opacity: 0.6;
+    }
+  }
+}
