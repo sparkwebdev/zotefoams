@@ -50,12 +50,30 @@ function zotefoams_breadcrumbs()
 
     $crumbs[] = '<li class="breadcrumb__item"><a href="' . esc_url(home_url('/')) . '">' . esc_html__('Home', 'zotefoams') . '</a></li>';
 
-    if (is_page()) {
+    if (is_singular()) {
+        if (is_singular('knowledge-hub')) {
+            $kh_page = get_page_by_path('knowledge-hub');
+            if ($kh_page) {
+                $crumbs[] = '<li class="breadcrumb__item"><a href="' . esc_url(get_permalink($kh_page->ID)) . '">' . esc_html($kh_page->post_title) . '</a></li>';
+            }
+        }
+        } elseif (is_singular('post')) {
+            $posts_page_id = zotefoams_get_page_for_posts_id();
+            if ($posts_page_id) {
+                $crumbs[] = '<li class="breadcrumb__item"><a href="' . esc_url(get_permalink($posts_page_id)) . '">' . esc_html(get_the_title($posts_page_id)) . '</a></li>';
+            }
+        }
         $ancestors = array_reverse(get_post_ancestors(get_the_ID()));
         foreach ($ancestors as $ancestor_id) {
             $crumbs[] = '<li class="breadcrumb__item"><a href="' . esc_url(get_permalink($ancestor_id)) . '">' . esc_html(get_the_title($ancestor_id)) . '</a></li>';
         }
         $crumbs[] = '<li class="breadcrumb__item breadcrumb__item--current" aria-current="page">' . esc_html(get_the_title()) . '</li>';
+    } elseif (is_category()) {
+        $posts_page_id = zotefoams_get_page_for_posts_id();
+        if ($posts_page_id) {
+            $crumbs[] = '<li class="breadcrumb__item"><a href="' . esc_url(get_permalink($posts_page_id)) . '">' . esc_html(get_the_title($posts_page_id)) . '</a></li>';
+        }
+        $crumbs[] = '<li class="breadcrumb__item breadcrumb__item--current" aria-current="page">' . esc_html(single_term_title('', false)) . '</li>';
     }
 
     if (count($crumbs) <= 1) {
