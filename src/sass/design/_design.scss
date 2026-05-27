@@ -107,7 +107,8 @@ footer .site-branding img {
   h6:not([class]),
   ul:not([class]),
   ol:not([class]),
-  .wp-block-list {
+  .wp-block-list,
+  .wp-block-paragraph {
     margin: revert;
   }
 }
