@@ -99,7 +99,4 @@ if (have_rows('page_header_image')): ?>
 			</button>
 		<?php endif; ?>
 	</div>
-	<div class="cont-m padding-t-50 padding-b-80 theme-none">
-		<?php get_template_part('template-parts/breadcrumbs'); ?>
-	</div>
 <?php endif; ?>

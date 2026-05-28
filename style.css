@@ -2971,49 +2971,6 @@ footer div.wpforms-container.wpforms-container-full:not(:empty) {
   border-bottom: 1px solid #d1d1d1;
 }
 
-/* Breadcrumb
- * --------------------------------------------- */
-.breadcrumb__list {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: 0;
-  font-size: 14px;
-}
-.breadcrumb__item {
-  display: flex;
-  align-items: center;
-}
-.breadcrumb__item::after {
-  content: "";
-  background-image: url(images/icon-right-arrow-blue.svg);
-  background-repeat: no-repeat;
-  background-size: 120%;
-  background-position: center;
-  width: 5px;
-  height: 8px;
-  display: inline-flex;
-  margin: 0 10px;
-  opacity: 0.5;
-}
-.breadcrumb__item:last-child::after {
-  display: none;
-}
-.breadcrumb__item a {
-  color: var(--color-link);
-  text-decoration: none;
-}
-.breadcrumb__item a:hover {
-  text-decoration: underline;
-}
-.breadcrumb__item--current {
-  color: var(--color-on-surface);
-  opacity: 0.6;
-}
-
 /* Mailchimp */
 /* MailChimp Form Embed Code - Classic - 12/17/2015 v10.7 */
 /* Customisations made for Zotefoams */
