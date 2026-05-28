@@ -69,11 +69,8 @@ function initDataPoints() {
 		} );
 	}, { threshold: [ 0, 0.5 ] } ); // Track both entering and fully visible states
 
-	// Fix: Use the correct class name from your HTML
-	const target = ZotefoamsDOMUtils.select( '.data-points-items' );
-	if ( target ) {
-		observer.observe( target );
-	}
+	const targets = ZotefoamsDOMUtils.selectAll( '.data-points-items' );
+	targets.forEach( ( target ) => observer.observe( target ) );
 }
 
 // Initialize when DOM is ready
