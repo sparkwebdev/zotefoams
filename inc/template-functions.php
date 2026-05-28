@@ -56,6 +56,7 @@ function zotefoams_breadcrumbs()
             if ($kh_page) {
                 $crumbs[] = '<li class="breadcrumb__item"><a href="' . esc_url(get_permalink($kh_page->ID)) . '">' . esc_html($kh_page->post_title) . '</a></li>';
             }
+        }
         } elseif (is_singular('post')) {
             $posts_page_id = zotefoams_get_page_for_posts_id();
             if ($posts_page_id) {
