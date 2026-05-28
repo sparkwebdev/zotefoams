@@ -25,9 +25,6 @@ $category_description = category_description();
 			<?php echo esc_html($title === 'News' ? 'Latest ' . $title : $title); ?>
 		</h2>
 	</div>
-	<div class="cont-m padding-t-50 theme-none">
-		<?php get_template_part('template-parts/breadcrumbs'); ?>
-	</div>
 </header>
 
 <?php

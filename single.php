@@ -60,8 +60,6 @@ else :
 				<?php endif; ?>
 			</header>
 
-			<?php // get_template_part('template-parts/breadcrumbs'); ?>
-
 			<?php /* if (has_post_thumbnail()) : ?>
 				<figure><?php zotefoams_post_thumbnail('large'); ?></figure>
 			<?php endif; */ ?>

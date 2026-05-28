@@ -23,11 +23,7 @@ $posts_page_id = function_exists('zotefoams_get_page_for_posts_id') ? zotefoams_
             <?php echo esc_html($title); ?>
         </h2>
     </div>
-    <div class="cont-m padding-t-50 theme-none">
-        <?php get_template_part('template-parts/breadcrumbs'); ?>
-    </div>
 </header>
-
 <?php
 $today = date('Ymd');
 $current_category_id = get_queried_object_id(); // ID of the "Webinars" category
