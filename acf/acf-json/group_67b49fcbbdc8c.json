@@ -4,8 +4,8 @@
     "fields": [
         {
             "key": "field_684fefef9c900",
-            "label": "Hide breadcrumbs?",
-            "name": "page_hide_breadcrumbs",
+            "label": "Show breadcrumbs?",
+            "name": "page_show_breadcrumbs",
             "aria-label": "",
             "type": "true_false",
             "instructions": "",

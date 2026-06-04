@@ -42,7 +42,7 @@ add_action('wp_head', 'zotefoams_pingback_header');
  */
 function zotefoams_breadcrumbs()
 {
-    if (function_exists('get_field') && get_field('page_hide_breadcrumbs')) {
+    if (!function_exists('get_field') || !get_field('page_show_breadcrumbs')) {
         return;
     }
 
