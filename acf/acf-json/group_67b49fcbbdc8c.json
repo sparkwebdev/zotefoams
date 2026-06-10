@@ -3,6 +3,27 @@
     "title": "Page footer",
     "fields": [
         {
+            "key": "field_684fefef9c900",
+            "label": "Show breadcrumbs?",
+            "name": "page_show_breadcrumbs",
+            "aria-label": "",
+            "type": "true_false",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "message": "",
+            "default_value": 0,
+            "allow_in_bindings": 0,
+            "ui_on_text": "",
+            "ui_off_text": "",
+            "ui": 1
+        },
+        {
             "key": "field_67b49fcb6f122",
             "label": "Show contact forms?",
             "name": "page_footer_contact_forms",

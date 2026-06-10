@@ -22,5 +22,10 @@ if ($pageHeaderText):
                 </p>
             <?php endif; ?>
         </div>
+        <?php if (function_exists('get_field') && get_field('page_show_breadcrumbs')): ?>
+        <div class="cont-m padding-t-50 theme-none">
+            <?php get_template_part('template-parts/breadcrumbs'); ?>
+        </div>
+        <?php endif; ?>
     </header>
 <?php endif; ?>
