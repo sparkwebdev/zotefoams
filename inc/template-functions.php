@@ -42,10 +42,6 @@ add_action('wp_head', 'zotefoams_pingback_header');
  */
 function zotefoams_breadcrumbs()
 {
-    if (!function_exists('get_field') || !get_field('page_show_breadcrumbs')) {
-        return;
-    }
-
     $crumbs = [];
 
     $crumbs[] = '<li class="breadcrumb__item"><a href="' . esc_url(home_url('/')) . '">' . esc_html__('Home', 'zotefoams') . '</a></li>';
@@ -56,7 +52,6 @@ function zotefoams_breadcrumbs()
             if ($kh_page) {
                 $crumbs[] = '<li class="breadcrumb__item"><a href="' . esc_url(get_permalink($kh_page->ID)) . '">' . esc_html($kh_page->post_title) . '</a></li>';
             }
-        }
         } elseif (is_singular('post')) {
             $posts_page_id = zotefoams_get_page_for_posts_id();
             if ($posts_page_id) {

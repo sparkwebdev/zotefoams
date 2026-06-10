@@ -23,9 +23,11 @@ $posts_page_id = function_exists('zotefoams_get_page_for_posts_id') ? zotefoams_
             <?php echo esc_html($title); ?>
         </h2>
     </div>
+    <?php if (function_exists('get_field') && get_field('page_show_breadcrumbs')): ?>
     <div class="cont-m padding-t-50 theme-none">
         <?php get_template_part('template-parts/breadcrumbs'); ?>
     </div>
+    <?php endif; ?>
 </header>
 
 <?php
