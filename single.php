@@ -60,7 +60,11 @@ else :
 				<?php endif; ?>
 			</header>
 
-			<?php // get_template_part('template-parts/breadcrumbs'); ?>
+			<?php /* if (function_exists('get_field') && get_field('page_show_breadcrumbs')): ?>
+			<div class="cont-m padding-t-50 theme-none">
+				<?php get_template_part('template-parts/breadcrumbs'); ?>
+			</div>
+			<?php endif; */ ?>
 
 			<?php /* if (has_post_thumbnail()) : ?>
 				<figure><?php zotefoams_post_thumbnail('large'); ?></figure>
