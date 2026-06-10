@@ -23,9 +23,11 @@ if (function_exists('get_field')) {
 					<h1 class="fs-600 fw-semibold margin-b-20"><?php echo $subtitle; ?></h1>
 				</header>
 			</div>
+			<?php if (function_exists('get_field') && get_field('page_show_breadcrumbs')): ?>
 			<div class="cont-m padding-t-50 theme-none">
 				<?php get_template_part('template-parts/breadcrumbs'); ?>
 			</div>
+			<?php endif; ?>
 <?php
 		endif;
 	} elseif ($page_header_type === 'image') {

@@ -42,10 +42,6 @@ add_action('wp_head', 'zotefoams_pingback_header');
  */
 function zotefoams_breadcrumbs()
 {
-    if (!function_exists('get_field') || !get_field('page_show_breadcrumbs')) {
-        return;
-    }
-
     $crumbs = [];
 
     $crumbs[] = '<li class="breadcrumb__item"><a href="' . esc_url(home_url('/')) . '">' . esc_html__('Home', 'zotefoams') . '</a></li>';
