@@ -1,6 +1,6 @@
 {
     "key": "group_67b49fcbbdc8c",
-    "title": "Page footer",
+    "title": "Page options",
     "fields": [
         {
             "key": "field_684fefef9c900",
@@ -73,5 +73,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1749405371
+    "modified": 1779723040
 }
