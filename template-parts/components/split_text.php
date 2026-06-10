@@ -1,7 +1,7 @@
 <?php
 // Get field data using safe helper functions
-$title = get_sub_field('split_text_title'); // Keep HTML intact
-$text  = get_sub_field('split_text_text');  // Keep HTML intact for shortcodes
+$title = zotefoams_get_sub_field_safe('split_text_title', '', 'html');
+$text  = zotefoams_get_sub_field_safe('split_text_text', '', 'html');
 
 // Generate classes to match original structure exactly
 $wrapper_classes = 'split-text cont-m padding-t-100 padding-b-80 grey-text theme-none';

@@ -1,9 +1,9 @@
 <?php
-$overline   = get_sub_field('columns_content_overline');
-$intro      = get_sub_field('columns_content_intro');
+$overline   = zotefoams_get_sub_field_safe('columns_content_overline', '', 'html');
+$intro      = zotefoams_get_sub_field_safe('columns_content_intro', '', 'html');
 $image      = zotefoams_get_sub_field_safe('columns_content_image', [], 'array');
-$column_one = get_sub_field('columns_content_column_one');
-$column_two = get_sub_field('columns_content_column_two');
+$column_one = zotefoams_get_sub_field_safe('columns_content_column_one', '', 'html');
+$column_two = zotefoams_get_sub_field_safe('columns_content_column_two', '', 'html');
 
 $wrapper_classes = Zotefoams_Theme_Helper::get_wrapper_classes([
     'component' => 'columns-content grey-text fs-300',

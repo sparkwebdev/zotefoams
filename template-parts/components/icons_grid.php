@@ -1,6 +1,6 @@
 <?php
-$overline = get_sub_field('icons_grid_overline');
-$intro = get_sub_field('icons_grid_intro');
+$overline = zotefoams_get_sub_field_safe('icons_grid_overline', '', 'html');
+$intro = zotefoams_get_sub_field_safe('icons_grid_intro', '', 'html');
 $items = zotefoams_get_sub_field_safe('icons_grid_items', [], 'array');
 
 $wrapper_classes = Zotefoams_Theme_Helper::get_wrapper_classes([
