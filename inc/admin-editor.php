@@ -61,8 +61,13 @@ function disable_gutenberg_except_posts($use_block_editor, $post)
         return $use_block_editor; // Early return if no post object
     }
 
-    // Allow Gutenberg for posts and 'knowledge-hub' custom post type
-    if ($post->post_type === 'post' || ($post->post_type === 'page' && get_page_template_slug($post->ID) === 'page-article.php') || $post->post_type === 'knowledge-hub') {
+    // Force Classic Editor for knowledge-hub (ACF repeater meta box requires it)
+    if ($post->post_type === 'knowledge-hub') {
+        return false;
+    }
+
+    // Allow Gutenberg for posts and article pages
+    if ($post->post_type === 'post' || ($post->post_type === 'page' && get_page_template_slug($post->ID) === 'page-article.php')) {
         return $use_block_editor;
     }
 
