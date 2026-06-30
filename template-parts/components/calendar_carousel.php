@@ -31,23 +31,43 @@ $wrapper_classes = 'cont-m padding-t-b-100 theme-none';
         <?php if (!empty($events)): ?>
             <div class="swiper calendar-carousel">
                 <div class="swiper-wrapper">
-                <?php foreach ($events as $event): 
-                    $date        = $event['calendar_carousel_date'] ?? '';
-                    $month_year  = $event['calendar_carousel_month_year'] ?? '';
+                <?php $event_index = 0; foreach ($events as $event):
+                    $event_index++;
+                    $day         = $event['calendar_carousel_date'] ?? '';
+                    $month       = $event['calendar_carousel_month_year'] ?? '';
+                    $year        = $event['calendar_carousel_year'] ?? '';
                     $description = $event['calendar_carousel_description'] ?? '';
+                    $sr_date     = implode(' ', array_filter([$day, $month, $year]));
+                    $heading_id  = 'cal-event-' . $event_index;
+                    $desc_id     = $description ? 'cal-event-desc-' . $event_index : '';
                 ?>
                     <div class="swiper-slide calendar-carousel__slide">
                         <div class="calendar-carousel__slide-inner">
-                            <div class="calendar-carousel__date">
-                                <?php if ($date): ?>
-                                    <label class="fs-700"><?php echo esc_html($date); ?></label>
+                            <?php if ($sr_date): ?>
+                                <h4 id="<?php echo esc_attr($heading_id); ?>"
+                                    class="screen-reader-text"
+                                    <?php if ($desc_id): ?>aria-describedby="<?php echo esc_attr($desc_id); ?>"<?php endif; ?>
+                                ><?php echo esc_html($sr_date); ?></h4>
+                            <?php endif; ?>
+                            <div class="calendar-carousel__date" aria-hidden="true">
+                                <?php if ($month): ?>
+                                    <span class="calendar-carousel__month fs-600 fw-semibold"><?php echo esc_html($month); ?></span>
                                 <?php endif; ?>
-                                <?php if ($month_year): ?>
-                                    <label class="calendar-carousel__month-year fs-100"><?php echo esc_html($month_year); ?></label>
+                                <?php if ($day || $year): ?>
+                                    <div class="calendar-carousel__date-meta fs-200">
+                                        <?php if ($day): ?>
+                                            <span class="calendar-carousel__day"><?php echo esc_html($day); ?></span>
+                                        <?php endif; ?>
+                                        <?php if ($year): ?>
+                                            <span class="calendar-carousel__year"><?php echo esc_html($year); ?></span>
+                                        <?php endif; ?>
+                                    </div>
                                 <?php endif; ?>
                             </div>
                             <?php if ($description): ?>
+                            <div id="<?php echo esc_attr($desc_id); ?>" class="calendar-carousel__description">
                                 <p class="fs-100 grey-text"><?php echo esc_html($description); ?></p>
+                            </div>
                             <?php endif; ?>
                         </div>
                     </div>

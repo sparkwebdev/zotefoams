@@ -1509,7 +1509,7 @@
                             "sub_fields": [
                                 {
                                     "key": "field_67af89012rstuvz",
-                                    "label": "Date",
+                                    "label": "Day",
                                     "name": "calendar_carousel_date",
                                     "aria-label": "",
                                     "type": "text",
@@ -1517,20 +1517,20 @@
                                     "required": false,
                                     "conditional_logic": false,
                                     "wrapper": {
-                                        "width": "",
+                                        "width": "33",
                                         "class": "",
                                         "id": ""
                                     },
                                     "default_value": "",
                                     "maxlength": "",
-                                    "placeholder": "",
+                                    "placeholder": "e.g. 25th",
                                     "prepend": "",
                                     "append": "",
                                     "parent_repeater": "field_67af89012rstuvy"
                                 },
                                 {
                                     "key": "field_67af89012rstuva",
-                                    "label": "Month & Year",
+                                    "label": "Month",
                                     "name": "calendar_carousel_month_year",
                                     "aria-label": "",
                                     "type": "text",
@@ -1538,13 +1538,34 @@
                                     "required": false,
                                     "conditional_logic": false,
                                     "wrapper": {
-                                        "width": "",
+                                        "width": "33",
                                         "class": "",
                                         "id": ""
                                     },
                                     "default_value": "",
                                     "maxlength": "",
-                                    "placeholder": "",
+                                    "placeholder": "e.g. Jan",
+                                    "prepend": "",
+                                    "append": "",
+                                    "parent_repeater": "field_67af89012rstuvy"
+                                },
+                                {
+                                    "key": "field_67af89012rstuvd",
+                                    "label": "Year",
+                                    "name": "calendar_carousel_year",
+                                    "aria-label": "",
+                                    "type": "text",
+                                    "instructions": "",
+                                    "required": false,
+                                    "conditional_logic": false,
+                                    "wrapper": {
+                                        "width": "33",
+                                        "class": "",
+                                        "id": ""
+                                    },
+                                    "default_value": "",
+                                    "maxlength": "",
+                                    "placeholder": "e.g. 2026",
                                     "prepend": "",
                                     "append": "",
                                     "parent_repeater": "field_67af89012rstuvy"
@@ -6334,5 +6355,5 @@
     "display_title": "",
     "allow_ai_access": false,
     "ai_description": "",
-    "modified": 1776934167
+    "modified": 1782810163
 }

@@ -395,7 +395,7 @@ function initCarousels() {
 		const container = carousel.closest( '.calendar-carousel-wrapper' )?.parentElement;
 		new Swiper( carousel, {
 			slidesPerView: 1,
-			spaceBetween: 20,
+			spaceBetween: 0,
 			navigation: {
 				nextEl: container?.querySelector( '.calendar-swiper-button-next' ),
 				prevEl: container?.querySelector( '.calendar-swiper-button-prev' ),
@@ -405,7 +405,7 @@ function initCarousels() {
 					slidesPerView: 2,
 				},
 				1024: {
-					slidesPerView: 3,
+					slidesPerView: 4,
 				},
 			},
 		} );
