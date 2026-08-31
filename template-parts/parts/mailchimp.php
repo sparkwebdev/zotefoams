@@ -16,9 +16,9 @@
 
                 <div id="mce-responses" class="clear">
 
-                    <div class="response" id="mce-error-response" style="display: none;"></div>
+                    <div class="response" id="mce-error-response" role="alert" style="display: none;"></div>
 
-                    <div class="response" id="mce-success-response" style="display: none;"></div>
+                    <div class="response" id="mce-success-response" role="status" aria-live="polite" style="display: none;"></div>
 
                 </div>
                 <div aria-hidden="true" style="position: absolute; left: -5000px;"><input type="text" name="b_c37b5dea047401619cafe73b1_d1585d2ae4" tabindex="-1" value=""></div>
