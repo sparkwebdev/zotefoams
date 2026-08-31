@@ -17,7 +17,6 @@
 .financial-documents-picker select {
   background: none;
   border: none;
-  outline: none;
   font-size: inherit;
   font-family: inherit;
   padding: 10px 10px 10px 0;
@@ -25,6 +24,11 @@
   margin-bottom: 20px;
   font-weight: 700;
   width: 100px;
+
+  &:focus-visible {
+    outline: 1px dotted var(--color-link);
+    outline-offset: 2px;
+  }
 }
 
 .document-list {

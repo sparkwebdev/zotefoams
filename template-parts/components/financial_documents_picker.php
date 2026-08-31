@@ -28,7 +28,7 @@ $wrapper_classes = 'financial-documents-picker cont-m ' . $container_class;
 		</div>
 		<div>
 			<div class="financial-documents" data-js="financial-docs-picker">
-				<select class="yearSelect">
+				<select class="yearSelect" name="financial-documents-year" aria-label="<?php esc_attr_e( 'Filter documents by year', 'zotefoams' ); ?>">
 					<?php foreach ($documents_by_year as $index => $year_data) : ?>
 						<option value="<?php echo esc_attr($year_data['year']); ?>" <?php selected($index, 0); ?>>
 							<?php echo esc_html($year_data['year']); ?>
