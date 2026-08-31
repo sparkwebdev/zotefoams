@@ -25,13 +25,13 @@ $speakers         = get_field('event_speakers');
                         $image_url = $image ? $image['sizes']['thumbnail-square'] : get_template_directory_uri() . '/images/placeholder-thumbnail-square.png';
 
                         if ($image_url) :
-                            echo '<img src="' . esc_url($image_url) . '" alt="' . $speakersName . ' profile" />';
+                            echo '<img src="' . esc_url($image_url) . '" alt="' . esc_attr($speakersName) . ' profile" />';
                         endif;
                         if ($speakersName) :
-                            echo '<h3 class="fs-300 fw-regular">' . $speakersName . '</h3>';
+                            echo '<h3 class="fs-300 fw-regular">' . esc_html($speakersName) . '</h3>';
                         endif;
                         if ($role) :
-                            echo '<h4 class="fs-300 fw-regular grey-text">' . $role . '</h4>';
+                            echo '<h4 class="fs-300 fw-regular grey-text">' . esc_html($role) . '</h4>';
                         endif; 
                         ?>
                     </div>
@@ -46,8 +46,8 @@ $speakers         = get_field('event_speakers');
     <div class="event-register padding-t-40" id="event-register">
         <h2 class="fs400 ">Register to attend<?php if ($name) { echo " '" . esc_html($name) . "'"; }  ?></h2>
         <div class="padding-30 margin-t-20 margin-b-20 light-grey-bg">
-            <iframe width="100%" height="560" frameborder="0" src="<?php echo $registration_url; ?>" title="<?php echo $name ? $name : "Zotefoams Webinar"; ?> | Zotefoams Plc"></iframe>
+            <iframe width="100%" height="560" frameborder="0" src="<?php echo esc_url($registration_url); ?>" title="<?php echo esc_attr($name ? $name : "Zotefoams Webinar"); ?> | Zotefoams Plc"></iframe>
         </div>
-        <p class="light-grey-bg padding-30 fs-300" style="border-left: solid 3px #3b82f6;">For more information, please contact <strong><a href="mailto:marketing@zotefoams.com">marketing@zotefoams.com</strong></a>.</p>
+        <p class="light-grey-bg padding-30 fs-300" style="border-left: solid 3px #3b82f6;">For more information, please contact <strong><a href="mailto:marketing@zotefoams.com">marketing@zotefoams.com</a></strong>.</p>
     </div>
 <?php endif; ?>
