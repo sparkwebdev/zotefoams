@@ -13,7 +13,7 @@ $pagination = paginate_links(array(
 ));
 
 if ($pagination) {
-	echo '<footer class="pagination cont-m padding-t-b-70 theme-none">';
+	echo '<nav class="pagination cont-m padding-t-b-70 theme-none" aria-label="' . esc_attr__( 'Pagination', 'zotefoams' ) . '">';
 	echo wp_kses_post($pagination);
-	echo '</footer>';
+	echo '</nav>';
 }
