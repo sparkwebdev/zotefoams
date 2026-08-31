@@ -1736,6 +1736,22 @@
 		// Accordion
 		const headers = document.querySelectorAll( '[data-js="accordion-header"]' );
 
+		// Pair each header with its panel for assistive tech: aria-controls -> panel id,
+		// and reflect the panel's initial collapsed state (WCAG 1.3.1 / 4.1.2).
+		headers.forEach( ( header, i ) => {
+			const panel = header.nextElementSibling;
+			if ( ! panel ) {
+				return;
+			}
+			if ( ! panel.id ) {
+				panel.id = `accordion-panel-${ i }`;
+			}
+			header.setAttribute( 'aria-controls', panel.id );
+			if ( ! panel.classList.contains( 'is-open' ) ) {
+				panel.setAttribute( 'aria-hidden', 'true' );
+			}
+		} );
+
 		// Add click event listener to each header
 		headers.forEach( ( header ) => {
 			header.addEventListener( 'click', function() {
