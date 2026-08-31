@@ -123,7 +123,7 @@ class Mega_Menu_Walker extends Walker_Nav_Menu
                 '<div class="mega-menu" id="' . esc_attr($mega_menu_id) . '" role="region" aria-labelledby="menu-item-' . esc_attr($element->$id_field) . '">' .
                 '<div class="mega-menu-wrapper">' .
                 '<div class="mega-menu-intro">' .
-                '<div class="fs-300 fw-regular">' . $menu_title . '</div>' .
+                '<div class="fs-300 fw-regular" data-js="mega-menu-title">' . $menu_title . '</div>' .
                 '<p class="grey-text">' . $menu_description . '</p>' .
                 '</div>' .
                 '<div class="mega-menu-content">' .

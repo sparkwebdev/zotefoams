@@ -26,7 +26,8 @@ export const handleMegaMenuKeyboard = ( e, megaMenu, triggerLink ) => {
 	if ( e.key === 'Tab' ) {
 		const focusable = getFocusableElements( megaMenu );
 		const currentIndex = focusable.indexOf( document.activeElement );
-		const isFirst = currentIndex === 0;
+		// -1 when focus is on the tabindex="-1" intro label — treat as "first" too.
+		const isFirst = currentIndex <= 0;
 		const isLast = currentIndex === focusable.length - 1;
 
 		// Tab out of menu when reaching boundaries
@@ -57,13 +58,13 @@ export const handleMegaMenuKeyboard = ( e, megaMenu, triggerLink ) => {
  * @param {Function}      closeAll - Callback to close all menus
  */
 export const handleMenuItemKeyboard = ( e, link, megaMenu, closeAll ) => {
-	if ( e.key === 'Enter' || e.key === ' ' || e.key === 'ArrowDown' ) {
+	// Enter follows the link href, Space / ArrowDown open the mega menu.
+	if ( e.key === ' ' || e.key === 'ArrowDown' ) {
 		e.preventDefault();
 
 		const isOpen = megaMenu.getAttribute( 'aria-hidden' ) === 'false';
 
 		if ( isOpen ) {
-			// Close if already open
 			if ( e.key === 'ArrowDown' ) {
 				// Move focus into menu
 				const firstFocusable = getFocusableElements( megaMenu )[ 0 ];
@@ -80,11 +81,11 @@ export const handleMenuItemKeyboard = ( e, link, megaMenu, closeAll ) => {
 			megaMenu.setAttribute( 'aria-hidden', 'false' );
 			setAriaExpanded( link, true );
 
-			// Focus heading for screen readers
-			const heading = megaMenu.querySelector( '.mega-menu-intro > h2' );
-			if ( heading ) {
-				heading.setAttribute( 'tabindex', '-1' );
-				setTimeout( () => heading.focus(), 200 );
+			// Deliberately a <div>, not <h2> — SEO wants no headings in the mega-nav.
+			const introLabel = megaMenu.querySelector( '[data-js="mega-menu-title"]' );
+			if ( introLabel ) {
+				introLabel.setAttribute( 'tabindex', '-1' );
+				setTimeout( () => introLabel.focus(), 200 );
 			}
 		}
 	} else if ( e.key === 'Escape' ) {
