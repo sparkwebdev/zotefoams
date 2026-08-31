@@ -16,6 +16,6 @@ $wrapper_classes = 'text-center light-grey-bg padding-t-b-100 theme-light';
 	<div class="cont-xs">
 		<img
 			src="<?php echo esc_url(get_template_directory_uri() . '/images/waste-hierarchy.svg'); ?>"
-			alt="<?php esc_attr_e('Waste Hierarchy Diagram', 'zotefoams'); ?>" />
+			alt="<?php esc_attr_e( 'Diagram of the waste hierarchy, showing waste-management options ranked from most to least preferred.', 'zotefoams' ); ?>" />
 	</div>
 </div>
