@@ -1,5 +1,9 @@
 /* Linguise plugin exceptions
  *	--------------------------------------------- */
+.linguise_switcher_root {
+  display: flex;
+  align-items: center;
+}
 @media screen and (max-width: 1200px) {
   body:has(.linguise_switcher_wrapper) .swiper-image .swiper-button-next-image {
     bottom: 15px;

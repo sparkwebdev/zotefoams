@@ -41,13 +41,19 @@
         }
       }
     }
+  }
 
-    // Eeek a few more fixels of space on very small screens
-    @media screen and (max-width: 379px) {
-      gap: 10px;
+  // Eeek a few more pixels of space on small screens
+  @media screen and (max-width: 460px) {
+    padding: 0 12px;
+
+    .menu {
+      gap: 3%;
 
       a {
         font-size: 0.85em;
+        font-size: clamp(0.8125rem, 0.6987rem + 0.5357vw, 1rem);
+        letter-spacing: -0.025rem;
       }
     }
   }
