@@ -73,4 +73,4 @@
 
 		</div>
 	</header><!-- #masthead -->
-	<main id="page" class="site">
+	<main id="page" class="site" tabindex="-1">
