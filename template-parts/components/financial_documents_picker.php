@@ -36,6 +36,8 @@ $wrapper_classes = 'financial-documents-picker cont-m ' . $container_class;
 					<?php endforeach; ?>
 				</select>
 
+				<p role="status" aria-live="polite" class="screen-reader-text" data-js="financial-docs-status"></p>
+
 				<div class="documents-container">
 					<?php foreach ($documents_by_year as $index => $year_data) :
 						$year     = esc_attr($year_data['year']);
