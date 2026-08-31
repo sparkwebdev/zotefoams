@@ -1839,19 +1839,33 @@
 	}
 
 	function initDesktopTabsAccessibility( wrapper ) {
-		const radioButtons = wrapper.querySelectorAll( '[data-js="panel-radio"]' );
+		const switcherName = wrapper.getAttribute( 'data-panel-switcher' );
+		const radioButtons = document.querySelectorAll( `input[name="${ switcherName }"][data-js="panel-radio"]` );
 
 		if ( ! radioButtons.length ) {
 			return;
 		}
 
+		// Set initial aria-hidden on all panels except the first
+		radioButtons.forEach( ( r, i ) => {
+			const panelId = r.getAttribute( 'aria-controls' );
+			const panel = panelId ? document.getElementById( panelId ) : null;
+			if ( panel ) {
+				panel.setAttribute( 'aria-hidden', i === 0 ? 'false' : 'true' );
+			}
+		} );
+
 		radioButtons.forEach( ( radio, index ) => {
 			// Add change listener to update ARIA states
 			radio.addEventListener( 'change', function() {
 				if ( this.checked ) {
-					// Update all radio buttons' aria-selected state
 					radioButtons.forEach( ( r, i ) => {
 						r.setAttribute( 'aria-selected', i === index ? 'true' : 'false' );
+						const panelId = r.getAttribute( 'aria-controls' );
+						const panel = panelId ? document.getElementById( panelId ) : null;
+						if ( panel ) {
+							panel.setAttribute( 'aria-hidden', i === index ? 'false' : 'true' );
+						}
 					} );
 				}
 			} );
@@ -1910,6 +1924,10 @@
 			button.setAttribute( 'aria-controls', contentId );
 			button.innerHTML = header.innerHTML;
 
+			if ( content ) {
+				content.setAttribute( 'aria-hidden', index === 0 ? 'false' : 'true' );
+			}
+
 			// Replace h2 with button
 			header.parentNode.replaceChild( button, header );
 
@@ -1923,11 +1941,14 @@
 				wrapper.querySelectorAll( '.panel-switcher__accordion-toggle' ).forEach( ( toggle ) => {
 					if ( toggle !== this ) {
 						toggle.setAttribute( 'aria-expanded', 'false' );
+						const otherPanel = document.getElementById( toggle.getAttribute( 'aria-controls' ) );
+						if ( otherPanel ) { otherPanel.setAttribute( 'aria-hidden', 'true' ); }
 					}
 				} );
 
 				// Toggle current panel
 				this.setAttribute( 'aria-expanded', isExpanded ? 'false' : 'true' );
+				if ( content ) { content.setAttribute( 'aria-hidden', isExpanded ? 'true' : 'false' ); }
 			} );
 		} );
 	}
