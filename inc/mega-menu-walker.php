@@ -54,12 +54,18 @@ class Mega_Menu_Walker extends Walker_Nav_Menu
         $link_after = isset($args->link_after) ? $args->link_after : '';
         $after = isset($args->after) ? $args->after : '';
 
+        $is_external = !empty($item->target) && $item->target === '_blank';
+
         $output .= '<li' . $class_names . '>';
         $output .= $before;
         // Output the link
         if ($item->url === '#' || empty($item->url)) {
             // Output as label if URL is '#' or empty
             $output .= '<span class="fs-100 menu-label uppercase grey-text">' . $link_before . esc_html($item->title) . $link_after . '</span>';
+        } elseif ($is_external) {
+            // External link: add visible icon and screen-reader label
+            $external_icon = '<img src="' . esc_url(get_template_directory_uri() . '/images/icon-external-link.svg') . '" class="icon-external-link" alt="" width="16" height="16" /><span class="screen-reader-text"> (opens in a new tab)</span>';
+            $output .= '<a' . $attributes . ' rel="noopener noreferrer">' . $link_before . esc_html($item->title) . $external_icon . $link_after . '</a>';
         } else {
             // Output as link
             $output .= '<a' . $attributes . '>' . $link_before . esc_html($item->title) . $link_after . '</a>';
@@ -159,3 +165,4 @@ class Mega_Menu_Walker extends Walker_Nav_Menu
         return '<ul id="menu-primary" class="menu nav-menu" data-js-nav="menu">' . $items . '</ul>' . $mega_output;
     }
 }
+

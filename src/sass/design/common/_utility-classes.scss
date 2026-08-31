@@ -712,6 +712,14 @@
   }
 }
 
+/* External link icon in navigation */
+.icon-external-link {
+  display: inline-block;
+  vertical-align: middle;
+  margin-left: 3px;
+  opacity: 0.45;
+}
+
 /* JS animation state — hides elements before JavaScript animates them in.
  * !important overrides Animate.css animation-fill-mode: both so resets work correctly. */
 
