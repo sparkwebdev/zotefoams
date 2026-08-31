@@ -7,15 +7,20 @@ $wrapper_classes = 'step-slider theme-dark';
 ?>
 
 <?php if ($slides) : ?>
-<div class="<?php echo $wrapper_classes; ?>">
-		<?php foreach ($slides as $slide) :
+<?php $total_slides = count($slides); ?>
+<div class="<?php echo $wrapper_classes; ?>"
+     role="region"
+     aria-label="<?php esc_attr_e('Steps', 'zotefoams'); ?>">
+		<?php foreach ($slides as $slide_index => $slide) :
 			$image = $slide['step_slider_slide_image'];
 			$overline = $slide['step_slider_slide_overline'];
 			$title = $slide['step_slider_slide_title'];
 			$text  = $slide['step_slider_slide_text'];
 			$image_url = Zotefoams_Image_Helper::get_image_url($image, 'large', 'step-slider');
 		?>
-			<div class="step-slider__slide black-bg white-text">
+			<div class="step-slider__slide black-bg white-text"
+			     role="group"
+			     aria-label="<?php echo esc_attr(sprintf(__('Step %1$d of %2$d', 'zotefoams'), $slide_index + 1, $total_slides)); ?>">
 				<div class="step-slider__cols">
 					<img class="step-slider__image" src="<?php echo esc_url($image_url); ?>" alt="<?php echo esc_attr($title); ?>" />
 
