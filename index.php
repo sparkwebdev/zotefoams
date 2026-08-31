@@ -18,10 +18,6 @@ get_header();
 
 		if ( is_home() && ! is_front_page() ) :
 			?>
-			<header>
-				
-			</header>
-
 			<header class="text-banner padding-t-b-70">
 				<div class="cont-m">
 					<h1><?php single_post_title(); ?></h1>
