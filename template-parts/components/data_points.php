@@ -65,7 +65,7 @@ $wrapper_classes = Zotefoams_Theme_Helper::get_wrapper_classes([
                     <p class="value fw-bold fs-700 margin-b-10" <?php echo $attr_string; ?>>0</p>
 
                     <?php if ($label): ?>
-                        <label class="sub-title fs-100"><?php echo esc_html($label); ?></label>
+                        <p class="sub-title fs-100"><?php echo esc_html($label); ?></p>
                     <?php endif; ?>
                 </div>
             <?php endforeach; ?>
