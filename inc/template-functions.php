@@ -234,19 +234,19 @@ function insert_video_overlay()
     $overlay_inserted = true;
 ?>
     <!-- Video Overlay -->
-    <div
-        class="video-overlay" data-modal="video" role="dialog" aria-modal="true" aria-label="Video player" aria-hidden="true" tabindex="-1">
+    <dialog class="video-overlay" data-modal="video" aria-label="Video player">
+
+        <button class="video-overlay__close" data-video-close aria-label="Close video overlay" autofocus>
+            Close
+        </button>
         <div class="video-overlay__content">
             <iframe
                 class="video-overlay__iframe" data-video-iframe width="100%" height="100%" frameborder="0"
+                title="YouTube video player"
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                 allowfullscreen></iframe>
         </div>
-
-        <button class="video-overlay__close" data-video-close aria-label="Close video overlay">
-            Close
-        </button>
-    </div>
+    </dialog>
 
 <?php
 }

@@ -27,26 +27,37 @@
 }
 
 .video-overlay {
+  border: none;
+  margin: 0;
+  padding: 50px;
+  background: transparent;
+
+  // Overrides <dialog>'s browser-default centering.
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(0, 0, 0, 0.85);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  z-index: 10000;
-  padding: 50px;
+  max-width: 100%;
+  max-height: 100%;
   box-sizing: border-box;
+  z-index: 10000;
 
   opacity: 0;
-  pointer-events: none;
   transition: opacity 0.3s ease;
+
+  &[open] {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
 
   &.is-visible {
     opacity: 1;
-    pointer-events: auto;
+  }
+
+  &::backdrop {
+    background-color: rgba(0, 0, 0, 0.85);
   }
 
   &__content,
