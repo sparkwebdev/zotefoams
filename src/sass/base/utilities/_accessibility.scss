@@ -37,6 +37,11 @@
 
 /* Do not show the outline on the skip link target. */
 
-#primary[tabindex="-1"]:focus {
+#page[tabindex="-1"]:focus {
   outline: 0;
+}
+
+// :focus-visible (not :focus) keeps mouse-click focus ring-free.
+:focus-visible {
+  outline: 2px dotted var(--color-link);
 }
