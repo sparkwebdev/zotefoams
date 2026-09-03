@@ -95,7 +95,7 @@
 }
 
 /* Icon pseudo-elements */
-.menu-item-has-children > a::after,
+.menu-item-has-children > [aria-expanded]::after,
 .sub-menu li a::before {
   background: center no-repeat;
   background-image: var(--chevron-image);
@@ -105,7 +105,7 @@
   display: inline-block;
 }
 
-.menu-item-has-children > a {
+.menu-item-has-children > [aria-expanded] {
   &::after {
     transform: rotate(90deg);
   }
@@ -135,13 +135,13 @@
 }
 
 .utility-menu {
-  .menu-item-has-children > a::after,
+  .menu-item-has-children > [aria-expanded]::after,
   .sub-menu li a::before {
     content: "";
   }
 }
 @media screen and (min-width: $bp-lg) {
-  .menu-item-has-children > a::after,
+  .menu-item-has-children > [aria-expanded]::after,
   .sub-menu li a::before {
     content: "";
   }

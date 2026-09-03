@@ -1878,7 +1878,7 @@
 
 	function initUtilitySearch() {
 		const menu = document.querySelector( '#menu-utility' );
-		const searchItem = menu?.querySelector( 'a[href="/search"]' );
+		let searchItem = menu?.querySelector( 'a[href="/search"]' );
 
 		if ( ! menu || ! searchItem ) {
 			return;
@@ -1888,10 +1888,14 @@
 		const searchItemParent = searchItem.parentElement;
 		searchItemParent?.classList.add( 'menu-item-has-children' );
 
-		// Enhance searchItem for accessibility
-		searchItem.setAttribute( 'role', 'button' );
-		searchItem.setAttribute( 'aria-expanded', 'false' );
-		searchItem.setAttribute( 'aria-controls', 'utility-search-form' );
+		const searchButton = document.createElement( 'button' );
+		searchButton.type = 'button';
+		searchButton.className = searchItem.className;
+		searchButton.textContent = searchItem.textContent;
+		searchButton.setAttribute( 'aria-expanded', 'false' );
+		searchButton.setAttribute( 'aria-controls', 'utility-search-form' );
+		searchItem.replaceWith( searchButton );
+		searchItem = searchButton;
 
 		// Create and inject the search container
 		const searchContainer = document.createElement( 'div' );
@@ -1954,32 +1958,23 @@
 			}
 		} );
 
-		const toggleSearch = () => {
+		const toggleSearch = ( focusInput = false ) => {
 			const isHidden = searchContainer.hasAttribute( 'hidden' );
 			if ( isHidden ) {
-				openSearch();
+				openSearch( focusInput );
 			} else {
 				closeSearch();
 			}
 		};
 
-		// Click to toggle
+		// Click to toggle. A native <button> already fires `click` for mouse,
+		// touch, and keyboard (Enter/Space) activation, so this one listener
+		// replaces the old separate click + keydown handlers. `event.detail`
+		// is 0 for a keyboard/AT-triggered click (vs the click count for a
+		// real pointer click), which lets us keep auto-focusing the input
+		// only when the toggle was activated via keyboard.
 		searchItem.addEventListener( 'click', ( e ) => {
-			e.preventDefault();
-			toggleSearch();
-		} );
-
-		// Enter/Space key opens with focus on input
-		searchItem.addEventListener( 'keydown', ( e ) => {
-			if ( [ 'Enter', ' ' ].includes( e.key ) ) {
-				e.preventDefault();
-				const isHidden = searchContainer.hasAttribute( 'hidden' );
-				if ( isHidden ) {
-					openSearch( true ); // Focus input when opening via keyboard
-				} else {
-					closeSearch();
-				}
-			}
+			toggleSearch( e.detail === 0 );
 		} );
 
 		// Escape closes
@@ -2019,10 +2014,16 @@
 				closeSearch();
 				searchItem.focus();
 			} else if ( ! e.shiftKey && document.activeElement === last ) {
-				// Tab on last element → close and focus next menu item
-				e.preventDefault();
+				// Tab on last element → close, then move focus to the next menu
+				// item if there is one. If this is the last item in the menu
+				// there's nothing to manually focus, so don't preventDefault —
+				// previously that always ran, stranding focus with nowhere to
+				// go when nextMenuItem was undefined.
 				closeSearch();
-				nextMenuItem?.focus();
+				if ( nextMenuItem ) {
+					e.preventDefault();
+					nextMenuItem.focus();
+				}
 			}
 		} );
 	}

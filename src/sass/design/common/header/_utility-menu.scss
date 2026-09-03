@@ -12,10 +12,21 @@
     justify-content: flex-end;
     gap: 15px;
 
-    a {
-      --nav-link-color: #fff;
-      font-size: 0.9em;
+    a,
+    button {
+      display: block;
+      border: 0;
+      background: transparent;
       padding: 10px 0;
+      font: inherit;
+      font-size: 0.9em;
+      font-weight: 500;
+      color: var(--nav-link-color);
+      text-transform: capitalize;
+      cursor: pointer;
+      transition: color 0.3s;
+
+      --nav-link-color: #fff;
 
       &:hover,
       &:focus {
@@ -49,7 +60,8 @@
     .menu {
       gap: 3%;
 
-      a {
+      a,
+      button {
         font-size: 0.85em;
         font-size: clamp(0.8125rem, 0.6987rem + 0.5357vw, 1rem);
         letter-spacing: -0.025rem;

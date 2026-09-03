@@ -2024,7 +2024,7 @@ footer div.wpforms-container.wpforms-container-full:not(:empty) {
 }
 
 /* Icon pseudo-elements */
-.menu-item-has-children > a::after,
+.menu-item-has-children > [aria-expanded]::after,
 .sub-menu li a::before {
   background: center no-repeat;
   background-image: var(--chevron-image);
@@ -2034,10 +2034,10 @@ footer div.wpforms-container.wpforms-container-full:not(:empty) {
   display: inline-block;
 }
 
-.menu-item-has-children > a::after {
+.menu-item-has-children > [aria-expanded]::after {
   transform: rotate(90deg);
 }
-.menu-item-has-children > a[aria-expanded=true]::after {
+.menu-item-has-children > [aria-expanded][aria-expanded=true]::after {
   background-image: var(--chevron-image-hover);
   transform: rotate(-90deg);
 }
@@ -2058,13 +2058,13 @@ footer div.wpforms-container.wpforms-container-full:not(:empty) {
   --chevron-image-hover: url(images/icon-right-arrow-white.svg);
 }
 
-.utility-menu .menu-item-has-children > a::after,
+.utility-menu .menu-item-has-children > [aria-expanded]::after,
 .utility-menu .sub-menu li a::before {
   content: "";
 }
 
 @media screen and (min-width: 64rem) {
-  .menu-item-has-children > a::after,
+  .menu-item-has-children > [aria-expanded]::after,
   .sub-menu li a::before {
     content: "";
   }
@@ -2382,12 +2382,24 @@ footer div.wpforms-container.wpforms-container-full:not(:empty) {
   justify-content: flex-end;
   gap: 15px;
 }
-.utility-menu .menu a {
-  --nav-link-color: #fff;
-  font-size: 0.9em;
+.utility-menu .menu a,
+.utility-menu .menu button {
+  display: block;
+  border: 0;
+  background: transparent;
   padding: 10px 0;
+  font: inherit;
+  font-size: 0.9em;
+  font-weight: 500;
+  color: var(--nav-link-color);
+  text-transform: capitalize;
+  cursor: pointer;
+  transition: color 0.3s;
+  --nav-link-color: #fff;
 }
-.utility-menu .menu a:hover, .utility-menu .menu a:focus {
+.utility-menu .menu a:hover, .utility-menu .menu a:focus,
+.utility-menu .menu button:hover,
+.utility-menu .menu button:focus {
   --nav-link-color: var(--color-text-light);
 }
 .utility-menu .menu > li > ul {
@@ -2413,7 +2425,8 @@ footer div.wpforms-container.wpforms-container-full:not(:empty) {
   .utility-menu .menu {
     gap: 3%;
   }
-  .utility-menu .menu a {
+  .utility-menu .menu a,
+  .utility-menu .menu button {
     font-size: 0.85em;
     font-size: clamp(0.8125rem, 0.6987rem + 0.5357vw, 1rem);
     letter-spacing: -0.025rem;
