@@ -27,7 +27,7 @@ $wrapper_classes = Zotefoams_Theme_Helper::get_wrapper_classes([
 
     <div class="cont-m">
         <?php if ($title): ?>
-            <h3 class="fw-bold margin-b-40"><?php echo esc_html($title); ?></h3>
+            <h2 class="fw-bold margin-b-40"><?php echo esc_html($title); ?></h2>
         <?php endif; ?>
     </div>
 
