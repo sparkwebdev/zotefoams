@@ -24,11 +24,6 @@
   margin-bottom: 20px;
   font-weight: 700;
   width: 100px;
-
-  &:focus-visible {
-    outline: 1px dotted var(--color-link);
-    outline-offset: 2px;
-  }
 }
 
 .document-list {

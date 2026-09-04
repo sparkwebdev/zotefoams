@@ -5100,10 +5100,6 @@ a.read-more.hl.arrow:focus::after {
   font-weight: 700;
   width: 100px;
 }
-.financial-documents-picker select:focus-visible {
-  outline: 1px dotted var(--color-link);
-  outline-offset: 2px;
-}
 
 .document-list {
   list-style: none;
