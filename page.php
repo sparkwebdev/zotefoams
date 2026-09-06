@@ -18,6 +18,8 @@ if (function_exists('get_field')) {
 		include locate_template('/template-parts/components/text-banner.php', false, false);
 	} elseif ($page_header_type === 'image') {
 		include locate_template('/template-parts/components/image-banner.php', false, false);
+	} elseif ($page_header_type === 'hero') {
+		include locate_template('/template-parts/components/hero_banner/layout.php', false, false);
 	}
 }
 
@@ -39,7 +41,10 @@ else :
 					echo '<div class="blue-bg"><div class="white-text cont-m padding-t-b-30"><h2>' . esc_html(ucwords(str_replace('_', ' ', $component))) . ' ' . esc_html($i) . '</h2></div></div>';
 				}
 
-				include locate_template('/template-parts/components/' . $component . '.php', false, false);
+				include locate_template([
+					'/template-parts/components/' . $component . '/layout.php',
+					'/template-parts/components/' . $component . '.php'
+				], false, false);
 				$i++;
 			}
 		}

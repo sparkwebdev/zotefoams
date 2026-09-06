@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Zotefoams functions and definitions
  *
@@ -18,6 +19,21 @@ if (!defined('_S_VERSION')) {
  */
 if (!defined('ZOTEFOAMS_OUR_MATERIALS_PAGE_ID')) {
     define('ZOTEFOAMS_OUR_MATERIALS_PAGE_ID', 9); // "Our Materials" page ID
+}
+
+if (wp_get_environment_type() !== 'production') {
+    // Plugins.
+    define('MY_ACF_PATH', get_template_directory() . '/plugins/acf/');
+    define('MY_ACF_URL', get_template_directory_uri() . '/plugins/acf/');
+
+    include_once get_template_directory() . '/plugins/advanced-custom-fields-pro/acf.php';
+
+    add_filter(
+        'acf/settings/url',
+        function () {
+            return get_template_directory_uri() . '/plugins/advanced-custom-fields-pro/';
+        }
+    );
 }
 
 /**

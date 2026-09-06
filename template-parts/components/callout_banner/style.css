@@ -1,0 +1,96 @@
+.component-callout-banner {
+	--component-callout-banner__bg--from: #f8f8f8;
+	--component-callout-banner__bg--to: #f8f8f8;
+	--component-callout-banner__bg--title: #000;
+	--component-callout-banner__bg--description: var(--color-text);
+	--component-callout-banner__bg--cta: var(--color-link);
+}
+
+.component-callout-banner--dark {
+	--component-callout-banner__bg--from: #000000;
+	--component-callout-banner__bg--to: #0a295d;
+	--component-callout-banner__bg--title: #fff;
+	--component-callout-banner__bg--description: #cad5e2;
+	--component-callout-banner__bg--cta: #fff;
+}
+
+.component-callout-banner--sustainability {
+	--component-callout-banner__bg--from: #f7fff1;
+	--component-callout-banner__bg--to: #f7fff1;
+	--component-callout-banner__bg--title: #1e4428;
+	--component-callout-banner__bg--description: #1e4428;
+	--component-callout-banner__bg--cta: #62a709;
+}
+
+.component-callout-banner__box {
+	display: grid;
+	grid-template-rows: auto 12rem;
+	background-color: var(--component-callout-banner__bg--from);
+	background-image: linear-gradient(
+		45deg,
+		var(--component-callout-banner__bg--from),
+		var(--component-callout-banner__bg--to)
+	);
+}
+.component-callout-banner__text {
+	padding: 1.5rem;
+}
+.component-callout-banner__title {
+	color: var(--component-callout-banner__bg--title);
+	margin-bottom: 1rem;
+}
+.component-callout-banner__description {
+	color: var(--component-callout-banner__bg--description);
+	max-width: 50ch;
+	margin-bottom: 1.5rem;
+}
+.component-callout-banner__cta {
+	color: var(--component-callout-banner__bg--cta);
+	display: flex;
+	align-items: center;
+	gap: 0.25rem;
+}
+.component-callout-banner__cta .component-link__icon {
+	flex-shrink: 0;
+	width: 1.375rem;
+	height: 1.375rem;
+	fill: currentColor;
+}
+.component-callout-banner__zoteiq {
+	margin-top: 2rem;
+}
+
+.component-callout-banner__img-wrapper {
+	position: relative;
+}
+
+.component-callout-banner__img {
+	position: absolute;
+	inset: 0;
+	height: 100%;
+	width: 100%;
+	object-fit: contain;
+	object-position: bottom;
+}
+
+@media (width >= 40rem) {
+	.component-callout-banner__text {
+		padding: 2rem;
+	}
+}
+
+@media (width >= 64rem) {
+	.component-callout-banner__text {
+		padding: 3rem;
+	}
+
+	.component-callout-banner__box {
+		grid-template-columns: 75ch 1fr;
+		grid-template-rows: 1fr;
+	}
+	.component-callout-banner__img {
+		top: -4rem;
+		height: calc(100% + 4rem);
+		object-position: bottom right;
+	}
+}

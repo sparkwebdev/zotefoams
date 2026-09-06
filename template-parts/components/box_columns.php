@@ -9,7 +9,12 @@ $posts_page_id = zotefoams_get_page_for_posts_id();
 $use_categories = ($behaviour === 'children' && $page_id == $posts_page_id);
 
 // Generate classes to match original structure exactly
-$wrapper_classes = 'box-columns cont-m padding-t-b-100 theme-none';
+$wrapper_classes = 'box-columns cont-m theme-none';
+
+if (!get_sub_field('without_padding')) {
+    $wrapper_classes .= ' padding-t-b-100';
+}
+
 ?>
 
 <div class="<?php echo esc_attr($wrapper_classes); ?>">
