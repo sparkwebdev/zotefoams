@@ -16,6 +16,8 @@ function initVideoModal() {
 	const closeBtn = document.querySelector( '[data-video-close]' );
 
 	let lastFocusedElement = null;
+	let cleanupTimer = null;
+	let cleanedUp = true;
 
 	function getYouTubeId( url ) {
 		try {
@@ -35,6 +37,7 @@ function initVideoModal() {
 		}
 
 		lastFocusedElement = document.activeElement;
+		cleanedUp = false;
 		iframe.src = `https://www.youtube.com/embed/${ videoId }?autoplay=1`;
 		overlay.showModal();
 		requestAnimationFrame( () => overlay.classList.add( 'is-visible' ) );
@@ -42,22 +45,30 @@ function initVideoModal() {
 		closeBtn?.focus();
 	}
 
-	function closeOverlay() {
-		overlay.classList.remove( 'is-visible' );
-		document.body.classList.remove( 'modal-open' );
-	}
-
-	// Waits for the fade-out transition rather than a fixed setTimeout — elements
-	// outside an open showModal() dialog are inert, so closing/unfocusing early fails silently.
-	overlay.addEventListener( 'transitionend', ( e ) => {
-		if ( e.target !== overlay || e.propertyName !== 'opacity' || overlay.classList.contains( 'is-visible' ) ) {
+	function cleanup() {
+		if ( cleanedUp ) {
 			return;
 		}
+		cleanedUp = true;
+		clearTimeout( cleanupTimer );
 		overlay.close();
 		iframe.src = '';
 		if ( lastFocusedElement ) {
 			lastFocusedElement.focus();
 		}
+	}
+
+	function closeOverlay() {
+		overlay.classList.remove( 'is-visible' );
+		document.body.classList.remove( 'modal-open' );
+		cleanupTimer = setTimeout( cleanup, 400 );
+	}
+
+	overlay.addEventListener( 'transitionend', ( e ) => {
+		if ( e.target !== overlay || e.propertyName !== 'opacity' || overlay.classList.contains( 'is-visible' ) ) {
+			return;
+		}
+		cleanup();
 	} );
 
 	triggers.forEach( ( link ) => {
