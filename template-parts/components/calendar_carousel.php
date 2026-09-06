@@ -78,6 +78,6 @@ $wrapper_classes = 'cont-m padding-t-b-100 theme-none';
     </div><!-- .calendar-carousel-wrapper -->
 
     <?php if ($note): ?>
-        <p class="calendar-carousel__note fs-200"><small><?php echo esc_html($note); ?></small></p>
+        <p class="calendar-carousel__note"><small class="fs-200"><?php echo esc_html($note); ?></small></p>
     <?php endif; ?>
 </div>
