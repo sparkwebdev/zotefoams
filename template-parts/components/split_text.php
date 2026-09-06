@@ -4,7 +4,11 @@ $title = zotefoams_get_sub_field_safe('split_text_title', '', 'html');
 $text  = zotefoams_get_sub_field_safe('split_text_text', '', 'html');
 
 // Generate classes to match original structure exactly
-$wrapper_classes = 'split-text cont-m padding-t-100 padding-b-80 grey-text theme-none';
+$wrapper_classes = 'split-text cont-m grey-text theme-none';
+
+if (!get_sub_field('without_padding')) {
+    $wrapper_classes .= ' padding-t-100 padding-b-80';
+}
 ?>
 
 <div class="<?php echo esc_attr($wrapper_classes); ?>">
