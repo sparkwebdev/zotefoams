@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Zotefoams functions and definitions
  *
@@ -20,9 +21,8 @@ if (!defined('ZOTEFOAMS_OUR_MATERIALS_PAGE_ID')) {
     define('ZOTEFOAMS_OUR_MATERIALS_PAGE_ID', 9); // "Our Materials" page ID
 }
 
-// Vendor ACF Pro locally for non-production environments so dev/staging
-// setups work without a separately licensed ACF Pro install.
 if (wp_get_environment_type() !== 'production') {
+    // Plugins.
     define('MY_ACF_PATH', get_template_directory() . '/plugins/acf/');
     define('MY_ACF_URL', get_template_directory_uri() . '/plugins/acf/');
 

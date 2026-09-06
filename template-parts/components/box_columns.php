@@ -14,6 +14,7 @@ $wrapper_classes = 'box-columns cont-m theme-none';
 if (!get_sub_field('without_padding')) {
     $wrapper_classes .= ' padding-t-b-100';
 }
+
 ?>
 
 <div class="<?php echo esc_attr($wrapper_classes); ?>">

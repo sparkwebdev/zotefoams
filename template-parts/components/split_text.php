@@ -9,6 +9,7 @@ $wrapper_classes = 'split-text cont-m grey-text theme-none';
 if (!get_sub_field('without_padding')) {
     $wrapper_classes .= ' padding-t-100 padding-b-80';
 }
+
 ?>
 
 <div class="<?php echo esc_attr($wrapper_classes); ?>">
