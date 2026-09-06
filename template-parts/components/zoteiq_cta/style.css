@@ -1,0 +1,55 @@
+.component-zoteiq-cta {
+}
+
+.component-zoteiq-cta__icon {
+	width: 2.25rem;
+	height: 2.25rem;
+	margin-top: 0.125rem;
+}
+
+.component-zoteiq-cta__pill {
+	display: flex;
+	align-items: start;
+	gap: 0.75rem;
+	padding: 0.675rem;
+	padding-left: 0.75rem;
+	padding-right: 2rem;
+	border: 1px solid var(--color-link);
+	border-radius: 2.25rem;
+	width: fit-content;
+	outline: 5px solid rgba(59 130 246 / 0.25);
+	animation: component-zoteiq-cta__pill__glow 3s linear infinite;
+	background: #fff;
+}
+
+.component-zoteiq-cta__text {
+	display: flex;
+	flex-direction: column;
+	gap: 0;
+}
+
+.component-zoteiq-cta__intro {
+	color: var(--color-text);
+	font-size: 0.75rem;
+	font-weight: 600;
+}
+
+.component-zoteiq-cta__question {
+	color: var(--color-link);
+	font-size: 0.875rem;
+	font-weight: 600;
+}
+
+@keyframes component-zoteiq-cta__pill__glow {
+	0% {
+		outline-color: rgba(59 130 246 / 0.25);
+	}
+
+	50% {
+		outline-color: rgba(59 130 246 / 0.05);
+	}
+
+	100% {
+		outline-color: rgba(59 130 246 / 0.25);
+	}
+}
