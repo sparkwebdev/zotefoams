@@ -95,17 +95,20 @@
 }
 
 /* Icon pseudo-elements */
-.menu-item-has-children > [aria-expanded]::after,
+.menu-item-has-children > a::after,
+.menu-item-has-children > button::after,
 .sub-menu li a::before {
   background: center no-repeat;
   background-image: var(--chevron-image);
   background-size: 10px 10px;
-  width: 20px;
+  width: 15px;
   height: 10px;
   display: inline-block;
+  margin-left: 3px;
 }
 
-.menu-item-has-children > [aria-expanded] {
+.menu-item-has-children > a,
+.menu-item-has-children > button {
   &::after {
     transform: rotate(90deg);
   }
@@ -135,13 +138,15 @@
 }
 
 .utility-menu {
-  .menu-item-has-children > [aria-expanded]::after,
+  .menu-item-has-children > a::after,
+  .menu-item-has-children > button::after,
   .sub-menu li a::before {
     content: "";
   }
 }
 @media screen and (min-width: $bp-lg) {
-  .menu-item-has-children > [aria-expanded]::after,
+  .menu-item-has-children > a::after,
+  .menu-item-has-children > button::after,
   .sub-menu li a::before {
     content: "";
   }

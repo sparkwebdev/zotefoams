@@ -386,6 +386,7 @@
 	        }
 	        link.setAttribute('data-mega-nav-initialized', 'true');
 	        megaMenu.setAttribute('aria-hidden', 'true');
+	        setAriaExpanded(link, false);
 	        const menuItem = link.parentNode;
 	        if (megaNavMode === 'hover') {
 	          // DESKTOP: Hover mode
