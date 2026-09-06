@@ -251,3 +251,49 @@ function insert_video_overlay()
 <?php
 }
 add_action('wp_footer', 'insert_video_overlay');
+
+function zotefoams_link(array|string|null $link, string $classes = '')
+{
+    if (is_string($link) || empty($link)) {
+        return;
+    }
+
+?>
+
+    <a href="<?php echo esc_url($link['url']); ?>" class="component-link <?php echo esc_attr($classes); ?>" <?php if (!empty($link['target'])) echo 'target="' . esc_attr($link['target']) . '"'; ?>>
+        <?php echo esc_html($link['title'] ?? 'Get in touch'); ?>
+
+        <svg class="component-link__icon" xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#1f1f1f">
+            <path d="M504-480 320-664l56-56 240 240-240 240-56-56 184-184Z" />
+        </svg>
+    </a>
+
+<?php
+}
+
+function zoteiq_link(string|null $question, string $classes = '')
+{
+    if (!$question) {
+        return;
+    }
+
+    wp_enqueue_style('component-zoteiq-cta', get_template_directory_uri() . '/template-parts/components/zoteiq_cta/style.css', [], '1.0.0');
+
+?>
+
+    <a class="<?php echo esc_attr($classes) ?> component-zoteiq-cta__pill" href="/find-your-foam/">
+        <img src="<?php echo esc_attr(get_template_directory_uri() . '/template-parts/components/zoteiq_cta/icon.png'); ?>" loading="lazy" class="component-zoteiq-cta__icon" width="50" height="50" />
+
+        <div class="component-zoteiq-cta__text">
+            <span class="component-zoteiq-cta__intro">
+                You could ask,
+            </span>
+
+            <span class="component-zoteiq-cta__question">
+                <?php echo wp_kses_post($question) ?>
+            </span>
+        </div>
+    </a>
+
+<?php
+}
