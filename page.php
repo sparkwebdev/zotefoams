@@ -18,6 +18,8 @@ if (function_exists('get_field')) {
 		include locate_template('/template-parts/components/text-banner.php', false, false);
 	} elseif ($page_header_type === 'image') {
 		include locate_template('/template-parts/components/image-banner.php', false, false);
+	} elseif ($page_header_type === 'hero') {
+		include locate_template('/template-parts/components/hero_banner/layout.php', false, false);
 	}
 }
 
