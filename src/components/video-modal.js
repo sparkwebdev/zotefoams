@@ -78,20 +78,18 @@ function initVideoModal() {
 		} );
 	} );
 
-	// Backdrop click — clicking outside dialog content fires click on the dialog itself
 	overlay.addEventListener( 'click', ( e ) => {
 		if ( e.target === overlay ) {
 			closeOverlay();
 		}
 	} );
 
-	// Intercept native ESC so our fade-out transition runs before close()
 	overlay.addEventListener( 'cancel', ( e ) => {
 		e.preventDefault();
 		closeOverlay();
 	} );
 
-	// Manual focus trap — native <dialog> cycling is unreliable in Safari/some Chrome builds
+	// Native <dialog> doesn't Tab-cycle focus on its own — hand-rolled here.
 	overlay.addEventListener( 'keydown', ( e ) => {
 		if ( e.key !== 'Tab' || ! overlay.open ) {
 			return;

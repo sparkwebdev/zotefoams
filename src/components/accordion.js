@@ -8,8 +8,6 @@ function initAccordion() {
 	// Accordion
 	const headers = document.querySelectorAll( '[data-js="accordion-header"]' );
 
-	// Pair each header with its panel for assistive tech: aria-controls -> panel id,
-	// and reflect the panel's initial collapsed state (WCAG 1.3.1 / 4.1.2).
 	headers.forEach( ( header, i ) => {
 		const panel = header.nextElementSibling;
 		if ( ! panel ) {

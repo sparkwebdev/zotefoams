@@ -36,7 +36,6 @@ function initDesktopTabsAccessibility( wrapper ) {
 		return;
 	}
 
-	// Set initial aria-hidden on all panels except the first
 	radioButtons.forEach( ( r, i ) => {
 		const panelId = r.getAttribute( 'aria-controls' );
 		const panel = panelId ? document.getElementById( panelId ) : null;

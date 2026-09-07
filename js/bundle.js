@@ -1081,7 +1081,6 @@
 	}
 
 	function initLocationsMap() {
-		// [aria-expanded] excludes decorative-only markers (plain <span>, no popup).
 		const locations = ZotefoamsDOMUtils.selectAll( '.locations-map__location[aria-expanded]' );
 
 		locations.forEach( ( location ) => {
@@ -1110,7 +1109,6 @@
 				} );
 			}
 
-			// ⌨️ Keyboard: Focus interaction
 			ZotefoamsEventUtils.on( location, 'focus', () => showPopup$1( location ) );
 			ZotefoamsEventUtils.on( location, 'blur', ( e ) => {
 				if ( popup.contains( e.relatedTarget ) ) {
@@ -1697,20 +1695,18 @@
 			} );
 		} );
 
-		// Backdrop click — clicking outside dialog content fires click on the dialog itself
 		overlay.addEventListener( 'click', ( e ) => {
 			if ( e.target === overlay ) {
 				closeOverlay();
 			}
 		} );
 
-		// Intercept native ESC so our fade-out transition runs before close()
 		overlay.addEventListener( 'cancel', ( e ) => {
 			e.preventDefault();
 			closeOverlay();
 		} );
 
-		// Manual focus trap — native <dialog> cycling is unreliable in Safari/some Chrome builds
+		// Native <dialog> doesn't Tab-cycle focus on its own — hand-rolled here.
 		overlay.addEventListener( 'keydown', ( e ) => {
 			if ( e.key !== 'Tab' || ! overlay.open ) {
 				return;
@@ -1747,8 +1743,6 @@
 		// Accordion
 		const headers = document.querySelectorAll( '[data-js="accordion-header"]' );
 
-		// Pair each header with its panel for assistive tech: aria-controls -> panel id,
-		// and reflect the panel's initial collapsed state (WCAG 1.3.1 / 4.1.2).
 		headers.forEach( ( header, i ) => {
 			const panel = header.nextElementSibling;
 			if ( ! panel ) {
@@ -1910,7 +1904,6 @@
 			return;
 		}
 
-		// Set initial aria-hidden on all panels except the first
 		radioButtons.forEach( ( r, i ) => {
 			const panelId = r.getAttribute( 'aria-controls' );
 			const panel = panelId ? document.getElementById( panelId ) : null;
@@ -2119,12 +2112,6 @@
 			}
 		};
 
-		// Click to toggle. A native <button> already fires `click` for mouse,
-		// touch, and keyboard (Enter/Space) activation, so this one listener
-		// replaces the old separate click + keydown handlers. `event.detail`
-		// is 0 for a keyboard/AT-triggered click (vs the click count for a
-		// real pointer click), which lets us keep auto-focusing the input
-		// only when the toggle was activated via keyboard.
 		searchItem.addEventListener( 'click', ( e ) => {
 			toggleSearch( e.detail === 0 );
 		} );
@@ -2166,11 +2153,6 @@
 				closeSearch();
 				searchItem.focus();
 			} else if ( ! e.shiftKey && document.activeElement === last ) {
-				// Tab on last element → close, then move focus to the next menu
-				// item if there is one. If this is the last item in the menu
-				// there's nothing to manually focus, so don't preventDefault —
-				// previously that always ran, stranding focus with nowhere to
-				// go when nextMenuItem was undefined.
 				closeSearch();
 				if ( nextMenuItem ) {
 					e.preventDefault();

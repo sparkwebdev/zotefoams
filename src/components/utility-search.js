@@ -99,12 +99,6 @@ function initUtilitySearch() {
 		}
 	};
 
-	// Click to toggle. A native <button> already fires `click` for mouse,
-	// touch, and keyboard (Enter/Space) activation, so this one listener
-	// replaces the old separate click + keydown handlers. `event.detail`
-	// is 0 for a keyboard/AT-triggered click (vs the click count for a
-	// real pointer click), which lets us keep auto-focusing the input
-	// only when the toggle was activated via keyboard.
 	searchItem.addEventListener( 'click', ( e ) => {
 		toggleSearch( e.detail === 0 );
 	} );
@@ -146,11 +140,6 @@ function initUtilitySearch() {
 			closeSearch();
 			searchItem.focus();
 		} else if ( ! e.shiftKey && document.activeElement === last ) {
-			// Tab on last element → close, then move focus to the next menu
-			// item if there is one. If this is the last item in the menu
-			// there's nothing to manually focus, so don't preventDefault —
-			// previously that always ran, stranding focus with nowhere to
-			// go when nextMenuItem was undefined.
 			closeSearch();
 			if ( nextMenuItem ) {
 				e.preventDefault();

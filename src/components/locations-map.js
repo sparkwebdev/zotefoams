@@ -61,7 +61,6 @@ function cancelScheduledHide() {
 }
 
 function initLocationsMap() {
-	// [aria-expanded] excludes decorative-only markers (plain <span>, no popup).
 	const locations = ZotefoamsDOMUtils.selectAll( '.locations-map__location[aria-expanded]' );
 
 	locations.forEach( ( location ) => {
@@ -90,7 +89,6 @@ function initLocationsMap() {
 			} );
 		}
 
-		// ⌨️ Keyboard: Focus interaction
 		ZotefoamsEventUtils.on( location, 'focus', () => showPopup( location ) );
 		ZotefoamsEventUtils.on( location, 'blur', ( e ) => {
 			if ( popup.contains( e.relatedTarget ) ) {
