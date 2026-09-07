@@ -1,6 +1,5 @@
 node_modules
 vendor
-/plugins/
 /tests/vrc/results/
 /tests/vrc/.cache
 .last-run.json
