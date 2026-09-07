@@ -1025,11 +1025,11 @@
 	 */
 
 	// Grace period so moving the pointer from marker to popup doesn't close it mid-move.
-	const HOVER_CLOSE_DELAY_MS = 150;
+	const HOVER_CLOSE_DELAY_MS$1 = 150;
 
-	let hideTimeout = null;
+	let hideTimeout$1 = null;
 
-	function closePopup( trigger ) {
+	function closePopup$1( trigger ) {
 		trigger.setAttribute( 'aria-expanded', 'false' );
 		const popup = trigger.querySelector( '.locations-map__popup' );
 		if ( popup ) {
@@ -1039,15 +1039,15 @@
 	}
 
 	function hideAllPopups$1() {
-		ZotefoamsDOMUtils.selectAll( '.locations-map__location[aria-expanded]' ).forEach( closePopup );
+		ZotefoamsDOMUtils.selectAll( '.locations-map__location[aria-expanded]' ).forEach( closePopup$1 );
 	}
 
 	function showPopup$1( sender ) {
-		clearTimeout( hideTimeout );
+		clearTimeout( hideTimeout$1 );
 
 		ZotefoamsDOMUtils.selectAll( '.locations-map__location[aria-expanded="true"]' ).forEach( ( other ) => {
 			if ( other !== sender ) {
-				closePopup( other );
+				closePopup$1( other );
 			}
 		} );
 
@@ -1071,13 +1071,13 @@
 		ZotefoamsAnimationUtils.fadeIn( popup );
 	}
 
-	function scheduleHide() {
-		clearTimeout( hideTimeout );
-		hideTimeout = setTimeout( hideAllPopups$1, HOVER_CLOSE_DELAY_MS );
+	function scheduleHide$1() {
+		clearTimeout( hideTimeout$1 );
+		hideTimeout$1 = setTimeout( hideAllPopups$1, HOVER_CLOSE_DELAY_MS$1 );
 	}
 
-	function cancelScheduledHide() {
-		clearTimeout( hideTimeout );
+	function cancelScheduledHide$1() {
+		clearTimeout( hideTimeout$1 );
 	}
 
 	function initLocationsMap() {
@@ -1093,16 +1093,16 @@
 			// 🖱 Desktop: Hover interaction
 			if ( ! ZotefoamsDeviceUtils.isTouchDevice() ) {
 				ZotefoamsEventUtils.on( location, 'mouseenter', () => showPopup$1( location ) );
-				ZotefoamsEventUtils.on( location, 'mouseleave', scheduleHide );
-				ZotefoamsEventUtils.on( popup, 'mouseenter', cancelScheduledHide );
-				ZotefoamsEventUtils.on( popup, 'mouseleave', scheduleHide );
+				ZotefoamsEventUtils.on( location, 'mouseleave', scheduleHide$1 );
+				ZotefoamsEventUtils.on( popup, 'mouseenter', cancelScheduledHide$1 );
+				ZotefoamsEventUtils.on( popup, 'mouseleave', scheduleHide$1 );
 			}
 			// 👆 Mobile: Tap interaction
 			else {
 				ZotefoamsEventUtils.on( location, 'click', ( e ) => {
 					e.stopPropagation();
 					if ( location.getAttribute( 'aria-expanded' ) === 'true' ) {
-						closePopup( location );
+						closePopup$1( location );
 					} else {
 						showPopup$1( location );
 					}
@@ -1114,12 +1114,12 @@
 				if ( popup.contains( e.relatedTarget ) ) {
 					return;
 				}
-				closePopup( location );
+				closePopup$1( location );
 			} );
 
 			ZotefoamsEventUtils.on( location, 'keydown', ( e ) => {
 				if ( e.key === 'Escape' && location.getAttribute( 'aria-expanded' ) === 'true' ) {
-					closePopup( location );
+					closePopup$1( location );
 					location.focus();
 				}
 			} );
@@ -1145,64 +1145,77 @@
 	 * Supports both circle and numbered markers
 	 */
 
-	function showPopup( sender ) {
-		// Hide all other popups
-		const allPopups = ZotefoamsDOMUtils.selectAll( '.interactive-image__popup' );
-		allPopups.forEach( ( popup ) => {
+	const HOVER_CLOSE_DELAY_MS = 150;
+
+	let hideTimeout = null;
+
+	function positionPopup( sender, popup ) {
+		const container = sender.closest( '.interactive-image__container' );
+		const containerRect = container.getBoundingClientRect();
+		const senderRect = sender.getBoundingClientRect();
+
+		const senderCenterX = senderRect.left + ( senderRect.width / 2 ) - containerRect.left;
+		const containerWidth = containerRect.width;
+
+		const isMobile = window.innerWidth <= 768;
+		const popupWidth = isMobile ? 200 : 220;
+		const edgeBuffer = 20;
+
+		popup.className = 'interactive-image__popup';
+
+		if ( senderCenterX < popupWidth / 2 + edgeBuffer ) {
+			popup.classList.add( 'interactive-image__popup--left-aligned' );
+		} else if ( senderCenterX > containerWidth - popupWidth / 2 - edgeBuffer ) {
+			popup.classList.add( 'interactive-image__popup--right-aligned' );
+		} else {
+			popup.classList.add( 'interactive-image__popup--center-aligned' );
+		}
+	}
+
+	function closePopup( trigger ) {
+		trigger.setAttribute( 'aria-expanded', 'false' );
+		const popup = trigger.querySelector( '.interactive-image__popup' );
+		if ( popup ) {
 			popup.style.display = 'none';
 			ZotefoamsAnimationUtils.fadeOut( popup );
-		} );
-
-		const popup = sender.querySelector( '.interactive-image__popup' );
-		if ( popup ) {
-			// Get container and sender dimensions first
-			const container = sender.closest( '.interactive-image__container' );
-			const containerRect = container.getBoundingClientRect();
-			const senderRect = sender.getBoundingClientRect();
-
-			// Calculate sender position relative to container
-			const senderCenterX = senderRect.left + ( senderRect.width / 2 ) - containerRect.left;
-			const containerWidth = containerRect.width;
-
-			// Set initial positioning classes
-			popup.className = 'interactive-image__popup';
-
-			// Determine positioning strategy before showing popup
-			const isMobile = window.innerWidth <= 768;
-			const popupWidth = isMobile ? 200 : 220; // Responsive width from CSS
-			const edgeBuffer = 20;
-
-			let positionClass = '';
-			if ( senderCenterX < popupWidth / 2 + edgeBuffer ) {
-				// Too close to left edge
-				positionClass = 'interactive-image__popup--left-aligned';
-			} else if ( senderCenterX > containerWidth - popupWidth / 2 - edgeBuffer ) {
-				// Too close to right edge
-				positionClass = 'interactive-image__popup--right-aligned';
-			} else {
-				// Center aligned (default)
-				positionClass = 'interactive-image__popup--center-aligned';
-			}
-
-			// Add positioning class
-			popup.classList.add( positionClass );
-
-			// Show popup with fade animation
-			popup.style.display = 'block';
-			ZotefoamsAnimationUtils.fadeIn( popup );
 		}
 	}
 
 	function hideAllPopups() {
-		const allPopups = ZotefoamsDOMUtils.selectAll( '.interactive-image__popup' );
-		allPopups.forEach( ( popup ) => {
-			popup.style.display = 'none';
-			ZotefoamsAnimationUtils.fadeOut( popup );
+		ZotefoamsDOMUtils.selectAll( '.interactive-image__point[aria-expanded]' ).forEach( closePopup );
+	}
+
+	function showPopup( sender ) {
+		clearTimeout( hideTimeout );
+
+		ZotefoamsDOMUtils.selectAll( '.interactive-image__point[aria-expanded="true"]' ).forEach( ( other ) => {
+			if ( other !== sender ) {
+				closePopup( other );
+			}
 		} );
+
+		const popup = sender.querySelector( '.interactive-image__popup' );
+		if ( ! popup ) {
+			return;
+		}
+
+		sender.setAttribute( 'aria-expanded', 'true' );
+		positionPopup( sender, popup );
+		popup.style.display = 'block';
+		ZotefoamsAnimationUtils.fadeIn( popup );
+	}
+
+	function scheduleHide() {
+		clearTimeout( hideTimeout );
+		hideTimeout = setTimeout( hideAllPopups, HOVER_CLOSE_DELAY_MS );
+	}
+
+	function cancelScheduledHide() {
+		clearTimeout( hideTimeout );
 	}
 
 	function initInteractiveImage() {
-		const points = ZotefoamsDOMUtils.selectAll( '.interactive-image__point' );
+		const points = ZotefoamsDOMUtils.selectAll( '.interactive-image__point[aria-expanded]' );
 
 		points.forEach( ( point ) => {
 			const popup = point.querySelector( '.interactive-image__popup' );
@@ -1214,17 +1227,37 @@
 			// 🖱 Desktop: Hover interaction
 			if ( ! ZotefoamsDeviceUtils.isTouchDevice() ) {
 				ZotefoamsEventUtils.on( point, 'mouseenter', () => showPopup( point ) );
-				ZotefoamsEventUtils.on( point, 'mouseleave', hideAllPopups );
+				ZotefoamsEventUtils.on( point, 'mouseleave', scheduleHide );
+				ZotefoamsEventUtils.on( popup, 'mouseenter', cancelScheduledHide );
+				ZotefoamsEventUtils.on( popup, 'mouseleave', scheduleHide );
 			}
 			// 👆 Mobile: Tap interaction
 			else {
 				ZotefoamsEventUtils.on( point, 'click', ( e ) => {
 					e.stopPropagation();
-					showPopup( point );
+					if ( point.getAttribute( 'aria-expanded' ) === 'true' ) {
+						closePopup( point );
+					} else {
+						showPopup( point );
+					}
 				} );
 			}
 
-			// Prevent popup click bubbling so it doesn't auto-close
+			ZotefoamsEventUtils.on( point, 'focus', () => showPopup( point ) );
+			ZotefoamsEventUtils.on( point, 'blur', ( e ) => {
+				if ( popup.contains( e.relatedTarget ) ) {
+					return;
+				}
+				closePopup( point );
+			} );
+
+			ZotefoamsEventUtils.on( point, 'keydown', ( e ) => {
+				if ( e.key === 'Escape' && point.getAttribute( 'aria-expanded' ) === 'true' ) {
+					closePopup( point );
+					point.focus();
+				}
+			} );
+
 			ZotefoamsEventUtils.on( popup, 'click', ( e ) => e.stopPropagation() );
 		} );
 
@@ -1236,7 +1269,6 @@
 		} );
 	}
 
-	// Initialize when DOM is ready
 	ZotefoamsReadyUtils.ready( initInteractiveImage );
 
 	/**

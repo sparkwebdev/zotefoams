@@ -45,16 +45,32 @@ $wrapper_classes = 'interactive-image padding-t-b-100 ' . $theme_class;
                     } elseif ($from_left > 70) {
                         $pointClass .= ' interactive-image__point--right';
                     }
-                ?>
-                    <div class="<?php echo esc_attr($pointClass); ?>" 
-                         style="top:<?php echo esc_attr($from_top); ?>%;left:<?php echo esc_attr($from_left); ?>%;"
-                         <?php if ($output_numbers) : ?>
-                         data-point-number="<?php echo esc_attr($point_counter); ?>"
-                         <?php endif; ?>>
 
-                        <?php if ($point_content) : ?>
-                            <div class="interactive-image__popup">
-                                <?php 
+                    $popup_id = 'interactive-image-popup-' . $point_counter;
+
+                    // No discrete "name" field in ACF — derive from the point content's first line.
+                    $point_name = '';
+                    if ($point_content) {
+                        $content_lines = wp_strip_all_tags(preg_replace('/<\/(p|div|li)[^>]*>|<br[^>]*>/i', "\n", $point_content));
+                        $point_name = trim(strtok($content_lines, "\n"));
+                    }
+                    if (!$point_name) {
+                        $point_name = sprintf(__('Point %d', 'zotefoams'), $point_counter);
+                    }
+                ?>
+                    <?php if ($point_content) : ?>
+                        <button type="button" class="<?php echo esc_attr($pointClass); ?>"
+                                style="top:<?php echo esc_attr($from_top); ?>%;left:<?php echo esc_attr($from_left); ?>%;"
+                                <?php if ($output_numbers) : ?>
+                                data-point-number="<?php echo esc_attr($point_counter); ?>"
+                                <?php endif; ?>
+                                aria-expanded="false" aria-controls="<?php echo esc_attr($popup_id); ?>" aria-label="<?php echo esc_attr($point_name); ?>">
+                            <?php if (!$output_numbers) : ?>
+                                <span class="interactive-image__dot" aria-hidden="true"></span>
+                            <?php endif; ?>
+
+                            <div class="interactive-image__popup" id="<?php echo esc_attr($popup_id); ?>">
+                                <?php
                                 // Check if content contains <br> tags
                                 if (preg_match('/<br\s*\/?>/i', $point_content)) {
                                     // Split on first <br> tag
@@ -71,11 +87,22 @@ $wrapper_classes = 'interactive-image padding-t-b-100 ' . $theme_class;
                                 }
                                 ?>
                             </div>
-                        <?php endif; ?>
-                    </div>
-                <?php 
+                        </button>
+                    <?php else : ?>
+                        <span class="<?php echo esc_attr($pointClass); ?>"
+                              style="top:<?php echo esc_attr($from_top); ?>%;left:<?php echo esc_attr($from_left); ?>%;"
+                              <?php if ($output_numbers) : ?>
+                              data-point-number="<?php echo esc_attr($point_counter); ?>"
+                              <?php endif; ?>
+                              aria-hidden="true">
+                            <?php if (!$output_numbers) : ?>
+                                <span class="interactive-image__dot"></span>
+                            <?php endif; ?>
+                        </span>
+                    <?php endif; ?>
+                <?php
                     $point_counter++;
-                endforeach; 
+                endforeach;
                 ?>
             <?php endif; ?>
 

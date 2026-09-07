@@ -1,17 +1,17 @@
 @charset "UTF-8";
 /*!
 Theme Name: Zotefoams
-Theme URI: http://underscores.me/
-Author: David Park
-Author URI: http://underscores.me/
+Theme URI: https://www.zotefoams.com/
+Author: Steven Park
+Author URI: https://www.stevenpark.co.uk/
 Description: Description
-Version: 3.6.0
-Tested up to: 6.9.4
+Version: 3.6.1
+Tested up to: 7.1
 Requires PHP: 7.4
 License: GNU General Public License v2 or later
 License URI: LICENSE
 Text Domain: zotefoams
-Tags: custom-background, custom-logo, custom-menu, featured-images, threaded-comments, translation-ready
+Tags: custom-menu, featured-images, translation-ready, accessibility-ready
 
 This theme, like WordPress, is licensed under the GPL.
 Use it to make something cool, have fun, and share what you've learned.
@@ -5457,14 +5457,15 @@ a.read-more.hl.arrow:focus::after {
   justify-content: center;
   align-items: center;
   z-index: 1;
+  border: none;
+  background: transparent;
+  padding: 0;
+  font: inherit;
 }
 .interactive-image__point--circle {
-  width: 0.4vw;
-  height: 0.4vw;
-  max-width: 8px;
-  max-height: 8px;
+  min-width: 24px;
+  min-height: 24px;
   border-radius: 50%;
-  background-color: #fff;
   transform: translate(-50%, -50%);
 }
 .interactive-image__point--circle::after {
@@ -5515,6 +5516,16 @@ a.read-more.hl.arrow:focus::after {
   left: auto;
   right: 10px;
   transform: translateX(25%);
+}
+.interactive-image__dot {
+  display: block;
+  width: 0.4vw;
+  height: 0.4vw;
+  max-width: 8px;
+  max-height: 8px;
+  border-radius: 50%;
+  background-color: #fff;
+  pointer-events: none;
 }
 .interactive-image__popup {
   display: none;
@@ -5576,13 +5587,6 @@ a.read-more.hl.arrow:focus::after {
 
 /* Responsive adjustments */
 @media (max-width: 768px) {
-  .interactive-image__point--circle {
-    width: 8px;
-    height: 8px;
-    max-width: 8px;
-    max-height: 8px;
-    transform: translate(-50%, -50%);
-  }
   .interactive-image__point--circle::after {
     width: 40px;
     height: 40px;

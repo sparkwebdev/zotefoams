@@ -33,15 +33,16 @@
     justify-content: center;
     align-items: center;
     z-index: 1;
+    border: none;
+    background: transparent;
+    padding: 0;
+    font: inherit;
 
     // Circle marker styles (default)
     &--circle {
-      width: 0.4vw;
-      height: 0.4vw;
-      max-width: 8px;
-      max-height: 8px;
+      min-width: 24px;
+      min-height: 24px;
       border-radius: 50%;
-      background-color: #fff;
       transform: translate(-50%, -50%);
 
       &::after {
@@ -107,6 +108,17 @@
         transform: translateX(25%);
       }
     }
+  }
+
+  &__dot {
+    display: block;
+    width: 0.4vw;
+    height: 0.4vw;
+    max-width: 8px;
+    max-height: 8px;
+    border-radius: 50%;
+    background-color: #fff;
+    pointer-events: none;
   }
 
   &__popup {
@@ -184,12 +196,6 @@
   .interactive-image {
     &__point {
       &--circle {
-        width: 8px;
-        height: 8px;
-        max-width: 8px;
-        max-height: 8px;
-        transform: translate(-50%, -50%);
-
         &::after {
           width: 40px;
           height: 40px;
