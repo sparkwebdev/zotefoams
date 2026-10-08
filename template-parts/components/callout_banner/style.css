@@ -80,6 +80,10 @@
 }
 
 @media (width >= 64rem) {
+	.component-callout-banner{
+		padding-top: 6rem;	
+	}
+	
 	.component-callout-banner__text {
 		padding: 3rem;
 	}
@@ -89,8 +93,8 @@
 		grid-template-rows: 1fr;
 	}
 	.component-callout-banner__img {
-		top: -4rem;
-		height: calc(100% + 4rem);
-		object-position: bottom right;
+		top: -5.5rem;
+		height: calc(100% + 5.5rem);
+		object-position: bottom;
 	}
 }

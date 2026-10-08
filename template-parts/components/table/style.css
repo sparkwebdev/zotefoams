@@ -1,0 +1,152 @@
+.component-table {
+}
+
+.component-table__caption {
+	font-size: 2rem;
+	line-height: 1.25;
+	max-width: 50rem;
+	margin-bottom: 2rem;
+}
+
+.component-table__table {
+	border-collapse: collapse;
+}
+
+.component-table__table__row {
+	height: 1px;
+}
+
+.component-table__table__cell {
+	padding-top: 1.75rem;
+	padding-bottom: 1.75rem;
+	vertical-align: top;
+	border-bottom: 1px solid var(--tone-light);
+	height: inherit;
+	padding-left: 0.75rem;
+	padding-right: 0.75rem;
+
+	&:first-child {
+		padding-left: 0;
+	}
+
+	&:last-child {
+		padding-right: 0;
+	}
+}
+
+.component-table__table__cell__contents {
+	height: 100%;
+}
+
+.component-table__table__cell--header {
+	border-top: 1px solid var(--tone-light);
+	white-space: nowrap;
+	font-weight: 600;
+	font-size: 0.875rem;
+	padding-top: 1rem;
+	padding-bottom: 1rem;
+}
+
+.component-table__table__cell--image {
+	img {
+		width: 100%;
+		height: 100%;
+		object-position: center;
+		object-fit: cover;
+		min-width: 15rem;
+	}
+}
+
+.component-table__table__cell--text {
+	.component-table__table__cell__contents {
+		display: flex;
+		flex-direction: column;
+
+		h1,
+		h2,
+		h3,
+		h4,
+		h5,
+		h6 {
+			margin-bottom: 0.375em;
+		}
+
+		p {
+			color: #505050;
+			margin-bottom: 1.25rem;
+		}
+
+		.component-link {
+			display: flex;
+			align-items: center;
+			gap: 0.25rem;
+			margin-top: auto;
+
+			.component-link__icon {
+				flex-shrink: 0;
+				width: 1.375rem;
+				height: 1.375rem;
+				fill: currentColor;
+			}
+		}
+	}
+}
+
+.component-table__table__cell--chips {
+	ul {
+		padding: 0;
+		margin: 0;
+		list-style: none;
+		display: flex;
+		gap: 0.675rem;
+		flex-wrap: wrap;
+
+		li {
+			display: block;
+			background: #f1f1f1;
+			border-radius: 10rem;
+			padding: 0.25rem 0.75rem;
+			font-size: 0.875rem;
+			font-weight: 500;
+		}
+	}
+}
+
+@media (width <= 992px) {
+	.component-table__table {
+		display: block;
+		border-bottom: 1px solid var(--tone-light);
+	}
+
+	.component-table__table__head {
+		display: none;
+	}
+
+	.component-table__table__body {
+		display: block;
+	}
+
+	.component-table__table__row {
+		display: flex;
+		flex-direction: column;
+		gap: 1.5rem;
+		padding: 1.5rem 0;
+		height: auto;
+		border-top: 1px solid var(--tone-light);
+	}
+
+	.component-table__table__cell {
+		display: block;
+		height: auto;
+		border: none;
+		padding: 0;
+	}
+
+	.component-table__table__cell--image {
+		img {
+			width: 100%;
+			height: auto;
+			aspect-ratio: 16/9;
+		}
+	}
+}

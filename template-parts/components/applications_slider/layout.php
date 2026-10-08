@@ -51,7 +51,15 @@ $categories = array_unique($categories);
                     </div>
 
                     <a class="component-applications-slider__card__link component-link" href="<?php echo get_sub_field('link') ?: "/contact-us/"; ?>">
-                        More about <?php the_sub_field('name') ?>
+                        <?php if (get_sub_field('link')): ?>
+
+                            More about <?php echo esc_html(strtolower(get_sub_field('name'))); ?>
+
+                        <?php else: ?>
+
+                            Discuss your Requirements
+
+                        <?php endif; ?>
 
                         <svg class="component-link__icon" xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#1f1f1f">
                             <path d="M504-480 320-664l56-56 240 240-240 240-56-56 184-184Z" />
