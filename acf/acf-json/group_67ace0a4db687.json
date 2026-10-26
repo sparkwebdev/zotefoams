@@ -91,9 +91,9 @@
 							},
 							"default_value": "",
 							"allow_in_bindings": 0,
-							"tabs": "visual",
+							"tabs": "all",
 							"toolbar": "basic",
-							"media_upload": 0,
+							"media_upload": 1,
 							"delay": 0
 						},
 						{

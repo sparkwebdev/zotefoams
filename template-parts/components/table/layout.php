@@ -1,6 +1,6 @@
 <?php wp_enqueue_style('component-table', get_template_directory_uri() . '/template-parts/components/table/style.css', [], '1.0.0'); ?>
 
-<div class="component-table cont-m padding-t-b-70">
+<div class="component-table cont-m">
     <h2 class="component-table__caption">
         <?php the_sub_field('caption'); ?>
     </h2>
