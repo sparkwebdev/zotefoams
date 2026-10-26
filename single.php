@@ -136,6 +136,9 @@ else :
 <?php 
 endif; ?>
 
-<?php get_template_part('template-parts/latest-posts'); ?>
+<?php 
+if ( in_category('news') ) :
+	get_template_part('template-parts/latest-posts');
+endif; ?>
 
 <?php get_footer(); ?>
